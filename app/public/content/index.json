@@ -1,0 +1,12 @@
+{
+  "files": [
+    "docker-fundamentals.md",
+    "react-hooks.md",
+    "typescript-basics.md"
+  ],
+  "categories": {
+    "DevOps": ["docker-fundamentals.md"],
+    "Frontend": ["react-hooks.md", "typescript-basics.md"]
+  },
+  "lastUpdated": "2025-04-01T12:00:00Z"
+}
