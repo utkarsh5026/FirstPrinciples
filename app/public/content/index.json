@@ -49,11 +49,18 @@
       "id": "javascript",
       "name": "JavaScript",
       "icon": "Code",
-      "files": [
+      "subcategories": [
         {
-          "path": "javascript/basics.md",
-          "title": "JavaScript Basics",
-          "description": "Introduction to JavaScript"
+          "id": "javascript-closures",
+          "name": "Closures",
+          "icon": "Code",
+          "files": [
+            {
+              "path": "javascript/closures/introduction_to_closures.md",
+              "title": "Introduction to Closures",
+              "description": "An overview of closures in JavaScript"
+            }
+          ]
         }
       ]
     }
