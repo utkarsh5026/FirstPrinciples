@@ -1,15 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { format } from "date-fns";
-import CustomMarkdownRenderer from "./Renderer";
-import TableOfContents from "./TableOfContent";
+import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
-import {
-  FileDown,
-  Share2,
-  ChevronLeft,
-  ChevronRight,
-  ExternalLink,
-} from "lucide-react";
+import { FileDown, Share2, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SimpleMarkdownPageProps {
@@ -218,116 +211,6 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
       <main className="max-w-4xl mx-auto px-0 py-0 sm:px-4">
         <div className="relative grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Sidebar for table of contents */}
-          <div className="col-span-1 hidden md:block">
-            <div className="sticky top-20 space-y-4">
-              <TableOfContents
-                markdownContent={markdownContent}
-                highlightActive={true}
-                maxDepth={3}
-              />
-
-              <div
-                className={cn(
-                  "p-4 border rounded-md",
-                  isDarkMode
-                    ? "border-[#303030] bg-[#202020]"
-                    : "border-gray-200 bg-gray-50"
-                )}
-              >
-                <h2
-                  className={cn(
-                    "text-base font-normal mb-3 pb-2 border-b",
-                    isDarkMode
-                      ? "border-[#303030] text-gray-300"
-                      : "border-gray-200 text-gray-700"
-                  )}
-                >
-                  Actions
-                </h2>
-                <div className="space-y-2">
-                  <button
-                    onClick={handleDownload}
-                    className={cn(
-                      "flex items-center w-full px-3 py-2 text-sm rounded-md",
-                      isDarkMode
-                        ? "bg-[#252525] hover:bg-[#2a2a2a] text-gray-300"
-                        : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                    )}
-                  >
-                    <FileDown size={16} className="mr-2" />
-                    Download Markdown
-                  </button>
-
-                  <button
-                    onClick={handleCopyLink}
-                    className={cn(
-                      "flex items-center w-full px-3 py-2 text-sm rounded-md",
-                      isDarkMode
-                        ? "bg-[#252525] hover:bg-[#2a2a2a] text-gray-300"
-                        : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                    )}
-                  >
-                    <Share2 size={16} className="mr-2" />
-                    {copied ? "Copied!" : "Copy Link"}
-                  </button>
-
-                  {frontmatter.externalUrl && (
-                    <a
-                      href={frontmatter.externalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={cn(
-                        "flex items-center w-full px-3 py-2 text-sm rounded-md",
-                        isDarkMode
-                          ? "bg-[#252525] hover:bg-[#2a2a2a] text-primary"
-                          : "bg-gray-100 hover:bg-gray-200 text-primary"
-                      )}
-                    >
-                      <ExternalLink size={16} className="mr-2" />
-                      View Original
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              {frontmatter.tags && frontmatter.tags.length > 0 && (
-                <div
-                  className={cn(
-                    "p-4 border rounded-md",
-                    isDarkMode
-                      ? "border-[#303030] bg-[#202020]"
-                      : "border-gray-200 bg-gray-50"
-                  )}
-                >
-                  <h2
-                    className={cn(
-                      "text-base font-normal mb-3 pb-2 border-b",
-                      isDarkMode
-                        ? "border-[#303030] text-gray-300"
-                        : "border-gray-200 text-gray-700"
-                    )}
-                  >
-                    Tags
-                  </h2>
-                  <div className="flex flex-wrap gap-2">
-                    {frontmatter.tags.map((tag: string) => (
-                      <span
-                        key={tag}
-                        className={cn(
-                          "px-2 py-1 rounded-md text-xs",
-                          isDarkMode
-                            ? "bg-[#252525] text-gray-300"
-                            : "bg-gray-200 text-gray-700"
-                        )}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
 
           {/* Document content */}
           <div className="col-span-1 md:col-span-3">
