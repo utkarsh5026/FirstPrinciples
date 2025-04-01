@@ -26,12 +26,12 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({
 
   return (
     <div className={`max-w-3xl mx-auto ${className}`}>
-      {/* Minimal document header */}
+      {/* Minimal document header with reduced contrast */}
       <div className="mb-8">
-        <h1 className="text-3xl font-medium mb-3 text-white leading-tight">
+        <h1 className="text-3xl font-normal mb-3 text-gray-200 leading-tight">
           {document.title}
         </h1>
-        <div className="text-sm text-gray-400 border-b border-[#222222] pb-3">
+        <div className="text-sm text-gray-500 border-b border-[#303030] pb-3">
           Created {formatDate(document.createdAt)} · Updated{" "}
           {formatDate(document.updatedAt)}
         </div>
