@@ -1,10 +1,10 @@
-// src/utils/markdown-loader.ts
+// src/utils/MarkdownLoader.tsx
 import matter from "gray-matter";
 import { Buffer } from "buffer";
 
 // Make Buffer globally available
-// Add this line right after the imports
 globalThis.Buffer = Buffer;
+
 /**
  * Interface for parsed frontmatter metadata from markdown files
  */
@@ -28,23 +28,89 @@ export interface ParsedMarkdown {
 }
 
 /**
+ * Interface for file metadata in the index
+ */
+export interface FileMetadata {
+  path: string;
+  title: string;
+  description?: string;
+}
+
+/**
+ * Interface for a category in the index
+ */
+export interface Category {
+  id: string;
+  name: string;
+  icon?: string;
+  subcategories?: Category[];
+  files?: FileMetadata[];
+}
+
+/**
+ * Interface for the complete index structure
+ */
+export interface ContentIndex {
+  categories: Category[];
+  files: FileMetadata[];
+}
+
+/**
  * Helper class for loading and handling markdown files
  */
 export class MarkdownLoader {
+  private static contentIndex: ContentIndex | null = null;
+
   /**
-   * Fetch all available markdown files from the content directory
-   * @returns A list of available markdown files
+   * Load the content index, caching it for future use
    */
-  static async getAvailableFiles(): Promise<string[]> {
+  static async loadContentIndex(): Promise<ContentIndex> {
+    if (this.contentIndex) {
+      return this.contentIndex;
+    }
+
     try {
-      // Fetch the index file which lists all available md files
       const response = await fetch("/content/index.json");
       if (!response.ok) {
         throw new Error("Failed to load content index");
       }
 
       const data = await response.json();
-      return data.files || [];
+      this.contentIndex = data as ContentIndex;
+      return this.contentIndex;
+    } catch (error) {
+      console.error("Error loading content index:", error);
+      // Return an empty index structure
+      return { categories: [], files: [] };
+    }
+  }
+
+  /**
+   * Fetch all available markdown files from the content directory
+   * (Legacy method for backwards compatibility)
+   * @returns A list of available markdown files
+   */
+  static async getAvailableFiles(): Promise<string[]> {
+    try {
+      const index = await this.loadContentIndex();
+      const files: string[] = [];
+
+      // Add root-level files
+      index.files.forEach((file) => files.push(file.path));
+
+      // Recursively add files from categories
+      const addFilesFromCategory = (category: Category) => {
+        if (category.files) {
+          category.files.forEach((file) => files.push(file.path));
+        }
+        if (category.subcategories) {
+          category.subcategories.forEach(addFilesFromCategory);
+        }
+      };
+
+      index.categories.forEach(addFilesFromCategory);
+
+      return files;
     } catch (error) {
       console.error("Error loading markdown file list:", error);
       return [];
@@ -52,37 +118,139 @@ export class MarkdownLoader {
   }
 
   /**
-   * Get categories from the index file
-   * @returns A map of categories to file arrays
+   * Get all categories from the index
+   * @returns The complete category structure
    */
-  static async getCategories(): Promise<Record<string, string[]>> {
+  static async getCategories(): Promise<Category[]> {
     try {
-      const response = await fetch("/content/index.json");
-      if (!response.ok) {
-        throw new Error("Failed to load content index");
-      }
-
-      const data = await response.json();
-      return data.categories || {};
+      const index = await this.loadContentIndex();
+      return index.categories || [];
     } catch (error) {
       console.error("Error loading categories:", error);
-      return {};
+      return [];
     }
   }
 
   /**
+   * Find file metadata from its path
+   * @param path The file path to find
+   * @returns The file metadata or null if not found
+   */
+  static async findFileMetadata(path: string): Promise<FileMetadata | null> {
+    const index = await this.loadContentIndex();
+
+    // Check root files
+    const rootFile = index.files.find((file) => file.path === path);
+    if (rootFile) {
+      return rootFile;
+    }
+
+    // Search in categories recursively
+    const searchInCategory = (category: Category): FileMetadata | null => {
+      if (category.files) {
+        const foundFile = category.files.find((file) => file.path === path);
+        if (foundFile) {
+          return foundFile;
+        }
+      }
+
+      if (category.subcategories) {
+        for (const subcategory of category.subcategories) {
+          const result = searchInCategory(subcategory);
+          if (result) {
+            return result;
+          }
+        }
+      }
+
+      return null;
+    };
+
+    for (const category of index.categories) {
+      const result = searchInCategory(category);
+      if (result) {
+        return result;
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Get file breadcrumbs (category path) from its path
+   * @param path The file path to find
+   * @returns Array of breadcrumb items (categories) leading to the file
+   */
+  static async getFileBreadcrumbs(
+    path: string
+  ): Promise<{ id: string; name: string; icon?: string }[]> {
+    const index = await this.loadContentIndex();
+    const breadcrumbs: { id: string; name: string; icon?: string }[] = [];
+
+    // Check if it's a root file
+    const rootFile = index.files.find((file) => file.path === path);
+    if (rootFile) {
+      return breadcrumbs; // Empty breadcrumbs for root files
+    }
+
+    // Helper function to search categories recursively
+    const searchInCategory = (
+      category: Category,
+      currentPath: { id: string; name: string; icon?: string }[] = []
+    ): boolean => {
+      const newPath = [
+        ...currentPath,
+        {
+          id: category.id,
+          name: category.name,
+          icon: category.icon,
+        },
+      ];
+
+      // Check if file is directly in this category
+      if (category.files && category.files.some((file) => file.path === path)) {
+        breadcrumbs.push(...newPath);
+        return true;
+      }
+
+      // Search subcategories
+      if (category.subcategories) {
+        for (const subcategory of category.subcategories) {
+          if (searchInCategory(subcategory, newPath)) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    };
+
+    // Search in all categories
+    for (const category of index.categories) {
+      if (searchInCategory(category)) {
+        break;
+      }
+    }
+
+    return breadcrumbs;
+  }
+
+  /**
    * Load raw markdown content directly from a file
-   * @param filename The name of the markdown file to load
+   * @param filepath The path of the markdown file to load
    * @returns An object with the raw markdown content and parsed frontmatter
    */
   static async loadMarkdownContent(
-    filename: string
+    filepath: string
   ): Promise<ParsedMarkdown | null> {
     try {
+      // Get file metadata to enhance frontmatter if available
+      const fileMetadata = await this.findFileMetadata(filepath);
+
       // Fetch the markdown file
-      const response = await fetch(`/content/${filename}`);
+      const response = await fetch(`/content/${filepath}`);
       if (!response.ok) {
-        throw new Error(`Failed to load markdown file: ${filename}`);
+        throw new Error(`Failed to load markdown file: ${filepath}`);
       }
 
       const markdownText = await response.text();
@@ -90,12 +258,22 @@ export class MarkdownLoader {
       // Parse frontmatter
       const { data: frontmatter, content } = matter(markdownText);
 
+      // Merge file metadata with frontmatter if available
+      if (fileMetadata) {
+        if (!frontmatter.title && fileMetadata.title) {
+          frontmatter.title = fileMetadata.title;
+        }
+        if (!frontmatter.description && fileMetadata.description) {
+          frontmatter.description = fileMetadata.description;
+        }
+      }
+
       return {
         content,
         frontmatter: frontmatter as MarkdownFrontmatter,
       };
     } catch (error) {
-      console.error(`Error loading markdown file ${filename}:`, error);
+      console.error(`Error loading markdown file ${filepath}:`, error);
       return null;
     }
   }

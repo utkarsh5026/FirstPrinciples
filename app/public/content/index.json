@@ -1,12 +1,68 @@
 {
-  "files": [
-    "docker-fundamentals.md",
-    "react-hooks.md",
-    "typescript-basics.md"
+  "categories": [
+    {
+      "id": "python",
+      "name": "Python",
+      "icon": "Python",
+      "subcategories": [
+        {
+          "id": "python-io",
+          "name": "IO",
+          "icon": "FileText",
+          "subcategories": [
+            {
+              "id": "python-io-asyncio",
+              "name": "Asyncio",
+              "icon": "Activity",
+              "files": [
+                {
+                  "path": "python/io/asyncio/introduction.md",
+                  "title": "Introduction to Asyncio",
+                  "description": "An overview of asynchronous programming with asyncio"
+                },
+                {
+                  "path": "python/io/asyncio/examples.md",
+                  "title": "Asyncio Examples",
+                  "description": "Practical examples of using asyncio"
+                }
+              ]
+            }
+          ],
+          "files": [
+            {
+              "path": "python/io/basics.md",
+              "title": "IO Basics",
+              "description": "Basic input/output operations in Python"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": "python/basics.md",
+          "title": "Python Basics",
+          "description": "Introduction to Python programming language"
+        }
+      ]
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript",
+      "icon": "Code",
+      "files": [
+        {
+          "path": "javascript/basics.md",
+          "title": "JavaScript Basics",
+          "description": "Introduction to JavaScript"
+        }
+      ]
+    }
   ],
-  "categories": {
-    "DevOps": ["docker-fundamentals.md"],
-    "Frontend": ["react-hooks.md", "typescript-basics.md"]
-  },
-  "lastUpdated": "2025-04-01T12:00:00Z"
+  "files": [
+    {
+      "path": "getting_started.md",
+      "title": "Getting Started",
+      "description": "How to get started with this documentation"
+    }
+  ]
 }
