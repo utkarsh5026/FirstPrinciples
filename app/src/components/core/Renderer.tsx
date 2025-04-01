@@ -1,110 +1,113 @@
-// src/components/notion/NotionApp.tsx
+// src/components/core/Renderer.tsx
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DocumentViewer from "./DocumentViewer";
 import { sampleDocument } from "@/concepts/data";
-import { Sun, Moon } from "lucide-react";
+import { DocumentProcessor } from "@/utils/DocumentProcessor";
+import { Menu, X } from "lucide-react";
 
 /**
- * A Notion-like read-only document viewer application
+ * A Notion-like document viewer optimized for focus and readability
+ * with reduced contrast for better eye comfort
  */
 const NotionApp: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  // Process the document to ensure all blocks have IDs
+  const [processedDocument, setProcessedDocument] = useState(() =>
+    DocumentProcessor.processDocument(sampleDocument)
+  );
+  // Generate table of contents from the processed document
+  const [tableOfContents, setTableOfContents] = useState(() =>
+    DocumentProcessor.generateTableOfContents(processedDocument)
+  );
+  // State for sidebar visibility on mobile
+  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   // Apply dark mode on component mount
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDarkMode]);
-
-  // Toggle dark mode class on the document body
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+    // Force dark mode
+    document.documentElement.classList.add("dark");
+  }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-200 font-sans">
-      {/* Header */}
-      <header className="border-b border-border sticky top-0 bg-background/80 backdrop-blur-sm z-10">
-        <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-semibold tracking-tight">NotionLike</h1>
-          </div>
+    <div className="min-h-screen bg-[#1a1a1a] text-gray-400 font-type-mono">
+      {/* Minimal header with reduced contrast */}
+      <header className="border-b border-[#303030] sticky top-0 bg-[#1a1a1a] z-10">
+        <div className="max-w-4xl mx-auto px-4 py-3 sm:px-6 flex justify-between items-center">
+          <h1 className="text-xl font-normal tracking-tight text-gray-300">
+            First Principles
+          </h1>
           <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-full hover:bg-secondary/70 transition-colors"
-            aria-label="Toggle dark mode"
+            onClick={() => setSidebarVisible(!sidebarVisible)}
+            className="md:hidden p-2 text-gray-500 hover:text-gray-300"
+            aria-label="Toggle sidebar"
           >
-            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+            {sidebarVisible ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </header>
 
       {/* Main content */}
-      <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {/* Sidebar */}
-          <div className="hidden md:block col-span-1">
-            <div className="sticky top-20 p-5 border border-border rounded-lg bg-card text-card-foreground">
-              <h2 className="text-lg font-medium mb-4 pb-2 border-b border-border">
+      <main className="max-w-4xl mx-auto px-4 py-8 sm:px-6">
+        <div className="relative grid grid-cols-1 md:grid-cols-4 gap-6">
+          {/* Mobile sidebar overlay */}
+          {sidebarVisible && (
+            <div
+              className="fixed inset-0 bg-black/40 z-20 md:hidden"
+              onClick={() => setSidebarVisible(false)}
+            ></div>
+          )}
+
+          {/* Focused sidebar with reduced contrast */}
+          <div
+            className={`${
+              sidebarVisible ? "fixed inset-y-0 left-0 w-64 z-30" : "hidden"
+            } md:block md:static md:w-auto md:z-auto col-span-1 bg-[#1a1a1a] md:bg-transparent`}
+          >
+            <div className="sticky top-20 p-4 border border-[#303030] rounded-md bg-[#202020]">
+              <h2 className="text-base font-normal mb-3 pb-2 border-b border-[#303030] text-gray-300">
                 Contents
               </h2>
               <nav className="space-y-1">
-                {sampleDocument.blocks
-                  .filter((block) => block.type.startsWith("heading"))
-                  .map((block, index) => {
-                    // Determine indentation based on heading level
-                    const indentClass =
-                      block.type === "heading-1"
-                        ? "ml-0 font-medium"
-                        : block.type === "heading-2"
-                        ? "ml-3 text-muted-foreground"
-                        : "ml-6 text-muted-foreground/80";
+                {tableOfContents.map((item) => {
+                  // Simple indentation with minimal styling and reduced contrast
+                  const indentClass =
+                    item.level === 1
+                      ? "ml-0 font-normal text-gray-300"
+                      : item.level === 2
+                      ? "ml-3 text-gray-400"
+                      : "ml-6 text-gray-500";
 
-                    return (
-                      <a
-                        key={block.id}
-                        href={`#${block.id}`}
-                        className={`block py-1 text-sm hover:text-primary transition-colors ${indentClass}`}
-                      >
-                        {(block as any).content}
-                      </a>
-                    );
-                  })}
+                  return (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      onClick={() => setSidebarVisible(false)}
+                      className={`block py-1 text-sm hover:text-gray-300 transition-colors ${indentClass}`}
+                    >
+                      {item.content}
+                    </a>
+                  );
+                })}
               </nav>
             </div>
           </div>
 
-          {/* Document content */}
+          {/* Document content with reduced contrast */}
           <div className="col-span-1 md:col-span-3">
-            <div className="bg-card text-card-foreground p-6 sm:p-8 rounded-lg border border-border shadow-sm">
-              <DocumentViewer document={sampleDocument} />
+            <div className="bg-[#202020] p-6 sm:p-8 rounded-md border border-[#303030]">
+              <DocumentViewer
+                document={processedDocument}
+                className="prose-invert"
+              />
             </div>
           </div>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border mt-12">
-        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6">
-          <p className="text-sm text-muted-foreground text-center">
-            NotionLike Interface — Built with React, TypeScript, and Tailwind
-            CSS
-          </p>
-          <div className="flex justify-center mt-4 space-x-4">
-            <span className="px-3 py-1 text-xs rounded-full bg-secondary/50 text-muted-foreground">
-              React 19
-            </span>
-            <span className="px-3 py-1 text-xs rounded-full bg-secondary/50 text-muted-foreground">
-              TypeScript
-            </span>
-            <span className="px-3 py-1 text-xs rounded-full bg-secondary/50 text-muted-foreground">
-              Tailwind 4
-            </span>
-          </div>
+      {/* Minimal footer with reduced contrast */}
+      <footer className="border-t border-[#303030] mt-12 py-6">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <p className="text-sm text-gray-500">NotionLike Interface</p>
         </div>
       </footer>
     </div>

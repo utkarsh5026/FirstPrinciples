@@ -1,147 +1,156 @@
-// src/data/sampleDocument.ts
-
+// src/concepts/data.ts
 import { Document } from "@/components/core/type";
 
-// Sample document with various block types
 export const sampleDocument: Document = {
-  id: "1",
-  title: "Getting Started with React",
-  createdAt: "2025-03-28T12:00:00Z",
-  updatedAt: "2025-04-01T09:30:00Z",
+  id: "doc-001",
+  title: "Understanding Modern Web Development",
+  createdAt: "2025-03-15T12:00:00Z",
+  updatedAt: "2025-03-28T14:30:00Z",
   blocks: [
     {
-      id: "block-1",
+      id: "", // We'll let DocumentProcessor assign this
       type: "paragraph",
       content:
-        "React is a JavaScript library for building user interfaces. It allows developers to create reusable UI components and efficiently update the DOM when data changes.",
+        "This document explores modern web development concepts, particularly focusing on React, TypeScript, and Tailwind CSS - the trinity of modern frontend development.",
     },
     {
-      id: "block-2",
-      type: "heading-2",
-      content: "Key Concepts",
+      id: "", // We'll let DocumentProcessor assign this
+      type: "heading-1",
+      content: "React: A Component-Based Library",
     },
     {
-      id: "block-3",
-      type: "bulleted-list",
-      items: [
-        {
-          id: "item-1",
-          content: "Components: Reusable, self-contained pieces of UI",
-        },
-        {
-          id: "item-2",
-          content: "Props: How data is passed from parent to child components",
-        },
-        {
-          id: "item-3",
-          content: "State: How components manage and respond to data changes",
-        },
-        {
-          id: "item-4",
-          content: "Virtual DOM: An efficient way to update the real DOM",
-        },
-      ],
-    },
-    {
-      id: "block-4",
-      type: "heading-2",
-      content: "Getting Started",
-    },
-    {
-      id: "block-5",
+      id: "", // We'll let DocumentProcessor assign this
       type: "paragraph",
       content:
-        "To start using React, you can create a new project using Create React App or Vite. Here's an example of a simple React component:",
+        "React is a JavaScript library for building user interfaces. It allows developers to create reusable UI components and manage the state of these components efficiently.",
     },
     {
-      id: "block-6",
-      type: "code",
-      content: `import React, { useState } from 'react';
-
-function Counter() {
-  const [count, setCount] = useState(0);
-  
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>
-  );
-}
-
-export default Counter;`,
-      language: "jsx",
-    },
-    {
-      id: "block-7",
+      id: "", // We'll let DocumentProcessor assign this
       type: "heading-2",
       content: "React Hooks",
     },
     {
-      id: "block-8",
+      id: "", // We'll let DocumentProcessor assign this
       type: "paragraph",
       content:
-        'Hooks are functions that let you "hook into" React state and lifecycle features from function components.',
+        "Hooks were introduced in React 16.8 to allow function components to use state and other React features without writing a class.",
     },
     {
-      id: "block-9",
-      type: "heading-3",
-      content: "Common Hooks",
+      id: "", // We'll let DocumentProcessor assign this
+      type: "code",
+      content:
+        "function Counter() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div>\n      <p>You clicked {count} times</p>\n      <button onClick={() => setCount(count + 1)}>\n        Click me\n      </button>\n    </div>\n  );\n}",
+      language: "jsx",
     },
     {
-      id: "block-10",
-      type: "numbered-list",
+      id: "", // We'll let DocumentProcessor assign this
+      type: "heading-2",
+      content: "React 19 Features",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
+      type: "paragraph",
+      content:
+        "React 19 introduces several new features including improved server components, streaming SSR enhancements, and better error handling.",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
+      type: "heading-1",
+      content: "TypeScript: Type Safety for JavaScript",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
+      type: "paragraph",
+      content:
+        "TypeScript adds static typing to JavaScript, helping developers catch errors early in the development process and providing better tooling support.",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
+      type: "quote",
+      content:
+        "TypeScript is JavaScript with syntax for types. - TypeScript documentation",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
+      type: "heading-2",
+      content: "Benefits of TypeScript",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
+      type: "bulleted-list",
       items: [
         {
-          id: "hook-1",
-          content: "useState: Manage state in function components",
+          id: "", // We'll let DocumentProcessor assign this
+          content: "Early error detection",
         },
         {
-          id: "hook-2",
-          content: "useEffect: Perform side effects in function components",
+          id: "", // We'll let DocumentProcessor assign this
+          content: "Improved IDE support with better autocompletion",
         },
         {
-          id: "hook-3",
-          content: "useContext: Access context in function components",
+          id: "", // We'll let DocumentProcessor assign this
+          content: "Safer refactoring",
         },
-        { id: "hook-4", content: "useRef: Create mutable ref objects" },
+        {
+          id: "", // We'll let DocumentProcessor assign this
+          content: "Better documentation of code through type annotations",
+        },
       ],
     },
     {
-      id: "block-11",
-      type: "quote",
-      content:
-        "Hooks are the future of React development. They allow for more reusable and composable code patterns.",
+      id: "", // We'll let DocumentProcessor assign this
+      type: "heading-1",
+      content: "Tailwind CSS: Utility-First CSS Framework",
     },
     {
-      id: "block-12",
+      id: "", // We'll let DocumentProcessor assign this
+      type: "paragraph",
+      content:
+        "Tailwind CSS is a utility-first CSS framework that allows developers to rapidly build custom designs without leaving the HTML.",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
+      type: "heading-2",
+      content: "Tailwind 4 New Features",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
+      type: "paragraph",
+      content:
+        "Tailwind 4 brings substantial performance improvements, native dark mode support, expanded color palette, and enhanced customization options.",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
+      type: "code",
+      content:
+        '<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">\n  Click me\n</button>',
+      language: "jsx",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
+      type: "heading-2",
+      content: "Using Tailwind with React",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
+      type: "paragraph",
+      content:
+        "Tailwind works exceptionally well with React, allowing developers to style components directly in JSX without switching between files.",
+    },
+    {
+      id: "", // We'll let DocumentProcessor assign this
       type: "divider",
     },
     {
-      id: "block-13",
-      type: "heading-2",
-      content: "React Ecosystem",
+      id: "", // We'll let DocumentProcessor assign this
+      type: "heading-1",
+      content: "Conclusion",
     },
     {
-      id: "block-14",
+      id: "", // We'll let DocumentProcessor assign this
       type: "paragraph",
       content:
-        "React has a rich ecosystem of libraries and tools that help with various aspects of application development.",
-    },
-    {
-      id: "block-15",
-      type: "image",
-      url: "/api/placeholder/800/400",
-      caption:
-        "The React ecosystem includes state management, routing, styling, and more.",
-    },
-    {
-      id: "block-16",
-      type: "paragraph",
-      content:
-        "Some popular libraries in the React ecosystem include Redux, React Router, Styled Components, and Next.js.",
+        "The combination of React, TypeScript, and Tailwind CSS provides a powerful stack for modern web development, offering a blend of component-based architecture, type safety, and utility-first styling.",
     },
   ],
 };
