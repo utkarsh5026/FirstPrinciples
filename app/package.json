@@ -4,8 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "generate-index": "node scripts/generateContentIndex.js",
+    "prebuild": "npm run generate-index",
     "build": "tsc -b && vite build",
+    "dev": "npm run generate-index && vite",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -42,7 +44,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
-    "@types/node": "^22.13.14",
+    "@types/node": "^22.13.17",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/uuid": "^10.0.0",
