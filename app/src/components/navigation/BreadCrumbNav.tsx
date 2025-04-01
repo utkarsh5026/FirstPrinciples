@@ -1,9 +1,22 @@
-// src/components/navigation/BreadcrumbNav.tsx
-import React, { useEffect, useState } from "react";
-import { ChevronRight, Home } from "lucide-react";
-import * as LucideIcons from "lucide-react";
+import React, { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
+import { FiChevronRight, FiHome, FiFile } from "react-icons/fi";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from "@/components/ui/breadcrumb";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface BreadcrumbNavProps {
   filePath: string;
@@ -17,6 +30,41 @@ interface BreadcrumbItem {
   icon?: string;
 }
 
+/**
+ * BreadcrumbNav Component
+ *
+ * A React functional component that displays a breadcrumb navigation UI.
+ * It allows users to navigate through a hierarchy of pages or categories.
+ * The component dynamically adjusts its display based on the screen size,
+ * showing a condensed view on smaller screens.
+ *
+ * Props:
+ * - filePath (string): The path of the current file. This is used to load
+ *   the breadcrumbs and file metadata.
+ * - className (string): Optional additional class names for styling the component.
+ * - onNavigate (function): A callback function that is called when a breadcrumb
+ *   link is clicked. It receives the ID of the category or file to navigate to.
+ *
+ * State:
+ * - breadcrumbs (BreadcrumbItem[]): An array of breadcrumb items representing
+ *   the navigation path.
+ * - fileTitle (string): The title of the current file, derived from its metadata.
+ * - loading (boolean): A loading state that indicates whether the breadcrumbs
+ *   are being fetched.
+ * - condensed (boolean): A state that determines if the breadcrumb view should
+ *   be condensed based on the screen size.
+ *
+ * Refs:
+ * - scrollRef (React.RefObject<HTMLDivElement>): A reference to the scrollable
+ *   div that contains the breadcrumbs, used to control horizontal scrolling.
+ *
+ * Effects:
+ * - useEffect: Loads the breadcrumbs and file metadata when the component mounts
+ *   or when the filePath changes. It also sets up a resize event listener to
+ *   adjust the condensed state based on the window width.
+ * - useEffect: Automatically scrolls the breadcrumb container to the right
+ *   when new breadcrumbs are loaded and loading is complete.
+ */
 const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({
   filePath,
   className,
@@ -25,24 +73,30 @@ const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({
   const [breadcrumbs, setBreadcrumbs] = useState<BreadcrumbItem[]>([]);
   const [fileTitle, setFileTitle] = useState<string>("");
   const [loading, setLoading] = useState(true);
+  const [condensed, setCondensed] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * loadBreadcrumbs function
+   *
+   * An asynchronous function that fetches the breadcrumbs and file metadata
+   * based on the provided filePath. It updates the state with the fetched
+   * breadcrumbs and file title. It also determines if the view should be
+   * condensed based on the number of breadcrumbs and the window width.
+   */
   useEffect(() => {
     const loadBreadcrumbs = async () => {
       if (!filePath) return;
 
       setLoading(true);
       try {
-        // Get breadcrumbs for the file path
         const crumbs = await MarkdownLoader.getFileBreadcrumbs(filePath);
         setBreadcrumbs(crumbs);
-
-        // Get the file title
         const fileMetadata = await MarkdownLoader.findFileMetadata(filePath);
-        if (fileMetadata) {
-          setFileTitle(fileMetadata.title || filePath);
-        } else {
-          setFileTitle(filePath);
-        }
+        if (fileMetadata) setFileTitle(fileMetadata.title || filePath);
+        else setFileTitle(filePath);
+
+        setCondensed(crumbs.length > 2 && window.innerWidth < 640);
       } catch (error) {
         console.error("Error loading breadcrumbs:", error);
       } finally {
@@ -51,72 +105,164 @@ const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({
     };
 
     loadBreadcrumbs();
-  }, [filePath]);
 
-  // Get the appropriate icon component
-  const getIconComponent = (iconName?: string) => {
-    if (!iconName) return null;
+    /**
+     * handleResize function
+     *
+     * A function that checks the number of breadcrumbs and updates the
+     * condensed state based on the window width. It is called on window resize.
+     */
+    const handleResize = () => {
+      if (breadcrumbs.length > 2) {
+        setCondensed(window.innerWidth < 640);
+      }
+    };
 
-    // Try to get the icon from lucide-react
-    const IconComponent = (LucideIcons as any)[iconName];
-    return IconComponent || null;
-  };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [filePath, breadcrumbs.length]);
+
+  /**
+   * useEffect for scrolling
+   *
+   * This effect scrolls the breadcrumb container to the right when new
+   * breadcrumbs are loaded and the loading state is false.
+   */
+  useEffect(() => {
+    if (scrollRef.current && !loading) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+    }
+  }, [breadcrumbs, loading]);
 
   if (loading || !filePath) {
     return (
-      <div className={cn("flex items-center text-gray-500", className)}>
-        <div className="animate-pulse h-4 bg-gray-700 rounded w-40"></div>
+      <div className={cn("flex items-center text-muted-foreground", className)}>
+        <div className="animate-pulse h-10 bg-card rounded-lg w-full"></div>
       </div>
     );
   }
 
   return (
-    <nav
-      className={cn(
-        "flex items-center overflow-auto whitespace-nowrap",
-        className
-      )}
-    >
-      {/* Home link */}
-      <button
-        className="flex items-center text-gray-400 hover:text-white rounded p-1 transition-colors"
-        onClick={() => onNavigate?.("root")}
-        aria-label="Home"
+    <div className={className}>
+      <div
+        ref={scrollRef}
+        className={cn(
+          "py-2.5 px-4 rounded-md bg-card",
+          "border border-border shadow-sm",
+          "overflow-hidden"
+        )}
       >
-        <Home size={16} />
-      </button>
+        <Breadcrumb>
+          <BreadcrumbList className="gap-1.5">
+            {/* Home link */}
+            <BreadcrumbItem>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <BreadcrumbLink
+                      onClick={() => onNavigate?.("root")}
+                      className="hover:text-primary text-muted-foreground p-1"
+                    >
+                      <FiHome size={16} aria-label="Home" />
+                    </BreadcrumbLink>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Go to root</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </BreadcrumbItem>
 
-      <ChevronRight size={14} className="mx-1 text-gray-600" />
+            <BreadcrumbSeparator>
+              <FiChevronRight className="text-muted-foreground/60" />
+            </BreadcrumbSeparator>
 
-      {/* Category breadcrumbs */}
-      {breadcrumbs.map((crumb, index) => {
-        const IconComponent = crumb.icon ? getIconComponent(crumb.icon) : null;
+            {/* Handle condensed view for mobile */}
+            {condensed ? (
+              /* Show ellipsis and last breadcrumb only */
+              <>
+                <BreadcrumbItem>
+                  <BreadcrumbEllipsis />
+                </BreadcrumbItem>
 
-        return (
-          <React.Fragment key={crumb.id}>
-            <button
-              className="flex items-center text-gray-400 hover:text-white rounded p-1 transition-colors"
-              onClick={() => onNavigate?.(crumb.id)}
-            >
-              {IconComponent && <IconComponent size={14} className="mr-1" />}
-              <span className="text-sm">{crumb.name}</span>
-            </button>
+                <BreadcrumbSeparator>
+                  <FiChevronRight className="text-muted-foreground/60" />
+                </BreadcrumbSeparator>
 
-            {index < breadcrumbs.length - 1 && (
-              <ChevronRight size={14} className="mx-1 text-gray-600" />
+                {breadcrumbs.length > 0 && (
+                  <>
+                    <BreadcrumbItem>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <BreadcrumbLink
+                              onClick={() =>
+                                onNavigate?.(
+                                  breadcrumbs[breadcrumbs.length - 1].id
+                                )
+                              }
+                              className="hover:text-primary text-muted-foreground flex items-center"
+                            >
+                              {breadcrumbs[breadcrumbs.length - 1].name}
+                            </BreadcrumbLink>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>
+                              Go to {breadcrumbs[breadcrumbs.length - 1].name}
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </BreadcrumbItem>
+
+                    <BreadcrumbSeparator>
+                      <FiChevronRight className="text-muted-foreground/60" />
+                    </BreadcrumbSeparator>
+                  </>
+                )}
+              </>
+            ) : (
+              /* Show all breadcrumbs */
+              breadcrumbs.map((crumb) => {
+                return (
+                  <React.Fragment key={crumb.id}>
+                    <BreadcrumbItem>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <BreadcrumbLink
+                              onClick={() => onNavigate?.(crumb.id)}
+                              className="hover:text-primary text-muted-foreground flex items-center transition-colors"
+                            >
+                              <span className="text-sm">{crumb.name}</span>
+                            </BreadcrumbLink>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Go to {crumb.name}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </BreadcrumbItem>
+
+                    <BreadcrumbSeparator>
+                      <FiChevronRight className="text-muted-foreground/60" />
+                    </BreadcrumbSeparator>
+                  </React.Fragment>
+                );
+              })
             )}
-          </React.Fragment>
-        );
-      })}
 
-      {/* Add separator before current file */}
-      {(breadcrumbs.length > 0 || true) && (
-        <ChevronRight size={14} className="mx-1 text-gray-600" />
-      )}
-
-      {/* Current file */}
-      <span className="text-sm text-primary font-medium">{fileTitle}</span>
-    </nav>
+            {/* Current file - always visible */}
+            <BreadcrumbItem>
+              <BreadcrumbPage className="text-sm text-primary font-medium px-1.5 py-1 flex items-center">
+                <FiFile className="mr-1.5 flex-shrink-0" />
+                <span className="truncate">{fileTitle}</span>
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+    </div>
   );
 };
 
