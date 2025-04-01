@@ -1,53 +1,49 @@
-// src/App.tsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SimpleMarkdownPage from "./components/core/SimpleMarkdownPage";
 import MarkdownManager from "./components/manager/MarkdownManager";
-import CategoryNavigation from "./components/navigation/CategoryNavigation";
+import CategoryNavigation from "./components/navigation/sidebar/CategoryNavigation";
 import BreadcrumbNav from "./components/navigation/BreadCrumbNav";
-import { Book, FileDown, Files, Menu, X, Moon, Sun } from "lucide-react";
 import { MarkdownLoader } from "./utils/MarkdownLoader";
-import { cn } from "@/lib/utils";
+import { useTheme } from "./components/theme/ThemeProvider";
+import ThemeSelector from "./components/theme/ThemeSelector";
+
+// Import React Icons
+import { FiBook, FiDownload, FiFolder, FiMenu, FiX } from "react-icons/fi";
+
+type ActiveTab = "view" | "manage" | "settings";
+
+// Import shadcn components
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 
 function App() {
-  const [activeTab, setActiveTab] = useState<"view" | "manage" | "settings">(
-    "view"
-  );
+  const { currentTheme, setTheme } = useTheme();
+  const [activeTab, setActiveTab] = useState<ActiveTab>("view");
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [sidebarVisible, setSidebarVisible] = useState(false);
-  const [sidebarWidth, setSidebarWidth] = useState(() => {
-    // Get saved sidebar width or default to 280px
-    return localStorage.getItem("sidebarWidth") || "280px";
-  });
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const sidebarWidth = localStorage.getItem("sidebarWidth") ?? "280px";
 
-  // Setup dark mode based on saved preference or default
+  // Close sidebar when clicking outside on mobile
   useEffect(() => {
-    const darkModePreference = localStorage.getItem("darkMode");
-    const prefersDark =
-      darkModePreference === "true" || darkModePreference === null;
-    setIsDarkMode(prefersDark);
+    const handleClickOutside = (e: MouseEvent) => {
+      if (sidebarVisible && window.innerWidth < 768) {
+        const sidebar = document.getElementById("mobile-sidebar");
+        const menuButton = document.getElementById("mobile-menu-button");
 
-    if (prefersDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
+        if (
+          sidebar &&
+          menuButton &&
+          !sidebar.contains(e.target as Node) &&
+          !menuButton.contains(e.target as Node)
+        ) {
+          setSidebarVisible(false);
+        }
+      }
+    };
 
-  // Toggle dark mode
-  const toggleDarkMode = () => {
-    const newValue = !isDarkMode;
-    setIsDarkMode(newValue);
-    localStorage.setItem("darkMode", String(newValue));
-
-    if (newValue) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [sidebarVisible]);
 
   // Load initial document
   useEffect(() => {
@@ -59,7 +55,6 @@ function App() {
         // If hash is present, try to find the file with this path
         const files = await MarkdownLoader.getAvailableFiles();
         const matchingFile = files.find((file) => {
-          // Match either the full path or the path without .md extension
           return (
             file === hashParams ||
             file === `${hashParams}.md` ||
@@ -91,7 +86,7 @@ function App() {
     setSelectedFile(filepath);
     setActiveTab("view");
 
-    // Update URL hash (use the filepath without extension for cleaner URLs)
+    // Update URL hash
     const slug = filepath.endsWith(".md") ? filepath.slice(0, -3) : filepath;
     window.location.hash = slug;
 
@@ -137,203 +132,121 @@ function App() {
       // Could implement showing all root files or a welcome page
       return;
     }
-
-    // Otherwise, this could expand the category in the navigation
-    // This would be handled by the CategoryNavigation component internally
   };
 
+  // Set the tab value based on activeTab state
+  const tabValue = activeTab;
+
   return (
-    <div
-      className={cn(
-        "min-h-screen flex flex-col font-type-mono",
-        isDarkMode ? "bg-[#1a1a1a] text-gray-300" : "bg-white text-gray-800"
-      )}
-    >
+    <div className="min-h-screen flex flex-col font-type-mono bg-background text-foreground">
       {/* Header */}
-      <header
-        className={cn(
-          "border-b sticky top-0 z-10",
-          isDarkMode
-            ? "border-[#303030] bg-[#1a1a1a]"
-            : "border-gray-200 bg-white"
-        )}
-      >
+      <header className="border-b sticky top-0 z-30 backdrop-blur-md bg-background/95 border-border">
         <div className="max-w-full mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center">
-            <h1
-              className={cn(
-                "text-xl font-normal tracking-tight mr-8",
-                isDarkMode ? "text-gray-300" : "text-gray-800"
-              )}
+            {/* Mobile menu button */}
+            <Button
+              id="mobile-menu-button"
+              onClick={() => setSidebarVisible(!sidebarVisible)}
+              variant="ghost"
+              size="icon"
+              className="md:hidden mr-3"
+              aria-label={sidebarVisible ? "Close menu" : "Open menu"}
             >
-              First Principles Documentation
+              {sidebarVisible ? <FiX size={20} /> : <FiMenu size={20} />}
+            </Button>
+
+            <h1 className="text-xl font-normal tracking-tight truncate md:mr-8 text-foreground">
+              First Principles Docs
             </h1>
 
             {/* Desktop tab navigation */}
-            <nav className="hidden md:flex space-x-6">
-              <button
-                className={cn(
-                  "flex items-center py-1 border-b-2",
-                  activeTab === "view"
-                    ? isDarkMode
-                      ? "border-primary text-white"
-                      : "border-primary text-gray-900"
-                    : isDarkMode
-                    ? "border-transparent text-gray-500 hover:text-gray-300"
-                    : "border-transparent text-gray-500 hover:text-gray-900"
-                )}
-                onClick={() => setActiveTab("view")}
+            <div className="hidden md:block">
+              <Tabs
+                value={tabValue}
+                onValueChange={(value) =>
+                  setActiveTab(value as "view" | "manage" | "settings")
+                }
+                className="w-full"
               >
-                <Book size={18} className="mr-2" />
-                View Documents
-              </button>
-              <button
-                className={cn(
-                  "flex items-center py-1 border-b-2",
-                  activeTab === "manage"
-                    ? isDarkMode
-                      ? "border-primary text-white"
-                      : "border-primary text-gray-900"
-                    : isDarkMode
-                    ? "border-transparent text-gray-500 hover:text-gray-300"
-                    : "border-transparent text-gray-500 hover:text-gray-900"
-                )}
-                onClick={() => setActiveTab("manage")}
-              >
-                <Files size={18} className="mr-2" />
-                Manage Files
-              </button>
-            </nav>
+                <TabsList className="bg-secondary/30">
+                  <TabsTrigger value="view">
+                    <FiBook className="mr-2" size={18} />
+                    View Documents
+                  </TabsTrigger>
+                  <TabsTrigger value="manage">
+                    <FiFolder className="mr-2" size={18} />
+                    Manage Files
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
           </div>
 
           <div className="flex items-center space-x-3">
-            {/* Dark mode toggle */}
-            <button
-              onClick={toggleDarkMode}
-              className={cn(
-                "p-2 rounded-md",
-                isDarkMode
-                  ? "text-gray-400 hover:text-white hover:bg-[#252525]"
-                  : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
-              )}
-              aria-label={
-                isDarkMode ? "Switch to light mode" : "Switch to dark mode"
-              }
-            >
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            {/* Theme Selector */}
+            <ThemeSelector
+              currentTheme={currentTheme.name}
+              onThemeChange={setTheme}
+            />
 
             {/* Download button (desktop) */}
             {selectedFile && activeTab === "view" && (
-              <button
+              <Button
                 onClick={handleDownloadMarkdown}
-                className={cn(
-                  "hidden md:flex items-center",
-                  isDarkMode
-                    ? "text-gray-400 hover:text-white"
-                    : "text-gray-600 hover:text-gray-900"
-                )}
+                variant="outline"
+                size="sm"
+                className="hidden md:flex"
               >
-                <FileDown size={18} className="mr-2" />
+                <FiDownload size={16} className="mr-2" />
                 Download
-              </button>
+              </Button>
             )}
-
-            {/* Mobile menu toggle */}
-            <button
-              onClick={() => setSidebarVisible(!sidebarVisible)}
-              className={cn(
-                "md:hidden p-2",
-                isDarkMode
-                  ? "text-gray-500 hover:text-gray-300"
-                  : "text-gray-600 hover:text-gray-900"
-              )}
-              aria-label="Menu"
-            >
-              {sidebarVisible ? <X size={20} /> : <Menu size={20} />}
-            </button>
           </div>
         </div>
-
-        {/* Mobile navigation */}
-        {sidebarVisible && (
-          <div
-            className={cn(
-              "md:hidden border-t",
-              isDarkMode
-                ? "border-[#252525] bg-[#1a1a1a]"
-                : "border-gray-200 bg-white"
-            )}
-          >
-            <div className="px-4 py-3 space-y-2">
-              <button
-                className={cn(
-                  "flex items-center w-full px-3 py-2 rounded",
-                  activeTab === "view"
-                    ? isDarkMode
-                      ? "bg-primary/10 text-white"
-                      : "bg-primary/10 text-gray-900"
-                    : isDarkMode
-                    ? "text-gray-400 hover:bg-[#252525]"
-                    : "text-gray-600 hover:bg-gray-100"
-                )}
-                onClick={() => {
-                  setActiveTab("view");
-                  setSidebarVisible(false);
-                }}
-              >
-                <Book size={18} className="mr-2" />
-                View Documents
-              </button>
-
-              <button
-                className={cn(
-                  "flex items-center w-full px-3 py-2 rounded",
-                  activeTab === "manage"
-                    ? isDarkMode
-                      ? "bg-primary/10 text-white"
-                      : "bg-primary/10 text-gray-900"
-                    : isDarkMode
-                    ? "text-gray-400 hover:bg-[#252525]"
-                    : "text-gray-600 hover:bg-gray-100"
-                )}
-                onClick={() => {
-                  setActiveTab("manage");
-                  setSidebarVisible(false);
-                }}
-              >
-                <Files size={18} className="mr-2" />
-                Manage Files
-              </button>
-
-              {selectedFile && activeTab === "view" && (
-                <button
-                  onClick={handleDownloadMarkdown}
-                  className={cn(
-                    "flex items-center w-full px-3 py-2 rounded",
-                    isDarkMode
-                      ? "text-gray-400 hover:bg-[#252525]"
-                      : "text-gray-600 hover:bg-gray-100"
-                  )}
-                >
-                  <FileDown size={18} className="mr-2" />
-                  Download Markdown
-                </button>
-              )}
-            </div>
-          </div>
-        )}
       </header>
 
+      {/* Mobile navigation tabs */}
+      <div className="md:hidden border-b px-4 py-2 border-border bg-background">
+        <Tabs
+          value={tabValue}
+          onValueChange={(value) =>
+            setActiveTab(value as "view" | "manage" | "settings")
+          }
+          className="w-full"
+        >
+          <TabsList className="grid grid-cols-3 h-12 rounded-md bg-secondary/30">
+            <TabsTrigger value="view">
+              <FiBook className="mr-2" size={16} />
+              View
+            </TabsTrigger>
+            <TabsTrigger value="manage">
+              <FiFolder className="mr-2" size={16} />
+              Files
+            </TabsTrigger>
+            {selectedFile && (
+              <TabsTrigger value="download" onClick={handleDownloadMarkdown}>
+                <FiDownload className="mr-2" size={16} />
+                Download
+              </TabsTrigger>
+            )}
+          </TabsList>
+        </Tabs>
+      </div>
+
       {/* Main content with sidebar */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden relative">
+        {/* Backdrop overlay for mobile sidebar */}
+        {sidebarVisible && (
+          <div
+            className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-20"
+            onClick={() => setSidebarVisible(false)}
+          />
+        )}
+
         {/* Sidebar (desktop) */}
         {activeTab === "view" && (
           <div
-            className={cn(
-              "hidden md:block border-r overflow-y-auto",
-              isDarkMode ? "border-[#303030]" : "border-gray-200"
-            )}
+            className="hidden md:block border-r overflow-y-auto bg-card border-border"
             style={{
               width: sidebarWidth,
               minWidth: "200px",
@@ -349,16 +262,16 @@ function App() {
           </div>
         )}
 
-        {/* Mobile sidebar (shown when sidebar is visible) */}
-        {activeTab === "view" && sidebarVisible && (
+        {/* Mobile sidebar */}
+        {activeTab === "view" && (
           <div
-            className={cn(
-              "absolute top-[57px] bottom-0 left-0 z-50 md:hidden border-r overflow-y-auto",
-              isDarkMode
-                ? "bg-[#1a1a1a] border-[#303030]"
-                : "bg-white border-gray-200"
-            )}
-            style={{ width: "280px" }}
+            id="mobile-sidebar"
+            className="fixed top-0 bottom-0 left-0 z-40 md:hidden border-r overflow-y-auto transition-transform duration-300 ease-in-out bg-card border-border"
+            style={{
+              width: "280px",
+              paddingTop: "6rem",
+              transform: sidebarVisible ? "translateX(0)" : "translateX(-100%)",
+            }}
           >
             <div className="p-4">
               <CategoryNavigation
@@ -373,31 +286,8 @@ function App() {
         <main className="flex-1 overflow-y-auto">
           {activeTab === "view" ? (
             <>
-              {loading ? (
-                <div className="flex justify-center items-center min-h-[400px]">
-                  <div
-                    className={cn(
-                      "animate-pulse",
-                      isDarkMode ? "text-gray-400" : "text-gray-500"
-                    )}
-                  >
-                    Loading document...
-                  </div>
-                </div>
-              ) : error ? (
-                <div
-                  className={cn(
-                    "p-6 rounded-md max-w-4xl mx-auto my-6",
-                    isDarkMode
-                      ? "bg-red-900/20 border border-red-800 text-red-200"
-                      : "bg-red-50 border border-red-200 text-red-800"
-                  )}
-                >
-                  <h2 className="text-xl font-medium mb-2">Error</h2>
-                  <p>{error}</p>
-                </div>
-              ) : selectedFile ? (
-                <div className="p-4">
+              {selectedFile ? (
+                <div className="px-4 py-4">
                   {/* Breadcrumb navigation */}
                   <BreadcrumbNav
                     filePath={selectedFile}
@@ -409,42 +299,25 @@ function App() {
                   <SimpleMarkdownPage filename={selectedFile} />
                 </div>
               ) : (
-                <div
-                  className={cn(
-                    "p-8 rounded-md border text-center max-w-4xl mx-auto my-6",
-                    isDarkMode
-                      ? "bg-[#202020] border-[#303030]"
-                      : "bg-gray-50 border-gray-200"
-                  )}
-                >
-                  <h2
-                    className={cn(
-                      "text-xl font-medium mb-4",
-                      isDarkMode ? "text-white" : "text-gray-900"
-                    )}
-                  >
+                <div className="p-8 rounded-lg border text-center max-w-4xl mx-auto my-6 bg-card border-border">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                    <FiBook size={28} className="text-primary" />
+                  </div>
+                  <h2 className="text-xl font-medium mb-4 text-foreground">
                     No Document Selected
                   </h2>
-                  <p
-                    className={cn(
-                      "mb-6",
-                      isDarkMode ? "text-gray-400" : "text-gray-600"
-                    )}
-                  >
+                  <p className="mb-6 max-w-md mx-auto text-muted-foreground">
                     Select a document from the sidebar or browse all available
-                    documents.
+                    documents in the file manager.
                   </p>
-                  <button
+                  <Button
                     onClick={() => setActiveTab("manage")}
-                    className={cn(
-                      "px-4 py-2 rounded",
-                      isDarkMode
-                        ? "bg-primary/10 text-primary border border-primary/30"
-                        : "bg-primary/10 text-primary border border-primary/30"
-                    )}
+                    variant="outline"
+                    className="border-primary/30 bg-primary/5 hover:bg-primary/10"
                   >
+                    <FiFolder className="mr-2" />
                     Browse Documents
-                  </button>
+                  </Button>
                 </div>
               )}
             </>
@@ -455,14 +328,9 @@ function App() {
       </div>
 
       {/* Footer */}
-      <footer
-        className={cn(
-          "border-t mt-auto py-6",
-          isDarkMode ? "border-[#303030]" : "border-gray-200"
-        )}
-      >
-        <div className="max-w-7xl mx-auto px-4 text-center text-sm">
-          <p className={isDarkMode ? "text-gray-500" : "text-gray-600"}>
+      <footer className="border-t mt-auto py-4 px-4 md:py-6 border-border">
+        <div className="max-w-7xl mx-auto text-center text-sm">
+          <p className="text-muted-foreground">
             First Principles Documentation - GitHub Pages
           </p>
         </div>

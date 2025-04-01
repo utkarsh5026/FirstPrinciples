@@ -84,7 +84,6 @@ const CodeRender: React.FC<CodeRenderProps> = ({
       </div>
       <SyntaxHighlighter
         language={language || "text"}
-        style={oneDark as { [key: string]: React.CSSProperties }}
         customStyle={{
           margin: 0,
           padding: "1rem",
@@ -93,6 +92,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
           lineHeight: 1.6,
         }}
         {...props}
+        style={oneDark as { [key: string]: React.CSSProperties }}
       >
         {typeof children === "string"
           ? children.replace(/\n$/, "")
