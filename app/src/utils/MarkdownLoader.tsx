@@ -1,4 +1,4 @@
-// src/utils/MarkdownLoader.tsx
+// Modified MarkdownLoader.tsx with GitHub Pages compatibility
 import matter from "gray-matter";
 import { Buffer } from "buffer";
 
@@ -62,6 +62,17 @@ export class MarkdownLoader {
   private static contentIndex: ContentIndex | null = null;
 
   /**
+   * Get the base URL for content files based on the environment
+   * This ensures paths work both locally and on GitHub Pages
+   */
+  private static getBaseContentUrl(): string {
+    // Get any base URL path from Vite
+    const base = import.meta.env.BASE_URL || "";
+    // Return a normalized path that works for both local dev and GitHub Pages
+    return `${base}content/`.replace(/\/\/+/g, "/");
+  }
+
+  /**
    * Load the content index, caching it for future use
    */
   static async loadContentIndex(): Promise<ContentIndex> {
@@ -70,8 +81,13 @@ export class MarkdownLoader {
     }
 
     try {
-      const response = await fetch("/content/index.json");
+      const baseUrl = this.getBaseContentUrl();
+      const response = await fetch(`${baseUrl}index.json`);
+
       if (!response.ok) {
+        console.error(
+          `Failed to load content index. Status: ${response.status}`
+        );
         throw new Error("Failed to load content index");
       }
 
@@ -246,10 +262,18 @@ export class MarkdownLoader {
     try {
       // Get file metadata to enhance frontmatter if available
       const fileMetadata = await this.findFileMetadata(filepath);
+      const baseUrl = this.getBaseContentUrl();
+
+      // Log the full URL being requested (helps with debugging)
+      const fullUrl = `${baseUrl}${filepath}`;
+      console.log(`Fetching markdown from: ${fullUrl}`);
 
       // Fetch the markdown file
-      const response = await fetch(`/content/${filepath}`);
+      const response = await fetch(fullUrl);
       if (!response.ok) {
+        console.error(
+          `Failed to load markdown file: ${filepath} - Status: ${response.status}`
+        );
         throw new Error(`Failed to load markdown file: ${filepath}`);
       }
 
