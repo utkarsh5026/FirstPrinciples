@@ -1,75 +1,32 @@
 {
   "categories": [
     {
-      "id": "python",
-      "name": "Python",
-      "icon": "Python",
+      "id": "javascript",
+      "name": "Javascript",
+      "icon": "Code",
       "subcategories": [
         {
-          "id": "python-io",
-          "name": "IO",
-          "icon": "FileText",
-          "subcategories": [
-            {
-              "id": "python-io-asyncio",
-              "name": "Asyncio",
-              "icon": "Activity",
-              "files": [
-                {
-                  "path": "python/io/asyncio/introduction.md",
-                  "title": "Introduction to Asyncio",
-                  "description": "An overview of asynchronous programming with asyncio"
-                },
-                {
-                  "path": "python/io/asyncio/examples.md",
-                  "title": "Asyncio Examples",
-                  "description": "Practical examples of using asyncio"
-                }
-              ]
-            }
-          ],
+          "id": "closures",
+          "name": "Closures",
+          "icon": "Folder",
+          "subcategories": [],
           "files": [
             {
-              "path": "python/io/basics.md",
-              "title": "IO Basics",
-              "description": "Basic input/output operations in Python"
+              "path": "javascript/closures/introduction_to_closures.md",
+              "title": "Introduction To Closures",
+              "description": "Documentation for Introduction To Closures"
             }
           ]
         }
       ],
-      "files": [
-        {
-          "path": "python/basics.md",
-          "title": "Python Basics",
-          "description": "Introduction to Python programming language"
-        }
-      ]
-    },
-    {
-      "id": "javascript",
-      "name": "JavaScript",
-      "icon": "Code",
-      "subcategories": [
-        {
-          "id": "javascript-closures",
-          "name": "Closures",
-          "icon": "Code",
-          "files": [
-            {
-              "path": "javascript/closures/introduction_to_closures.md",
-              "title": "Introduction to Closures",
-              "description": "An overview of closures in JavaScript"
-            }
-          ]
-        }
-      ]
+      "files": []
     }
   ],
   "files": [
     {
       "path": "getting_started.md",
       "title": "Getting Started",
-      "description": "How to get started with this documentation"
+      "description": "Documentation for Getting Started"
     }
   ]
 }

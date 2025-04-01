@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "generate-index": "node scripts/generateContentIndex.js",
+    "generate-index": "node scripts/generateContentIndex.cjs",
     "prebuild": "npm run generate-index",
     "build": "tsc -b && vite build",
     "dev": "npm run generate-index && vite",
