@@ -110,12 +110,12 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
       };
 
       const category = findCategory(allCategories, lastCategoryId);
-      if (!category || !category.files || category.files.length <= 1) return;
+      if (!category?.files || category.files.length <= 1) return;
 
       // Find the current file's position in its category
       const files = category.files;
       const currentIndex = files.findIndex(
-        (file: any) => file.path === currentPath
+        (file: { path: string }) => file.path === currentPath
       );
       if (currentIndex === -1) return;
 
@@ -166,6 +166,7 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
     try {
       return format(new Date(dateString), "MMMM d, yyyy");
     } catch (e) {
+      console.error("Error formatting date:", e);
       return dateString;
     }
   };
