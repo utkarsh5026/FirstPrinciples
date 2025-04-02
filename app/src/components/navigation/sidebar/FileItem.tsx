@@ -1,7 +1,5 @@
-import { Badge } from "@/components/ui/badge";
 import { FileMetadata } from "@/utils/MarkdownLoader";
 import { cn } from "@/lib/utils";
-import { BookUp } from "lucide-react";
 interface FileItemProps {
   file: FileMetadata;
   indent: number;
@@ -23,11 +21,7 @@ const FileItem: React.FC<FileItemProps> = ({
   isActive,
   onSelectFile,
 }) => {
-  // Extract the file name from the file path
   const fileName = file.path.split("/").pop() ?? file.path;
-  // Extract the file extension from the file name
-  const fileExt = fileName.split(".").pop()?.toLowerCase();
-
   return (
     <button
       key={file.path}
@@ -42,24 +36,11 @@ const FileItem: React.FC<FileItemProps> = ({
       onClick={() => onSelectFile(file.path)}
     >
       <div className="flex items-center w-full py-2 px-2 justify-start">
-        <div className="flex-shrink-0 mr-2">
-          <BookUp className="text-indigo-400" />
-        </div>
-
         <span className="break-words leading-tight group-hover:text-indigo-300 text-sm">
           {file.title || fileName}
         </span>
 
         <div className="flex-grow"></div>
-
-        {fileExt && (
-          <Badge
-            variant="outline"
-            className="ml-2 text-xs h-5 bg-indigo-500/10 text-indigo-400 border-indigo-400/20 flex-shrink-0"
-          >
-            {fileExt}
-          </Badge>
-        )}
       </div>
     </button>
   );
