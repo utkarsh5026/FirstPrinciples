@@ -14,6 +14,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import FileItem from "./FileItem";
 import { useCallback } from "react";
+import { getIconForTech } from "./iconMap";
 
 interface CategoryItemProps {
   category: Category;
@@ -63,6 +64,13 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
 
   const fileCount = countFiles(category);
 
+  // Get the appropriate icon based on category name or icon property
+  const CategoryIcon = category.icon
+    ? getIconForTech(category.name)
+    : category.subcategories && category.subcategories.length > 0
+    ? FiFolderPlus
+    : FiFolder;
+
   return (
     <Collapsible
       key={category.id}
@@ -88,11 +96,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
         </div>
 
         <div className="flex-shrink-0 mr-2 text-indigo-400">
-          {category.subcategories && category.subcategories.length > 0 ? (
-            <FiFolderPlus size={16} />
-          ) : (
-            <FiFolder size={16} />
-          )}
+          <CategoryIcon size={16} />
         </div>
 
         <span className="break-words text-left group-hover:text-indigo-300 leading-tight">
