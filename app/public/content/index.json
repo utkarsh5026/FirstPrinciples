@@ -64,6 +64,11 @@
                   "path": "docker/containers/monitor/container_monitoring.md",
                   "title": "Container Monitoring",
                   "description": "Documentation for Container Monitoring"
+                },
+                {
+                  "path": "docker/containers/monitor/inspection_of_container.md",
+                  "title": "Inspection Of Container",
+                  "description": "Documentation for Inspection Of Container"
                 }
               ]
             }
