@@ -4,9 +4,8 @@ import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import CardProgress from "./CardProgress";
-import { ChevronLeft, ChevronRight, Menu, ArrowLeft } from "lucide-react";
+import { Menu, ArrowLeft, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
   SheetContent,
@@ -37,6 +36,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const cardContainerRef = useRef<HTMLDivElement>(null);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
   const totalCards = sections.length;
 
   // Parse the markdown into sections
@@ -63,6 +63,13 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       }
     },
   });
+
+  // Scroll to top when changing cards
+  useEffect(() => {
+    if (scrollAreaRef.current) {
+      scrollAreaRef.current.scrollTop = 0;
+    }
+  }, [currentIndex]);
 
   // Parse markdown into sections based on h1 and h2 headings
   const parseMarkdownIntoSections = (markdown: string): MarkdownSection[] => {
@@ -218,6 +225,16 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     }
   };
 
+  // Scroll to top function
+  const scrollToTop = () => {
+    if (scrollAreaRef.current) {
+      scrollAreaRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+
   if (sections.length === 0) {
     return (
       <div className="flex items-center justify-center h-screen bg-background text-muted-foreground">
@@ -237,7 +254,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       ref={cardContainerRef}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border bg-card/50 backdrop-blur-sm">
+      <div className="sticky top-0 z-20 flex items-center justify-between p-4 border-b border-border bg-card/50 backdrop-blur-sm">
         <Button
           variant="ghost"
           size="icon"
@@ -249,7 +266,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         </Button>
 
         <div className="flex-1 text-center">
-          <h3 className="text-sm font-medium truncate mx-4">
+          <h3 className="text-sm font-medium truncate px-2">
             {currentSection.title}
           </h3>
         </div>
@@ -266,95 +283,70 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       </div>
 
       {/* Main content area */}
-      <div className="flex-1 flex flex-col overflow-hidden relative">
-        {/* Card indicators for swiping */}
-        <div
-          className={cn(
-            "absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-background/10 to-transparent z-10",
-            currentIndex > 0 ? "opacity-100" : "opacity-0"
-          )}
-        />
-
-        <div
-          className={cn(
-            "absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background/10 to-transparent z-10",
-            currentIndex < sections.length - 1 ? "opacity-100" : "opacity-0"
-          )}
-        />
-
+      <div
+        className="flex-1 relative overflow-hidden"
+        style={{
+          height: "calc(100vh - 8rem)", // Ensure there's enough space for content
+        }}
+      >
         {/* Card content */}
-        <ScrollArea
+        <div
+          ref={scrollAreaRef}
           className={cn(
-            "flex-1 p-5 transition-opacity duration-200",
-            isTransitioning ? "opacity-0" : "opacity-100"
+            "h-full overflow-y-auto pb-16",
+            isTransitioning ? "opacity-0" : "opacity-100",
+            "transition-opacity duration-200"
           )}
         >
           <div className="max-w-2xl mx-auto p-4">
-            <CustomMarkdownRenderer markdown={currentSection.content} />
+            <div className="prose prose-invert max-w-none w-full break-words">
+              <CustomMarkdownRenderer
+                markdown={currentSection.content}
+                className="fullscreen-card-content"
+              />
+            </div>
           </div>
-        </ScrollArea>
+        </div>
+
+        {/* Scroll to top button */}
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={scrollToTop}
+          className="fixed bottom-20 right-4 z-10 h-10 w-10 rounded-full shadow-md bg-primary/10 border-primary/20 hover:bg-primary/20"
+        >
+          <ChevronUp className="h-5 w-5" />
+        </Button>
       </div>
 
       {/* Navigation Footer */}
-      <div className="border-t border-border bg-card/50 backdrop-blur-sm p-4">
+      <div className="sticky bottom-0 border-t border-border bg-card/50 backdrop-blur-sm p-4">
         <div className="max-w-md mx-auto">
-          {/* Progress indicator */}
+          {/* Progress indicator only */}
           <CardProgress
             currentIndex={currentIndex}
             totalCards={sections.length}
             onSelectCard={handleSelectCard}
-            className="mb-4"
+            className="mb-0"
           />
-
-          {/* Navigation buttons */}
-          <div className="flex justify-between items-center">
-            <Button
-              variant="ghost"
-              size="sm"
-              disabled={currentIndex === 0}
-              onClick={handlePrevCard}
-              className={cn(
-                "flex items-center gap-1",
-                currentIndex === 0 ? "opacity-50" : ""
-              )}
-            >
-              <ChevronLeft className="h-4 w-4" />
-              <span className="hidden sm:inline">Previous</span>
-            </Button>
-
-            <span className="text-xs text-muted-foreground">
-              {currentIndex + 1} of {sections.length}
-            </span>
-
-            <Button
-              variant="ghost"
-              size="sm"
-              disabled={currentIndex === sections.length - 1}
-              onClick={handleNextCard}
-              className={cn(
-                "flex items-center gap-1",
-                currentIndex === sections.length - 1 ? "opacity-50" : ""
-              )}
-            >
-              <span className="hidden sm:inline">Next</span>
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
         </div>
       </div>
 
       {/* Sections Menu Sheet */}
       <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-        <SheetContent side="right" className="sm:max-w-sm font-type-mono">
-          <SheetHeader>
+        <SheetContent
+          side="right"
+          className="sm:max-w-sm font-type-mono overflow-auto"
+        >
+          <SheetHeader className="sticky top-0 bg-card py-2 z-10">
             <SheetTitle>Document Sections</SheetTitle>
           </SheetHeader>
-          <div className="py-4">
+          <div className="py-4 mt-2">
             {sections.map((section, index) => (
               <button
                 key={section.id}
                 className={cn(
-                  "w-full text-left px-4 py-2 my-1 rounded-md",
+                  "w-full text-left px-4 py-3 my-1 rounded-md",
                   "transition-colors duration-200",
                   "flex items-center gap-2",
                   index === currentIndex
@@ -368,27 +360,28 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
               >
                 <div
                   className={cn(
-                    "w-2 h-2 rounded-full",
+                    "w-2 h-2 rounded-full flex-shrink-0",
                     index === currentIndex
                       ? "bg-primary"
                       : "bg-muted-foreground/30"
                   )}
                 />
-                <span className="truncate">{section.title}</span>
+                <span className="truncate text-sm">{section.title}</span>
               </button>
             ))}
           </div>
-          <div className="mt-6">
-            <Button
-              variant="outline"
-              className="w-full"
-              onClick={() => setMenuOpen(false)}
-            >
-              Close
-            </Button>
-          </div>
         </SheetContent>
       </Sheet>
+
+      {/* Touch swipe indicators (hidden visually but help with touch areas) */}
+      <div
+        className="absolute top-1/2 left-0 h-1/3 w-10 -translate-y-1/2"
+        onClick={handlePrevCard}
+      />
+      <div
+        className="absolute top-1/2 right-0 h-1/3 w-10 -translate-y-1/2"
+        onClick={handleNextCard}
+      />
     </div>
   );
 };
