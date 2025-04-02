@@ -1,4 +1,3 @@
-// src/components/markdown/card/CardIntroModal.tsx
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import {
@@ -21,9 +20,28 @@ interface CardIntroModalProps {
   className?: string;
 }
 
+/**
+ * CardIntroModal Component
+ *
+ * A modal that introduces users to the card view functionality.
+ * This modal appears automatically the first time a user accesses the card view,
+ * and explains the key features and navigation methods.
+ *
+ * @param {object} props - Component props
+ * @param {string} [props.className] - Optional CSS class name for styling
+ */
 const CardIntroModal: React.FC<CardIntroModalProps> = ({ className }) => {
+  /**
+   * State to control the visibility of the modal
+   */
   const [isOpen, setIsOpen] = useState(false);
 
+  /**
+   * Effect hook that checks if the user has seen the intro before
+   * and displays the modal if they haven't.
+   *
+   * Uses localStorage to persist the user's preference across sessions.
+   */
   useEffect(() => {
     // Check if this is the first time the user is using card view
     const hasSeenCardIntro = localStorage.getItem("hasSeenCardIntro");
@@ -38,6 +56,10 @@ const CardIntroModal: React.FC<CardIntroModalProps> = ({ className }) => {
     }
   }, []);
 
+  /**
+   * Handles closing the modal and saves the user's preference
+   * to localStorage to prevent showing the intro again.
+   */
   const handleClose = () => {
     setIsOpen(false);
     // Mark that the user has seen the intro
