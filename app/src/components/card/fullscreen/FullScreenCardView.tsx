@@ -1,17 +1,11 @@
-// src/components/card/FullscreenCardView.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
-import CardProgress from "./CardProgress";
+import CardProgress from "../CardProgress";
 import { Menu, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
+import SectionsSheet from "./SectionsSheet";
 
 interface FullscreenCardViewProps {
   markdown: string;
@@ -309,45 +303,13 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       </div>
 
       {/* Sections Menu Sheet */}
-      <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-        <SheetContent
-          side="right"
-          className="sm:max-w-sm font-type-mono overflow-auto"
-        >
-          <SheetHeader className="sticky top-0 bg-card py-2 z-10">
-            <SheetTitle>Document Sections</SheetTitle>
-          </SheetHeader>
-          <div className="py-4 mt-2">
-            {sections.map((section, index) => (
-              <button
-                key={section.id}
-                className={cn(
-                  "w-full text-left px-4 py-3 my-1 rounded-md",
-                  "transition-colors duration-200",
-                  "flex items-center gap-2",
-                  index === currentIndex
-                    ? "bg-primary/10 text-primary"
-                    : "hover:bg-secondary/50"
-                )}
-                onClick={() => {
-                  handleSelectCard(index);
-                  setMenuOpen(false);
-                }}
-              >
-                <div
-                  className={cn(
-                    "w-2 h-2 rounded-full flex-shrink-0",
-                    index === currentIndex
-                      ? "bg-primary"
-                      : "bg-muted-foreground/30"
-                  )}
-                />
-                <span className="truncate text-sm">{section.title}</span>
-              </button>
-            ))}
-          </div>
-        </SheetContent>
-      </Sheet>
+      <SectionsSheet
+        sections={sections}
+        currentIndex={currentIndex}
+        handleSelectCard={handleSelectCard}
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+      />
 
       {/* Touch swipe indicators (hidden visually but help with touch areas) */}
       <div

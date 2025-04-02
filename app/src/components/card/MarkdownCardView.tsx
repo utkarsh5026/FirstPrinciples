@@ -5,7 +5,7 @@ import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import CardNavigation from "./CardNavigation";
 import CardSectionsMenu from "./CardSectionsMenu";
-import CardIntroModal from "./CardInrtoModal";
+import CardIntroModal from "./into/CardInrtoModal";
 import { Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import "./MarkdownCardStyles.css";

@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import MarkdownCardView from "@/components/card/MarkdownCardView";
-import FullScreenCardView from "@/components/card/FullScreenCardView";
+import FullScreenCardView from "@/components/card/fullscreen/FullScreenCardView";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import {
   FileDown,
