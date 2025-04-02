@@ -53,15 +53,10 @@ const CodeRender: React.FC<CodeRenderProps> = ({
   // For compact single-word code
   if (!inline && isCompactCode) {
     return (
-      <span className="inline-flex items-center gap-1.5">
-        <code className="px-2 py-1 bg-[#282c34] text-gray-300 rounded text-sm font-mono">
+      <span className="inline-flex items-center">
+        <code className="px-2 py-1 text-primary rounded-lg text-sm font-cascadia-code font-bold">
           {codeContent}
         </code>
-        <button
-          onClick={copyToClipboard}
-          className="p-0.5 rounded hover:bg-[#252525] transition-colors"
-          aria-label={copied ? "Copied!" : "Copy code"}
-        ></button>
       </span>
     );
   }
