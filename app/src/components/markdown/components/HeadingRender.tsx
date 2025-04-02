@@ -17,9 +17,9 @@ interface HeadingRenderProps extends HeadingProps {
  */
 const HeadingRender: React.FC<HeadingRenderProps> = ({ level, ...props }) => {
   const headingStyles = {
-    1: "text-2xl font-medium mt-10 mb-4 text-white group flex items-center",
-    2: "text-xl font-medium mt-8 mb-3 text-gray-100 group flex items-center",
-    3: "text-lg font-medium mt-6 mb-3 text-gray-200 group flex items-center",
+    1: "text-2xl font-bold mt-10 mb-4 text-white group flex items-center",
+    2: "text-xl font-semibold mt-8 mb-3 text-gray-100 group flex items-center",
+    3: "text-lg font-normal mt-6 mb-3 text-gray-200 group flex items-center",
   };
 
   const getLinkSize = () => {
