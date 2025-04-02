@@ -17,6 +17,7 @@ interface CategoryItemProps {
   currentFilePath?: string;
   onToggleExpand: (categoryId: string, isExpanded: boolean) => void;
   onSelectFile: (filepath: string) => void;
+  expandedCategories: Set<string>; // Pass the expanded categories Set
 }
 
 /**
@@ -33,6 +34,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   currentFilePath,
   onToggleExpand,
   onSelectFile,
+  expandedCategories, // Use this to check if subcategories are expanded
 }) => {
   const hasContent =
     (category.files && category.files.length > 0) ||
@@ -99,16 +101,17 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
           "data-[state=closed]:animate-collapsible-up"
         )}
       >
-        {/* Render subcategories */}
+        {/* Render subcategories - check expandedCategories to see if they're expanded */}
         {category.subcategories?.map((subcategory) => (
           <CategoryItem
             key={subcategory.id}
             category={subcategory}
             indent={indent + 1}
-            isExpanded={isExpanded}
+            isExpanded={expandedCategories.has(subcategory.id)} // Check if this specific subcategory is expanded
             currentFilePath={currentFilePath}
             onToggleExpand={onToggleExpand}
             onSelectFile={onSelectFile}
+            expandedCategories={expandedCategories} // Pass the expanded categories set down
           />
         ))}
 

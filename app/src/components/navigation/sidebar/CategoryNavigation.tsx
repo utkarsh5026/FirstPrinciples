@@ -34,7 +34,7 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({
     []
   );
 
-  // Load categories and expand the category of the current file
+  // Load categories and expand only the category containing the current file
   useEffect(() => {
     const loadCategories = async () => {
       try {
@@ -47,16 +47,17 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({
         setFilteredCategories(contentIndex.categories || []);
         setFilteredRootFiles(contentIndex.files || []);
 
-        // If there is a current file, expand its category path
+        // If there is a current file, expand only its direct parent
         if (currentFilePath) {
           const breadcrumbs = await MarkdownLoader.getFileBreadcrumbs(
             currentFilePath
           );
-          const newExpandedCategories = new Set(expandedCategories);
+          const newExpandedCategories = new Set<string>();
 
-          breadcrumbs.forEach((crumb) => {
-            newExpandedCategories.add(crumb.id);
-          });
+          // Add only the immediate parent category
+          if (breadcrumbs.length > 0) {
+            newExpandedCategories.add(breadcrumbs[breadcrumbs.length - 1].id);
+          }
 
           setExpandedCategories(newExpandedCategories);
         }
@@ -72,6 +73,38 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({
 
     loadCategories();
   }, [currentFilePath]);
+
+  const findParentCategories = (
+    allCategories: Category[],
+    targetId: string
+  ): string[] => {
+    const result: string[] = [];
+
+    const searchInCategory = (
+      category: Category,
+      parentIds: string[] = []
+    ): boolean => {
+      if (category.id === targetId) {
+        result.push(...parentIds);
+        return true;
+      }
+
+      if (category.subcategories) {
+        for (const subcategory of category.subcategories) {
+          const found = searchInCategory(subcategory, [
+            ...parentIds,
+            category.id,
+          ]);
+          if (found) return true;
+        }
+      }
+
+      return false;
+    };
+
+    allCategories.forEach((category) => searchInCategory(category));
+    return result;
+  };
 
   // Filter categories and files based on search query
   useEffect(() => {
@@ -90,6 +123,9 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({
         file.path.toLowerCase().includes(lowercaseQuery)
     );
     setFilteredRootFiles(filteredRoots);
+
+    // Track categories that contain matching files
+    const categoriesWithMatches = new Set<string>();
 
     // Helper function to filter categories recursively
     const filterCategory = (category: Category): Category | null => {
@@ -112,6 +148,11 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({
             file.title.toLowerCase().includes(lowercaseQuery) ||
             file.path.toLowerCase().includes(lowercaseQuery)
         );
+
+        // If this category has matching files, track it
+        if (matchingFiles.length > 0) {
+          categoriesWithMatches.add(category.id);
+        }
       }
 
       // If category name matches or it has matching subcategories or files, include it
@@ -140,13 +181,30 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({
 
     setFilteredCategories(filtered);
 
-    // Automatically expand categories with matches when searching
+    // If searching, expand categories that contain matches
     if (searchQuery) {
-      const newExpandedCategories = new Set(expandedCategories);
+      const newExpandedCategories = new Set<string>();
 
+      // Add all categories that contain matches
+      categoriesWithMatches.forEach((id) => {
+        newExpandedCategories.add(id);
+
+        // Also add parent categories to ensure the matching categories are visible
+        const parents = findParentCategories(categories, id);
+        parents.forEach((parentId) => newExpandedCategories.add(parentId));
+      });
+
+      // Add categories that match by name
       const addMatchingCategories = (cats: Category[]) => {
         cats.forEach((cat) => {
-          newExpandedCategories.add(cat.id);
+          if (cat.name.toLowerCase().includes(lowercaseQuery)) {
+            newExpandedCategories.add(cat.id);
+
+            // Add parent categories
+            const parents = findParentCategories(categories, cat.id);
+            parents.forEach((parentId) => newExpandedCategories.add(parentId));
+          }
+
           if (cat.subcategories) {
             addMatchingCategories(cat.subcategories);
           }
@@ -305,6 +363,7 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({
                 currentFilePath={currentFilePath}
                 onToggleExpand={handleToggleExpand}
                 onSelectFile={onSelectFile}
+                expandedCategories={expandedCategories} // Pass the entire set to check subcategory expansion
               />
             ))}
           </div>
