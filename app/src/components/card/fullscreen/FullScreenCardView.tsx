@@ -75,8 +75,8 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     let introContent = "";
 
     // Main parse pass
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trimEnd(); // Keep left indentation but trim right
+    for (const rawLine of lines) {
+      const line = rawLine.trimEnd(); // Keep left indentation but trim right
 
       // Check if we're in a code block
       if (line.trim().startsWith("```")) {
