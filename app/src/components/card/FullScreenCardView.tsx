@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import CardProgress from "./CardProgress";
-import { Menu, ArrowLeft, ChevronUp } from "lucide-react";
+import { Menu, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -225,16 +225,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     }
   };
 
-  // Scroll to top function
-  const scrollToTop = () => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-  };
-
   if (sections.length === 0) {
     return (
       <div className="flex items-center justify-center h-screen bg-background text-muted-foreground">
@@ -265,11 +255,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           <ArrowLeft className="h-4 w-4" />
         </Button>
 
-        <div className="flex-1 text-center">
-          <h3 className="text-sm font-medium truncate px-2">
-            {currentSection.title}
-          </h3>
-        </div>
+        <div className="flex-1 text-center" />
 
         <Button
           variant="ghost"
@@ -307,16 +293,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
             </div>
           </div>
         </div>
-
-        {/* Scroll to top button */}
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={scrollToTop}
-          className="fixed bottom-20 right-4 z-10 h-10 w-10 rounded-full shadow-md bg-primary/10 border-primary/20 hover:bg-primary/20"
-        >
-          <ChevronUp className="h-5 w-5" />
-        </Button>
       </div>
 
       {/* Navigation Footer */}
