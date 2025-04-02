@@ -1,9 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
-import { format } from "date-fns";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
-import { FileDown, Share2, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  FileDown,
+  Share2,
+  ChevronLeft,
+  ChevronRight,
+  List,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
+import { TOCItem } from "@/components/markdown/toc/TableOfContents";
+import { useSwipeGesture } from "@/hooks/useSwipeGesture";
+import TableOfContentsSheet from "@/components/core/TableOfContentsSheet";
+import TableOfContentsButton from "@/components/core/TableOfContentsButton";
+import { type Category } from "@/utils/MarkdownLoader";
 
 interface SimpleMarkdownPageProps {
   filename: string;
@@ -13,7 +23,6 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
   filename,
 }) => {
   const [markdownContent, setMarkdownContent] = useState<string>("");
-  const [frontmatter, setFrontmatter] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -21,7 +30,18 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
     {}
   );
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [tocItems, setTocItems] = useState<TOCItem[]>([]);
+  const [tocSheetOpen, setTocSheetOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // Set up swipe and double tap gestures for mobile
+  const { pauseListening, resumeListening } = useSwipeGesture({
+    onSwipeLeft: () => setTocSheetOpen(true),
+    onDoubleTap: () => setTocSheetOpen(true),
+    targetRef: contentRef as React.RefObject<HTMLElement>,
+  });
+
+  console.log("tocItems", tocItems);
 
   // Check dark mode
   useEffect(() => {
@@ -47,7 +67,21 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
         }
 
         setMarkdownContent(result.content);
-        setFrontmatter(result.frontmatter);
+
+        // Generate table of contents from headings
+        const headings = MarkdownLoader.extractHeadingsFromMarkdown(
+          result.content
+        );
+        setTocItems(
+          headings.map((h) => ({
+            id: h.id,
+            content: h.text,
+            level: h.level,
+            indent: (h.level - 1) * 16,
+          }))
+        );
+
+        console.log("headings", headings);
 
         // Try to find prev/next documents based on the current file's location
         await findPrevNextDocuments(filename);
@@ -96,7 +130,10 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
       const allCategories = await MarkdownLoader.getCategories();
 
       // Find the category that contains this file
-      const findCategory = (categories: any[], targetId: string): any => {
+      const findCategory = (
+        categories: Category[],
+        targetId: string
+      ): Category | null => {
         for (const category of categories) {
           if (category.id === targetId) {
             return category;
@@ -132,17 +169,7 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
   };
 
   const handleDownload = () => {
-    // Combine frontmatter and content for download
-    const frontmatterYaml = Object.entries(frontmatter)
-      .map(([key, value]) => {
-        if (Array.isArray(value)) {
-          return `${key}: [${value.join(", ")}]`;
-        }
-        return `${key}: ${value}`;
-      })
-      .join("\n");
-
-    const fullMarkdown = `---\n${frontmatterYaml}\n---\n\n${markdownContent}`;
+    const fullMarkdown = `${markdownContent}`;
 
     // Create the filename for download
     const downloadFilename = filename.split("/").pop() || filename;
@@ -161,13 +188,21 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
     });
   };
 
-  // Format dates for display
-  const formatDate = (dateString: string) => {
-    try {
-      return format(new Date(dateString), "MMMM d, yyyy");
-    } catch (e) {
-      console.error("Error formatting date:", e);
-      return dateString;
+  // Handle TOC button click
+  const handleTocButtonClick = () => {
+    setTocSheetOpen(true);
+    // Pause gesture detection when sheet is open to avoid conflicts
+    pauseListening();
+  };
+
+  // Handle sheet open/close
+  const handleSheetOpenChange = (open: boolean) => {
+    setTocSheetOpen(open);
+    // Resume/pause gesture detection based on sheet state
+    if (open) {
+      pauseListening();
+    } else {
+      resumeListening();
     }
   };
 
@@ -224,36 +259,6 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
                   : "bg-white border-gray-200"
               )}
             >
-              {/* Document header */}
-              <div className="mb-8">
-                <h1
-                  className={cn(
-                    "text-3xl font-normal mb-3 leading-tight",
-                    isDarkMode ? "text-gray-200" : "text-gray-900"
-                  )}
-                >
-                  {frontmatter.title || "Untitled Document"}
-                </h1>
-                <div
-                  className={cn(
-                    "text-sm flex flex-wrap gap-x-4 pb-3 border-b",
-                    isDarkMode
-                      ? "text-gray-500 border-[#303030]"
-                      : "text-gray-500 border-gray-200"
-                  )}
-                >
-                  {frontmatter.createdAt && (
-                    <span>Created {formatDate(frontmatter.createdAt)}</span>
-                  )}
-                  {frontmatter.updatedAt && (
-                    <span>Updated {formatDate(frontmatter.updatedAt)}</span>
-                  )}
-                  {frontmatter.category && (
-                    <span>Category: {frontmatter.category}</span>
-                  )}
-                </div>
-              </div>
-
               {/* Mobile actions bar */}
               <div className="flex md:hidden space-x-2 mb-6">
                 <button
@@ -281,10 +286,52 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
                   <Share2 size={16} className="mr-2" />
                   {copied ? "Copied!" : "Share"}
                 </button>
+
+                {tocItems.length > 0 && (
+                  <button
+                    onClick={handleTocButtonClick}
+                    className={cn(
+                      "flex items-center justify-center px-3 py-2 rounded-md text-sm",
+                      isDarkMode
+                        ? "bg-[#252525] text-gray-300"
+                        : "bg-gray-100 text-gray-700"
+                    )}
+                  >
+                    <List size={16} className="mr-2" />
+                    Contents
+                  </button>
+                )}
               </div>
 
               {/* Markdown content */}
               <CustomMarkdownRenderer markdown={markdownContent} />
+
+              {/* Table of Contents Sheet */}
+              <TableOfContentsSheet
+                items={tocItems}
+                isOpen={tocSheetOpen}
+                onOpenChange={handleSheetOpenChange}
+                ref={contentRef}
+              />
+
+              {/* FloatingTOC Button (desktop) */}
+              {tocItems.length > 0 && (
+                <div className="hidden md:block relative float-right -mt-10 ml-4 mb-4">
+                  <TableOfContentsButton
+                    onClick={handleTocButtonClick}
+                    itemCount={tocItems.length}
+                  />
+                </div>
+              )}
+
+              {/* FloatingTOC Button (mobile) */}
+              {tocItems.length > 0 && !tocSheetOpen && (
+                <TableOfContentsButton
+                  onClick={handleTocButtonClick}
+                  itemCount={tocItems.length}
+                  className="md:hidden"
+                />
+              )}
 
               {/* Navigation between documents */}
               {(prevNext.prev || prevNext.next) && (
@@ -325,40 +372,6 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
                       <ChevronRight size={16} className="ml-2" />
                     </a>
                   )}
-                </div>
-              )}
-
-              {/* Footer with tags on mobile */}
-              {frontmatter.tags && frontmatter.tags.length > 0 && (
-                <div
-                  className={cn(
-                    "md:hidden mt-8 pt-4 border-t",
-                    isDarkMode ? "border-[#303030]" : "border-gray-200"
-                  )}
-                >
-                  <h3
-                    className={cn(
-                      "text-sm font-medium mb-2",
-                      isDarkMode ? "text-gray-300" : "text-gray-700"
-                    )}
-                  >
-                    Tags:
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {frontmatter.tags.map((tag: string) => (
-                      <span
-                        key={tag}
-                        className={cn(
-                          "px-2 py-1 rounded-md text-xs",
-                          isDarkMode
-                            ? "bg-[#252525] text-gray-300"
-                            : "bg-gray-200 text-gray-700"
-                        )}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               )}
             </div>

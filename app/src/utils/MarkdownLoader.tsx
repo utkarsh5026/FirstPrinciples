@@ -315,18 +315,32 @@ export class MarkdownLoader {
     const headings: Array<{ id: string; text: string; level: number }> = [];
     const lines = markdownContent.split("\n");
 
+    // Flag to track if we're inside a code block
+    let inCodeBlock = false;
+
     for (const line of lines) {
-      const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
+      // Check if we're entering/exiting a code block
+      if (line.trim().startsWith("```")) {
+        inCodeBlock = !inCodeBlock;
+        continue;
+      }
+
+      // Skip heading detection inside code blocks
+      if (inCodeBlock) continue;
+
+      // Detect ATX-style headings (# Heading)
+      const headingRegex = /^(\s*)(#{1,6})(\s+)(.+?)(\s+#+)?$/;
+      const headingMatch = headingRegex.exec(line.trim());
+
       if (headingMatch) {
-        const level = headingMatch[1].length;
-        const text = headingMatch[2].trim();
+        const level = headingMatch[2].length;
+        const text = headingMatch[4].trim();
         const id = this.slugify(text);
 
-        headings.push({
-          id,
-          text,
-          level,
-        });
+        if (text) {
+          headings.push({ id, text, level });
+          console.log(`Found heading: "${text}" (level ${level}, id: ${id})`);
+        }
       }
     }
 
@@ -341,11 +355,11 @@ export class MarkdownLoader {
   static slugify(text: string): string {
     return text
       .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w\-]+/g, "")
-      .replace(/\-\-+/g, "-")
-      .replace(/^-+/, "")
-      .replace(/-+$/, "");
+      .replace(/[^\w\s-]/g, "") // Remove special characters except spaces and hyphens
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .replace(/\-\-+/g, "-") // Replace multiple hyphens with single hyphen
+      .replace(/^-+/, "") // Remove leading hyphens
+      .replace(/-+$/, ""); // Remove trailing hyphens
   }
 
   /**

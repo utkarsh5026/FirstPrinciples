@@ -6,6 +6,71 @@
       "icon": "Folder",
       "subcategories": [
         {
+          "id": "containers",
+          "name": "Containers",
+          "icon": "Folder",
+          "subcategories": [
+            {
+              "id": "basics",
+              "name": "Basics",
+              "icon": "Folder",
+              "subcategories": [],
+              "files": [
+                {
+                  "path": "docker/containers/basics/intoduction_to_containers.md",
+                  "title": "Intoduction To Containers",
+                  "description": "Documentation for Intoduction To Containers"
+                },
+                {
+                  "path": "docker/containers/basics/lifecycle_of_container.md",
+                  "title": "Lifecycle Of Container",
+                  "description": "Documentation for Lifecycle Of Container"
+                }
+              ]
+            },
+            {
+              "id": "internals",
+              "name": "Internals",
+              "icon": "Folder",
+              "subcategories": [],
+              "files": [
+                {
+                  "path": "docker/containers/internals/docker_runtime_and_containerd.md",
+                  "title": "Docker Runtime And Containerd",
+                  "description": "Documentation for Docker Runtime And Containerd"
+                }
+              ]
+            },
+            {
+              "id": "logging",
+              "name": "Logging",
+              "icon": "Folder",
+              "subcategories": [],
+              "files": [
+                {
+                  "path": "docker/containers/logging/container_logging.md",
+                  "title": "Container Logging",
+                  "description": "Documentation for Container Logging"
+                }
+              ]
+            },
+            {
+              "id": "monitor",
+              "name": "Monitor",
+              "icon": "Folder",
+              "subcategories": [],
+              "files": [
+                {
+                  "path": "docker/containers/monitor/container_monitoring.md",
+                  "title": "Container Monitoring",
+                  "description": "Documentation for Container Monitoring"
+                }
+              ]
+            }
+          ],
+          "files": []
+        },
+        {
           "id": "images",
           "name": "Images",
           "icon": "Folder",
@@ -53,6 +118,34 @@
                   "path": "docker/images/layers/layer_optimization.md",
                   "title": "Layer Optimization",
                   "description": "Documentation for Layer Optimization"
+                }
+              ]
+            },
+            {
+              "id": "volumes",
+              "name": "Volumes",
+              "icon": "Folder",
+              "subcategories": [],
+              "files": [
+                {
+                  "path": "docker/images/volumes/docker_volume_types.md",
+                  "title": "Docker Volume Types",
+                  "description": "Documentation for Docker Volume Types"
+                },
+                {
+                  "path": "docker/images/volumes/introduction_to_volumes.md",
+                  "title": "Introduction To Volumes",
+                  "description": "Documentation for Introduction To Volumes"
+                },
+                {
+                  "path": "docker/images/volumes/persistence_across_container_lifecycles.md",
+                  "title": "Persistence Across Container Lifecycles",
+                  "description": "Documentation for Persistence Across Container Lifecycles"
+                },
+                {
+                  "path": "docker/images/volumes/volumes_in_docker_compose.md",
+                  "title": "Volumes In Docker Compose",
+                  "description": "Documentation for Volumes In Docker Compose"
                 }
               ]
             }
