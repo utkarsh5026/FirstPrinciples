@@ -231,10 +231,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
 
   return (
     <div
-      className={cn(
-        "fixed inset-0 z-50 bg-background flex flex-col",
-        className
-      )}
+      className={cn("fixed inset-0 z-50 bg-[#202020] flex flex-col", className)}
       ref={cardContainerRef}
     >
       {/* Header */}

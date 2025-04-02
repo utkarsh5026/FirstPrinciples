@@ -302,7 +302,7 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
         {/* Actual Card */}
         <div
           className={cn(
-            "flex-1 mb-4 rounded-xl border border-border bg-card shadow-sm transition-opacity duration-200",
+            "flex-1 mb-4 rounded-xl border border-border shadow-sm transition-opacity duration-200",
             isTransitioning ? "opacity-0" : "opacity-100"
           )}
         >
