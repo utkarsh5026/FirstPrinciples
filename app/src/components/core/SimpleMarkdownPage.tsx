@@ -1,5 +1,7 @@
+// src/components/core/SimpleMarkdownPage.tsx
 import React, { useEffect, useState, useRef } from "react";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
+import MarkdownCardView from "@/components/card/MarkdownCardView";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import {
   FileDown,
@@ -13,7 +15,9 @@ import { TOCItem } from "@/components/markdown/toc/TableOfContents";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import TableOfContentsSheet from "@/components/core/TableOfContentsSheet";
 import TableOfContentsButton from "@/components/core/TableOfContentsButton";
+import ViewToggle, { type ViewMode } from "@/components/card/ViewToggle";
 import { type Category } from "@/utils/MarkdownLoader";
+import { Button } from "@/components/ui/button";
 
 interface SimpleMarkdownPageProps {
   filename: string;
@@ -32,16 +36,15 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [tocItems, setTocItems] = useState<TOCItem[]>([]);
   const [tocSheetOpen, setTocSheetOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>("standard");
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // Set up swipe and double tap gestures for mobile
+  // Set up swipe gestures for mobile in standard view
   const { pauseListening, resumeListening } = useSwipeGesture({
+    targetRef: contentRef as React.RefObject<HTMLElement>,
     onSwipeLeft: () => setTocSheetOpen(true),
     onDoubleTap: () => setTocSheetOpen(true),
-    targetRef: contentRef as React.RefObject<HTMLElement>,
   });
-
-  console.log("tocItems", tocItems);
 
   // Check dark mode
   useEffect(() => {
@@ -49,6 +52,16 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
     const prefersDark =
       darkModePreference === "true" || darkModePreference === null;
     setIsDarkMode(prefersDark);
+  }, []);
+
+  // Check for user's preferred view mode
+  useEffect(() => {
+    const savedMode = localStorage.getItem(
+      "preferredViewMode"
+    ) as ViewMode | null;
+    if (savedMode && (savedMode === "standard" || savedMode === "cards")) {
+      setViewMode(savedMode);
+    }
   }, []);
 
   useEffect(() => {
@@ -80,8 +93,6 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
             indent: (h.level - 1) * 16,
           }))
         );
-
-        console.log("headings", headings);
 
         // Try to find prev/next documents based on the current file's location
         await findPrevNextDocuments(filename);
@@ -169,11 +180,9 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
   };
 
   const handleDownload = () => {
-    const fullMarkdown = `${markdownContent}`;
-
+    const fullMarkdown = markdownContent;
     // Create the filename for download
     const downloadFilename = filename.split("/").pop() || filename;
-
     MarkdownLoader.downloadMarkdown(downloadFilename, fullMarkdown);
   };
 
@@ -204,6 +213,13 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
     } else {
       resumeListening();
     }
+  };
+
+  // Handle view mode change
+  const handleViewModeChange = (mode: ViewMode) => {
+    setViewMode(mode);
+    // Save user preference
+    localStorage.setItem("preferredViewMode", mode);
   };
 
   if (loading) {
@@ -246,8 +262,6 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
       {/* Main content */}
       <main className="max-w-4xl mx-auto px-0 py-0 sm:px-4">
         <div className="relative grid grid-cols-1 md:grid-cols-4 gap-6">
-          {/* Sidebar for table of contents */}
-
           {/* Document content */}
           <div className="col-span-1 md:col-span-3">
             <div
@@ -259,63 +273,75 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
                   : "bg-white border-gray-200"
               )}
             >
-              {/* Mobile actions bar */}
-              <div className="flex md:hidden space-x-2 mb-6">
-                <button
-                  onClick={handleDownload}
-                  className={cn(
-                    "flex-1 flex items-center justify-center px-3 py-2 rounded-md text-sm",
-                    isDarkMode
-                      ? "bg-[#252525] text-gray-300"
-                      : "bg-gray-100 text-gray-700"
-                  )}
-                >
-                  <FileDown size={16} className="mr-2" />
-                  Download
-                </button>
+              {/* Document toolbar */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 space-y-3 sm:space-y-0">
+                {/* View toggle */}
+                <ViewToggle
+                  currentView={viewMode}
+                  onViewChange={handleViewModeChange}
+                />
 
-                <button
-                  onClick={handleCopyLink}
-                  className={cn(
-                    "flex-1 flex items-center justify-center px-3 py-2 rounded-md text-sm",
-                    isDarkMode
-                      ? "bg-[#252525] text-gray-300"
-                      : "bg-gray-100 text-gray-700"
-                  )}
-                >
-                  <Share2 size={16} className="mr-2" />
-                  {copied ? "Copied!" : "Share"}
-                </button>
-
-                {tocItems.length > 0 && (
-                  <button
-                    onClick={handleTocButtonClick}
-                    className={cn(
-                      "flex items-center justify-center px-3 py-2 rounded-md text-sm",
-                      isDarkMode
-                        ? "bg-[#252525] text-gray-300"
-                        : "bg-gray-100 text-gray-700"
-                    )}
+                {/* Action buttons */}
+                <div className="flex space-x-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleDownload}
+                    className="text-sm"
                   >
-                    <List size={16} className="mr-2" />
-                    Contents
-                  </button>
-                )}
+                    <FileDown className="mr-2 h-4 w-4" />
+                    <span className="hidden sm:inline">Download</span>
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleCopyLink}
+                    className="text-sm"
+                  >
+                    <Share2 className="mr-2 h-4 w-4" />
+                    <span className="hidden sm:inline">
+                      {copied ? "Copied!" : "Share"}
+                    </span>
+                  </Button>
+
+                  {tocItems.length > 0 && viewMode === "standard" && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleTocButtonClick}
+                      className="text-sm"
+                    >
+                      <List className="mr-2 h-4 w-4" />
+                      <span className="hidden sm:inline">Contents</span>
+                    </Button>
+                  )}
+                </div>
               </div>
 
-              {/* Markdown content */}
-              <CustomMarkdownRenderer markdown={markdownContent} />
+              {/* Content display based on selected view mode */}
+              {viewMode === "standard" ? (
+                <div className="standard-view">
+                  <CustomMarkdownRenderer markdown={markdownContent} />
+                </div>
+              ) : (
+                <div className="cards-view">
+                  <MarkdownCardView markdown={markdownContent} />
+                </div>
+              )}
 
               {/* Table of Contents Sheet */}
-              <TableOfContentsSheet
-                items={tocItems}
-                isOpen={tocSheetOpen}
-                onOpenChange={handleSheetOpenChange}
-                ref={contentRef}
-              />
+              {viewMode === "standard" && (
+                <TableOfContentsSheet
+                  items={tocItems}
+                  isOpen={tocSheetOpen}
+                  onOpenChange={handleSheetOpenChange}
+                  ref={contentRef}
+                />
+              )}
 
               {/* FloatingTOC Button (desktop) */}
-              {tocItems.length > 0 && (
+              {tocItems.length > 0 && viewMode === "standard" && (
                 <div className="hidden md:block relative float-right -mt-10 ml-4 mb-4">
                   <TableOfContentsButton
                     onClick={handleTocButtonClick}
@@ -325,16 +351,18 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
               )}
 
               {/* FloatingTOC Button (mobile) */}
-              {tocItems.length > 0 && !tocSheetOpen && (
-                <TableOfContentsButton
-                  onClick={handleTocButtonClick}
-                  itemCount={tocItems.length}
-                  className="md:hidden"
-                />
-              )}
+              {tocItems.length > 0 &&
+                viewMode === "standard" &&
+                !tocSheetOpen && (
+                  <TableOfContentsButton
+                    onClick={handleTocButtonClick}
+                    itemCount={tocItems.length}
+                    className="md:hidden"
+                  />
+                )}
 
               {/* Navigation between documents */}
-              {(prevNext.prev || prevNext.next) && (
+              {viewMode === "standard" && (prevNext.prev || prevNext.next) && (
                 <div
                   className={cn(
                     "mt-8 pt-4 flex border-t",

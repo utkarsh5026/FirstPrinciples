@@ -1,0 +1,132 @@
+/* src/components/markdown/card/MarkdownCardStyles.css */
+
+/* Card container animations */
+.card-enter {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.card-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.card-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.card-exit-active {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 300ms, transform 300ms;
+}
+
+/* Card content customizations */
+.markdown-card-content h1,
+.markdown-card-content h2,
+.markdown-card-content h3 {
+    margin-top: 0.5rem !important;
+}
+
+.markdown-card-content h2:first-of-type {
+    margin-top: 0 !important;
+}
+
+/* Custom scrollbar for card content */
+.markdown-card-content {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+}
+
+.markdown-card-content::-webkit-scrollbar {
+    display: block !important;
+    width: 5px !important;
+}
+
+.markdown-card-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.markdown-card-content::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.5);
+    border-radius: 10px;
+}
+
+/* Mobile swipe hint animation */
+.swipe-hint {
+    position: relative;
+    opacity: 0.7;
+}
+
+.swipe-hint::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Progress indicator animations */
+.card-progress-indicator {
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Card container with gesture swipe indicators */
+.card-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.swipe-indicator {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    background: linear-gradient(to right, transparent, rgba(var(--primary-rgb), 0.1));
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.swipe-indicator-left {
+    left: 0;
+    transform: rotate(180deg);
+}
+
+.swipe-indicator-right {
+    right: 0;
+}
+
+.card-container:hover .swipe-indicator {
+    opacity: 0.5;
+}
+
+/* Touch device styles */
+@media (hover: none) {
+    .swipe-indicator {
+        display: none;
+    }
+}
