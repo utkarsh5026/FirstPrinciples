@@ -45,11 +45,16 @@ const TableOfContentsSheet = forwardRef<
     } else {
       const element = document.getElementById(id);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        // Calculate position with offset for fixed header
+        const headerOffset = 100; // Adjust based on your header height
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
 
-        // Account for any fixed headers
-        const headerHeight = 80; // Adjust based on your header height
-        window.scrollBy(0, -headerHeight);
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
 
         setCurrentActiveId(id);
 
@@ -88,66 +93,46 @@ const TableOfContentsSheet = forwardRef<
 
     if (headingElements.length === 0) return;
 
-    let mostVisibleHeading: {
-      element: HTMLElement;
-      visibleAmount: number;
-    } | null = null;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Filter for elements that are intersecting
+        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
 
-    // Function to determine which heading is most visible
-    const findMostVisibleHeading = () => {
-      headingElements.forEach((element) => {
-        const rect = element.getBoundingClientRect();
-        const viewportHeight =
-          window.innerHeight || document.documentElement.clientHeight;
+        if (visibleEntries.length > 0) {
+          // Sort by their position on the page (top to bottom)
+          visibleEntries.sort((a, b) => {
+            const rectA = a.boundingClientRect;
+            const rectB = b.boundingClientRect;
+            return rectA.top - rectB.top;
+          });
 
-        // Calculate how much of the element is visible
-        const visibleTop = Math.max(0, rect.top);
-        const visibleBottom = Math.min(viewportHeight, rect.bottom);
-        const visibleAmount = Math.max(0, visibleBottom - visibleTop);
+          // Select the first visible heading (topmost visible)
+          const targetId = visibleEntries[0].target.id;
 
-        // Check if this is the most visible heading so far
-        if (
-          visibleAmount > 0 &&
-          (!mostVisibleHeading ||
-            visibleAmount > mostVisibleHeading.visibleAmount)
-        ) {
-          mostVisibleHeading = { element, visibleAmount };
+          if (targetId !== currentActiveId) {
+            setCurrentActiveId(targetId);
+
+            // Update current section name
+            const item = items.find((item) => item.id === targetId);
+            if (item) {
+              setCurrentSection(item.content);
+            }
+          }
         }
-      });
-
-      return mostVisibleHeading?.element?.id;
-    };
-
-    // Initialize the current active ID
-    const initialActiveId = findMostVisibleHeading();
-    if (initialActiveId) {
-      setCurrentActiveId(initialActiveId);
-
-      // Set current section name
-      const item = items.find((item) => item.id === initialActiveId);
-      if (item) {
-        setCurrentSection(item.content);
+      },
+      {
+        rootMargin: "-80px 0px -20% 0px", // Adjust based on header height
+        threshold: 0.1,
       }
-    }
+    );
 
-    // Set up scroll listener
-    const handleScroll = () => {
-      const activeId = findMostVisibleHeading();
-      if (activeId && activeId !== currentActiveId) {
-        setCurrentActiveId(activeId);
-
-        // Update current section name
-        const item = items.find((item) => item.id === activeId);
-        if (item) {
-          setCurrentSection(item.content);
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Observe all heading elements
+    headingElements.forEach((element) => {
+      observer.observe(element);
+    });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
     };
   }, [isOpen, items, currentActiveId, hasItems]);
 
@@ -155,15 +140,15 @@ const TableOfContentsSheet = forwardRef<
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
-        className="w-full max-w-md sm:w-80 p-0 border-l border-primary/10 bg-card backdrop-blur-md font-cascadia-code overflow-hidden"
+        className="w-full max-w-md sm:w-80 p-0 border-l border-primary/10 bg-card overflow-hidden font-cascadia-code"
       >
         <div className="flex flex-col h-full">
-          {/* Header with fixed position */}
-          <div className="sticky top-0 z-10 bg-gradient-to-r from-card via-card to-card/80 backdrop-blur-md border-b border-primary/10 px-4 py-3">
+          {/* Header */}
+          <div className="sticky top-0 z-10 bg-card shadow-sm px-4 py-3">
             <div className="flex items-center justify-between">
-              <SheetTitle className="text-base font-medium flex items-center text-primary">
+              <SheetTitle className="text-base font-medium flex items-center">
                 <BookOpen className="mr-2 text-primary" size={18} />
-                Table of Contents
+                Document Sections
                 {hasItems && (
                   <Badge
                     variant="outline"
@@ -188,7 +173,7 @@ const TableOfContentsSheet = forwardRef<
           </div>
 
           {/* Content area with scrolling */}
-          <div className="flex-1 overflow-auto px-1">
+          <div className="flex-1 overflow-auto">
             {hasItems ? (
               <div className="p-3">
                 <TableOfContents
@@ -204,7 +189,7 @@ const TableOfContentsSheet = forwardRef<
                   <AlignJustify size={24} className="text-primary/40" />
                 </div>
                 <p className="text-sm font-medium text-primary/80">
-                  No headings found
+                  No sections found
                 </p>
                 <p className="text-xs text-muted-foreground mt-1 max-w-xs">
                   This document doesn't have any headings to create a table of
@@ -214,9 +199,9 @@ const TableOfContentsSheet = forwardRef<
             )}
           </div>
 
-          {/* Footer with fixed position */}
+          {/* Footer */}
           {hasItems && (
-            <div className="sticky bottom-0 border-t border-primary/10 bg-gradient-to-b from-card/80 to-card backdrop-blur-lg p-3 flex justify-between items-center">
+            <div className="sticky bottom-0 border-t border-primary/10 bg-card p-3 flex justify-between items-center">
               <Button
                 size="sm"
                 variant="ghost"
