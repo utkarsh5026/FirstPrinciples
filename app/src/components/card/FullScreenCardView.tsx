@@ -345,7 +345,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
 
       {/* Sections Menu Sheet */}
       <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-        <SheetContent side="right" className="sm:max-w-sm">
+        <SheetContent side="right" className="sm:max-w-sm font-type-mono">
           <SheetHeader>
             <SheetTitle>Document Sections</SheetTitle>
           </SheetHeader>
