@@ -111,10 +111,12 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
                           <span className="text-xs font-medium">{idx + 1}</span>
                         </div>
 
-                        <span className="truncate text-xs">{displayTitle}</span>
+                        <span className="text-xs line-clamp-3 text-left">
+                          {displayTitle}
+                        </span>
 
                         {isActive && (
-                          <ChevronRight className="ml-auto h-3.5 w-3.5 text-primary" />
+                          <ChevronRight className="ml-auto h-3.5 w-3.5 text-primary flex-shrink-0" />
                         )}
                       </button>
                     );
