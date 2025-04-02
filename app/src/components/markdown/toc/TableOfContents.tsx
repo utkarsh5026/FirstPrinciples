@@ -1,7 +1,7 @@
 // app/src/components/markdown/toc/TableOfContents.tsx
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Hash } from "lucide-react";
+import { Heading1, Heading2, Heading3, BookOpen } from "lucide-react";
 
 export interface TOCItem {
   id: string;
@@ -25,8 +25,12 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
 }) => {
   if (!items || items.length === 0) {
     return (
-      <div className="text-muted-foreground text-sm py-4 px-2">
-        No headings found in this document.
+      <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
+        <BookOpen className="mb-3 opacity-40" size={24} />
+        <p className="text-sm font-medium">No headings found</p>
+        <p className="text-xs opacity-70 mt-1">
+          This document has no table of contents
+        </p>
       </div>
     );
   }
@@ -44,49 +48,95 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
     }
   };
 
+  // Get icon based on heading level
+  const getHeadingIcon = (level: number, isActive: boolean) => {
+    switch (level) {
+      case 1:
+        return (
+          <Heading1
+            size={16}
+            className={cn(
+              "flex-shrink-0",
+              isActive ? "text-primary" : "text-primary/50"
+            )}
+          />
+        );
+      case 2:
+        return (
+          <Heading2
+            size={15}
+            className={cn(
+              "flex-shrink-0",
+              isActive ? "text-primary/90" : "text-primary/40"
+            )}
+          />
+        );
+      case 3:
+      default:
+        return (
+          <Heading3
+            size={14}
+            className={cn(
+              "flex-shrink-0",
+              isActive ? "text-primary/80" : "text-primary/30"
+            )}
+          />
+        );
+    }
+  };
+
   return (
     <nav className={cn("toc-container", className)}>
-      <ul className="space-y-1.5">
+      <ul className="space-y-1">
         {items.map((item) => {
           // Calculate proper indentation based on heading level
           const indentLevel = item.level - 1;
           const isActive = currentActiveId === item.id;
 
           return (
-            <li key={item.id} className="relative">
-              {/* Active indicator bar */}
-              {isActive && (
-                <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary rounded-full" />
-              )}
+            <li key={item.id} className="relative group">
+              {/* Active indicator bar with animation */}
+              <div
+                className={cn(
+                  "absolute left-0 top-0 bottom-0 w-1 rounded-r-full transition-all duration-200 ease-in-out",
+                  isActive
+                    ? "bg-primary/90"
+                    : "bg-transparent group-hover:bg-primary/20"
+                )}
+              />
 
               <a
                 href={`#${item.id}`}
                 onClick={handleClick(item.id)}
                 className={cn(
-                  "flex items-center py-1.5 pl-4 text-sm transition-colors rounded-md pr-2 relative",
+                  "flex items-center gap-2.5 py-2 px-3 transition-all duration-200 rounded-md relative",
+                  "hover:bg-primary/5 dark:hover:bg-primary/10",
                   {
-                    "text-primary font-medium bg-primary/5": isActive,
-                    "text-foreground hover:text-primary hover:bg-muted/30":
-                      !isActive && item.level === 1,
-                    "text-muted-foreground hover:text-primary hover:bg-muted/30":
-                      !isActive && item.level > 1,
-                    "font-medium": item.level === 1,
-                    "text-[0.9rem]": item.level === 1,
-                    "text-[0.85rem]": item.level === 2,
-                    "text-[0.8rem]": item.level === 3,
+                    "bg-primary/10 dark:bg-primary/15": isActive,
+                    "font-medium": item.level === 1 || isActive,
+                    "text-foreground": item.level === 1 && !isActive,
+                    "text-primary": isActive,
+                    "text-muted-foreground": item.level > 1 && !isActive,
                   }
                 )}
-                style={{ paddingLeft: `${indentLevel * 12 + 12}px` }}
+                style={{
+                  paddingLeft: `${indentLevel * 16 + 12}px`,
+                  marginLeft: "4px",
+                }}
               >
-                <Hash
-                  size={item.level === 1 ? 14 : item.level === 2 ? 12 : 10}
+                {getHeadingIcon(item.level, isActive)}
+
+                <span
                   className={cn(
-                    "mr-2 flex-shrink-0",
-                    isActive ? "text-primary" : "text-muted-foreground/70"
+                    "truncate leading-tight transition-all",
+                    item.level === 1 && "text-base",
+                    item.level === 2 && "text-sm",
+                    item.level === 3 && "text-xs",
+                    { "group-hover:translate-x-0.5": !isActive }
                   )}
-                  strokeWidth={item.level === 1 ? 2.5 : 2}
-                />
-                <span className="truncate leading-tight">{item.content}</span>
+                >
+                  {item.content}
+                </span>
               </a>
             </li>
           );

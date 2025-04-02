@@ -1,5 +1,11 @@
 import { useState, useEffect, forwardRef } from "react";
-import { List, MoveUp, X } from "lucide-react";
+import {
+  BookOpen,
+  X,
+  AlignJustify,
+  FileText,
+  ArrowUpCircle,
+} from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -10,6 +16,7 @@ import TableOfContents, {
   TOCItem,
 } from "@/components/markdown/toc/TableOfContents";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 interface TableOfContentsSheetProps {
   items: TOCItem[];
@@ -24,6 +31,7 @@ const TableOfContentsSheet = forwardRef<
 >(({ items, isOpen, onOpenChange, onNavigate }) => {
   const [currentActiveId, setCurrentActiveId] = useState<string>("");
   const [hasItems, setHasItems] = useState(false);
+  const [currentSection, setCurrentSection] = useState<string>("");
 
   // Check if we have any items to display
   useEffect(() => {
@@ -44,6 +52,13 @@ const TableOfContentsSheet = forwardRef<
         window.scrollBy(0, -headerHeight);
 
         setCurrentActiveId(id);
+
+        // Find the text of the current section for display
+        const item = items.find((item) => item.id === id);
+        if (item) {
+          setCurrentSection(item.content);
+        }
+
         // Close the sheet on mobile after navigation
         if (window.innerWidth < 768) {
           setTimeout(() => onOpenChange(false), 300);
@@ -55,6 +70,7 @@ const TableOfContentsSheet = forwardRef<
   // Scroll to top button handler
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    setCurrentSection("");
 
     // Close the sheet on mobile after scrolling to top
     if (window.innerWidth < 768) {
@@ -68,7 +84,7 @@ const TableOfContentsSheet = forwardRef<
 
     const headingElements = items
       .map((item) => document.getElementById(item.id))
-      .filter((element) => element !== null);
+      .filter((element): element is HTMLElement => element !== null);
 
     if (headingElements.length === 0) return;
 
@@ -106,6 +122,12 @@ const TableOfContentsSheet = forwardRef<
     const initialActiveId = findMostVisibleHeading();
     if (initialActiveId) {
       setCurrentActiveId(initialActiveId);
+
+      // Set current section name
+      const item = items.find((item) => item.id === initialActiveId);
+      if (item) {
+        setCurrentSection(item.content);
+      }
     }
 
     // Set up scroll listener
@@ -113,6 +135,12 @@ const TableOfContentsSheet = forwardRef<
       const activeId = findMostVisibleHeading();
       if (activeId && activeId !== currentActiveId) {
         setCurrentActiveId(activeId);
+
+        // Update current section name
+        const item = items.find((item) => item.id === activeId);
+        if (item) {
+          setCurrentSection(item.content);
+        }
       }
     };
 
@@ -127,54 +155,86 @@ const TableOfContentsSheet = forwardRef<
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
-        className="w-full max-w-md sm:w-80 p-0 border-l border-border bg-card backdrop-blur-md font-cascadia-code"
+        className="w-full max-w-md sm:w-80 p-0 border-l border-primary/10 bg-card backdrop-blur-md font-cascadia-code overflow-hidden"
       >
         <div className="flex flex-col h-full">
           {/* Header with fixed position */}
-          <div className="sticky top-0 z-10 bg-card/90 backdrop-blur-sm border-b border-border px-4 py-3">
+          <div className="sticky top-0 z-10 bg-gradient-to-r from-card via-card to-card/80 backdrop-blur-md border-b border-primary/10 px-4 py-3">
             <div className="flex items-center justify-between">
-              <SheetTitle className="text-base font-medium flex items-center">
-                <List className="mr-2 text-primary" size={18} />
+              <SheetTitle className="text-base font-medium flex items-center text-primary">
+                <BookOpen className="mr-2 text-primary" size={18} />
                 Table of Contents
+                {hasItems && (
+                  <Badge
+                    variant="outline"
+                    className="ml-2 bg-primary/5 border-primary/20 text-primary text-xs"
+                  >
+                    {items.length}
+                  </Badge>
+                )}
               </SheetTitle>
-              <SheetClose className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+              <SheetClose className="rounded-full w-8 h-8 flex items-center justify-center bg-primary/5 text-primary hover:bg-primary/10 transition-colors">
                 <X className="h-4 w-4" />
                 <span className="sr-only">Close</span>
               </SheetClose>
             </div>
+
+            {currentSection && (
+              <div className="mt-2 text-sm py-1.5 px-2 bg-primary/5 rounded-md text-primary/90 truncate flex items-center">
+                <FileText size={14} className="mr-1.5 flex-shrink-0" />
+                <span className="truncate">{currentSection}</span>
+              </div>
+            )}
           </div>
 
           {/* Content area with scrolling */}
-          <div className="flex-1 overflow-auto">
+          <div className="flex-1 overflow-auto px-1">
             {hasItems ? (
-              <div className="p-4">
+              <div className="p-3">
                 <TableOfContents
                   items={items}
                   onNavigate={handleNavigate}
                   currentActiveId={currentActiveId}
+                  className="pb-16" // Add padding to account for footer
                 />
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center h-full p-6 text-center text-muted-foreground">
-                <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
-                  <List size={24} className="opacity-50" />
+              <div className="flex flex-col items-center justify-center h-full p-6 text-center">
+                <div className="w-16 h-16 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center mb-4">
+                  <AlignJustify size={24} className="text-primary/40" />
                 </div>
-                <p className="text-sm">No headings found in this document.</p>
+                <p className="text-sm font-medium text-primary/80">
+                  No headings found
+                </p>
+                <p className="text-xs text-muted-foreground mt-1 max-w-xs">
+                  This document doesn't have any headings to create a table of
+                  contents
+                </p>
               </div>
             )}
           </div>
 
           {/* Footer with fixed position */}
           {hasItems && (
-            <div className="sticky bottom-0 border-t border-border bg-card/90 backdrop-blur-sm p-3 flex justify-end">
+            <div className="sticky bottom-0 border-t border-primary/10 bg-gradient-to-b from-card/80 to-card backdrop-blur-lg p-3 flex justify-between items-center">
+              <Button
+                size="sm"
+                variant="ghost"
+                className="text-xs text-muted-foreground hover:text-primary hover:bg-primary/5"
+                onClick={() => onOpenChange(false)}
+              >
+                Close
+              </Button>
+
               <Button
                 size="sm"
                 variant="outline"
-                className="rounded-full w-10 h-10 p-0"
+                className="rounded-full h-9 bg-primary/5 border-primary/10 text-primary hover:bg-primary/10 transition-colors flex items-center gap-1.5 px-3"
                 onClick={handleScrollToTop}
                 title="Scroll to top"
               >
-                <MoveUp size={18} />
+                <ArrowUpCircle size={14} />
+                <span>Top</span>
               </Button>
             </div>
           )}
