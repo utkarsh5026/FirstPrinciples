@@ -127,7 +127,7 @@ const TableOfContentsSheet = forwardRef<
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
-        className="w-full max-w-md sm:w-80 p-0 border-l border-border bg-card backdrop-blur-md"
+        className="w-full max-w-md sm:w-80 p-0 border-l border-border bg-card backdrop-blur-md font-cascadia-code"
       >
         <div className="flex flex-col h-full">
           {/* Header with fixed position */}

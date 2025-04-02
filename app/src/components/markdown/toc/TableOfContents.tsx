@@ -1,7 +1,7 @@
+// app/src/components/markdown/toc/TableOfContents.tsx
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Link } from "lucide-react";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Hash } from "lucide-react";
 
 export interface TOCItem {
   id: string;
@@ -45,45 +45,54 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   };
 
   return (
-    <ScrollArea className={cn("max-h-[calc(100vh-8rem)]", className)}>
-      <nav className="px-1 py-2">
-        <ul className="space-y-1">
-          {items.map((item) => {
-            // Calculate proper indentation based on heading level
-            const indentLevel = item.level - 1;
-            const isActive = currentActiveId === item.id;
+    <nav className={cn("toc-container", className)}>
+      <ul className="space-y-1.5">
+        {items.map((item) => {
+          // Calculate proper indentation based on heading level
+          const indentLevel = item.level - 1;
+          const isActive = currentActiveId === item.id;
 
-            return (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  onClick={handleClick(item.id)}
+          return (
+            <li key={item.id} className="relative">
+              {/* Active indicator bar */}
+              {isActive && (
+                <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary rounded-full" />
+              )}
+
+              <a
+                href={`#${item.id}`}
+                onClick={handleClick(item.id)}
+                className={cn(
+                  "flex items-center py-1.5 pl-4 text-sm transition-colors rounded-md pr-2 relative",
+                  {
+                    "text-primary font-medium bg-primary/5": isActive,
+                    "text-foreground hover:text-primary hover:bg-muted/30":
+                      !isActive && item.level === 1,
+                    "text-muted-foreground hover:text-primary hover:bg-muted/30":
+                      !isActive && item.level > 1,
+                    "font-medium": item.level === 1,
+                    "text-[0.9rem]": item.level === 1,
+                    "text-[0.85rem]": item.level === 2,
+                    "text-[0.8rem]": item.level === 3,
+                  }
+                )}
+                style={{ paddingLeft: `${indentLevel * 12 + 12}px` }}
+              >
+                <Hash
+                  size={item.level === 1 ? 14 : item.level === 2 ? 12 : 10}
                   className={cn(
-                    "flex items-center py-1.5 text-sm transition-colors hover:text-primary rounded-md px-2",
-                    {
-                      "text-primary font-medium bg-primary/10": isActive,
-                      "text-foreground font-medium":
-                        item.level === 1 && !isActive,
-                      "text-muted-foreground": item.level > 1 && !isActive,
-                    }
+                    "mr-2 flex-shrink-0",
+                    isActive ? "text-primary" : "text-muted-foreground/70"
                   )}
-                  style={{ paddingLeft: `${indentLevel * 16 + 8}px` }}
-                >
-                  <Link
-                    size={item.level === 1 ? 14 : 12}
-                    className={cn(
-                      "mr-2 flex-shrink-0",
-                      isActive ? "text-primary" : "text-muted-foreground"
-                    )}
-                  />
-                  <span className="truncate">{item.content}</span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
-    </ScrollArea>
+                  strokeWidth={item.level === 1 ? 2.5 : 2}
+                />
+                <span className="truncate leading-tight">{item.content}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 };
 
