@@ -1,6 +1,68 @@
 {
   "categories": [
     {
+      "id": "docker",
+      "name": "Docker",
+      "icon": "Folder",
+      "subcategories": [
+        {
+          "id": "images",
+          "name": "Images",
+          "icon": "Folder",
+          "subcategories": [
+            {
+              "id": "basics",
+              "name": "Basics",
+              "icon": "Folder",
+              "subcategories": [],
+              "files": [
+                {
+                  "path": "docker/images/basics/internals_of_docker_images.md",
+                  "title": "Internals Of Docker Images",
+                  "description": "Documentation for Internals Of Docker Images"
+                },
+                {
+                  "path": "docker/images/basics/introduction_to_docker_images.md",
+                  "title": "Introduction To Docker Images",
+                  "description": "Documentation for Introduction To Docker Images"
+                }
+              ]
+            },
+            {
+              "id": "layers",
+              "name": "Layers",
+              "icon": "Folder",
+              "subcategories": [],
+              "files": [
+                {
+                  "path": "docker/images/layers/copy_vs_run.md",
+                  "title": "Copy Vs Run",
+                  "description": "Documentation for Copy Vs Run"
+                },
+                {
+                  "path": "docker/images/layers/docker_image_layers.md",
+                  "title": "Docker Image Layers",
+                  "description": "Documentation for Docker Image Layers"
+                },
+                {
+                  "path": "docker/images/layers/essential_concepts.md",
+                  "title": "Essential Concepts",
+                  "description": "Documentation for Essential Concepts"
+                },
+                {
+                  "path": "docker/images/layers/layer_optimization.md",
+                  "title": "Layer Optimization",
+                  "description": "Documentation for Layer Optimization"
+                }
+              ]
+            }
+          ],
+          "files": []
+        }
+      ],
+      "files": []
+    },
+    {
       "id": "javascript",
       "name": "Javascript",
       "icon": "Code",

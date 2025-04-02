@@ -76,6 +76,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --font-type-mono: "Cascadia Code", monospace;
+  --font-cascadia-code: "Cascadia Code", monospace;
 }
 
 @layer base {

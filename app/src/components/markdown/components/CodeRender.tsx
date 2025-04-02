@@ -22,7 +22,6 @@ const CodeRender: React.FC<CodeRenderProps> = ({
   const match = /language-(\w+)/.exec(className ?? "");
   const language = match ? match[1] : "";
 
-  // For inline code
   if (inline) {
     return (
       <code
@@ -68,8 +67,8 @@ const CodeRender: React.FC<CodeRenderProps> = ({
   }
 
   return (
-    <div className="my-6 rounded-md overflow-hidden border border-[#222222] relative">
-      <div className="bg-[#1c1c1c] text-gray-400 px-4 py-2 text-sm font-mono border-b border-[#222222] flex justify-between items-center">
+    <div className="my-6 rounded-lg overflow-hidden border border-[#222222] relative font-cascadia-code">
+      <div className="bg-[#1c1c1c] text-gray-400 px-4 py-2 text-sm  border-b border-[#222222] flex justify-between items-center">
         <span>{language || "code"}</span>
         <button
           onClick={copyToClipboard}
@@ -82,6 +81,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
           />
         </button>
       </div>
+
       <SyntaxHighlighter
         language={language || "text"}
         customStyle={{
@@ -91,8 +91,26 @@ const CodeRender: React.FC<CodeRenderProps> = ({
           fontSize: "0.875rem",
           lineHeight: 1.6,
         }}
+        wrapLongLines={true}
+        useInlineStyles={true}
+        codeTagProps={{
+          style: {
+            backgroundColor: "transparent",
+            fontFamily: "Fira Code",
+          },
+        }}
         {...props}
-        style={oneDark as { [key: string]: React.CSSProperties }}
+        style={{
+          ...oneDark,
+          'pre[class*="language-"]': {
+            ...oneDark['pre[class*="language-"]'],
+            background: "transparent",
+          },
+          'code[class*="language-"]': {
+            ...oneDark['code[class*="language-"]'],
+            background: "transparent",
+          },
+        }}
       >
         {typeof children === "string"
           ? children.replace(/\n$/, "")
