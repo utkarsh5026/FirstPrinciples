@@ -5,13 +5,7 @@ import {
 } from "@/components/ui/collapsible";
 import { Category } from "@/utils/MarkdownLoader";
 import { cn } from "@/lib/utils";
-import {
-  FiChevronDown,
-  FiChevronRight,
-  FiFolder,
-  FiFolderPlus,
-} from "react-icons/fi";
-import { Badge } from "@/components/ui/badge";
+import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import FileItem from "./FileItem";
 import { useCallback } from "react";
 import { getIconForTech } from "./iconMap";
@@ -61,15 +55,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   }, []);
 
   if (!hasContent) return null;
-
-  const fileCount = countFiles(category);
-
-  // Get the appropriate icon based on category name or icon property
-  const CategoryIcon = category.icon
-    ? getIconForTech(category.name)
-    : category.subcategories && category.subcategories.length > 0
-    ? FiFolderPlus
-    : FiFolder;
+  const CategoryIcon = getIconForTech(category.name);
 
   return (
     <Collapsible
@@ -104,12 +90,6 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
         </span>
 
         <div className="flex-grow"></div>
-
-        {fileCount > 0 && (
-          <Badge className="ml-2 bg-indigo-500/10 text-indigo-400 border-indigo-500/20 flex-shrink-0">
-            {fileCount}
-          </Badge>
-        )}
       </CollapsibleTrigger>
 
       <CollapsibleContent
