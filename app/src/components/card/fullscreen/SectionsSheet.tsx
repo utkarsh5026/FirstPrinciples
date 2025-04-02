@@ -4,12 +4,10 @@ import {
   SheetHeader,
   SheetTitle,
   SheetDescription,
-  SheetFooter,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { Search, ChevronRight, ListOrdered } from "lucide-react";
-import { useState, useEffect } from "react";
-import { Input } from "@/components/ui/input";
+
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 
@@ -41,25 +39,6 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
   menuOpen,
   setMenuOpen,
 }) => {
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filteredSections, setFilteredSections] = useState(sections);
-
-  /**
-   * Effect hook to filter sections based on the search query.
-   * It updates the filteredSections state whenever the searchQuery or sections change.
-   */
-  useEffect(() => {
-    if (!searchQuery.trim()) {
-      setFilteredSections(sections);
-      return;
-    }
-
-    const filtered = sections.filter((section) =>
-      section.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredSections(filtered);
-  }, [searchQuery, sections]);
-
   /**
    * Function to normalize section titles by removing leading numbers and special characters.
    *
@@ -94,25 +73,14 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
                 Navigate through document sections
               </SheetDescription>
             </SheetHeader>
-
-            <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search sections..."
-                className="pl-8 bg-background/50 text-xs h-8"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
           </div>
 
           {/* Scrollable Content */}
           <ScrollArea className="flex-1 h-[calc(100vh-11rem)]">
             <div className="p-2">
-              {filteredSections.length > 0 ? (
+              {sections.length > 0 ? (
                 <div className="space-y-1">
-                  {filteredSections.map((section, idx) => {
+                  {sections.map((section, idx) => {
                     const displayTitle = normalizeTitle(section.title);
                     const isActive = idx === currentIndex;
 
@@ -161,24 +129,6 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
               )}
             </div>
           </ScrollArea>
-
-          <SheetFooter>
-            {filteredSections.length > 0 && (
-              <div className="border-t border-border p-3 bg-card/50 backdrop-blur-sm">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground">
-                    {currentIndex + 1} of {sections.length}
-                  </span>
-
-                  {sections[currentIndex] && (
-                    <span className="text-primary truncate max-w-[200px] font-medium">
-                      {normalizeTitle(sections[currentIndex].title)}
-                    </span>
-                  )}
-                </div>
-              </div>
-            )}
-          </SheetFooter>
         </div>
       </SheetContent>
     </Sheet>
