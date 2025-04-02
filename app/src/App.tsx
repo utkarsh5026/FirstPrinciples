@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import SimpleMarkdownPage from "./components/core/SimpleMarkdownPage";
 import MarkdownManager from "./components/manager/MarkdownManager";
 import CategoryNavigation from "./components/navigation/sidebar/CategoryNavigation";
-import BreadcrumbNav from "./components/navigation/BreadCrumbNav";
 import { MarkdownLoader } from "./utils/MarkdownLoader";
 import { useTheme } from "./components/theme/ThemeProvider";
 import ThemeSelector from "./components/theme/ThemeSelector";
@@ -122,15 +121,6 @@ function App() {
       MarkdownLoader.downloadMarkdown(filename, fullContent);
     } catch (error) {
       console.error("Error downloading markdown:", error);
-    }
-  };
-
-  // Handle category navigation
-  const handleCategoryNav = (categoryId: string) => {
-    // Navigate to home/root if categoryId is "root"
-    if (categoryId === "root") {
-      // Could implement showing all root files or a welcome page
-      return;
     }
   };
 
@@ -288,14 +278,6 @@ function App() {
             <>
               {selectedFile ? (
                 <div className="px-4 py-4">
-                  {/* Breadcrumb navigation */}
-                  <BreadcrumbNav
-                    filePath={selectedFile}
-                    className="mb-4"
-                    onNavigate={handleCategoryNav}
-                  />
-
-                  {/* Document content */}
                   <SimpleMarkdownPage filename={selectedFile} />
                 </div>
               ) : (

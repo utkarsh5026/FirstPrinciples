@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import MarkdownCardView from "@/components/card/MarkdownCardView";
+import FullScreenCardView from "@/components/card/FullScreenCardView";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import {
   FileDown,
@@ -37,6 +38,7 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
   const [tocItems, setTocItems] = useState<TOCItem[]>([]);
   const [tocSheetOpen, setTocSheetOpen] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>("standard");
+  const [isFullscreenCard, setIsFullscreenCard] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Set up swipe gestures for mobile in standard view
@@ -218,8 +220,17 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
   // Handle view mode change
   const handleViewModeChange = (mode: ViewMode) => {
     setViewMode(mode);
+    // Reset fullscreen state when switching to standard mode
+    if (mode === "standard") {
+      setIsFullscreenCard(false);
+    }
     // Save user preference
     localStorage.setItem("preferredViewMode", mode);
+  };
+
+  // Toggle fullscreen card view
+  const toggleFullscreenCard = () => {
+    setIsFullscreenCard(!isFullscreenCard);
   };
 
   if (loading) {
@@ -249,6 +260,16 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
       >
         {error}
       </div>
+    );
+  }
+
+  // Render fullscreen card view
+  if (viewMode === "cards" && isFullscreenCard) {
+    return (
+      <FullScreenCardView
+        markdown={markdownContent}
+        onExit={() => setIsFullscreenCard(false)}
+      />
     );
   }
 
@@ -283,6 +304,18 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
 
                 {/* Action buttons */}
                 <div className="flex space-x-2">
+                  {viewMode === "cards" && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={toggleFullscreenCard}
+                      className="text-sm"
+                    >
+                      <span className="hidden sm:inline">Fullscreen</span>
+                      <span className="sm:hidden">Full</span>
+                    </Button>
+                  )}
+
                   <Button
                     variant="outline"
                     size="sm"
@@ -326,7 +359,10 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
                 </div>
               ) : (
                 <div className="cards-view">
-                  <MarkdownCardView markdown={markdownContent} />
+                  <MarkdownCardView
+                    markdown={markdownContent}
+                    onEnterFullscreen={toggleFullscreenCard}
+                  />
                 </div>
               )}
 

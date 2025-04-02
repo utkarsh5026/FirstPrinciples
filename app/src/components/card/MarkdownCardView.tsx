@@ -1,4 +1,4 @@
-// src/components/markdown/card/MarkdownCardView.tsx
+// src/components/card/MarkdownCardView.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
@@ -6,11 +6,14 @@ import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import CardNavigation from "./CardNavigation";
 import CardSectionsMenu from "./CardSectionsMenu";
 import CardIntroModal from "./CardInrtoModal";
+import { Maximize2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import "./MarkdownCardStyles.css";
 
 interface MarkdownCardViewProps {
   markdown: string;
   className?: string;
+  onEnterFullscreen?: () => void;
 }
 
 interface MarkdownSection {
@@ -23,6 +26,7 @@ interface MarkdownSection {
 const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
   markdown,
   className,
+  onEnterFullscreen,
 }) => {
   const [sections, setSections] = useState<MarkdownSection[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -222,6 +226,12 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
     }
   };
 
+  const handleFullscreenClick = () => {
+    if (onEnterFullscreen) {
+      onEnterFullscreen();
+    }
+  };
+
   if (sections.length === 0) {
     return (
       <div className="flex items-center justify-center p-8 text-muted-foreground">
@@ -249,17 +259,32 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
           </span>
         </div>
 
-        <CardSectionsMenu
-          sections={sections}
-          currentIndex={currentIndex}
-          onSelectSection={(index) => {
-            setIsTransitioning(true);
-            setTimeout(() => {
-              setCurrentIndex(index);
-              setIsTransitioning(false);
-            }, 200);
-          }}
-        />
+        <div className="flex items-center gap-2">
+          {/* Fullscreen button */}
+          {onEnterFullscreen && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleFullscreenClick}
+              className="h-8 px-2"
+              title="Enter fullscreen mode"
+            >
+              <Maximize2 className="h-4 w-4" />
+            </Button>
+          )}
+
+          <CardSectionsMenu
+            sections={sections}
+            currentIndex={currentIndex}
+            onSelectSection={(index) => {
+              setIsTransitioning(true);
+              setTimeout(() => {
+                setCurrentIndex(index);
+                setIsTransitioning(false);
+              }, 200);
+            }}
+          />
+        </div>
       </div>
 
       {/* Card Container with swipe indicators */}

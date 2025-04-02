@@ -130,3 +130,216 @@
         display: none;
     }
 }
+
+/* Add this to MarkdownCardStyles.css */
+
+/* Fullscreen transition animations */
+.fullscreen-enter {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.fullscreen-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 250ms ease-out, transform 250ms ease-out;
+}
+
+.fullscreen-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.fullscreen-exit-active {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
+
+/* Mobile-optimized card indicators */
+@media (max-width: 768px) {
+
+    /* Enhanced swipe hints */
+    .mobile-swipe-hint {
+        position: relative;
+        width: 60px;
+        height: 10px;
+        margin: 10px auto;
+        overflow: hidden;
+        opacity: 0.6;
+    }
+
+    .mobile-swipe-hint::before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 10px;
+        background-color: rgba(var(--primary-rgb), 0.5);
+        border-radius: 5px;
+        animation: swipe-hint 1.5s infinite;
+    }
+
+    @keyframes swipe-hint {
+        0% {
+            left: 0;
+            transform: translateX(-100%);
+        }
+
+        50% {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        100% {
+            left: 100%;
+            transform: translateX(0);
+        }
+    }
+
+    /* Touch feedback for card navigation */
+    .card-touch-ripple {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(var(--primary-rgb), 0.3);
+        transform: scale(0);
+        animation: touch-ripple 0.5s ease-out;
+        pointer-events: none;
+    }
+
+    @keyframes touch-ripple {
+        0% {
+            transform: scale(0);
+            opacity: 0.7;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 0;
+        }
+    }
+
+    /* Haptic visual feedback for card swiping */
+    .card-container.swiping-left::after,
+    .card-container.swiping-right::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background-color: var(--primary);
+        opacity: 0.6;
+        z-index: 10;
+    }
+
+    .card-container.swiping-left::after {
+        left: 0;
+        animation: haptic-pulse 0.3s ease-in-out;
+    }
+
+    .card-container.swiping-right::after {
+        right: 0;
+        animation: haptic-pulse 0.3s ease-in-out;
+    }
+
+    @keyframes haptic-pulse {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 0.8;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+}
+
+/* Fullscreen mode specific styles */
+.fullscreen-card-view {
+    /* Better scrolling on mobile */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: y proximity;
+}
+
+.fullscreen-card-view .section-heading {
+    scroll-snap-align: start;
+}
+
+/* Enhanced readability in fullscreen mode on mobile */
+@media (max-width: 768px) {
+    .fullscreen-card-view p {
+        font-size: 1.05rem;
+        line-height: 1.65;
+        margin-bottom: 1.2em;
+    }
+
+    .fullscreen-card-view h1,
+    .fullscreen-card-view h2,
+    .fullscreen-card-view h3 {
+        margin-top: 1.5em;
+        margin-bottom: 0.75em;
+    }
+
+    .fullscreen-card-view ul,
+    .fullscreen-card-view ol {
+        padding-left: 1.5rem;
+    }
+
+    .fullscreen-card-view li {
+        margin-bottom: 0.5em;
+    }
+
+    .fullscreen-card-view pre,
+    .fullscreen-card-view code {
+        font-size: 0.9rem;
+        border-radius: 6px;
+    }
+
+    /* Reduce margins for better space usage */
+    .fullscreen-card-view * {
+        max-width: 100%;
+    }
+}
+
+/* Card transition animations */
+.card-slide-prev-enter {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.card-slide-prev-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 250ms ease-out, opacity 150ms ease-out;
+}
+
+.card-slide-next-enter {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.card-slide-next-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 250ms ease-out, opacity 150ms ease-out;
+}
+
+.card-slide-exit {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.card-slide-prev-exit-active {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 200ms ease-in, opacity 100ms ease-in;
+}
+
+.card-slide-next-exit-active {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 200ms ease-in, opacity 100ms ease-in;
+}
