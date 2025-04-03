@@ -720,18 +720,41 @@ Solution: Commit or stash your changes before switching branches.
 Here's a complete diagram showing all possible transitions between states:
 
 ```
-+-----------------+    git add     +---------------+    git commit    +---------------+
-|                 |  ----------->  |               |  ------------->  |               |
-| Working         |                | Staging       |                  | Repository    |
-| Directory       |  <-----------  | Area          |                  | (.git dir)    |
-|                 |  git restore   |               |                  |               |
-+-----------------+                +---------------+                  +---------------+
-        ^                                 ^                                  |
-        |                                 |                                  |
-        |                                 |                                  |
-        |          git restore            |           git reset              |
-        |       git checkout HEAD         |                                  |
-        +-----------------------------------------------------------------------------+
++-------------------+
+|   Working         |
+|   Directory       |
++--------+----------+
+         |
+         | git add
+         v
++-------------------+
+|   Staging         |
+|   Area            |
++--------+----------+
+         |
+         | git commit
+         v
++-------------------+
+|   Repository      |
+|   (.git dir)      |
++--------+----------+
+     ^   ^   ^
+     |   |   |
+     |   |   |
++----+   |   +----+
+|        |        |
+|        |        |
+|git     |git     |git
+|checkout|reset   |restore
+|HEAD    |        |
+|        |        |
++----+   |   +----+
+     |   |   |
+     v   v   v
++-------------------+
+|   Working         |
+|   Directory       |
++-------------------+
 ```
 
 ## Conclusion
