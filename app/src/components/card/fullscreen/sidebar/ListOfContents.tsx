@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { useCallback } from "react";
 
 interface ListOfContentsProps {
-  filteredSections: { id: string; title: string }[];
+  sections: { id: string; title: string }[];
   currentIndex: number;
   readSections: Set<string>;
   showProgress: boolean;
@@ -24,7 +24,7 @@ interface ListOfContentsProps {
  * @param {(index: number) => void} props.handleSelectCard - A function to handle the selection of a section.
  */
 const ListOfContents: React.FC<ListOfContentsProps> = ({
-  filteredSections,
+  sections,
   currentIndex,
   readSections,
   showProgress,
@@ -109,9 +109,9 @@ const ListOfContents: React.FC<ListOfContentsProps> = ({
 
   return (
     <div className="p-2">
-      {filteredSections.length > 0 ? (
+      {sections.length > 0 ? (
         <div className="space-y-1">
-          {filteredSections.map((section, idx) => {
+          {sections.map((section, idx) => {
             const displayTitle = normalizeTitle(section.title);
             const isActive = idx === currentIndex;
             const isRead = readSections.has(section.id);
