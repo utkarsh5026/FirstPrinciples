@@ -5,7 +5,7 @@ import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import CardProgress from "../CardProgress";
 import { Menu, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SectionsSheet from "./SectionsSheet";
+import SectionsSheet from "./sidebar/SectionsSheet";
 
 interface FullscreenCardViewProps {
   markdown: string;

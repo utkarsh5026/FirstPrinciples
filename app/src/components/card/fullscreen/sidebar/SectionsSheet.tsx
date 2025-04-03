@@ -6,11 +6,12 @@ import {
   SheetDescription,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { Search, ChevronRight, ListOrdered, X } from "lucide-react";
+import { Search, ListOrdered, X } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
+import ListOfContents from "./ListOfContents";
 
 interface SectionsSheetProps {
   sections: { id: string; title: string; level?: number }[];
@@ -52,16 +53,6 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
   const progressPercentage = sections.length
     ? (readSections.size / sections.length) * 100
     : 0;
-
-  /**
-   * Function to normalize section titles by removing leading numbers and special characters.
-   *
-   * @param {string} title - The title of the section to normalize.
-   * @returns {string} - The normalized title.
-   */
-  const normalizeTitle = (title: string) => {
-    return title.replace(/^\d+(\.\d+)*\s*\.?\s*/, "").trim();
-  };
 
   // Filter sections based on search query
   useEffect(() => {
@@ -292,66 +283,16 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
 
           {/* Scrollable Content */}
           <ScrollArea className="flex-1 h-[calc(100vh-11rem)]">
-            <div className="p-2">
-              {filteredSections.length > 0 ? (
-                <div className="space-y-1">
-                  {filteredSections.map((section, idx) => {
-                    const displayTitle = normalizeTitle(section.title);
-                    const isActive = idx === currentIndex;
-                    const isRead = readSections.has(section.id);
-
-                    return (
-                      <button
-                        key={section.id}
-                        className={cn(
-                          "w-full text-left px-2 py-2 rounded-md",
-                          "transition-colors duration-200",
-                          "flex items-center gap-2",
-                          isActive
-                            ? "bg-primary/10 text-primary font-medium"
-                            : isRead && showProgress
-                            ? "bg-secondary/10 text-foreground/90"
-                            : "hover:bg-secondary/20 text-muted-foreground hover:text-foreground"
-                        )}
-                        onClick={() => {
-                          handleSelectCard(idx);
-                          setMenuOpen(false);
-                        }}
-                      >
-                        <div
-                          className={cn(
-                            "min-w-6 h-6 flex items-center justify-center rounded-full flex-shrink-0",
-                            isActive
-                              ? "bg-primary/20 text-primary"
-                              : isRead && showProgress
-                              ? "bg-primary/10 text-foreground/80"
-                              : "bg-secondary/10 text-muted-foreground"
-                          )}
-                        >
-                          <span className="text-xs font-medium">{idx + 1}</span>
-                        </div>
-
-                        <span className="text-xs line-clamp-3 text-left">
-                          {displayTitle}
-                        </span>
-
-                        {isActive ? (
-                          <ChevronRight className="ml-auto h-3.5 w-3.5 text-primary flex-shrink-0" />
-                        ) : isRead && showProgress ? (
-                          <div className="ml-auto h-2 w-2 rounded-full bg-primary/40 flex-shrink-0" />
-                        ) : null}
-                      </button>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div className="text-center py-8 text-muted-foreground">
-                  <Search className="w-6 h-6 mx-auto mb-2 opacity-30" />
-                  <p className="text-sm font-medium">No matching sections</p>
-                  <p className="text-xs mt-1">Try a different search term</p>
-                </div>
-              )}
-            </div>
+            <ListOfContents
+              filteredSections={filteredSections}
+              currentIndex={currentIndex}
+              readSections={readSections}
+              showProgress={showProgress}
+              handleSelectCard={(index) => {
+                handleSelectCard(index);
+                setMenuOpen(false);
+              }}
+            />
           </ScrollArea>
         </div>
       </SheetContent>
