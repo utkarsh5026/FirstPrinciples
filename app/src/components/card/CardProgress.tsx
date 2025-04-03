@@ -1,5 +1,4 @@
-// src/components/markdown/card/CardProgress.tsx
-import React from "react";
+import React, { useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { MoreHorizontal } from "lucide-react";
 
@@ -10,52 +9,72 @@ interface CardProgressProps {
   className?: string;
 }
 
+const MAX_VISIBLE_DOTS = 7;
+
+/**
+ * CardProgress component displays a progress indicator for card navigation
+ * Shows dots representing each card with the current card highlighted
+ * For large numbers of cards, it shows a subset with ellipses
+ * Also displays the current position (e.g., "3 / 10")
+ *
+ * @param {number} currentIndex - Zero-based index of the current card
+ * @param {number} totalCards - Total number of cards in the collection
+ * @param {function} onSelectCard - Optional callback when a card dot is clicked
+ * @param {string} className - Optional CSS class name for styling
+ */
 const CardProgress: React.FC<CardProgressProps> = ({
   currentIndex,
   totalCards,
   onSelectCard,
   className,
 }) => {
-  // Show max of 7 indicators on mobile, collapse the rest
-  const MAX_VISIBLE_DOTS = 7;
-  const showAllDots = totalCards <= MAX_VISIBLE_DOTS;
+  /**
+   * Determines if all dots should be shown based on the total number of cards
+   * @returns {boolean} True if all dots should be displayed
+   */
+  const showAllDots = useMemo(
+    () => totalCards <= MAX_VISIBLE_DOTS,
+    [totalCards]
+  );
 
-  // Calculate which dots to show
-  let dotsToShow: Array<{ index: number; isEllipsis?: boolean }> = [];
+  /**
+   * Calculates which dots to display in the progress indicator
+   * For small collections, shows all dots
+   * For large collections, shows first, last, current, and adjacent dots with ellipses
+   *
+   * @returns {Array<{index: number, isEllipsis?: boolean}>} Array of dot objects to render
+   */
+  const dotsToShow = useMemo(() => {
+    const dotsToShow: Array<{ index: number; isEllipsis?: boolean }> = [];
 
-  if (showAllDots) {
-    // Show all dots if there are few enough
-    dotsToShow = Array.from({ length: totalCards }, (_, i) => ({ index: i }));
-  } else {
-    // Always show first, last, current and immediate neighbors
+    if (showAllDots) {
+      return Array.from({ length: totalCards }, (_, i) => ({
+        index: i,
+        isEllipsis: false,
+      }));
+    }
+
     const startSlice = Math.max(0, currentIndex - 1);
     const endSlice = Math.min(totalCards - 1, currentIndex + 1);
 
-    // Add first dot
     dotsToShow.push({ index: 0 });
-
-    // Add ellipsis if needed
     if (startSlice > 1) {
       dotsToShow.push({ index: -1, isEllipsis: true });
     }
 
-    // Add neighbors around current
     for (let i = startSlice; i <= endSlice; i++) {
-      if (i !== 0 && i !== totalCards - 1) {
-        dotsToShow.push({ index: i });
-      }
+      if (i !== 0 && i !== totalCards - 1) dotsToShow.push({ index: i });
     }
 
-    // Add ellipsis if needed
     if (endSlice < totalCards - 2) {
       dotsToShow.push({ index: -2, isEllipsis: true });
     }
 
-    // Add last dot
     if (totalCards > 1) {
       dotsToShow.push({ index: totalCards - 1 });
     }
-  }
+    return dotsToShow;
+  }, [currentIndex, totalCards, showAllDots]);
 
   return (
     <div className={cn("flex items-center justify-center", className)}>
@@ -64,7 +83,7 @@ const CardProgress: React.FC<CardProgressProps> = ({
           if (dot.isEllipsis) {
             return (
               <div
-                key={`ellipsis-${i}`}
+                key={`ellipsis-${i}-${dot.index}`}
                 className="text-muted-foreground px-0.5"
               >
                 <MoreHorizontal className="h-3 w-3" />
@@ -91,7 +110,7 @@ const CardProgress: React.FC<CardProgressProps> = ({
         })}
       </div>
 
-      <div className="ml-3 text-xs text-muted-foreground">
+      <div className="ml-3 text-xs text-muted-foreground font-cascadia-code">
         {currentIndex + 1} / {totalCards}
       </div>
     </div>
