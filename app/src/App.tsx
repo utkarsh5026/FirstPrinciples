@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+// App.tsx with Enhanced Sidebar
+import { useEffect, useState, useRef } from "react";
 import SimpleMarkdownPage from "./components/core/SimpleMarkdownPage";
 import MarkdownManager from "./components/manager/MarkdownManager";
-import CategoryNavigation from "./components/navigation/sidebar/CategoryNavigation";
+import EnhancedSidebar from "./components/navigation/sidebar/CategoryNavigation"; // Import the new component
 import { MarkdownLoader } from "./utils/MarkdownLoader";
 import { useTheme } from "./components/theme/ThemeProvider";
 import ThemeSelector from "./components/theme/ThemeSelector";
@@ -14,35 +15,30 @@ type ActiveTab = "view" | "manage" | "settings";
 // Import shadcn components
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 function App() {
   const { currentTheme, setTheme } = useTheme();
   const [activeTab, setActiveTab] = useState<ActiveTab>("view");
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [sidebarVisible, setSidebarVisible] = useState(false);
-  const sidebarWidth = localStorage.getItem("sidebarWidth") ?? "280px";
+  const mainContentRef = useRef<HTMLDivElement>(null);
 
-  // Close sidebar when clicking outside on mobile
+  // Handle responsive sidebar sizing
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  // Track window size for responsive design
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (sidebarVisible && window.innerWidth < 768) {
-        const sidebar = document.getElementById("mobile-sidebar");
-        const menuButton = document.getElementById("mobile-menu-button");
-
-        if (
-          sidebar &&
-          menuButton &&
-          !sidebar.contains(e.target as Node) &&
-          !menuButton.contains(e.target as Node)
-        ) {
-          setSidebarVisible(false);
-        }
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth >= 768) {
+        setSidebarVisible(false); // Close mobile sidebar on resize to desktop
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [sidebarVisible]);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Load initial document
   useEffect(() => {
@@ -90,8 +86,13 @@ function App() {
     window.location.hash = slug;
 
     // Close mobile sidebar when selecting a file
-    if (window.innerWidth < 768) {
+    if (isMobile) {
       setSidebarVisible(false);
+    }
+
+    // Scroll to top of content area
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollTop = 0;
     }
   };
 
@@ -134,16 +135,17 @@ function App() {
         <div className="max-w-full mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center">
             {/* Mobile menu button */}
-            <Button
-              id="mobile-menu-button"
-              onClick={() => setSidebarVisible(!sidebarVisible)}
-              variant="ghost"
-              size="icon"
-              className="md:hidden mr-3"
-              aria-label={sidebarVisible ? "Close menu" : "Open menu"}
-            >
-              {sidebarVisible ? <FiX size={20} /> : <FiMenu size={20} />}
-            </Button>
+            {isMobile ? (
+              <Button
+                onClick={() => setSidebarVisible(!sidebarVisible)}
+                variant="ghost"
+                size="icon"
+                className="md:hidden mr-3"
+                aria-label={sidebarVisible ? "Close menu" : "Open menu"}
+              >
+                {sidebarVisible ? <FiX size={20} /> : <FiMenu size={20} />}
+              </Button>
+            ) : null}
 
             <h1 className="text-xl font-normal tracking-tight truncate md:mr-8 text-foreground">
               First Principles Docs
@@ -225,55 +227,35 @@ function App() {
 
       {/* Main content with sidebar */}
       <div className="flex flex-1 overflow-hidden relative">
-        {/* Backdrop overlay for mobile sidebar */}
-        {sidebarVisible && (
-          <div
-            className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-20"
-            onClick={() => setSidebarVisible(false)}
-          />
-        )}
-
-        {/* Sidebar (desktop) */}
-        {activeTab === "view" && (
-          <div
-            className="hidden md:block border-r overflow-y-auto bg-card border-border"
-            style={{
-              width: sidebarWidth,
-              minWidth: "200px",
-              maxWidth: "400px",
-            }}
-          >
-            <div className="p-4">
-              <CategoryNavigation
+        {/* Mobile sidebar using Sheet component */}
+        {isMobile && activeTab === "view" && (
+          <Sheet open={sidebarVisible} onOpenChange={setSidebarVisible}>
+            <SheetContent
+              side="left"
+              className="p-0 w-4/5 max-w-xs sm:max-w-sm border-r border-border"
+            >
+              <EnhancedSidebar
                 onSelectFile={handleSelectFile}
                 currentFilePath={selectedFile || undefined}
+                isMobile={true}
+                onClose={() => setSidebarVisible(false)}
               />
-            </div>
-          </div>
+            </SheetContent>
+          </Sheet>
         )}
 
-        {/* Mobile sidebar */}
-        {activeTab === "view" && (
-          <div
-            id="mobile-sidebar"
-            className="fixed top-0 bottom-0 left-0 z-40 md:hidden border-r overflow-y-auto transition-transform duration-300 ease-in-out bg-card border-border"
-            style={{
-              width: "280px",
-              paddingTop: "6rem",
-              transform: sidebarVisible ? "translateX(0)" : "translateX(-100%)",
-            }}
-          >
-            <div className="p-4">
-              <CategoryNavigation
-                onSelectFile={handleSelectFile}
-                currentFilePath={selectedFile || undefined}
-              />
-            </div>
+        {/* Desktop sidebar */}
+        {!isMobile && activeTab === "view" && (
+          <div className="border-r overflow-y-auto bg-card border-border w-72 min-w-72 max-w-sm hidden md:block">
+            <EnhancedSidebar
+              onSelectFile={handleSelectFile}
+              currentFilePath={selectedFile || undefined}
+            />
           </div>
         )}
 
         {/* Main content area */}
-        <main className="flex-1 overflow-y-auto">
+        <main ref={mainContentRef} className="flex-1 overflow-y-auto">
           {activeTab === "view" ? (
             <>
               {selectedFile ? (
