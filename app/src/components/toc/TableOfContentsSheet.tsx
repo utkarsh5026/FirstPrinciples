@@ -1,11 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
-import {
-  BookOpen,
-  X,
-  AlignJustify,
-  FileText,
-  ArrowUpCircle,
-} from "lucide-react";
+import { BookOpen, X, AlignJustify, ArrowUpCircle } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import TableOfContents, { TOCItem } from "@/components/toc/TableOfContents";
 import { Button } from "@/components/ui/button";
@@ -26,7 +20,6 @@ const TableOfContentsSheet = forwardRef<
 >(({ items, isOpen, onOpenChange, onNavigate }) => {
   const [currentActiveId, setCurrentActiveId] = useState<string>("");
   const [hasItems, setHasItems] = useState(false);
-  const [currentSection, setCurrentSection] = useState<string>("");
   const [readItems, setReadItems] = useState<Set<string>>(new Set());
   const [showProgress, setShowProgress] = useState<boolean>(() => {
     // Initialize from localStorage or default to true
@@ -63,12 +56,6 @@ const TableOfContentsSheet = forwardRef<
 
         setCurrentActiveId(id);
 
-        // Find the text of the current section for display
-        const item = items.find((item) => item.id === id);
-        if (item) {
-          setCurrentSection(item.content);
-        }
-
         // Mark this item as read if progress tracking is enabled
         if (showProgress) {
           setReadItems((prev) => {
@@ -94,7 +81,6 @@ const TableOfContentsSheet = forwardRef<
   // Scroll to top button handler
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setCurrentSection("");
 
     // Close the sheet on mobile after scrolling to top
     if (window.innerWidth < 768) {
@@ -162,12 +148,6 @@ const TableOfContentsSheet = forwardRef<
                 return newReadItems;
               });
             }
-
-            // Update current section name
-            const item = items.find((item) => item.id === targetId);
-            if (item) {
-              setCurrentSection(item.content);
-            }
           }
         }
       },
@@ -221,14 +201,6 @@ const TableOfContentsSheet = forwardRef<
                 <span className="sr-only">Close</span>
               </Button>
             </div>
-
-            {/* Current section display */}
-            {currentSection && (
-              <div className="mt-2 text-sm py-1.5 px-2 bg-primary/5 rounded-md text-primary/90 truncate flex items-center">
-                <FileText size={14} className="mr-1.5 flex-shrink-0" />
-                <span className="truncate">{currentSection}</span>
-              </div>
-            )}
 
             {/* Progress tracking toggle */}
             <div className="mt-3 flex items-center justify-between">
