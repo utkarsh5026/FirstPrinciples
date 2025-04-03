@@ -363,7 +363,7 @@ const EnhancedSidebar: React.FC<EnhancedSidebarProps> = ({
   }
 
   return (
-    <div className={cn("h-full flex flex-col", className)}>
+    <div className={cn("h-full flex flex-col font-cascadia-code", className)}>
       {/* Search and filter header */}
       <div className="px-3 py-3 sticky top-0 bg-card z-10 border-b border-border/50">
         <div className="mb-2 flex items-center justify-between">
