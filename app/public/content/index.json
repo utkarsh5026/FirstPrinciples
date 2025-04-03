@@ -161,6 +161,219 @@
       "files": []
     },
     {
+      "id": "git",
+      "name": "Git",
+      "icon": "Folder",
+      "subcategories": [
+        {
+          "id": "basics",
+          "name": "Basics",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "git/basics/git_configuration.md",
+              "title": "Git Configuration",
+              "description": "Documentation for Git Configuration"
+            },
+            {
+              "path": "git/basics/git_history.md",
+              "title": "Git History",
+              "description": "Documentation for Git History"
+            },
+            {
+              "path": "git/basics/git_three_states.md",
+              "title": "Git Three States",
+              "description": "Documentation for Git Three States"
+            },
+            {
+              "path": "git/basics/introduction_to_git.md",
+              "title": "Introduction To Git",
+              "description": "Documentation for Introduction To Git"
+            }
+          ]
+        },
+        {
+          "id": "branch",
+          "name": "Branch",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "git/branch/branch_comparison.md",
+              "title": "Branch Comparison",
+              "description": "Documentation for Branch Comparison"
+            },
+            {
+              "path": "git/branch/branch_lifecycle.md",
+              "title": "Branch Lifecycle",
+              "description": "Documentation for Branch Lifecycle"
+            },
+            {
+              "path": "git/branch/branch_naming_conventions.md",
+              "title": "Branch Naming Conventions",
+              "description": "Documentation for Branch Naming Conventions"
+            },
+            {
+              "path": "git/branch/branch_pointer.md",
+              "title": "Branch Pointer",
+              "description": "Documentation for Branch Pointer"
+            },
+            {
+              "path": "git/branch/branch_protection_rules.md",
+              "title": "Branch Protection Rules",
+              "description": "Documentation for Branch Protection Rules"
+            },
+            {
+              "path": "git/branch/branch_tracking.md",
+              "title": "Branch Tracking",
+              "description": "Documentation for Branch Tracking"
+            },
+            {
+              "path": "git/branch/cherry_pick.md",
+              "title": "Cherry Pick",
+              "description": "Documentation for Cherry Pick"
+            },
+            {
+              "path": "git/branch/detached_head.md",
+              "title": "Detached Head",
+              "description": "Documentation for Detached Head"
+            },
+            {
+              "path": "git/branch/divergent_history_visualization.md",
+              "title": "Divergent History Visualization",
+              "description": "Documentation for Divergent History Visualization"
+            },
+            {
+              "path": "git/branch/head_reference.md",
+              "title": "Head Reference",
+              "description": "Documentation for Head Reference"
+            },
+            {
+              "path": "git/branch/hotfix_branch.md",
+              "title": "Hotfix Branch",
+              "description": "Documentation for Hotfix Branch"
+            },
+            {
+              "path": "git/branch/local_vs_remote_branches.md",
+              "title": "Local Vs Remote Branches",
+              "description": "Documentation for Local Vs Remote Branches"
+            },
+            {
+              "path": "git/branch/orphan_branches.md",
+              "title": "Orphan Branches",
+              "description": "Documentation for Orphan Branches"
+            },
+            {
+              "path": "git/branch/reflog_and_recovery.md",
+              "title": "Reflog And Recovery",
+              "description": "Documentation for Reflog And Recovery"
+            },
+            {
+              "path": "git/branch/understanding_git_branches.md",
+              "title": "Understanding Git Branches",
+              "description": "Documentation for Understanding Git Branches"
+            }
+          ]
+        },
+        {
+          "id": "internals",
+          "name": "Internals",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "git/internals/delta_compression_in_packfiles.md",
+              "title": "Delta Compression In Packfiles",
+              "description": "Documentation for Delta Compression In Packfiles"
+            },
+            {
+              "path": "git/internals/file_tracking.md",
+              "title": "File Tracking",
+              "description": "Documentation for File Tracking"
+            },
+            {
+              "path": "git/internals/git_branch_storage.md",
+              "title": "Git Branch Storage",
+              "description": "Documentation for Git Branch Storage"
+            },
+            {
+              "path": "git/internals/git_directory.md",
+              "title": "Git Directory",
+              "description": "Documentation for Git Directory"
+            },
+            {
+              "path": "git/internals/git_filesystem.md",
+              "title": "Git Filesystem",
+              "description": "Documentation for Git Filesystem"
+            },
+            {
+              "path": "git/internals/git_garbage_collection.md",
+              "title": "Git Garbage Collection",
+              "description": "Documentation for Git Garbage Collection"
+            },
+            {
+              "path": "git/internals/git_objects.md",
+              "title": "Git Objects",
+              "description": "Documentation for Git Objects"
+            },
+            {
+              "path": "git/internals/git_refrences.md",
+              "title": "Git Refrences",
+              "description": "Documentation for Git Refrences"
+            },
+            {
+              "path": "git/internals/head.md",
+              "title": "Head",
+              "description": "Documentation for Head"
+            }
+          ]
+        },
+        {
+          "id": "merge",
+          "name": "Merge",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "git/merge/fast_forward_vs_three_way.md",
+              "title": "Fast Forward Vs Three Way",
+              "description": "Documentation for Fast Forward Vs Three Way"
+            },
+            {
+              "path": "git/merge/merge_conflicts.md",
+              "title": "Merge Conflicts",
+              "description": "Documentation for Merge Conflicts"
+            }
+          ]
+        },
+        {
+          "id": "rebase",
+          "name": "Rebase",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "git/rebase/git_rebase.md",
+              "title": "Git Rebase",
+              "description": "Documentation for Git Rebase"
+            },
+            {
+              "path": "git/rebase/git_rebasing_vs_merging.md",
+              "title": "Git Rebasing Vs Merging",
+              "description": "Documentation for Git Rebasing Vs Merging"
+            },
+            {
+              "path": "git/rebase/interactive_rebasing.md",
+              "title": "Interactive Rebasing",
+              "description": "Documentation for Interactive Rebasing"
+            }
+          ]
+        }
+      ],
+      "files": []
+    },
+    {
       "id": "javascript",
       "name": "Javascript",
       "icon": "Code",
@@ -198,9 +411,32 @@
               "subcategories": [],
               "files": [
                 {
+                  "path": "python/advanced/context_managers/examples_of_usage.md",
+                  "title": "Examples Of Usage",
+                  "description": "Documentation for Examples Of Usage"
+                },
+                {
                   "path": "python/advanced/context_managers/introduction_to_context_manager.md",
                   "title": "Introduction To Context Manager",
                   "description": "Documentation for Introduction To Context Manager"
+                }
+              ]
+            },
+            {
+              "id": "parallelism",
+              "name": "Parallelism",
+              "icon": "Folder",
+              "subcategories": [],
+              "files": [
+                {
+                  "path": "python/advanced/parallelism/inter_process_parallelism.md",
+                  "title": "Inter Process Parallelism",
+                  "description": "Documentation for Inter Process Parallelism"
+                },
+                {
+                  "path": "python/advanced/parallelism/introduction_to_process_parallelism.md",
+                  "title": "Introduction To Process Parallelism",
+                  "description": "Documentation for Introduction To Process Parallelism"
                 }
               ]
             }
