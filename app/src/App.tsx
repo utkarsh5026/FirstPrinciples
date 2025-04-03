@@ -48,6 +48,7 @@ function App() {
   // Handle file selection
   const handleSelectFile = (filepath: string) => {
     setSelectedFile(filepath);
+    console.log(selectedFile);
 
     // Update URL hash
     const slug = filepath.endsWith(".md") ? filepath.slice(0, -3) : filepath;
@@ -74,7 +75,10 @@ function App() {
           ref={mainContentRef}
           className="w-full flex-1 overflow-y-auto pt-16 md:pt-4 px-4 md:px-8"
         >
-          <CardDocumentViewer />
+          <CardDocumentViewer
+            selectedFile={selectedFile ?? ""}
+            setSelectedFile={setSelectedFile}
+          />
         </main>
       </div>
 
