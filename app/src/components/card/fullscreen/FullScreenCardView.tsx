@@ -6,24 +6,20 @@ import CardProgress from "../CardProgress";
 import { Menu, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionsSheet from "./sidebar/SectionsSheet";
+import { MarkdownSection } from "@/components/card/MarkdownCardView"; // Import shared type
 
 interface FullscreenCardViewProps {
   markdown: string;
   className?: string;
   onExit: () => void;
-}
-
-interface MarkdownSection {
-  id: string;
-  title: string;
-  content: string;
-  level: number;
+  parsedSections?: MarkdownSection[]; // Accept pre-parsed sections
 }
 
 const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   markdown,
   className,
   onExit,
+  parsedSections, // Use pre-parsed sections if provided
 }) => {
   const [sections, setSections] = useState<MarkdownSection[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -33,14 +29,31 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const totalCards = sections.length;
 
-  // Parse the markdown into sections
+  // Parse the markdown into sections if not already provided
   useEffect(() => {
     if (!markdown) return;
 
-    const parsedSections = parseMarkdownIntoSections(markdown);
-    setSections(parsedSections);
+    if (parsedSections && parsedSections.length > 0) {
+      // Use the pre-parsed sections if provided
+      console.log("Using pre-parsed sections in fullscreen view");
+      setSections(parsedSections);
+    } else {
+      // Fallback to parsing directly (should never happen with proper implementation)
+      console.time("FullscreenView - Parse Markdown");
+      const newSections = parseMarkdownIntoSections(markdown);
+      setSections(newSections);
+      console.timeEnd("FullscreenView - Parse Markdown");
+    }
+
     setCurrentIndex(0); // Reset to first card when content changes
-  }, [markdown]);
+  }, [markdown, parsedSections]);
+
+  // Scroll to top when changing cards
+  useEffect(() => {
+    if (scrollAreaRef.current) {
+      scrollAreaRef.current.scrollTop = 0;
+    }
+  }, [currentIndex]);
 
   // Set up swipe gestures for navigation
   useSwipeGesture({
@@ -58,14 +71,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     },
   });
 
-  // Scroll to top when changing cards
-  useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTop = 0;
-    }
-  }, [currentIndex]);
-
-  // Parse markdown into sections based on h1 and h2 headings
+  // Legacy parser - only used as fallback
   const parseMarkdownIntoSections = (markdown: string): MarkdownSection[] => {
     const lines = markdown.split("\n");
     const sections: MarkdownSection[] = [];

@@ -10,23 +10,26 @@ import { Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import "./MarkdownCardStyles.css";
 
-interface MarkdownCardViewProps {
-  markdown: string;
-  className?: string;
-  onEnterFullscreen?: () => void;
-}
-
-interface MarkdownSection {
+// Section type for better type safety
+export interface MarkdownSection {
   id: string;
   title: string;
   content: string;
   level: number;
 }
 
+interface MarkdownCardViewProps {
+  markdown: string;
+  className?: string;
+  onEnterFullscreen?: () => void;
+  parsedSections?: MarkdownSection[]; // Accept pre-parsed sections
+}
+
 const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
   markdown,
   className,
   onEnterFullscreen,
+  parsedSections,
 }) => {
   const [sections, setSections] = useState<MarkdownSection[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -34,14 +37,23 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
   const cardContainerRef = useRef<HTMLDivElement>(null);
   const totalCards = sections.length;
 
-  // Parse the markdown into sections
+  // Parse the markdown into sections if not already provided
   useEffect(() => {
     if (!markdown) return;
 
-    const parsedSections = parseMarkdownIntoSections(markdown);
-    setSections(parsedSections);
+    if (parsedSections && parsedSections.length > 0) {
+      // Use the pre-parsed sections if provided
+      setSections(parsedSections);
+    } else {
+      // Fallback to parsing directly (should never happen with proper implementation)
+      console.time("CardView - Parse Markdown");
+      const newSections = parseMarkdownIntoSections(markdown);
+      setSections(newSections);
+      console.timeEnd("CardView - Parse Markdown");
+    }
+
     setCurrentIndex(0); // Reset to first card when content changes
-  }, [markdown]);
+  }, [markdown, parsedSections]);
 
   useSwipeGesture({
     targetRef: cardContainerRef as React.RefObject<HTMLElement>,
@@ -58,7 +70,7 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
     },
   });
 
-  // Parse markdown into sections based on h1 and h2 headings
+  // Legacy parser - only used as fallback
   const parseMarkdownIntoSections = (markdown: string): MarkdownSection[] => {
     const lines = markdown.split("\n");
     const sections: MarkdownSection[] = [];
@@ -67,13 +79,6 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
     let inCodeBlock = false;
     let introContent = "";
 
-    // Simple debugging helper
-    const logDebug = (message: string) => {
-      console.log(`[Card Parser] ${message}`);
-    };
-
-    logDebug(`Processing ${lines.length} lines of markdown`);
-
     // Main parse pass
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trimEnd(); // Keep left indentation but trim right
@@ -81,9 +86,6 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
       // Check if we're in a code block
       if (line.trim().startsWith("```")) {
         inCodeBlock = !inCodeBlock;
-        logDebug(
-          `${inCodeBlock ? "Entering" : "Exiting"} code block at line ${i + 1}`
-        );
 
         if (currentSection) {
           currentSection.content += line + "\n";
@@ -112,13 +114,11 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
       if (h1Match) {
         // H1 heading found
         const title = h1Match[1].trim();
-        logDebug(`Found H1 heading: "${title}" at line ${i + 1}`);
 
         if (currentSection) {
           sections.push(currentSection);
         } else if (introContent.trim()) {
           // Handle intro content before first heading
-          logDebug(`Adding intro section before first heading`);
           sections.push({
             id: "introduction",
             title: "Introduction",
@@ -137,13 +137,11 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
       } else if (h2Match) {
         // H2 heading found
         const title = h2Match[1].trim();
-        logDebug(`Found H2 heading: "${title}" at line ${i + 1}`);
 
         if (currentSection) {
           sections.push(currentSection);
         } else if (introContent.trim()) {
           // Handle intro content before first heading
-          logDebug(`Adding intro section before first H2 heading`);
           sections.push({
             id: "introduction",
             title: "Introduction",
@@ -171,10 +169,8 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
     // Add the last section
     if (currentSection) {
       sections.push(currentSection);
-      logDebug(`Added final section: "${currentSection.title}"`);
     } else if (introContent.trim()) {
       // If there's only content without headings
-      logDebug(`No sections found, creating single content section`);
       sections.push({
         id: "content",
         title: "Content",
@@ -182,14 +178,6 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
         level: 0,
       });
     }
-
-    // Log summary
-    logDebug(`Created ${sections.length} sections`);
-    sections.forEach((section, index) => {
-      logDebug(
-        `Section ${index + 1}: "${section.title}" (Level ${section.level})`
-      );
-    });
 
     return sections;
   };

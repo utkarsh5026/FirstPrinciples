@@ -12,7 +12,6 @@ import {
   List,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { TOCItem } from "@/components/toc/TableOfContents";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import TableOfContentsSheet from "@/components/toc/TableOfContentsSheet";
 import TableOfContentsButton from "@/components/core/TableOfContentsButton";
@@ -20,6 +19,7 @@ import ViewToggle, { type ViewMode } from "@/components/card/ViewToggle";
 import { type Category } from "@/utils/MarkdownLoader";
 import { Button } from "@/components/ui/button";
 import LoadingScreen from "./LoadingScreen";
+import { useMarkdownProcessor } from "@/hooks/useMarkdownProcessor";
 
 interface SimpleMarkdownPageProps {
   filename: string;
@@ -36,11 +36,13 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
     {}
   );
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [tocItems, setTocItems] = useState<TOCItem[]>([]);
   const [tocSheetOpen, setTocSheetOpen] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>("standard");
   const [isFullscreenCard, setIsFullscreenCard] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // Use the optimized markdown processor hook
+  const { tocItems, parsedSections } = useMarkdownProcessor(markdownContent);
 
   // Set up swipe gestures for mobile in standard view
   const { pauseListening, resumeListening } = useSwipeGesture({
@@ -84,18 +86,8 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
 
         setMarkdownContent(result.content);
 
-        // Generate table of contents from headings
-        const headings = MarkdownLoader.extractHeadingsFromMarkdown(
-          result.content
-        );
-        setTocItems(
-          headings.map((h) => ({
-            id: h.id,
-            content: h.text,
-            level: h.level,
-            indent: (h.level - 1) * 16,
-          }))
-        );
+        // Note: The TOC items are now extracted in the useMarkdownProcessor hook
+        // No need to call MarkdownLoader.extractHeadingsFromMarkdown here
 
         // Try to find prev/next documents based on the current file's location
         await findPrevNextDocuments(filename);
@@ -259,6 +251,7 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
       <FullScreenCardView
         markdown={markdownContent}
         onExit={() => setIsFullscreenCard(false)}
+        parsedSections={parsedSections} // Pass pre-parsed sections
       />
     );
   }
@@ -352,6 +345,7 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
                   <MarkdownCardView
                     markdown={markdownContent}
                     onEnterFullscreen={toggleFullscreenCard}
+                    parsedSections={parsedSections} // Pass pre-parsed sections
                   />
                 </div>
               )}
