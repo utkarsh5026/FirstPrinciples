@@ -357,7 +357,6 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
               <div className="p-4 sm:p-6">
                 <MarkdownCardView
                   markdown={markdownContent}
-                  onEnterFullscreen={toggleFullscreenCard}
                   parsedSections={parsedSections}
                 />
               </div>
