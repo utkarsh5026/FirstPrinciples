@@ -1,16 +1,11 @@
-// src/components/card/MarkdownCardView.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import CardNavigation from "./CardNavigation";
-import CardSectionsMenu from "./CardSectionsMenu";
 import CardIntroModal from "./into/CardInrtoModal";
-import { Maximize2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import "./MarkdownCardStyles.css";
 
-// Section type for better type safety
 export interface MarkdownSection {
   id: string;
   title: string;
@@ -21,14 +16,12 @@ export interface MarkdownSection {
 interface MarkdownCardViewProps {
   markdown: string;
   className?: string;
-  onEnterFullscreen?: () => void;
   parsedSections?: MarkdownSection[]; // Accept pre-parsed sections
 }
 
 const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
   markdown,
   className,
-  onEnterFullscreen,
   parsedSections,
 }) => {
   const [sections, setSections] = useState<MarkdownSection[]>([]);
@@ -214,12 +207,6 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
     }
   };
 
-  const handleFullscreenClick = () => {
-    if (onEnterFullscreen) {
-      onEnterFullscreen();
-    }
-  };
-
   if (sections.length === 0) {
     return (
       <div className="flex items-center justify-center p-8 text-muted-foreground">
@@ -233,47 +220,6 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
   return (
     <div className={cn("flex flex-col", className)} ref={cardContainerRef}>
       {/* Card Header with Sections Menu */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center">
-          <span
-            className={cn(
-              "inline-block px-2 py-1 text-xs font-medium rounded",
-              currentSection.level === 1
-                ? "bg-primary/10 text-primary"
-                : "bg-secondary/20 text-secondary-foreground"
-            )}
-          >
-            {currentSection.level === 1 ? "Title" : "Section"}
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          {/* Fullscreen button */}
-          {onEnterFullscreen && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleFullscreenClick}
-              className="h-8 px-2"
-              title="Enter fullscreen mode"
-            >
-              <Maximize2 className="h-4 w-4" />
-            </Button>
-          )}
-
-          <CardSectionsMenu
-            sections={sections}
-            currentIndex={currentIndex}
-            onSelectSection={(index) => {
-              setIsTransitioning(true);
-              setTimeout(() => {
-                setCurrentIndex(index);
-                setIsTransitioning(false);
-              }, 200);
-            }}
-          />
-        </div>
-      </div>
 
       {/* Card Container with swipe indicators */}
       <div className="card-container relative">
@@ -295,11 +241,6 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
           )}
         >
           {/* Card Header */}
-          <div className="px-6 py-4 border-b border-border/40">
-            <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
-              <span className="truncate">{currentSection.title}</span>
-            </h3>
-          </div>
 
           {/* Card Content */}
           <div className="p-6 markdown-card-content overflow-y-auto max-h-[60vh] md:max-h-[65vh]">
