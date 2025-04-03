@@ -1,4 +1,3 @@
-// src/components/theme/ThemeSelector.tsx
 import React from "react";
 import { cn } from "@/lib/utils";
 import { FiCheck } from "react-icons/fi";
@@ -10,12 +9,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ThemeOption, themes } from "./theme";
+import { Palette } from "lucide-react";
 
 interface ThemeSelectorProps {
   currentTheme: string;
   onThemeChange: (theme: ThemeOption) => void;
 }
 
+/**
+ * ThemeSelector component allows users to select a theme from a dropdown menu.
+ * It displays the current theme and provides options to change it.
+ *
+ * @param {ThemeSelectorProps} props - The props for the component.
+ * @param {string} props.currentTheme - The name of the currently selected theme.
+ * @param {function} props.onThemeChange - Callback function to handle theme change.
+ *
+ * @returns {JSX.Element} The rendered ThemeSelector component.
+ */
 const ThemeSelector: React.FC<ThemeSelectorProps> = ({
   currentTheme,
   onThemeChange,
@@ -24,11 +34,12 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="outline"
-          size="sm"
-          className="h-8 border-border/40 bg-background/50"
+          variant="ghost"
+          size="icon"
+          className="h-9 w-9 rounded-full mr-1"
+          aria-label="Change theme"
         >
-          Theme
+          <Palette size={18} />
         </Button>
       </DropdownMenuTrigger>
 
@@ -52,7 +63,9 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
                 className="w-4 h-4 rounded-full"
                 style={{ background: theme.primary }}
               />
-              <span className="text-sm">{theme.name}</span>
+              <span className="text-sm font-cascadia-code font-semibold">
+                {theme.name}
+              </span>
             </div>
 
             {theme.name === currentTheme && <FiCheck className="h-4 w-4" />}
