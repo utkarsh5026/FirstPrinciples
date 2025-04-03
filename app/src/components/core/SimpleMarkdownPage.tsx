@@ -12,9 +12,9 @@ import {
   List,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { TOCItem } from "@/components/markdown/toc/TableOfContents";
+import { TOCItem } from "@/components/toc/TableOfContents";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
-import TableOfContentsSheet from "@/components/core/TableOfContentsSheet";
+import TableOfContentsSheet from "@/components/toc/TableOfContentsSheet";
 import TableOfContentsButton from "@/components/core/TableOfContentsButton";
 import ViewToggle, { type ViewMode } from "@/components/card/ViewToggle";
 import { type Category } from "@/utils/MarkdownLoader";

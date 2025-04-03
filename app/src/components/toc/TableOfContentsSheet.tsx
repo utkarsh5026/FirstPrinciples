@@ -7,9 +7,7 @@ import {
   ArrowUpCircle,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
-import TableOfContents, {
-  TOCItem,
-} from "@/components/markdown/toc/TableOfContents";
+import TableOfContents, { TOCItem } from "@/components/toc/TableOfContents";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
