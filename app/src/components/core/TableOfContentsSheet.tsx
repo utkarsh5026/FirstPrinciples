@@ -13,6 +13,7 @@ import TableOfContents, {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
+import { cn } from "@/lib/utils";
 
 interface TableOfContentsSheetProps {
   items: TOCItem[];
@@ -246,13 +247,104 @@ const TableOfContentsSheet = forwardRef<
               />
             </div>
 
-            {/* Progress bar */}
+            {/* Progress bar and details */}
             {showProgress && hasItems && (
-              <div className="mt-3 h-1.5 w-full bg-secondary/20 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-primary/70 transition-all duration-500 ease-in-out"
-                  style={{ width: `${progressPercentage}%` }}
-                />
+              <div className="mt-3 space-y-2">
+                {/* Main progress bar */}
+                <div className="relative">
+                  <div className="h-2.5 w-full bg-secondary/20 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-primary/70 transition-all duration-500 ease-in-out"
+                      style={{ width: `${progressPercentage}%` }}
+                    />
+                  </div>
+
+                  {/* Progress percentage label */}
+                  <div
+                    className="absolute -top-5 text-xs text-primary font-medium transition-all duration-300"
+                    style={{
+                      left: `${Math.min(
+                        Math.max(progressPercentage, 0),
+                        100
+                      )}%`,
+                      transform: `translateX(-${
+                        progressPercentage > 50 ? 100 : 0
+                      }%)`,
+                    }}
+                  >
+                    {Math.round(progressPercentage)}%
+                  </div>
+                </div>
+
+                {/* Detailed progress stats */}
+                <div className="flex justify-between items-center text-xs text-muted-foreground py-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-medium text-primary/80">
+                      {readItems.size}
+                    </span>{" "}
+                    of <span className="font-medium">{items.length}</span>{" "}
+                    sections read
+                  </div>
+
+                  {/* Estimated reading time remaining */}
+                  <div className="text-xs">
+                    {items.length - readItems.size > 0 ? (
+                      <span title="Estimated based on average reading speed">
+                        ~{Math.ceil((items.length - readItems.size) * 1.5)} min
+                        left
+                      </span>
+                    ) : (
+                      <span className="text-primary/80 font-medium">
+                        Complete!
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Progress controls */}
+                <div className="flex justify-between items-center pt-1">
+                  {/* Last read indicator */}
+                  <div className="text-xs text-muted-foreground">
+                    {readItems.size > 0 ? (
+                      <span>Last read: {new Date().toLocaleDateString()}</span>
+                    ) : (
+                      <span>Not started yet</span>
+                    )}
+                  </div>
+
+                  {/* Reset progress button */}
+                  <button
+                    onClick={() => {
+                      if (confirm("Reset your reading progress?")) {
+                        setReadItems(new Set());
+                        localStorage.removeItem("readTocItems");
+                      }
+                    }}
+                    className="text-xs text-primary/70 hover:text-primary hover:underline transition-colors"
+                  >
+                    Reset progress
+                  </button>
+                </div>
+
+                {/* Progress stages visualization */}
+                <div className="flex gap-0.5 items-center mt-1">
+                  {items.map((item) => (
+                    <div
+                      key={item.id}
+                      className={cn(
+                        "h-1 flex-grow transition-all duration-300",
+                        readItems.has(item.id)
+                          ? "bg-primary/70"
+                          : currentActiveId === item.id
+                          ? "bg-primary/30"
+                          : "bg-secondary/30"
+                      )}
+                      title={`${item.content} (${
+                        readItems.has(item.id) ? "Read" : "Unread"
+                      })`}
+                    />
+                  ))}
+                </div>
               </div>
             )}
           </div>
