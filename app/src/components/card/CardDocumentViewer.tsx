@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import useMobile from "@/hooks/useMobile";
 
-const CardDocumentViewer = () => {
+const CardDocumentViewer: React.FC = () => {
   // App state
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [markdownContent, setMarkdownContent] = useState<string>("");
