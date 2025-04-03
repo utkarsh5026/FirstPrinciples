@@ -543,7 +543,7 @@ const EnhancedSidebar: React.FC<EnhancedSidebarProps> = ({
 
 // Helper function to count all files in a category and its subcategories
 const countFiles = (category: Category): number => {
-  let count = category.files?.length || 0;
+  let count = category.files?.length ?? 0;
 
   if (category.subcategories) {
     category.subcategories.forEach((subCat) => {
