@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ThemeOption, themes } from "./theme";
+import { ThemeOption, themes } from "@/components/theme/themes";
 import { Palette } from "lucide-react";
 
 interface ThemeSelectorProps {

@@ -1,44 +1,47 @@
-// src/components/theme/ThemeProvider.tsx
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { themes, ThemeOption } from "./theme";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { ThemeOption } from "../themes";
+import { defaultTheme, ThemeContext } from "./ThemeContext";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
 };
 
-type ThemeContextType = {
-  currentTheme: ThemeOption;
-  setTheme: (theme: ThemeOption) => void;
-};
-
-const defaultTheme = themes[0]; // Default to the first theme
-
-const ThemeContext = createContext<ThemeContextType>({
-  currentTheme: defaultTheme,
-  setTheme: () => {},
-});
-
-export const useTheme = () => useContext(ThemeContext);
-
+/**
+ * ThemeProvider component wraps the application with a ThemeContext.Provider.
+ * It initializes the theme from localStorage or defaults to the defaultTheme.
+ * It also applies the theme to the document root using CSS variables and saves
+ * the theme to localStorage on changes.
+ *
+ * @param {ThemeProviderProps} props - The props for the ThemeProvider component.
+ * @param {React.ReactNode} props.children - The children components to be wrapped.
+ */
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+  /**
+   * Initializes the currentTheme state from localStorage or defaults to defaultTheme.
+   *
+   * @returns {ThemeOption} The current theme option.
+   */
   const [currentTheme, setCurrentTheme] = useState<ThemeOption>(() => {
-    // Try to get saved theme from localStorage
     const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme) {
-      try {
-        const parsedTheme = JSON.parse(savedTheme);
-        return parsedTheme;
-      } catch (e) {
-        console.error("Error parsing theme from localStorage:", e);
-        return defaultTheme;
-      }
+    if (!savedTheme) {
+      return defaultTheme;
     }
 
-    return defaultTheme;
+    try {
+      const parsedTheme = JSON.parse(savedTheme);
+      return parsedTheme;
+    } catch (e) {
+      console.error("Error parsing theme from localStorage:", e);
+      return defaultTheme;
+    }
   });
 
-  // Apply theme to document root (using CSS variables)
+  /**
+   * Applies the current theme to the document root using CSS variables and saves
+   * the theme to localStorage.
+   *
+   * @param {ThemeOption} currentTheme - The current theme option.
+   */
   useEffect(() => {
     const root = document.documentElement;
 
@@ -66,13 +69,21 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     localStorage.setItem("theme", JSON.stringify(currentTheme));
   }, [currentTheme]);
 
-  const setTheme = (theme: ThemeOption) => {
+  /**
+   * Sets the current theme state.
+   *
+   * @param {ThemeOption} theme - The theme option to set.
+   */
+  const setTheme = useCallback((theme: ThemeOption) => {
     setCurrentTheme(theme);
-  };
+  }, []);
+
+  const value = useMemo(
+    () => ({ currentTheme, setTheme }),
+    [currentTheme, setTheme]
+  );
 
   return (
-    <ThemeContext.Provider value={{ currentTheme, setTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };

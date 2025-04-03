@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import SimpleMarkdownPage from "./components/core/SimpleMarkdownPage";
-import ResponsiveSidebar from "./components/navigation/sidebar/CategoryNavigation";
-import { MarkdownLoader } from "./utils/MarkdownLoader";
-import { useTheme } from "./components/theme/ThemeProvider";
-import ThemeSelector from "./components/theme/ThemeSelector";
+import SimpleMarkdownPage from "@/components/core/SimpleMarkdownPage";
+import ResponsiveSidebar from "@/components/navigation/sidebar/CategoryNavigation";
+import { MarkdownLoader } from "@/utils/MarkdownLoader";
+import { useTheme } from "@/components/theme/context/ThemeContext";
+import ThemeSelector from "@/components/theme/selector/ThemeSelector";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
@@ -75,7 +75,7 @@ function App() {
         {/* Responsive sidebar with real data */}
         <ResponsiveSidebar
           onSelectFile={handleSelectFile}
-          currentFilePath={selectedFile || undefined}
+          currentFilePath={selectedFile ?? undefined}
         />
 
         {/* Main content area with padding for menu button */}
