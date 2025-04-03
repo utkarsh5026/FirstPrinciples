@@ -1,17 +1,12 @@
 import { useState, useEffect } from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetTitle,
-  SheetDescription,
-} from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
-import { Search, ListOrdered, X } from "lucide-react";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
+import { ListOrdered, X } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import ListOfContents from "./ListOfContents";
+import ProgressBar from "./ProgressBar";
 
 interface SectionsSheetProps {
   sections: { id: string; title: string; level?: number }[];
@@ -41,8 +36,6 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
   menuOpen,
   setMenuOpen,
 }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filteredSections, setFilteredSections] = useState(sections);
   const [readSections, setReadSections] = useState<Set<string>>(new Set());
   const [showProgress, setShowProgress] = useState<boolean>(() => {
     // Initialize from localStorage or default to true
@@ -53,21 +46,6 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
   const progressPercentage = sections.length
     ? (readSections.size / sections.length) * 100
     : 0;
-
-  // Filter sections based on search query
-  useEffect(() => {
-    if (!searchQuery.trim()) {
-      setFilteredSections(sections);
-      return;
-    }
-
-    const query = searchQuery.toLowerCase();
-    const filtered = sections.filter((section) =>
-      section.title.toLowerCase().includes(query)
-    );
-
-    setFilteredSections(filtered);
-  }, [searchQuery, sections]);
 
   // Mark current section as read when it changes
   useEffect(() => {
@@ -137,32 +115,6 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
               </Button>
             </div>
 
-            <SheetDescription className="text-xs mb-3">
-              Navigate through document sections
-            </SheetDescription>
-
-            {/* Search input */}
-            <div className="relative mb-3">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Search sections..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 text-sm rounded-md bg-secondary/20 border border-secondary/30 
-                           focus:outline-none focus:ring-1 focus:ring-primary/30 focus:border-primary/30"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                  title="Clear search"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              )}
-            </div>
-
             {/* Progress tracking toggle */}
             <div className="flex items-center justify-between mb-3">
               <label
@@ -180,111 +132,20 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
 
             {/* Progress bar and details */}
             {showProgress && sections.length > 0 && (
-              <div className="space-y-2">
-                {/* Main progress bar */}
-                <div className="relative">
-                  <div className="h-2.5 w-full bg-secondary/20 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-primary/70 transition-all duration-500 ease-in-out"
-                      style={{ width: `${progressPercentage}%` }}
-                    />
-                  </div>
-
-                  {/* Progress percentage label */}
-                  <div
-                    className="absolute -top-5 text-xs text-primary font-medium transition-all duration-300"
-                    style={{
-                      left: `${Math.min(
-                        Math.max(progressPercentage, 0),
-                        100
-                      )}%`,
-                      transform: `translateX(-${
-                        progressPercentage > 50 ? 100 : 0
-                      }%)`,
-                    }}
-                  >
-                    {Math.round(progressPercentage)}%
-                  </div>
-                </div>
-
-                {/* Detailed progress stats */}
-                <div className="flex justify-between items-center text-xs text-muted-foreground py-1">
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-medium text-primary/80">
-                      {readSections.size}
-                    </span>{" "}
-                    of <span className="font-medium">{sections.length}</span>{" "}
-                    sections read
-                  </div>
-
-                  {/* Estimated reading time remaining */}
-                  <div className="text-xs">
-                    {sections.length - readSections.size > 0 ? (
-                      <span title="Estimated based on average reading speed">
-                        ~
-                        {Math.ceil((sections.length - readSections.size) * 1.5)}{" "}
-                        min left
-                      </span>
-                    ) : (
-                      <span className="text-primary/80 font-medium">
-                        Complete!
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Progress controls */}
-                <div className="flex justify-between items-center pt-1">
-                  {/* Last read indicator */}
-                  <div className="text-xs text-muted-foreground">
-                    {readSections.size > 0 ? (
-                      <span>Last read: {new Date().toLocaleDateString()}</span>
-                    ) : (
-                      <span>Not started yet</span>
-                    )}
-                  </div>
-
-                  {/* Reset progress button */}
-                  <button
-                    onClick={() => {
-                      if (confirm("Reset your reading progress?")) {
-                        setReadSections(new Set());
-                        localStorage.removeItem("readCardSections");
-                      }
-                    }}
-                    className="text-xs text-primary/70 hover:text-primary hover:underline transition-colors"
-                  >
-                    Reset progress
-                  </button>
-                </div>
-
-                {/* Progress stages visualization */}
-                <div className="flex gap-0.5 items-center mt-1">
-                  {sections.map((section, idx) => (
-                    <div
-                      key={section.id}
-                      className={cn(
-                        "h-1 flex-grow transition-all duration-300",
-                        readSections.has(section.id)
-                          ? "bg-primary/70"
-                          : idx === currentIndex
-                          ? "bg-primary/30"
-                          : "bg-secondary/30"
-                      )}
-                      title={`${section.title} (${
-                        readSections.has(section.id) ? "Read" : "Unread"
-                      })`}
-                    />
-                  ))}
-                </div>
-              </div>
+              <ProgressBar
+                progressPercentage={progressPercentage}
+                readSections={readSections}
+                sections={sections}
+                currentIndex={currentIndex}
+                setReadSections={setReadSections}
+              />
             )}
           </div>
 
           {/* Scrollable Content */}
           <ScrollArea className="flex-1 h-[calc(100vh-11rem)]">
             <ListOfContents
-              filteredSections={filteredSections}
+              sections={sections}
               currentIndex={currentIndex}
               readSections={readSections}
               showProgress={showProgress}
