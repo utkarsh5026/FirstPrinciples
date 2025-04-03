@@ -5,13 +5,13 @@ import MarkdownCardView from "@/components/card/MarkdownCardView";
 import FullScreenCardView from "@/components/card/fullscreen/FullScreenCardView";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import {
-  FileDown,
-  Share2,
+  Download,
+  Share,
   ChevronLeft,
   ChevronRight,
-  List,
+  Maximize2,
+  Book,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import TableOfContentsSheet from "@/components/toc/TableOfContentsSheet";
 import TableOfContentsButton from "@/components/core/TableOfContentsButton";
@@ -20,6 +20,8 @@ import { type Category } from "@/utils/MarkdownLoader";
 import { Button } from "@/components/ui/button";
 import LoadingScreen from "./LoadingScreen";
 import { useMarkdownProcessor } from "@/hooks/useMarkdownProcessor";
+import BreadcrumbNav from "@/components/navigation/BreadCrumbNav";
+import useMobile from "@/hooks/useMobile";
 
 interface SimpleMarkdownPageProps {
   filename: string;
@@ -29,17 +31,18 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
   filename,
 }) => {
   const [markdownContent, setMarkdownContent] = useState<string>("");
+  const [documentTitle, setDocumentTitle] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [prevNext, setPrevNext] = useState<{ prev?: string; next?: string }>(
     {}
   );
-  const [isDarkMode, setIsDarkMode] = useState(true);
   const [tocSheetOpen, setTocSheetOpen] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>("standard");
   const [isFullscreenCard, setIsFullscreenCard] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+  const { isMobile } = useMobile();
 
   // Use the optimized markdown processor hook
   const { tocItems, parsedSections } = useMarkdownProcessor(markdownContent);
@@ -47,17 +50,13 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
   // Set up swipe gestures for mobile in standard view
   const { pauseListening, resumeListening } = useSwipeGesture({
     targetRef: contentRef as React.RefObject<HTMLElement>,
-    onSwipeLeft: () => setTocSheetOpen(true),
-    onDoubleTap: () => setTocSheetOpen(true),
+    onSwipeLeft: () => {
+      if (isMobile && viewMode === "standard") setTocSheetOpen(true);
+    },
+    onDoubleTap: () => {
+      if (isMobile && viewMode === "standard") setTocSheetOpen(true);
+    },
   });
-
-  // Check dark mode
-  useEffect(() => {
-    const darkModePreference = localStorage.getItem("darkMode");
-    const prefersDark =
-      darkModePreference === "true" || darkModePreference === null;
-    setIsDarkMode(prefersDark);
-  }, []);
 
   // Check for user's preferred view mode
   useEffect(() => {
@@ -86,8 +85,21 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
 
         setMarkdownContent(result.content);
 
-        // Note: The TOC items are now extracted in the useMarkdownProcessor hook
-        // No need to call MarkdownLoader.extractHeadingsFromMarkdown here
+        // Set the document title
+        if (result.frontmatter && result.frontmatter.title) {
+          setDocumentTitle(result.frontmatter.title);
+        } else {
+          // Extract title from filename
+          const filenameOnly = filename.split("/").pop() || filename;
+          const titleCase = filenameOnly
+            .replace(".md", "")
+            .replace(/_/g, " ")
+            .replace(/-/g, " ")
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          setDocumentTitle(titleCase);
+        }
 
         // Try to find prev/next documents based on the current file's location
         await findPrevNextDocuments(filename);
@@ -232,15 +244,11 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
 
   if (error) {
     return (
-      <div
-        className={cn(
-          "p-4 rounded-md",
-          isDarkMode
-            ? "bg-red-900/20 border border-red-800 text-red-200"
-            : "bg-red-50 border border-red-200 text-red-800"
-        )}
-      >
-        {error}
+      <div className="flex items-center justify-center h-64 w-full">
+        <div className="bg-red-900/10 border border-red-800/30 text-red-600 p-4 rounded-lg max-w-md">
+          <h3 className="font-medium mb-2">Error Loading Document</h3>
+          <p>{error}</p>
+        </div>
       </div>
     );
   }
@@ -251,181 +259,160 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
       <FullScreenCardView
         markdown={markdownContent}
         onExit={() => setIsFullscreenCard(false)}
-        parsedSections={parsedSections} // Pass pre-parsed sections
+        parsedSections={parsedSections}
       />
     );
   }
 
   return (
-    <div
-      className={cn(
-        "min-h-screen text-gray-400",
-        isDarkMode ? "bg-[#1a1a1a]" : "bg-white text-gray-700"
-      )}
-    >
-      {/* Main content */}
-      <main className="max-w-4xl mx-auto px-0 py-0 sm:px-4">
-        <div className="relative grid grid-cols-1 md:grid-cols-4 gap-6">
-          {/* Document content */}
-          <div className="col-span-1 md:col-span-3">
-            <div
-              ref={contentRef}
-              className={cn(
-                "p-6 sm:p-8 rounded-md border",
-                isDarkMode
-                  ? "bg-[#202020] border-[#303030]"
-                  : "bg-white border-gray-200"
-              )}
-            >
-              {/* Document toolbar */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 space-y-3 sm:space-y-0">
-                {/* View toggle */}
-                <ViewToggle
-                  currentView={viewMode}
-                  onViewChange={handleViewModeChange}
-                />
+    <div className="w-full mx-auto max-w-5xl">
+      {/* Breadcrumb navigation */}
+      <div className="mb-4 font-type-mono">
+        <BreadcrumbNav filePath={filename} className="px-2 sm:px-0" />
+      </div>
 
-                {/* Action buttons */}
-                <div className="flex space-x-2">
-                  {viewMode === "cards" && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={toggleFullscreenCard}
-                      className="text-sm"
-                    >
-                      <span className="hidden sm:inline">Fullscreen</span>
-                      <span className="sm:hidden">Full</span>
-                    </Button>
-                  )}
+      {/* Main content with refined layout */}
+      <div className="relative">
+        <div className="bg-card rounded-xl border border-border/40 shadow-sm overflow-hidden">
+          {/* Document header with title and actions */}
+          <div className="px-4 sm:px-6 py-4 border-b border-border/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 font-type-mono">
+            <h1 className="text-xl font-medium text-foreground line-clamp-1">
+              {documentTitle}
+            </h1>
 
+            <div className="flex items-center gap-2 self-end sm:self-auto">
+              {/* View mode toggle */}
+              <ViewToggle
+                currentView={viewMode}
+                onViewChange={handleViewModeChange}
+              />
+
+              {/* Action buttons - consolidated for mobile */}
+              <div className="flex gap-2 font-cascadia-code">
+                {viewMode === "cards" && (
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="sm"
-                    onClick={handleDownload}
-                    className="text-sm"
+                    onClick={toggleFullscreenCard}
+                    className="h-8 w-8 sm:w-auto sm:px-3 rounded-full sm:rounded-md"
+                    title="Fullscreen mode"
                   >
-                    <FileDown className="mr-2 h-4 w-4" />
-                    <span className="hidden sm:inline">Download</span>
+                    <Maximize2 className="h-4 w-4" />
+                    <span className="hidden sm:inline ml-1.5">Fullscreen</span>
                   </Button>
-
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleCopyLink}
-                    className="text-sm"
-                  >
-                    <Share2 className="mr-2 h-4 w-4" />
-                    <span className="hidden sm:inline">
-                      {copied ? "Copied!" : "Share"}
-                    </span>
-                  </Button>
-
-                  {tocItems.length > 0 && viewMode === "standard" && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleTocButtonClick}
-                      className="text-sm"
-                    >
-                      <List className="mr-2 h-4 w-4" />
-                      <span className="hidden sm:inline">Contents</span>
-                    </Button>
-                  )}
-                </div>
-              </div>
-
-              {/* Content display based on selected view mode */}
-              {viewMode === "standard" ? (
-                <div className="standard-view">
-                  <CustomMarkdownRenderer markdown={markdownContent} />
-                </div>
-              ) : (
-                <div className="cards-view">
-                  <MarkdownCardView
-                    markdown={markdownContent}
-                    onEnterFullscreen={toggleFullscreenCard}
-                    parsedSections={parsedSections} // Pass pre-parsed sections
-                  />
-                </div>
-              )}
-
-              {/* Table of Contents Sheet */}
-              {viewMode === "standard" && (
-                <TableOfContentsSheet
-                  items={tocItems}
-                  isOpen={tocSheetOpen}
-                  onOpenChange={handleSheetOpenChange}
-                  ref={contentRef}
-                />
-              )}
-
-              {/* FloatingTOC Button (desktop) */}
-              {tocItems.length > 0 && viewMode === "standard" && (
-                <div className="hidden md:block relative float-right -mt-10 ml-4 mb-4">
-                  <TableOfContentsButton
-                    onClick={handleTocButtonClick}
-                    itemCount={tocItems.length}
-                  />
-                </div>
-              )}
-
-              {/* FloatingTOC Button (mobile) */}
-              {tocItems.length > 0 &&
-                viewMode === "standard" &&
-                !tocSheetOpen && (
-                  <TableOfContentsButton
-                    onClick={handleTocButtonClick}
-                    itemCount={tocItems.length}
-                    className="md:hidden"
-                  />
                 )}
 
-              {/* Navigation between documents */}
-              {viewMode === "standard" && (prevNext.prev || prevNext.next) && (
-                <div
-                  className={cn(
-                    "mt-8 pt-4 flex border-t",
-                    isDarkMode ? "border-[#303030]" : "border-gray-200"
-                  )}
-                >
-                  {prevNext.prev ? (
-                    <a
-                      href={`#${prevNext.prev.replace(/\.md$/, "")}`}
-                      className={cn(
-                        "flex items-center px-3 py-2 mr-auto rounded-md text-sm",
-                        isDarkMode
-                          ? "bg-[#252525] text-gray-300 hover:bg-[#2a2a2a]"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      )}
-                    >
-                      <ChevronLeft size={16} className="mr-2" />
-                      Previous
-                    </a>
-                  ) : (
-                    <div /> // Empty div to maintain space
-                  )}
+                {tocItems.length > 0 && viewMode === "standard" && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleTocButtonClick}
+                    className="h-8 w-8 sm:w-auto sm:px-3 rounded-full sm:rounded-md"
+                    title="Table of contents"
+                  >
+                    <Book className="h-4 w-4" />
+                    <span className="hidden sm:inline ml-1.5">Contents</span>
+                  </Button>
+                )}
 
-                  {prevNext.next && (
-                    <a
-                      href={`#${prevNext.next.replace(/\.md$/, "")}`}
-                      className={cn(
-                        "flex items-center px-3 py-2 ml-auto rounded-md text-sm",
-                        isDarkMode
-                          ? "bg-[#252525] text-gray-300 hover:bg-[#2a2a2a]"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      )}
-                    >
-                      Next
-                      <ChevronRight size={16} className="ml-2" />
-                    </a>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleDownload}
+                  className="h-8 w-8 sm:w-auto sm:px-3 rounded-full sm:rounded-md"
+                  title="Download document"
+                >
+                  <Download className="h-4 w-4" />
+                  <span className="hidden sm:inline ml-1.5">Download</span>
+                </Button>
+
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleCopyLink}
+                  className="h-8 w-8 sm:w-auto sm:px-3 rounded-full sm:rounded-md relative"
+                  title="Copy link to document"
+                >
+                  <Share className="h-4 w-4" />
+                  <span className="hidden sm:inline ml-1.5">
+                    {copied ? "Copied!" : "Share"}
+                  </span>
+                  {copied && (
+                    <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">
+                      ✓
+                    </span>
                   )}
-                </div>
-              )}
+                </Button>
+              </div>
             </div>
           </div>
+
+          {/* Document content area */}
+          <div ref={contentRef} className="relative">
+            {viewMode === "standard" ? (
+              <div className="p-5 sm:p-8">
+                <CustomMarkdownRenderer markdown={markdownContent} />
+              </div>
+            ) : (
+              <div className="p-4 sm:p-6">
+                <MarkdownCardView
+                  markdown={markdownContent}
+                  onEnterFullscreen={toggleFullscreenCard}
+                  parsedSections={parsedSections}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Navigation between documents - only in standard view */}
+          {viewMode === "standard" && (prevNext.prev || prevNext.next) && (
+            <div className="border-t border-border/30 mt-4 p-4 font-type-mono">
+              <div className="flex justify-between items-center">
+                {prevNext.prev ? (
+                  <a
+                    href={`#${prevNext.prev.replace(/\.md$/, "")}`}
+                    className="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-secondary/20 transition-colors "
+                  >
+                    <ChevronLeft size={16} />
+                    <span className="font-cascadia-code">Previous</span>
+                  </a>
+                ) : (
+                  <div></div>
+                )}
+
+                {prevNext.next && (
+                  <a
+                    href={`#${prevNext.next.replace(/\.md$/, "")}`}
+                    className="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-secondary/20 transition-colors"
+                  >
+                    <span>Next</span>
+                    <ChevronRight size={16} />
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
         </div>
-      </main>
+
+        {/* Table of Contents Sheet */}
+        {viewMode === "standard" && (
+          <TableOfContentsSheet
+            items={tocItems}
+            isOpen={tocSheetOpen}
+            onOpenChange={handleSheetOpenChange}
+            ref={contentRef}
+          />
+        )}
+
+        {/* Float TOC Button - only shown on mobile in standard view */}
+        {tocItems.length > 0 && viewMode === "standard" && !tocSheetOpen && (
+          <TableOfContentsButton
+            onClick={handleTocButtonClick}
+            itemCount={tocItems.length}
+            className="md:hidden"
+          />
+        )}
+      </div>
     </div>
   );
 };
