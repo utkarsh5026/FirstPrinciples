@@ -19,6 +19,7 @@ import TableOfContentsButton from "@/components/core/TableOfContentsButton";
 import ViewToggle, { type ViewMode } from "@/components/card/ViewToggle";
 import { type Category } from "@/utils/MarkdownLoader";
 import { Button } from "@/components/ui/button";
+import LoadingScreen from "./LoadingScreen";
 
 interface SimpleMarkdownPageProps {
   filename: string;
@@ -234,18 +235,7 @@ const SimpleMarkdownPage: React.FC<SimpleMarkdownPageProps> = ({
   };
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-[200px]">
-        <div
-          className={cn(
-            "animate-pulse",
-            isDarkMode ? "text-gray-400" : "text-gray-500"
-          )}
-        >
-          Loading document...
-        </div>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   if (error) {
