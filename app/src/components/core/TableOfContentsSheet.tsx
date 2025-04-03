@@ -6,17 +6,13 @@ import {
   FileText,
   ArrowUpCircle,
 } from "lucide-react";
-import {
-  Sheet,
-  SheetContent,
-  SheetTitle,
-  SheetClose,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import TableOfContents, {
   TOCItem,
 } from "@/components/markdown/toc/TableOfContents";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
 
 interface TableOfContentsSheetProps {
   items: TOCItem[];
@@ -32,11 +28,21 @@ const TableOfContentsSheet = forwardRef<
   const [currentActiveId, setCurrentActiveId] = useState<string>("");
   const [hasItems, setHasItems] = useState(false);
   const [currentSection, setCurrentSection] = useState<string>("");
+  const [readItems, setReadItems] = useState<Set<string>>(new Set());
+  const [showProgress, setShowProgress] = useState<boolean>(() => {
+    // Initialize from localStorage or default to true
+    return localStorage.getItem("showTocProgress") !== "false";
+  });
 
   // Check if we have any items to display
   useEffect(() => {
     setHasItems(items && items.length > 0);
   }, [items]);
+
+  // Calculate progress percentage
+  const progressPercentage = hasItems
+    ? (readItems.size / items.length) * 100
+    : 0;
 
   // Function to handle navigation within the TOC
   const handleNavigate = (id: string) => {
@@ -64,6 +70,20 @@ const TableOfContentsSheet = forwardRef<
           setCurrentSection(item.content);
         }
 
+        // Mark this item as read if progress tracking is enabled
+        if (showProgress) {
+          setReadItems((prev) => {
+            const newReadItems = new Set(prev);
+            newReadItems.add(id);
+            // Save to localStorage
+            localStorage.setItem(
+              "readTocItems",
+              JSON.stringify([...newReadItems])
+            );
+            return newReadItems;
+          });
+        }
+
         // Close the sheet on mobile after navigation
         if (window.innerWidth < 768) {
           setTimeout(() => onOpenChange(false), 300);
@@ -81,6 +101,24 @@ const TableOfContentsSheet = forwardRef<
     if (window.innerWidth < 768) {
       setTimeout(() => onOpenChange(false), 300);
     }
+  };
+
+  // Load read items from localStorage on component mount
+  useEffect(() => {
+    try {
+      const savedReadItems = localStorage.getItem("readTocItems");
+      if (savedReadItems) {
+        setReadItems(new Set(JSON.parse(savedReadItems)));
+      }
+    } catch (error) {
+      console.error("Error loading read items from localStorage:", error);
+    }
+  }, []);
+
+  // Save show progress preference to localStorage
+  const handleToggleProgress = (checked: boolean) => {
+    setShowProgress(checked);
+    localStorage.setItem("showTocProgress", checked.toString());
   };
 
   // Update current active heading based on scroll position
@@ -112,6 +150,20 @@ const TableOfContentsSheet = forwardRef<
           if (targetId !== currentActiveId) {
             setCurrentActiveId(targetId);
 
+            // Mark this item as read if progress tracking is enabled
+            if (showProgress) {
+              setReadItems((prev) => {
+                const newReadItems = new Set(prev);
+                newReadItems.add(targetId);
+                // Save to localStorage
+                localStorage.setItem(
+                  "readTocItems",
+                  JSON.stringify([...newReadItems])
+                );
+                return newReadItems;
+              });
+            }
+
             // Update current section name
             const item = items.find((item) => item.id === targetId);
             if (item) {
@@ -134,7 +186,7 @@ const TableOfContentsSheet = forwardRef<
     return () => {
       observer.disconnect();
     };
-  }, [isOpen, items, currentActiveId, hasItems]);
+  }, [isOpen, items, currentActiveId, hasItems, showProgress]);
 
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
@@ -158,16 +210,49 @@ const TableOfContentsSheet = forwardRef<
                   </Badge>
                 )}
               </SheetTitle>
-              <SheetClose className="rounded-full w-8 h-8 flex items-center justify-center bg-primary/5 text-primary hover:bg-primary/10 transition-colors">
+
+              {/* Close button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => onOpenChange(false)}
+                className="h-8 w-8 rounded-full bg-primary/5 text-primary hover:bg-primary/10 transition-colors"
+              >
                 <X className="h-4 w-4" />
                 <span className="sr-only">Close</span>
-              </SheetClose>
+              </Button>
             </div>
 
+            {/* Current section display */}
             {currentSection && (
               <div className="mt-2 text-sm py-1.5 px-2 bg-primary/5 rounded-md text-primary/90 truncate flex items-center">
                 <FileText size={14} className="mr-1.5 flex-shrink-0" />
                 <span className="truncate">{currentSection}</span>
+              </div>
+            )}
+
+            {/* Progress tracking toggle */}
+            <div className="mt-3 flex items-center justify-between">
+              <label
+                htmlFor="show-progress"
+                className="text-xs flex items-center gap-1.5 text-muted-foreground"
+              >
+                Show reading progress
+              </label>
+              <Switch
+                id="show-progress"
+                checked={showProgress}
+                onCheckedChange={handleToggleProgress}
+              />
+            </div>
+
+            {/* Progress bar */}
+            {showProgress && hasItems && (
+              <div className="mt-3 h-1.5 w-full bg-secondary/20 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-primary/70 transition-all duration-500 ease-in-out"
+                  style={{ width: `${progressPercentage}%` }}
+                />
               </div>
             )}
           </div>
@@ -181,6 +266,7 @@ const TableOfContentsSheet = forwardRef<
                   onNavigate={handleNavigate}
                   currentActiveId={currentActiveId}
                   className="pb-16" // Add padding to account for footer
+                  readItems={showProgress ? readItems : undefined} // Pass read items only if progress is enabled
                 />
               </div>
             ) : (

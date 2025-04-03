@@ -1,4 +1,3 @@
-// app/src/components/markdown/toc/TableOfContents.tsx
 import React from "react";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
@@ -15,6 +14,7 @@ interface TableOfContentsProps {
   onNavigate?: (id: string) => void;
   className?: string;
   currentActiveId?: string;
+  readItems?: Set<string>; // Added to track read items
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({
@@ -22,6 +22,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   onNavigate,
   className,
   currentActiveId,
+  readItems,
 }) => {
   if (!items || items.length === 0) {
     return (
@@ -62,6 +63,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
           // Calculate indent based on heading level
           const indentLevel = item.level - 1;
           const isActive = currentActiveId === item.id;
+          const isRead = readItems?.has(item.id);
 
           return (
             <li key={item.id} className="relative group">
@@ -71,6 +73,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
                   "absolute left-0 top-0 bottom-0 w-1 rounded-r-full transition-all duration-200 ease-in-out",
                   isActive
                     ? "bg-primary"
+                    : isRead && readItems
+                    ? "bg-primary/30" // Subtle indicator for read items
                     : "bg-transparent group-hover:bg-primary/20"
                 )}
               />
@@ -84,7 +88,10 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
                   {
                     "bg-primary/10": isActive,
                     "text-primary font-medium": isActive,
-                    "text-muted-foreground": !isActive,
+                    "text-primary/80 font-normal":
+                      isRead && readItems && !isActive,
+                    "text-muted-foreground":
+                      !isActive && (!isRead || !readItems),
                   }
                 )}
                 style={{
@@ -96,12 +103,21 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
                   size={14}
                   className={cn(
                     "transition-transform duration-200",
-                    isActive ? "text-primary" : "text-primary/40",
+                    isActive
+                      ? "text-primary"
+                      : isRead && readItems
+                      ? "text-primary/60"
+                      : "text-primary/40",
                     isActive && "rotate-90"
                   )}
                 />
 
                 <span className="truncate leading-tight">{item.content}</span>
+
+                {/* Optional: Add a subtle read indicator dot */}
+                {isRead && readItems && !isActive && (
+                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary/40 flex-shrink-0"></span>
+                )}
               </a>
             </li>
           );

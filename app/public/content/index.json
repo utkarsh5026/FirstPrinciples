@@ -180,6 +180,61 @@
         }
       ],
       "files": []
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "icon": "FileCode",
+      "subcategories": [
+        {
+          "id": "advanced",
+          "name": "Advanced",
+          "icon": "Folder",
+          "subcategories": [
+            {
+              "id": "context_managers",
+              "name": "Context Managers",
+              "icon": "Folder",
+              "subcategories": [],
+              "files": [
+                {
+                  "path": "python/advanced/context_managers/introduction_to_context_manager.md",
+                  "title": "Introduction To Context Manager",
+                  "description": "Documentation for Introduction To Context Manager"
+                }
+              ]
+            }
+          ],
+          "files": []
+        },
+        {
+          "id": "intermediate",
+          "name": "Intermediate",
+          "icon": "Folder",
+          "subcategories": [
+            {
+              "id": "packages",
+              "name": "Packages",
+              "icon": "Folder",
+              "subcategories": [],
+              "files": [
+                {
+                  "path": "python/intermediate/packages/import_problems.md",
+                  "title": "Import Problems",
+                  "description": "Documentation for Import Problems"
+                },
+                {
+                  "path": "python/intermediate/packages/introduction_to_packages.md",
+                  "title": "Introduction To Packages",
+                  "description": "Documentation for Introduction To Packages"
+                }
+              ]
+            }
+          ],
+          "files": []
+        }
+      ],
+      "files": []
     }
   ],
   "files": [
