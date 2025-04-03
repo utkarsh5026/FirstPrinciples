@@ -266,7 +266,6 @@ export class MarkdownLoader {
 
       // Log the full URL being requested (helps with debugging)
       const fullUrl = `${baseUrl}${filepath}`;
-      console.log(`Fetching markdown from: ${fullUrl}`);
 
       // Fetch the markdown file
       const response = await fetch(fullUrl);
@@ -339,7 +338,6 @@ export class MarkdownLoader {
 
         if (text) {
           headings.push({ id, text, level });
-          console.log(`Found heading: "${text}" (level ${level}, id: ${id})`);
         }
       }
     }
