@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import CardDocumentViewer from "@/components/card/CardDocumentViewer";
+import CardDocumentViewer from "@/components/card/viewer/CardDocumentViewer";
 import ResponsiveSidebar from "@/components/navigation/sidebar/CategoryNavigation";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import { useTheme } from "@/components/theme/context/ThemeContext";
@@ -83,9 +83,18 @@ function App() {
       </div>
 
       {/* Simple footer */}
-      <footer className="border-t mt-auto py-3 px-4 border-border">
+      <footer className="border-t mt-auto py-3 px-4 border-border font-cascadia-code">
         <div className="max-w-7xl mx-auto text-center text-xs text-muted-foreground">
-          <p>Card View Documentation App</p>
+          <p>
+            Made with ❤️ by{" "}
+            <a
+              href="https://github.com/utkarsh5026"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Utkarsh Priyadarshi
+            </a>
+          </p>
         </div>
       </footer>
     </div>
