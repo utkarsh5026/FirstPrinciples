@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
-import CardNavigation from "./CardNavigation";
+import CardNavigation from "./nav/CardNavigation";
 import CardSectionsMenu from "./CardSectionsMenu";
 import CardIntroModal from "./into/CardInrtoModal";
 import useMobile from "@/hooks/useMobile";
@@ -296,7 +296,7 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
   return (
     <div className={cn("flex flex-col", className)} ref={cardContainerRef}>
       {/* Card Container with swipe indicators */}
-      <div className="card-container relative">
+      <div className="card-container relative flex-1 flex flex-col">
         {/* Left swipe indicator - shown when not at first card */}
         {!isFirstCard && (
           <div className="swipe-indicator swipe-indicator-left"></div>
@@ -310,7 +310,7 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
         {/* Actual Card */}
         <div
           className={cn(
-            "flex-1 mb-4 rounded-xl border border-border shadow-sm transition-opacity duration-200",
+            "flex-1 mb-4 rounded-xl  border-border shadow-sm transition-opacity duration-200",
             isTransitioning ? "opacity-0" : "opacity-100",
             "bg-card/80 backdrop-blur-sm"
           )}
@@ -334,13 +334,6 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
         onSelectCard={handleSelectCard}
       />
 
-      {/* Swipe hint for mobile with animation - only shown on mobile */}
-      {isMobile && (
-        <div className="swipe-hint text-xs text-center text-muted-foreground mt-4 md:hidden">
-          Swipe left or right to navigate between cards
-        </div>
-      )}
-
       {/* Interactive sections menu */}
       {isSectionsMenuOpen && (
         <CardSectionsMenu
@@ -355,7 +348,6 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
         />
       )}
 
-      {/* Intro modal for first-time users */}
       <CardIntroModal />
     </div>
   );
