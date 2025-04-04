@@ -13,6 +13,20 @@ interface CardNavigationProps {
   className?: string;
 }
 
+/**
+ * CardNavigation component renders navigation controls for a card-based interface.
+ * It includes progress dots, navigation buttons for desktop, and a hint for mobile navigation.
+ *
+ * @param {CardNavigationProps} props - The component props.
+ * @param {number} props.currentIndex - The current index of the card.
+ * @param {number} props.totalCards - The total number of cards.
+ * @param {() => void} props.onPrevious - Function to call when the previous button is clicked.
+ * @param {() => void} props.onNext - Function to call when the next button is clicked.
+ * @param {(index: number) => void} props.onSelectCard - Function to call when a card is selected.
+ * @param {string} [props.className] - Additional class names for the component.
+ *
+ * @returns {React.ReactElement} The CardNavigation component.
+ */
 const CardNavigation: React.FC<CardNavigationProps> = ({
   currentIndex,
   totalCards,
