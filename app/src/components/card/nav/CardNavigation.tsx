@@ -77,11 +77,6 @@ const CardNavigation: React.FC<CardNavigationProps> = ({
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
-
-      {/* Mobile navigation hint - only visible on small screens */}
-      <div className="text-xs text-center text-muted-foreground mt-2 md:hidden">
-        Swipe left or right to navigate between cards
-      </div>
     </div>
   );
 };
