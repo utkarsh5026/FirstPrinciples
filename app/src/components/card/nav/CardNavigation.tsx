@@ -1,9 +1,8 @@
-// src/components/markdown/card/CardNavigation.tsx
 import React from "react";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import CardProgress from "./CardProgress";
+import CardProgress from "../CardProgress";
 
 interface CardNavigationProps {
   currentIndex: number;
@@ -45,7 +44,7 @@ const CardNavigation: React.FC<CardNavigationProps> = ({
           )}
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          <span className="hidden sm:inline">Previous</span>
+          <span className="hidden sm:inline font-cascadia-code">Previous</span>
         </Button>
 
         <Button
@@ -54,13 +53,13 @@ const CardNavigation: React.FC<CardNavigationProps> = ({
           onClick={onNext}
           disabled={currentIndex === totalCards - 1}
           className={cn(
-            "px-4 transition-all",
+            "px-4 transition-all rounded-lg",
             currentIndex === totalCards - 1
               ? "opacity-50 cursor-not-allowed"
               : ""
           )}
         >
-          <span className="hidden sm:inline">Next</span>
+          <span className="hidden sm:inline font-cascadia-code">Next</span>
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
