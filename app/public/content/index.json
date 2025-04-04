@@ -313,9 +313,14 @@
               "description": "Documentation for Git Garbage Collection"
             },
             {
-              "path": "git/internals/git_objects.md",
-              "title": "Git Objects",
-              "description": "Documentation for Git Objects"
+              "path": "git/internals/git_index_area.md",
+              "title": "Git Index Area",
+              "description": "Documentation for Git Index Area"
+            },
+            {
+              "path": "git/internals/git_reflog.md",
+              "title": "Git Reflog",
+              "description": "Documentation for Git Reflog"
             },
             {
               "path": "git/internals/git_refrences.md",
@@ -326,6 +331,16 @@
               "path": "git/internals/head.md",
               "title": "Head",
               "description": "Documentation for Head"
+            },
+            {
+              "path": "git/internals/objects_database_and_pack_files.md",
+              "title": "Objects Database And Pack Files",
+              "description": "Documentation for Objects Database And Pack Files"
+            },
+            {
+              "path": "git/internals/porcelain_vs_plumbing_commands.md",
+              "title": "Porcelain Vs Plumbing Commands",
+              "description": "Documentation for Porcelain Vs Plumbing Commands"
             }
           ]
         },
@@ -341,9 +356,67 @@
               "description": "Documentation for Fast Forward Vs Three Way"
             },
             {
+              "path": "git/merge/merges_at_the_object_level.md",
+              "title": "Merges At The Object Level",
+              "description": "Documentation for Merges At The Object Level"
+            },
+            {
               "path": "git/merge/merge_conflicts.md",
               "title": "Merge Conflicts",
               "description": "Documentation for Merge Conflicts"
+            }
+          ]
+        },
+        {
+          "id": "objects",
+          "name": "Objects",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "git/objects/blob_objects.md",
+              "title": "Blob Objects",
+              "description": "Documentation for Blob Objects"
+            },
+            {
+              "path": "git/objects/commit_objects.md",
+              "title": "Commit Objects",
+              "description": "Documentation for Commit Objects"
+            },
+            {
+              "path": "git/objects/git_objects.md",
+              "title": "Git Objects",
+              "description": "Documentation for Git Objects"
+            },
+            {
+              "path": "git/objects/inspecting_git_objects.md",
+              "title": "Inspecting Git Objects",
+              "description": "Documentation for Inspecting Git Objects"
+            },
+            {
+              "path": "git/objects/lifecycle.md",
+              "title": "Lifecycle",
+              "description": "Documentation for Lifecycle"
+            },
+            {
+              "path": "git/objects/loose_vs_packed_formats.md",
+              "title": "Loose Vs Packed Formats",
+              "description": "Documentation for Loose Vs Packed Formats"
+            },
+            {
+              "path": "git/objects/object_verification.md",
+              "title": "Object Verification",
+              "description": "Documentation for Object Verification"
+            },
+            {
+              "path": "git/objects/tag_objects.md",
+              "title": "Tag Objects",
+              "description": "Documentation for Tag Objects"
+            },
+            {
+              "path": "git/objects/tree_objects.md",
+              "title": "Tree Objects",
+              "description": "Documentation for Tree Objects"
             }
           ]
         },
@@ -404,6 +477,108 @@
           "name": "Advanced",
           "icon": "Folder",
           "subcategories": [
+            {
+              "id": "asyncio",
+              "name": "Asyncio",
+              "icon": "Folder",
+              "subcategories": [
+                {
+                  "id": "advanced",
+                  "name": "Advanced",
+                  "icon": "Folder",
+                  "subcategories": [],
+                  "files": [
+                    {
+                      "path": "python/advanced/asyncio/advanced/design_patterns.md",
+                      "title": "Design Patterns",
+                      "description": "Documentation for Design Patterns"
+                    }
+                  ]
+                },
+                {
+                  "id": "beginner",
+                  "name": "Beginner",
+                  "icon": "Folder",
+                  "subcategories": [],
+                  "files": [
+                    {
+                      "path": "python/advanced/asyncio/beginner/awaitable_objects.md",
+                      "title": "Awaitable Objects",
+                      "description": "Documentation for Awaitable Objects"
+                    },
+                    {
+                      "path": "python/advanced/asyncio/beginner/basic_task_creation.md",
+                      "title": "Basic Task Creation",
+                      "description": "Documentation for Basic Task Creation"
+                    },
+                    {
+                      "path": "python/advanced/asyncio/beginner/concurrency_vs_parallelism.md",
+                      "title": "Concurrency Vs Parallelism",
+                      "description": "Documentation for Concurrency Vs Parallelism"
+                    },
+                    {
+                      "path": "python/advanced/asyncio/beginner/event_loops.md",
+                      "title": "Event Loops",
+                      "description": "Documentation for Event Loops"
+                    },
+                    {
+                      "path": "python/advanced/asyncio/beginner/python_coroutine.md",
+                      "title": "Python Coroutine",
+                      "description": "Documentation for Python Coroutine"
+                    },
+                    {
+                      "path": "python/advanced/asyncio/beginner/synchronous_vs_asynchronous.md",
+                      "title": "Synchronous Vs Asynchronous",
+                      "description": "Documentation for Synchronous Vs Asynchronous"
+                    },
+                    {
+                      "path": "python/advanced/asyncio/beginner/your_first_async_program.md",
+                      "title": "Your First Async Program",
+                      "description": "Documentation for Your First Async Program"
+                    }
+                  ]
+                },
+                {
+                  "id": "intermediate",
+                  "name": "Intermediate",
+                  "icon": "Folder",
+                  "subcategories": [],
+                  "files": [
+                    {
+                      "path": "python/advanced/asyncio/intermediate/exception_handling.md",
+                      "title": "Exception Handling",
+                      "description": "Documentation for Exception Handling"
+                    },
+                    {
+                      "path": "python/advanced/asyncio/intermediate/futures_and_tasks.md",
+                      "title": "Futures And Tasks",
+                      "description": "Documentation for Futures And Tasks"
+                    },
+                    {
+                      "path": "python/advanced/asyncio/intermediate/streams.md",
+                      "title": "Streams",
+                      "description": "Documentation for Streams"
+                    },
+                    {
+                      "path": "python/advanced/asyncio/intermediate/synchronization_primitives.md",
+                      "title": "Synchronization Primitives",
+                      "description": "Documentation for Synchronization Primitives"
+                    },
+                    {
+                      "path": "python/advanced/asyncio/intermediate/task_management.md",
+                      "title": "Task Management",
+                      "description": "Documentation for Task Management"
+                    },
+                    {
+                      "path": "python/advanced/asyncio/intermediate/timeouts_and_waiting.md",
+                      "title": "Timeouts And Waiting",
+                      "description": "Documentation for Timeouts And Waiting"
+                    }
+                  ]
+                }
+              ],
+              "files": []
+            },
             {
               "id": "context_managers",
               "name": "Context Managers",
