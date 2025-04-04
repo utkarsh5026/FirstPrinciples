@@ -1,58 +1,79 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Category, MarkdownLoader } from "@/utils/MarkdownLoader";
 import { useMarkdownProcessor } from "@/hooks/useMarkdownProcessor";
-import { useTheme } from "@/components/theme/context/ThemeContext";
 import LoadingScreen from "@/components/core/LoadingScreen";
-import BreadcrumbNav from "@/components/navigation/BreadCrumbNav";
 import MarkdownCardView from "@/components/card/MarkdownCardView";
 import FullScreenCardView from "@/components/card/fullscreen/FullScreenCardView";
-import ThemeSelector from "@/components/theme/selector/ThemeSelector";
-import { Button } from "@/components/ui/button";
-import {
-  Download,
-  Share,
-  Maximize2,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
 import useMobile from "@/hooks/useMobile";
+import ActionButtons from "./ActionButtons";
 
 interface CardDocumentViewerProps {
   selectedFile: string;
   setSelectedFile: (file: string) => void;
 }
 
+/**
+ * CardDocumentViewer component displays markdown documents in a card-based view.
+ * It handles loading, displaying, and navigating through markdown content,
+ * with support for fullscreen mode, downloading, and sharing.
+ *
+ * @param {Object} props - Component props
+ * @param {string} props.selectedFile - Path to the currently selected markdown file
+ * @param {Function} props.setSelectedFile - Function to update the selected file
+ * @returns {React.ReactElement} The rendered component
+ */
 const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
   selectedFile,
   setSelectedFile,
 }) => {
+  /**
+   * State for storing the loaded markdown content
+   */
   const [markdownContent, setMarkdownContent] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [prevNext, setPrevNext] = useState<{ prev?: string; next?: string }>(
-    {}
-  );
 
-  // Refs
+  /**
+   * Loading state to show loading indicator while content is being fetched
+   */
+  const [loading, setLoading] = useState<boolean>(true);
+
+  /**
+   * Error state to display error messages if document loading fails
+   */
+  const [error, setError] = useState<string | null>(null);
+
+  /**
+   * State to track if the viewer is in fullscreen mode
+   */
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  /**
+   * State to track if the share link has been copied to clipboard
+   */
+  const [copied, setCopied] = useState(false);
+
+  /**
+   * Reference to the content container element
+   */
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // Hooks
-  const { currentTheme, setTheme } = useTheme();
+  /**
+   * Hook to detect if the user is on a mobile device
+   */
   useMobile();
 
-  // Process markdown content
+  /**
+   * Process markdown content into sections for card-based viewing
+   */
   const { parsedSections } = useMarkdownProcessor(markdownContent);
 
-  // Load initial document from URL hash or first available
+  /**
+   * Effect to load the initial document based on URL hash or first available file
+   */
   useEffect(() => {
     const loadInitialDocument = async () => {
-      // Check if there's a document slug in the URL hash
       const hashParams = window.location.hash.substring(1);
 
       if (hashParams) {
-        // If hash is present, try to find the file with this path
         const files = await MarkdownLoader.getAvailableFiles();
         const matchingFile = files.find((file) => {
           return (
@@ -81,7 +102,9 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
     loadInitialDocument();
   }, []);
 
-  // Load document content when file changes
+  /**
+   * Effect to load document content whenever the selected file changes
+   */
   useEffect(() => {
     const loadMarkdown = async () => {
       if (!selectedFile) return;
@@ -114,7 +137,10 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
     loadMarkdown();
   }, [selectedFile]);
 
-  // Find previous and next documents in the same category
+  /**
+   * Find previous and next documents in the same category for navigation
+   * @param {string} currentPath - Path of the current document
+   */
   const findPrevNextDocuments = async (currentPath: string) => {
     try {
       // Get the file's breadcrumbs to determine its category
@@ -131,15 +157,6 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
           (file) => file.path === currentPath
         );
         if (currentIndex === -1) return;
-
-        const prev =
-          currentIndex > 0 ? rootFiles[currentIndex - 1].path : undefined;
-        const next =
-          currentIndex < rootFiles.length - 1
-            ? rootFiles[currentIndex + 1].path
-            : undefined;
-
-        setPrevNext({ prev, next });
         return;
       }
 
@@ -173,34 +190,14 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
         (file: { path: string }) => file.path === currentPath
       );
       if (currentIndex === -1) return;
-
-      const prev = currentIndex > 0 ? files[currentIndex - 1].path : undefined;
-      const next =
-        currentIndex < files.length - 1
-          ? files[currentIndex + 1].path
-          : undefined;
-
-      setPrevNext({ prev, next });
     } catch (error) {
       console.error("Error finding prev/next documents:", error);
     }
   };
 
-  // Handle file selection (for navigation)
-  const handleSelectFile = (filepath: string) => {
-    setSelectedFile(filepath);
-
-    // Update URL hash
-    const slug = filepath.endsWith(".md") ? filepath.slice(0, -3) : filepath;
-    window.location.hash = slug;
-
-    // Scroll to top of content area
-    if (contentRef.current) {
-      contentRef.current.scrollTop = 0;
-    }
-  };
-
-  // Handle document download
+  /**
+   * Handle document download by creating a downloadable file from the markdown content
+   */
   const handleDownload = () => {
     if (!selectedFile || !markdownContent) return;
 
@@ -209,7 +206,9 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
     MarkdownLoader.downloadMarkdown(downloadFilename, markdownContent);
   };
 
-  // Handle sharing the document
+  /**
+   * Handle sharing the document by copying a link to the clipboard
+   */
   const handleCopyLink = () => {
     if (!selectedFile) return;
 
@@ -225,7 +224,9 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
     });
   };
 
-  // Toggle fullscreen mode
+  /**
+   * Toggle between fullscreen and normal viewing modes
+   */
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen);
   };
@@ -275,111 +276,25 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
   }
 
   return (
-    <div className="w-full mx-auto max-w-4xl">
-      {/* Breadcrumb navigation */}
-      <div className="mb-4 font-type-mono">
-        <BreadcrumbNav
-          filePath={selectedFile}
-          className="px-2 sm:px-0"
-          onNavigate={handleSelectFile}
-        />
-      </div>
-
+    <div className="w-full mx-auto max-w-4xl h-full flex flex-col">
       {/* Main content */}
-      <div className="relative" ref={contentRef}>
-        <div className="bg-card rounded-xl border border-border/40 shadow-sm overflow-hidden">
-          {/* Document header with title and actions */}
-          <div className="px-4 sm:px-6 py-4 border-b border-border/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 font-type-mono">
-            <div className="flex items-center gap-2 self-end sm:self-auto">
-              <div className="flex gap-2 font-cascadia-code">
-                {/* Theme selector button */}
-                <ThemeSelector
-                  currentTheme={currentTheme.name}
-                  onThemeChange={setTheme}
-                />
-
-                {/* Fullscreen button */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={toggleFullscreen}
-                  className="h-8 w-8 sm:w-auto sm:px-3 rounded-full sm:rounded-md"
-                  title="Fullscreen mode"
-                >
-                  <Maximize2 className="h-4 w-4" />
-                  <span className="hidden sm:inline ml-1.5">Fullscreen</span>
-                </Button>
-
-                {/* Download button */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleDownload}
-                  className="h-8 w-8 sm:w-auto sm:px-3 rounded-full sm:rounded-md"
-                  title="Download document"
-                >
-                  <Download className="h-4 w-4" />
-                  <span className="hidden sm:inline ml-1.5">Download</span>
-                </Button>
-
-                {/* Share button */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleCopyLink}
-                  className="h-8 w-8 sm:w-auto sm:px-3 rounded-full sm:rounded-md relative"
-                  title="Copy link to document"
-                >
-                  <Share className="h-4 w-4" />
-                  <span className="hidden sm:inline ml-1.5">
-                    {copied ? "Copied!" : "Share"}
-                  </span>
-                  {copied && (
-                    <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">
-                      ✓
-                    </span>
-                  )}
-                </Button>
-              </div>
-            </div>
-          </div>
+      <div className="flex-1 flex flex-col" ref={contentRef}>
+        <div className="bg-card rounded-xl border border-border/40 shadow-sm h-full flex flex-col">
+          <ActionButtons
+            toggleFullscreen={toggleFullscreen}
+            handleDownload={handleDownload}
+            handleCopyLink={handleCopyLink}
+            copied={copied}
+          />
 
           {/* Card view content */}
-          <div className="p-4 sm:p-6">
+          <div className="p-4 sm:p-6 flex-1 overflow-y-auto border-2">
             <MarkdownCardView
               markdown={markdownContent}
               parsedSections={parsedSections}
+              className="h-full"
             />
           </div>
-
-          {/* Navigation between documents */}
-          {(prevNext.prev || prevNext.next) && (
-            <div className="border-t border-border/30 mt-4 p-4 font-type-mono">
-              <div className="flex justify-between items-center">
-                {prevNext.prev ? (
-                  <button
-                    onClick={() => handleSelectFile(prevNext.prev!)}
-                    className="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-secondary/20 transition-colors"
-                  >
-                    <ChevronLeft size={16} />
-                    <span className="font-cascadia-code">Previous</span>
-                  </button>
-                ) : (
-                  <div></div>
-                )}
-
-                {prevNext.next && (
-                  <button
-                    onClick={() => handleSelectFile(prevNext.next!)}
-                    className="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-secondary/20 transition-colors"
-                  >
-                    <span>Next</span>
-                    <ChevronRight size={16} />
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
