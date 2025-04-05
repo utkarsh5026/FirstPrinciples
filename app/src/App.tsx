@@ -1,12 +1,9 @@
-// Modify your App.tsx to include the loading animation
-
 import { useState, useEffect, useRef } from "react";
 import CardDocumentViewer from "@/components/card/viewer/CardDocumentViewer";
 import ResponsiveSidebar from "@/components/navigation/sidebar/CategoryNavigation";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import { useTheme } from "@/components/theme/context/ThemeContext";
-import LoadingAnimation from "@/init/LoadingAnimation.tsx";
-
+import LoadingAnimation from "@/components/init/LoadingAnimation";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
@@ -18,7 +15,7 @@ function App() {
   useEffect(() => {
     const loadInitialDocument = async () => {
       // Simulate minimum loading time for visual effect (at least 2 seconds)
-      const minLoadTime = new Promise(resolve => setTimeout(resolve, 2000));
+      const minLoadTime = new Promise((resolve) => setTimeout(resolve, 2000));
 
       try {
         // Check if there's a document slug in the URL hash
@@ -29,9 +26,9 @@ function App() {
           const files = await MarkdownLoader.getAvailableFiles();
           const matchingFile = files.find((file) => {
             return (
-                file === hashParams ||
-                file === `${hashParams}.md` ||
-                file.split("/").pop()?.replace(".md", "") === hashParams
+              file === hashParams ||
+              file === `${hashParams}.md` ||
+              file.split("/").pop()?.replace(".md", "") === hashParams
             );
           });
 
@@ -72,46 +69,58 @@ function App() {
   };
 
   return (
-      <div className="min-h-screen flex flex-col bg-background text-foreground">
-        {/* Show loading animation when app is initializing */}
-        {isLoading && <LoadingAnimation />}
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
+      {/* Show loading animation when app is initializing */}
+      {isLoading && <LoadingAnimation />}
 
-        {/* Main content with sidebar */}
-        <div className={`flex flex-1 overflow-hidden relative ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}`}>
-          {/* Responsive sidebar with category navigation */}
-          <ResponsiveSidebar
-              onSelectFile={handleSelectFile}
-              currentFilePath={selectedFile ?? undefined}
+      {/* Main content with sidebar */}
+      <div
+        className={`flex flex-1 overflow-hidden relative ${
+          isLoading
+            ? "opacity-0"
+            : "opacity-100 transition-opacity duration-500"
+        }`}
+      >
+        {/* Responsive sidebar with category navigation */}
+        <ResponsiveSidebar
+          onSelectFile={handleSelectFile}
+          currentFilePath={selectedFile ?? undefined}
+        />
+
+        {/* Main content area with padding for menu button */}
+        <main
+          ref={mainContentRef}
+          className="w-full flex-1 overflow-y-auto pt-16 md:pt-4 px-4 md:px-8"
+        >
+          <CardDocumentViewer
+            selectedFile={selectedFile ?? ""}
+            setSelectedFile={setSelectedFile}
           />
-
-          {/* Main content area with padding for menu button */}
-          <main
-              ref={mainContentRef}
-              className="w-full flex-1 overflow-y-auto pt-16 md:pt-4 px-4 md:px-8"
-          >
-            <CardDocumentViewer
-                selectedFile={selectedFile ?? ""}
-                setSelectedFile={setSelectedFile}
-            />
-          </main>
-        </div>
-
-        {/* Simple footer */}
-        <footer className={`border-t mt-auto py-3 px-4 border-border font-cascadia-code ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}`}>
-          <div className="max-w-7xl mx-auto text-center text-xs text-muted-foreground">
-            <p>
-              Made with ❤️ by{" "}
-              <a
-                  href="https://github.com/utkarsh5026"
-                  target="_blank"
-                  rel="noopener noreferrer"
-              >
-                Utkarsh Priyadarshi
-              </a>
-            </p>
-          </div>
-        </footer>
+        </main>
       </div>
+
+      {/* Simple footer */}
+      <footer
+        className={`border-t mt-auto py-3 px-4 border-border font-cascadia-code ${
+          isLoading
+            ? "opacity-0"
+            : "opacity-100 transition-opacity duration-500"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto text-center text-xs text-muted-foreground">
+          <p>
+            Made with ❤️ by{" "}
+            <a
+              href="https://github.com/utkarsh5026"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Utkarsh Priyadarshi
+            </a>
+          </p>
+        </div>
+      </footer>
+    </div>
   );
 }
 
