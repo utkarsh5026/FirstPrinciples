@@ -7,15 +7,13 @@ import LoadingAnimation from "@/components/init/LoadingAnimation";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [isLoading, setIsLoading] = useState(true);
   const mainContentRef = useRef<HTMLDivElement>(null);
   useTheme();
 
-  // Load initial document (from URL or first available)
   useEffect(() => {
     const loadInitialDocument = async () => {
-      // Simulate minimum loading time for visual effect (at least 2 seconds)
-      const minLoadTime = new Promise((resolve) => setTimeout(resolve, 2000));
+      const minLoadTime = new Promise((resolve) => setTimeout(resolve, 1000));
 
       try {
         // Check if there's a document slug in the URL hash
