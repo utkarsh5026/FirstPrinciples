@@ -1006,8 +1006,966 @@ const DataGrid = forwardRef((props, ref) => {
       result.sort((a, b) => {
         const aValue = a[sortField];
         const bValue = b[sortField];
-    
+        
         if (typeof aValue === 'string') {
           const comparison = aValue.localeCompare(bValue);
-          return sortDirection === 'asc' ? comparison : -
+          return sortDirection === 'asc' ? comparison : -comparison;
+        } else {
+          const comparison = aValue - bValue;
+          return sortDirection === 'asc' ? comparison : -comparison;
+        }
+      });
+    }
+    
+    processedData.current = result;
+  }, [props.data, sortField, sortDirection, filterValues]);
+  
+  // Get paginated data
+  const getPaginatedData = () => {
+    const startIdx = (page - 1) * rowsPerPage;
+    const endIdx = startIdx + rowsPerPage;
+    return processedData.current.slice(startIdx, endIdx);
+  };
+  
+  // Calculate total pages
+  const totalPages = Math.ceil(processedData.current.length / rowsPerPage);
+  
+  // Handle sorting
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('asc');
+    }
+  };
+  
+  // Handle row selection
+  const handleRowSelect = (rowId) => {
+    setSelectedRows(prev => {
+      if (prev.includes(rowId)) {
+        return prev.filter(id => id !== rowId);
+      } else {
+        return [...prev, rowId];
+      }
+    });
+  };
+  
+  // Handle row expansion
+  const handleRowExpand = (rowId) => {
+    setExpandedRows(prev => {
+      if (prev.includes(rowId)) {
+        return prev.filter(id => id !== rowId);
+      } else {
+        return [...prev, rowId];
+      }
+    });
+  };
+  
+  // Apply a filter
+  const applyFilter = (field, value) => {
+    setFilterValues(prev => ({
+      ...prev,
+      [field]: value
+    }));
+    
+    // Reset to first page when filtering
+    setPage(1);
+  };
+  
+  // Clear all filters
+  const clearFilters = () => {
+    setFilterValues({});
+    setPage(1);
+  };
+  
+  // Handle page change
+  const changePage = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setPage(newPage);
+    }
+  };
+  
+  // Expose imperative handle to parent
+  useImperativeHandle(ref, () => ({
+    // Data access methods
+    getData: () => processedData.current,
+    getSelectedRows: () => selectedRows.map(id => props.data.find(row => row.id === id)),
+    getPaginatedData,
+    getCurrentPage: () => page,
+    getTotalPages: () => totalPages,
+    
+    // Navigation methods
+    goToPage: (pageNumber) => changePage(pageNumber),
+    nextPage: () => changePage(page + 1),
+    prevPage: () => changePage(page - 1),
+    firstPage: () => changePage(1),
+    lastPage: () => changePage(totalPages),
+    
+    // Selection methods
+    selectRow: (rowId) => {
+      if (!selectedRows.includes(rowId)) {
+        setSelectedRows(prev => [...prev, rowId]);
+      }
+    },
+    deselectRow: (rowId) => {
+      setSelectedRows(prev => prev.filter(id => id !== rowId));
+    },
+    selectAll: () => {
+      setSelectedRows(props.data.map(row => row.id));
+    },
+    clearSelection: () => {
+      setSelectedRows([]);
+    },
+    
+    // Expansion methods
+    expandRow: (rowId) => {
+      if (!expandedRows.includes(rowId)) {
+        setExpandedRows(prev => [...prev, rowId]);
+      }
+    },
+    collapseRow: (rowId) => {
+      setExpandedRows(prev => prev.filter(id => id !== rowId));
+    },
+    expandAll: () => {
+      setExpandedRows(props.data.map(row => row.id));
+    },
+    collapseAll: () => {
+      setExpandedRows([]);
+    },
+    
+    // Filtering methods
+    setFilter: applyFilter,
+    clearFilter: (field) => {
+      setFilterValues(prev => {
+        const newFilters = { ...prev };
+        delete newFilters[field];
+        return newFilters;
+      });
+    },
+    clearAllFilters: clearFilters,
+    
+    // Sorting methods
+    sortBy: (field, direction = 'asc') => {
+      setSortField(field);
+      setSortDirection(direction);
+    },
+    toggleSortDirection: () => {
+      setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+    },
+    
+    // Focus methods
+    focusCell: (rowId, columnName) => {
+      if (rowRefs.current[rowId] && headerRefs.current[columnName]) {
+        // Find the cell index
+        const columnIndex = Object.keys(headerRefs.current).indexOf(columnName);
+        
+        if (columnIndex !== -1 && rowRefs.current[rowId].cells[columnIndex]) {
+          rowRefs.current[rowId].cells[columnIndex].focus();
+          
+          // Also scroll into view if needed
+          rowRefs.current[rowId].cells[columnIndex].scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest'
+          });
+        }
+      }
+    },
+    
+    focusSearch: () => {
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
+    },
+    
+    // UI methods
+    scrollToRow: (rowId) => {
+      if (rowRefs.current[rowId]) {
+        rowRefs.current[rowId].scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      }
+    },
+    
+    // Export methods
+    exportToCSV: () => {
+      const headers = props.columns.map(col => col.header).join(',');
+      const rows = processedData.current.map(row => 
+        props.columns.map(col => String(row[col.field]).replace(/,/g, ' ')).join(',')
+      );
+      
+      const csv = [headers, ...rows].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'export.csv';
+      a.click();
+      
+      URL.revokeObjectURL(url);
+    }
+  }), [
+    props.data,
+    props.columns,
+    processedData.current,
+    selectedRows,
+    expandedRows,
+    page,
+    totalPages,
+    rowsPerPage
+  ]);
+  
+  // Render paginated data
+  const displayData = getPaginatedData();
+  
+  return (
+    <div className="data-grid-container" ref={gridRef}>
+      <div className="data-grid-search">
+        <input
+          ref={searchInputRef}
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => applyFilter('_global', e.target.value)}
+        />
+        <button onClick={clearFilters}>Clear Filters</button>
+      </div>
+      
+      <table className="data-grid">
+        <thead>
+          <tr>
+            <th className="selection-cell">
+              <input
+                type="checkbox"
+                checked={selectedRows.length === props.data.length}
+                onChange={() => 
+                  selectedRows.length === props.data.length 
+                    ? setSelectedRows([]) 
+                    : setSelectedRows(props.data.map(row => row.id))
+                }
+              />
+            </th>
+            <th className="expansion-cell"></th>
+            {props.columns.map(column => (
+              <th 
+                key={column.field}
+                ref={el => headerRefs.current[column.field] = el}
+                onClick={() => handleSort(column.field)}
+                className={sortField === column.field ? `sorted-${sortDirection}` : ''}
+              >
+                {column.header}
+                {sortField === column.field && (
+                  <span className="sort-indicator">
+                    {sortDirection === 'asc' ? ' ▲' : ' ▼'}
+                  </span>
+                )}
+              </th>
+            ))}
+          </tr>
+          {props.showColumnFilters && (
+            <tr className="filter-row">
+              <th className="selection-cell"></th>
+              <th className="expansion-cell"></th>
+              {props.columns.map(column => (
+                <th key={`filter-${column.field}`}>
+                  <input
+                    type="text"
+                    placeholder={`Filter ${column.header}`}
+                    value={filterValues[column.field] || ''}
+                    onChange={(e) => applyFilter(column.field, e.target.value)}
+                  />
+                </th>
+              ))}
+            </tr>
+          )}
+        </thead>
+        
+        <tbody>
+          {displayData.length === 0 ? (
+            <tr>
+              <td colSpan={props.columns.length + 2} className="no-data">
+                No data to display
+              </td>
+            </tr>
+          ) : (
+            displayData.map(row => (
+              <>
+                <tr
+                  key={row.id}
+                  ref={el => rowRefs.current[row.id] = el}
+                  className={selectedRows.includes(row.id) ? 'selected' : ''}
+                >
+                  <td className="selection-cell">
+                    <input
+                      type="checkbox"
+                      checked={selectedRows.includes(row.id)}
+                      onChange={() => handleRowSelect(row.id)}
+                    />
+                  </td>
+                  <td className="expansion-cell">
+                    <button onClick={() => handleRowExpand(row.id)}>
+                      {expandedRows.includes(row.id) ? '▼' : '►'}
+                    </button>
+                  </td>
+                  {props.columns.map(column => (
+                    <td key={`${row.id}-${column.field}`}>
+                      {column.render ? column.render(row) : row[column.field]}
+                    </td>
+                  ))}
+                </tr>
+                {expandedRows.includes(row.id) && (
+                  <tr className="expanded-row">
+                    <td colSpan={props.columns.length + 2}>
+                      {props.expandedRowRender(row)}
+                    </td>
+                  </tr>
+                )}
+              </>
+            ))
+          )}
+        </tbody>
+      </table>
+      
+      <div className="data-grid-pagination">
+        <button 
+          onClick={() => changePage(1)} 
+          disabled={page === 1}
+        >
+          First
+        </button>
+        <button 
+          onClick={() => changePage(page - 1)} 
+          disabled={page === 1}
+        >
+          Previous
+        </button>
+        <span>
+          Page {page} of {totalPages} 
+          ({processedData.current.length} total rows)
+        </span>
+        <button 
+          onClick={() => changePage(page + 1)} 
+          disabled={page === totalPages}
+        >
+          Next
+        </button>
+        <button 
+          onClick={() => changePage(totalPages)} 
+          disabled={page === totalPages}
+        >
+          Last
+        </button>
+        <select
+          value={rowsPerPage}
+          onChange={(e) => {
+            setRowsPerPage(Number(e.target.value));
+            setPage(1); // Reset to first page when changing rows per page
+          }}
+        >
+          <option value={10}>10 per page</option>
+          <option value={25}>25 per page</option>
+          <option value={50}>50 per page</option>
+          <option value={100}>100 per page</option>
+        </select>
+      </div>
+    </div>
+  );
+});
+
+// Using the DataGrid
+function DataGridExample() {
+  const gridRef = useRef(null);
+  const [data, setData] = useState([
+    // Sample data...
+    { id: 1, name: 'John Doe', age: 30, email: 'john@example.com', status: 'Active' },
+    { id: 2, name: 'Jane Smith', age: 25, email: 'jane@example.com', status: 'Inactive' },
+    // More rows...
+  ]);
+  
+  const columns = [
+    { field: 'name', header: 'Name' },
+    { field: 'age', header: 'Age' },
+    { field: 'email', header: 'Email' },
+    { 
+      field: 'status', 
+      header: 'Status',
+      render: (row) => (
+        <span className={`status-${row.status.toLowerCase()}`}>
+          {row.status}
+        </span>
+      )
+    }
+  ];
+  
+  const expandedRowRender = (row) => (
+    <div className="expanded-content">
+      <h3>Details for {row.name}</h3>
+      <p>Additional information could go here...</p>
+    </div>
+  );
+  
+  const handleSelectActive = () => {
+    // Find all active users and select them
+    const activeUserIds = data
+      .filter(user => user.status === 'Active')
+      .map(user => user.id);
+      
+    // Clear previous selection first
+    gridRef.current.clearSelection();
+    
+    // Select each active user
+    activeUserIds.forEach(id => {
+      gridRef.current.selectRow(id);
+    });
+  };
+  
+  const handleFocusUser = (id) => {
+    gridRef.current.focusCell(id, 'name');
+    gridRef.current.expandRow(id);
+  };
+  
+  const handleExport = () => {
+    gridRef.current.exportToCSV();
+  };
+  
+  return (
+    <div className="data-grid-example">
+      <h1>User Management</h1>
+      
+      <div className="grid-actions">
+        <button onClick={handleSelectActive}>Select Active Users</button>
+        <button onClick={() => handleFocusUser(2)}>Focus Jane Smith</button>
+        <button onClick={handleExport}>Export to CSV</button>
+        <button onClick={() => gridRef.current.sortBy('age', 'desc')}>
+          Sort by Age (Desc)
+        </button>
+        <button onClick={() => gridRef.current.focusSearch()}>
+          Focus Search
+        </button>
+      </div>
+      
+      <DataGrid
+        ref={gridRef}
+        data={data}
+        columns={columns}
+        showColumnFilters={true}
+        defaultSortField="name"
+        defaultSortDirection="asc"
+        defaultPage={1}
+        defaultRowsPerPage={10}
+        expandedRowRender={expandedRowRender}
+      />
+    </div>
+  );
+}
 ```
+
+This comprehensive example demonstrates:
+
+1. A complex component with extensive internal state and logic
+2. Dozens of imperative methods exposed to the parent component
+3. Proper organization of methods by functionality (data access, navigation, selection, etc.)
+4. Integration of multiple ref systems (grid, headers, rows, search input)
+5. Appropriate dependency tracking in the imperative handle
+6. Parent component consuming the imperative API effectively
+
+This pattern is excellent for complex UI components that require rich programmatic control.
+
+## 11. useImperativeHandle in the Modern React Ecosystem
+
+### React Server Components and useImperativeHandle
+
+In the context of React Server Components (RSC), useImperativeHandle has specific considerations:
+
+```javascript
+// Server Component - doesn't use hooks at all
+async function UserDashboard({ userId }) {
+  // Data fetching happens on the server
+  const user = await fetchUserData(userId);
+  
+  return (
+    <div>
+      <h1>Dashboard for {user.name}</h1>
+      {/* Client components can use useImperativeHandle */}
+      <ClientUserProfile user={user} />
+    </div>
+  );
+}
+
+// Client Component - can use hooks including useImperativeHandle
+"use client";
+const ClientUserProfile = forwardRef((props, ref) => {
+  const { user } = props;
+  const formRef = useRef(null);
+  
+  // useImperativeHandle works as usual in client components
+  useImperativeHandle(ref, () => ({
+    saveProfile: async () => {
+      // Save profile implementation
+    },
+    resetForm: () => {
+      // Reset form implementation
+    }
+  }), []);
+  
+  return <UserProfileForm ref={formRef} user={user} />;
+});
+```
+
+With RSC:
+- Server Components don't use hooks at all - no useImperativeHandle
+- Client Components can use useImperativeHandle for imperative APIs
+- The boundary between Server and Client Components is an important architectural consideration
+
+### Integration with React Concurrent Features
+
+When using Suspense and other concurrent features, imperative handles remain useful:
+
+```javascript
+const AsyncDataComponent = forwardRef((props, ref) => {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const abortControllerRef = useRef(null);
+  
+  // Load data function
+  const loadData = useCallback(async () => {
+    // Cancel any previous request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    
+    // Create new abort controller
+    abortControllerRef.current = new AbortController();
+    
+    setIsLoading(true);
+    try {
+      const result = await fetchData(props.dataId, abortControllerRef.current.signal);
+      setData(result);
+    } catch (error) {
+      if (error.name !== 'AbortError') {
+        console.error('Error loading data:', error);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }, [props.dataId]);
+  
+  // Expose imperative methods
+  useImperativeHandle(ref, () => ({
+    reload: loadData,
+    
+    cancelLoading: () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+        setIsLoading(false);
+      }
+    },
+    
+    // Suspense-friendly data access
+    getDataWithSuspense: () => {
+      if (data) {
+        return data;
+      }
+      
+      // If no data and not loading, start loading
+      if (!isLoading) {
+        loadData();
+      }
+      
+      // Throw promise to trigger Suspense
+      throw new Promise((resolve) => {
+        const checkData = () => {
+          if (data) {
+            resolve();
+          } else {
+            setTimeout(checkData, 100);
+          }
+        };
+        checkData();
+      });
+    }
+  }), [data, isLoading, loadData]);
+  
+  // Load data on mount
+  useEffect(() => {
+    loadData();
+    
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, [loadData]);
+  
+  if (isLoading && !data) {
+    return <div>Loading...</div>;
+  }
+  
+  if (!data) {
+    return <div>No data available</div>;
+  }
+  
+  return <div>{/* Render data */}</div>;
+});
+
+// Using the component with Suspense
+function ParentWithSuspense() {
+  const dataRef = useRef(null);
+  
+  return (
+    <div>
+      <button onClick={() => dataRef.current.reload()}>
+        Reload Data
+      </button>
+      
+      <Suspense fallback={<div>Loading in Suspense...</div>}>
+        <SuspenseConsumer dataRef={dataRef} />
+      </Suspense>
+    </div>
+  );
+}
+
+// Component that uses the imperative suspense method
+function SuspenseConsumer({ dataRef }) {
+  // This will suspend if data isn't ready
+  const data = dataRef.current.getDataWithSuspense();
+  
+  return <div>{/* Render data */}</div>;
+}
+```
+
+This approach uses useImperativeHandle to create integration points with React's concurrent features, allowing imperative control of otherwise declarative patterns.
+
+## 12. Testing Components with useImperativeHandle
+
+Testing components that use useImperativeHandle requires specific techniques:
+
+```javascript
+// Component to test
+const Counter = forwardRef((props, ref) => {
+  const [count, setCount] = useState(0);
+  
+  useImperativeHandle(ref, () => ({
+    increment: () => setCount(prev => prev + 1),
+    decrement: () => setCount(prev => Math.max(0, prev - 1)),
+    reset: () => setCount(0),
+    getCount: () => count
+  }), [count]);
+  
+  return <div data-testid="counter">{count}</div>;
+});
+
+// Test with React Testing Library
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+test('exposes imperative methods through ref', () => {
+  // Setup: create a ref and render the component with it
+  const ref = { current: null };
+  render(<Counter ref={ref} />);
+  
+  // Initial state
+  expect(screen.getByTestId('counter')).toHaveTextContent('0');
+  
+  // Test imperative methods
+  act(() => {
+    ref.current.increment();
+  });
+  expect(screen.getByTestId('counter')).toHaveTextContent('1');
+  
+  act(() => {
+    ref.current.increment();
+  });
+  expect(screen.getByTestId('counter')).toHaveTextContent('2');
+  
+  act(() => {
+    ref.current.decrement();
+  });
+  expect(screen.getByTestId('counter')).toHaveTextContent('1');
+  
+  // Test getCount
+  expect(ref.current.getCount()).toBe(1);
+  
+  // Test reset
+  act(() => {
+    ref.current.reset();
+  });
+  expect(screen.getByTestId('counter')).toHaveTextContent('0');
+});
+
+test('dependency array updates exposed methods', () => {
+  // This test verifies that the methods update when dependencies change
+  const ref = { current: null };
+  const { rerender } = render(<Counter ref={ref} />);
+  
+  // Use increment to change the count
+  act(() => {
+    ref.current.increment();
+  });
+  
+  // Store the current reference to getCount
+  const originalGetCount = ref.current.getCount;
+  
+  // Force a rerender of the component
+  rerender(<Counter ref={ref} />);
+  
+  // The getCount method should be a new function since count changed
+  expect(ref.current.getCount).not.toBe(originalGetCount);
+  
+  // But it should still return the correct value
+  expect(ref.current.getCount()).toBe(1);
+});
+```
+
+Key testing techniques:
+- Use the `act` function when calling imperative methods
+- Create a ref object and pass it to the component
+- Test each exposed method for correct behavior
+- Verify that dependencies properly update the methods
+- Test integration with parent components
+
+## 13. TypeScript Integration with useImperativeHandle
+
+TypeScript adds strong typing to useImperativeHandle, ensuring better type safety:
+
+```typescript
+import { ForwardedRef, forwardRef, useImperativeHandle, useRef, useState } from 'react';
+
+// Define the interface for the imperative handle
+export interface TextInputHandle {
+  focus: () => void;
+  clear: () => void;
+  setValue: (value: string) => void;
+  getValue: () => string;
+}
+
+// Define props interface
+interface TextInputProps {
+  defaultValue?: string;
+  placeholder?: string;
+  onChange?: (value: string) => void;
+}
+
+// Create the component with proper typing
+const TextInput = forwardRef<TextInputHandle, TextInputProps>((props, ref) => {
+  const [value, setValue] = useState(props.defaultValue || '');
+  const inputRef = useRef<HTMLInputElement>(null);
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    
+    if (props.onChange) {
+      props.onChange(newValue);
+    }
+  };
+  
+  // Type-safe imperative handle
+  useImperativeHandle(
+    ref,
+    () => ({
+      focus: () => {
+        inputRef.current?.focus();
+      },
+      clear: () => {
+        setValue('');
+        inputRef.current?.focus();
+      },
+      setValue: (newValue: string) => {
+        setValue(newValue);
+      },
+      getValue: () => value
+    }),
+    [value]
+  );
+  
+  return (
+    <input
+      ref={inputRef}
+      type="text"
+      value={value}
+      onChange={handleChange}
+      placeholder={props.placeholder}
+    />
+  );
+});
+
+// Using the typed component
+function TypedFormExample() {
+  // TypeScript knows exactly what methods are available on this ref
+  const inputRef = useRef<TextInputHandle>(null);
+  
+  const handleGetValue = () => {
+    // TypeScript guarantees these methods exist and are type-safe
+    if (inputRef.current) {
+      alert(`Current value: ${inputRef.current.getValue()}`);
+    }
+  };
+  
+  return (
+    <div>
+      <TextInput
+        ref={inputRef}
+        defaultValue="Hello, TypeScript!"
+        placeholder="Type something..."
+      />
+      <button onClick={() => inputRef.current?.focus()}>Focus</button>
+      <button onClick={() => inputRef.current?.clear()}>Clear</button>
+      <button onClick={handleGetValue}>Get Value</button>
+    </div>
+  );
+}
+```
+
+TypeScript provides several benefits with useImperativeHandle:
+1. Explicit interface for what methods and properties are exposed
+2. Compile-time checking for the consumer of the imperative handle
+3. Proper type information for method parameters and return values
+4. Auto-completion support in code editors
+
+## 14. Performance Considerations with useImperativeHandle
+
+useImperativeHandle can impact performance if not used carefully:
+
+```javascript
+const PotentiallySlowComponent = forwardRef((props, ref) => {
+  // State and refs...
+  
+  // 🔴 Performance concern: Complex object recreation on every render
+  useImperativeHandle(ref, () => {
+    // Calculate expensive properties for the handle
+    const expensiveComputation = calculateExpensiveValue();
+    
+    return {
+      doSomething: () => {
+        // Implementation...
+      },
+      complexProperty: expensiveComputation
+    };
+  }); // Missing dependency array!
+  
+  return <div>{/* Component content */}</div>;
+});
+```
+
+To optimize performance:
+
+```javascript
+const OptimizedComponent = forwardRef((props, ref) => {
+  // State and refs...
+  const [value, setValue] = useState(0);
+  
+  // Pre-compute expensive values
+  const expensiveComputation = useMemo(() => {
+    return calculateExpensiveValue();
+  }, [/* relevant dependencies */]);
+  
+  // ✅ Performance optimization: Clear dependencies and memoization
+  useImperativeHandle(
+    ref,
+    () => ({
+      doSomething: () => {
+        // Implementation...
+      },
+      getValue: () => value,
+      complexProperty: expensiveComputation
+    }),
+    [value, expensiveComputation]
+  );
+  
+  return <div>{/* Component content */}</div>;
+});
+```
+
+Best practices for performance:
+1. Always include a dependency array
+2. Use useMemo for expensive calculations referenced in the handle
+3. Only include necessary methods and properties
+4. Keep imperative handle objects small and focused
+5. Be mindful of dependencies that change frequently
+
+## 15. Conclusion: Mental Models for useImperativeHandle
+
+To master useImperativeHandle, keep these mental models in mind:
+
+### 1. Custom API Designer
+
+Think of useImperativeHandle as designing a custom API for your component:
+
+```javascript
+// Mental model: "I'm creating a public API for my component"
+useImperativeHandle(ref, () => ({
+  // Only expose what others should use
+  publicMethod1: () => { /* implementation */ },
+  publicMethod2: () => { /* implementation */ },
+  publicProperty: value
+}), [value]);
+```
+
+Just as with a good public API:
+- Expose only what's necessary
+- Keep implementation details hidden
+- Maintain backward compatibility
+- Document the interface clearly
+
+### 2. Controlled Bridge Between Paradigms
+
+View useImperativeHandle as a controlled bridge between React's declarative world and imperative needs:
+
+```javascript
+// Mental model: "This is a controlled bridge between declarative and imperative code"
+useImperativeHandle(ref, () => ({
+  // Transform imperative calls into declarative state updates
+  doSomething: () => {
+    // Instead of direct DOM manipulation, update state
+    setState(newValue);
+  }
+}), [setState]);
+```
+
+This lets you maintain React's declarative approach while exposing imperative methods when needed.
+
+### 3. Adapter Pattern Implementation
+
+Think of useImperativeHandle as implementing the Adapter pattern from software design:
+
+```javascript
+// Mental model: "I'm adapting internal implementations to an external interface"
+useImperativeHandle(ref, () => {
+  // Internal implementation may be complex
+  const internalFormat = /* ... */;
+  
+  // Expose a simplified interface
+  return {
+    simpleMethod: () => {
+      // Adapt the complex internal implementation
+      complexInternalFunction(internalFormat);
+    }
+  };
+}, [internalFormat]);
+```
+
+This creates a layer that translates between your component's internal structure and what parent components need.
+
+### 4. Decision Tree for Using useImperativeHandle
+
+When deciding whether to use useImperativeHandle, consider:
+
+1. Is the functionality naturally imperative?
+   - Focus management, media playback, animations, etc. → Yes
+   - Data display, rendering patterns → Probably not
+
+2. Does the parent need programmatic control?
+   - Parent needs to trigger actions at specific times → Yes
+   - Parent only needs to configure the component → No, use props
+
+3. Is the component's API surface complex?
+   - Exposing many methods with complex parameters → Yes, for API control
+   - Simple toggling or triggering → Consider a simpler approach first
+
+4. Would exposing the entire DOM element or component be problematic?
+   - Exposing too much implementation detail → Yes, use useImperativeHandle
+   - Simple case with a single DOM element → forwardRef alone may be sufficient
+
+Understanding these mental models will help you apply useImperativeHandle effectively in your React applications. Remember that while it's a powerful tool, it should be used judiciously, primarily for cases where imperative control is truly necessary and can't be achieved through props and state.
