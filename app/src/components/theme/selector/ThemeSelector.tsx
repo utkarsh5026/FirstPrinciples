@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
-import { FiCheck } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -13,6 +12,7 @@ import {
   themes,
 } from "@/components/theme/themes";
 import { Palette } from "lucide-react";
+import ThemeOption from "./ThemeOption";
 
 interface ThemeSelectorProps {
   currentTheme: string;
@@ -40,11 +40,8 @@ const EnhancedThemeSelector: React.FC<ThemeSelectorProps> = ({
   onThemeChange,
   className,
 }) => {
-  // Group themes into categories for easier browsing
-  const popularThemes = themes.slice(0, 5);
+  const popularThemes = themes.slice(themes.length - 6, themes.length);
   const allThemes = themes;
-
-  // State to track which theme category tab is active
   const [activeTab, setActiveTab] = useState<string>("popular");
 
   return (
@@ -116,51 +113,6 @@ const EnhancedThemeSelector: React.FC<ThemeSelectorProps> = ({
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
-
-// Individual theme option component
-interface ThemeOptionProps {
-  theme: ThemeTypeOption;
-  isActive: boolean;
-  onSelect: () => void;
-}
-
-const ThemeOption: React.FC<ThemeOptionProps> = ({
-  theme,
-  isActive,
-  onSelect,
-}) => {
-  return (
-    <button
-      key={theme.name}
-      className={cn(
-        "flex items-center w-full rounded-md py-1.5 px-2 text-left",
-        "transition-colors duration-150",
-        isActive ? "bg-primary/10" : "hover:bg-secondary/50"
-      )}
-      onClick={onSelect}
-    >
-      <div className="flex items-center gap-3 w-full">
-        {/* Color preview */}
-        <div className="flex items-center relative">
-          <div
-            className="w-8 h-8 rounded-full border border-border overflow-hidden"
-            style={{
-              background: `linear-gradient(135deg, ${theme.background} 0%, ${theme.primary} 100%)`,
-            }}
-          />
-        </div>
-
-        {/* Theme name */}
-        <div>
-          <span className="text-sm font-cascadia-code block">{theme.name}</span>
-        </div>
-
-        {/* Active indicator */}
-        {isActive && <FiCheck className="ml-auto h-4 w-4 text-primary" />}
-      </div>
-    </button>
   );
 };
 
