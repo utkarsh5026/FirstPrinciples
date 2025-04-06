@@ -132,21 +132,18 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
             className="flex-1 sm:flex-initial data-[state=active]:text-primary data-[state=active]:bg-primary/10"
           >
             <LayoutDashboard className="h-4 w-4 mr-2" />
-            Overview
           </TabsTrigger>
           <TabsTrigger
             value="history"
             className="flex-1 sm:flex-initial data-[state=active]:text-primary data-[state=active]:bg-primary/10"
           >
             <Clock className="h-4 w-4 mr-2" />
-            Reading History
           </TabsTrigger>
           <TabsTrigger
             value="todo"
             className="flex-1 sm:flex-initial data-[state=active]:text-primary data-[state=active]:bg-primary/10"
           >
             <ListTodo className="h-4 w-4 mr-2" />
-            Reading List
           </TabsTrigger>
         </TabsList>
 
@@ -367,37 +364,6 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
                 </Button>
               </div>
             )}
-          </div>
-
-          {/* Trending Documents */}
-          <div className="bg-gradient-to-br from-primary/5 to-secondary/5 border border-border/60 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
-            <h2 className="text-lg font-medium mb-4 flex items-center">
-              <Flame className="h-5 w-5 mr-2 text-primary" />
-              Trending Documents
-            </h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {trendingDocuments.slice(0, 4).map((doc, index) => (
-                <button
-                  key={doc.path}
-                  className="flex items-center p-3 rounded-lg bg-card/60 backdrop-blur-sm border border-border/40 hover:bg-card hover:border-primary/20 transition-all text-left group"
-                  onClick={() => handleSelectDocument(doc.path, doc.title)}
-                >
-                  <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 mr-3 flex-shrink-0">
-                    <span className="text-primary font-semibold text-sm">
-                      {index + 1}
-                    </span>
-                  </div>
-                  <div className="flex-grow min-w-0">
-                    <p className="font-medium text-sm truncate">{doc.title}</p>
-                    <p className="text-xs text-muted-foreground truncate">
-                      {doc.path.split("/").slice(0, -1).join("/")}
-                    </p>
-                  </div>
-                  <ChevronRight className="h-4 w-4 text-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-                </button>
-              ))}
-            </div>
           </div>
         </TabsContent>
 
