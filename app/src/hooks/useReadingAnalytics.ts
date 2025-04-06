@@ -102,7 +102,7 @@ export function useReadingAnalytics(
       });
 
       // Generate analytics data
-      generateAnalyticsData(history, todos, availableDocuments);
+      generateAnalyticsData(history);
     } catch (error) {
       console.error("Error loading reading analytics:", error);
       setState((prev) => ({
@@ -114,103 +114,94 @@ export function useReadingAnalytics(
   }, [availableDocuments]);
 
   // Generate analytics data from history and todos
-  const generateAnalyticsData = useCallback(
-    (
-      history: ReadingHistoryItem[],
-      todos: ReadingTodoItem[],
-      docs: FileMetadata[]
-    ) => {
-      // Weekly activity data
-      const daysOfWeek = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ];
-      const weeklyData = daysOfWeek.map((day) => ({ day, count: 0 }));
+  const generateAnalyticsData = useCallback((history: ReadingHistoryItem[]) => {
+    // Weekly activity data
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const weeklyData = daysOfWeek.map((day) => ({ day, count: 0 }));
 
-      history.forEach((item) => {
-        const dayOfWeek = new Date(item.lastReadAt).getDay();
-        weeklyData[dayOfWeek].count++;
-      });
+    history.forEach((item) => {
+      const dayOfWeek = new Date(item.lastReadAt).getDay();
+      weeklyData[dayOfWeek].count++;
+    });
 
-      // Category breakdown data
-      const categories: Record<string, number> = {};
+    // Category breakdown data
+    const categories: Record<string, number> = {};
 
-      history.forEach((item) => {
-        // Extract category from path
-        const category = item.path.split("/")[0] || "uncategorized";
-        categories[category] = (categories[category] || 0) + 1;
-      });
+    history.forEach((item) => {
+      // Extract category from path
+      const category = item.path.split("/")[0] || "uncategorized";
+      categories[category] = (categories[category] || 0) + 1;
+    });
 
-      // Convert to array format for charts
-      const categoryBreakdown = Object.entries(categories)
-        .map(([name, value]) => ({ name, value }))
-        .sort((a, b) => b.value - a.value);
+    // Convert to array format for charts
+    const categoryBreakdown = Object.entries(categories)
+      .map(([name, value]) => ({ name, value }))
+      .sort((a, b) => b.value - a.value);
 
-      // Reading by hour data
-      const hourlyData = Array.from({ length: 24 }, (_, hour) => ({
-        hour,
-        count: 0,
-      }));
+    // Reading by hour data
+    const hourlyData = Array.from({ length: 24 }, (_, hour) => ({
+      hour,
+      count: 0,
+    }));
 
-      history.forEach((item) => {
-        const hour = new Date(item.lastReadAt).getHours();
-        hourlyData[hour].count++;
-      });
+    history.forEach((item) => {
+      const hour = new Date(item.lastReadAt).getHours();
+      hourlyData[hour].count++;
+    });
 
-      // Reading heatmap data
-      const heatmapData: Record<string, number> = {};
-      const today = new Date();
+    // Reading heatmap data
+    const heatmapData: Record<string, number> = {};
+    const today = new Date();
 
-      // Initialize last 90 days with 0 count
-      for (let i = 0; i < 90; i++) {
-        const date = new Date(today);
-        date.setDate(date.getDate() - i);
-        const dateString = `${date.getFullYear()}-${
-          date.getMonth() + 1
-        }-${date.getDate()}`;
-        heatmapData[dateString] = 0;
+    // Initialize last 90 days with 0 count
+    for (let i = 0; i < 90; i++) {
+      const date = new Date(today);
+      date.setDate(date.getDate() - i);
+      const dateString = `${date.getFullYear()}-${
+        date.getMonth() + 1
+      }-${date.getDate()}`;
+      heatmapData[dateString] = 0;
+    }
+
+    // Count reading activities
+    history.forEach((item) => {
+      const date = new Date(item.lastReadAt);
+      const dateString = `${date.getFullYear()}-${
+        date.getMonth() + 1
+      }-${date.getDate()}`;
+
+      if (heatmapData[dateString] !== undefined) {
+        heatmapData[dateString]++;
       }
+    });
 
-      // Count reading activities
-      history.forEach((item) => {
-        const date = new Date(item.lastReadAt);
-        const dateString = `${date.getFullYear()}-${
-          date.getMonth() + 1
-        }-${date.getDate()}`;
+    // Convert to array format for visualization
+    const readingHeatmap = Object.entries(heatmapData)
+      .map(([date, count]) => ({ date, count }))
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-        if (heatmapData[dateString] !== undefined) {
-          heatmapData[dateString]++;
-        }
-      });
+    // Recent activity
+    const recentActivity = [...history]
+      .sort((a, b) => b.lastReadAt - a.lastReadAt)
+      .slice(0, 5);
 
-      // Convert to array format for visualization
-      const readingHeatmap = Object.entries(heatmapData)
-        .map(([date, count]) => ({ date, count }))
-        .sort(
-          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-        );
-
-      // Recent activity
-      const recentActivity = [...history]
-        .sort((a, b) => b.lastReadAt - a.lastReadAt)
-        .slice(0, 5);
-
-      // Update analytics data state
-      setAnalyticsData({
-        weeklyActivity: weeklyData,
-        categoryBreakdown,
-        readingByHour: hourlyData,
-        readingHeatmap,
-        recentActivity,
-      });
-    },
-    []
-  );
+    // Update analytics data state
+    setAnalyticsData({
+      weeklyActivity: weeklyData,
+      categoryBreakdown,
+      readingByHour: hourlyData,
+      readingHeatmap,
+      recentActivity,
+    });
+  }, []);
 
   // Action: Record a document read
   const recordDocumentRead = useCallback(
@@ -248,7 +239,7 @@ export function useReadingAnalytics(
         });
 
         // Regenerate analytics data
-        generateAnalyticsData(updatedHistory, updatedTodos, availableDocuments);
+        generateAnalyticsData(updatedHistory);
       } catch (error) {
         console.error("Error recording document read:", error);
         setState((prev) => ({
@@ -257,7 +248,7 @@ export function useReadingAnalytics(
         }));
       }
     },
-    [readingHistory, todoList, availableDocuments, generateAnalyticsData]
+    [readingHistory, todoList, generateAnalyticsData]
   );
 
   // Action: Add to reading list
@@ -273,11 +264,7 @@ export function useReadingAnalytics(
           setTodoList(updatedTodos);
 
           // Regenerate analytics data
-          generateAnalyticsData(
-            readingHistory,
-            updatedTodos,
-            availableDocuments
-          );
+          generateAnalyticsData(readingHistory);
         }
 
         return success;
@@ -290,7 +277,7 @@ export function useReadingAnalytics(
         return false;
       }
     },
-    [readingHistory, availableDocuments, generateAnalyticsData]
+    [readingHistory, generateAnalyticsData]
   );
 
   // Action: Remove from reading list
@@ -305,7 +292,7 @@ export function useReadingAnalytics(
         setTodoList(updatedTodos);
 
         // Regenerate analytics data
-        generateAnalyticsData(readingHistory, updatedTodos, availableDocuments);
+        generateAnalyticsData(readingHistory);
       } catch (error) {
         console.error("Error removing from reading list:", error);
         setState((prev) => ({
@@ -314,7 +301,7 @@ export function useReadingAnalytics(
         }));
       }
     },
-    [readingHistory, availableDocuments, generateAnalyticsData]
+    [readingHistory, generateAnalyticsData]
   );
 
   // Action: Mark as complete
@@ -329,7 +316,7 @@ export function useReadingAnalytics(
         setTodoList(updatedTodos);
 
         // Regenerate analytics data
-        generateAnalyticsData(readingHistory, updatedTodos, availableDocuments);
+        generateAnalyticsData(readingHistory);
       } catch (error) {
         console.error("Error marking as complete:", error);
         setState((prev) => ({
@@ -338,7 +325,7 @@ export function useReadingAnalytics(
         }));
       }
     },
-    [readingHistory, availableDocuments, generateAnalyticsData]
+    [readingHistory, generateAnalyticsData]
   );
 
   // Action: Reset progress

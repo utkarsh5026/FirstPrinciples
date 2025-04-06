@@ -519,7 +519,6 @@ export class ReadingAnalyticsService {
   private static checkAchievements(): void {
     const achievements = this.getAchievements();
     const stats = this.getReadingStats();
-    const history = this.getReadingHistory();
     const now = Date.now();
     let xpGained = 0;
 

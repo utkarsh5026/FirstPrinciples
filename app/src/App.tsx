@@ -14,7 +14,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [showHomePage, setShowHomePage] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [availableDocuments, setAvailableDocuments] = useState([]);
   const mainContentRef = useRef<HTMLDivElement>(null);
   useTheme();
 
@@ -35,9 +34,6 @@ function App() {
             fileMetadata.push(metadata);
           }
         }
-
-        // Set available documents
-        setAvailableDocuments(fileMetadata);
 
         // Initialize the analytics service with available documents
         ReadingAnalyticsService.setAvailableDocuments(fileMetadata);
