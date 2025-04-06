@@ -1,6 +1,131 @@
 {
   "categories": [
     {
+      "id": "design_principles",
+      "name": "Design Principles",
+      "icon": "Folder",
+      "subcategories": [
+        {
+          "id": "advanced",
+          "name": "Advanced",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "design_principles/advanced/interpreter.md",
+              "title": "Interpreter",
+              "description": "Documentation for Interpreter"
+            },
+            {
+              "path": "design_principles/advanced/iterator.md",
+              "title": "Iterator",
+              "description": "Documentation for Iterator"
+            },
+            {
+              "path": "design_principles/advanced/memento.md",
+              "title": "Memento",
+              "description": "Documentation for Memento"
+            },
+            {
+              "path": "design_principles/advanced/visitor.md",
+              "title": "Visitor",
+              "description": "Documentation for Visitor"
+            }
+          ]
+        },
+        {
+          "id": "beginner",
+          "name": "Beginner",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "design_principles/beginner/adapter.md",
+              "title": "Adapter",
+              "description": "Documentation for Adapter"
+            },
+            {
+              "path": "design_principles/beginner/command.md",
+              "title": "Command",
+              "description": "Documentation for Command"
+            },
+            {
+              "path": "design_principles/beginner/decorator.md",
+              "title": "Decorator",
+              "description": "Documentation for Decorator"
+            },
+            {
+              "path": "design_principles/beginner/factory_method.md",
+              "title": "Factory Method",
+              "description": "Documentation for Factory Method"
+            },
+            {
+              "path": "design_principles/beginner/observer.md",
+              "title": "Observer",
+              "description": "Documentation for Observer"
+            },
+            {
+              "path": "design_principles/beginner/singleton.md",
+              "title": "Singleton",
+              "description": "Documentation for Singleton"
+            },
+            {
+              "path": "design_principles/beginner/strategy.md",
+              "title": "Strategy",
+              "description": "Documentation for Strategy"
+            }
+          ]
+        },
+        {
+          "id": "intermediate",
+          "name": "Intermediate",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "design_principles/intermediate/abstract_factory.md",
+              "title": "Abstract Factory",
+              "description": "Documentation for Abstract Factory"
+            },
+            {
+              "path": "design_principles/intermediate/builder.md",
+              "title": "Builder",
+              "description": "Documentation for Builder"
+            },
+            {
+              "path": "design_principles/intermediate/composite.md",
+              "title": "Composite",
+              "description": "Documentation for Composite"
+            },
+            {
+              "path": "design_principles/intermediate/prototype.md",
+              "title": "Prototype",
+              "description": "Documentation for Prototype"
+            },
+            {
+              "path": "design_principles/intermediate/template_method.md",
+              "title": "Template Method",
+              "description": "Documentation for Template Method"
+            }
+          ]
+        },
+        {
+          "id": "intro",
+          "name": "Intro",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "design_principles/intro/comparison.md",
+              "title": "Comparison",
+              "description": "Documentation for Comparison"
+            }
+          ]
+        }
+      ],
+      "files": []
+    },
+    {
       "id": "docker",
       "name": "Docker",
       "icon": "Folder",
@@ -643,6 +768,158 @@
             }
           ],
           "files": []
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": "react",
+      "name": "React",
+      "icon": "Boxes",
+      "subcategories": [
+        {
+          "id": "beginner",
+          "name": "Beginner",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/beginner/component_communication.md",
+              "title": "Component Communication",
+              "description": "Documentation for Component Communication"
+            },
+            {
+              "path": "react/beginner/component_lifecycle.md",
+              "title": "Component Lifecycle",
+              "description": "Documentation for Component Lifecycle"
+            },
+            {
+              "path": "react/beginner/controlled_vs_uncontrolled.md",
+              "title": "Controlled Vs Uncontrolled",
+              "description": "Documentation for Controlled Vs Uncontrolled"
+            },
+            {
+              "path": "react/beginner/event_handling.md",
+              "title": "Event Handling",
+              "description": "Documentation for Event Handling"
+            },
+            {
+              "path": "react/beginner/lists_and_keys.md",
+              "title": "Lists And Keys",
+              "description": "Documentation for Lists And Keys"
+            },
+            {
+              "path": "react/beginner/state.md",
+              "title": "State",
+              "description": "Documentation for State"
+            },
+            {
+              "path": "react/beginner/virtual_dom.md",
+              "title": "Virtual Dom",
+              "description": "Documentation for Virtual Dom"
+            }
+          ]
+        },
+        {
+          "id": "hooks",
+          "name": "Hooks",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/hooks/useCallback.md",
+              "title": "UseCallback",
+              "description": "Documentation for UseCallback"
+            },
+            {
+              "path": "react/hooks/useEffect.md",
+              "title": "UseEffect",
+              "description": "Documentation for UseEffect"
+            },
+            {
+              "path": "react/hooks/useImperativeHandle.md",
+              "title": "UseImperativeHandle",
+              "description": "Documentation for UseImperativeHandle"
+            },
+            {
+              "path": "react/hooks/useLayoutEffect.md",
+              "title": "UseLayoutEffect",
+              "description": "Documentation for UseLayoutEffect"
+            },
+            {
+              "path": "react/hooks/useMemo.md",
+              "title": "UseMemo",
+              "description": "Documentation for UseMemo"
+            },
+            {
+              "path": "react/hooks/useRef.md",
+              "title": "UseRef",
+              "description": "Documentation for UseRef"
+            },
+            {
+              "path": "react/hooks/useState.md",
+              "title": "UseState",
+              "description": "Documentation for UseState"
+            }
+          ]
+        },
+        {
+          "id": "intermediate",
+          "name": "Intermediate",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/intermediate/code_splitting.md",
+              "title": "Code Splitting",
+              "description": "Documentation for Code Splitting"
+            },
+            {
+              "path": "react/intermediate/context.md",
+              "title": "Context",
+              "description": "Documentation for Context"
+            },
+            {
+              "path": "react/intermediate/error_boundaries.md",
+              "title": "Error Boundaries",
+              "description": "Documentation for Error Boundaries"
+            },
+            {
+              "path": "react/intermediate/fragments.md",
+              "title": "Fragments",
+              "description": "Documentation for Fragments"
+            },
+            {
+              "path": "react/intermediate/hoc.md",
+              "title": "Hoc",
+              "description": "Documentation for Hoc"
+            },
+            {
+              "path": "react/intermediate/memo.md",
+              "title": "Memo",
+              "description": "Documentation for Memo"
+            },
+            {
+              "path": "react/intermediate/portals.md",
+              "title": "Portals",
+              "description": "Documentation for Portals"
+            },
+            {
+              "path": "react/intermediate/refs.md",
+              "title": "Refs",
+              "description": "Documentation for Refs"
+            },
+            {
+              "path": "react/intermediate/render_props.md",
+              "title": "Render Props",
+              "description": "Documentation for Render Props"
+            },
+            {
+              "path": "react/intermediate/strict_mode.md",
+              "title": "Strict Mode",
+              "description": "Documentation for Strict Mode"
+            }
+          ]
         }
       ],
       "files": []

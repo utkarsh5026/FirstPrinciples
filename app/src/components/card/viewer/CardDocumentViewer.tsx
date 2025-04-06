@@ -1,3 +1,4 @@
+// src/components/card/viewer/CardDocumentViewer.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { Category, MarkdownLoader } from "@/utils/MarkdownLoader";
 import { useMarkdownProcessor } from "@/hooks/useMarkdownProcessor";
@@ -6,6 +7,17 @@ import MarkdownCardView from "@/components/card/MarkdownCardView";
 import FullScreenCardView from "@/components/card/fullscreen/FullScreenCardView";
 import useMobile from "@/hooks/useMobile";
 import ActionButtons from "./ActionButtons";
+import { ReadingAnalyticsService } from "@/utils/ReadingAnalyticsService";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Trophy, Star, Sparkles, ArrowUp } from "lucide-react";
 
 interface CardDocumentViewerProps {
   selectedFile: string;
@@ -16,6 +28,8 @@ interface CardDocumentViewerProps {
  * CardDocumentViewer component displays markdown documents in a card-based view.
  * It handles loading, displaying, and navigating through markdown content,
  * with support for fullscreen mode, downloading, and sharing.
+ *
+ * Enhanced with gamification features that track reading activity and show achievement popups.
  *
  * @param {Object} props - Component props
  * @param {string} props.selectedFile - Path to the currently selected markdown file
@@ -50,6 +64,16 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
    * State to track if the share link has been copied to clipboard
    */
   const [copied, setCopied] = useState(false);
+
+  /**
+   * States for achievement popups
+   */
+  const [showAchievementPopup, setShowAchievementPopup] = useState(false);
+  const [achievementTitle, setAchievementTitle] = useState("");
+  const [achievementDescription, setAchievementDescription] = useState("");
+  const [xpGained, setXpGained] = useState(0);
+  const [levelUp, setLevelUp] = useState(false);
+  const [newLevel, setNewLevel] = useState(0);
 
   /**
    * Reference to the content container element
@@ -126,6 +150,15 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
 
         // Find prev/next documents
         await findPrevNextDocuments(selectedFile);
+
+        // Record the reading activity after a short delay to ensure
+        // the user is actually reading rather than just navigating
+        setTimeout(() => {
+          recordReadingActivity(
+            selectedFile,
+            result.frontmatter.title || selectedFile
+          );
+        }, 3000); // 3 seconds delay
       } catch (err) {
         console.error("Failed to load markdown:", err);
         setError("Failed to load document");
@@ -196,6 +229,59 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
   };
 
   /**
+   * Record reading activity and check for new achievements/levels
+   * @param {string} path - Path of the document being read
+   * @param {string} title - Title of the document
+   */
+  const recordReadingActivity = (path: string, title: string) => {
+    try {
+      // Get current stats
+      const previousStats = ReadingAnalyticsService.getReadingStats();
+      const previousAchievements = ReadingAnalyticsService.getAchievements();
+      const previousLevel = previousStats.level;
+
+      // Record the reading
+      ReadingAnalyticsService.addToReadingHistory(path, title);
+
+      // Get updated stats and achievements
+      const updatedStats = ReadingAnalyticsService.getReadingStats();
+      const updatedAchievements = ReadingAnalyticsService.getAchievements();
+
+      // Check for new achievements
+      const newAchievements = updatedAchievements.filter(
+        (a) =>
+          a.unlockedAt !== null &&
+          !previousAchievements.some(
+            (pa) => pa.id === a.id && pa.unlockedAt !== null
+          )
+      );
+
+      // Check for level up
+      const didLevelUp = updatedStats.level > previousLevel;
+
+      // Show achievement popup if there are new achievements or level up
+      if (newAchievements.length > 0) {
+        const latestAchievement = newAchievements[0];
+        setAchievementTitle(latestAchievement.title);
+        setAchievementDescription(latestAchievement.description);
+        setXpGained(75); // Default XP for an achievement
+        setShowAchievementPopup(true);
+      } else if (didLevelUp) {
+        setLevelUp(true);
+        setNewLevel(updatedStats.level);
+        setXpGained(updatedStats.totalXP - previousStats.totalXP);
+        setAchievementTitle(`Level ${updatedStats.level} Reached!`);
+        setAchievementDescription(
+          `You've reached level ${updatedStats.level}! Keep reading to unlock more features.`
+        );
+        setShowAchievementPopup(true);
+      }
+    } catch (error) {
+      console.error("Error recording reading activity:", error);
+    }
+  };
+
+  /**
    * Handle document download by creating a downloadable file from the markdown content
    */
   const handleDownload = () => {
@@ -229,6 +315,14 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
    */
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen);
+  };
+
+  /**
+   * Close the achievement popup
+   */
+  const closeAchievementPopup = () => {
+    setShowAchievementPopup(false);
+    setLevelUp(false);
   };
 
   // Render fullscreen card view
@@ -297,6 +391,66 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Achievement popup dialog */}
+      <Dialog open={showAchievementPopup} onOpenChange={closeAchievementPopup}>
+        <DialogContent className="sm:max-w-md border-primary/20 font-cascadia-code">
+          <DialogHeader className="text-center">
+            <DialogTitle className="flex flex-col items-center gap-2 text-xl">
+              {levelUp ? (
+                <ArrowUp className="h-10 w-10 text-primary animate-pulse" />
+              ) : (
+                <Trophy className="h-10 w-10 text-primary animate-pulse" />
+              )}
+              <span>{achievementTitle}</span>
+            </DialogTitle>
+            <DialogDescription className="text-center pt-2">
+              {achievementDescription}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="flex flex-col items-center justify-center py-4">
+            <div className="mb-4 flex items-center justify-center">
+              {levelUp ? (
+                <div className="text-4xl font-bold text-primary flex items-center">
+                  {newLevel}
+                  <Star className="h-6 w-6 text-yellow-500 ml-2" />
+                </div>
+              ) : (
+                <div className="flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full">
+                  <Sparkles className="h-5 w-5 text-primary" />
+                  <span className="text-xl font-semibold text-primary">
+                    +{xpGained} XP
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <div className="text-center text-muted-foreground text-sm max-w-xs">
+              {levelUp ? (
+                <p>
+                  Keep up the good work! Unlock new features and benefits as you
+                  level up.
+                </p>
+              ) : (
+                <p>
+                  Great job! Continue reading to unlock more achievements and
+                  gain experience.
+                </p>
+              )}
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button
+              onClick={closeAchievementPopup}
+              className="w-full bg-primary/90 hover:bg-primary"
+            >
+              Continue Reading
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

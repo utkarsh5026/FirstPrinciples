@@ -1,3 +1,4 @@
+// src/App.tsx
 import { useState, useEffect, useRef } from "react";
 import CardDocumentViewer from "@/components/card/viewer/CardDocumentViewer";
 import ResponsiveSidebar from "@/components/navigation/sidebar/CategoryNavigation";
@@ -5,27 +6,47 @@ import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import LoadingAnimation from "@/components/init/LoadingAnimation";
 import HomePage from "@/components/home/HomePage";
-import AppHeader from "@/components/layout/AppHeader"; // Import our new component
+import AppHeader from "@/components/layout/AppHeader";
+import { ReadingAnalyticsService } from "@/utils/ReadingAnalyticsService";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showHomePage, setShowHomePage] = useState(true);
-  const [sidebarOpen, setSidebarOpen] = useState(false); // New state to control sidebar
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [availableDocuments, setAvailableDocuments] = useState([]);
   const mainContentRef = useRef<HTMLDivElement>(null);
   useTheme();
 
+  // Load available documents and initialize analytics
   useEffect(() => {
-    const loadInitialDocument = async () => {
+    const initializeApp = async () => {
       const minLoadTime = new Promise((resolve) => setTimeout(resolve, 1000));
 
       try {
+        // Load all available documents first
+        const files = await MarkdownLoader.getAvailableFiles();
+        const fileMetadata = [];
+
+        // Get metadata for each file
+        for (const file of files) {
+          const metadata = await MarkdownLoader.findFileMetadata(file);
+          if (metadata) {
+            fileMetadata.push(metadata);
+          }
+        }
+
+        // Set available documents
+        setAvailableDocuments(fileMetadata);
+
+        // Initialize the analytics service with available documents
+        ReadingAnalyticsService.setAvailableDocuments(fileMetadata);
+
         // Check if there's a document slug in the URL hash
         const hashParams = window.location.hash.substring(1);
 
         if (hashParams) {
           // If hash is present, try to find the file with this path
-          const files = await MarkdownLoader.getAvailableFiles();
           const matchingFile = files.find((file) => {
             return (
               file === hashParams ||
@@ -40,7 +61,7 @@ function App() {
           }
         }
       } catch (err) {
-        console.error("Failed to load initial document:", err);
+        console.error("Failed to initialize app:", err);
       } finally {
         // Wait for minimum loading time before hiding loader
         await minLoadTime;
@@ -48,7 +69,7 @@ function App() {
       }
     };
 
-    loadInitialDocument();
+    initializeApp();
   }, []);
 
   // Handle file selection
@@ -89,7 +110,7 @@ function App() {
       {/* Show loading animation when app is initializing */}
       {isLoading && <LoadingAnimation />}
 
-      {/* App Header - New component */}
+      {/* App Header */}
       {!isLoading && (
         <AppHeader
           toggleSidebar={toggleSidebar}
@@ -106,7 +127,7 @@ function App() {
             : "opacity-100 transition-opacity duration-500"
         }`}
       >
-        {/* Responsive sidebar with category navigation - now using sidebarOpen state */}
+        {/* Responsive sidebar with category navigation */}
         <ResponsiveSidebar
           onSelectFile={handleSelectFile}
           currentFilePath={selectedFile ?? undefined}

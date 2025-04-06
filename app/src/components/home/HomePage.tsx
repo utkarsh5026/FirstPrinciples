@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Clock, ListTodo, Plus } from "lucide-react";
+import {
+  LayoutDashboard,
+  Clock,
+  ListTodo,
+  Plus,
+  BarChart,
+  Info,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import useDocumentManager from "@/hooks/useDocumentManager";
 import { Category, FileMetadata, MarkdownLoader } from "@/utils/MarkdownLoader";
@@ -10,6 +17,8 @@ import TodoList from "./todo/TodoList";
 import Overview from "./overview/Overview";
 import MobileOptimizedTabs from "./MobileOptimizedTabs";
 import FileSelectionDialog from "./todo/AddTodoModal";
+import AnalyticsPage from "@/components/analytics/AnalyticsPage";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 interface HomePageProps {
   onSelectFile: (filepath: string) => void;
@@ -17,10 +26,10 @@ interface HomePageProps {
 
 /**
  * HomePage component displays a personalized dashboard for the documentation app
- * with reading history and a todo list for articles to read later.
+ * with reading history, analytics, and  list for articles to read later.
  *
  * This updated version is optimized for both mobile and desktop experiences and
- * includes a file selection dialog with a tree view for selecting multiple files.
+ * includes analytics and gamification features.
  */
 const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
   // Use our custom hook to manage all document-related functionality
@@ -46,6 +55,9 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
   // State for categories
   const [categories, setCategories] = useState<Category[]>([]);
 
+  // State for first-time analytics view
+  const [showAnalyticsIntro, setShowAnalyticsIntro] = useState(false);
+
   // Loading categories from the MarkdownLoader
   useEffect(() => {
     const loadCategories = async () => {
@@ -60,11 +72,27 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
     loadCategories();
   }, []);
 
-  // Handle adding multiple files to the todo list
+  // Check if it's the first time viewing analytics
+  useEffect(() => {
+    if (activeTab === "analytics") {
+      const hasSeenAnalytics = localStorage.getItem("hasSeenAnalytics");
+      if (!hasSeenAnalytics) {
+        setShowAnalyticsIntro(true);
+        // Set localStorage to mark that user has seen analytics intro
+        localStorage.setItem("hasSeenAnalytics", "true");
+      }
+    }
+  }, [activeTab]);
+
   const handleAddMultipleToTodoList = (files: FileMetadata[]) => {
     files.forEach((file) => {
       addToTodoList(file.path, file.title);
     });
+  };
+
+  // Dismiss analytics intro alert
+  const dismissAnalyticsIntro = () => {
+    setShowAnalyticsIntro(false);
   };
 
   return (
@@ -107,7 +135,7 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
             <button
               onClick={() => setActiveTab("todo")}
               className={cn(
-                "px-4 py-2 text-sm font-medium rounded-r-lg flex items-center",
+                "px-4 py-2 text-sm font-medium flex items-center",
                 activeTab === "todo"
                   ? "bg-primary/10 text-primary"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary/20"
@@ -115,6 +143,18 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
             >
               <ListTodo className="h-4 w-4 mr-2" />
               Reading List
+            </button>
+            <button
+              onClick={() => setActiveTab("analytics")}
+              className={cn(
+                "px-4 py-2 text-sm font-medium rounded-r-lg flex items-center",
+                activeTab === "analytics"
+                  ? "bg-primary/10 text-primary"
+                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/20"
+              )}
+            >
+              <BarChart className="h-4 w-4 mr-2" />
+              Analytics
             </button>
           </div>
 
@@ -142,9 +182,13 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
           {activeTab === "todo" && (
             <ListTodo className="h-5 w-5 mr-2 text-primary" />
           )}
+          {activeTab === "analytics" && (
+            <BarChart className="h-5 w-5 mr-2 text-primary" />
+          )}
           {activeTab === "overview" && "Overview"}
           {activeTab === "history" && "Reading History"}
           {activeTab === "todo" && "Reading List"}
+          {activeTab === "analytics" && "Analytics"}
         </h2>
 
         {/* Add button for mobile */}
@@ -158,16 +202,42 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
         )}
       </div>
 
+      {/* Analytics introduction alert */}
+      {showAnalyticsIntro && activeTab === "analytics" && (
+        <div className="px-4 mb-6">
+          <Alert className="bg-primary/5 border-primary/20">
+            <Info className="h-4 w-4 text-primary" />
+            <AlertTitle className="text-sm font-medium">
+              New Feature: Reading Analytics
+            </AlertTitle>
+            <AlertDescription className="text-xs text-muted-foreground">
+              Track your reading progress, earn achievements, and level up your
+              knowledge with our new analytics dashboard. Complete challenges to
+              earn XP and unlock new achievements.
+            </AlertDescription>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="mt-2 h-8 text-xs text-primary"
+              onClick={dismissAnalyticsIntro}
+            >
+              Got it
+            </Button>
+          </Alert>
+        </div>
+      )}
+
       {/* Tab Content - shared between mobile and desktop */}
       <div className="pt-2">
         {activeTab === "overview" && (
           <Overview
             todoList={todoList}
+            readingHistory={readingHistory}
+            availableDocuments={availableDocuments}
             formatDate={formatDate}
             toggleTodoCompletion={toggleTodoCompletion}
             handleSelectDocument={handleSelectDocument}
             removeFromTodoList={removeFromTodoList}
-            clearTodoList={clearTodoList}
             setShowAddTodoModal={() => setShowFileDialog(true)}
           />
         )}
@@ -190,6 +260,13 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
             removeFromTodoList={removeFromTodoList}
             clearTodoList={clearTodoList}
             setShowAddTodoModal={() => setShowFileDialog(true)}
+          />
+        )}
+
+        {activeTab === "analytics" && (
+          <AnalyticsPage
+            availableDocuments={availableDocuments}
+            onSelectDocument={handleSelectDocument}
           />
         )}
       </div>

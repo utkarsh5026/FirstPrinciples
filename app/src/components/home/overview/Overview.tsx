@@ -1,183 +1,632 @@
-import React from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import React, { useState, useEffect } from "react";
+import {
+  Clock,
+  BookOpen,
+  Star,
+  Calendar,
+  BookMarked,
+  Flame,
+  ArrowUpRight,
+  Zap,
+  FileText,
+  ListTodo,
+  Activity,
+} from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Plus, X, ListTodo, CheckCircle2 } from "lucide-react";
-import type { ReadingTodoItem } from "@/hooks/useDocumentManager";
+import { ReadingHistoryItem, ReadingTodoItem } from "@/components/home/types";
+import { FileMetadata } from "@/utils/MarkdownLoader";
+import { ReadingAnalyticsService } from "@/utils/ReadingAnalyticsService";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  Tooltip,
+} from "recharts";
 
-interface OverviewProps {
+interface EnhancedOverviewProps {
   todoList: ReadingTodoItem[];
-  toggleTodoCompletion: (id: string) => void;
+  readingHistory: ReadingHistoryItem[];
+  availableDocuments: FileMetadata[];
   handleSelectDocument: (path: string, title: string) => void;
-  formatDate: (date: number) => string;
+  toggleTodoCompletion: (id: string) => void;
   removeFromTodoList: (id: string) => void;
-  clearTodoList: () => void;
-  setShowAddTodoModal: (show: boolean) => void;
+  formatDate: (timestamp: number) => string;
+  setShowAddTodoModal: () => void;
 }
 
-const Overview: React.FC<OverviewProps> = ({
+const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
   todoList,
-  toggleTodoCompletion,
+  readingHistory,
+  availableDocuments,
   handleSelectDocument,
-  setShowAddTodoModal,
+  toggleTodoCompletion,
   formatDate,
-  removeFromTodoList,
-  clearTodoList,
+  setShowAddTodoModal,
 }) => {
+  // Reading stats from analytics service
+  const [stats, setStats] = useState(() =>
+    ReadingAnalyticsService.getReadingStats()
+  );
+  const [featuredDocs, setFeaturedDocs] = useState<FileMetadata[]>([]);
+  const [categoryData, setCategoryData] = useState<
+    { name: string; value: number }[]
+  >([]);
+  const [weekdayData, setWeekdayData] = useState<
+    { name: string; count: number }[]
+  >([]);
+  const [mostReadCategory, setMostReadCategory] = useState<string>("None yet");
+
+  // Colors for charts
+  const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#0088fe"];
+
+  useEffect(() => {
+    // Update stats when history or todo list changes
+    setStats(ReadingAnalyticsService.getReadingStats());
+
+    // Generate category data for pie chart
+    const categories: Record<string, number> = {};
+    readingHistory.forEach((item) => {
+      const category = item.path.split("/")[0] || "uncategorized";
+      categories[category] = (categories[category] || 0) + 1;
+    });
+
+    const categoriesArray = Object.entries(categories).map(([name, value]) => ({
+      name,
+      value,
+    }));
+    setCategoryData(categoriesArray);
+
+    // Find most read category
+    if (categoriesArray.length > 0) {
+      const sorted = [...categoriesArray].sort((a, b) => b.value - a.value);
+      setMostReadCategory(sorted[0].name);
+    }
+
+    // Generate weekday data
+    const weekdays = [
+      { name: "Mon", count: 0 },
+      { name: "Tue", count: 0 },
+      { name: "Wed", count: 0 },
+      { name: "Thu", count: 0 },
+      { name: "Fri", count: 0 },
+      { name: "Sat", count: 0 },
+      { name: "Sun", count: 0 },
+    ];
+
+    readingHistory.forEach((item) => {
+      const day = new Date(item.lastReadAt).getDay();
+      // Convert from 0-6 (Sunday-Saturday) to weekdays array index
+      const index = day === 0 ? 6 : day - 1;
+      weekdays[index].count++;
+    });
+
+    setWeekdayData(weekdays);
+
+    // Get featured/recommended documents
+    if (availableDocuments.length > 0) {
+      // Try to recommend based on most read category
+      let recommended: FileMetadata[] = [];
+
+      if (categoriesArray.length > 0) {
+        const topCategory = categoriesArray[0].name;
+        // Find unread docs from top category
+        recommended = availableDocuments
+          .filter(
+            (doc) =>
+              doc.path.startsWith(topCategory) &&
+              !readingHistory.some((item) => item.path === doc.path)
+          )
+          .slice(0, 4);
+      }
+
+      // If not enough recommended docs, add some random ones
+      if (recommended.length < 4) {
+        const remaining = 4 - recommended.length;
+        const otherDocs = availableDocuments
+          .filter(
+            (doc) =>
+              !recommended.includes(doc) &&
+              !readingHistory.some((item) => item.path === doc.path)
+          )
+          .sort(() => 0.5 - Math.random())
+          .slice(0, remaining);
+
+        recommended = [...recommended, ...otherDocs];
+      }
+
+      setFeaturedDocs(recommended);
+    }
+  }, [readingHistory, todoList, availableDocuments]);
+
+  // Format reading time
+  const formatReadingTime = (minutes: number) => {
+    if (minutes < 60) {
+      return `${minutes} min`;
+    }
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    return `${hours}h ${remainingMinutes}m`;
+  };
+
+  // Format number with commas
+  const formatNumber = (num: number) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  // Calculate next milestone
+  const getNextMilestone = () => {
+    const completedCount = readingHistory.length;
+    if (completedCount < 5) return { target: 5, progress: completedCount };
+    if (completedCount < 10) return { target: 10, progress: completedCount };
+    if (completedCount < 20) return { target: 20, progress: completedCount };
+    if (completedCount < 50) return { target: 50, progress: completedCount };
+    return { target: 100, progress: completedCount };
+  };
+
+  const nextMilestone = getNextMilestone();
+  const milestoneProgress =
+    (nextMilestone.progress / nextMilestone.target) * 100;
+
+  // Get unread documents count
+  const unreadDocs = availableDocuments.length - readingHistory.length;
+
+  // Get reading streak info
+  const streakEmoji =
+    stats.currentStreak >= 7 ? "🔥" : stats.currentStreak >= 3 ? "🔆" : "✨";
+
+  // Calculate completion percentage
+  const completionPercentage = Math.round(
+    (readingHistory.length / availableDocuments.length) * 100
+  );
+
   return (
-    <div className="bg-card border border-border rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-      <div className="px-5 py-4 border-b border-border bg-gradient-to-r from-primary/5 to-transparent">
-        <div className="flex justify-between items-center">
-          <div>
-            <h2 className="text-lg font-medium flex items-center">
-              <ListTodo className="h-5 w-5 mr-2 text-primary" />
-              Reading List
-            </h2>
-            <p className="text-sm text-muted-foreground mt-1">
-              Documents you want to read later
-            </p>
+    <div className="space-y-6">
+      {/* Top stats row */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* Reading Progress */}
+        <Card className="p-4 border-primary/10 flex flex-col">
+          <div className="text-xs text-muted-foreground">Overall Progress</div>
+          <div className="flex items-baseline mt-2 mb-1">
+            <span className="text-2xl font-bold">{completionPercentage}%</span>
+            <span className="text-muted-foreground text-xs ml-1">complete</span>
           </div>
-          <Button
-            className="h-9 bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20"
-            onClick={() => setShowAddTodoModal(true)}
-          >
-            <Plus className="h-4 w-4 mr-1.5" /> Add
-          </Button>
+          <Progress value={completionPercentage} className="h-1.5" />
+          <div className="flex justify-between mt-2 text-xs text-muted-foreground">
+            <span>{readingHistory.length} read</span>
+            <span>{unreadDocs} left</span>
+          </div>
+        </Card>
+
+        {/* Reading Streak */}
+        <Card className="p-4 border-primary/10 flex flex-col">
+          <div className="text-xs text-muted-foreground">Current Streak</div>
+          <div className="flex items-center mt-2">
+            <span className="text-2xl font-bold">{stats.currentStreak}</span>
+            <span className="text-xl ml-1">{streakEmoji}</span>
+            <span className="text-muted-foreground text-xs ml-1">days</span>
+          </div>
+          <div className="mt-auto pt-2 text-xs text-muted-foreground flex justify-between">
+            <span>Best: {stats.longestStreak} days</span>
+            {stats.currentStreak > 0 && <span>Keep it up!</span>}
+          </div>
+        </Card>
+
+        {/* Reading Time */}
+        <Card className="p-4 border-primary/10 flex flex-col">
+          <div className="text-xs text-muted-foreground">Total Reading</div>
+          <div className="flex mt-2 mb-1">
+            <span className="text-2xl font-bold">
+              {formatReadingTime(stats.totalReadingTime)}
+            </span>
+          </div>
+          <div className="text-xs text-muted-foreground mt-auto pt-2 flex justify-between">
+            <span>~{formatNumber(stats.estimatedWordsRead)} words</span>
+            <span>
+              Today: {formatReadingTime(stats.lastSessionDuration || 0)}
+            </span>
+          </div>
+        </Card>
+
+        {/* Next Milestone */}
+        <Card className="p-4 border-primary/10 flex flex-col">
+          <div className="text-xs text-muted-foreground">Next Milestone</div>
+          <div className="flex items-baseline mt-2 mb-1">
+            <span className="text-2xl font-bold">{nextMilestone.target}</span>
+            <span className="text-muted-foreground text-xs ml-1">
+              documents
+            </span>
+          </div>
+          <Progress value={milestoneProgress} className="h-1.5" />
+          <div className="flex justify-between mt-2 text-xs text-muted-foreground">
+            <span>
+              {nextMilestone.progress} / {nextMilestone.target}
+            </span>
+            <span>{nextMilestone.target - nextMilestone.progress} to go</span>
+          </div>
+        </Card>
+      </div>
+
+      {/* Middle section - Reading patterns and Up Next */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Reading patterns */}
+        <div className="space-y-4">
+          <h3 className="text-sm font-medium flex items-center">
+            <Activity className="mr-2 h-4 w-4 text-primary" />
+            Reading Insights
+          </h3>
+
+          <div className="grid grid-cols-2 gap-4">
+            {/* Category breakdown */}
+            <Card className="p-4 border-primary/10">
+              <div className="text-xs text-muted-foreground mb-2">
+                Categories
+              </div>
+              {categoryData.length > 0 ? (
+                <div className="h-36 w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={categoryData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={25}
+                        outerRadius={45}
+                        paddingAngle={5}
+                        dataKey="value"
+                      >
+                        {categoryData.map((entry, index) => (
+                          <Cell
+                            key={`cell-${index}`}
+                            fill={COLORS[index % COLORS.length]}
+                          />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={(value, name) => [`${value} docs`, name]}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              ) : (
+                <div className="h-36 flex items-center justify-center text-center">
+                  <div className="text-muted-foreground text-xs">
+                    <FileText className="h-8 w-8 mx-auto mb-2 opacity-30" />
+                    <p>
+                      Read more documents
+                      <br />
+                      to see patterns
+                    </p>
+                  </div>
+                </div>
+              )}
+              <div className="text-xs text-center text-muted-foreground mt-1">
+                Most read:{" "}
+                <span className="font-medium">{mostReadCategory}</span>
+              </div>
+            </Card>
+
+            {/* Weekly pattern */}
+            <Card className="p-4 border-primary/10">
+              <div className="text-xs text-muted-foreground mb-2">
+                Weekly Pattern
+              </div>
+              {weekdayData.some((day) => day.count > 0) ? (
+                <div className="h-36 w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={weekdayData}>
+                      <XAxis
+                        dataKey="name"
+                        axisLine={false}
+                        tickLine={false}
+                        fontSize={10}
+                      />
+                      <Tooltip
+                        formatter={(value) => [`${value} docs`, "Read"]}
+                      />
+                      <Bar
+                        dataKey="count"
+                        fill="#8884d8"
+                        radius={[4, 4, 0, 0]}
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              ) : (
+                <div className="h-36 flex items-center justify-center text-center">
+                  <div className="text-muted-foreground text-xs">
+                    <Calendar className="h-8 w-8 mx-auto mb-2 opacity-30" />
+                    <p>
+                      Read more to see
+                      <br />
+                      your weekly patterns
+                    </p>
+                  </div>
+                </div>
+              )}
+              <div className="text-xs text-center text-muted-foreground mt-1">
+                {weekdayData.some((day) => day.count > 0) ? (
+                  <span>
+                    Best day:{" "}
+                    <span className="font-medium">
+                      {
+                        weekdayData.reduce((prev, current) =>
+                          prev.count > current.count ? prev : current
+                        ).name
+                      }
+                    </span>
+                  </span>
+                ) : (
+                  <span>Track your reading patterns</span>
+                )}
+              </div>
+            </Card>
+          </div>
+
+          {/* Recent activity */}
+          <Card className="p-4 border-primary/10 bg-gradient-to-r from-secondary/5 to-transparent">
+            <div className="flex justify-between items-center mb-3">
+              <h4 className="text-sm font-medium">Recent Activity</h4>
+              <Badge variant="outline" className="text-xs">
+                Latest
+              </Badge>
+            </div>
+
+            {readingHistory.length > 0 ? (
+              <div className="space-y-2">
+                {readingHistory.slice(0, 3).map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-3 p-2 rounded-md hover:bg-secondary/10 transition-colors cursor-pointer"
+                    onClick={() => handleSelectDocument(item.path, item.title)}
+                  >
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <BookOpen className="h-4 w-4 text-primary" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-sm font-medium truncate">
+                        {item.title}
+                      </div>
+                      <div className="text-xs text-muted-foreground flex items-center">
+                        <Clock className="h-3 w-3 mr-1 inline-block" />
+                        <span>{formatDate(item.lastReadAt)}</span>
+                      </div>
+                    </div>
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-6 text-muted-foreground">
+                <Clock className="h-10 w-10 mx-auto mb-2 opacity-30" />
+                <p className="text-sm">No reading activity yet</p>
+                <p className="text-xs mt-1">
+                  Your recent reads will appear here
+                </p>
+              </div>
+            )}
+
+            {readingHistory.length > 3 && (
+              <div className="text-center mt-3">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-xs"
+                  onClick={() => {
+                    // This button would typically navigate to the history tab
+                    // You can add that functionality here
+                  }}
+                >
+                  View all activity
+                </Button>
+              </div>
+            )}
+          </Card>
+        </div>
+
+        {/* Up Next and Tasks section */}
+        <div className="space-y-4">
+          <h3 className="text-sm font-medium flex items-center">
+            <Zap className="mr-2 h-4 w-4 text-primary" />
+            Continue Learning
+          </h3>
+
+          {/* Featured/Recommended Docs */}
+          <Card className="p-4 border-primary/10">
+            <div className="flex justify-between items-center mb-3">
+              <h4 className="text-sm font-medium">Recommended for You</h4>
+              {mostReadCategory !== "None yet" && (
+                <Badge variant="secondary" className="text-xs">
+                  Based on {mostReadCategory}
+                </Badge>
+              )}
+            </div>
+
+            {featuredDocs.length > 0 ? (
+              <div className="grid grid-cols-2 gap-2">
+                {featuredDocs.map((doc, idx) => (
+                  <button
+                    key={idx}
+                    className="p-3 rounded-lg border border-border/40 hover:border-primary/20 hover:bg-primary/5 transition-all text-left flex flex-col"
+                    onClick={() => handleSelectDocument(doc.path, doc.title)}
+                  >
+                    <span className="text-sm font-medium line-clamp-2">
+                      {doc.title}
+                    </span>
+                    <div className="mt-auto pt-2 flex items-center text-xs text-muted-foreground">
+                      <FileText className="h-3 w-3 mr-1" />
+                      <span className="truncate">{doc.path.split("/")[0]}</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-6 text-muted-foreground">
+                <Star className="h-10 w-10 mx-auto mb-2 opacity-30" />
+                <p className="text-sm">No recommendations yet</p>
+                <p className="text-xs mt-1">
+                  Read more to get personalized suggestions
+                </p>
+              </div>
+            )}
+          </Card>
+
+          {/* Upcoming Tasks / Reading List Preview */}
+          <Card className="p-4 border-primary/10 bg-gradient-to-r from-secondary/5 to-transparent">
+            <div className="flex justify-between items-center mb-3">
+              <h4 className="text-sm font-medium">Upcoming Reads</h4>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 text-xs"
+                onClick={setShowAddTodoModal}
+              >
+                <ListTodo className="h-3 w-3 mr-1.5" />
+                Add
+              </Button>
+            </div>
+
+            {todoList.filter((item) => !item.completed).length > 0 ? (
+              <div className="space-y-2">
+                {todoList
+                  .filter((item) => !item.completed)
+                  .slice(0, 3)
+                  .map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex items-start gap-3 p-2 rounded-md hover:bg-secondary/10 transition-colors"
+                    >
+                      <button
+                        className="mt-1 flex-shrink-0 h-5 w-5 rounded-full border border-primary/30 hover:border-primary/50 transition-colors"
+                        onClick={() => toggleTodoCompletion(item.id)}
+                        aria-label="Mark as read"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <button
+                          className="text-left text-sm font-medium hover:text-primary transition-colors line-clamp-1 w-full"
+                          onClick={() =>
+                            handleSelectDocument(item.path, item.title)
+                          }
+                        >
+                          {item.title}
+                        </button>
+                        <div className="text-xs text-muted-foreground flex items-center">
+                          <Calendar className="h-3 w-3 mr-1" />
+                          Added {formatDate(item.addedAt)}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              <div className="text-center py-6 text-muted-foreground">
+                <ListTodo className="h-10 w-10 mx-auto mb-2 opacity-30" />
+                <p className="text-sm">Your reading list is empty</p>
+                <p className="text-xs mt-1">
+                  Add documents you want to read later
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="mt-4 bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20"
+                  onClick={setShowAddTodoModal}
+                >
+                  Add documents
+                </Button>
+              </div>
+            )}
+
+            {todoList.filter((item) => !item.completed).length > 3 && (
+              <div className="text-center mt-3">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-xs"
+                  onClick={() => {
+                    // This button would typically navigate to the reading list tab
+                    // You can add that functionality here
+                  }}
+                >
+                  View all ({todoList.filter((item) => !item.completed).length})
+                </Button>
+              </div>
+            )}
+          </Card>
         </div>
       </div>
 
-      {todoList.length > 0 ? (
-        <>
-          <ScrollArea className="h-[400px] md:h-[500px] pr-4">
-            <div className="p-5 space-y-3">
-              {/* Uncompleted items first */}
-              {todoList
-                .filter((item) => !item.completed)
-                .map((item) => (
-                  <div
-                    key={item.id}
-                    className="p-3 rounded-lg border border-border/40 flex items-start gap-3 group hover:border-primary/20 hover:bg-primary/5 transition-all"
-                  >
-                    <button
-                      className="mt-1 flex-shrink-0 h-5 w-5 rounded-full border border-primary/30 hover:border-primary/50 transition-colors"
-                      onClick={() => toggleTodoCompletion(item.id)}
-                      aria-label="Mark as read"
-                    />
-
-                    <div className="flex-grow">
-                      <button
-                        className="text-left text-sm font-medium hover:text-primary transition-colors line-clamp-1 w-full"
-                        onClick={() =>
-                          handleSelectDocument(item.path, item.title)
-                        }
-                      >
-                        {item.title}
-                      </button>
-                      <p className="text-xs text-muted-foreground flex items-center">
-                        <Calendar className="h-3 w-3 mr-1" />
-                        Added {formatDate(item.addedAt)}
-                      </p>
-                    </div>
-
-                    <button
-                      className="text-muted-foreground/40 hover:text-destructive transition-colors p-1"
-                      onClick={() => removeFromTodoList(item.id)}
-                      aria-label="Remove from reading list"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  </div>
-                ))}
-
-              {/* Add a divider if there are both completed and uncompleted items */}
-              {todoList.some((item) => item.completed) &&
-                todoList.some((item) => !item.completed) && (
-                  <div className="py-2 px-4">
-                    <div className="border-t border-border/40 flex items-center justify-center py-2">
-                      <Badge variant="secondary" className="mt-1 text-xs">
-                        Completed Items
-                      </Badge>
-                    </div>
-                  </div>
-                )}
-
-              {/* Completed items */}
-              {todoList
-                .filter((item) => item.completed)
-                .map((item) => (
-                  <div
-                    key={item.id}
-                    className="p-3 rounded-lg bg-primary/5 border border-primary/10 flex items-start gap-3 group"
-                  >
-                    <button
-                      className="mt-1 flex-shrink-0 h-5 w-5 rounded-full bg-primary/20 text-primary border border-primary/40 transition-colors flex items-center justify-center"
-                      onClick={() => toggleTodoCompletion(item.id)}
-                      aria-label="Mark as unread"
-                    >
-                      <CheckCircle2 className="h-4 w-4" />
-                    </button>
-
-                    <div className="flex-grow">
-                      <button
-                        className="text-sm font-medium text-muted-foreground line-through hover:text-primary transition-colors line-clamp-1 w-full text-left"
-                        onClick={() =>
-                          handleSelectDocument(item.path, item.title)
-                        }
-                      >
-                        {item.title}
-                      </button>
-                      <p className="text-xs text-muted-foreground flex items-center">
-                        <Calendar className="h-3 w-3 mr-1" />
-                        Added {formatDate(item.addedAt)}
-                      </p>
-                    </div>
-
-                    <button
-                      className="text-muted-foreground/40 hover:text-destructive transition-colors p-1"
-                      onClick={() => removeFromTodoList(item.id)}
-                      aria-label="Remove from reading list"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  </div>
-                ))}
-            </div>
-          </ScrollArea>
-
-          <div className="px-5 py-3 border-t border-border flex justify-between items-center bg-card">
-            <p className="text-sm text-muted-foreground">
-              {todoList.filter((item) => !item.completed).length} to read •{" "}
-              {todoList.filter((item) => item.completed).length} completed
-            </p>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-destructive h-8 hover:bg-destructive/10"
-              onClick={clearTodoList}
-            >
-              Clear list
-            </Button>
-          </div>
-        </>
-      ) : (
-        <div className="text-center py-12 text-muted-foreground">
-          <div className="h-16 w-16 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
-            <ListTodo className="h-8 w-8 opacity-50" />
-          </div>
-          <p className="text-base font-medium">Your reading list is empty</p>
-          <p className="text-sm mt-1 mb-6">
-            Add documents you want to read later
-          </p>
-          <Button
-            className="bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20"
-            onClick={() => setShowAddTodoModal(true)}
+      {/* Bottom section - Challenges and Progress */}
+      <Card className="p-4 border-primary/10">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-sm font-medium flex items-center">
+            <Flame className="mr-2 h-4 w-4 text-primary" />
+            Daily Challenge
+          </h3>
+          <Badge
+            variant="secondary"
+            className="bg-primary/10 text-primary border-none"
           >
-            <Plus className="h-3.5 w-3.5 mr-1.5" /> Add document
+            +50 XP
+          </Badge>
+        </div>
+
+        <div className="flex items-center justify-between p-3 rounded-lg bg-secondary/5 border border-secondary/10">
+          <div className="flex items-center gap-3">
+            <div className="flex-shrink-0 h-10 w-10 rounded-full bg-secondary/20 flex items-center justify-center">
+              <BookMarked className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p className="font-medium text-sm">Read 3 documents today</p>
+              <div className="flex items-center mt-1">
+                <Progress
+                  value={Math.min(
+                    (readingHistory.filter((item) => {
+                      const today = new Date().setHours(0, 0, 0, 0);
+                      return (
+                        new Date(item.lastReadAt).setHours(0, 0, 0, 0) === today
+                      );
+                    }).length /
+                      3) *
+                      100,
+                    100
+                  )}
+                  className="h-1.5 w-32"
+                />
+                <span className="ml-2 text-xs text-muted-foreground">
+                  {
+                    readingHistory.filter((item) => {
+                      const today = new Date().setHours(0, 0, 0, 0);
+                      return (
+                        new Date(item.lastReadAt).setHours(0, 0, 0, 0) === today
+                      );
+                    }).length
+                  }{" "}
+                  / 3
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8 text-xs"
+            onClick={() => {
+              // This would navigate to featured documents or recommendations
+            }}
+          >
+            Start Reading
           </Button>
         </div>
-      )}
+      </Card>
     </div>
   );
 };
 
-export default Overview;
+export default EnhancedOverview;
