@@ -1,0 +1,77 @@
+import React, { memo } from "react";
+import { Flame, BookMarked } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { useTheme } from "@/components/theme/context/ThemeContext";
+
+interface DailyChallengeProps {
+  todayReadsCount: number;
+}
+
+const DailyChallenge: React.FC<DailyChallengeProps> = memo(
+  ({ todayReadsCount }) => {
+    const { currentTheme } = useTheme();
+    const progressPercentage = Math.min((todayReadsCount / 3) * 100, 100);
+
+    return (
+      <Card className="p-4 border-primary/10 hover:border-primary/30 transition-colors relative overflow-hidden">
+        {/* Decorative background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-30"></div>
+
+        <div className="relative">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-sm font-medium flex items-center">
+              <Flame className="mr-2 h-4 w-4 text-primary" />
+              Daily Challenge
+            </h3>
+            <Badge
+              variant="secondary"
+              className="bg-primary/10 text-primary border-none"
+            >
+              +50 XP
+            </Badge>
+          </div>
+
+          <div className="flex items-center justify-between p-3 rounded-lg bg-primary/5 border border-primary/10 hover:bg-primary/10 hover:border-primary/20 transition-all">
+            <div className="flex items-center gap-3">
+              <div className="flex-shrink-0 h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
+                <BookMarked className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <p className="font-medium text-sm">Read 3 documents today</p>
+                <div className="flex items-center mt-1.5">
+                  <Progress
+                    value={progressPercentage}
+                    className="h-1.5 w-32"
+                    style={{
+                      background: `${currentTheme.background}40`,
+                    }}
+                  />
+                  <span className="ml-2 text-xs text-muted-foreground">
+                    {todayReadsCount}/3
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <Button
+              variant="outline"
+              size="sm"
+              className={`transition-colors ${
+                todayReadsCount >= 3
+                  ? "bg-primary/20 text-primary hover:bg-primary/30"
+                  : "text-muted-foreground bg-background/80"
+              }`}
+            >
+              {todayReadsCount >= 3 ? "Claim Reward" : "In Progress"}
+            </Button>
+          </div>
+        </div>
+      </Card>
+    );
+  }
+);
+
+export default DailyChallenge;
