@@ -11,11 +11,15 @@ import {
   FileText,
   ListTodo,
   Activity,
+  BookCopy,
+  Brain,
+  Trophy,
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useTheme } from "@/components/theme/context/ThemeContext";
 import { ReadingHistoryItem, ReadingTodoItem } from "@/components/home/types";
 import { FileMetadata } from "@/utils/MarkdownLoader";
 import { ReadingAnalyticsService } from "@/utils/ReadingAnalyticsService";
@@ -27,7 +31,7 @@ import {
   BarChart,
   Bar,
   XAxis,
-  Tooltip,
+  Tooltip as RechartsTooltip,
 } from "recharts";
 
 interface EnhancedOverviewProps {
@@ -36,7 +40,6 @@ interface EnhancedOverviewProps {
   availableDocuments: FileMetadata[];
   handleSelectDocument: (path: string, title: string) => void;
   toggleTodoCompletion: (id: string) => void;
-  removeFromTodoList: (id: string) => void;
   formatDate: (timestamp: number) => string;
   setShowAddTodoModal: () => void;
 }
@@ -50,6 +53,8 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
   formatDate,
   setShowAddTodoModal,
 }) => {
+  const { currentTheme } = useTheme();
+
   // Reading stats from analytics service
   const [stats, setStats] = useState(() =>
     ReadingAnalyticsService.getReadingStats()
@@ -63,8 +68,18 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
   >([]);
   const [mostReadCategory, setMostReadCategory] = useState<string>("None yet");
 
-  // Colors for charts
-  const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#0088fe"];
+  // Generate dynamic chart colors based on theme
+  const generateChartColors = () => {
+    return [
+      currentTheme.primary,
+      `${currentTheme.primary}DD`,
+      `${currentTheme.primary}BB`,
+      `${currentTheme.primary}99`,
+      `${currentTheme.primary}77`,
+    ];
+  };
+
+  const COLORS = generateChartColors();
 
   useEffect(() => {
     // Update stats when history or todo list changes
@@ -143,7 +158,7 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
 
       setFeaturedDocs(recommended);
     }
-  }, [readingHistory, todoList, availableDocuments]);
+  }, [readingHistory, todoList, availableDocuments, currentTheme]);
 
   // Format reading time
   const formatReadingTime = (minutes: number) => {
@@ -183,50 +198,105 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
 
   // Calculate completion percentage
   const completionPercentage = Math.round(
-    (readingHistory.length / availableDocuments.length) * 100
+    (readingHistory.length / Math.max(availableDocuments.length, 1)) * 100
   );
 
   return (
     <div className="space-y-6">
-      {/* Top stats row */}
+      {/* Top stats cards with visual improvements */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {/* Reading Progress */}
-        <Card className="p-4 border-primary/10 flex flex-col">
-          <div className="text-xs text-muted-foreground">Overall Progress</div>
-          <div className="flex items-baseline mt-2 mb-1">
+        <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
+          {/* Decorative accent */}
+          <div
+            className="absolute top-0 right-0 w-20 h-20 rounded-bl-full opacity-5 group-hover:opacity-10 transition-opacity"
+            style={{
+              background: `linear-gradient(135deg, ${currentTheme.primary}, transparent)`,
+            }}
+          ></div>
+
+          <div className="flex items-center mb-2">
+            <div className="mr-2 p-1.5 rounded-md bg-primary/10">
+              <BookCopy className="h-4 w-4 text-primary" />
+            </div>
+            <div className="text-xs text-muted-foreground">
+              Overall Progress
+            </div>
+          </div>
+
+          <div className="flex items-baseline mb-1">
             <span className="text-2xl font-bold">{completionPercentage}%</span>
             <span className="text-muted-foreground text-xs ml-1">complete</span>
           </div>
-          <Progress value={completionPercentage} className="h-1.5" />
-          <div className="flex justify-between mt-2 text-xs text-muted-foreground">
+
+          <Progress
+            value={completionPercentage}
+            className="h-1.5 mb-2"
+            style={{
+              background: `${currentTheme.secondary}`,
+              overflow: "hidden",
+            }}
+          />
+
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>{readingHistory.length} read</span>
             <span>{unreadDocs} left</span>
           </div>
         </Card>
 
         {/* Reading Streak */}
-        <Card className="p-4 border-primary/10 flex flex-col">
-          <div className="text-xs text-muted-foreground">Current Streak</div>
-          <div className="flex items-center mt-2">
+        <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
+          {/* Decorative accent */}
+          <div
+            className="absolute top-0 right-0 w-20 h-20 rounded-bl-full opacity-5 group-hover:opacity-10 transition-opacity"
+            style={{
+              background: `linear-gradient(135deg, ${currentTheme.primary}, transparent)`,
+            }}
+          ></div>
+
+          <div className="flex items-center mb-2">
+            <div className="mr-2 p-1.5 rounded-md bg-primary/10">
+              <Flame className="h-4 w-4 text-primary" />
+            </div>
+            <div className="text-xs text-muted-foreground">Current Streak</div>
+          </div>
+
+          <div className="flex items-center mb-3">
             <span className="text-2xl font-bold">{stats.currentStreak}</span>
             <span className="text-xl ml-1">{streakEmoji}</span>
             <span className="text-muted-foreground text-xs ml-1">days</span>
           </div>
-          <div className="mt-auto pt-2 text-xs text-muted-foreground flex justify-between">
+
+          <div className="text-xs text-muted-foreground flex justify-between">
             <span>Best: {stats.longestStreak} days</span>
             {stats.currentStreak > 0 && <span>Keep it up!</span>}
           </div>
         </Card>
 
         {/* Reading Time */}
-        <Card className="p-4 border-primary/10 flex flex-col">
-          <div className="text-xs text-muted-foreground">Total Reading</div>
-          <div className="flex mt-2 mb-1">
+        <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
+          {/* Decorative accent */}
+          <div
+            className="absolute top-0 right-0 w-20 h-20 rounded-bl-full opacity-5 group-hover:opacity-10 transition-opacity"
+            style={{
+              background: `linear-gradient(135deg, ${currentTheme.primary}, transparent)`,
+            }}
+          ></div>
+
+          <div className="flex items-center mb-2">
+            <div className="mr-2 p-1.5 rounded-md bg-primary/10">
+              <Clock className="h-4 w-4 text-primary" />
+            </div>
+            <div className="text-xs text-muted-foreground">Total Reading</div>
+          </div>
+
+          <div className="flex mb-3">
             <span className="text-2xl font-bold">
               {formatReadingTime(stats.totalReadingTime)}
             </span>
           </div>
-          <div className="text-xs text-muted-foreground mt-auto pt-2 flex justify-between">
+
+          <div className="text-xs text-muted-foreground flex justify-between">
             <span>~{formatNumber(stats.estimatedWordsRead)} words</span>
             <span>
               Today: {formatReadingTime(stats.lastSessionDuration || 0)}
@@ -235,16 +305,37 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
         </Card>
 
         {/* Next Milestone */}
-        <Card className="p-4 border-primary/10 flex flex-col">
-          <div className="text-xs text-muted-foreground">Next Milestone</div>
-          <div className="flex items-baseline mt-2 mb-1">
-            <span className="text-2xl font-bold">{nextMilestone.target}</span>
-            <span className="text-muted-foreground text-xs ml-1">
-              documents
-            </span>
+        <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
+          {/* Decorative accent */}
+          <div
+            className="absolute top-0 right-0 w-20 h-20 rounded-bl-full opacity-5 group-hover:opacity-10 transition-opacity"
+            style={{
+              background: `linear-gradient(135deg, ${currentTheme.primary}, transparent)`,
+            }}
+          ></div>
+
+          <div className="flex items-center mb-2">
+            <div className="mr-2 p-1.5 rounded-md bg-primary/10">
+              <Trophy className="h-4 w-4 text-primary" />
+            </div>
+            <div className="text-xs text-muted-foreground">Next Milestone</div>
           </div>
-          <Progress value={milestoneProgress} className="h-1.5" />
-          <div className="flex justify-between mt-2 text-xs text-muted-foreground">
+
+          <div className="flex items-baseline mb-1">
+            <span className="text-2xl font-bold">{nextMilestone.target}</span>
+            <span className="text-muted-foreground text-xs ml-1">docs</span>
+          </div>
+
+          <Progress
+            value={milestoneProgress}
+            className="h-1.5 mb-2"
+            style={{
+              background: `${currentTheme.secondary}`,
+              overflow: "hidden",
+            }}
+          />
+
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>
               {nextMilestone.progress} / {nextMilestone.target}
             </span>
@@ -264,116 +355,159 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
 
           <div className="grid grid-cols-2 gap-4">
             {/* Category breakdown */}
-            <Card className="p-4 border-primary/10">
-              <div className="text-xs text-muted-foreground mb-2">
-                Categories
-              </div>
-              {categoryData.length > 0 ? (
-                <div className="h-36 w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={categoryData}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={25}
-                        outerRadius={45}
-                        paddingAngle={5}
-                        dataKey="value"
-                      >
-                        {categoryData.map((entry, index) => (
-                          <Cell
-                            key={`cell-${entry.name}`}
-                            fill={COLORS[index % COLORS.length]}
-                          />
-                        ))}
-                      </Pie>
-                      <Tooltip
-                        formatter={(value, name) => [`${value} docs`, name]}
-                      />
-                    </PieChart>
-                  </ResponsiveContainer>
+            <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-30"></div>
+
+              <div className="relative">
+                <div className="text-xs text-muted-foreground mb-2 flex items-center">
+                  <Brain className="h-3.5 w-3.5 mr-1.5 text-primary/70" />
+                  Categories
                 </div>
-              ) : (
-                <div className="h-36 flex items-center justify-center text-center">
-                  <div className="text-muted-foreground text-xs">
-                    <FileText className="h-8 w-8 mx-auto mb-2 opacity-30" />
-                    <p>
-                      Read more documents
-                      <br />
-                      to see patterns
-                    </p>
+
+                {categoryData.length > 0 ? (
+                  <div className="h-36 w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={categoryData}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={25}
+                          outerRadius={45}
+                          paddingAngle={5}
+                          dataKey="value"
+                          stroke="transparent"
+                        >
+                          {categoryData.map((entry, index) => (
+                            <Cell
+                              key={`cell-${entry.name}`}
+                              fill={COLORS[index % COLORS.length]}
+                            />
+                          ))}
+                        </Pie>
+                        <RechartsTooltip
+                          formatter={(value, name) => [`${value} docs`, name]}
+                          contentStyle={{
+                            background: currentTheme.cardBg,
+                            border: `1px solid ${currentTheme.border}`,
+                            borderRadius: "4px",
+                            color: currentTheme.foreground,
+                          }}
+                        />
+                      </PieChart>
+                    </ResponsiveContainer>
                   </div>
+                ) : (
+                  <div className="h-36 flex items-center justify-center text-center">
+                    <div className="text-muted-foreground text-xs">
+                      <FileText className="h-8 w-8 mx-auto mb-2 opacity-30" />
+                      <p>
+                        Read more documents
+                        <br />
+                        to see patterns
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <div className="text-xs text-center text-muted-foreground mt-1">
+                  Most read:{" "}
+                  <span className="font-medium text-primary/90">
+                    {mostReadCategory}
+                  </span>
                 </div>
-              )}
-              <div className="text-xs text-center text-muted-foreground mt-1">
-                Most read:{" "}
-                <span className="font-medium">{mostReadCategory}</span>
               </div>
             </Card>
 
             {/* Weekly pattern */}
-            <Card className="p-4 border-primary/10">
-              <div className="text-xs text-muted-foreground mb-2">
-                Weekly Pattern
-              </div>
-              {weekdayData.some((day) => day.count > 0) ? (
-                <div className="h-36 w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={weekdayData}>
-                      <XAxis
-                        dataKey="name"
-                        axisLine={false}
-                        tickLine={false}
-                        fontSize={10}
-                      />
-                      <Tooltip
-                        formatter={(value) => [`${value} docs`, "Read"]}
-                      />
-                      <Bar
-                        dataKey="count"
-                        fill="#8884d8"
-                        radius={[4, 4, 0, 0]}
-                      />
-                    </BarChart>
-                  </ResponsiveContainer>
+            <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-30"></div>
+
+              <div className="relative">
+                <div className="text-xs text-muted-foreground mb-2 flex items-center">
+                  <Calendar className="h-3.5 w-3.5 mr-1.5 text-primary/70" />
+                  Weekly Pattern
                 </div>
-              ) : (
-                <div className="h-36 flex items-center justify-center text-center">
-                  <div className="text-muted-foreground text-xs">
-                    <Calendar className="h-8 w-8 mx-auto mb-2 opacity-30" />
-                    <p>
-                      Read more to see
-                      <br />
-                      your weekly patterns
-                    </p>
-                  </div>
-                </div>
-              )}
-              <div className="text-xs text-center text-muted-foreground mt-1">
+
                 {weekdayData.some((day) => day.count > 0) ? (
-                  <span>
-                    Best day:{" "}
-                    <span className="font-medium">
-                      {
-                        weekdayData.reduce((prev, current) =>
-                          prev.count > current.count ? prev : current
-                        ).name
-                      }
-                    </span>
-                  </span>
+                  <div className="h-36 w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart
+                        data={weekdayData}
+                        margin={{ top: 5, right: 5, bottom: 5, left: 5 }}
+                      >
+                        <XAxis
+                          dataKey="name"
+                          axisLine={false}
+                          tickLine={false}
+                          fontSize={10}
+                          tick={{ fill: currentTheme.foreground + "80" }}
+                        />
+                        <RechartsTooltip
+                          formatter={(value) => [`${value} docs`, "Read"]}
+                          contentStyle={{
+                            background: currentTheme.cardBg,
+                            border: `1px solid ${currentTheme.border}`,
+                            borderRadius: "4px",
+                            color: currentTheme.foreground,
+                          }}
+                        />
+                        <Bar
+                          dataKey="count"
+                          fill={currentTheme.primary}
+                          radius={[4, 4, 0, 0]}
+                        />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
                 ) : (
-                  <span>Track your reading patterns</span>
+                  <div className="h-36 flex items-center justify-center text-center">
+                    <div className="text-muted-foreground text-xs">
+                      <Calendar className="h-8 w-8 mx-auto mb-2 opacity-30" />
+                      <p>
+                        Read more to see
+                        <br />
+                        your weekly patterns
+                      </p>
+                    </div>
+                  </div>
                 )}
+
+                <div className="text-xs text-center text-muted-foreground mt-1">
+                  {weekdayData.some((day) => day.count > 0) ? (
+                    <span>
+                      Best day:{" "}
+                      <span className="font-medium text-primary/90">
+                        {
+                          weekdayData.reduce((prev, current) =>
+                            prev.count > current.count ? prev : current
+                          ).name
+                        }
+                      </span>
+                    </span>
+                  ) : (
+                    <span>Track your reading patterns</span>
+                  )}
+                </div>
               </div>
             </Card>
           </div>
 
           {/* Recent activity */}
-          <Card className="p-4 border-primary/10 bg-gradient-to-r from-secondary/5 to-transparent">
+          <Card className="p-4 border-primary/10 bg-gradient-to-r from-secondary/5 to-transparent hover:border-primary/30 transition-colors">
             <div className="flex justify-between items-center mb-3">
-              <h4 className="text-sm font-medium">Recent Activity</h4>
-              <Badge variant="outline" className="text-xs">
+              <h4 className="text-sm font-medium flex items-center">
+                <Clock className="h-4 w-4 mr-2 text-primary/70" />
+                Recent Activity
+              </h4>
+              <Badge
+                variant="outline"
+                className="text-xs"
+                style={{
+                  borderColor: currentTheme.primary + "30",
+                  color: currentTheme.primary,
+                }}
+              >
                 Latest
               </Badge>
             </div>
@@ -383,14 +517,14 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
                 {readingHistory.slice(0, 3).map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 p-2 rounded-md hover:bg-secondary/10 transition-colors cursor-pointer"
+                    className="flex items-center gap-3 p-2 rounded-md hover:bg-primary/5 transition-colors cursor-pointer group"
                     onClick={() => handleSelectDocument(item.path, item.title)}
                   >
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                       <BookOpen className="h-4 w-4 text-primary" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="text-sm font-medium truncate">
+                      <div className="text-sm font-medium truncate group-hover:text-primary transition-colors">
                         {item.title}
                       </div>
                       <div className="text-xs text-muted-foreground flex items-center">
@@ -398,7 +532,7 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
                         <span>{formatDate(item.lastReadAt)}</span>
                       </div>
                     </div>
-                    <ArrowUpRight className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 ))}
               </div>
@@ -417,11 +551,7 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-xs"
-                  onClick={() => {
-                    // This button would typically navigate to the history tab
-                    // You can add that functionality here
-                  }}
+                  className="text-xs text-primary hover:bg-primary/10"
                 >
                   View all activity
                 </Button>
@@ -438,53 +568,69 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
           </h3>
 
           {/* Featured/Recommended Docs */}
-          <Card className="p-4 border-primary/10">
-            <div className="flex justify-between items-center mb-3">
-              <h4 className="text-sm font-medium">Recommended for You</h4>
-              {mostReadCategory !== "None yet" && (
-                <Badge variant="secondary" className="text-xs">
-                  Based on {mostReadCategory}
-                </Badge>
+          <Card className="p-4 border-primary/10 hover:border-primary/30 transition-colors overflow-hidden relative">
+            {/* Decorative background element */}
+            <div className="absolute right-0 top-0 w-32 h-32 bg-gradient-radial from-primary/5 to-transparent rounded-full -mr-8 -mt-8 opacity-50"></div>
+
+            <div className="relative">
+              <div className="flex justify-between items-center mb-3">
+                <h4 className="text-sm font-medium flex items-center">
+                  <Star className="h-4 w-4 mr-2 text-primary/70" />
+                  Recommended for You
+                </h4>
+                {mostReadCategory !== "None yet" && (
+                  <Badge
+                    variant="secondary"
+                    className="text-xs bg-primary/10 border-none text-primary"
+                  >
+                    Based on {mostReadCategory}
+                  </Badge>
+                )}
+              </div>
+
+              {featuredDocs.length > 0 ? (
+                <div className="grid grid-cols-2 gap-2">
+                  {featuredDocs.map((doc, idx) => (
+                    <button
+                      key={idx}
+                      className="p-3 rounded-lg border border-border/40 hover:border-primary/20 hover:bg-primary/5 transition-all text-left flex flex-col"
+                      onClick={() => handleSelectDocument(doc.path, doc.title)}
+                    >
+                      <span className="text-sm font-medium line-clamp-2">
+                        {doc.title}
+                      </span>
+                      <div className="mt-auto pt-2 flex items-center text-xs text-muted-foreground">
+                        <FileText className="h-3 w-3 mr-1" />
+                        <span className="truncate">
+                          {doc.path.split("/")[0]}
+                        </span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-6 text-muted-foreground bg-card/50 rounded-lg">
+                  <Star className="h-10 w-10 mx-auto mb-2 opacity-30" />
+                  <p className="text-sm">No recommendations yet</p>
+                  <p className="text-xs mt-1">
+                    Read more to get personalized suggestions
+                  </p>
+                </div>
               )}
             </div>
-
-            {featuredDocs.length > 0 ? (
-              <div className="grid grid-cols-2 gap-2">
-                {featuredDocs.map((doc, idx) => (
-                  <button
-                    key={idx}
-                    className="p-3 rounded-lg border border-border/40 hover:border-primary/20 hover:bg-primary/5 transition-all text-left flex flex-col"
-                    onClick={() => handleSelectDocument(doc.path, doc.title)}
-                  >
-                    <span className="text-sm font-medium line-clamp-2">
-                      {doc.title}
-                    </span>
-                    <div className="mt-auto pt-2 flex items-center text-xs text-muted-foreground">
-                      <FileText className="h-3 w-3 mr-1" />
-                      <span className="truncate">{doc.path.split("/")[0]}</span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-6 text-muted-foreground">
-                <Star className="h-10 w-10 mx-auto mb-2 opacity-30" />
-                <p className="text-sm">No recommendations yet</p>
-                <p className="text-xs mt-1">
-                  Read more to get personalized suggestions
-                </p>
-              </div>
-            )}
           </Card>
 
           {/* Upcoming Tasks / Reading List Preview */}
-          <Card className="p-4 border-primary/10 bg-gradient-to-r from-secondary/5 to-transparent">
+          <Card className="p-4 border-primary/10 bg-gradient-to-r from-primary/5 to-transparent hover:border-primary/30 transition-colors">
             <div className="flex justify-between items-center mb-3">
-              <h4 className="text-sm font-medium">Upcoming Reads</h4>
+              <h4 className="text-sm font-medium flex items-center">
+                <BookMarked className="h-4 w-4 mr-2 text-primary/70" />
+                Upcoming Reads
+              </h4>
               <Button
                 variant="outline"
                 size="sm"
-                className="h-7 text-xs"
+                className="h-7 text-xs bg-primary/10 text-primary border-primary/20 hover:bg-primary/20"
                 onClick={setShowAddTodoModal}
               >
                 <ListTodo className="h-3 w-3 mr-1.5" />
@@ -500,10 +646,10 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
                   .map((item) => (
                     <div
                       key={item.id}
-                      className="flex items-start gap-3 p-2 rounded-md hover:bg-secondary/10 transition-colors"
+                      className="flex items-start gap-3 p-2 rounded-md hover:bg-primary/5 transition-colors group"
                     >
                       <button
-                        className="mt-1 flex-shrink-0 h-5 w-5 rounded-full border border-primary/30 hover:border-primary/50 transition-colors"
+                        className="mt-1 flex-shrink-0 h-5 w-5 rounded-full border border-primary/30 hover:border-primary/50 transition-colors group-hover:bg-primary/10"
                         onClick={() => toggleTodoCompletion(item.id)}
                         aria-label="Mark as read"
                       />
@@ -525,7 +671,7 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
                   ))}
               </div>
             ) : (
-              <div className="text-center py-6 text-muted-foreground">
+              <div className="text-center py-6 text-muted-foreground bg-card/50 rounded-lg">
                 <ListTodo className="h-10 w-10 mx-auto mb-2 opacity-30" />
                 <p className="text-sm">Your reading list is empty</p>
                 <p className="text-xs mt-1">
@@ -547,11 +693,7 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-xs"
-                  onClick={() => {
-                    // This button would typically navigate to the reading list tab
-                    // You can add that functionality here
-                  }}
+                  className="text-xs text-primary hover:bg-primary/10"
                 >
                   View all ({todoList.filter((item) => !item.completed).length})
                 </Button>
@@ -561,68 +703,71 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
         </div>
       </div>
 
-      {/* Bottom section - Challenges and Progress */}
-      <Card className="p-4 border-primary/10">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-sm font-medium flex items-center">
-            <Flame className="mr-2 h-4 w-4 text-primary" />
-            Daily Challenge
-          </h3>
-          <Badge
-            variant="secondary"
-            className="bg-primary/10 text-primary border-none"
-          >
-            +50 XP
-          </Badge>
-        </div>
+      {/* Bottom section - Daily Challenge */}
+      <Card className="p-4 border-primary/10 hover:border-primary/30 transition-colors relative overflow-hidden">
+        {/* Decorative background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-30"></div>
 
-        <div className="flex items-center justify-between p-3 rounded-lg bg-secondary/5 border border-secondary/10">
-          <div className="flex items-center gap-3">
-            <div className="flex-shrink-0 h-10 w-10 rounded-full bg-secondary/20 flex items-center justify-center">
-              <BookMarked className="h-5 w-5 text-primary" />
-            </div>
-            <div>
-              <p className="font-medium text-sm">Read 3 documents today</p>
-              <div className="flex items-center mt-1">
-                <Progress
-                  value={Math.min(
-                    (readingHistory.filter((item) => {
-                      const today = new Date().setHours(0, 0, 0, 0);
-                      return (
-                        new Date(item.lastReadAt).setHours(0, 0, 0, 0) === today
-                      );
-                    }).length /
-                      3) *
-                      100,
-                    100
-                  )}
-                  className="h-1.5 w-32"
-                />
-                <span className="ml-2 text-xs text-muted-foreground">
-                  {
-                    readingHistory.filter((item) => {
-                      const today = new Date().setHours(0, 0, 0, 0);
-                      return (
-                        new Date(item.lastReadAt).setHours(0, 0, 0, 0) === today
-                      );
-                    }).length
-                  }{" "}
-                  / 3
-                </span>
-              </div>
-            </div>
+        <div className="relative">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-sm font-medium flex items-center">
+              <Flame className="mr-2 h-4 w-4 text-primary" />
+              Daily Challenge
+            </h3>
+            <Badge
+              variant="secondary"
+              className="bg-primary/10 text-primary border-none"
+            >
+              +50 XP
+            </Badge>
           </div>
 
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-8 text-xs"
-            onClick={() => {
-              // This would navigate to featured documents or recommendations
-            }}
-          >
-            Start Reading
-          </Button>
+          <div className="flex items-center justify-between p-3 rounded-lg bg-primary/5 border border-primary/10 hover:bg-primary/10 hover:border-primary/20 transition-all">
+            <div className="flex items-center gap-3">
+              <div className="flex-shrink-0 h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
+                <BookMarked className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <p className="font-medium text-sm">Read 3 documents today</p>
+                <div className="flex items-center mt-1.5">
+                  <Progress
+                    value={Math.min(
+                      (readingHistory.filter((item) => {
+                        const today = new Date().setHours(0, 0, 0, 0);
+                        return (
+                          new Date(item.lastReadAt).setHours(0, 0, 0, 0) ===
+                          today
+                        );
+                      }).length /
+                        3) *
+                        100,
+                      100
+                    )}
+                    className="h-1.5 w-32"
+                    style={{
+                      background: `${currentTheme.background}40`,
+                    }}
+                  />
+                  <span className="ml-2 text-xs text-muted-foreground">
+                    {
+                      readingHistory.filter((item) => {
+                        const today = new Date().setHours(0, 0, 0, 0);
+                        return (
+                          new Date(item.lastReadAt).setHours(0, 0, 0, 0) ===
+                          today
+                        );
+                      }).length
+                    }{" "}
+                    / 3
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <Button className="h-8 text-xs bg-primary/90 hover:bg-primary text-primary-foreground">
+              Start Reading
+            </Button>
+          </div>
         </div>
       </Card>
     </div>
