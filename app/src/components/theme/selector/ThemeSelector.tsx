@@ -65,18 +65,14 @@ const EnhancedThemeSelector: React.FC<ThemeSelectorProps> = ({
         className="w-screen max-w-[280px] p-3 bg-card border-border"
       >
         <div className="mb-3">
-          <h4 className="text-sm font-medium text-foreground mb-1.5 px-1">
-            Appearance
-          </h4>
-
           <Tabs
             defaultValue="popular"
             onValueChange={setActiveTab}
             className="w-full"
           >
-            <TabsList className="w-full mb-2">
+            <TabsList className="w-full mb-2 font-cascadia-code">
               <TabsTrigger value="popular" className="flex-1 text-xs">
-                Popular
+                ❤️‍🔥 Popular
               </TabsTrigger>
               <TabsTrigger value="all" className="flex-1 text-xs">
                 All Themes
@@ -149,7 +145,7 @@ const ThemeOption: React.FC<ThemeOptionProps> = ({
         {/* Color preview */}
         <div className="flex items-center relative">
           <div
-            className="w-8 h-8 rounded-md border border-border overflow-hidden"
+            className="w-8 h-8 rounded-full border border-border overflow-hidden"
             style={{
               background: `linear-gradient(135deg, ${theme.background} 0%, ${theme.primary} 100%)`,
             }}
