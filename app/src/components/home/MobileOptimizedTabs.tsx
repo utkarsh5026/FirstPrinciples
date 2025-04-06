@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, Clock, ListTodo } from "lucide-react";
+import { LayoutDashboard, Clock, ListTodo, BarChart } from "lucide-react";
 
 interface MobileOptimizedTabsProps {
   activeTab: string;
@@ -8,11 +8,35 @@ interface MobileOptimizedTabsProps {
   className?: string;
 }
 
+const tabs = [
+  {
+    id: "overview",
+    label: "Overview",
+    icon: LayoutDashboard,
+  },
+  {
+    id: "history",
+    label: "History",
+    icon: Clock,
+  },
+  {
+    id: "todo",
+    label: "Reading",
+    icon: ListTodo,
+  },
+  {
+    id: "analytics",
+    label: "Analytics",
+    icon: BarChart,
+  },
+];
+
 /**
  * MobileOptimizedTabs Component
  *
  * A mobile-friendly navigation bar that appears at the bottom of the screen on small devices.
- * This component creates a tab bar with icons and short labels optimized for mobile screens.
+ * This component creates a tab bar with icons and short labels optimized for mobile screens,
+ * now including the Analytics tab.
  *
  * Features:
  * - Fixed position at bottom of screen on mobile devices
@@ -25,25 +49,6 @@ const MobileOptimizedTabs: React.FC<MobileOptimizedTabsProps> = ({
   setActiveTab,
   className,
 }) => {
-  // Tab configuration
-  const tabs = [
-    {
-      id: "overview",
-      label: "Overview",
-      icon: LayoutDashboard,
-    },
-    {
-      id: "history",
-      label: "History",
-      icon: Clock,
-    },
-    {
-      id: "todo",
-      label: "Reading",
-      icon: ListTodo,
-    },
-  ];
-
   return (
     <div
       className={cn(
