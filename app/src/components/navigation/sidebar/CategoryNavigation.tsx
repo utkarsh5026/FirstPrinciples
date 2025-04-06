@@ -15,6 +15,7 @@ import {
   ChevronRight,
   ChevronDown,
   FolderOpen,
+  LayoutDashboard,
 } from "lucide-react";
 import { Category, FileMetadata, MarkdownLoader } from "@/utils/MarkdownLoader";
 import { getIconForTech } from "@/components/navigation/sidebar/iconMap";
@@ -24,12 +25,14 @@ interface ResponsiveSidebarProps {
   onSelectFile: (filepath: string) => void;
   currentFilePath?: string;
   className?: string;
+  onNavigateHome: () => void;
 }
 
 const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   onSelectFile,
   currentFilePath,
   className,
+  onNavigateHome,
 }) => {
   // State variables
   const [categories, setCategories] = useState<Category[]>([]);
@@ -205,6 +208,12 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     setSidebarOpen(!sidebarOpen);
   };
 
+  // Handle Home navigation
+  const handleHomeClick = () => {
+    onNavigateHome();
+    setSidebarOpen(false);
+  };
+
   // Render a category item
   const renderCategoryItem = (category: Category, depth = 0) => {
     const isExpanded = expandedCategories.has(category.id);
@@ -363,6 +372,21 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
       {/* Main scrollable content */}
       <ScrollArea className="flex-1 px-2 overflow-auto">
         <div className="pb-4 pt-2">
+          {/* Home navigation button */}
+          <button
+            className={cn(
+              "flex items-center w-full rounded-md text-sm transition-colors py-2 px-2 mb-3",
+              "hover:bg-primary/10 hover:text-foreground",
+              "bg-primary/5 font-medium"
+            )}
+            onClick={handleHomeClick}
+          >
+            <div className="flex-shrink-0 mr-2 text-primary">
+              <LayoutDashboard size={16} />
+            </div>
+            <span>Home</span>
+          </button>
+
           {loading ? (
             // Loading skeleton
             <div className="space-y-2 px-2">

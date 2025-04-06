@@ -4,10 +4,12 @@ import ResponsiveSidebar from "@/components/navigation/sidebar/CategoryNavigatio
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import LoadingAnimation from "@/components/init/LoadingAnimation";
+import HomePage from "@/components/home/HomePage";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showHomePage, setShowHomePage] = useState(true);
   const mainContentRef = useRef<HTMLDivElement>(null);
   useTheme();
 
@@ -32,12 +34,7 @@ function App() {
 
           if (matchingFile) {
             setSelectedFile(matchingFile);
-          }
-        } else {
-          // Try to load available files and load the first one
-          const files = await MarkdownLoader.getAvailableFiles();
-          if (files.length > 0) {
-            setSelectedFile(files[0]);
+            setShowHomePage(false);
           }
         }
       } catch (err) {
@@ -55,6 +52,7 @@ function App() {
   // Handle file selection
   const handleSelectFile = (filepath: string) => {
     setSelectedFile(filepath);
+    setShowHomePage(false);
 
     // Update URL hash
     const slug = filepath.endsWith(".md") ? filepath.slice(0, -3) : filepath;
@@ -64,6 +62,13 @@ function App() {
     if (mainContentRef.current) {
       mainContentRef.current.scrollTop = 0;
     }
+  };
+
+  // Handle navigation to home
+  const navigateToHome = () => {
+    setSelectedFile(null);
+    setShowHomePage(true);
+    window.location.hash = "";
   };
 
   return (
@@ -83,6 +88,7 @@ function App() {
         <ResponsiveSidebar
           onSelectFile={handleSelectFile}
           currentFilePath={selectedFile ?? undefined}
+          onNavigateHome={navigateToHome}
         />
 
         {/* Main content area with padding for menu button */}
@@ -90,10 +96,14 @@ function App() {
           ref={mainContentRef}
           className="w-full flex-1 overflow-y-auto pt-16 md:pt-4 px-4 md:px-8"
         >
-          <CardDocumentViewer
-            selectedFile={selectedFile ?? ""}
-            setSelectedFile={setSelectedFile}
-          />
+          {showHomePage ? (
+            <HomePage onSelectFile={handleSelectFile} />
+          ) : (
+            <CardDocumentViewer
+              selectedFile={selectedFile ?? ""}
+              setSelectedFile={handleSelectFile}
+            />
+          )}
         </main>
       </div>
 
