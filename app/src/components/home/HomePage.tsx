@@ -17,7 +17,6 @@ import {
   LayoutDashboard,
   ListTodo,
   Sparkles,
-  Flame,
   BookOpenCheck,
   Bookmark,
   ArrowRightCircle,
@@ -53,7 +52,6 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
 
     handleSelectDocument,
     formatDate,
-    getTrendingDocuments,
   } = useDocumentManager(onSelectFile);
 
   // State for add todo modal
@@ -64,9 +62,6 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
 
   // Check if user is on mobile
   useMobile();
-
-  // Get trending documents
-  const trendingDocuments = getTrendingDocuments();
 
   // Handle adding document and closing modal
   const handleAddToTodoList = (path: string, title: string) => {
