@@ -5,11 +5,13 @@ import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import LoadingAnimation from "@/components/init/LoadingAnimation";
 import HomePage from "@/components/home/HomePage";
+import AppHeader from "@/components/layout/AppHeader"; // Import our new component
 
 function App() {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showHomePage, setShowHomePage] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // New state to control sidebar
   const mainContentRef = useRef<HTMLDivElement>(null);
   useTheme();
 
@@ -62,6 +64,9 @@ function App() {
     if (mainContentRef.current) {
       mainContentRef.current.scrollTop = 0;
     }
+
+    // Close sidebar on mobile when selecting a file
+    setSidebarOpen(false);
   };
 
   // Handle navigation to home
@@ -69,12 +74,29 @@ function App() {
     setSelectedFile(null);
     setShowHomePage(true);
     window.location.hash = "";
+
+    // Close sidebar on mobile when navigating home
+    setSidebarOpen(false);
+  };
+
+  // Toggle sidebar open/closed
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       {/* Show loading animation when app is initializing */}
       {isLoading && <LoadingAnimation />}
+
+      {/* App Header - New component */}
+      {!isLoading && (
+        <AppHeader
+          toggleSidebar={toggleSidebar}
+          onNavigateHome={navigateToHome}
+          className="transition-opacity duration-500"
+        />
+      )}
 
       {/* Main content with sidebar */}
       <div
@@ -84,17 +106,19 @@ function App() {
             : "opacity-100 transition-opacity duration-500"
         }`}
       >
-        {/* Responsive sidebar with category navigation */}
+        {/* Responsive sidebar with category navigation - now using sidebarOpen state */}
         <ResponsiveSidebar
           onSelectFile={handleSelectFile}
           currentFilePath={selectedFile ?? undefined}
           onNavigateHome={navigateToHome}
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
         />
 
-        {/* Main content area with padding for menu button */}
+        {/* Main content area with padding for header */}
         <main
           ref={mainContentRef}
-          className="w-full flex-1 overflow-y-auto pt-16 md:pt-4 px-4 md:px-8"
+          className="w-full flex-1 overflow-y-auto pt-16 md:pt-16 px-4 md:px-8"
         >
           {showHomePage ? (
             <HomePage onSelectFile={handleSelectFile} />

@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   Search,
-  Menu,
   X,
   BookOpen,
   Folder,
@@ -26,6 +25,8 @@ interface ResponsiveSidebarProps {
   currentFilePath?: string;
   className?: string;
   onNavigateHome: () => void;
+  sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
 }
 
 const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
@@ -33,6 +34,8 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   currentFilePath,
   className,
   onNavigateHome,
+  sidebarOpen,
+  setSidebarOpen,
 }) => {
   // State variables
   const [categories, setCategories] = useState<Category[]>([]);
@@ -47,7 +50,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     []
   );
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -201,11 +203,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     if (searchInputRef.current) {
       searchInputRef.current.focus();
     }
-  };
-
-  // Toggle sidebar open/close
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
   };
 
   // Handle Home navigation
@@ -491,17 +488,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   if (isMobile) {
     return (
       <div className={className}>
-        {/* Menu button in top-left corner */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="fixed left-4 top-4 h-10 w-10 z-30"
-          onClick={toggleSidebar}
-          aria-label="Open navigation"
-        >
-          <Menu className="h-5 w-5" />
-        </Button>
-
         {/* Full screen sheet for mobile */}
         <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
           <SheetContent
@@ -518,19 +504,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   // For desktop: render as a normal sidebar with toggle button
   return (
     <>
-      {/* Menu button in top-left corner (desktop) */}
-      {!sidebarOpen && (
-        <Button
-          variant="ghost"
-          size="icon"
-          className="fixed left-4 top-4 h-10 w-10 z-30 md:block"
-          onClick={toggleSidebar}
-          aria-label="Open navigation"
-        >
-          <Menu className="h-5 w-5" />
-        </Button>
-      )}
-
       {/* Desktop sidebar */}
       <div
         ref={sidebarRef}

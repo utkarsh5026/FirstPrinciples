@@ -1,0 +1,106 @@
+import { useState, useEffect } from "react";
+import { useTheme } from "@/components/theme/context/ThemeContext";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Menu, Home } from "lucide-react";
+import EnhancedThemeSelector from "@/components/theme/selector/ThemeSelector";
+
+interface AppHeaderProps {
+  toggleSidebar: () => void;
+  onNavigateHome: () => void;
+  className?: string;
+}
+
+/**
+ * AppHeader component provides a responsive navigation header with sidebar toggle
+ * and theme selector positioned at opposite ends of the screen.
+ *
+ * This component is optimized for both mobile and desktop views, with appropriate
+ * spacing and button sizes for different screen sizes.
+ *
+ * @param {Object} props - Component properties
+ * @param {Function} props.toggleSidebar - Function to toggle the sidebar visibility
+ * @param {Function} props.onNavigateHome - Function to navigate to the home page
+ * @param {string} props.className - Optional additional CSS classes
+ */
+const AppHeader: React.FC<AppHeaderProps> = ({
+  toggleSidebar,
+  onNavigateHome,
+  className,
+}) => {
+  const { currentTheme, setTheme } = useTheme();
+
+  // State to track scroll position and direction
+  const [scrollPos, setScrollPos] = useState(0);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+
+  // Handle scroll events
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const visible = scrollPos > currentScrollPos || currentScrollPos < 10;
+
+      setIsScrollingDown(scrollPos < currentScrollPos);
+      setScrollPos(currentScrollPos);
+      setIsVisible(visible);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [scrollPos]);
+
+  return (
+    <header
+      className={cn(
+        "fixed left-0 right-0 z-40 px-4 py-2 flex justify-between items-center",
+        "bg-background/80 backdrop-blur-sm border-b border-border/40",
+        "transition-all duration-300",
+        isVisible ? "top-0" : "-top-14", // Hide header when scrolling down on mobile
+        isScrollingDown ? "shadow-md" : "",
+        className
+      )}
+    >
+      {/* Left side - Menu button */}
+      <div className="flex items-center gap-2">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={toggleSidebar}
+          className="h-9 w-9 rounded-full"
+          aria-label="Toggle navigation"
+        >
+          <Menu className="h-5 w-5" />
+        </Button>
+
+        {/* Home button - visible on larger screens */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onNavigateHome}
+          className="hidden md:flex items-center h-9 gap-1.5"
+        >
+          <Home className="h-4 w-4" />
+          <span className="font-cascadia-code">Home</span>
+        </Button>
+      </div>
+
+      {/* App title - center on mobile, left on desktop */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 md:static md:translate-x-0 md:hidden">
+        <h1 className="text-sm font-medium text-foreground/80 font-cascadia-code">
+          First Principles
+        </h1>
+      </div>
+
+      {/* Right side - Theme selector */}
+      <div>
+        <EnhancedThemeSelector
+          currentTheme={currentTheme.name}
+          onThemeChange={setTheme}
+        />
+      </div>
+    </header>
+  );
+};
+
+export default AppHeader;
