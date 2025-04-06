@@ -30,12 +30,27 @@ const AppHeader: React.FC<AppHeaderProps> = ({
 }) => {
   const { currentTheme, setTheme } = useTheme();
 
-  // State to track scroll position and direction
+  /**
+   * State to track scroll position and direction
+   *
+   * @scrollPos - Stores the current scroll position of the window
+   * @isScrollingDown - Boolean flag indicating if the user is scrolling down
+   * @isVisible - Controls whether the header is visible or hidden
+   */
   const [scrollPos, setScrollPos] = useState(0);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
-  // Handle scroll events
+  /**
+   * Effect hook to handle scroll events
+   *
+   * This effect:
+   * 1. Tracks the current scroll position
+   * 2. Determines scroll direction (up or down)
+   * 3. Controls header visibility based on scroll behavior
+   * 4. Shows header when scrolling up or near the top of the page
+   * 5. Hides header when scrolling down and not at the top
+   */
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
@@ -102,5 +117,4 @@ const AppHeader: React.FC<AppHeaderProps> = ({
     </header>
   );
 };
-
 export default AppHeader;
