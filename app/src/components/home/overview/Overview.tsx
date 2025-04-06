@@ -283,7 +283,7 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
                       >
                         {categoryData.map((entry, index) => (
                           <Cell
-                            key={`cell-${entry}`}
+                            key={`cell-${entry.name}`}
                             fill={COLORS[index % COLORS.length]}
                           />
                         ))}
