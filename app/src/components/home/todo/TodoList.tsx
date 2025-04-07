@@ -57,9 +57,9 @@ const TodoList: React.FC<EnhancedReadingListProps> = ({
     : 0;
 
   const tabs = [
-    `All (${todoList.length})`,
-    `To Read (${pendingCount})`,
-    `Completed (${completedCount})`,
+    { key: "all", label: `All (${todoList.length})` },
+    { key: "pending", label: `To Read (${pendingCount})` },
+    { key: "completed", label: `Completed (${completedCount})` },
   ];
 
   return (
@@ -84,13 +84,13 @@ const TodoList: React.FC<EnhancedReadingListProps> = ({
         className="w-full"
       >
         <TabsList className="grid grid-cols-3 bg-secondary/10 p-1">
-          {tabs.map((tab) => (
+          {tabs.map(({ key, label }) => (
             <TabsTrigger
-              value={tab.split(" ")[0]}
+              value={key}
               className="rounded-md text-xs data-[state=active]:bg-primary/10 data-[state=active]:text-primary data-[state=active]:shadow-none"
-              key={tab}
+              key={key}
             >
-              {tab}
+              {label}
             </TabsTrigger>
           ))}
         </TabsList>
