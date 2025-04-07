@@ -375,7 +375,7 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({
   const hasData = data.length > 0 && data.some((item) => item.count > 0);
 
   return (
-    <Card className={cn("overflow-hidden", className)}>
+    <Card className={cn("overflow-hidden rounded-2xl", className)}>
       <div className="p-4 border-b border-border/50 bg-gradient-to-r from-primary/5 to-transparent flex justify-between items-center">
         <div>
           <h3 className="text-sm font-medium flex items-center">
