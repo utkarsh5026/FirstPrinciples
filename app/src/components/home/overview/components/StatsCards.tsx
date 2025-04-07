@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { BookCopy, Flame, Clock, Trophy } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
@@ -30,7 +30,6 @@ const StatsCards: React.FC<StatsCardsProps> = ({
   unreadDocs,
   completionPercentage,
 }) => {
-  const { currentTheme } = useTheme();
   const milestoneProgress =
     (nextMilestone.progress / nextMilestone.target) * 100;
   const streakEmoji =
@@ -39,141 +38,137 @@ const StatsCards: React.FC<StatsCardsProps> = ({
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {/* Reading Progress */}
-      <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
-        {/* Decorative accent */}
-        <div
-          className="absolute top-0 right-0 w-20 h-20 rounded-bl-full opacity-5 group-hover:opacity-10 transition-opacity"
-          style={{
-            background: `linear-gradient(135deg, ${currentTheme.primary}, transparent)`,
-          }}
-        ></div>
-
-        <div className="flex items-center mb-2">
-          <div className="mr-2 p-1.5 rounded-md bg-primary/10">
-            <BookCopy className="h-4 w-4 text-primary" />
+      <StatsCard
+        icon={<BookCopy className="h-4 w-4 text-primary" />}
+        title="Overall Progress"
+        mainContent={
+          <div className="flex items-baseline">
+            <span className="text-2xl font-bold">{completionPercentage}%</span>
+            <span className="text-muted-foreground text-xs ml-1">complete</span>
           </div>
-          <div className="text-xs text-muted-foreground">Overall Progress</div>
-        </div>
-
-        <div className="flex items-baseline mb-1">
-          <span className="text-2xl font-bold">{completionPercentage}%</span>
-          <span className="text-muted-foreground text-xs ml-1">complete</span>
-        </div>
-
-        <Progress
-          value={completionPercentage}
-          className="h-1.5 mb-2"
-          style={{
-            background: `${currentTheme.secondary}`,
-            overflow: "hidden",
-          }}
-        />
-
-        <div className="flex justify-between text-xs text-muted-foreground">
-          <span>{readingHistory.length} read</span>
-          <span>{unreadDocs} left</span>
-        </div>
-      </Card>
+        }
+        progressValue={completionPercentage}
+        footerContent={
+          <>
+            <span>{readingHistory.length} read</span>
+            <span>{unreadDocs} left</span>
+          </>
+        }
+      />
 
       {/* Reading Streak */}
-      <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
-        {/* Decorative accent */}
-        <div
-          className="absolute top-0 right-0 w-20 h-20 rounded-bl-full opacity-5 group-hover:opacity-10 transition-opacity"
-          style={{
-            background: `linear-gradient(135deg, ${currentTheme.primary}, transparent)`,
-          }}
-        ></div>
-
-        <div className="flex items-center mb-2">
-          <div className="mr-2 p-1.5 rounded-md bg-primary/10">
-            <Flame className="h-4 w-4 text-primary" />
+      <StatsCard
+        icon={<Flame className="h-4 w-4 text-primary" />}
+        title="Current Streak"
+        mainContent={
+          <div className="flex items-center mb-2">
+            <span className="text-2xl font-bold">{stats.currentStreak}</span>
+            <span className="text-xl ml-1">{streakEmoji}</span>
+            <span className="text-muted-foreground text-xs ml-1">days</span>
           </div>
-          <div className="text-xs text-muted-foreground">Current Streak</div>
-        </div>
-
-        <div className="flex items-center mb-3">
-          <span className="text-2xl font-bold">{stats.currentStreak}</span>
-          <span className="text-xl ml-1">{streakEmoji}</span>
-          <span className="text-muted-foreground text-xs ml-1">days</span>
-        </div>
-
-        <div className="text-xs text-muted-foreground flex justify-between">
-          <span>Best: {stats.longestStreak} days</span>
-          {stats.currentStreak > 0 && <span>Keep it up!</span>}
-        </div>
-      </Card>
+        }
+        footerContent={
+          <>
+            <span>Best: {stats.longestStreak} days</span>
+            {stats.currentStreak > 0 && <span>Keep it up!</span>}
+          </>
+        }
+      />
 
       {/* Reading Time */}
-      <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
-        {/* Decorative accent */}
-        <div
-          className="absolute top-0 right-0 w-20 h-20 rounded-bl-full opacity-5 group-hover:opacity-10 transition-opacity"
-          style={{
-            background: `linear-gradient(135deg, ${currentTheme.primary}, transparent)`,
-          }}
-        ></div>
-
-        <div className="flex items-center mb-2">
-          <div className="mr-2 p-1.5 rounded-md bg-primary/10">
-            <Clock className="h-4 w-4 text-primary" />
+      <StatsCard
+        icon={<Clock className="h-4 w-4 text-primary" />}
+        title="Total Reading"
+        mainContent={
+          <div className="flex mb-2">
+            <span className="text-2xl font-bold">
+              {formatReadingTime(stats.totalReadingTime)}
+            </span>
           </div>
-          <div className="text-xs text-muted-foreground">Total Reading</div>
-        </div>
-
-        <div className="flex mb-3">
-          <span className="text-2xl font-bold">
-            {formatReadingTime(stats.totalReadingTime)}
-          </span>
-        </div>
-
-        <div className="text-xs text-muted-foreground flex justify-between">
-          <span>~{formatNumber(stats.estimatedWordsRead)} words</span>
-          <span>
-            Today: {formatReadingTime(stats.lastSessionDuration || 0)}
-          </span>
-        </div>
-      </Card>
+        }
+        footerContent={
+          <>
+            <span>~{formatNumber(stats.estimatedWordsRead)} words</span>
+            <span>
+              Today: {formatReadingTime(stats.lastSessionDuration || 0)}
+            </span>
+          </>
+        }
+      />
 
       {/* Next Milestone */}
-      <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
-        {/* Decorative accent */}
-        <div
-          className="absolute top-0 right-0 w-20 h-20 rounded-bl-full opacity-5 group-hover:opacity-10 transition-opacity"
-          style={{
-            background: `linear-gradient(135deg, ${currentTheme.primary}, transparent)`,
-          }}
-        ></div>
-
-        <div className="flex items-center mb-2">
-          <div className="mr-2 p-1.5 rounded-md bg-primary/10">
-            <Trophy className="h-4 w-4 text-primary" />
+      <StatsCard
+        icon={<Trophy className="h-4 w-4 text-primary" />}
+        title="Next Milestone"
+        mainContent={
+          <div className="flex items-baseline">
+            <span className="text-2xl font-bold">{nextMilestone.target}</span>
+            <span className="text-muted-foreground text-xs ml-1">docs</span>
           </div>
-          <div className="text-xs text-muted-foreground">Next Milestone</div>
-        </div>
+        }
+        progressValue={milestoneProgress}
+        footerContent={
+          <>
+            <span>
+              {nextMilestone.progress} / {nextMilestone.target}
+            </span>
+            <span>{nextMilestone.target - nextMilestone.progress} to go</span>
+          </>
+        }
+      />
+    </div>
+  );
+};
 
-        <div className="flex items-baseline mb-1">
-          <span className="text-2xl font-bold">{nextMilestone.target}</span>
-          <span className="text-muted-foreground text-xs ml-1">docs</span>
-        </div>
+interface StatsCardProps {
+  icon: React.ReactNode;
+  title: string;
+  mainContent: ReactNode;
+  progressValue?: number;
+  footerContent: ReactNode;
+}
 
+const StatsCard: React.FC<StatsCardProps> = ({
+  icon,
+  title,
+  mainContent,
+  progressValue,
+  footerContent,
+}) => {
+  const { currentTheme } = useTheme();
+
+  return (
+    <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors rounded-3xl">
+      {/* Decorative accent */}
+      <div
+        className="absolute top-0 right-0 w-20 h-20 rounded-bl-full opacity-5 group-hover:opacity-10 transition-opacity"
+        style={{
+          background: `linear-gradient(135deg, ${currentTheme.primary}, transparent)`,
+        }}
+      ></div>
+
+      <div className="flex items-center mb-2">
+        <div className="mr-2 p-1.5 rounded-md bg-primary/10">{icon}</div>
+        <div className="text-xs text-muted-foreground">{title}</div>
+      </div>
+
+      <div className="mb-1">{mainContent}</div>
+
+      {progressValue !== undefined && (
         <Progress
-          value={milestoneProgress}
+          value={progressValue}
           className="h-1.5 mb-2"
           style={{
             background: `${currentTheme.secondary}`,
             overflow: "hidden",
           }}
         />
+      )}
 
-        <div className="flex justify-between text-xs text-muted-foreground">
-          <span>
-            {nextMilestone.progress} / {nextMilestone.target}
-          </span>
-          <span>{nextMilestone.target - nextMilestone.progress} to go</span>
-        </div>
-      </Card>
-    </div>
+      <div className="flex justify-between text-xs text-muted-foreground">
+        {footerContent}
+      </div>
+    </Card>
   );
 };
 
