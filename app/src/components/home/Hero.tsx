@@ -68,8 +68,15 @@ const EnhancedHero: React.FC<EnhancedHeroProps> = ({
     border: `1px solid ${currentTheme.primary}40`,
   };
 
+  const badges = [
+    { icon: <FileText />, label: "Documents read", value: completedDocs },
+    { icon: <CheckCircle2 />, label: "Completed", value: completedItems },
+    { icon: <Clock />, label: "To read", value: pendingReads },
+    { icon: <Sparkles />, label: "Day streak", value: streakCount },
+  ];
+
   return (
-    <div className="relative overflow-hidden rounded-xl md:rounded-8xl mb-6 md:mb-8">
+    <div className="relative overflow-hidden rounded-4xl md:rounded-8xl mb-6 md:mb-8">
       {/* Animated gradient background */}
       <div
         className="absolute inset-0 bg-gradient-to-br opacity-90 animate-gradient-slow"
@@ -119,7 +126,7 @@ const EnhancedHero: React.FC<EnhancedHeroProps> = ({
           </div>
 
           {/* Right side - Stats preview */}
-          <div className="bg-card/30 backdrop-blur-md rounded-lg border border-primary/10 p-3 md:p-4 w-full md:w-auto md:min-w-64">
+          <div className="bg-card/30 backdrop-blur-md rounded-4xl border border-primary/10 p-3 md:p-4 w-full md:w-auto md:min-w-64 ">
             <div className="flex items-center">
               <div
                 className="w-12 h-12 rounded-full flex-shrink-0 border-4 bg-background flex items-center justify-center relative"
@@ -148,43 +155,18 @@ const EnhancedHero: React.FC<EnhancedHeroProps> = ({
           </div>
         </div>
 
-        {/* Action buttons */}
-
         {/* Stats badges */}
         <div className="flex flex-wrap gap-2 mt-6">
-          <Badge
-            className="px-3 py-1.5 flex items-center backdrop-blur-sm"
-            style={badgeStyle}
-          >
-            <FileText className="h-3.5 w-3.5 mr-1.5" />
-            {totalDocs} Documents
-          </Badge>
-
-          <Badge
-            className="px-3 py-1.5 flex items-center backdrop-blur-sm"
-            style={badgeStyle}
-          >
-            <CheckCircle2 className="h-3.5 w-3.5 mr-1.5" />
-            {completedItems} Completed
-          </Badge>
-
-          <Badge
-            className="px-3 py-1.5 flex items-center backdrop-blur-sm"
-            style={badgeStyle}
-          >
-            <Clock className="h-3.5 w-3.5 mr-1.5" />
-            {pendingReads} To Read
-          </Badge>
-
-          {streakCount > 0 && (
+          {badges.map((badge) => (
             <Badge
-              className="px-3 py-1.5 flex items-center backdrop-blur-sm"
+              key={badge.label}
+              className="px-3 py-1.5 flex items-center backdrop-blur-sm rounded-2xl"
               style={badgeStyle}
             >
-              <Sparkles className="h-3.5 w-3.5 mr-1.5" />
-              {streakCount} Day Streak
+              {badge.icon}
+              {badge.value} {badge.label}
             </Badge>
-          )}
+          ))}
         </div>
       </div>
     </div>
