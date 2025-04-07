@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   BarChart3,
@@ -14,11 +14,36 @@ import Insights from "./components/Insights";
 import Achievements from "./components/Achievments";
 import Activity from "./components/Activity";
 import AnalyticsOverview from "./overview";
+import CategoryInsightTab from "./category/CategoryInsightsTab";
+import { SiDeepl } from "react-icons/si";
 
 interface AnalyticsPageProps {
   availableDocuments: FileMetadata[];
   onSelectDocument: (path: string, title: string) => void;
 }
+
+const tabs = [
+  {
+    title: "Overview",
+    icon: <BarChart3 className="h-3.5 w-3.5" />,
+  },
+  {
+    title: "Activity",
+    icon: <Calendar className="h-3.5 w-3.5" />,
+  },
+  {
+    title: "Achievements",
+    icon: <Trophy className="h-3.5 w-3.5" />,
+  },
+  {
+    title: "Insights",
+    icon: <PieChartIcon className="h-3.5 w-3.5" />,
+  },
+  {
+    title: "Deep",
+    icon: <SiDeepl className="h-3.5 w-3.5" />,
+  },
+];
 
 const AnalyticsPage: React.FC<AnalyticsPageProps> = ({
   availableDocuments,
@@ -135,18 +160,15 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({
 
   const monthlyReadingData = getMonthlyReadingData();
 
-  // Transform heatmap data for the component
-  const transformHeatmapData = () => {
+  const transformHeatmapData = useCallback(() => {
     return readingHeatmap.map((item) => ({
       date: item.date,
       count: item.count,
     }));
-  };
+  }, [readingHeatmap]);
 
   return (
     <div className="space-y-6">
-      {/* Stats Overview */}
-
       <AnalyticsHeader
         stats={stats}
         xpProgress={xpProgress}
@@ -159,36 +181,18 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({
 
       {/* Tabs Navigation */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="w-full justify-start mb-6">
-          <TabsTrigger
-            value="overview"
-            className="flex items-center gap-1 text-xs sm:text-sm"
-          >
-            <BarChart3 className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Overview</span>
-            <span className="sm:hidden">Stats</span>
-          </TabsTrigger>
-          <TabsTrigger
-            value="activity"
-            className="flex items-center gap-1 text-xs sm:text-sm"
-          >
-            <Calendar className="h-3.5 w-3.5" />
-            <span>Activity</span>
-          </TabsTrigger>
-          <TabsTrigger
-            value="achievements"
-            className="flex items-center gap-1 text-xs sm:text-sm"
-          >
-            <Trophy className="h-3.5 w-3.5" />
-            <span>Achievements</span>
-          </TabsTrigger>
-          <TabsTrigger
-            value="insights"
-            className="flex items-center gap-1 text-xs sm:text-sm"
-          >
-            <PieChartIcon className="h-3.5 w-3.5" />
-            <span>Insights</span>
-          </TabsTrigger>
+        <TabsList className="w-full justify-start mb-6 overflow-x-auto">
+          {tabs.map(({ title, icon }) => (
+            <TabsTrigger
+              key={title}
+              value={title.toLowerCase()}
+              className="flex items-center gap-1 text-xs sm:text-sm"
+            >
+              {icon}
+              <span className="hidden sm:inline">{title}</span>
+              <span className="sm:hidden">Stats</span>
+            </TabsTrigger>
+          ))}
         </TabsList>
       </Tabs>
 
@@ -248,6 +252,16 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({
           analyticsData={analyticsData}
           isMobile={isMobile}
           monthlyReadingData={monthlyReadingData}
+        />
+      )}
+
+      {/* Categories Tab */}
+      {activeTab === "deep" && (
+        <CategoryInsightTab
+          stats={stats}
+          readingHistory={readingHistory}
+          availableDocuments={availableDocuments}
+          onSelectDocument={onSelectDocument}
         />
       )}
     </div>
