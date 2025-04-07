@@ -15,7 +15,6 @@ import { FileMetadata, MarkdownLoader, Category } from "@/utils/MarkdownLoader";
 import { ReadingStats } from "@/utils/ReadingAnalyticsService";
 import useMobile from "@/hooks/useMobile";
 
-// Import our custom visualization components
 import RadarCategoryChart from "./RadarCategoryChart";
 import SankeyKnowledgeFlow from "./SankeyKnwoledgeFlow";
 import TimeFilteredHeatCalendar from "./TimeFilteredHeatCalender";
@@ -281,12 +280,10 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
             </div>
 
             {/* Knowledge Flow */}
-            {/* <SankeyKnowledgeFlow
+            <SankeyKnowledgeFlow
               readingHistory={readingHistory}
               categories={categories}
-              availableDocuments={availableDocuments}
-              onSelectItem={handleSelectItem}
-            /> */}
+            />
           </div>
         )}
 
@@ -326,7 +323,6 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
           <CategoryInsights
             readingHistory={readingHistory}
             availableDocuments={availableDocuments}
-            stats={stats}
             onSelectDocument={onSelectDocument}
           />
         )}

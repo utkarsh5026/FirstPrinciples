@@ -34,12 +34,10 @@ import {
   Treemap,
 } from "recharts";
 import { COLORS } from "../utils";
-import { ReadingStats } from "@/utils/ReadingAnalyticsService";
 
 interface CategoryInsightsProps {
   readingHistory: ReadingHistoryItem[];
   availableDocuments: FileMetadata[];
-  stats: ReadingStats;
   onSelectDocument: (path: string, title: string) => void;
 }
 
