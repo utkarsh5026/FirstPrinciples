@@ -221,7 +221,7 @@ const TodoList: React.FC<EnhancedReadingListProps> = ({
                         <Card
                           key={item.id}
                           className={cn(
-                            "relative overflow-hidden transition-all duration-200 hover:shadow-md",
+                            "relative overflow-hidden transition-all duration-200 hover:shadow-md rounded-2xl",
                             item.completed
                               ? "bg-primary/5 border-primary/10"
                               : "hover:border-primary/20 hover:bg-secondary/5"
@@ -320,7 +320,7 @@ const TodoList: React.FC<EnhancedReadingListProps> = ({
               <Button
                 variant="outline"
                 size="sm"
-                className="h-9 border-primary/20 text-primary bg-primary/5 hover:bg-primary/10"
+                className="h-9 border-primary/20 text-primary bg-primary/5 hover:bg-primary/10 rounded-2xl"
                 onClick={() => setShowAddTodoModal(true)}
               >
                 <PlusCircle className="h-4 w-4 mr-1.5" />
