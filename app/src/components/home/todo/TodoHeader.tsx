@@ -77,7 +77,7 @@ const TodoHeader: React.FC<TodoHeaderProps> = ({
             </div>
             <div>
               <h2 className="text-xl font-bold">Reading List</h2>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xs text-muted-foreground">
                 Track documents you want to read
               </p>
             </div>
