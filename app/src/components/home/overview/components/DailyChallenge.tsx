@@ -11,17 +11,29 @@ interface DailyChallengeProps {
   todayReadsCount: number;
 }
 
+/**
+ * DailyChallenge component displays the daily reading challenge progress and allows the user to claim a reward.
+ *
+ * @param {number} todayReadsCount - The number of documents read today.
+ * @returns {React.ReactElement} - The DailyChallenge component.
+ */
 const DailyChallenge: React.FC<DailyChallengeProps> = memo(
   ({ todayReadsCount }) => {
     const { currentTheme } = useTheme();
+    /**
+     * Calculates the progress percentage based on the number of documents read today.
+     *
+     * @returns {number} - The progress percentage.
+     */
     const progressPercentage = Math.min((todayReadsCount / 3) * 100, 100);
     const [showConfetti, setShowConfetti] = useState(false);
 
+    /**
+     * Handles the claim reward action by setting the confetti state to true for a short duration.
+     */
     const handleClaimReward = useCallback(() => {
-      if (todayReadsCount >= 0) {
+      if (todayReadsCount >= 3) {
         setShowConfetti(true);
-
-        // Stop confetti after 5 seconds
         setTimeout(() => {
           setShowConfetti(false);
         }, 5000);
