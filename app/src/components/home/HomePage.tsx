@@ -96,13 +96,6 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
 
   return (
     <div className="w-full max-w-4xl mx-auto font-cascadia-code pt-2 md:pt-6 pb-20 md:pb-6">
-      {/* Hero section with animated gradient */}
-      <Hero
-        availableDocuments={availableDocuments}
-        todoList={todoList}
-        readingHistory={readingHistory}
-      />
-
       {/* Desktop Tabs - Hidden on mobile */}
       <div className="hidden md:block">
         <div className="flex items-center justify-between mb-6">
@@ -229,15 +222,22 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
       {/* Tab Content - shared between mobile and desktop */}
       <div className="pt-2">
         {activeTab === "overview" && (
-          <Overview
-            todoList={todoList}
-            readingHistory={readingHistory}
-            availableDocuments={availableDocuments}
-            formatDate={formatDate}
-            toggleTodoCompletion={toggleTodoCompletion}
-            handleSelectDocument={handleSelectDocument}
-            setShowAddTodoModal={() => setShowFileDialog(true)}
-          />
+          <>
+            <Hero
+              availableDocuments={availableDocuments}
+              todoList={todoList}
+              readingHistory={readingHistory}
+            />
+            <Overview
+              todoList={todoList}
+              readingHistory={readingHistory}
+              availableDocuments={availableDocuments}
+              formatDate={formatDate}
+              toggleTodoCompletion={toggleTodoCompletion}
+              handleSelectDocument={handleSelectDocument}
+              setShowAddTodoModal={() => setShowFileDialog(true)}
+            />
+          </>
         )}
 
         {activeTab === "history" && (
