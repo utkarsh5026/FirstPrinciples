@@ -2,13 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import {
-  BrainCircuit,
-  Target,
-  Calendar,
-  FolderTree,
-  Sparkles,
-} from "lucide-react";
+import { Target, Calendar, FolderTree, Sparkles } from "lucide-react";
 import { PiFlowArrow } from "react-icons/pi";
 import { ReadingHistoryItem } from "@/hooks/useDocumentManager";
 import { FileMetadata, MarkdownLoader, Category } from "@/utils/MarkdownLoader";
@@ -18,7 +12,8 @@ import useMobile from "@/hooks/useMobile";
 import RadarCategoryChart from "./RadarCategoryChart";
 import SankeyKnowledgeFlow from "./SankeyKnwoledgeFlow";
 import TimeFilteredHeatCalendar from "./TimeFilteredHeatCalender";
-import CategoryInsights from "./CategoryInsights"; // The original component we built
+import CategoryInsights from "./insights/CategoryInsights"; // The original component we built
+import Introduction from "./Introduction";
 
 interface EnhancedCategoryAnalyticsProps {
   readingHistory: ReadingHistoryItem[];
@@ -151,63 +146,7 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
   return (
     <div className="space-y-6">
       {/* Introduction card */}
-      <Card className="p-4 border-primary/10 bg-gradient-to-r from-primary/5 to-transparent">
-        <div className="flex items-start gap-4">
-          <div className="p-2 bg-primary/10 rounded-xl">
-            <BrainCircuit className="h-8 w-8 text-primary" />
-          </div>
-
-          <div className="flex-1">
-            <h3 className="text-lg font-medium">
-              Enhanced Knowledge Analytics
-            </h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Advanced visualizations that reveal connections between categories
-              and documents, showing how your knowledge flows and grows over
-              time.
-            </p>
-
-            <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
-              <div className="bg-card p-2 rounded-lg border border-border">
-                <div className="text-xs text-muted-foreground">
-                  Categories Explored
-                </div>
-                <div className="text-xl font-bold mt-1">
-                  {summaryStat.exploredCategories}/{summaryStat.totalCategories}
-                </div>
-              </div>
-              <div className="bg-card p-2 rounded-lg border border-border">
-                <div className="text-xs text-muted-foreground">
-                  Coverage Score
-                </div>
-                <div className="text-xl font-bold mt-1">
-                  {summaryStat.coverageScore}%
-                </div>
-              </div>
-              <div className="bg-card p-2 rounded-lg border border-border">
-                <div className="text-xs text-muted-foreground">
-                  Balance Score
-                </div>
-                <div className="text-xl font-bold mt-1">
-                  {summaryStat.balanceScore}/100
-                </div>
-              </div>
-              <div
-                className={`bg-card p-2 rounded-lg border border-border ${
-                  isMobile ? "hidden md:block" : ""
-                }`}
-              >
-                <div className="text-xs text-muted-foreground">
-                  Documents Read
-                </div>
-                <div className="text-xl font-bold mt-1">
-                  {summaryStat.readDocuments}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Card>
+      <Introduction summaryStat={summaryStat} />
 
       {/* Visualization tabs */}
       <Tabs
