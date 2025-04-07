@@ -14,6 +14,19 @@ interface TodoItemProps {
   removeFromTodoList: (id: string) => void;
 }
 
+/**
+ * TodoItem component displays a list of todo items categorized by a specific category.
+ * Each item can be marked as completed, selected for viewing, or removed from the list.
+ *
+ * @param {Object} props - The properties for the TodoItem component.
+ * @param {string} props.category - The category name for the to-do items.
+ * @param {ReadingTodoItem[]} props.items - An array of todo items to display.
+ * @param {function} props.toggleTodoCompletion - Function to toggle the completion status of a todo item.
+ * @param {function} props.handleSelectDocument - Function to handle the selection of a document.
+ * @param {function} props.removeFromTodoList - Function to remove a todo item from the list.
+ *
+ * @returns {JSX.Element} The rendered TodoItem component.
+ */
 const TodoItem: React.FC<TodoItemProps> = ({
   category,
   items,
