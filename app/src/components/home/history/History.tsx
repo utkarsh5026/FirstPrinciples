@@ -10,17 +10,16 @@ import HistoryList from "./components/HistoryList";
 import HistoryTimeline from "./components/HistoryTimeline";
 import HistoryTrends from "./components/HistoryTrends";
 import EmptyHistory from "./components/EmptyHistory";
+import { formatDate } from "../utils";
 
 interface HistoryProps {
   readingHistory: ReadingHistoryItem[];
   handleSelectDocument: (path: string, title: string) => void;
-  formatDate: (timestamp: number) => string;
 }
 
 const History: React.FC<HistoryProps> = ({
   readingHistory,
   handleSelectDocument,
-  formatDate,
 }) => {
   const { currentTheme } = useTheme();
   const { isMobile } = useMobile();
