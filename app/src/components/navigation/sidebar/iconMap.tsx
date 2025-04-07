@@ -82,6 +82,7 @@ import {
   FiCloud,
   FiCpu,
   FiCode,
+  FiPackage,
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 
@@ -223,6 +224,7 @@ export const iconMap: Record<string, IconType> = {
   code: FiCode,
   folder: FiFolder,
   folders: FiFolderPlus,
+  design_principles: FiPackage,
 };
 
 /**
@@ -233,7 +235,7 @@ export const iconMap: Record<string, IconType> = {
 export const getIconForTech = (name?: string): IconType => {
   if (!name) return FiFolder;
 
-  const normalizedName = name.toLowerCase().trim();
+  const normalizedName = name.split(" ").join("_").toLowerCase().trim();
   return iconMap[normalizedName] || FiFolder;
 };
 
