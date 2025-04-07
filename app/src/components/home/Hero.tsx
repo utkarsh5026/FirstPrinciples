@@ -49,9 +49,9 @@ const Hero: React.FC<HeroProps> = ({
       const hour = new Date().getHours();
       let newGreeting = "";
 
-      if (hour < 12) newGreeting = "Good morning";
-      else if (hour < 17) newGreeting = "Good afternoon";
-      else newGreeting = "Good evening";
+      if (hour < 12) newGreeting = "Good morning, Sweetheart 💖";
+      else if (hour < 17) newGreeting = "Good afternoon, Sweetheart 💖";
+      else newGreeting = "Good evening, Sweetheart 💖";
 
       setGreeting(newGreeting);
       const timeString = new Date().toLocaleTimeString("en-US", {
