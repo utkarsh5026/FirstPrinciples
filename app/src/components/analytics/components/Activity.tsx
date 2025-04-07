@@ -24,7 +24,7 @@ const Activity = ({ analyticsData, stats, readingHistory }: ActivityProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {/* Reading Heatmap (Detailed) */}
-      <Card className="p-4 border-primary/10 md:col-span-2">
+      <Card className="p-4 border-primary/10 md:col-span-2 rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium">Reading Activity Calendar</h3>
           <Badge variant="outline" className="text-xs">
@@ -107,7 +107,7 @@ const Activity = ({ analyticsData, stats, readingHistory }: ActivityProps) => {
       </Card>
 
       {/* Reading Time by Hour */}
-      <Card className="p-4 border-primary/10">
+      <Card className="p-4 border-primary/10 rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium">Reading by Hour</h3>
           <Badge variant="outline" className="text-xs">
@@ -149,7 +149,7 @@ const Activity = ({ analyticsData, stats, readingHistory }: ActivityProps) => {
       </Card>
 
       {/* Weekly Reading Activity */}
-      <Card className="p-4 border-primary/10">
+      <Card className="p-4 border-primary/10 rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium">Weekly Pattern</h3>
           <Badge variant="outline" className="text-xs">
@@ -176,7 +176,7 @@ const Activity = ({ analyticsData, stats, readingHistory }: ActivityProps) => {
       </Card>
 
       {/* Streak Calendar */}
-      <Card className="p-4 border-primary/10 md:col-span-2">
+      <Card className="p-4 border-primary/10 md:col-span-2 rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium">Reading Streak</h3>
           <div className="flex items-center gap-2">
@@ -185,7 +185,7 @@ const Activity = ({ analyticsData, stats, readingHistory }: ActivityProps) => {
             </span>
             <Badge
               variant="secondary"
-              className="bg-primary/10 text-primary border-none"
+              className="bg-primary/10 text-primary border-none rounded-4xl"
             >
               Current
             </Badge>
