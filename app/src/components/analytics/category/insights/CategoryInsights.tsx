@@ -60,7 +60,13 @@ interface CategoryNode {
 }
 
 // Analytics view type
-type ViewType = "hierarchy" | "treemap" | "distribution";
+type ViewType = "hierarchy" | "treemap" | "distribution" | "pieChart";
+
+const tabs = [
+  { title: "Hierarchy", icon: <FolderTree className="mr-1" /> },
+  { title: "Treemap", icon: <BarChart className="mr-1" /> },
+  { title: "Distribution", icon: <Filter className="mr-1" /> },
+];
 
 const CategoryInsights: React.FC<CategoryInsightsProps> = ({
   readingHistory,
@@ -342,18 +348,16 @@ const CategoryInsights: React.FC<CategoryInsightsProps> = ({
             className="h-8"
           >
             <TabsList className="h-8 p-0.5">
-              <TabsTrigger value="hierarchy" className="h-7 text-xs px-2">
-                <FolderTree className="h-3.5 w-3.5 mr-1.5" />
-                <span className={isMobile ? "" : "inline"}>Hierarchy</span>
-              </TabsTrigger>
-              <TabsTrigger value="treemap" className="h-7 text-xs px-2">
-                <BarChart className="h-3.5 w-3.5 mr-1.5" />
-                <span className={isMobile ? "" : "inline"}>Treemap</span>
-              </TabsTrigger>
-              <TabsTrigger value="distribution" className="h-7 text-xs px-2">
-                <Filter className="h-3.5 w-3.5 mr-1.5" />
-                <span className={isMobile ? "" : "inline"}>Distribution</span>
-              </TabsTrigger>
+              {tabs.map(({ title, icon }) => (
+                <TabsTrigger
+                  key={title}
+                  value={title}
+                  className="h-7 text-xs px-2"
+                >
+                  {icon}
+                  <span className={isMobile ? "" : "inline"}>{title}</span>
+                </TabsTrigger>
+              ))}
             </TabsList>
           </Tabs>
         </div>
