@@ -355,7 +355,7 @@ const TodoList: React.FC<EnhancedReadingListProps> = ({
           </p>
 
           <Button
-            className="bg-primary/80 hover:bg-primary text-primary-foreground"
+            className="bg-primary/80 hover:bg-primary text-primary-foreground rounded-2xl"
             onClick={() => setShowAddTodoModal(true)}
           >
             <Plus className="h-4 w-4 mr-1.5" /> Add documents
