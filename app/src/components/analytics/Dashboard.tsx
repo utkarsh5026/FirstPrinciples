@@ -96,7 +96,9 @@ const Dashboard: React.FC<DashboardProps> = ({
               <TabsTrigger
                 key={tab}
                 value={tab}
-                className="rounded-4xl text-xs sm:text-sm"
+                className={`rounded-4xl text-xs ${
+                  activeTab === tab ? "bg-primary/10 text-primary" : ""
+                }`}
               >
                 {tab}
               </TabsTrigger>
