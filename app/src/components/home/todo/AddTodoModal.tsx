@@ -14,13 +14,13 @@ import {
   Square,
   ChevronRight,
   ChevronDown,
-  Folder,
   FolderOpen,
   FileText,
   Plus,
 } from "lucide-react";
 import { Category, FileMetadata } from "@/utils/MarkdownLoader";
 import { cn } from "@/lib/utils";
+import getIconForTech from "@/components/navigation/sidebar/iconMap";
 
 interface FileSelectionDialogProps {
   open: boolean;
@@ -185,6 +185,8 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
 
     if (!hasContent) return null;
 
+    const CategoryIcon = getIconForTech(category.name);
+
     return (
       <div key={category.id} className="mb-1">
         <div
@@ -224,7 +226,7 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
 
           {/* Category icon */}
           <div className="flex-shrink-0 mr-2 text-primary">
-            {isExpanded ? <FolderOpen size={16} /> : <Folder size={16} />}
+            {isExpanded ? <FolderOpen size={16} /> : <CategoryIcon size={16} />}
           </div>
 
           {/* Category name */}
