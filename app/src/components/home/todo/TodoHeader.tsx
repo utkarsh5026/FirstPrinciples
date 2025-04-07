@@ -12,6 +12,20 @@ interface TodoHeaderProps {
   todoListLength: number;
 }
 
+/**
+ * TodoHeader component displays the header section of the Todo List feature.
+ * It includes a button to add new items, statistics about the reading list, and a progress bar.
+ *
+ * @param {TodoHeaderProps} props - The properties of the TodoHeader component.
+ * @param {() => void} props.handleAddButtonClick - Function to handle the click event of the add button.
+ * @param {number} props.completedCount - The number of completed tasks.
+ * @param {number} props.completionPercentage - The percentage of tasks completed.
+ * @param {number} props.totalCount - The total number of tasks.
+ * @param {number} props.pendingCount - The number of pending tasks.
+ * @param {number} props.todoListLength - The length of the todo list.
+ *
+ * @returns {React.ReactElement} The TodoHeader component.
+ */
 const TodoHeader: React.FC<TodoHeaderProps> = ({
   handleAddButtonClick,
   completedCount,
@@ -117,6 +131,17 @@ interface StatCardProps {
   suffix?: string;
 }
 
+/**
+ * StatCard component displays a statistical information card with an icon, label, value, and optional suffix.
+ *
+ * @param {StatCardProps} props - The properties of the StatCard component.
+ * @param {string} props.label - The label of the statistical information.
+ * @param {(number|string)} props.value - The value of the statistical information.
+ * @param {React.ReactNode} props.icon - The icon to be displayed alongside the statistical information.
+ * @param {string} [props.suffix=""] - The suffix to be appended to the value.
+ *
+ * @returns {React.ReactElement} The StatCard component.
+ */
 const StatCard: React.FC<StatCardProps> = ({
   label,
   value,
@@ -124,16 +149,16 @@ const StatCard: React.FC<StatCardProps> = ({
   suffix = "",
 }) => (
   <Card className="p-3 sm:p-4 border-primary/10 hover:border-primary/30 transition-colors bg-secondary/5 rounded-2xl sm:rounded-2xl">
-    <div className="flex items-center justify-between gap-3">
-      <div className="flex-1 min-w-0">
-        <p className="text-xs text-muted-foreground mb-0.5 sm:mb-1">{label}</p>
+    <div className="flex flex-col sm:flex-row items-center sm:items-start sm:justify-between gap-2 sm:gap-3">
+      <div className="flex-shrink-0 h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-primary/10 flex items-center justify-center mb-1 sm:mb-0 sm:order-last">
+        {icon}
+      </div>
+      <div className="flex-1 min-w-0 text-center sm:text-left">
+        <p className="text-xs text-muted-foreground mb-0.5">{label}</p>
         <p className="text-xl sm:text-2xl font-bold truncate">
           {value}
           {suffix}
         </p>
-      </div>
-      <div className="flex-shrink-0 h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-primary/10 flex items-center justify-center">
-        {icon}
       </div>
     </div>
   </Card>
