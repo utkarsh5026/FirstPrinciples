@@ -34,13 +34,7 @@ import {
   SiGooglecloud,
   SiGit,
   SiGithub,
-  SiGitlab,
-  SiFigma,
-  SiAdobexd,
   SiLinux,
-  SiApple,
-  SiAndroid,
-  SiIos,
   SiTensorflow,
   SiPytorch,
   SiScikitlearn,
@@ -52,16 +46,7 @@ import {
   SiCss3,
   SiSass,
   SiTailwindcss,
-  SiBootstrap,
-  SiChakraui,
   SiGraphql,
-  SiApollographql,
-  SiFirebase,
-  SiSupabase,
-  SiVercel,
-  SiNetlify,
-  SiHeroku,
-  SiDigitalocean,
   SiMarkdown,
   SiJson,
   SiYaml,
@@ -70,7 +55,6 @@ import {
   SiHaskell,
   SiVim,
   SiJetbrains,
-  SiEclipseide,
 } from "react-icons/si";
 import {
   FiFolder,
@@ -151,19 +135,9 @@ export const iconMap: Record<string, IconType> = {
   // Version Control
   git: SiGit,
   github: SiGithub,
-  gitlab: SiGitlab,
-
-  // Design
-  figma: SiFigma,
-  "adobe xd": SiAdobexd,
-  xd: SiAdobexd,
 
   // Operating Systems
   linux: SiLinux,
-  macos: SiApple,
-  mac: SiApple,
-  android: SiAndroid,
-  ios: SiIos,
 
   // ML/AI
   tensorflow: SiTensorflow,
@@ -185,21 +159,9 @@ export const iconMap: Record<string, IconType> = {
   scss: SiSass,
   tailwind: SiTailwindcss,
   tailwindcss: SiTailwindcss,
-  bootstrap: SiBootstrap,
-  chakra: SiChakraui,
-  "chakra-ui": SiChakraui,
 
   // API and Backend as a Service
   graphql: SiGraphql,
-  apollo: SiApollographql,
-  firebase: SiFirebase,
-  supabase: SiSupabase,
-
-  // Hosting & Deployment
-  vercel: SiVercel,
-  netlify: SiNetlify,
-  heroku: SiHeroku,
-  digitalocean: SiDigitalocean,
 
   // Markup & Config
   markdown: SiMarkdown,
@@ -215,7 +177,6 @@ export const iconMap: Record<string, IconType> = {
   // IDEs & Editors
   vim: SiVim,
   jetbrains: SiJetbrains,
-  eclipse: SiEclipseide,
 
   // Default fallbacks
   file: FiFile,
