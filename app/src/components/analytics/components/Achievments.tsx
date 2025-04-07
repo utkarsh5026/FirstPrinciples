@@ -43,7 +43,7 @@ const Achievements: React.FC<AchievementsProps> = ({
   return (
     <div className="space-y-6">
       {/* XP and Level Card */}
-      <Card className="p-4 border-primary/10 bg-gradient-to-r from-primary/10 to-transparent overflow-hidden relative">
+      <Card className="p-4 border-primary/10 bg-gradient-to-r from-primary/10 to-transparent overflow-hidden relative rounded-2xl">
         <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
           <div className="relative">
             <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-primary flex items-center justify-center bg-background">
@@ -89,7 +89,7 @@ const Achievements: React.FC<AchievementsProps> = ({
       {/* Achievements */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Achievements in progress */}
-        <Card className="p-4 border-primary/10">
+        <Card className="p-4 border-primary/10 rounded-2xl">
           <div className="flex justify-between items-center mb-3">
             <h4 className="text-sm font-medium flex items-center">
               <Medal className="h-4 w-4 mr-2 text-primary" />
@@ -104,7 +104,7 @@ const Achievements: React.FC<AchievementsProps> = ({
             {activeAchievements.map((achievement) => (
               <div
                 key={achievement.id}
-                className="p-3 rounded-lg border border-primary/10 bg-secondary/5"
+                className="p-3 rounded-2xl border border-primary/10 bg-secondary/5"
               >
                 <div className="flex items-start gap-3">
                   <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -150,7 +150,7 @@ const Achievements: React.FC<AchievementsProps> = ({
         </Card>
 
         {/* Unlocked Achievements */}
-        <Card className="p-4 border-primary/10">
+        <Card className="p-4 border-primary/10 rounded-2xl">
           <div className="flex justify-between items-center mb-3">
             <h4 className="text-sm font-medium flex items-center">
               <Trophy className="h-4 w-4 mr-2 text-primary" />
@@ -165,12 +165,12 @@ const Achievements: React.FC<AchievementsProps> = ({
           <div className="space-y-3">
             {achievements
               .filter((achievement) => achievement.unlockedAt !== null)
-              .sort((a, b) => (b.unlockedAt || 0) - (a.unlockedAt || 0))
+              .sort((a, b) => (b.unlockedAt ?? 0) - (a.unlockedAt ?? 0))
               .slice(0, 5)
               .map((achievement) => (
                 <div
                   key={achievement.id}
-                  className="p-3 rounded-lg border border-primary/10 bg-primary/5"
+                  className="p-3 rounded-2xl border border-primary/10 bg-primary/5"
                 >
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
@@ -219,7 +219,7 @@ const Achievements: React.FC<AchievementsProps> = ({
       </div>
 
       {/* All Achievements */}
-      <Card className="p-4 border-primary/10">
+      <Card className="p-4 border-primary/10 rounded-2xl">
         <div className="flex justify-between items-center mb-4">
           <h4 className="text-sm font-medium flex items-center">
             <ListTodo className="h-4 w-4 mr-2 text-primary" />
@@ -247,7 +247,7 @@ const Achievements: React.FC<AchievementsProps> = ({
               <div
                 key={achievement.id}
                 className={cn(
-                  "p-3 rounded-lg border",
+                  "p-3 rounded-2xl border",
                   isUnlocked
                     ? "border-primary/20 bg-primary/5"
                     : "border-border/50 bg-secondary/5"
