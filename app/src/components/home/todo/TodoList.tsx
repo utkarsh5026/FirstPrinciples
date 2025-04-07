@@ -17,6 +17,25 @@ interface EnhancedReadingListProps {
   setShowAddTodoModal: (show: boolean) => void;
 }
 
+type Tab = "all" | "pending" | "completed";
+
+/**
+ * TodoList Component
+ *
+ * A component that displays a list of documents to read, organized by categories.
+ * It provides filtering capabilities through tabs (All, To Read, Completed) and
+ * displays statistics about the reading progress.
+ *
+ * @param {EnhancedReadingListProps} props - The properties for the TodoList component
+ * @param {ReadingTodoItem[]} props.todoList - Array of todo items to display
+ * @param {(id: string) => void} props.toggleTodoCompletion - Function to toggle completion status of a todo item
+ * @param {(path: string, title: string) => void} props.handleSelectDocument - Function to handle document selection
+ * @param {(id: string) => void} props.removeFromTodoList - Function to remove an item from the todo list
+ * @param {() => void} props.clearTodoList - Function to clear the entire todo list
+ * @param {(show: boolean) => void} props.setShowAddTodoModal - Function to control the visibility of the add todo modal
+ *
+ * @returns {React.ReactElement} The TodoList component
+ */
 const TodoList: React.FC<EnhancedReadingListProps> = ({
   todoList,
   toggleTodoCompletion,
@@ -25,29 +44,41 @@ const TodoList: React.FC<EnhancedReadingListProps> = ({
   clearTodoList,
   setShowAddTodoModal,
 }) => {
-  const [activeTab, setActiveTab] = useState<"all" | "pending" | "completed">(
-    "all"
-  );
+  /**
+   * State to track the currently active tab filter
+   */
+  const [activeTab, setActiveTab] = useState<Tab>("all");
 
-  const filteredList = todoList.filter((item) => {
-    if (activeTab === "pending") return !item.completed;
-    if (activeTab === "completed") return item.completed;
-    return true;
-  });
+  /**
+   * Memoized computation of to-do items organized by categories
+   * Filters items based on the active tab and groups them by their top-level directory
+   *
+   * @returns {Record<string, ReadingTodoItem[]>} Object with category names as keys and arrays of todo items as values
+   */
+  const categories = useMemo(() => {
+    const filteredList = todoList.filter((item) => {
+      if (activeTab === "pending") return !item.completed;
+      if (activeTab === "completed") return item.completed;
+      return true;
+    });
 
-  // Group items by category for better organization
-  const categories: Record<string, ReadingTodoItem[]> = {};
+    const categories: Record<string, ReadingTodoItem[]> = {};
 
-  filteredList.forEach((item) => {
-    const category = item.path.split("/")[0] || "Uncategorized";
+    filteredList.forEach((item) => {
+      const category = item.path.split("/")[0] || "Uncategorized";
+      if (!categories[category]) categories[category] = [];
+      categories[category].push(item);
+    });
 
-    if (!categories[category]) {
-      categories[category] = [];
-    }
+    return categories;
+  }, [todoList, activeTab]);
 
-    categories[category].push(item);
-  });
-
+  /**
+   * Memoized computation of to-do list statistics
+   * Calculates counts of pending and completed items, total count, and completion percentage
+   *
+   * @returns {Object} Object containing pendingCount, completedCount, completionPercentage, and totalCount
+   */
   const { pendingCount, completedCount, completionPercentage, totalCount } =
     useMemo(() => {
       const completedCount = todoList.filter((item) => item.completed).length;
@@ -89,9 +120,7 @@ const TodoList: React.FC<EnhancedReadingListProps> = ({
       <Tabs
         defaultValue="all"
         value={activeTab}
-        onValueChange={(value) =>
-          setActiveTab(value as "all" | "pending" | "completed")
-        }
+        onValueChange={(value) => setActiveTab(value as Tab)}
         className="w-full"
       >
         <TabsList className="grid grid-cols-3 bg-secondary/10 p-1">
