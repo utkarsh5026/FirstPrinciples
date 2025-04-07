@@ -17,8 +17,8 @@ import TodoList from "./todo/TodoList";
 import Overview from "./overview/Overview";
 import MobileOptimizedTabs from "./MobileOptimizedTabs";
 import FileSelectionDialog from "./todo/AddTodoModal";
-import AnalyticsPage from "@/components/analytics/AnalyticsPage";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import AnalyticsPage from "../analytics/AnalyticsPage";
 
 interface HomePageProps {
   onSelectFile: (filepath: string) => void;

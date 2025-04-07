@@ -17,14 +17,140 @@
               "description": "Documentation for Box Model"
             },
             {
+              "path": "css/fundamental/cascade.md",
+              "title": "Cascade",
+              "description": "Documentation for Cascade"
+            },
+            {
+              "path": "css/fundamental/color_systems.md",
+              "title": "Color Systems",
+              "description": "Documentation for Color Systems"
+            },
+            {
               "path": "css/fundamental/css_syntax.md",
               "title": "Css Syntax",
               "description": "Documentation for Css Syntax"
             },
             {
+              "path": "css/fundamental/css_units.md",
+              "title": "Css Units",
+              "description": "Documentation for Css Units"
+            },
+            {
+              "path": "css/fundamental/display.md",
+              "title": "Display",
+              "description": "Documentation for Display"
+            },
+            {
+              "path": "css/fundamental/document_flow.md",
+              "title": "Document Flow",
+              "description": "Documentation for Document Flow"
+            },
+            {
               "path": "css/fundamental/selectors.md",
               "title": "Selectors",
               "description": "Documentation for Selectors"
+            },
+            {
+              "path": "css/fundamental/typography.md",
+              "title": "Typography",
+              "description": "Documentation for Typography"
+            }
+          ]
+        },
+        {
+          "id": "layout",
+          "name": "Layout",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "css/layout/box_sizing_models.md",
+              "title": "Box Sizing Models",
+              "description": "Documentation for Box Sizing Models"
+            },
+            {
+              "path": "css/layout/floats_and_clearfix.md",
+              "title": "Floats And Clearfix",
+              "description": "Documentation for Floats And Clearfix"
+            },
+            {
+              "path": "css/layout/margin_collapsing.md",
+              "title": "Margin Collapsing",
+              "description": "Documentation for Margin Collapsing"
+            },
+            {
+              "path": "css/layout/media_queries_fundamentals.md",
+              "title": "Media Queries Fundamentals",
+              "description": "Documentation for Media Queries Fundamentals"
+            },
+            {
+              "path": "css/layout/multi_column_layout.md",
+              "title": "Multi Column Layout",
+              "description": "Documentation for Multi Column Layout"
+            },
+            {
+              "path": "css/layout/normal_flow.md",
+              "title": "Normal Flow",
+              "description": "Documentation for Normal Flow"
+            },
+            {
+              "path": "css/layout/positioning_schemes.md",
+              "title": "Positioning Schemes",
+              "description": "Documentation for Positioning Schemes"
+            },
+            {
+              "path": "css/layout/z_index.md",
+              "title": "Z Index",
+              "description": "Documentation for Z Index"
+            }
+          ]
+        },
+        {
+          "id": "visual_styles",
+          "name": "Visual Styles",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "css/visual_styles/background_properties.md",
+              "title": "Background Properties",
+              "description": "Documentation for Background Properties"
+            },
+            {
+              "path": "css/visual_styles/border_and_outline.md",
+              "title": "Border And Outline",
+              "description": "Documentation for Border And Outline"
+            },
+            {
+              "path": "css/visual_styles/filters_and_blend_modes.md",
+              "title": "Filters And Blend Modes",
+              "description": "Documentation for Filters And Blend Modes"
+            },
+            {
+              "path": "css/visual_styles/gradients.md",
+              "title": "Gradients",
+              "description": "Documentation for Gradients"
+            },
+            {
+              "path": "css/visual_styles/logical_properties.md",
+              "title": "Logical Properties",
+              "description": "Documentation for Logical Properties"
+            },
+            {
+              "path": "css/visual_styles/masking_and_clipping.md",
+              "title": "Masking And Clipping",
+              "description": "Documentation for Masking And Clipping"
+            },
+            {
+              "path": "css/visual_styles/transformations.md",
+              "title": "Transformations",
+              "description": "Documentation for Transformations"
+            },
+            {
+              "path": "css/visual_styles/transitions.md",
+              "title": "Transitions",
+              "description": "Documentation for Transitions"
             }
           ]
         }

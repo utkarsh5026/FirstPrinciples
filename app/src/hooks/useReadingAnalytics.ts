@@ -9,6 +9,8 @@ import {
 import { ReadingHistoryItem, ReadingTodoItem } from "@/components/home/types";
 import { FileMetadata } from "@/utils/MarkdownLoader";
 
+export type ShortDay = "SUN" | "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT";
+
 // Types for our hook return value
 interface ReadingAnalyticsState {
   stats: ReadingStats;

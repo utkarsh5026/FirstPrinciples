@@ -7,3 +7,14 @@ export type AnalyticsData = {
   readingHeatmap: { date: string; count: number }[];
   recentActivity: ReadingHistoryItem[];
 };
+
+export type Stats = {
+  totalReads: number;
+  totalMinutes: number;
+  avgWordsPerRead: number;
+  categoriesExplored: Set<string>;
+  dailyAvg: number;
+  bestDay: { day: string; count: number };
+  weeklyData: { day: string; count: number }[];
+  monthlyData: { name: string; count: number }[];
+};
