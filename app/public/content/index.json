@@ -1,6 +1,37 @@
 {
   "categories": [
     {
+      "id": "css",
+      "name": "Css",
+      "icon": "Folder",
+      "subcategories": [
+        {
+          "id": "fundamental",
+          "name": "Fundamental",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "css/fundamental/box_model.md",
+              "title": "Box Model",
+              "description": "Documentation for Box Model"
+            },
+            {
+              "path": "css/fundamental/css_syntax.md",
+              "title": "Css Syntax",
+              "description": "Documentation for Css Syntax"
+            },
+            {
+              "path": "css/fundamental/selectors.md",
+              "title": "Selectors",
+              "description": "Documentation for Selectors"
+            }
+          ]
+        }
+      ],
+      "files": []
+    },
+    {
       "id": "design_principles",
       "name": "Design Principles",
       "icon": "Folder",

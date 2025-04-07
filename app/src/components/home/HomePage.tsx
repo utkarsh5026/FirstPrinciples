@@ -237,7 +237,6 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
             formatDate={formatDate}
             toggleTodoCompletion={toggleTodoCompletion}
             handleSelectDocument={handleSelectDocument}
-            removeFromTodoList={removeFromTodoList}
             setShowAddTodoModal={() => setShowFileDialog(true)}
           />
         )}
