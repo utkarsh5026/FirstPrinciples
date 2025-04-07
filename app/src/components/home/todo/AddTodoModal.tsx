@@ -289,81 +289,9 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
     );
   };
 
-  // Render root files
-  const renderRootFiles = () => {
-    return (
-      <div className="mb-4">
-        <div className="flex items-center justify-between mb-1">
-          <h3 className="text-xs uppercase tracking-wider text-muted-foreground px-2">
-            Root Documents
-          </h3>
-        </div>
-
-        <div className="space-y-1">
-          {availableDocuments
-            .filter(
-              (file) =>
-                !categories.some((category) => {
-                  // Check if file belongs to any category
-                  const isInCategory = (cat: Category): boolean => {
-                    if (cat.files?.some((f) => f.path === file.path))
-                      return true;
-                    if (cat.subcategories?.some(isInCategory)) return true;
-                    return false;
-                  };
-                  return isInCategory(category);
-                })
-            )
-            .map((file) => {
-              const isInTodoList = existingFiles.has(file.path);
-              const isSelected = selectedFiles.some(
-                (f) => f.path === file.path
-              );
-
-              return (
-                <div
-                  key={file.path}
-                  className={cn(
-                    "flex items-center rounded-md text-sm py-2 px-2",
-                    "hover:bg-secondary/20 text-muted-foreground hover:text-foreground",
-                    isSelected ? "bg-primary/10 text-primary" : "",
-                    isInTodoList ? "opacity-50" : ""
-                  )}
-                >
-                  {/* File checkbox */}
-                  <button
-                    onClick={() => !isInTodoList && toggleFileSelection(file)}
-                    className="mr-1.5 text-primary/70 flex-shrink-0 h-5 w-5 flex items-center justify-center"
-                    disabled={isInTodoList}
-                  >
-                    {isInTodoList ? (
-                      <CheckSquare className="h-4 w-4 text-muted-foreground" />
-                    ) : isSelected ? (
-                      <CheckSquare className="h-4 w-4" />
-                    ) : (
-                      <Square className="h-4 w-4" />
-                    )}
-                  </button>
-
-                  {/* File icon */}
-                  <FileText
-                    size={14}
-                    className="mr-2 flex-shrink-0 text-primary/70"
-                  />
-
-                  {/* File title */}
-                  <span className="truncate">{file.title}</span>
-                </div>
-              );
-            })}
-        </div>
-      </div>
-    );
-  };
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md font-cascadia-code max-h-[85vh] flex flex-col">
+      <DialogContent className="sm:max-w-md font-cascadia-code max-h-[85vh] flex flex-col rounded-2xl">
         <DialogHeader>
           <DialogTitle className="flex items-center">
             <Plus className="h-5 w-5 mr-2 text-primary" />
@@ -377,7 +305,6 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
         <ScrollArea className="flex-1 overflow-auto mt-4 max-h-[50vh]">
           <div className="px-1">
             {/* Root files section */}
-            {renderRootFiles()}
 
             {/* Categories section */}
             {categories.length > 0 && (
@@ -411,7 +338,7 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
           <Button
             onClick={handleAddSelectedFiles}
             disabled={selectedFiles.length === 0}
-            className="bg-primary/90 hover:bg-primary"
+            className="bg-primary/90 hover:bg-primary rounded-2xl"
           >
             <Plus className="h-4 w-4 mr-1.5" />
             Add Selected
