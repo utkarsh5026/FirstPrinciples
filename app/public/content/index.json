@@ -6,6 +6,72 @@
       "icon": "Folder",
       "subcategories": [
         {
+          "id": "advanced_styling",
+          "name": "Advanced Styling",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "css/advanced_styling/advanced_selectors_and_combinators.md",
+              "title": "Advanced Selectors And Combinators",
+              "description": "Documentation for Advanced Selectors And Combinators"
+            },
+            {
+              "path": "css/advanced_styling/attribute_selectors.md",
+              "title": "Attribute Selectors",
+              "description": "Documentation for Attribute Selectors"
+            },
+            {
+              "path": "css/advanced_styling/before_and_after.md",
+              "title": "Before And After",
+              "description": "Documentation for Before And After"
+            },
+            {
+              "path": "css/advanced_styling/css_shapes_and_exclusions.md",
+              "title": "Css Shapes And Exclusions",
+              "description": "Documentation for Css Shapes And Exclusions"
+            },
+            {
+              "path": "css/advanced_styling/keyframe_animations.md",
+              "title": "Keyframe Animations",
+              "description": "Documentation for Keyframe Animations"
+            },
+            {
+              "path": "css/advanced_styling/object_fit_and_position.md",
+              "title": "Object Fit And Position",
+              "description": "Documentation for Object Fit And Position"
+            },
+            {
+              "path": "css/advanced_styling/pseudo_classes.md",
+              "title": "Pseudo Classes",
+              "description": "Documentation for Pseudo Classes"
+            },
+            {
+              "path": "css/advanced_styling/scroll_based_animations.md",
+              "title": "Scroll Based Animations",
+              "description": "Documentation for Scroll Based Animations"
+            }
+          ]
+        },
+        {
+          "id": "css_architecture",
+          "name": "Css Architecture",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "css/css_architecture/cascade_and_inheritance.md",
+              "title": "Cascade And Inheritance",
+              "description": "Documentation for Cascade And Inheritance"
+            },
+            {
+              "path": "css/css_architecture/specificity_management.md",
+              "title": "Specificity Management",
+              "description": "Documentation for Specificity Management"
+            }
+          ]
+        },
+        {
           "id": "fundamental",
           "name": "Fundamental",
           "icon": "Folder",
