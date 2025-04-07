@@ -16,7 +16,7 @@ const RecommendedReads: React.FC<RecommendedReadsProps> = ({
   handleSelectDocument,
 }) => {
   return (
-    <Card className="p-4 border-primary/10 hover:border-primary/30 transition-colors overflow-hidden relative">
+    <Card className="p-4 border-primary/10 hover:border-primary/30 transition-colors overflow-hidden relative rounded-3xl">
       {/* Decorative background element */}
       <div className="absolute right-0 top-0 w-32 h-32 bg-gradient-radial from-primary/5 to-transparent rounded-full -mr-8 -mt-8 opacity-50"></div>
 
@@ -38,10 +38,10 @@ const RecommendedReads: React.FC<RecommendedReadsProps> = ({
 
         {featuredDocs.length > 0 ? (
           <div className="grid grid-cols-2 gap-2">
-            {featuredDocs.map((doc, idx) => (
+            {featuredDocs.map((doc) => (
               <button
-                key={idx}
-                className="p-3 rounded-lg border border-border/40 hover:border-primary/20 hover:bg-primary/5 transition-all text-left flex flex-col"
+                key={doc.path}
+                className="p-3 rounded-2xl border border-border/40 hover:border-primary/20 hover:bg-primary/5 transition-all text-left flex flex-col"
                 onClick={() => handleSelectDocument(doc.path, doc.title)}
               >
                 <span className="text-sm font-medium line-clamp-2">
