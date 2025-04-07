@@ -192,6 +192,7 @@ const History: React.FC<HistoryProps> = ({
               filteredHistory={filteredHistory}
               handleSelectDocument={handleSelectDocument}
               formatDate={formatDate}
+              isMobile={isMobile}
             />
           )}
 
