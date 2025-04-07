@@ -1,10 +1,10 @@
-// src/components/home/history/components/HistoryList.tsx
 import React, { memo } from "react";
-import { FileText, Clock, ChevronRight } from "lucide-react";
+import { Clock, ChevronRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ReadingHistoryItem } from "@/components/home/types";
 import { useTheme } from "@/components/theme/context/ThemeContext";
+import getIconForTech from "@/components/navigation/sidebar/iconMap";
 
 interface HistoryListProps {
   filteredHistory: ReadingHistoryItem[];
@@ -65,6 +65,8 @@ const HistoryListItem: React.FC<{
     return colors[index];
   };
 
+  const CategoryIcon = getIconForTech(category);
+
   return (
     <Card
       className="p-2 md:p-3 border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
@@ -72,7 +74,7 @@ const HistoryListItem: React.FC<{
     >
       <div className="flex gap-2 md:gap-3 items-center">
         <div className="h-8 w-8 md:h-10 md:w-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-          <FileText className="h-4 w-4 md:h-5 md:w-5 text-primary" />
+          <CategoryIcon className="h-4 w-4 md:h-5 md:w-5 text-primary" />
         </div>
 
         <div className="flex-1 min-w-0">
