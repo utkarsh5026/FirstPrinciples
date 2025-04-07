@@ -72,7 +72,7 @@ const DailyChallenge: React.FC<DailyChallengeProps> = memo(
               </Badge>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-lg bg-primary/5 border border-primary/10 hover:bg-primary/10 hover:border-primary/20 transition-all">
+            <div className="flex items-center justify-between p-3 rounded-2xl bg-primary/5 border border-primary/10 hover:bg-primary/10 hover:border-primary/20 transition-all">
               <div className="flex items-center gap-3">
                 <div className="flex-shrink-0 h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
                   <BookMarked className="h-5 w-5 text-primary" />
@@ -97,9 +97,9 @@ const DailyChallenge: React.FC<DailyChallengeProps> = memo(
               <Button
                 variant={todayReadsCount >= 3 ? "default" : "outline"}
                 size="sm"
-                className={`transition-all ${
+                className={`transition-all rounded-2xl ${
                   todayReadsCount >= 3
-                    ? "bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-lg hover:shadow-xl scale-100 hover:scale-105 animate-pulse"
+                    ? "bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-md shadow-primary/30 scale-100 hover:scale-105 border border-primary/30 ring-2 ring-primary/20 animate-pulse"
                     : "text-muted-foreground bg-background/80"
                 }`}
                 onClick={handleClaimReward}
