@@ -28,7 +28,7 @@ const ProfileSummary: React.FC<ProfileSummaryProps> = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 px-4">
       {/* Level & XP Card */}
-      <Card className="p-4 bg-gradient-to-br from-primary/10 to-secondary/5 border-primary/20 rounded-lg">
+      <Card className="p-4 bg-gradient-to-br from-primary/10 to-secondary/5 border-primary/20 rounded-2xl">
         <div className="flex flex-col">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-muted-foreground">Reading Level</span>
@@ -66,7 +66,7 @@ const ProfileSummary: React.FC<ProfileSummaryProps> = ({
       </Card>
 
       {/* Reading Stats Summary */}
-      <Card className="p-4 border-primary/10 rounded-lg">
+      <Card className="p-4 border-primary/10 rounded-2xl">
         <div className="flex flex-col h-full justify-between">
           <div className="mb-2">
             <div className="flex items-center justify-between">
@@ -108,7 +108,7 @@ const ProfileSummary: React.FC<ProfileSummaryProps> = ({
       </Card>
 
       {/* Streak Card */}
-      <Card className="p-4 border-primary/10 rounded-lg">
+      <Card className="p-4 border-primary/10 rounded-2xl">
         <div className="flex flex-col h-full justify-between">
           <div className="mb-2">
             <div className="flex items-center justify-between">

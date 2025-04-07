@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Trophy } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type {
   ReadingHistoryItem,
@@ -86,20 +85,6 @@ const ReadingAnalyticsDashboard: React.FC<ReadingAnalyticsDashboardProps> = ({
 
   return (
     <div className="w-full max-w-3xl mx-auto">
-      {/* Mobile-optimized Header */}
-      <div className="mb-6 px-4 text-center">
-        <div className="inline-flex items-center px-3 py-1 rounded-full mb-2 bg-primary/10 text-primary text-sm border border-primary/20">
-          <Trophy className="h-3.5 w-3.5 mr-2" />
-          Reading Dashboard
-        </div>
-        <h1 className="text-2xl md:text-3xl font-bold mb-2">
-          Your Reading Journey
-        </h1>
-        <p className="text-sm text-muted-foreground">
-          Track your progress, earn achievements, and level up your knowledge
-        </p>
-      </div>
-
       {/* Profile Summary */}
       <ProfileSummary
         stats={stats}
