@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Radar,
   RadarChart,
@@ -38,37 +38,39 @@ const RadarCategoryChart: React.FC<RadarCategoryChartProps> = ({
 }) => {
   const { isMobile } = useMobile();
 
-  // Prepare data for the radar chart - normalize percentages for better visualization
-  const chartData = data.map((item, index) => ({
-    ...item,
-    // Map to value between 0-100 for the chart
-    value: item.percentage,
-    fillColor: COLORS[index % COLORS.length],
-  }));
+  const { topCategory, weakestCategory, averageCoverage, chartData } =
+    useMemo(() => {
+      const topCategory =
+        data.length > 0
+          ? data.reduce(
+              (max, item) => (item.percentage > max.percentage ? item : max),
+              data[0]
+            )
+          : null;
 
-  // Calculate overall coverage metrics
-  const averageCoverage =
-    data.reduce((sum, item) => sum + item.percentage, 0) /
-    Math.max(data.length, 1);
+      const weakestCategory =
+        data.length > 0
+          ? data.reduce(
+              (min, item) => (item.percentage < min.percentage ? item : min),
+              data[0]
+            )
+          : null;
 
-  const topCategory =
-    data.length > 0
-      ? data.reduce(
-          (max, item) => (item.percentage > max.percentage ? item : max),
-          data[0]
-        )
-      : null;
+      const averageCoverage =
+        data.reduce((sum, item) => sum + item.percentage, 0) /
+        Math.max(data.length, 1);
 
-  const weakestCategory =
-    data.length > 0
-      ? data.reduce(
-          (min, item) => (item.percentage < min.percentage ? item : min),
-          data[0]
-        )
-      : null;
+      const chartData = data.map((item, index) => ({
+        ...item,
+        value: item.percentage,
+        fillColor: COLORS[index % COLORS.length],
+      }));
+
+      return { topCategory, weakestCategory, averageCoverage, chartData };
+    }, [data]);
 
   return (
-    <Card className="p-4 border-primary/10">
+    <Card className="p-4 border-primary/10 rounded-2xl">
       <div className="flex justify-between items-center mb-3">
         <h4 className="text-sm font-medium flex items-center">
           <Target className="h-4 w-4 mr-2 text-primary" />
