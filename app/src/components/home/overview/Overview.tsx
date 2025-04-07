@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Zap, Activity } from "lucide-react";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { ReadingHistoryItem, ReadingTodoItem } from "@/components/home/types";
@@ -32,8 +32,6 @@ const Overview: React.FC<OverviewProps> = ({
   setShowAddTodoModal,
 }) => {
   const { currentTheme } = useTheme();
-
-  // Reading stats from analytics service
   const [stats, setStats] = useState(() =>
     ReadingAnalyticsService.getReadingStats()
   );
@@ -46,8 +44,7 @@ const Overview: React.FC<OverviewProps> = ({
   >([]);
   const [mostReadCategory, setMostReadCategory] = useState<string>("None yet");
 
-  // Generate dynamic chart colors based on theme
-  const generateChartColors = () => {
+  const chartColors = useMemo(() => {
     return [
       currentTheme.primary,
       `${currentTheme.primary}DD`,
@@ -55,9 +52,7 @@ const Overview: React.FC<OverviewProps> = ({
       `${currentTheme.primary}99`,
       `${currentTheme.primary}77`,
     ];
-  };
-
-  const COLORS = generateChartColors();
+  }, [currentTheme]);
 
   useEffect(() => {
     // Update stats when history or todo list changes
@@ -138,7 +133,6 @@ const Overview: React.FC<OverviewProps> = ({
     }
   }, [readingHistory, todoList, availableDocuments, currentTheme]);
 
-  // Calculate next milestone
   const getNextMilestone = () => {
     const completedCount = readingHistory.length;
     if (completedCount < 5) return { target: 5, progress: completedCount };
@@ -150,16 +144,13 @@ const Overview: React.FC<OverviewProps> = ({
 
   const nextMilestone = getNextMilestone();
 
-  // Calculate today's reads for daily challenge
   const todayReadsCount = readingHistory.filter((item) => {
     const today = new Date().setHours(0, 0, 0, 0);
     return new Date(item.lastReadAt).setHours(0, 0, 0, 0) === today;
   }).length;
 
-  // Get unread documents count
   const unreadDocs = availableDocuments.length - readingHistory.length;
 
-  // Calculate completion percentage
   const completionPercentage = Math.round(
     (readingHistory.length / Math.max(availableDocuments.length, 1)) * 100
   );
@@ -187,7 +178,7 @@ const Overview: React.FC<OverviewProps> = ({
             categoryData={categoryData}
             weekdayData={weekdayData}
             mostReadCategory={mostReadCategory}
-            COLORS={COLORS}
+            chartColors={chartColors}
           />
 
           <RecentActivity

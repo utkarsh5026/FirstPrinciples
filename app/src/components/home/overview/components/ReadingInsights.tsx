@@ -17,14 +17,14 @@ interface ReadingInsightsProps {
   categoryData: { name: string; value: number }[];
   weekdayData: { name: string; count: number }[];
   mostReadCategory: string;
-  COLORS: string[];
+  chartColors: string[];
 }
 
 const ReadingInsights: React.FC<ReadingInsightsProps> = ({
   categoryData,
   weekdayData,
   mostReadCategory,
-  COLORS,
+  chartColors,
 }) => {
   const { currentTheme } = useTheme();
 
@@ -57,7 +57,7 @@ const ReadingInsights: React.FC<ReadingInsightsProps> = ({
                     {categoryData.map((entry, index) => (
                       <Cell
                         key={`cell-${entry.name}`}
-                        fill={COLORS[index % COLORS.length]}
+                        fill={chartColors[index % chartColors.length]}
                       />
                     ))}
                   </Pie>
