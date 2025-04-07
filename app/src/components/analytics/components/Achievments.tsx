@@ -59,7 +59,7 @@ const Achievements: React.FC<AchievementsProps> = ({
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         {/* Unlocked Achievements */}
-        <Card className="p-4 border-primary/10">
+        <Card className="p-4 border-primary/10 rounded-2xl">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium">Unlocked Achievements</h3>
             <Badge variant="outline" className="text-xs">
@@ -75,7 +75,7 @@ const Achievements: React.FC<AchievementsProps> = ({
                 .map((achievement) => (
                   <div
                     key={achievement.id}
-                    className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10"
+                    className="flex items-start gap-3 p-3 rounded-3xl bg-primary/5 border border-primary/10"
                   >
                     <div className="mt-0.5 flex-shrink-0 h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
                       {getAchievementIcon(achievement.icon)}
@@ -119,7 +119,7 @@ const Achievements: React.FC<AchievementsProps> = ({
         </Card>
 
         {/* Available Achievements */}
-        <Card className="p-4 border-primary/10">
+        <Card className="p-4 border-primary/10 rounded-2xl">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium">Available Achievements</h3>
             <Badge variant="outline" className="text-xs">
@@ -185,7 +185,7 @@ const Achievements: React.FC<AchievementsProps> = ({
       </div>
 
       {/* Reading Challenges Section */}
-      <Card className="p-4 border-primary/10 mb-4">
+      <Card className="p-4 border-primary/10 mb-4 rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium">Reading Challenges</h3>
           <Button

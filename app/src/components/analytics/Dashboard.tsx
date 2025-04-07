@@ -26,7 +26,7 @@ interface AnalyticsData {
   recentActivity: ReadingHistoryItem[];
 }
 
-interface ReadingAnalyticsDashboardProps {
+interface DashboardProps {
   stats: ReadingStats;
   achievements: ReadingAchievement[];
   challenges: ReadingChallenge[];
@@ -40,8 +40,7 @@ interface ReadingAnalyticsDashboardProps {
   onRefreshChallenges: () => void;
 }
 
-// Main Dashboard Component
-const ReadingAnalyticsDashboard: React.FC<ReadingAnalyticsDashboardProps> = ({
+const Dashboard: React.FC<DashboardProps> = ({
   stats,
   achievements,
   challenges,
@@ -55,7 +54,6 @@ const ReadingAnalyticsDashboard: React.FC<ReadingAnalyticsDashboardProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState("overview");
 
-  // Get current level information
   const getCurrentLevelInfo = () => {
     const level =
       readingLevels.find((l) => l.level === stats.level) || readingLevels[0];
@@ -76,16 +74,14 @@ const ReadingAnalyticsDashboard: React.FC<ReadingAnalyticsDashboardProps> = ({
 
   const { level, nextLevel, progress } = getCurrentLevelInfo();
 
-  // Handle refresh of challenges
   const handleRefreshChallenges = () => {
     onRefreshChallenges();
   };
 
-  // Get achievement icon component
+  const tabs = ["overview", "achievements", "activity", "insights"];
 
   return (
     <div className="w-full max-w-3xl mx-auto">
-      {/* Profile Summary */}
       <ProfileSummary
         stats={stats}
         level={level}
@@ -93,38 +89,21 @@ const ReadingAnalyticsDashboard: React.FC<ReadingAnalyticsDashboardProps> = ({
         progress={progress}
       />
 
-      {/* Main Dashboard with Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <div className="px-4 mb-4">
-          <TabsList className="w-full grid grid-cols-4 h-10 rounded-lg p-1">
-            <TabsTrigger
-              value="overview"
-              className="rounded-md text-xs sm:text-sm"
-            >
-              Overview
-            </TabsTrigger>
-            <TabsTrigger
-              value="achievements"
-              className="rounded-md text-xs sm:text-sm"
-            >
-              Achievements
-            </TabsTrigger>
-            <TabsTrigger
-              value="activity"
-              className="rounded-md text-xs sm:text-sm"
-            >
-              Activity
-            </TabsTrigger>
-            <TabsTrigger
-              value="insights"
-              className="rounded-md text-xs sm:text-sm"
-            >
-              Insights
-            </TabsTrigger>
+          <TabsList className="w-full grid grid-cols-4 h-10 rounded-4xl p-1">
+            {tabs.map((tab) => (
+              <TabsTrigger
+                key={tab}
+                value={tab}
+                className="rounded-4xl text-xs sm:text-sm"
+              >
+                {tab}
+              </TabsTrigger>
+            ))}
           </TabsList>
         </div>
 
-        {/* Overview Tab */}
         <TabsContent value="overview" className="mt-0">
           <OverView
             analyticsData={analyticsData}
@@ -132,7 +111,6 @@ const ReadingAnalyticsDashboard: React.FC<ReadingAnalyticsDashboardProps> = ({
           />
         </TabsContent>
 
-        {/* Achievements Tab */}
         <TabsContent value="achievements" className="mt-0 px-4">
           <Achievements
             achievements={achievements}
@@ -141,7 +119,6 @@ const ReadingAnalyticsDashboard: React.FC<ReadingAnalyticsDashboardProps> = ({
           />
         </TabsContent>
 
-        {/* Activity Tab */}
         <TabsContent value="activity" className="mt-0 px-4">
           <Activity
             analyticsData={analyticsData}
@@ -150,7 +127,6 @@ const ReadingAnalyticsDashboard: React.FC<ReadingAnalyticsDashboardProps> = ({
           />
         </TabsContent>
 
-        {/* Insights Tab */}
         <TabsContent value="insights" className="mt-0 px-4">
           <Insights
             stats={stats}
@@ -169,4 +145,4 @@ const ReadingAnalyticsDashboard: React.FC<ReadingAnalyticsDashboardProps> = ({
   );
 };
 
-export default ReadingAnalyticsDashboard;
+export default Dashboard;

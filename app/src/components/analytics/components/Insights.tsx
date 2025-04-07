@@ -44,7 +44,7 @@ const Insights: React.FC<InsightsProps> = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {/* Reading Pace */}
-      <Card className="p-4 border-primary/10">
+      <Card className="p-4 border-primary/10 rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium">Reading Pace</h3>
           <Badge variant="outline" className="text-xs">
@@ -84,7 +84,7 @@ const Insights: React.FC<InsightsProps> = ({
       </Card>
 
       {/* Category Focus */}
-      <Card className="p-4 border-primary/10">
+      <Card className="p-4 border-primary/10 rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium">Category Focus</h3>
           <Badge variant="outline" className="text-xs">
@@ -138,7 +138,7 @@ const Insights: React.FC<InsightsProps> = ({
       </Card>
 
       {/* Reading Progress */}
-      <Card className="p-4 border-primary/10 md:col-span-2">
+      <Card className="p-4 border-primary/10 md:col-span-2 rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium">Reading Progress</h3>
           <Badge variant="outline" className="text-xs">
@@ -196,7 +196,7 @@ const Insights: React.FC<InsightsProps> = ({
       </Card>
 
       {/* Actions */}
-      <Card className="p-4 border-primary/10 md:col-span-2">
+      <Card className="p-4 border-primary/10 md:col-span-2 rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium">Data Management</h3>
           <Badge variant="outline" className="text-xs">
