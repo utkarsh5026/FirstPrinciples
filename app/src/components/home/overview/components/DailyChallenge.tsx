@@ -16,7 +16,7 @@ const DailyChallenge: React.FC<DailyChallengeProps> = memo(
     const progressPercentage = Math.min((todayReadsCount / 3) * 100, 100);
 
     return (
-      <Card className="p-4 border-primary/10 hover:border-primary/30 transition-colors relative overflow-hidden">
+      <Card className="p-4 border-primary/10 hover:border-primary/30 transition-colors relative overflow-hidden rounded-3xl">
         {/* Decorative background */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-30"></div>
 

@@ -31,7 +31,7 @@ const ReadingInsights: React.FC<ReadingInsightsProps> = ({
   return (
     <div className="grid grid-cols-2 gap-4">
       {/* Category breakdown */}
-      <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
+      <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors rounded-3xl">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-30"></div>
 
         <div className="relative">
@@ -96,7 +96,7 @@ const ReadingInsights: React.FC<ReadingInsightsProps> = ({
       </Card>
 
       {/* Weekly pattern */}
-      <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors">
+      <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors rounded-3xl">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-30"></div>
 
         <div className="relative">

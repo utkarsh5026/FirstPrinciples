@@ -20,7 +20,7 @@ const RecentActivity: React.FC<RecentActivityProps> = ({
   const { currentTheme } = useTheme();
 
   return (
-    <Card className="p-4 border-primary/10 bg-gradient-to-r from-secondary/5 to-transparent hover:border-primary/30 transition-colors">
+    <Card className="p-4 border-primary/10 bg-gradient-to-r from-secondary/5 to-transparent hover:border-primary/30 transition-colors rounded-3xl">
       <div className="flex justify-between items-center mb-3">
         <h4 className="text-sm font-medium flex items-center">
           <Clock className="h-4 w-4 mr-2 text-primary/70" />
