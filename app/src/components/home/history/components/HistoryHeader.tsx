@@ -79,10 +79,10 @@ const HistoryStats: React.FC<{
 }> = ({ timeStats }) => {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-      <StatCard label="Today" value={timeStats.today} />
-      <StatCard label="This Week" value={timeStats.thisWeek} />
-      <StatCard label="This Month" value={timeStats.thisMonth} />
-      <StatCard label="Total" value={timeStats.total} highlight />
+      <StatCard label="Today 🚀" value={timeStats.today} />
+      <StatCard label="This Week 🤔" value={timeStats.thisWeek} />
+      <StatCard label="This Month 🤗" value={timeStats.thisMonth} />
+      <StatCard label="Total 😎" value={timeStats.total} highlight />
     </div>
   );
 };
