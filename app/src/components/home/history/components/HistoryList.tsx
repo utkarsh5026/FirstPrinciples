@@ -1,3 +1,4 @@
+// src/components/home/history/components/HistoryList.tsx
 import React, { memo } from "react";
 import { FileText, Clock, ChevronRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -14,10 +15,10 @@ interface HistoryListProps {
 const HistoryList: React.FC<HistoryListProps> = memo(
   ({ filteredHistory, handleSelectDocument, formatDate }) => {
     return (
-      <div className="space-y-3">
-        {filteredHistory.map((item, index) => (
+      <div className="space-y-2 md:space-y-3">
+        {filteredHistory.map((item) => (
           <HistoryListItem
-            key={index}
+            key={item.path}
             item={item}
             handleSelectDocument={handleSelectDocument}
             formatDate={formatDate}
@@ -66,20 +67,22 @@ const HistoryListItem: React.FC<{
 
   return (
     <Card
-      className="p-3 border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+      className="p-2 md:p-3 border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
       onClick={() => handleSelectDocument(item.path, item.title)}
     >
-      <div className="flex gap-3">
-        <div className="h-10 w-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-          <FileText className="h-5 w-5 text-primary" />
+      <div className="flex gap-2 md:gap-3 items-center">
+        <div className="h-8 w-8 md:h-10 md:w-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+          <FileText className="h-4 w-4 md:h-5 md:w-5 text-primary" />
         </div>
 
         <div className="flex-1 min-w-0">
-          <h4 className="font-medium text-base">{item.title}</h4>
-          <div className="flex items-center text-xs text-muted-foreground mt-1">
+          <h4 className="font-medium text-sm md:text-base line-clamp-1">
+            {item.title}
+          </h4>
+          <div className="flex flex-wrap items-center text-xs text-muted-foreground mt-0.5 md:mt-1 gap-1 md:gap-2">
             <Badge
               variant="outline"
-              className="mr-2 px-1.5 py-0 text-[10px] font-normal"
+              className="mr-1 px-1.5 py-0 text-[10px] md:text-xs font-normal"
               style={{
                 borderColor: `${getCategoryColor(category)}50`,
                 color: getCategoryColor(category),
@@ -87,13 +90,15 @@ const HistoryListItem: React.FC<{
             >
               {category}
             </Badge>
-            <Clock className="h-3 w-3 mr-1" />
-            <span>{formatDate(item.lastReadAt)}</span>
+            <div className="flex items-center">
+              <Clock className="h-2.5 w-2.5 md:h-3 md:w-3 mr-0.5 md:mr-1" />
+              <span>{formatDate(item.lastReadAt)}</span>
+            </div>
           </div>
         </div>
 
-        <div className="flex items-center text-muted-foreground">
-          <ChevronRight className="h-5 w-5" />
+        <div className="flex-shrink-0 flex items-center text-muted-foreground">
+          <ChevronRight className="h-4 w-4 md:h-5 md:w-5" />
         </div>
       </div>
     </Card>
