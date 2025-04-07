@@ -113,7 +113,6 @@ const TodoList: React.FC<TodoListProps> = ({
         totalCount={totalCount}
         pendingCount={pendingCount}
         todoListLength={todoList.length}
-        handleAddButtonClick={() => setShowAddTodoModal(true)}
       />
 
       {/* Tab navigation */}

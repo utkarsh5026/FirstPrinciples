@@ -1,10 +1,8 @@
-import { BookOpen, CheckCircle2, Clock, ListTodo, Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { BookOpen, CheckCircle2, Clock, ListTodo } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 
 interface TodoHeaderProps {
-  handleAddButtonClick: () => void;
   completedCount: number;
   totalCount: number;
   completionPercentage: number;
@@ -17,7 +15,6 @@ interface TodoHeaderProps {
  * It includes a button to add new items, statistics about the reading list, and a progress bar.
  *
  * @param {TodoHeaderProps} props - The properties of the TodoHeader component.
- * @param {() => void} props.handleAddButtonClick - Function to handle the click event of the add button.
  * @param {number} props.completedCount - The number of completed tasks.
  * @param {number} props.completionPercentage - The percentage of tasks completed.
  * @param {number} props.totalCount - The total number of tasks.
@@ -27,7 +24,6 @@ interface TodoHeaderProps {
  * @returns {React.ReactElement} The TodoHeader component.
  */
 const TodoHeader: React.FC<TodoHeaderProps> = ({
-  handleAddButtonClick,
   completedCount,
   completionPercentage,
   totalCount,
@@ -82,13 +78,6 @@ const TodoHeader: React.FC<TodoHeaderProps> = ({
               </p>
             </div>
           </div>
-
-          <Button
-            className="bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20 rounded-2xl"
-            onClick={handleAddButtonClick}
-          >
-            <Plus className="h-4 w-4 mr-1.5" /> Add
-          </Button>
         </div>
 
         {/* Reading list stats */}
