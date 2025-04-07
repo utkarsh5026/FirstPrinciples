@@ -69,7 +69,7 @@ const HistoryListItem: React.FC<{
 
   return (
     <Card
-      className="p-2 md:p-3 border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+      className="p-2 md:p-3 border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer rounded-2xl"
       onClick={() => handleSelectDocument(item.path, item.title)}
     >
       <div className="flex gap-2 md:gap-3 items-center">
