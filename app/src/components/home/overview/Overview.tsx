@@ -11,24 +11,24 @@ import RecentActivity from "./components/RecentActivity";
 import RecommendedReads from "./components/RecommendedReads";
 import UpcomingReads from "./components/UpcomingReads";
 import DailyChallenge from "./components/DailyChallenge";
+import { formatDate, formatReadingTime, formatNumber } from "../utils";
 
-interface EnhancedOverviewProps {
+interface OverviewProps {
   todoList: ReadingTodoItem[];
   readingHistory: ReadingHistoryItem[];
   availableDocuments: FileMetadata[];
   handleSelectDocument: (path: string, title: string) => void;
   toggleTodoCompletion: (id: string) => void;
-  formatDate: (timestamp: number) => string;
   setShowAddTodoModal: () => void;
 }
 
-const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
+const Overview: React.FC<OverviewProps> = ({
   todoList,
   readingHistory,
   availableDocuments,
   handleSelectDocument,
   toggleTodoCompletion,
-  formatDate,
+
   setShowAddTodoModal,
 }) => {
   const { currentTheme } = useTheme();
@@ -138,21 +138,6 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
     }
   }, [readingHistory, todoList, availableDocuments, currentTheme]);
 
-  // Format reading time
-  const formatReadingTime = (minutes: number) => {
-    if (minutes < 60) {
-      return `${minutes} min`;
-    }
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
-    return `${hours}h ${remainingMinutes}m`;
-  };
-
-  // Format number with commas
-  const formatNumber = (num: number) => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
-
   // Calculate next milestone
   const getNextMilestone = () => {
     const completedCount = readingHistory.length;
@@ -239,4 +224,4 @@ const EnhancedOverview: React.FC<EnhancedOverviewProps> = ({
   );
 };
 
-export default EnhancedOverview;
+export default Overview;

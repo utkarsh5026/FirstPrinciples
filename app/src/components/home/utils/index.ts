@@ -36,3 +36,36 @@ export const formatDate = (timestamp: number) => {
     year: now.getFullYear() !== date.getFullYear() ? "numeric" : undefined,
   });
 };
+
+/**
+ * Formats a given reading time in minutes into a user-friendly string.
+ *
+ * The function checks if the reading time is less than an hour. If it is,
+ * it returns the time in minutes (e.g., "45 min"). If the reading time
+ * is an hour or more, it returns the time in hours and minutes (e.g.,
+ * "1h 15m" for 75 minutes).
+ *
+ * @param {number} minutes - The reading time in minutes.
+ * @returns {string} A user-friendly string representation of the reading time.
+ */
+export const formatReadingTime = (minutes: number) => {
+  if (minutes < 60) {
+    return `${minutes} min`;
+  }
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+  return `${hours}h ${remainingMinutes}m`;
+};
+
+/**
+ * Formats a number with commas as thousands separators.
+ *
+ * This function takes a number and converts it to a string, adding commas
+ * to separate thousands for better readability (e.g., 1000 becomes "1,000").
+ *
+ * @param {number} num - The number to format.
+ * @returns {string} The formatted number as a string with commas.
+ */
+export const formatNumber = (num: number) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
