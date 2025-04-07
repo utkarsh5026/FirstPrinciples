@@ -32,7 +32,6 @@ interface HomePageProps {
  * includes analytics and gamification features.
  */
 const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
-  // Use our custom hook to manage all document-related functionality
   const {
     readingHistory,
     todoList,
@@ -42,7 +41,6 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
     clearTodoList,
     availableDocuments,
     handleSelectDocument,
-    formatDate,
   } = useDocumentManager(onSelectFile);
 
   // State for file selection dialog
@@ -232,7 +230,6 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
               todoList={todoList}
               readingHistory={readingHistory}
               availableDocuments={availableDocuments}
-              formatDate={formatDate}
               toggleTodoCompletion={toggleTodoCompletion}
               handleSelectDocument={handleSelectDocument}
               setShowAddTodoModal={() => setShowFileDialog(true)}
@@ -244,14 +241,12 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
           <History
             readingHistory={readingHistory}
             handleSelectDocument={handleSelectDocument}
-            formatDate={formatDate}
           />
         )}
 
         {activeTab === "todo" && (
           <TodoList
             todoList={todoList}
-            formatDate={formatDate}
             toggleTodoCompletion={toggleTodoCompletion}
             handleSelectDocument={handleSelectDocument}
             removeFromTodoList={removeFromTodoList}
