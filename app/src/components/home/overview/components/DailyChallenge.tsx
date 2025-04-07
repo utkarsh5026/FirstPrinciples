@@ -99,7 +99,7 @@ const DailyChallenge: React.FC<DailyChallengeProps> = memo(
                 size="sm"
                 className={`transition-all rounded-2xl ${
                   todayReadsCount >= 3
-                    ? "bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-md shadow-primary/30 scale-100 hover:scale-105 border border-primary/30 ring-2 ring-primary/20 animate-pulse"
+                    ? "bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-bold shadow-md shadow-primary/30 hover:shadow-lg hover:shadow-primary/40 scale-100 hover:scale-105 border border-primary/30 ring-2 ring-primary/20 animate-pulse"
                     : "text-muted-foreground bg-background/80"
                 }`}
                 onClick={handleClaimReward}
