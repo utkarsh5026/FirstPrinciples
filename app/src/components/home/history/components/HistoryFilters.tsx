@@ -28,6 +28,8 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
   setSelectedTimeframe,
   categories,
 }) => {
+  const timeSelectValues = ["This Week", "This Month", "All Time", "Today"];
+
   return (
     <div className="flex flex-col sm:flex-row gap-3">
       <div className="relative flex-1">
@@ -65,10 +67,11 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
               <SelectValue placeholder="Time" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Time</SelectItem>
-              <SelectItem value="today">Today</SelectItem>
-              <SelectItem value="week">This Week</SelectItem>
-              <SelectItem value="month">This Month</SelectItem>
+              {timeSelectValues.map((value) => (
+                <SelectItem key={value} value={value}>
+                  {value}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>

@@ -128,7 +128,7 @@ const History: React.FC<HistoryProps> = ({
       }
     });
 
-    // Convert to array and sort chronologically
+    // Convert to array format for visualization
     return Object.entries(months)
       .map(([key, count]) => {
         const [year, month] = key.split("-").map(Number);
@@ -145,7 +145,7 @@ const History: React.FC<HistoryProps> = ({
   const monthlyData = generateMonthlyData();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6 px-1 md:px-0 pb-20 md:pb-0">
       <HistoryHeader
         timeStats={timeStats}
         viewMode={viewMode}
@@ -165,15 +165,17 @@ const History: React.FC<HistoryProps> = ({
       {readingHistory.length === 0 ? (
         <EmptyHistory />
       ) : filteredHistory.length === 0 ? (
-        <div className="text-center py-12 border border-primary/10 rounded-lg bg-primary/5">
-          <Search className="h-12 w-12 mx-auto mb-3 text-primary/30" />
-          <h3 className="text-lg font-medium">No matching results</h3>
-          <p className="text-muted-foreground mt-1">
+        <div className="text-center py-6 md:py-12 border border-primary/10 rounded-lg bg-primary/5">
+          <Search className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3 text-primary/30" />
+          <h3 className="text-base md:text-lg font-medium">
+            No matching results
+          </h3>
+          <p className="text-sm text-muted-foreground mt-1">
             Try adjusting your search or filters
           </p>
         </div>
       ) : (
-        <>
+        <div className="mt-4">
           {viewMode === "list" && (
             <HistoryList
               filteredHistory={filteredHistory}
@@ -197,7 +199,7 @@ const History: React.FC<HistoryProps> = ({
               currentTheme={currentTheme}
             />
           )}
-        </>
+        </div>
       )}
     </div>
   );
