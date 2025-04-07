@@ -35,7 +35,6 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
   // Use our custom hook to manage all document-related functionality
   const {
     readingHistory,
-    clearReadingHistory,
     todoList,
     addToTodoList,
     removeFromTodoList,
@@ -245,8 +244,7 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
           <History
             readingHistory={readingHistory}
             handleSelectDocument={handleSelectDocument}
-            handleExploreDocuments={() => setActiveTab("overview")}
-            handleClearHistory={clearReadingHistory}
+            formatDate={formatDate}
           />
         )}
 
