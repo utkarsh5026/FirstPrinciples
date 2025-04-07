@@ -1,7 +1,7 @@
-// src/components/home/history/components/HistoryTimeline.tsx
 import React, { memo } from "react";
-import { Calendar, FileText, Clock } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
 import { ReadingHistoryItem } from "@/components/home/types";
+import getIconForTech from "@/components/navigation/sidebar/iconMap";
 
 interface HistoryTimelineProps {
   filteredHistory: ReadingHistoryItem[];
@@ -88,29 +88,32 @@ const HistoryTimeline: React.FC<HistoryTimelineProps> = memo(
             </div>
 
             <div className={`${leftMargin} space-y-2 md:space-y-3`}>
-              {groupedByDate[dateKey].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="p-2 md:p-3 rounded-lg border border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer flex items-center gap-2 md:gap-3"
-                  onClick={() => handleSelectDocument(item.path, item.title)}
-                >
-                  <div className="h-6 w-6 md:h-8 md:w-8 bg-primary/10 rounded-full flex items-center justify-center">
-                    <FileText className="h-3 w-3 md:h-4 md:w-4 text-primary" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="font-medium text-sm md:text-base truncate">
-                      {item.title}
+              {groupedByDate[dateKey].map((item, idx) => {
+                const CategoryIcon = getIconForTech(item.path.split("/")[0]);
+                return (
+                  <div
+                    key={idx}
+                    className="p-2 md:p-3 rounded-2xl border border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer flex items-center gap-2 md:gap-3"
+                    onClick={() => handleSelectDocument(item.path, item.title)}
+                  >
+                    <div className="h-6 w-6 md:h-8 md:w-8 bg-primary/10 rounded-full flex items-center justify-center">
+                      <CategoryIcon className="h-3 w-3 md:h-4 md:w-4 text-primary" />
                     </div>
-                    <div className="text-[10px] md:text-xs text-muted-foreground flex items-center mt-0.5">
-                      <Clock className="h-2.5 w-2.5 md:h-3 md:w-3 mr-1" />
-                      {new Date(item.lastReadAt).toLocaleTimeString("en-US", {
-                        hour: "numeric",
-                        minute: "2-digit",
-                      })}
+                    <div className="min-w-0 flex-1">
+                      <div className="font-medium text-sm md:text-base truncate">
+                        {item.title}
+                      </div>
+                      <div className="text-[10px] md:text-xs text-muted-foreground flex items-center mt-0.5">
+                        <Clock className="h-2.5 w-2.5 md:h-3 md:w-3 mr-1" />
+                        {new Date(item.lastReadAt).toLocaleTimeString("en-US", {
+                          hour: "numeric",
+                          minute: "2-digit",
+                        })}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         ))}
