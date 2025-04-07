@@ -8,7 +8,7 @@ import TodoHeader from "./TodoHeader";
 import EmptyList from "./EmptyList";
 import TodoItem from "./TodoItem";
 
-interface EnhancedReadingListProps {
+interface TodoListProps {
   todoList: ReadingTodoItem[];
   toggleTodoCompletion: (id: string) => void;
   handleSelectDocument: (path: string, title: string) => void;
@@ -26,7 +26,7 @@ type Tab = "all" | "pending" | "completed";
  * It provides filtering capabilities through tabs (All, To Read, Completed) and
  * displays statistics about the reading progress.
  *
- * @param {EnhancedReadingListProps} props - The properties for the TodoList component
+ * @param {TodoListProps} props - The properties for the TodoList component
  * @param {ReadingTodoItem[]} props.todoList - Array of todo items to display
  * @param {(id: string) => void} props.toggleTodoCompletion - Function to toggle completion status of a todo item
  * @param {(path: string, title: string) => void} props.handleSelectDocument - Function to handle document selection
@@ -36,7 +36,7 @@ type Tab = "all" | "pending" | "completed";
  *
  * @returns {React.ReactElement} The TodoList component
  */
-const TodoList: React.FC<EnhancedReadingListProps> = ({
+const TodoList: React.FC<TodoListProps> = ({
   todoList,
   toggleTodoCompletion,
   handleSelectDocument,
