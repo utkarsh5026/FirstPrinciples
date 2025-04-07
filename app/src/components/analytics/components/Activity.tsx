@@ -104,7 +104,7 @@ const Activity: React.FC<ActivityProps> = ({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {summary.map(({ heading, value, description, emoji }) => (
             <div
-              className="bg-card rounded-lg p-3 border border-primary/10"
+              className="bg-card rounded-2xl p-3 border border-primary/10"
               key={heading}
             >
               <div className="text-xs text-muted-foreground">{heading}</div>
