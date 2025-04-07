@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -48,16 +48,27 @@ const TodoList: React.FC<EnhancedReadingListProps> = ({
     categories[category].push(item);
   });
 
-  // Calculate statistics
-  const pendingCount = todoList.filter((item) => !item.completed).length;
-  const completedCount = todoList.filter((item) => item.completed).length;
-  const totalCount = todoList.length;
-  const completionPercentage = totalCount
-    ? Math.round((completedCount / totalCount) * 100)
-    : 0;
+  const { pendingCount, completedCount, completionPercentage, totalCount } =
+    useMemo(() => {
+      const completedCount = todoList.filter((item) => item.completed).length;
+      const totalCount = todoList.length;
+
+      return {
+        pendingCount: todoList.filter((item) => !item.completed).length,
+        completedCount,
+        totalCount,
+        completionPercentage:
+          totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0,
+      };
+    }, [todoList]) as {
+      pendingCount: number;
+      completedCount: number;
+      completionPercentage: number;
+      totalCount: number;
+    };
 
   const tabs = [
-    { key: "all", label: `All (${todoList.length})` },
+    { key: "all", label: `All (${totalCount})` },
     { key: "pending", label: `To Read (${pendingCount})` },
     { key: "completed", label: `Completed (${completedCount})` },
   ];
