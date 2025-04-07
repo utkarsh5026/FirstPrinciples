@@ -99,7 +99,6 @@ const getMonthName = (month: number): string => {
 
 const TimeFilteredHeatCalendar: React.FC<TimeFilteredHeatCalendarProps> = ({
   readingHistory,
-  availableDocuments,
   onSelectCategory,
   onSelectDocument,
 }) => {
@@ -225,7 +224,10 @@ const TimeFilteredHeatCalendar: React.FC<TimeFilteredHeatCalendarProps> = ({
   // Get max count for scaling colors
   const maxCount = useMemo(() => {
     if (viewMode === "heatmap") {
-      return Math.max(...calendarData.map((d) => d.count), 1);
+      return Math.max(
+        ...(calendarData as Array<{ count: number }>).map((d) => d.count),
+        1
+      );
     }
     return 1;
   }, [calendarData, viewMode]);
@@ -391,7 +393,14 @@ const TimeFilteredHeatCalendar: React.FC<TimeFilteredHeatCalendarProps> = ({
                 <div key={`empty-start-${i}`} className="aspect-square"></div>
               ))}
 
-              {calendarData.map((day) => (
+              {(
+                calendarData as Array<{
+                  date: string;
+                  count: number;
+                  dayOfMonth: number;
+                  dayOfWeek: number;
+                }>
+              ).map((day) => (
                 <Tooltip key={day.date}>
                   <TooltipTrigger asChild>
                     <div
@@ -473,30 +482,32 @@ const TimeFilteredHeatCalendar: React.FC<TimeFilteredHeatCalendarProps> = ({
         <div className="space-y-4">
           {calendarData.length > 0 ? (
             <div className="space-y-2 max-h-[60vh] overflow-y-auto pr-2">
-              {calendarData.map((item: any) => (
-                <div
-                  key={item.category}
-                  className="flex items-center gap-2 p-3 rounded-lg border border-border/50 cursor-pointer hover:bg-secondary/10 transition-colors"
-                  onClick={() =>
-                    onSelectCategory && onSelectCategory(item.category)
-                  }
-                >
-                  <div className="flex-1">
-                    <div className="font-medium">{item.category}</div>
-                    <div className="text-xs text-muted-foreground">
-                      {item.count} {item.count === 1 ? "document" : "documents"}{" "}
-                      read in{" "}
-                      {timeRange === "all" ? "all time" : `this ${timeRange}`}
-                    </div>
-                  </div>
-                  <Badge
-                    variant={item.count > 0 ? "default" : "outline"}
-                    className="text-xs"
+              {(calendarData as Array<{ category: string; count: number }>).map(
+                (item) => (
+                  <div
+                    key={item.category}
+                    className="flex items-center gap-2 p-3 rounded-lg border border-border/50 cursor-pointer hover:bg-secondary/10 transition-colors"
+                    onClick={() =>
+                      onSelectCategory && onSelectCategory(item.category)
+                    }
                   >
-                    {item.count}×
-                  </Badge>
-                </div>
-              ))}
+                    <div className="flex-1">
+                      <div className="font-medium">{item.category}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {item.count}{" "}
+                        {item.count === 1 ? "document" : "documents"} read in{" "}
+                        {timeRange === "all" ? "all time" : `this ${timeRange}`}
+                      </div>
+                    </div>
+                    <Badge
+                      variant={item.count > 0 ? "default" : "outline"}
+                      className="text-xs"
+                    >
+                      {item.count}×
+                    </Badge>
+                  </div>
+                )
+              )}
             </div>
           ) : (
             <div className="text-center py-8 text-muted-foreground">
@@ -512,7 +523,13 @@ const TimeFilteredHeatCalendar: React.FC<TimeFilteredHeatCalendarProps> = ({
         <div className="space-y-4">
           {calendarData.length > 0 ? (
             <div className="space-y-2 max-h-[60vh] overflow-y-auto pr-2">
-              {calendarData.map((item: any) => (
+              {(
+                calendarData as Array<{
+                  path: string;
+                  title: string;
+                  count: number;
+                }>
+              ).map((item) => (
                 <div
                   key={item.path}
                   className="flex items-center gap-2 p-3 rounded-lg border border-border/50 cursor-pointer hover:bg-secondary/10 transition-colors"

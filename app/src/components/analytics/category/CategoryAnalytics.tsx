@@ -263,9 +263,6 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
               <RadarCategoryChart
                 data={radarData}
                 title="Category Coverage Map"
-                onSelectCategory={(categoryId) =>
-                  handleSelectItem("category", categoryId)
-                }
               />
 
               {/* Timeline */}
@@ -289,13 +286,7 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
 
         {/* Radar Chart View */}
         {activeView === "radar" && (
-          <RadarCategoryChart
-            data={radarData}
-            title="Category Coverage Map"
-            onSelectCategory={(categoryId) =>
-              handleSelectItem("category", categoryId)
-            }
-          />
+          <RadarCategoryChart data={radarData} title="Category Coverage Map" />
         )}
 
         {/* Knowledge Flow View */}

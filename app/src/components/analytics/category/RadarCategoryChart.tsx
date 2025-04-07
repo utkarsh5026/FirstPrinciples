@@ -26,7 +26,6 @@ interface CategoryRadarData {
 interface RadarCategoryChartProps {
   data: CategoryRadarData[];
   title?: string;
-  onSelectCategory?: (categoryId: string) => void;
 }
 
 /**
@@ -36,7 +35,6 @@ interface RadarCategoryChartProps {
 const RadarCategoryChart: React.FC<RadarCategoryChartProps> = ({
   data,
   title = "Category Coverage",
-  onSelectCategory,
 }) => {
   const { isMobile } = useMobile();
 
@@ -102,13 +100,25 @@ const RadarCategoryChart: React.FC<RadarCategoryChartProps> = ({
                   stroke="var(--border)"
                 />
                 <RechartsTooltip
-                  formatter={(value: number, name: string, props: any) => {
+                  formatter={(
+                    value: number,
+                    _name: string,
+                    props: {
+                      payload?: {
+                        name: string;
+                        fullName?: string;
+                        value: number;
+                        totalValue: number;
+                      };
+                    }
+                  ) => {
                     const item = props.payload;
+                    if (!item) return ["N/A", "Unknown"];
                     return [
                       `${Math.round(value)}% Complete (${item.value}/${
                         item.totalValue
                       })`,
-                      item.fullName || item.name,
+                      item.fullName ?? item.name,
                     ];
                   }}
                   contentStyle={{
@@ -125,11 +135,6 @@ const RadarCategoryChart: React.FC<RadarCategoryChartProps> = ({
                   fillOpacity={0.4}
                   activeDot={{
                     r: 8,
-                    onClick: (data) => {
-                      if (onSelectCategory && data.payload) {
-                        onSelectCategory(data.payload.name);
-                      }
-                    },
                   }}
                 />
               </RadarChart>

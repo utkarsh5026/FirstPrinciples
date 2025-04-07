@@ -716,7 +716,7 @@ const CategoryInsights: React.FC<CategoryInsightsProps> = ({
                       <RechartsTooltip
                         formatter={(
                           value: number,
-                          name: string,
+                          _name: string,
                           props: {
                             payload?: {
                               name: string;
