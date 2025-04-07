@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { X, Calendar, Check, FileText } from "lucide-react";
+import { X, Calendar, Check } from "lucide-react";
 import getIconForTech from "@/components/navigation/sidebar/iconMap";
 import { formatDate } from "../utils";
 import type { ReadingTodoItem } from "@/hooks/useDocumentManager";
@@ -95,15 +95,6 @@ const TodoItem: React.FC<TodoItemProps> = ({
                       <Calendar className="h-3 w-3 mr-1" />
                       Added {formatDate(item.addedAt)}
                     </div>
-
-                    {/* File path badge */}
-                    <Badge
-                      variant="outline"
-                      className="text-[10px] px-1 py-0 h-4 bg-secondary/10 border-secondary/20"
-                    >
-                      <FileText className="h-2.5 w-2.5 mr-1" />
-                      {item.path.split("/").slice(1).join("/")}
-                    </Badge>
                   </div>
                 </div>
 
