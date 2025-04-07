@@ -6,19 +6,30 @@ import type {
   ReadingTodoItem,
 } from "@/hooks/useDocumentManager";
 import type { FileMetadata } from "@/utils/MarkdownLoader";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-interface EnhancedHeroProps {
+interface HeroProps {
   availableDocuments: FileMetadata[];
   todoList: ReadingTodoItem[];
   readingHistory: ReadingHistoryItem[];
 }
 
 /**
- * Enhanced Hero component with a more dynamic and visually appealing design.
+ * Hero component with a more dynamic and visually appealing design.
  * Features gradient animations, better layout for mobile and desktop, and improved stat visualization.
  */
-const EnhancedHero: React.FC<EnhancedHeroProps> = ({
+/**
+ * Hero component for the dashboard homepage
+ *
+ * Displays a visually appealing hero section with user greeting, progress stats,
+ * and reading metrics. Features animated gradient backgrounds and responsive design.
+ *
+ * @param {FileMetadata[]} availableDocuments - List of all available documents in the system
+ * @param {ReadingTodoItem[]} todoList - User's reading list with completed/pending status
+ * @param {ReadingHistoryItem[]} readingHistory - User's reading history records
+ * @returns {JSX.Element} A responsive hero component with user stats and greeting
+ */
+const Hero: React.FC<HeroProps> = ({
   availableDocuments,
   todoList,
   readingHistory,
@@ -27,47 +38,64 @@ const EnhancedHero: React.FC<EnhancedHeroProps> = ({
   const [greeting, setGreeting] = useState("Hello");
   const [time, setTime] = useState("");
 
-  // Update greeting based on time of day
+  /**
+   * Sets appropriate greeting based on time of day and formats current time
+   *
+   * Updates the greeting message (morning/afternoon/evening) based on current hour
+   * and formats the current time in 12-hour format with AM/PM
+   */
   useEffect(() => {
-    const hour = new Date().getHours();
-    let newGreeting = "";
+    const createGreetingAccordingToTime = () => {
+      const hour = new Date().getHours();
+      let newGreeting = "";
 
-    if (hour < 12) newGreeting = "Good morning";
-    else if (hour < 17) newGreeting = "Good afternoon";
-    else newGreeting = "Good evening";
+      if (hour < 12) newGreeting = "Good morning";
+      else if (hour < 17) newGreeting = "Good afternoon";
+      else newGreeting = "Good evening";
 
-    setGreeting(newGreeting);
+      setGreeting(newGreeting);
+      const timeString = new Date().toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      });
+      setTime(timeString);
+    };
 
-    // Format current time
-    const timeString = new Date().toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
-    setTime(timeString);
+    createGreetingAccordingToTime();
   }, []);
 
-  // Calculate completion percentage
+  /**
+   * Calculates reading statistics from the to-do list
+   *
+   * @returns {Object} Object containing counts of pending and completed reading items
+   */
+  const { pendingReads, completedItems } = useMemo(() => {
+    const pendingReads = todoList.filter((item) => !item.completed).length;
+    const completedItems = todoList.filter((item) => item.completed).length;
+
+    return {
+      pendingReads,
+      completedItems,
+    };
+  }, [todoList]);
+
+  // Calculate overall progress metrics
   const completedDocs = readingHistory.length;
   const totalDocs = availableDocuments.length;
   const completionPercentage =
     Math.round((completedDocs / totalDocs) * 100) || 0;
-
-  // Get stats for the badges
-  const pendingReads = todoList.filter((item) => !item.completed).length;
-  const completedItems = todoList.filter((item) => item.completed).length;
-
-  // Simulate streak count (we'd typically get this from analytics)
   const streakCount =
     readingHistory.length > 0 ? readingHistory.length % 14 || 1 : 0;
 
-  // Custom badge styles with alpha transparency to work better on the gradient
+  // Style for the stat badges using theme colors
   const badgeStyle = {
-    backgroundColor: `${currentTheme.primary}20`, // Using hex with alpha
+    backgroundColor: `${currentTheme.primary}20`,
     color: currentTheme.primary,
     border: `1px solid ${currentTheme.primary}40`,
   };
 
+  // Configuration for the stat badges
   const badges = [
     { icon: <FileText />, label: "Documents read", value: completedDocs },
     { icon: <CheckCircle2 />, label: "Completed", value: completedItems },
@@ -85,7 +113,6 @@ const EnhancedHero: React.FC<EnhancedHeroProps> = ({
         }}
       />
 
-      {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary opacity-10 blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-16 h-16 md:w-24 md:h-24 rounded-full bg-primary opacity-5 blur-2xl"></div>
 
@@ -157,14 +184,14 @@ const EnhancedHero: React.FC<EnhancedHeroProps> = ({
 
         {/* Stats badges */}
         <div className="flex flex-wrap gap-2 mt-6">
-          {badges.map((badge) => (
+          {badges.map(({ label, icon, value }) => (
             <Badge
-              key={badge.label}
+              key={label}
               className="px-3 py-1.5 flex items-center backdrop-blur-sm rounded-2xl"
               style={badgeStyle}
             >
-              {badge.icon}
-              {badge.value} {badge.label}
+              {icon}
+              {value} {label}
             </Badge>
           ))}
         </div>
@@ -173,4 +200,4 @@ const EnhancedHero: React.FC<EnhancedHeroProps> = ({
   );
 };
 
-export default EnhancedHero;
+export default Hero;
