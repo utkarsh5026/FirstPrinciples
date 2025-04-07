@@ -85,7 +85,6 @@ const HistoryStats: React.FC<{
   );
 };
 
-// Internal component for stat card
 const StatCard: React.FC<{
   label: string;
   value: number;
@@ -93,7 +92,7 @@ const StatCard: React.FC<{
 }> = ({ label, value, highlight }) => {
   return (
     <Card
-      className={`px-3 py-2 flex flex-col items-center justify-center ${
+      className={`p-2 flex flex-col rounded-2xl items-center justify-center ${
         highlight ? "border-primary/20 bg-primary/5" : "border-secondary/30"
       }`}
     >
