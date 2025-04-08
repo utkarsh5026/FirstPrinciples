@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
-import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import CardProgress from "../CardProgress";
 import {
   Menu,
@@ -19,7 +18,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import SectionsSheet from "./sidebar/SectionsSheet";
-import { MarkdownSection } from "@/components/card/MarkdownCardView"; // Import shared type
+import { MarkdownSection } from "@/components/card/MarkdownCardView";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import useMobile from "@/hooks/useMobile";
 
@@ -27,30 +26,36 @@ interface FullscreenCardViewProps {
   markdown: string;
   className?: string;
   onExit: () => void;
-  parsedSections?: MarkdownSection[]; // Accept pre-parsed sections
+  parsedSections?: MarkdownSection[];
 }
 
 const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   markdown,
   className,
   onExit,
-  parsedSections, // Use pre-parsed sections if provided
+  parsedSections,
 }) => {
   const [sections, setSections] = useState<MarkdownSection[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showControls, setShowControls] = useState(true);
-  const [touchStartTime, setTouchStartTime] = useState<number | null>(null);
   const [immersiveMode, setImmersiveMode] = useState(false);
   const [useGradientBg, setUseGradientBg] = useState(() => {
-    // Initialize from localStorage or default to true
     return localStorage.getItem("useGradientBackground") !== "false";
   });
+
+  // Touch tracking for gestures
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
+  const [touchStartTime, setTouchStartTime] = useState<number | null>(null);
+  const [isSwiping, setIsSwiping] = useState(false);
 
   const cardContainerRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const touchSurfaceRef = useRef<HTMLDivElement>(null);
+
   const totalCards = sections.length;
 
   // Get theme colors for gradient
@@ -60,11 +65,10 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   // Calculate background style based on user preference
   const gradientStyle = useGradientBg
     ? {
-        // Add subtle pattern overlay
         backgroundImage: `
-  linear-gradient(135deg, #1a1a1a 0%, ${currentTheme.primary}08 100%),
-  url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E")
-    `,
+          linear-gradient(135deg, #1a1a1a 0%, ${currentTheme.primary}08 100%),
+          url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E")
+        `,
         backgroundSize: "100% 100%, 20px 20px",
         boxShadow: "inset 0 0 100px rgba(0, 0, 0, 0.15)",
       }
@@ -77,18 +81,13 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     if (!markdown) return;
 
     if (parsedSections && parsedSections.length > 0) {
-      // Use the pre-parsed sections if provided
-      console.log("Using pre-parsed sections in fullscreen view");
       setSections(parsedSections);
     } else {
-      // Fallback to parsing directly (should never happen with proper implementation)
-      console.time("FullscreenView - Parse Markdown");
       const newSections = parseMarkdownIntoSections(markdown);
       setSections(newSections);
-      console.timeEnd("FullscreenView - Parse Markdown");
     }
 
-    setCurrentIndex(0); // Reset to first card when content changes
+    setCurrentIndex(0);
   }, [markdown, parsedSections]);
 
   // Scroll to top when changing cards
@@ -98,25 +97,111 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     }
   }, [currentIndex]);
 
-  // Set up swipe gestures for navigation
-  useSwipeGesture({
-    targetRef: cardContainerRef as React.RefObject<HTMLElement>,
-    threshold: 50,
-    onSwipeLeft: () => {
-      if (currentIndex < totalCards - 1) {
-        handleNextCard();
+  // Manual implementation of swipe gesture handling to ensure it works on mobile
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      // Don't handle touch events if the content is scrollable and user is scrolling
+      if (scrollAreaRef.current && scrollAreaRef.current.scrollTop > 0) {
+        const touch = e.touches[0];
+        setTouchStartY(touch.clientY);
+
+        // If starting to scroll vertically, don't activate swipe
+        return;
+      }
+
+      // Store the starting position and time
+      const touch = e.touches[0];
+      setTouchStartX(touch.clientX);
+      setTouchStartY(touch.clientY);
+      setTouchStartTime(Date.now());
+      setIsSwiping(false);
+
+      // Show controls on touch
+      setShowControls(true);
+
+      // Reset control hiding timeout
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
       }
     },
-    onSwipeRight: () => {
-      if (currentIndex > 0) {
-        handlePrevCard();
+    []
+  );
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      // Skip if we don't have a starting point
+      if (touchStartX === null || touchStartY === null) return;
+
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+
+      // Check if this is a horizontal swipe (more horizontal than vertical)
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+        setIsSwiping(true);
+        // Prevent default to stop scrolling when swiping horizontally
+        e.preventDefault();
       }
     },
-    onDoubleTap: () => {
-      // Toggle immersive mode on double tap
-      toggleImmersiveMode();
+    [touchStartX, touchStartY]
+  );
+
+  const handleTouchEnd = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      // Skip if we don't have a starting point
+      if (
+        touchStartX === null ||
+        touchStartY === null ||
+        touchStartTime === null
+      )
+        return;
+
+      const touch = e.changedTouches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+      const touchDuration = Date.now() - touchStartTime;
+
+      // Handle as a tap if it was a short touch without much movement
+      if (
+        touchDuration < 250 &&
+        Math.abs(deltaX) < 10 &&
+        Math.abs(deltaY) < 10
+      ) {
+        // Toggle controls on tap if in immersive mode
+        if (immersiveMode) {
+          setShowControls((prev) => !prev);
+        }
+      }
+      // Handle as a swipe if it was primarily horizontal
+      else if (isSwiping) {
+        // Threshold for swipe - can be adjusted
+        const swipeThreshold = 50;
+
+        if (deltaX < -swipeThreshold && currentIndex < totalCards - 1) {
+          // Swipe left - go to next card
+          handleNextCard();
+        } else if (deltaX > swipeThreshold && currentIndex > 0) {
+          // Swipe right - go to previous card
+          handlePrevCard();
+        }
+      }
+
+      // Reset the touch tracking
+      setTouchStartX(null);
+      setTouchStartY(null);
+      setTouchStartTime(null);
+      setIsSwiping(false);
     },
-  });
+    [
+      currentIndex,
+      touchStartX,
+      touchStartY,
+      touchStartTime,
+      isSwiping,
+      totalCards,
+      immersiveMode,
+    ]
+  );
 
   // Auto-hide controls after inactivity
   useEffect(() => {
@@ -137,9 +222,8 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     // Set event listeners
     const container = cardContainerRef.current;
     if (container) {
-      container.addEventListener("touchstart", handleUserActivity);
+      container.addEventListener("mousedown", handleUserActivity);
       container.addEventListener("mousemove", handleUserActivity);
-      container.addEventListener("click", handleUserActivity);
     }
 
     // Initial timeout
@@ -156,30 +240,11 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       }
 
       if (container) {
-        container.removeEventListener("touchstart", handleUserActivity);
+        container.removeEventListener("mousedown", handleUserActivity);
         container.removeEventListener("mousemove", handleUserActivity);
-        container.removeEventListener("click", handleUserActivity);
       }
     };
   }, [immersiveMode]);
-
-  // Handle touch events for tap detection
-  const handleTouchStart = useCallback(() => {
-    setTouchStartTime(Date.now());
-  }, []);
-
-  const handleTouchEnd = useCallback(() => {
-    if (touchStartTime) {
-      const touchDuration = Date.now() - touchStartTime;
-
-      // If it was a quick tap in the center area, toggle controls
-      if (touchDuration < 200) {
-        setShowControls((prev) => !prev);
-      }
-
-      setTouchStartTime(null);
-    }
-  }, [touchStartTime]);
 
   // Toggle immersive reading mode
   const toggleImmersiveMode = useCallback(() => {
@@ -191,7 +256,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const toggleBackgroundStyle = useCallback(() => {
     const newValue = !useGradientBg;
     setUseGradientBg(newValue);
-    // Save preference to localStorage
     localStorage.setItem("useGradientBackground", newValue.toString());
   }, [useGradientBg]);
 
@@ -206,9 +270,8 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
 
     // Main parse pass
     for (const rawLine of lines) {
-      const line = rawLine.trimEnd(); // Keep left indentation but trim right
+      const line = rawLine.trimEnd();
 
-      // Check if we're in a code block
       if (line.trim().startsWith("```")) {
         inCodeBlock = !inCodeBlock;
         if (currentSection) {
@@ -219,7 +282,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         continue;
       }
 
-      // Skip heading detection inside code blocks
       if (inCodeBlock) {
         if (currentSection) {
           currentSection.content += line + "\n";
@@ -229,20 +291,15 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         continue;
       }
 
-      // Detect headings - more flexible regex patterns
-      // Match h1: # Heading text (any number of spaces after #)
       const h1Match = line.match(/^#\s+(.+)$/);
-      // Match h2: ## Heading text (any number of spaces after ##)
       const h2Match = line.match(/^##\s+(.+)$/);
 
       if (h1Match) {
-        // H1 heading found
         const title = h1Match[1].trim();
 
         if (currentSection) {
           sections.push(currentSection);
         } else if (introContent.trim()) {
-          // Handle intro content before first heading
           sections.push({
             id: "introduction",
             title: "Introduction",
@@ -259,13 +316,11 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           level: 1,
         };
       } else if (h2Match) {
-        // H2 heading found
         const title = h2Match[1].trim();
 
         if (currentSection) {
           sections.push(currentSection);
         } else if (introContent.trim()) {
-          // Handle intro content before first heading
           sections.push({
             id: "introduction",
             title: "Introduction",
@@ -282,19 +337,15 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           level: 2,
         };
       } else if (currentSection) {
-        // Add content to the current section
         currentSection.content += line + "\n";
       } else {
-        // Content before the first heading
         introContent += line + "\n";
       }
     }
 
-    // Add the last section
     if (currentSection) {
       sections.push(currentSection);
     } else if (introContent.trim()) {
-      // If there's only content without headings
       sections.push({
         id: "content",
         title: "Content",
@@ -319,7 +370,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
 
   // Navigation handlers with animations
   const handlePrevCard = () => {
-    if (currentIndex > 0) {
+    if (currentIndex > 0 && !isTransitioning) {
       setIsTransitioning(true);
       setTimeout(() => {
         setCurrentIndex(currentIndex - 1);
@@ -329,7 +380,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   };
 
   const handleNextCard = () => {
-    if (currentIndex < sections.length - 1) {
+    if (currentIndex < sections.length - 1 && !isTransitioning) {
       setIsTransitioning(true);
       setTimeout(() => {
         setCurrentIndex(currentIndex + 1);
@@ -340,7 +391,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
 
   // Jump to a specific card
   const handleSelectCard = (index: number) => {
-    if (index !== currentIndex) {
+    if (index !== currentIndex && !isTransitioning) {
       setIsTransitioning(true);
       setTimeout(() => {
         setCurrentIndex(index);
@@ -348,6 +399,15 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       }, 200);
     }
   };
+
+  // Handle double tap to toggle immersive mode
+  const handleDoubleTap = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      toggleImmersiveMode();
+    },
+    [toggleImmersiveMode]
+  );
 
   if (sections.length === 0) {
     return (
@@ -362,13 +422,11 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   return (
     <div
       className={cn(
-        "fixed inset-0 z-50 flex flex-col overflow-hidden",
+        "fixed inset-0 z-50 flex flex-col overflow-hidden touch-none",
         className
       )}
       ref={cardContainerRef}
       style={gradientStyle}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
     >
       {/* Overlay gradient for depth - only show when gradient mode is enabled */}
       {useGradientBg && (
@@ -381,10 +439,21 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         />
       )}
 
+      {/* Touch surface for gesture handling that covers entire viewport */}
+      <div
+        ref={touchSurfaceRef}
+        className="absolute inset-0 z-30 touch-manipulation"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onDoubleClick={handleDoubleTap}
+        style={{ touchAction: "pan-y" }} // Allow vertical scrolling but handle horizontal ourselves
+      />
+
       {/* Header - conditionally shown based on immersive mode */}
       <div
         className={cn(
-          "sticky top-0 z-20 flex items-center justify-between p-4 backdrop-blur-sm transition-all duration-300",
+          "sticky top-0 z-40 flex items-center justify-between p-4 backdrop-blur-sm transition-all duration-300",
           immersiveMode
             ? "bg-transparent"
             : "bg-card/50 border-b border-border",
@@ -436,7 +505,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
 
       {/* Main content area with enhanced aesthetics */}
       <div
-        className="flex-1 relative overflow-hidden"
+        className="flex-1 relative overflow-hidden z-20"
         style={{
           height: immersiveMode ? "100vh" : "calc(100vh - 8rem)", // Adjust height based on immersive mode
         }}
@@ -446,7 +515,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           <>
             <div
               className={cn(
-                "absolute left-4 top-1/2 -translate-y-1/2 z-10 transition-opacity duration-300",
+                "absolute left-4 top-1/2 -translate-y-1/2 z-40 transition-opacity duration-300",
                 currentIndex === 0
                   ? "opacity-30 cursor-not-allowed"
                   : "opacity-60 hover:opacity-100 cursor-pointer"
@@ -465,7 +534,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
 
             <div
               className={cn(
-                "absolute right-4 top-1/2 -translate-y-1/2 z-10 transition-opacity duration-300",
+                "absolute right-4 top-1/2 -translate-y-1/2 z-40 transition-opacity duration-300",
                 currentIndex === sections.length - 1
                   ? "opacity-30 cursor-not-allowed"
                   : "opacity-60 hover:opacity-100 cursor-pointer"
@@ -490,8 +559,9 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           className={cn(
             "h-full overflow-y-auto pb-16 px-4 md:px-0 scrollbar-hide",
             isTransitioning ? "opacity-0" : "opacity-100",
-            "transition-opacity duration-200"
+            "transition-opacity duration-200 z-10"
           )}
+          style={{ touchAction: "pan-y" }} // Ensure vertical scrolling works
         >
           <div
             className={cn(
@@ -523,7 +593,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       {/* Navigation Footer - conditionally shown */}
       <div
         className={cn(
-          "sticky bottom-0 backdrop-blur-sm transition-all duration-300",
+          "sticky bottom-0 backdrop-blur-sm transition-all duration-300 z-40",
           immersiveMode
             ? "bg-transparent"
             : "bg-card/50 border-t border-border",
@@ -541,6 +611,34 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         </div>
       </div>
 
+      {/* Swipe indicators for visual feedback */}
+      {isMobile && (
+        <>
+          <div
+            className={cn(
+              "absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-primary/10 to-transparent pointer-events-none z-20 transition-opacity duration-300",
+              currentIndex > 0 &&
+                isSwiping &&
+                touchStartX !== null &&
+                touchStartX < window.innerWidth / 4
+                ? "opacity-80"
+                : "opacity-0"
+            )}
+          />
+          <div
+            className={cn(
+              "absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-primary/10 to-transparent pointer-events-none z-20 transition-opacity duration-300",
+              currentIndex < sections.length - 1 &&
+                isSwiping &&
+                touchStartX !== null &&
+                touchStartX > (window.innerWidth * 3) / 4
+                ? "opacity-80"
+                : "opacity-0"
+            )}
+          />
+        </>
+      )}
+
       {/* Sections Menu Sheet */}
       <SectionsSheet
         sections={sections}
@@ -548,16 +646,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         handleSelectCard={handleSelectCard}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
-      />
-
-      {/* Touch swipe indicators (hidden visually but help with touch areas) */}
-      <div
-        className="absolute top-1/3 bottom-1/3 left-0 w-16 -translate-y-1/2 opacity-0"
-        onClick={handlePrevCard}
-      />
-      <div
-        className="absolute top-1/3 bottom-1/3 right-0 w-16 -translate-y-1/2 opacity-0"
-        onClick={handleNextCard}
       />
     </div>
   );
