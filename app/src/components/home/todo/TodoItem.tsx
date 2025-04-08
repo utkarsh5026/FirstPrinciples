@@ -15,17 +15,12 @@ interface TodoItemProps {
 }
 
 /**
- * TodoItem component displays a list of todo items categorized by a specific category.
- * Each item can be marked as completed, selected for viewing, or removed from the list.
+ * 🎉 TodoItem Component
  *
- * @param {Object} props - The properties for the TodoItem component.
- * @param {string} props.category - The category name for the to-do items.
- * @param {ReadingTodoItem[]} props.items - An array of todo items to display.
- * @param {function} props.toggleTodoCompletion - Function to toggle the completion status of a todo item.
- * @param {function} props.handleSelectDocument - Function to handle the selection of a document.
- * @param {function} props.removeFromTodoList - Function to remove a todo item from the list.
- *
- * @returns {JSX.Element} The rendered TodoItem component.
+ * This delightful component showcases a list of reading tasks organized by category!
+ * It allows users to easily track their reading progress and manage their to-do items.
+ * With a charming layout, users can mark items as completed, view details, and remove
+ * tasks from their list. It's all about making your reading journey fun and organized! 📚✨
  */
 const TodoItem: React.FC<TodoItemProps> = ({
   category,

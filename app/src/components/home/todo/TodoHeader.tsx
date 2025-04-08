@@ -11,17 +11,17 @@ interface TodoHeaderProps {
 }
 
 /**
- * TodoHeader component displays the header section of the Todo List feature.
- * It includes a button to add new items, statistics about the reading list, and a progress bar.
+ * 🎉 TodoHeader Component
  *
- * @param {TodoHeaderProps} props - The properties of the TodoHeader component.
- * @param {number} props.completedCount - The number of completed tasks.
- * @param {number} props.completionPercentage - The percentage of tasks completed.
- * @param {number} props.totalCount - The total number of tasks.
- * @param {number} props.pendingCount - The number of pending tasks.
- * @param {number} props.todoListLength - The length of the todo list.
+ * This component serves as the cheerful header for your reading list!
+ * It displays important statistics about your reading progress,
+ * including how many documents are pending, completed, and your overall
+ * progress percentage. 📚✨
  *
- * @returns {React.ReactElement} The TodoHeader component.
+ * With a delightful layout and engaging icons, it helps you keep track
+ * of your reading journey in a visually appealing way.
+ * The background elements add a touch of flair, making your reading
+ * experience even more enjoyable! 🌈
  */
 const TodoHeader: React.FC<TodoHeaderProps> = ({
   completedCount,

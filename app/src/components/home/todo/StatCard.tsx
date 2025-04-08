@@ -7,6 +7,20 @@ interface StatCardProps {
   suffix?: string;
 }
 
+/**
+ * 🎉 StatCard Component
+ *
+ * This delightful little card is designed to showcase important statistics
+ * in a visually appealing way! It brings together a label, a value, and an
+ * icon to create a compact and informative display. Perfect for dashboards
+ * or any place where you want to highlight key metrics! 🌟
+ *
+ * With its smooth hover effects and rounded corners, it adds a touch of
+ * elegance to your UI while keeping the information clear and accessible.
+ *
+ * Use this component to make your data shine and keep your users engaged!
+ * ✨
+ */
 const StatCard: React.FC<StatCardProps> = ({
   label,
   value,

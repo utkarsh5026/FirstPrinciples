@@ -20,21 +20,19 @@ interface TodoListProps {
 type Tab = "all" | "pending" | "completed";
 
 /**
- * TodoList Component
+ * 🎉 TodoList Component
  *
- * A component that displays a list of documents to read, organized by categories.
- * It provides filtering capabilities through tabs (All, To Read, Completed) and
- * displays statistics about the reading progress.
+ * This delightful component manages your reading list with style and organization!
+ * It displays all your to-read documents in a beautiful, categorized layout.
  *
- * @param {TodoListProps} props - The properties for the TodoList component
- * @param {ReadingTodoItem[]} props.todoList - Array of todo items to display
- * @param {(id: string) => void} props.toggleTodoCompletion - Function to toggle completion status of a todo item
- * @param {(path: string, title: string) => void} props.handleSelectDocument - Function to handle document selection
- * @param {(id: string) => void} props.removeFromTodoList - Function to remove an item from the todo list
- * @param {() => void} props.clearTodoList - Function to clear the entire todo list
- * @param {(show: boolean) => void} props.setShowAddTodoModal - Function to control the visibility of the add todo modal
+ * ✨ Features:
+ * - Filter between all, pending, and completed reading items
+ * - View documents organized by categories
+ * - Track your reading progress with a visual completion bar
+ * - Add new documents or clear your list with easy-to-use buttons
  *
- * @returns {React.ReactElement} The TodoList component
+ * The component creates a joyful reading tracking experience that helps you
+ * stay organized and motivated on your learning journey! 📚✨
  */
 const TodoList: React.FC<TodoListProps> = ({
   todoList,
@@ -45,15 +43,19 @@ const TodoList: React.FC<TodoListProps> = ({
   setShowAddTodoModal,
 }) => {
   /**
-   * State to track the currently active tab filter
+   * 🔍 Active Tab State
+   *
+   * Keeps track of which filter view the user wants to see!
+   * Options include "all", "pending", or "completed" items.
    */
   const [activeTab, setActiveTab] = useState<Tab>("all");
 
   /**
-   * Memoized computation of to-do items organized by categories
-   * Filters items based on the active tab and groups them by their top-level directory
+   * 📋 Categories Organization
    *
-   * @returns {Record<string, ReadingTodoItem[]>} Object with category names as keys and arrays of todo items as values
+   * Magically organizes your reading items by their categories!
+   * It filters the items based on the active tab and groups them
+   * by their top-level directory for a clean, organized view.
    */
   const categories = useMemo(() => {
     const filteredList = todoList.filter((item) => {
@@ -74,10 +76,11 @@ const TodoList: React.FC<TodoListProps> = ({
   }, [todoList, activeTab]);
 
   /**
-   * Memoized computation of to-do list statistics
-   * Calculates counts of pending and completed items, total count, and completion percentage
+   * 📊 Reading Statistics
    *
-   * @returns {Object} Object containing pendingCount, completedCount, completionPercentage, and totalCount
+   * Calculates all the fun statistics about your reading progress!
+   * Tracks how many items are pending, completed, and your overall
+   * completion percentage to keep you motivated! 🎯
    */
   const { pendingCount, completedCount, completionPercentage, totalCount } =
     useMemo(() => {
