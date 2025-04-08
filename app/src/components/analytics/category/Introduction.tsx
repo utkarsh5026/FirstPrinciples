@@ -11,6 +11,22 @@ interface IntroductionProps {
   };
 }
 
+/**
+ * 🌟 Introduction Component
+ *
+ * This delightful component serves as a warm welcome to your knowledge analytics journey!
+ * It showcases key insights into your learning progress, helping you understand how
+ * much you've explored and how well you're balancing your reading. 📚✨
+ *
+ * With vibrant visualizations, it highlights:
+ * - The number of categories you've explored, giving you a sense of your learning breadth. 🌍
+ * - Your coverage score, which reflects how thoroughly you've engaged with the material. 📊
+ * - Your balance score, indicating how evenly you've distributed your reading across categories. ⚖️
+ * - The total documents you've read, celebrating your achievements in knowledge acquisition! 🎉
+ *
+ * This component is designed to inspire and motivate you on your learning path,
+ * making your analytics experience both informative and enjoyable! 😊
+ */
 const Introduction: React.FC<IntroductionProps> = ({ summaryStat }) => {
   const stats = [
     {
