@@ -153,8 +153,6 @@ export function useMarkdownProcessor(markdownContent: string) {
     return sections;
   }, [markdownContent, parseMarkdownIntoSections]);
 
-  // Helper function to create URL-friendly slug IDs
-
   return {
     tocItems,
     parsedSections,

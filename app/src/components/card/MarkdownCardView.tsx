@@ -3,9 +3,7 @@ import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import CardNavigation from "./nav/CardNavigation";
-import CardSectionsMenu from "./CardSectionsMenu";
 import CardIntroModal from "./into/CardInrtoModal";
-import useMobile from "@/hooks/useMobile";
 import "./MarkdownCardStyles.css";
 
 export interface MarkdownSection {
@@ -29,11 +27,9 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
   const [sections, setSections] = useState<MarkdownSection[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isSectionsMenuOpen, setIsSectionsMenuOpen] = useState(false);
   const cardContainerRef = useRef<HTMLDivElement>(null);
   const cardContentRef = useRef<HTMLDivElement>(null);
   const totalCards = sections.length;
-  const { isMobile } = useMobile();
 
   // Parse the markdown into sections if not already provided
   useEffect(() => {
@@ -74,12 +70,6 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
     onSwipeRight: () => {
       if (currentIndex > 0) {
         handlePrevCard();
-      }
-    },
-    onDoubleTap: () => {
-      // Open sections menu on double tap (mobile only)
-      if (isMobile) {
-        setIsSectionsMenuOpen(true);
       }
     },
   });
@@ -269,7 +259,6 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
         setIsTransitioning(false);
       }, 200);
     }
-    setIsSectionsMenuOpen(false);
   };
 
   // Show a message if no content is available
@@ -294,9 +283,12 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
   const isFirstCard = currentIndex === 0;
 
   return (
-    <div className={cn("flex flex-col", className)} ref={cardContainerRef}>
+    <div
+      className={cn("flex flex-col border-primary/20 rounded-4xl", className)}
+      ref={cardContainerRef}
+    >
       {/* Card Container with swipe indicators */}
-      <div className="card-container relative flex-1 flex flex-col">
+      <div className="card-container relative flex-1 flex flex-col rounded-4xl">
         {/* Left swipe indicator - shown when not at first card */}
         {!isFirstCard && (
           <div className="swipe-indicator swipe-indicator-left"></div>
@@ -333,20 +325,6 @@ const MarkdownCardView: React.FC<MarkdownCardViewProps> = ({
         onNext={handleNextCard}
         onSelectCard={handleSelectCard}
       />
-
-      {/* Interactive sections menu */}
-      {isSectionsMenuOpen && (
-        <CardSectionsMenu
-          sections={sections.map((section) => ({
-            id: section.id,
-            title: section.title,
-            level: section.level,
-          }))}
-          currentIndex={currentIndex}
-          onSelectSection={handleSelectCard}
-          onClose={() => setIsSectionsMenuOpen(false)}
-        />
-      )}
 
       <CardIntroModal />
     </div>

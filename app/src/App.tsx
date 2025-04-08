@@ -142,10 +142,7 @@ function App() {
             {showHomePage ? (
               <HomePage onSelectFile={handleSelectFile} />
             ) : (
-              <CardDocumentViewer
-                selectedFile={selectedFile ?? ""}
-                setSelectedFile={handleSelectFile}
-              />
+              <CardDocumentViewer selectedFile={selectedFile ?? ""} />
             )}
           </main>
         </div>

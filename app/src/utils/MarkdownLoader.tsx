@@ -376,4 +376,15 @@ export class MarkdownLoader {
     element.click();
     document.body.removeChild(element);
   }
+
+  static getFilenameFromPath(path: string): string {
+    const parts = path.split("/");
+    const filename = parts[parts.length - 1];
+    // Remove extension and convert to title case
+    return filename
+      .replace(".md", "")
+      .replace(/_/g, " ")
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (l) => l.toUpperCase());
+  }
 }
