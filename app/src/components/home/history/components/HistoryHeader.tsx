@@ -30,6 +30,12 @@ const HistoryHeader: React.FC<HistoryHeaderProps> = ({
   viewMode,
   setViewMode,
 }) => {
+  const viewModeOptions = [
+    { mode: "list", label: "List", icon: LayoutList },
+    { mode: "timeline", label: "Timeline", icon: Clock },
+    { mode: "trends", label: "Trends", icon: BarChart2 },
+  ] as const;
+
   return (
     <div className="flex flex-col md:flex-row justify-between gap-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -44,45 +50,22 @@ const HistoryHeader: React.FC<HistoryHeaderProps> = ({
           View:
         </span>
         <div className="bg-secondary/20 rounded-lg p-1 flex flex-grow md:flex-grow-0">
-          <Button
-            size="sm"
-            variant={viewMode === "list" ? "default" : "ghost"}
-            className={`h-8 text-xs md:text-sm flex-1 md:flex-initial ${
-              viewMode !== "list"
-                ? "text-muted-foreground hover:text-foreground"
-                : ""
-            }`}
-            onClick={() => setViewMode("list")}
-          >
-            <LayoutList className="mr-1 h-3 w-3 md:h-4 md:w-4" />
-            <span className="md:inline">List</span>
-          </Button>
-          <Button
-            size="sm"
-            variant={viewMode === "timeline" ? "default" : "ghost"}
-            className={`h-8 text-xs md:text-sm flex-1 md:flex-initial ${
-              viewMode !== "timeline"
-                ? "text-muted-foreground hover:text-foreground"
-                : ""
-            }`}
-            onClick={() => setViewMode("timeline")}
-          >
-            <Clock className="mr-1 h-3 w-3 md:h-4 md:w-4" />
-            <span className="md:inline">Timeline</span>
-          </Button>
-          <Button
-            size="sm"
-            variant={viewMode === "trends" ? "default" : "ghost"}
-            className={`h-8 text-xs md:text-sm flex-1 md:flex-initial ${
-              viewMode !== "trends"
-                ? "text-muted-foreground hover:text-foreground"
-                : ""
-            }`}
-            onClick={() => setViewMode("trends")}
-          >
-            <BarChart2 className="mr-1 h-3 w-3 md:h-4 md:w-4" />
-            <span className="md:inline">Trends</span>
-          </Button>
+          {viewModeOptions.map(({ mode, label, icon: Icon }) => (
+            <Button
+              key={mode}
+              size="sm"
+              variant={viewMode === mode ? "default" : "ghost"}
+              className={`h-8 text-xs md:text-sm flex-1 md:flex-initial ${
+                viewMode !== mode
+                  ? "text-muted-foreground hover:text-foreground"
+                  : ""
+              }`}
+              onClick={() => setViewMode(mode)}
+            >
+              <Icon className="mr-1 h-3 w-3 md:h-4 md:w-4" />
+              <span className="md:inline">{label}</span>
+            </Button>
+          ))}
         </div>
       </div>
     </div>
