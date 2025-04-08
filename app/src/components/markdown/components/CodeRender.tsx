@@ -62,8 +62,8 @@ const CodeRender: React.FC<CodeRenderProps> = ({
   }
 
   return (
-    <div className="my-6 rounded-lg overflow-hidden border border-[#222222] relative font-cascadia-code">
-      <div className="bg-[#1c1c1c] text-gray-400 px-4 py-2 text-sm  border-b border-[#222222] flex justify-between items-center">
+    <div className="my-6 rounded-2xl overflow-hidden border border-[#222222] relative font-cascadia-code">
+      <div className="bg-[#1c1c1c] text-gray-400 px-4 py-2 text-sm font-bold border-b border-[#222222] flex justify-between items-center">
         <span>{language || "code"}</span>
         <button
           onClick={copyToClipboard}
