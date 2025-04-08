@@ -36,7 +36,7 @@ const DailyChallenge: React.FC<DailyChallengeProps> = memo(
         setShowConfetti(true);
         setTimeout(() => {
           setShowConfetti(false);
-        }, 5000);
+        }, 8000);
       }
     }, [todayReadsCount]);
 
@@ -49,7 +49,7 @@ const DailyChallenge: React.FC<DailyChallengeProps> = memo(
               width={window.innerWidth}
               height={window.innerHeight}
               recycle={false}
-              numberOfPieces={800}
+              numberOfPieces={1200}
             />
           </div>
         )}
