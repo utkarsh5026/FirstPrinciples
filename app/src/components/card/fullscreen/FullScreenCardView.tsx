@@ -62,10 +62,12 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   // Calculate background style based on user preference - make sure we use pointer-events: auto
   const gradientStyle = useGradientBg
     ? {
+        background: `linear-gradient(135deg, #202020 0%, ${currentTheme.primary}15 100%)`,
         backgroundImage: `
-          linear-gradient(135deg, #1a1a1a 0%, ${currentTheme.primary}08 100%)
-        `,
-        backgroundSize: "100% 100%",
+    linear-gradient(135deg, #202020 0%, ${currentTheme.primary}15 100%), 
+    radial-gradient(${currentTheme.primary}05 1px, transparent 1px)
+  `,
+        backgroundSize: "100% 100%, 20px 20px",
         pointerEvents: "auto" as const,
       }
     : {
