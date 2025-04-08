@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import OnboardingPage from "./Onboarding";
 import { motion, AnimatePresence } from "framer-motion";
 import { useOnboarding } from "./useOnboarding";
+import LoadingAnimation from "../init/LoadingAnimation";
 
 // Props for the AppWrapper component
 interface AppWrapperProps {
@@ -30,15 +31,7 @@ const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
 
   // Initial loading screen
   if (isLoading) {
-    return (
-      <div className="fixed inset-0 flex flex-col items-center justify-center bg-background">
-        <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin mb-6" />
-        <h1 className="text-2xl font-bold mb-2">First Principles</h1>
-        <p className="text-sm text-muted-foreground">
-          Loading your knowledge hub...
-        </p>
-      </div>
-    );
+    return <LoadingAnimation />;
   }
 
   // Show onboarding for first-time users
