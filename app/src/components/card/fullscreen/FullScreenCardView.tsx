@@ -45,20 +45,17 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     return localStorage.getItem("useGradientBackground") !== "false";
   });
 
-  // Touch tracking for gestures
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const [touchStartY, setTouchStartY] = useState<number | null>(null);
-  const [touchStartTime, setTouchStartTime] = useState<number | null>(null);
-  const [isSwiping, setIsSwiping] = useState(false);
-
+  // References
   const cardContainerRef = useRef<HTMLDivElement>(null);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const touchSurfaceRef = useRef<HTMLDivElement>(null);
+
+  // Touch handling state
+  const touchStartRef = useRef({ x: 0, y: 0, time: 0 });
+  const swipingRef = useRef(false);
+  const scrollingRef = useRef(false);
 
   const totalCards = sections.length;
-
-  // Get theme colors for gradient
   const { currentTheme } = useTheme();
   const { isMobile } = useMobile();
 
@@ -66,14 +63,12 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const gradientStyle = useGradientBg
     ? {
         backgroundImage: `
-          linear-gradient(135deg, #1a1a1a 0%, ${currentTheme.primary}08 100%),
-          url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E")
+          linear-gradient(135deg, #1a1a1a 0%, ${currentTheme.primary}08 100%)
         `,
-        backgroundSize: "100% 100%, 20px 20px",
-        boxShadow: "inset 0 0 100px rgba(0, 0, 0, 0.15)",
+        backgroundSize: "100% 100%",
       }
     : {
-        background: `#202020`,
+        background: `#121212`,
       };
 
   // Parse the markdown into sections if not already provided
@@ -87,83 +82,118 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       setSections(newSections);
     }
 
-    setCurrentIndex(0);
+    // Try to restore previous position
+    const savedPosition = localStorage.getItem("lastReadPosition");
+    if (savedPosition) {
+      const position = parseInt(savedPosition, 10);
+      if (!isNaN(position)) {
+        setCurrentIndex(position);
+      }
+    } else {
+      setCurrentIndex(0);
+    }
   }, [markdown, parsedSections]);
 
   // Scroll to top when changing cards
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTop = 0;
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
     }
+
+    // Save current position
+    localStorage.setItem("lastReadPosition", currentIndex.toString());
   }, [currentIndex]);
 
-  // Manual implementation of swipe gesture handling to ensure it works on mobile
-  const handleTouchStart = useCallback(
-    (e: React.TouchEvent<HTMLDivElement>) => {
-      // Don't handle touch events if the content is scrollable and user is scrolling
-      if (scrollAreaRef.current && scrollAreaRef.current.scrollTop > 0) {
-        const touch = e.touches[0];
-        setTouchStartY(touch.clientY);
+  // Auto-hide controls after inactivity in immersive mode
+  useEffect(() => {
+    if (!immersiveMode) {
+      setShowControls(true);
+      return;
+    }
 
-        // If starting to scroll vertically, don't activate swipe
-        return;
-      }
-
-      // Store the starting position and time
-      const touch = e.touches[0];
-      setTouchStartX(touch.clientX);
-      setTouchStartY(touch.clientY);
-      setTouchStartTime(Date.now());
-      setIsSwiping(false);
-
-      // Show controls on touch
+    const handleUserActivity = () => {
       setShowControls(true);
 
-      // Reset control hiding timeout
       if (controlsTimeoutRef.current) {
         clearTimeout(controlsTimeoutRef.current);
       }
-    },
-    []
-  );
 
-  const handleTouchMove = useCallback(
-    (e: React.TouchEvent<HTMLDivElement>) => {
-      // Skip if we don't have a starting point
-      if (touchStartX === null || touchStartY === null) return;
+      controlsTimeoutRef.current = setTimeout(() => {
+        setShowControls(false);
+      }, 3000);
+    };
+
+    // Set up event listeners
+    window.addEventListener("mousemove", handleUserActivity);
+    window.addEventListener("touchstart", handleUserActivity);
+
+    // Initial timeout
+    handleUserActivity();
+
+    return () => {
+      window.removeEventListener("mousemove", handleUserActivity);
+      window.removeEventListener("touchstart", handleUserActivity);
+
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+    };
+  }, [immersiveMode]);
+
+  // Improved touch handling - Separate from the render cycle for better performance
+  useEffect(() => {
+    const container = cardContainerRef.current;
+    if (!container) return;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      touchStartRef.current = {
+        x: touch.clientX,
+        y: touch.clientY,
+        time: Date.now(),
+      };
+      swipingRef.current = false;
+      scrollingRef.current = false;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!touchStartRef.current) return;
 
       const touch = e.touches[0];
-      const deltaX = touch.clientX - touchStartX;
-      const deltaY = touch.clientY - touchStartY;
+      const deltaX = touch.clientX - touchStartRef.current.x;
+      const deltaY = touch.clientY - touchStartRef.current.y;
 
-      // Check if this is a horizontal swipe (more horizontal than vertical)
-      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
-        setIsSwiping(true);
-        // Prevent default to stop scrolling when swiping horizontally
+      // If we've already determined this is a scroll, let it happen naturally
+      if (scrollingRef.current) return;
+
+      // If we've already determined this is a swipe, prevent default scrolling
+      if (swipingRef.current) {
         e.preventDefault();
-      }
-    },
-    [touchStartX, touchStartY]
-  );
-
-  const handleTouchEnd = useCallback(
-    (e: React.TouchEvent<HTMLDivElement>) => {
-      // Skip if we don't have a starting point
-      if (
-        touchStartX === null ||
-        touchStartY === null ||
-        touchStartTime === null
-      )
         return;
+      }
+
+      // Determine if this is primarily a horizontal or vertical movement
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+        // Horizontal swipe
+        swipingRef.current = true;
+        e.preventDefault();
+      } else if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 10) {
+        // Vertical scroll
+        scrollingRef.current = true;
+      }
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (!touchStartRef.current) return;
 
       const touch = e.changedTouches[0];
-      const deltaX = touch.clientX - touchStartX;
-      const deltaY = touch.clientY - touchStartY;
-      const touchDuration = Date.now() - touchStartTime;
+      const deltaX = touch.clientX - touchStartRef.current.x;
+      const deltaY = touch.clientY - touchStartRef.current.y;
+      const touchDuration = Date.now() - touchStartRef.current.time;
 
-      // Handle as a tap if it was a short touch without much movement
+      // Handle single tap
       if (
-        touchDuration < 250 &&
+        touchDuration < 300 &&
         Math.abs(deltaX) < 10 &&
         Math.abs(deltaY) < 10
       ) {
@@ -172,79 +202,43 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           setShowControls((prev) => !prev);
         }
       }
-      // Handle as a swipe if it was primarily horizontal
-      else if (isSwiping) {
-        // Threshold for swipe - can be adjusted
-        const swipeThreshold = 50;
 
-        if (deltaX < -swipeThreshold && currentIndex < totalCards - 1) {
-          // Swipe left - go to next card
+      // Handle swipe with reasonable threshold
+      if (swipingRef.current) {
+        const swipeThreshold = 50;
+        const isQuickSwipe = touchDuration < 300 && Math.abs(deltaX) > 30;
+
+        if (
+          (deltaX < -swipeThreshold || (isQuickSwipe && deltaX < 0)) &&
+          currentIndex < totalCards - 1
+        ) {
+          // Swipe left - next card
           handleNextCard();
-        } else if (deltaX > swipeThreshold && currentIndex > 0) {
-          // Swipe right - go to previous card
+        } else if (
+          (deltaX > swipeThreshold || (isQuickSwipe && deltaX > 0)) &&
+          currentIndex > 0
+        ) {
+          // Swipe right - previous card
           handlePrevCard();
         }
       }
-
-      // Reset the touch tracking
-      setTouchStartX(null);
-      setTouchStartY(null);
-      setTouchStartTime(null);
-      setIsSwiping(false);
-    },
-    [
-      currentIndex,
-      touchStartX,
-      touchStartY,
-      touchStartTime,
-      isSwiping,
-      totalCards,
-      immersiveMode,
-    ]
-  );
-
-  // Auto-hide controls after inactivity
-  useEffect(() => {
-    const handleUserActivity = () => {
-      setShowControls(true);
-
-      if (controlsTimeoutRef.current) {
-        clearTimeout(controlsTimeoutRef.current);
-      }
-
-      if (immersiveMode) {
-        controlsTimeoutRef.current = setTimeout(() => {
-          setShowControls(false);
-        }, 3000);
-      }
     };
 
-    // Set event listeners
-    const container = cardContainerRef.current;
-    if (container) {
-      container.addEventListener("mousedown", handleUserActivity);
-      container.addEventListener("mousemove", handleUserActivity);
-    }
+    // Add passive: false to ensure we can preventDefault() when needed
+    container.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    container.addEventListener("touchmove", handleTouchMove, {
+      passive: false,
+    });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
 
-    // Initial timeout
-    if (immersiveMode) {
-      controlsTimeoutRef.current = setTimeout(() => {
-        setShowControls(false);
-      }, 3000);
-    }
-
-    // Cleanup
     return () => {
-      if (controlsTimeoutRef.current) {
-        clearTimeout(controlsTimeoutRef.current);
-      }
-
-      if (container) {
-        container.removeEventListener("mousedown", handleUserActivity);
-        container.removeEventListener("mousemove", handleUserActivity);
-      }
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchmove", handleTouchMove);
+      container.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [immersiveMode]);
+  }, [currentIndex, totalCards, immersiveMode]);
 
   // Toggle immersive reading mode
   const toggleImmersiveMode = useCallback(() => {
@@ -368,51 +362,54 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       .replace(/-+$/, "");
   };
 
-  // Navigation handlers with animations
-  const handlePrevCard = () => {
+  // Navigation handlers with smooth animations but minimal DOM updates
+  const handlePrevCard = useCallback(() => {
     if (currentIndex > 0 && !isTransitioning) {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentIndex(currentIndex - 1);
+        setCurrentIndex((prevIndex) => prevIndex - 1);
         setIsTransitioning(false);
-      }, 200);
+      }, 150);
     }
-  };
+  }, [currentIndex, isTransitioning]);
 
-  const handleNextCard = () => {
+  const handleNextCard = useCallback(() => {
     if (currentIndex < sections.length - 1 && !isTransitioning) {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentIndex(currentIndex + 1);
+        setCurrentIndex((prevIndex) => prevIndex + 1);
         setIsTransitioning(false);
-      }, 200);
+      }, 150);
     }
-  };
+  }, [currentIndex, isTransitioning, sections.length]);
 
   // Jump to a specific card
-  const handleSelectCard = (index: number) => {
-    if (index !== currentIndex && !isTransitioning) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex(index);
-        setIsTransitioning(false);
-      }, 200);
-    }
-  };
-
-  // Handle double tap to toggle immersive mode
-  const handleDoubleTap = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault();
-      toggleImmersiveMode();
+  const handleSelectCard = useCallback(
+    (index: number) => {
+      if (index !== currentIndex && !isTransitioning) {
+        setIsTransitioning(true);
+        setTimeout(() => {
+          setCurrentIndex(index);
+          setIsTransitioning(false);
+        }, 150);
+      }
     },
-    [toggleImmersiveMode]
+    [currentIndex, isTransitioning]
   );
 
+  // Double-tap detection
+  const handleDoubleClick = useCallback(() => {
+    toggleImmersiveMode();
+  }, [toggleImmersiveMode]);
+
+  // Show loading state if no sections
   if (sections.length === 0) {
     return (
-      <div className="flex items-center justify-center h-screen bg-background text-muted-foreground">
-        No content to display in cards
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-background">
+        <div className="text-center">
+          <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading content...</p>
+        </div>
       </div>
     );
   }
@@ -422,49 +419,30 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   return (
     <div
       className={cn(
-        "fixed inset-0 z-50 flex flex-col overflow-hidden touch-none",
+        "fixed inset-0 z-50 flex flex-col overflow-hidden bg-background",
         className
       )}
       ref={cardContainerRef}
       style={gradientStyle}
+      onDoubleClick={handleDoubleClick}
     >
-      {/* Overlay gradient for depth - only show when gradient mode is enabled */}
-      {useGradientBg && (
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: `radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%)`,
-            mixBlendMode: "multiply",
-          }}
-        />
-      )}
-
-      {/* Touch surface for gesture handling that covers entire viewport */}
-      <div
-        ref={touchSurfaceRef}
-        className="absolute inset-0 z-30 touch-manipulation"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onDoubleClick={handleDoubleTap}
-        style={{ touchAction: "pan-y" }} // Allow vertical scrolling but handle horizontal ourselves
-      />
-
-      {/* Header - conditionally shown based on immersive mode */}
+      {/* Header with actions - conditionally shown */}
       <div
         className={cn(
-          "sticky top-0 z-40 flex items-center justify-between p-4 backdrop-blur-sm transition-all duration-300",
+          "sticky top-0 z-40 flex items-center justify-between px-4 h-14 transition-all duration-200 ease-in-out",
           immersiveMode
             ? "bg-transparent"
-            : "bg-card/50 border-b border-border",
-          showControls ? "opacity-100" : "opacity-0 pointer-events-none"
+            : "bg-card/50 backdrop-blur-sm border-b border-border/30",
+          showControls ? "opacity-100" : "opacity-0 pointer-events-none",
+          "transform transition-transform",
+          !showControls && "translate-y-[-100%]"
         )}
       >
         <Button
           variant="ghost"
           size="icon"
           onClick={onExit}
-          className="h-10 w-10 rounded-full bg-card/30 hover:bg-card/40"
+          className="h-9 w-9 rounded-full bg-card/30 hover:bg-card/50"
           aria-label="Exit fullscreen"
         >
           <ArrowLeft className="h-5 w-5" />
@@ -495,7 +473,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
             variant="ghost"
             size="icon"
             onClick={() => setMenuOpen(true)}
-            className="h-10 w-10 rounded-full bg-card/30 hover:bg-card/40"
+            className="h-9 w-9 rounded-full bg-card/30 hover:bg-card/50"
             aria-label="Open sections menu"
           >
             <Menu className="h-5 w-5" />
@@ -503,82 +481,107 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         </div>
       </div>
 
-      {/* Main content area with enhanced aesthetics */}
+      {/* Main content area with proper scroll behavior */}
       <div
-        className="flex-1 relative overflow-hidden z-20"
+        className="flex-1 relative overflow-hidden"
         style={{
-          height: immersiveMode ? "100vh" : "calc(100vh - 8rem)", // Adjust height based on immersive mode
+          height: showControls ? "calc(100vh - 8rem)" : "100vh",
+          transition: "height 0.2s ease-in-out",
         }}
       >
-        {/* Side navigation buttons - conditionally shown */}
+        {/* Side navigation buttons - for desktop */}
         {showControls && !isMobile && (
           <>
-            <div
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handlePrevCard}
+              disabled={currentIndex === 0}
               className={cn(
-                "absolute left-4 top-1/2 -translate-y-1/2 z-40 transition-opacity duration-300",
+                "absolute left-4 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full",
+                "bg-card/30 border-border/30 backdrop-blur-sm transition-opacity duration-200",
                 currentIndex === 0
-                  ? "opacity-30 cursor-not-allowed"
-                  : "opacity-60 hover:opacity-100 cursor-pointer"
+                  ? "opacity-30"
+                  : "opacity-60 hover:opacity-100"
               )}
             >
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={handlePrevCard}
-                disabled={currentIndex === 0}
-                className="h-12 w-12 rounded-full bg-card/30 border-border/30 backdrop-blur-sm"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </Button>
-            </div>
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
 
-            <div
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleNextCard}
+              disabled={currentIndex === sections.length - 1}
               className={cn(
-                "absolute right-4 top-1/2 -translate-y-1/2 z-40 transition-opacity duration-300",
+                "absolute right-4 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full",
+                "bg-card/30 border-border/30 backdrop-blur-sm transition-opacity duration-200",
                 currentIndex === sections.length - 1
-                  ? "opacity-30 cursor-not-allowed"
-                  : "opacity-60 hover:opacity-100 cursor-pointer"
+                  ? "opacity-30"
+                  : "opacity-60 hover:opacity-100"
               )}
             >
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={handleNextCard}
-                disabled={currentIndex === sections.length - 1}
-                className="h-12 w-12 rounded-full bg-card/30 border-border/30 backdrop-blur-sm"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </Button>
-            </div>
+              <ChevronRight className="h-5 w-5" />
+            </Button>
           </>
         )}
 
-        {/* Card content with improved scrolling */}
+        {/* Mobile swipe indicators */}
+        {isMobile && (
+          <>
+            <div
+              className={cn(
+                "absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-primary/10 to-transparent",
+                "pointer-events-none opacity-0 transition-opacity duration-150 z-20",
+                currentIndex > 0 && swipingRef.current
+                  ? "opacity-70"
+                  : "opacity-0"
+              )}
+            />
+            <div
+              className={cn(
+                "absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-primary/10 to-transparent",
+                "pointer-events-none opacity-0 transition-opacity duration-150 z-20",
+                currentIndex < sections.length - 1 && swipingRef.current
+                  ? "opacity-70"
+                  : "opacity-0"
+              )}
+            />
+          </>
+        )}
+
+        {/* Content with improved scrolling */}
         <div
-          ref={scrollAreaRef}
+          ref={contentRef}
           className={cn(
-            "h-full overflow-y-auto pb-16 px-4 md:px-0 scrollbar-hide",
+            "h-full overflow-y-auto overscroll-contain px-0 md:px-8",
             isTransitioning ? "opacity-0" : "opacity-100",
-            "transition-opacity duration-200 z-10"
+            "transition-opacity duration-150 ease-in-out",
+            // Enable better scrolling on mobile
+            "touch-pan-y"
           )}
-          style={{ touchAction: "pan-y" }} // Ensure vertical scrolling works
+          style={{ WebkitOverflowScrolling: "touch" }}
         >
           <div
             className={cn(
-              "max-w-2xl mx-auto px-4 md:px-8 py-6 md:py-8",
-              immersiveMode ? "pt-16" : ""
+              "max-w-2xl mx-auto px-4 md:px-8 py-6",
+              immersiveMode ? "pt-16" : "",
+              isTransitioning ? "transform scale-95" : "transform scale-100",
+              "transition-transform duration-150 ease-in-out"
             )}
           >
             <div
               className={cn(
-                "prose prose-invert max-w-none w-full break-words",
+                "prose prose-invert max-w-none",
                 "prose-headings:text-foreground/90 prose-p:text-foreground/80",
                 "prose-strong:text-primary/90 prose-code:text-primary-foreground/90",
-                "prose-pre:bg-card/50 prose-pre:border prose-pre:border-border/30",
+                "prose-pre:bg-card/50 prose-pre:border prose-pre:border-border/20",
                 "prose-a:text-primary prose-a:no-underline hover:prose-a:underline",
                 "prose-img:rounded-lg prose-img:mx-auto",
                 // Enhanced mobile typography
-                isMobile ? "prose-p:text-base prose-p:leading-relaxed" : ""
+                isMobile
+                  ? "prose-p:text-base prose-p:leading-relaxed prose-headings:leading-tight"
+                  : ""
               )}
             >
               <CustomMarkdownRenderer
@@ -590,54 +593,64 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         </div>
       </div>
 
-      {/* Navigation Footer - conditionally shown */}
+      {/* Footer with navigation controls */}
       <div
         className={cn(
-          "sticky bottom-0 backdrop-blur-sm transition-all duration-300 z-40",
+          "sticky bottom-0 z-40 transition-all duration-200 ease-in-out py-3",
           immersiveMode
             ? "bg-transparent"
-            : "bg-card/50 border-t border-border",
-          showControls ? "opacity-100" : "opacity-0 pointer-events-none"
+            : "bg-card/50 backdrop-blur-sm border-t border-border/30",
+          showControls ? "opacity-100" : "opacity-0 pointer-events-none",
+          "transform transition-transform",
+          !showControls && "translate-y-[100%]"
         )}
       >
-        <div className="max-w-md mx-auto p-4">
-          {/* Progress indicator with improved visuals */}
+        <div className="max-w-md mx-auto px-4">
+          <div className="flex items-center justify-center">
+            {/* Mobile navigation buttons */}
+            {isMobile && (
+              <div className="flex items-center justify-between w-full max-w-xs mb-3">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handlePrevCard}
+                  disabled={currentIndex === 0}
+                  className={cn(
+                    "px-3 py-1 h-8 rounded-full",
+                    "bg-card/30 border-border/30",
+                    currentIndex === 0 ? "opacity-50" : ""
+                  )}
+                >
+                  <ChevronLeft className="h-4 w-4 mr-1" />
+                  <span className="text-xs">Previous</span>
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleNextCard}
+                  disabled={currentIndex === sections.length - 1}
+                  className={cn(
+                    "px-3 py-1 h-8 rounded-full",
+                    "bg-card/30 border-border/30",
+                    currentIndex === sections.length - 1 ? "opacity-50" : ""
+                  )}
+                >
+                  <span className="text-xs">Next</span>
+                  <ChevronRight className="h-4 w-4 ml-1" />
+                </Button>
+              </div>
+            )}
+          </div>
+
+          {/* Progress indicator */}
           <CardProgress
             currentIndex={currentIndex}
             totalCards={sections.length}
             onSelectCard={handleSelectCard}
-            className="mb-0"
           />
         </div>
       </div>
-
-      {/* Swipe indicators for visual feedback */}
-      {isMobile && (
-        <>
-          <div
-            className={cn(
-              "absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-primary/10 to-transparent pointer-events-none z-20 transition-opacity duration-300",
-              currentIndex > 0 &&
-                isSwiping &&
-                touchStartX !== null &&
-                touchStartX < window.innerWidth / 4
-                ? "opacity-80"
-                : "opacity-0"
-            )}
-          />
-          <div
-            className={cn(
-              "absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-primary/10 to-transparent pointer-events-none z-20 transition-opacity duration-300",
-              currentIndex < sections.length - 1 &&
-                isSwiping &&
-                touchStartX !== null &&
-                touchStartX > (window.innerWidth * 3) / 4
-                ? "opacity-80"
-                : "opacity-0"
-            )}
-          />
-        </>
-      )}
 
       {/* Sections Menu Sheet */}
       <SectionsSheet
