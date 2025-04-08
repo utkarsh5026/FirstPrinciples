@@ -12,6 +12,19 @@ interface HistoryListProps {
   formatDate: (timestamp: number) => string;
 }
 
+/**
+ * 🎉 HistoryList Component
+ *
+ * This charming component displays a delightful list of your reading history!
+ * It takes a collection of your past documents and presents them in a lovely format,
+ * making it easy for you to revisit your favorite reads! 📚✨
+ *
+ * Each item in the list is clickable, inviting you to explore further and
+ * discover the knowledge you've gathered over time! 🚀
+ *
+ * With a sprinkle of style, it ensures a visually appealing experience
+ * that keeps you engaged and happy while navigating your history! 🌈
+ */
 const HistoryList: React.FC<HistoryListProps> = memo(
   ({ filteredHistory, handleSelectDocument, formatDate }) => {
     return (
@@ -29,6 +42,18 @@ const HistoryList: React.FC<HistoryListProps> = memo(
   }
 );
 
+/**
+ * 🎉 HistoryListItem Component
+ *
+ * This delightful component represents a single item in the user's reading history!
+ * It showcases the title of the document, the category it belongs to, and when it was last read.
+ * With a charming design, it invites users to click and explore their documents further! 📚✨
+ *
+ * It also dynamically assigns a color to the category badge based on the current theme,
+ * ensuring a visually appealing experience that matches the user's preferences! 🌈
+ *
+ * When clicked, it triggers a function to select the document, making navigation smooth and user-friendly! 🚀
+ */
 const HistoryListItem: React.FC<{
   item: ReadingHistoryItem;
   handleSelectDocument: (path: string, title: string) => void;
@@ -37,7 +62,6 @@ const HistoryListItem: React.FC<{
   const { currentTheme } = useTheme();
   const category = item.path.split("/")[0] || "uncategorized";
 
-  // Get a consistent color for the category
   const getCategoryColor = (category: string) => {
     const colors = [
       currentTheme.primary,
@@ -55,7 +79,6 @@ const HistoryListItem: React.FC<{
       }, 70%, 50%)`,
     ];
 
-    // Simple hash function to get consistent index for a category
     let hash = 0;
     for (let i = 0; i < category.length; i++) {
       hash = category.charCodeAt(i) + ((hash << 5) - hash);
