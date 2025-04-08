@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ae67192-b1f0-4a3f-bf10-d2b255e41521" name="Changes" comment="Added initial Loading animation">
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/foundations/type_alias.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/foundations/union_and_intersection.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/type_system/any_and_unknown.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/type_system/enums.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/type_system/keyof_and_typeof.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/type_system/non_null_assertion.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/type_system/null_and_undefined.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/type_system/type_guards.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/type_system/type_narrowing.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/object_oriented/abstract_classes.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/object_oriented/classes_and_access_modifiers.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/object_oriented/inheritance_and_extends.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1743810328662</updated>
       <workItem from="1743810330155" duration="766000" />
-      <workItem from="1744135003883" duration="1864000" />
+      <workItem from="1744135003883" duration="2470000" />
     </task>
     <task id="LOCAL-00001" summary="Added initial Loading animation">
       <option name="closed" value="true" />
