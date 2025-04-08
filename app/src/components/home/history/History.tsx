@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { ReadingHistoryItem } from "@/components/home/types";
 import { useTheme } from "@/components/theme/context/ThemeContext";
-import useMobile from "@/hooks/useMobile";
 
 import HistoryHeader from "./components/HistoryHeader";
 import HistoryFilters from "./components/HistoryFilters";
@@ -22,7 +21,6 @@ const History: React.FC<HistoryProps> = ({
   handleSelectDocument,
 }) => {
   const { currentTheme } = useTheme();
-  const { isMobile } = useMobile();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedTimeframe, setSelectedTimeframe] = useState<string>("all");
@@ -190,7 +188,6 @@ const History: React.FC<HistoryProps> = ({
               filteredHistory={filteredHistory}
               handleSelectDocument={handleSelectDocument}
               formatDate={formatDate}
-              isMobile={isMobile}
             />
           )}
 

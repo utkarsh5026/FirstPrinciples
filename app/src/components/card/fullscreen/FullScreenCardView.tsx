@@ -626,43 +626,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         )}
       >
         <div className="max-w-md mx-auto px-4">
-          <div className="flex items-center justify-center">
-            {/* Mobile navigation buttons */}
-            {isMobile && (
-              <div className="flex items-center justify-between w-full max-w-xs mb-3">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handlePrevCard}
-                  disabled={currentIndex === 0}
-                  className={cn(
-                    "px-3 py-1 h-8 rounded-full",
-                    "bg-card/30 border-border/30",
-                    currentIndex === 0 ? "opacity-50" : ""
-                  )}
-                >
-                  <ChevronLeft className="h-4 w-4 mr-1" />
-                  <span className="text-xs">Previous</span>
-                </Button>
-
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleNextCard}
-                  disabled={currentIndex === sections.length - 1}
-                  className={cn(
-                    "px-3 py-1 h-8 rounded-full",
-                    "bg-card/30 border-border/30",
-                    currentIndex === sections.length - 1 ? "opacity-50" : ""
-                  )}
-                >
-                  <span className="text-xs">Next</span>
-                  <ChevronRight className="h-4 w-4 ml-1" />
-                </Button>
-              </div>
-            )}
-          </div>
-
           {/* Progress indicator */}
           <CardProgress
             currentIndex={currentIndex}
