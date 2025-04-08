@@ -1,3 +1,4 @@
+import React from "react";
 import {
   ResponsiveContainer,
   XAxis,
@@ -8,11 +9,12 @@ import {
   LineChart,
 } from "recharts";
 import { Clock } from "lucide-react";
+
 interface TimeOfDayProps {
   readingByHour: { hour: number; count: number }[];
 }
 
-const TimeOfDay: React.FC<TimeOfDayProps> = ({ readingByHour }) => {
+const TimeOfDay: React.FC<TimeOfDayProps> = React.memo(({ readingByHour }) => {
   return (
     <div className="space-y-2">
       <h5 className="text-xs uppercase text-muted-foreground font-medium">
@@ -100,6 +102,6 @@ const TimeOfDay: React.FC<TimeOfDayProps> = ({ readingByHour }) => {
       </div>
     </div>
   );
-};
+});
 
 export default TimeOfDay;
