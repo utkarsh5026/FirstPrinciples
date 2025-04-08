@@ -8,7 +8,7 @@ import { ReadingStats } from "@/utils/ReadingAnalyticsService";
 import useMobile from "@/hooks/useMobile";
 
 import CategoryCoverageMap from "./coverage";
-import SankeyKnowledgeFlow from "./SankeyKnwoledgeFlow";
+import SankeyKnowledgeFlow from "./flow/SankeyKnwoledgeFlow";
 import TimeFilteredHeatCalendar from "./TimeFilteredHeatCalender";
 import CategoryInsights from "./insights/CategoryInsights";
 import Introduction from "./Introduction";
