@@ -17,6 +17,24 @@ interface InsightsProps {
   monthlyReadingData: { name: string; count: number }[];
 }
 
+/**
+ * 📊 Insights Component
+ *
+ * This component serves as a dashboard that brings together various insights
+ * about the user's reading habits. It provides a comprehensive view of
+ * reading patterns, progress over time, and category breakdowns, helping
+ * users understand their reading behavior better. 📚✨
+ *
+ * The Insights component displays:
+ * - Weekly reading patterns to identify the most active days 📅
+ * - Time of day preferences to see when users are most engaged ⏰
+ * - Progress over time to track reading achievements 📈
+ * - Category insights to explore reading distribution across different genres 📖
+ *
+ * By visualizing this data, users can make informed decisions to enhance
+ * their reading experience and stay motivated! 😊
+ *
+ */
 const Insights: React.FC<InsightsProps> = ({
   stats,
   analyticsData,

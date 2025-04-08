@@ -14,6 +14,19 @@ interface WeekilyPatternProps {
   weeklyActivity: { day: string; count: number }[];
 }
 
+/**
+ * 📅 WeekilyPattern Component
+ *
+ * This component visualizes the user's reading activity throughout the week.
+ * It provides a bar chart representation of how many documents were read on each day,
+ * helping users identify their most active reading days. 📈✨
+ *
+ * If there are no reading activities recorded, it encourages users to read more
+ * to uncover their day patterns. 📖💡
+ *
+ * The component also highlights the day with the highest reading activity,
+ * making it easy for users to see when they are most engaged. 🌟
+ */
 const WeekilyPattern: React.FC<WeekilyPatternProps> = ({ weeklyActivity }) => {
   return (
     <div className="space-y-2">

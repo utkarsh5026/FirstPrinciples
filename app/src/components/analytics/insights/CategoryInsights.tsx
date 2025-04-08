@@ -21,6 +21,23 @@ interface CategoryInsightsProps {
   stats: ReadingStats;
 }
 
+/**
+ * 🎉 CategoryInsights Component
+ *
+ * This delightful component showcases the user's reading habits across different categories!
+ * It provides a visual representation of how many documents have been read in each category,
+ * helping users understand their reading preferences better. 📚✨
+ *
+ * With a charming pie chart, users can easily see the distribution of their reading across
+ * various categories, making it fun to explore their reading journey! 🌈
+ *
+ * Additionally, it highlights the categories explored by the user, showing how many documents
+ * have been read in each category. This encourages users to dive deeper into their reading
+ * habits and discover new genres! 📖💖
+ *
+ * If there are no categories explored yet, it gently nudges users to read more to fill
+ * their reading palette! 🌟
+ */
 const CategoryInsights: React.FC<CategoryInsightsProps> = React.memo(
   ({ readingHistory, stats, categoryBreakdown }) => {
     const { isMobile } = useMobile();

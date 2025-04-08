@@ -14,6 +14,16 @@ interface ProgressOverTimeProps {
   monthlyReadingData: { name: string; count: number }[];
 }
 
+/**
+ * 🚀 ProgressOverTime Component
+ *
+ * This component visualizes the user's progress over time, providing a graphical representation
+ * of their monthly reading activity. It aims to help users track their progress, identify patterns,
+ * and stay motivated to read more. 📚💡
+ *
+ * If there's no data available, it encourages users to start reading to uncover their progress
+ * patterns. 🚫
+ */
 const ProgressOverTime: React.FC<ProgressOverTimeProps> = ({
   monthlyReadingData,
 }) => {

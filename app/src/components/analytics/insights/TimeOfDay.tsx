@@ -14,6 +14,20 @@ interface TimeOfDayProps {
   readingByHour: { hour: number; count: number }[];
 }
 
+/**
+ * 📅 TimeOfDay Component
+ *
+ * This component visualizes the user's reading activity throughout the day.
+ * It provides a line chart representation of how many documents were read
+ * during each hour, helping users identify their most active reading times. 📈✨
+ *
+ * If there are no reading activities recorded, it encourages users to read more
+ * to uncover their time patterns. 📖💡
+ *
+ * The component also highlights the peak reading hour, making it easy for users
+ * to see when they are most engaged. 🌟
+ *
+ */
 const TimeOfDay: React.FC<TimeOfDayProps> = React.memo(({ readingByHour }) => {
   return (
     <div className="space-y-2">
