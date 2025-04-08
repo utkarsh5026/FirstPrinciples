@@ -14,6 +14,7 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import useMobile from "@/hooks/useMobile";
 
 interface HistoryFiltersProps {
   searchQuery: string;
@@ -23,7 +24,6 @@ interface HistoryFiltersProps {
   selectedTimeframe: string;
   setSelectedTimeframe: (timeframe: string) => void;
   categories: string[];
-  isMobile?: boolean;
 }
 
 const HistoryFilters: React.FC<HistoryFiltersProps> = ({
@@ -34,9 +34,8 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
   selectedTimeframe,
   setSelectedTimeframe,
   categories,
-  isMobile = false,
 }) => {
-  // For mobile, we'll use a popover to show filters
+  const { isMobile } = useMobile();
   if (isMobile) {
     return (
       <div className="flex flex-col gap-3">
@@ -82,17 +81,17 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
             <PopoverContent className="w-[260px] p-3">
               <div className="space-y-3">
                 <div className="space-y-1">
-                  <label className="text-xs text-muted-foreground">
+                  <label className="text-xs text-muted-foreground font-cascadia-code">
                     Category
                   </label>
                   <Select
                     value={selectedCategory}
                     onValueChange={setSelectedCategory}
                   >
-                    <SelectTrigger className="h-8 text-xs">
+                    <SelectTrigger className="h-8 text-xs rounded-2xl font-cascadia-code">
                       <SelectValue placeholder="Category" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="font-cascadia-code rounded-2xl">
                       {categories.map((category) => (
                         <SelectItem key={category} value={category}>
                           {category === "all" ? "All Categories" : category}
@@ -110,10 +109,10 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
                     value={selectedTimeframe}
                     onValueChange={setSelectedTimeframe}
                   >
-                    <SelectTrigger className="h-8 text-xs">
+                    <SelectTrigger className="h-8 text-xs font-cascadia-code rounded-2xl">
                       <SelectValue placeholder="Time" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="font-cascadia-code rounded-2xl">
                       <SelectItem value="all">All Time</SelectItem>
                       <SelectItem value="today">Today</SelectItem>
                       <SelectItem value="week">This Week</SelectItem>
@@ -132,13 +131,13 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
   // Desktop version
   return (
     <div className="flex flex-col sm:flex-row gap-3">
-      <div className="relative flex-1">
+      <div className="relative flex-1 rounded-4xl">
         <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           placeholder="Search history..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-9"
+          className="pl-9 rounded-2xl"
         />
       </div>
 
@@ -148,7 +147,7 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
             <SelectTrigger className="h-10">
               <SelectValue placeholder="Category" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="font-cascadia-code rounded-2xl">
               {categories.map((category) => (
                 <SelectItem key={category} value={category}>
                   {category === "all" ? "All Categories" : category}
@@ -166,7 +165,7 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
             <SelectTrigger className="h-10">
               <SelectValue placeholder="Time" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="font-cascadia-code rounded-2xl">
               <SelectItem value="all">All Time</SelectItem>
               <SelectItem value="today">Today</SelectItem>
               <SelectItem value="week">This Week</SelectItem>
