@@ -14,6 +14,17 @@ interface HistoryHeaderProps {
   setViewMode: (mode: "list" | "timeline" | "trends") => void;
 }
 
+/**
+ * 🎉 HistoryHeader Component
+ *
+ * This component serves as the delightful header for the history section,
+ * showcasing important time statistics in a visually appealing way!
+ * It allows users to quickly glance at their performance over different
+ * time frames, such as today, this week, this month, and total. 📊
+ *
+ * Users can easily switch between different viewing modes (list, timeline, trends)
+ * to find the presentation style that suits them best. 🌈
+ */
 const HistoryHeader: React.FC<HistoryHeaderProps> = ({
   timeStats,
   viewMode,
@@ -21,7 +32,12 @@ const HistoryHeader: React.FC<HistoryHeaderProps> = ({
 }) => {
   return (
     <div className="flex flex-col md:flex-row justify-between gap-4">
-      <HistoryStats timeStats={timeStats} />
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <StatCard label="Today" value={timeStats.today} />
+        <StatCard label="This Week" value={timeStats.thisWeek} />
+        <StatCard label="This Month" value={timeStats.thisMonth} />
+        <StatCard label="Total" value={timeStats.total} highlight />
+      </div>
 
       <div className="flex items-center mt-2 md:mt-0">
         <span className="text-xs md:text-sm text-muted-foreground mr-1">
@@ -73,20 +89,18 @@ const HistoryHeader: React.FC<HistoryHeaderProps> = ({
   );
 };
 
-// Internal component for stats
-const HistoryStats: React.FC<{
-  timeStats: HistoryHeaderProps["timeStats"];
-}> = ({ timeStats }) => {
-  return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-      <StatCard label="Today 🚀" value={timeStats.today} />
-      <StatCard label="This Week 🤔" value={timeStats.thisWeek} />
-      <StatCard label="This Month 🤗" value={timeStats.thisMonth} />
-      <StatCard label="Total 😎" value={timeStats.total} highlight />
-    </div>
-  );
-};
-
+/**
+ * 🌟 StatCard Component
+ *
+ * This delightful little card is designed to showcase important statistics
+ * in a visually appealing way! It brings together a label and a value to create
+ * a compact and informative display. Perfect for dashboards or any place where
+ * you want to highlight key metrics! ✨
+ *
+ * With its smooth hover effects and rounded corners, it adds a touch of elegance
+ * to your UI while keeping the information clear and accessible. Use this component
+ * to make your data shine and keep your users engaged! 🎉
+ */
 const StatCard: React.FC<{
   label: string;
   value: number;
