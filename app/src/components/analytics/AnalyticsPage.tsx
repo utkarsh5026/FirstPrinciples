@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   BarChart3,
   Calendar,
@@ -10,7 +10,7 @@ import { FileMetadata } from "@/utils/MarkdownLoader";
 import useReadingAnalytics from "@/hooks/useReadingAnalytics";
 import useMobile from "@/hooks/useMobile";
 import AnalyticsHeader from "./components/AnalyticsHeader";
-import Insights from "./components/Insights";
+import Insights from "./insights";
 import Achievements from "./components/Achievments";
 import Activity from "./components/Activity";
 import AnalyticsOverview from "./overview";
@@ -223,76 +223,70 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({
             </TabsTrigger>
           ))}
         </TabsList>
+
+        <TabsContent value="overview">
+          <AnalyticsOverview
+            stats={stats}
+            xpProgress={xpProgress}
+            xpToNextLevel={xpToNextLevel}
+            currentLevelXP={currentLevelXP}
+            isMobile={isMobile}
+            thisWeekReadingCount={thisWeekReadingCount}
+            readingHistory={readingHistory}
+            weeklyActivity={weeklyActivity.map((activity) => ({
+              name: activity.day,
+              count: activity.count,
+            }))}
+            monthlyReadingData={monthlyReadingData}
+            categoryBreakdown={categoryBreakdown}
+            readingByHour={readingByHour}
+            recentActivity={recentActivity}
+            challenges={challenges}
+            actions={actions}
+            onSelectDocument={onSelectDocument}
+          />
+        </TabsContent>
+
+        <TabsContent value="activity">
+          <Activity
+            stats={stats}
+            streakEmoji={getStreakEmoji(stats.currentStreak)}
+            thisWeekReadingCount={thisWeekReadingCount}
+            weeklyActivity={weeklyActivity}
+            monthlyReadingData={monthlyReadingData}
+            heatMapData={transformHeatmapData()}
+          />
+        </TabsContent>
+
+        <TabsContent value="achievements">
+          <Achievements
+            stats={stats}
+            xpProgress={xpProgress}
+            xpToNextLevel={xpToNextLevel}
+            currentLevelXP={currentLevelXP}
+            activeAchievements={activeAchievements}
+            achievements={achievements}
+          />
+        </TabsContent>
+
+        <TabsContent value="insights">
+          <Insights
+            stats={stats}
+            readingHistory={readingHistory}
+            analyticsData={analyticsData}
+            monthlyReadingData={monthlyReadingData}
+          />
+        </TabsContent>
+
+        <TabsContent value="deep">
+          <CategoryInsightTab
+            stats={stats}
+            readingHistory={readingHistory}
+            availableDocuments={availableDocuments}
+            onSelectDocument={onSelectDocument}
+          />
+        </TabsContent>
       </Tabs>
-
-      {/* Overview Tab */}
-      {activeTab === "overview" && (
-        <AnalyticsOverview
-          stats={stats}
-          xpProgress={xpProgress}
-          xpToNextLevel={xpToNextLevel}
-          currentLevelXP={currentLevelXP}
-          isMobile={isMobile}
-          thisWeekReadingCount={thisWeekReadingCount}
-          readingHistory={readingHistory}
-          weeklyActivity={weeklyActivity.map((activity) => ({
-            name: activity.day,
-            count: activity.count,
-          }))}
-          monthlyReadingData={monthlyReadingData}
-          categoryBreakdown={categoryBreakdown}
-          readingByHour={readingByHour}
-          recentActivity={recentActivity}
-          challenges={challenges}
-          actions={actions}
-          onSelectDocument={onSelectDocument}
-        />
-      )}
-
-      {/* Activity Tab */}
-      {activeTab === "activity" && (
-        <Activity
-          stats={stats}
-          streakEmoji={getStreakEmoji(stats.currentStreak)}
-          thisWeekReadingCount={thisWeekReadingCount}
-          weeklyActivity={weeklyActivity}
-          monthlyReadingData={monthlyReadingData}
-          heatMapData={transformHeatmapData()}
-        />
-      )}
-
-      {/* Achievements Tab */}
-      {activeTab === "achievements" && (
-        <Achievements
-          stats={stats}
-          xpProgress={xpProgress}
-          xpToNextLevel={xpToNextLevel}
-          currentLevelXP={currentLevelXP}
-          activeAchievements={activeAchievements}
-          achievements={achievements}
-        />
-      )}
-
-      {/* Insights Tab */}
-      {activeTab === "insights" && (
-        <Insights
-          stats={stats}
-          readingHistory={readingHistory}
-          analyticsData={analyticsData}
-          isMobile={isMobile}
-          monthlyReadingData={monthlyReadingData}
-        />
-      )}
-
-      {/* Categories Tab */}
-      {activeTab === "deep" && (
-        <CategoryInsightTab
-          stats={stats}
-          readingHistory={readingHistory}
-          availableDocuments={availableDocuments}
-          onSelectDocument={onSelectDocument}
-        />
-      )}
     </div>
   );
 };

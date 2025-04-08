@@ -42,7 +42,6 @@ interface CategoryInsightsProps {
   onSelectDocument: (path: string, title: string) => void;
 }
 
-// Processing categories and files to create a hierarchical structure with analytics
 interface CategoryNode {
   id: string;
   name: string;
@@ -59,7 +58,6 @@ interface CategoryNode {
   }[];
 }
 
-// Analytics view type
 type ViewType = "hierarchy" | "treemap" | "distribution" | "pieChart";
 
 const tabs = [
