@@ -12,15 +12,9 @@ interface ActionButtonsProps {
 }
 
 /**
- * ActionButtons component renders a set of action buttons for document viewer.
- * It includes buttons for toggling fullscreen mode, downloading the document,
- * and copying the document link for sharing.
- *
- * @param {Object} props - The component props.
- * @param {Function} props.toggleFullscreen - Function to toggle the fullscreen mode.
- * @param {Function} props.handleDownload - Function to handle document download.
- * @param {Function} props.handleCopyLink - Function to handle copying the document link.
- * @param {boolean} props.copied - Indicates if the document link has been copied.
+ * The ActionButtons component provides a delightful set of buttons for users to interact with their document! 😊
+ * It allows users to toggle fullscreen mode for an immersive experience, download the document for offline access,
+ * and easily copy the document link to share with friends! 📤✨
  */
 const ActionButtons: React.FC<ActionButtonsProps> = ({
   toggleFullscreen,
@@ -29,9 +23,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   copied,
 }) => {
   /**
-   * Hook to get the current theme and set a new theme.
-   *
-   * @returns {Object} - An object containing the current theme and a function to set a new theme.
+   * This hook helps you to enjoy the current theme and change it whenever you want! 🎨
    */
   const { currentTheme, setTheme } = useTheme();
   return (
