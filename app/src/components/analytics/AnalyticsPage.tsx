@@ -218,8 +218,6 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({
               className="flex items-center gap-1 text-xs sm:text-sm"
             >
               {icon}
-              <span className="hidden sm:inline">{title}</span>
-              <span className="sm:hidden">Stats</span>
             </TabsTrigger>
           ))}
         </TabsList>
