@@ -1,12 +1,27 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import CardProgress from "../CardProgress";
-import { Menu, ArrowLeft } from "lucide-react";
+import {
+  Menu,
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
+  Droplets,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import SectionsSheet from "./sidebar/SectionsSheet";
 import { MarkdownSection } from "@/components/card/MarkdownCardView"; // Import shared type
+import { useTheme } from "@/components/theme/context/ThemeContext";
+import useMobile from "@/hooks/useMobile";
 
 interface FullscreenCardViewProps {
   markdown: string;
@@ -25,9 +40,37 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+  const [touchStartTime, setTouchStartTime] = useState<number | null>(null);
+  const [immersiveMode, setImmersiveMode] = useState(false);
+  const [useGradientBg, setUseGradientBg] = useState(() => {
+    // Initialize from localStorage or default to true
+    return localStorage.getItem("useGradientBackground") !== "false";
+  });
+
   const cardContainerRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const totalCards = sections.length;
+
+  // Get theme colors for gradient
+  const { currentTheme } = useTheme();
+  const { isMobile } = useMobile();
+
+  // Calculate background style based on user preference
+  const gradientStyle = useGradientBg
+    ? {
+        background: `linear-gradient(135deg, #202020 0%, ${currentTheme.primary}15 100%)`,
+        // Add subtle pattern overlay
+        backgroundImage: `
+      linear-gradient(135deg, #202020 0%, ${currentTheme.primary}15 100%), 
+      radial-gradient(${currentTheme.primary}05 1px, transparent 1px)
+    `,
+        backgroundSize: "100% 100%, 20px 20px",
+      }
+    : {
+        background: `#202020`,
+      };
 
   // Parse the markdown into sections if not already provided
   useEffect(() => {
@@ -69,7 +112,88 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         handlePrevCard();
       }
     },
+    onDoubleTap: () => {
+      // Toggle immersive mode on double tap
+      toggleImmersiveMode();
+    },
   });
+
+  // Auto-hide controls after inactivity
+  useEffect(() => {
+    const handleUserActivity = () => {
+      setShowControls(true);
+
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+
+      if (immersiveMode) {
+        controlsTimeoutRef.current = setTimeout(() => {
+          setShowControls(false);
+        }, 3000);
+      }
+    };
+
+    // Set event listeners
+    const container = cardContainerRef.current;
+    if (container) {
+      container.addEventListener("touchstart", handleUserActivity);
+      container.addEventListener("mousemove", handleUserActivity);
+      container.addEventListener("click", handleUserActivity);
+    }
+
+    // Initial timeout
+    if (immersiveMode) {
+      controlsTimeoutRef.current = setTimeout(() => {
+        setShowControls(false);
+      }, 3000);
+    }
+
+    // Cleanup
+    return () => {
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+
+      if (container) {
+        container.removeEventListener("touchstart", handleUserActivity);
+        container.removeEventListener("mousemove", handleUserActivity);
+        container.removeEventListener("click", handleUserActivity);
+      }
+    };
+  }, [immersiveMode]);
+
+  // Handle touch events for tap detection
+  const handleTouchStart = useCallback(() => {
+    setTouchStartTime(Date.now());
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    if (touchStartTime) {
+      const touchDuration = Date.now() - touchStartTime;
+
+      // If it was a quick tap in the center area, toggle controls
+      if (touchDuration < 200) {
+        setShowControls((prev) => !prev);
+      }
+
+      setTouchStartTime(null);
+    }
+  }, [touchStartTime]);
+
+  // Toggle immersive reading mode
+  const toggleImmersiveMode = useCallback(() => {
+    setImmersiveMode((prev) => !prev);
+    setShowControls(true);
+  }, []);
+
+  // Toggle between gradient and solid background
+  const toggleBackgroundStyle = useCallback(() => {
+    const newValue = !useGradientBg;
+    setUseGradientBg(newValue);
+    // Save preference to localStorage
+    localStorage.setItem("useGradientBackground", newValue.toString());
+  }, [useGradientBg]);
 
   // Legacy parser - only used as fallback
   const parseMarkdownIntoSections = (markdown: string): MarkdownSection[] => {
@@ -237,52 +361,156 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
 
   return (
     <div
-      className={cn("fixed inset-0 z-50 bg-[#202020] flex flex-col", className)}
+      className={cn(
+        "fixed inset-0 z-50 flex flex-col overflow-hidden",
+        className
+      )}
       ref={cardContainerRef}
+      style={gradientStyle}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
-      {/* Header */}
-      <div className="sticky top-0 z-20 flex items-center justify-between p-4 border-b border-border bg-card/50 backdrop-blur-sm">
+      {/* Overlay gradient for depth - only show when gradient mode is enabled */}
+      {useGradientBg && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%)`,
+            mixBlendMode: "multiply",
+          }}
+        />
+      )}
+
+      {/* Header - conditionally shown based on immersive mode */}
+      <div
+        className={cn(
+          "sticky top-0 z-20 flex items-center justify-between p-4 backdrop-blur-sm transition-all duration-300",
+          immersiveMode
+            ? "bg-transparent"
+            : "bg-card/50 border-b border-border",
+          showControls ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+      >
         <Button
           variant="ghost"
           size="icon"
           onClick={onExit}
-          className="h-8 w-8"
+          className="h-10 w-10 rounded-full bg-card/30 hover:bg-card/40"
           aria-label="Exit fullscreen"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="h-5 w-5" />
         </Button>
 
-        <div className="flex-1 text-center" />
+        <div className="flex items-center gap-2">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-card/30">
+                  <Droplets className="h-4 w-4 text-primary" />
+                  <Switch
+                    checked={useGradientBg}
+                    onCheckedChange={toggleBackgroundStyle}
+                    className="data-[state=checked]:bg-primary/40"
+                  />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                <p>
+                  {useGradientBg ? "Disable" : "Enable"} gradient background
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
 
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setMenuOpen(true)}
-          className="h-8 w-8"
-          aria-label="Open sections menu"
-        >
-          <Menu className="h-4 w-4" />
-        </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMenuOpen(true)}
+            className="h-10 w-10 rounded-full bg-card/30 hover:bg-card/40"
+            aria-label="Open sections menu"
+          >
+            <Menu className="h-5 w-5" />
+          </Button>
+        </div>
       </div>
 
-      {/* Main content area */}
+      {/* Main content area with enhanced aesthetics */}
       <div
         className="flex-1 relative overflow-hidden"
         style={{
-          height: "calc(100vh - 8rem)", // Ensure there's enough space for content
+          height: immersiveMode ? "100vh" : "calc(100vh - 8rem)", // Adjust height based on immersive mode
         }}
       >
-        {/* Card content */}
+        {/* Side navigation buttons - conditionally shown */}
+        {showControls && !isMobile && (
+          <>
+            <div
+              className={cn(
+                "absolute left-4 top-1/2 -translate-y-1/2 z-10 transition-opacity duration-300",
+                currentIndex === 0
+                  ? "opacity-30 cursor-not-allowed"
+                  : "opacity-60 hover:opacity-100 cursor-pointer"
+              )}
+            >
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={handlePrevCard}
+                disabled={currentIndex === 0}
+                className="h-12 w-12 rounded-full bg-card/30 border-border/30 backdrop-blur-sm"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </Button>
+            </div>
+
+            <div
+              className={cn(
+                "absolute right-4 top-1/2 -translate-y-1/2 z-10 transition-opacity duration-300",
+                currentIndex === sections.length - 1
+                  ? "opacity-30 cursor-not-allowed"
+                  : "opacity-60 hover:opacity-100 cursor-pointer"
+              )}
+            >
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={handleNextCard}
+                disabled={currentIndex === sections.length - 1}
+                className="h-12 w-12 rounded-full bg-card/30 border-border/30 backdrop-blur-sm"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </Button>
+            </div>
+          </>
+        )}
+
+        {/* Card content with improved scrolling */}
         <div
           ref={scrollAreaRef}
           className={cn(
-            "h-full overflow-y-auto pb-16",
+            "h-full overflow-y-auto pb-16 px-4 md:px-0 scrollbar-hide",
             isTransitioning ? "opacity-0" : "opacity-100",
             "transition-opacity duration-200"
           )}
         >
-          <div className="max-w-2xl mx-auto p-4">
-            <div className="prose prose-invert max-w-none w-full break-words">
+          <div
+            className={cn(
+              "max-w-2xl mx-auto px-4 md:px-8 py-6 md:py-8",
+              immersiveMode ? "pt-16" : ""
+            )}
+          >
+            <div
+              className={cn(
+                "prose prose-invert max-w-none w-full break-words",
+                "prose-headings:text-foreground/90 prose-p:text-foreground/80",
+                "prose-strong:text-primary/90 prose-code:text-primary-foreground/90",
+                "prose-pre:bg-card/50 prose-pre:border prose-pre:border-border/30",
+                "prose-a:text-primary prose-a:no-underline hover:prose-a:underline",
+                "prose-img:rounded-lg prose-img:mx-auto",
+                // Enhanced mobile typography
+                isMobile ? "prose-p:text-base prose-p:leading-relaxed" : ""
+              )}
+            >
               <CustomMarkdownRenderer
                 markdown={currentSection.content}
                 className="fullscreen-card-content"
@@ -292,10 +520,18 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         </div>
       </div>
 
-      {/* Navigation Footer */}
-      <div className="sticky bottom-0 border-t border-border bg-card/50 backdrop-blur-sm p-4">
-        <div className="max-w-md mx-auto">
-          {/* Progress indicator only */}
+      {/* Navigation Footer - conditionally shown */}
+      <div
+        className={cn(
+          "sticky bottom-0 backdrop-blur-sm transition-all duration-300",
+          immersiveMode
+            ? "bg-transparent"
+            : "bg-card/50 border-t border-border",
+          showControls ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+      >
+        <div className="max-w-md mx-auto p-4">
+          {/* Progress indicator with improved visuals */}
           <CardProgress
             currentIndex={currentIndex}
             totalCards={sections.length}
@@ -316,11 +552,11 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
 
       {/* Touch swipe indicators (hidden visually but help with touch areas) */}
       <div
-        className="absolute top-1/2 left-0 h-1/3 w-10 -translate-y-1/2"
+        className="absolute top-1/3 bottom-1/3 left-0 w-16 -translate-y-1/2 opacity-0"
         onClick={handlePrevCard}
       />
       <div
-        className="absolute top-1/2 right-0 h-1/3 w-10 -translate-y-1/2"
+        className="absolute top-1/3 bottom-1/3 right-0 w-16 -translate-y-1/2 opacity-0"
         onClick={handleNextCard}
       />
     </div>
