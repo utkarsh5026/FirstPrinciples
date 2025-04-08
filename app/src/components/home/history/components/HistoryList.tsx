@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ReadingHistoryItem } from "@/components/home/types";
 import { useTheme } from "@/components/theme/context/ThemeContext";
-import getIconForTech from "@/components/navigation/sidebar/iconMap";
+import getIconForTech from "@/components/icons/iconMap";
 
 interface HistoryListProps {
   filteredHistory: ReadingHistoryItem[];

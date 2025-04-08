@@ -17,7 +17,7 @@ import {
   LayoutDashboard,
 } from "lucide-react";
 import { Category, FileMetadata, MarkdownLoader } from "@/utils/MarkdownLoader";
-import { getIconForTech } from "@/components/navigation/sidebar/iconMap";
+import { getIconForTech } from "@/components/icons/iconMap";
 
 // Types for our component props
 interface ResponsiveSidebarProps {

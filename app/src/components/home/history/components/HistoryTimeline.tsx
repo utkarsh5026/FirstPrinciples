@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Calendar, Clock } from "lucide-react";
 import { ReadingHistoryItem } from "@/components/home/types";
-import getIconForTech from "@/components/navigation/sidebar/iconMap";
+import getIconForTech from "@/components/icons/iconMap";
 
 interface HistoryTimelineProps {
   filteredHistory: ReadingHistoryItem[];

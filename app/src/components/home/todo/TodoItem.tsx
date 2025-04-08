@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { X, Calendar, Check } from "lucide-react";
-import getIconForTech from "@/components/navigation/sidebar/iconMap";
+import getIconForTech from "@/components/icons/iconMap";
 import { formatDate } from "../utils";
 import type { ReadingTodoItem } from "@/hooks/useDocumentManager";
 

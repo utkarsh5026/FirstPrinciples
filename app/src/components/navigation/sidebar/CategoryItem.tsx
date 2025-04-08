@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import FileItem from "./FileItem";
 import { useCallback } from "react";
-import { getIconForTech } from "./iconMap";
+import { getIconForTech } from "../../icons/iconMap";
 
 interface CategoryItemProps {
   category: Category;

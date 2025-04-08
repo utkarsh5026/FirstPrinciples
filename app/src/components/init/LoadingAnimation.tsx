@@ -15,19 +15,18 @@ const words = [
 ];
 
 /**
- * LoadingAnimation Component
+ * LoadingAnimation Component 😊
  *
- * A visually engaging loading animation for the application that works well
- * on both mobile and desktop. Features include:
+ * This delightful component brings your application to life with a charming loading animation!
+ * It keeps users engaged while they wait, featuring:
  *
- * - Animated geometric shapes
- * - Progress bar with percentage
- * - Typewriter text effect
- * - Smooth entrance and exit animations
- * - Responsive design for all device sizes
+ * - Fun animated geometric shapes that spin and pulse 🎉
+ * - A progress bar that visually represents loading progress 📊
+ * - A typewriter text effect that adds a playful touch as it cycles through words ✨
+ * - Smooth entrance and exit animations for a polished experience 🌈
+ * - Responsive design that looks great on any device, from mobile to desktop 📱💻
  *
- * @param {Object} props - Component properties
- * @param {number} [props.minDuration=2000] - Minimum duration to show the animation in milliseconds
+ * Enjoy a seamless loading experience that keeps users informed and entertained! 🎈
  */
 const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
   minDuration = 2000,
