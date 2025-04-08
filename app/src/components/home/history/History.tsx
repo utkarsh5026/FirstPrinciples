@@ -161,7 +161,6 @@ const History: React.FC<HistoryProps> = ({
         selectedTimeframe={selectedTimeframe}
         setSelectedTimeframe={setSelectedTimeframe}
         categories={categories}
-        isMobile={isMobile}
       />
 
       {readingHistory.length === 0 ? (

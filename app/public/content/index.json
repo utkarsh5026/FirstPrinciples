@@ -60,14 +60,44 @@
           "subcategories": [],
           "files": [
             {
+              "path": "css/css_architecture/architecture_principles.md",
+              "title": "Architecture Principles",
+              "description": "Documentation for Architecture Principles"
+            },
+            {
               "path": "css/css_architecture/cascade_and_inheritance.md",
               "title": "Cascade And Inheritance",
               "description": "Documentation for Cascade And Inheritance"
             },
             {
+              "path": "css/css_architecture/css_modules.md",
+              "title": "Css Modules",
+              "description": "Documentation for Css Modules"
+            },
+            {
+              "path": "css/css_architecture/css_preprocessors.md",
+              "title": "Css Preprocessors",
+              "description": "Documentation for Css Preprocessors"
+            },
+            {
+              "path": "css/css_architecture/global_vs_component.md",
+              "title": "Global Vs Component",
+              "description": "Documentation for Global Vs Component"
+            },
+            {
+              "path": "css/css_architecture/naming_conventions.md",
+              "title": "Naming Conventions",
+              "description": "Documentation for Naming Conventions"
+            },
+            {
               "path": "css/css_architecture/specificity_management.md",
               "title": "Specificity Management",
               "description": "Documentation for Specificity Management"
+            },
+            {
+              "path": "css/css_architecture/utility_first_css.md",
+              "title": "Utility First Css",
+              "description": "Documentation for Utility First Css"
             }
           ]
         },
@@ -1148,11 +1178,5 @@
       "files": []
     }
   ],
-  "files": [
-    {
-      "path": "getting_started.md",
-      "title": "Getting Started",
-      "description": "Documentation for Getting Started"
-    }
-  ]
+  "files": []
 }
