@@ -203,6 +203,24 @@
           ]
         },
         {
+          "id": "performance_optimization",
+          "name": "Performance Optimization",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "css/performance_optimization/critical_rendering_path.md",
+              "title": "Critical Rendering Path",
+              "description": "Documentation for Critical Rendering Path"
+            },
+            {
+              "path": "css/performance_optimization/render_blocking_css.md",
+              "title": "Render Blocking Css",
+              "description": "Documentation for Render Blocking Css"
+            }
+          ]
+        },
+        {
           "id": "visual_styles",
           "name": "Visual Styles",
           "icon": "Folder",

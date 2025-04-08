@@ -8,6 +8,7 @@ import {
   FolderTree,
   ArrowLeft,
   Filter,
+  Loader2,
 } from "lucide-react";
 import { ReadingHistoryItem } from "@/hooks/useDocumentManager";
 import { FileMetadata, MarkdownLoader, Category } from "@/utils/MarkdownLoader";
@@ -15,10 +16,10 @@ import useMobile from "@/hooks/useMobile";
 
 import Loading from "./Loading";
 import useInsights from "./useInsights";
-import TreeMap from "./TreeMap";
+import EnhancedTreeMap from "./TreeMap";
 import Summary from "./Summary";
 import Hierarchy from "./Hierarchy";
-import Distribution from "./Distribution";
+import EnhancedDistribution from "./Distribution";
 
 interface CategoryInsightsProps {
   readingHistory: ReadingHistoryItem[];
@@ -26,12 +27,24 @@ interface CategoryInsightsProps {
   onSelectDocument: (path: string, title: string) => void;
 }
 
-type ViewType = "hierarchy" | "treemap" | "distribution" | "pieChart";
+type ViewType = "hierarchy" | "treemap" | "distribution";
 
 const tabs = [
-  { title: "Hierarchy", icon: <FolderTree className="mr-1" /> },
-  { title: "Treemap", icon: <BarChart className="mr-1" /> },
-  { title: "Distribution", icon: <Filter className="mr-1" /> },
+  {
+    value: "hierarchy",
+    title: "Hierarchy",
+    icon: <FolderTree className="h-3.5 w-3.5 mr-1" />,
+  },
+  {
+    value: "treemap",
+    title: "Treemap",
+    icon: <BarChart className="h-3.5 w-3.5 mr-1" />,
+  },
+  {
+    value: "distribution",
+    title: "Distribution",
+    icon: <Filter className="h-3.5 w-3.5 mr-1" />,
+  },
 ];
 
 const CategoryInsights: React.FC<CategoryInsightsProps> = ({
@@ -47,6 +60,8 @@ const CategoryInsights: React.FC<CategoryInsightsProps> = ({
   );
   const [viewType, setViewType] = useState<ViewType>("hierarchy");
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingCategories, setLoadingCategories] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const { distributionData, treeMapData, filteredData, categoryData } =
     useInsights(
@@ -60,12 +75,16 @@ const CategoryInsights: React.FC<CategoryInsightsProps> = ({
   // Fetch categories on mount
   useEffect(() => {
     const fetchCategories = async () => {
+      setLoadingCategories(true);
       try {
         const fetchedCategories = await MarkdownLoader.getCategories();
         setCategories(fetchedCategories);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching categories:", err);
+        setError("Failed to load category data");
+      } finally {
+        setLoadingCategories(false);
         setIsLoading(false);
       }
     };
@@ -139,14 +158,35 @@ const CategoryInsights: React.FC<CategoryInsightsProps> = ({
   }, [categoryData, filteredData]);
 
   const mostReadCount = readingHistory.reduce((max, item) => {
-    return Math.max(max, item.lastReadAt);
+    return Math.max(max, item.readCount || 0);
   }, 0);
 
   const mostReadItem = readingHistory.find(
-    (item) => item.lastReadAt === mostReadCount
+    (item) => (item.readCount || 0) === mostReadCount
   );
 
   if (isLoading) return <Loading />;
+
+  if (error) {
+    return (
+      <Card className="p-4 border-primary/10">
+        <div className="flex justify-between items-center mb-3">
+          <h4 className="text-sm font-medium flex items-center">
+            <FolderTree className="h-4 w-4 mr-2 text-primary" />
+            Category Deep Insights
+          </h4>
+        </div>
+        <div className="h-96 flex items-center justify-center">
+          <div className="text-center text-destructive">
+            <p className="mb-2">{error}</p>
+            <Button variant="outline" onClick={() => window.location.reload()}>
+              Retry
+            </Button>
+          </div>
+        </div>
+      </Card>
+    );
+  }
 
   return (
     <Card className="border-primary/10 overflow-hidden">
@@ -164,14 +204,16 @@ const CategoryInsights: React.FC<CategoryInsightsProps> = ({
             className="h-8"
           >
             <TabsList className="h-8 p-0.5">
-              {tabs.map(({ title, icon }) => (
+              {tabs.map(({ value, title, icon }) => (
                 <TabsTrigger
-                  key={title}
-                  value={title}
+                  key={value}
+                  value={value}
                   className="h-7 text-xs px-2"
                 >
                   {icon}
-                  <span className={isMobile ? "" : "inline"}>{title}</span>
+                  <span className={isMobile ? "sr-only" : "inline"}>
+                    {title}
+                  </span>
                 </TabsTrigger>
               ))}
             </TabsList>
@@ -220,54 +262,80 @@ const CategoryInsights: React.FC<CategoryInsightsProps> = ({
         )}
       </div>
 
-      {/* Summary statistics */}
-      <Summary
-        totalDocuments={viewStats.totalDocuments}
-        readDocuments={viewStats.readDocuments}
-        completionPercentage={viewStats.completionPercentage}
-        mostRead={mostReadItem?.title ?? "None"}
-        mostReadCount={mostReadCount}
-      />
-
-      {/* Main content area */}
-      <div className="p-4 pt-0">
-        {viewType === "hierarchy" && (
-          <Hierarchy
-            selectedSubcategory={selectedSubcategory}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            setSelectedSubcategory={setSelectedSubcategory}
-            filteredData={filteredData}
-            onSelectDocument={onSelectDocument}
+      {/* Loading state for categories */}
+      {loadingCategories ? (
+        <div className="p-6 flex items-center justify-center">
+          <Loader2 className="h-5 w-5 mr-2 animate-spin text-primary" />
+          <span>Loading categories...</span>
+        </div>
+      ) : (
+        <>
+          {/* Summary statistics */}
+          <Summary
+            totalDocuments={viewStats.totalDocuments}
+            readDocuments={viewStats.readDocuments}
+            completionPercentage={viewStats.completionPercentage}
+            mostRead={mostReadItem?.title ?? "None"}
+            mostReadCount={mostReadCount}
           />
-        )}
 
-        {viewType === "treemap" && (
-          <div className="border rounded-lg p-4 h-[500px]">
-            <div className="h-full">
-              {categoryData.length > 0 ? (
-                <TreeMap data={treeMapData.children} />
-              ) : (
-                <div className="h-full flex items-center justify-center">
-                  <div className="text-center text-muted-foreground">
-                    <BarChart className="h-10 w-10 mx-auto mb-2 opacity-25" />
-                    <p>No data to visualize</p>
-                  </div>
+          {/* Main content area */}
+          <div className="p-4 pt-0">
+            {viewType === "hierarchy" && (
+              <Hierarchy
+                selectedSubcategory={selectedSubcategory}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                setSelectedSubcategory={setSelectedSubcategory}
+                filteredData={filteredData}
+                onSelectDocument={onSelectDocument}
+              />
+            )}
+
+            {viewType === "treemap" && (
+              <div className="border rounded-lg p-4 relative h-[500px]">
+                <div className="h-full">
+                  {categoryData.length > 0 &&
+                  treeMapData.children &&
+                  treeMapData.children.length > 0 ? (
+                    <EnhancedTreeMap
+                      data={treeMapData.children}
+                      isMobile={isMobile}
+                    />
+                  ) : (
+                    <div className="h-full flex items-center justify-center">
+                      <div className="text-center text-muted-foreground">
+                        <BarChart className="h-10 w-10 mx-auto mb-2 opacity-25" />
+                        <p>No data to visualize</p>
+                        {selectedCategory && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="mt-2"
+                            onClick={() => setSelectedCategory(null)}
+                          >
+                            View all categories
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
-        )}
+              </div>
+            )}
 
-        {viewType === "distribution" && (
-          <Distribution
-            selectedSubcategory={selectedSubcategory}
-            selectedCategory={selectedCategory}
-            distributionData={distributionData}
-            onSelectDocument={onSelectDocument}
-          />
-        )}
-      </div>
+            {viewType === "distribution" && (
+              <EnhancedDistribution
+                selectedSubcategory={selectedSubcategory}
+                selectedCategory={selectedCategory}
+                distributionData={distributionData}
+                onSelectDocument={onSelectDocument}
+                isMobile={isMobile}
+              />
+            )}
+          </div>
+        </>
+      )}
     </Card>
   );
 };
