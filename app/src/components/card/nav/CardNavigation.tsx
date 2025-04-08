@@ -53,7 +53,7 @@ const CardNavigation: React.FC<CardNavigationProps> = ({
           onClick={onPrevious}
           disabled={currentIndex === 0}
           className={cn(
-            "px-4 transition-all",
+            "px-4 transition-all rounded-2xl",
             currentIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
           )}
         >
@@ -67,7 +67,7 @@ const CardNavigation: React.FC<CardNavigationProps> = ({
           onClick={onNext}
           disabled={currentIndex === totalCards - 1}
           className={cn(
-            "px-4 transition-all rounded-lg",
+            "px-4 transition-all rounded-2xl",
             currentIndex === totalCards - 1
               ? "opacity-50 cursor-not-allowed"
               : ""
