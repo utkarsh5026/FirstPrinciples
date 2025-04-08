@@ -59,7 +59,7 @@ const EnhancedThemeSelector: React.FC<ThemeSelectorProps> = ({
 
       <DropdownMenuContent
         align="end"
-        className="w-screen max-w-[280px] p-3 bg-card border-border"
+        className="w-screen max-w-[280px] p-3 bg-card border-border rounded-2xl"
       >
         <div className="mb-3">
           <Tabs
@@ -67,7 +67,7 @@ const EnhancedThemeSelector: React.FC<ThemeSelectorProps> = ({
             onValueChange={setActiveTab}
             className="w-full"
           >
-            <TabsList className="w-full mb-2 font-cascadia-code">
+            <TabsList className="w-full mb-2 font-cascadia-code rounded-2xl">
               <TabsTrigger value="popular" className="flex-1 text-xs">
                 ❤️‍🔥 Popular
               </TabsTrigger>
