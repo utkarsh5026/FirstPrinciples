@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Card } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Target, Calendar, FolderTree, Sparkles } from "lucide-react";
 import { PiFlowArrow } from "react-icons/pi";
 import { ReadingHistoryItem } from "@/hooks/useDocumentManager";
@@ -9,11 +7,12 @@ import { FileMetadata, MarkdownLoader, Category } from "@/utils/MarkdownLoader";
 import { ReadingStats } from "@/utils/ReadingAnalyticsService";
 import useMobile from "@/hooks/useMobile";
 
-import RadarCategoryChart from "./RadarCategoryChart";
+import CategoryCoverageMap from "./coverage";
 import SankeyKnowledgeFlow from "./SankeyKnwoledgeFlow";
 import TimeFilteredHeatCalendar from "./TimeFilteredHeatCalender";
-import CategoryInsights from "./insights/CategoryInsights"; // The original component we built
+import CategoryInsights from "./insights/CategoryInsights";
 import Introduction from "./Introduction";
+import Recommendations from "./recommendations";
 
 interface EnhancedCategoryAnalyticsProps {
   readingHistory: ReadingHistoryItem[];
@@ -24,7 +23,50 @@ interface EnhancedCategoryAnalyticsProps {
 
 type AnalyticsView = "overview" | "radar" | "flow" | "timeline" | "hierarchy";
 
-const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
+const tabs = [
+  {
+    key: "overview",
+    value: "Overview",
+    icon: <Sparkles className="h-3.5 w-3.5" />,
+  },
+  {
+    key: "radar",
+    value: "Coverage",
+    icon: <Target className="h-3.5 w-3.5" />,
+  },
+  {
+    key: "flow",
+    value: "Knowledge Flow",
+    icon: <PiFlowArrow className="h-3.5 w-3.5" />,
+  },
+  {
+    key: "timeline",
+    value: "Timeline",
+    icon: <Calendar className="h-3.5 w-3.5" />,
+  },
+  {
+    key: "hierarchy",
+    value: "Hierarchy",
+    icon: <FolderTree className="h-3.5 w-3.5" />,
+  },
+];
+
+/**
+ * 📊 Category Analytics Component
+ *
+ * This delightful dashboard visualizes your learning journey across different knowledge categories! ✨
+ *
+ * It provides multiple views to help you understand your reading patterns:
+ * - Overview: A comprehensive snapshot of your learning landscape
+ * - Coverage Map: Shows which categories you've explored thoroughly vs. those needing attention
+ * - Knowledge Flow: Visualizes how you navigate between different knowledge areas
+ * - Timeline: Tracks your reading activity over time with a heat calendar
+ * - Hierarchy: Breaks down your reading by category structure
+ *
+ * The component also calculates helpful metrics like coverage score and knowledge balance
+ * to guide your learning journey! 🧠💫
+ */
+const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
   readingHistory,
   availableDocuments,
   stats,
@@ -34,7 +76,9 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
   const [activeView, setActiveView] = useState<AnalyticsView>("overview");
   const [categories, setCategories] = useState<Category[]>([]);
 
-  // Fetch categories
+  /*
+   🌳 Fetches the category structure from your knowledge base
+   */
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -48,7 +92,9 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
     fetchCategories();
   }, []);
 
-  // Prepare data for the radar chart
+  /* 
+  🎯 Creates data for the radar visualization showing your category coverage
+   */
   const radarData = useMemo(() => {
     const categoryMap = new Map<string, { read: number; total: number }>();
 
@@ -90,7 +136,9 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
       .sort((a, b) => b.percentage - a.percentage);
   }, [availableDocuments, readingHistory]);
 
-  // Handle item selection in visualizations
+  /*
+   🔍 Handles navigation when you click on items in visualizations
+   */
   const handleSelectItem = (
     type: "category" | "subcategory" | "document",
     path?: string
@@ -103,7 +151,9 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
     }
   };
 
-  // Calculate summary stats for display
+  /*
+   🧮 Calculates your learning metrics to show progress and balance
+   */
   const summaryStat = useMemo(() => {
     const totalCategories = new Set(
       availableDocuments.map((doc) => doc.path.split("/")[0])
@@ -141,11 +191,8 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
     radarData,
   ]);
 
-  console.log("Deepak", radarData);
-
   return (
     <div className="space-y-6">
-      {/* Introduction card */}
       <Introduction summaryStat={summaryStat} />
 
       {/* Visualization tabs */}
@@ -155,51 +202,25 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
         className="w-full"
       >
         <TabsList className="w-full justify-start mb-6 overflow-x-auto p-1">
-          <TabsTrigger
-            value="overview"
-            className="flex items-center gap-1 text-xs px-3 py-2"
-          >
-            <Sparkles className="h-3.5 w-3.5" />
-            <span className={isMobile ? "hidden" : "inline"}>Overview</span>
-          </TabsTrigger>
-          <TabsTrigger
-            value="radar"
-            className="flex items-center gap-1 text-xs px-3 py-2"
-          >
-            <Target className="h-3.5 w-3.5" />
-            <span className={isMobile ? "hidden" : "inline"}>Coverage</span>
-          </TabsTrigger>
-          <TabsTrigger
-            value="flow"
-            className="flex items-center gap-1 text-xs px-3 py-2"
-          >
-            <PiFlowArrow className="h-3.5 w-3.5" />
-            <span className={isMobile ? "hidden" : "inline"}>
-              Knowledge Flow
-            </span>
-          </TabsTrigger>
-          <TabsTrigger
-            value="timeline"
-            className="flex items-center gap-1 text-xs px-3 py-2"
-          >
-            <Calendar className="h-3.5 w-3.5" />
-            <span className={isMobile ? "hidden" : "inline"}>Timeline</span>
-          </TabsTrigger>
-          <TabsTrigger
-            value="hierarchy"
-            className="flex items-center gap-1 text-xs px-3 py-2"
-          >
-            <FolderTree className="h-3.5 w-3.5" />
-            <span className={isMobile ? "hidden" : "inline"}>Hierarchy</span>
-          </TabsTrigger>
+          {tabs.map(({ key, value, icon }) => {
+            return (
+              <TabsTrigger
+                key={key}
+                value={key}
+                className="flex items-center gap-1 text-xs px-3 py-2"
+              >
+                {icon}
+                <span className={isMobile ? "hidden" : "inline"}>{value}</span>
+              </TabsTrigger>
+            );
+          })}
         </TabsList>
 
-        {/* Overview View - Shows multiple visualizations */}
-        {activeView === "overview" && (
+        <TabsContent value="overview">
           <div className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Radar Chart */}
-              <RadarCategoryChart
+              <CategoryCoverageMap
                 data={radarData}
                 title="Category Coverage Map"
               />
@@ -221,23 +242,20 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
               categories={categories}
             />
           </div>
-        )}
+        </TabsContent>
 
-        {/* Radar Chart View */}
-        {activeView === "radar" && (
-          <RadarCategoryChart data={radarData} title="Category Coverage Map" />
-        )}
+        <TabsContent value="radar">
+          <CategoryCoverageMap data={radarData} title="Category Coverage Map" />
+        </TabsContent>
 
-        {/* Knowledge Flow View */}
-        {activeView === "flow" && (
+        <TabsContent value="flow">
           <SankeyKnowledgeFlow
             readingHistory={readingHistory}
             categories={categories}
           />
-        )}
+        </TabsContent>
 
-        {/* Timeline View */}
-        {activeView === "timeline" && (
+        <TabsContent value="timeline">
           <TimeFilteredHeatCalendar
             readingHistory={readingHistory}
             availableDocuments={availableDocuments}
@@ -246,122 +264,28 @@ const EnhancedCategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
             }
             onSelectDocument={onSelectDocument}
           />
-        )}
+        </TabsContent>
 
-        {/* Hierarchy View */}
-        {activeView === "hierarchy" && (
+        <TabsContent value="hierarchy">
           <CategoryInsights
             readingHistory={readingHistory}
             availableDocuments={availableDocuments}
             onSelectDocument={onSelectDocument}
           />
-        )}
+        </TabsContent>
       </Tabs>
 
-      {/* Learning recommendations based on insights */}
-      <Card className="p-4 border-primary/10">
-        <div className="flex items-center mb-3">
-          <Sparkles className="h-4 w-4 mr-2 text-primary" />
-          <h4 className="text-sm font-medium">
-            Smart Learning Recommendations
-          </h4>
-        </div>
-
-        <div className="text-sm">
-          <p className="text-muted-foreground">
-            Based on your learning patterns, here are personalized
-            recommendations:
-          </p>
-
-          <div className="mt-3 space-y-2">
-            {readingHistory.length === 0 ? (
-              <div className="text-center py-4">
-                <p className="text-muted-foreground">
-                  Start reading to get personalized recommendations
-                </p>
-              </div>
-            ) : (
-              <>
-                {/* Dynamic recommendations based on analytics insights */}
-                {summaryStat.balanceScore < 50 && (
-                  <div className="flex items-start gap-2 p-2 rounded-md bg-secondary/10">
-                    <div className="p-1 bg-primary/10 rounded-full mt-0.5">
-                      <div className="h-2 w-2 rounded-full bg-primary"></div>
-                    </div>
-                    <p>
-                      Your knowledge is concentrated in a few areas. Try
-                      exploring more categories to improve your balance score.
-                    </p>
-                  </div>
-                )}
-
-                {radarData.filter((item) => item.percentage < 30).length >
-                  0 && (
-                  <div className="flex items-start gap-2 p-2 rounded-md bg-secondary/10">
-                    <div className="p-1 bg-primary/10 rounded-full mt-0.5">
-                      <div className="h-2 w-2 rounded-full bg-primary"></div>
-                    </div>
-                    <div>
-                      <p>Low coverage detected in these categories:</p>
-                      <ul className="mt-1 ml-4 text-xs list-disc">
-                        {radarData
-                          .filter((item) => item.percentage < 30)
-                          .slice(0, 3)
-                          .map((item) => (
-                            <li key={item.name} className="mt-1">
-                              <Button
-                                variant="link"
-                                className="h-auto p-0 text-primary text-xs"
-                                onClick={() =>
-                                  handleSelectItem("category", item.name)
-                                }
-                              >
-                                {item.name}
-                              </Button>
-                              <span className="text-muted-foreground ml-1">
-                                ({Math.round(item.percentage)}% complete)
-                              </span>
-                            </li>
-                          ))}
-                      </ul>
-                    </div>
-                  </div>
-                )}
-
-                {summaryStat.coverageScore < 50 && (
-                  <div className="flex items-start gap-2 p-2 rounded-md bg-secondary/10">
-                    <div className="p-1 bg-primary/10 rounded-full mt-0.5">
-                      <div className="h-2 w-2 rounded-full bg-primary"></div>
-                    </div>
-                    <p>
-                      You've explored {summaryStat.exploredCategories} out of{" "}
-                      {summaryStat.totalCategories} categories. Discovering new
-                      areas will improve your coverage score.
-                    </p>
-                  </div>
-                )}
-
-                {radarData.filter((item) => item.percentage > 80).length >
-                  0 && (
-                  <div className="flex items-start gap-2 p-2 rounded-md bg-secondary/10">
-                    <div className="p-1 bg-primary/10 rounded-full mt-0.5">
-                      <div className="h-2 w-2 rounded-full bg-primary"></div>
-                    </div>
-                    <p>
-                      You're making excellent progress in{" "}
-                      {radarData.filter((item) => item.percentage > 80).length}{" "}
-                      categories! Consider connecting this knowledge with other
-                      areas.
-                    </p>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-        </div>
-      </Card>
+      <Recommendations
+        radarData={radarData}
+        handleSelectItem={handleSelectItem}
+        readingHistory={readingHistory}
+        balanceScore={summaryStat.balanceScore}
+        coverageScore={summaryStat.coverageScore}
+        exploredCategories={summaryStat.exploredCategories}
+        totalCategories={summaryStat.totalCategories}
+      />
     </div>
   );
 };
 
-export default EnhancedCategoryAnalytics;
+export default CategoryAnalytics;
