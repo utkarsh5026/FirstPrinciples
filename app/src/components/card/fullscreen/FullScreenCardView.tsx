@@ -59,16 +59,18 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const { currentTheme } = useTheme();
   const { isMobile } = useMobile();
 
-  // Calculate background style based on user preference
+  // Calculate background style based on user preference - make sure we use pointer-events: auto
   const gradientStyle = useGradientBg
     ? {
         backgroundImage: `
           linear-gradient(135deg, #1a1a1a 0%, ${currentTheme.primary}08 100%)
         `,
         backgroundSize: "100% 100%",
+        pointerEvents: "auto" as const,
       }
     : {
         background: `#121212`,
+        pointerEvents: "auto" as const,
       };
 
   // Parse the markdown into sections if not already provided
@@ -222,6 +224,9 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           handlePrevCard();
         }
       }
+
+      // Reset touch state
+      touchStartRef.current = { x: 0, y: 0, time: 0 };
     };
 
     // Add passive: false to ensure we can preventDefault() when needed
@@ -251,6 +256,15 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     const newValue = !useGradientBg;
     setUseGradientBg(newValue);
     localStorage.setItem("useGradientBackground", newValue.toString());
+
+    // Ensure event handlers are still working after toggle
+    // Give browser time to process the state change
+    setTimeout(() => {
+      if (cardContainerRef.current) {
+        // Re-enable pointer events explicitly
+        cardContainerRef.current.style.pointerEvents = "auto";
+      }
+    }, 0);
   }, [useGradientBg]);
 
   // Legacy parser - only used as fallback
@@ -423,7 +437,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         className
       )}
       ref={cardContainerRef}
-      style={gradientStyle}
+      style={{ ...gradientStyle, pointerEvents: "auto" }}
       onDoubleClick={handleDoubleClick}
     >
       {/* Header with actions - conditionally shown */}
@@ -560,7 +574,10 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
             // Enable better scrolling on mobile
             "touch-pan-y"
           )}
-          style={{ WebkitOverflowScrolling: "touch" }}
+          style={{
+            WebkitOverflowScrolling: "touch",
+            pointerEvents: "auto",
+          }}
         >
           <div
             className={cn(
@@ -583,6 +600,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
                   ? "prose-p:text-base prose-p:leading-relaxed prose-headings:leading-tight"
                   : ""
               )}
+              style={{ pointerEvents: "auto" }}
             >
               <CustomMarkdownRenderer
                 markdown={currentSection.content}
