@@ -12,14 +12,24 @@ export interface ReadingTodoItem {
 }
 
 /**
- * Service that manages reading lists/todo items
+ * 📚 Reading List Service
+ *
+ * This service helps you keep track of documents you want to read later!
+ * Think of it as your personal reading todo list for the app.
+ *
+ * ✅ Add documents to read later
+ * 📝 Track what you've already read
+ * 🗑️ Remove items you're no longer interested in
+ * 📊 See how you're progressing through your reading list
+ *
+ * Perfect for building your own knowledge management system
+ * by organizing what you want to read next.
  */
 export class ReadingListService {
   /**
-   * Add a document to the reading list
-   * @param path Document path
-   * @param title Document title
-   * @returns Promise with a boolean indicating success
+   * 📥 Add a document to your reading list
+   *
+   * Saves a document to read later, but only if it's not already in your list.
    */
   public async addToReadingList(path: string, title: string): Promise<boolean> {
     try {
@@ -53,8 +63,9 @@ export class ReadingListService {
   }
 
   /**
-   * Get all reading list items
-   * @returns Promise with array of all todo items
+   * 📋 Get your entire reading list
+   *
+   * Fetches all the documents you've saved to read later.
    */
   public async getAllItems(): Promise<ReadingTodoItem[]> {
     try {
@@ -66,9 +77,9 @@ export class ReadingListService {
   }
 
   /**
-   * Get a specific reading list item
-   * @param id Item ID
-   * @returns Promise with the item or null if not found
+   * 🔍 Find a specific reading list item
+   *
+   * Locates a particular document in your reading list.
    */
   public async getItem(id: string): Promise<ReadingTodoItem | null> {
     try {
@@ -82,12 +93,12 @@ export class ReadingListService {
       return null;
     }
   }
-  // src/services/analytics/ReadingListService.ts (continued)
 
   /**
-   * Toggle completion status of a reading list item
-   * @param id Item ID
-   * @returns Promise with the updated item or null if not found
+   * ✅ Mark an item as read (or unread)
+   *
+   * Toggles whether you've completed reading a document.
+   * Also tracks when you finished reading it!
    */
   public async toggleCompletion(id: string): Promise<ReadingTodoItem | null> {
     try {
@@ -111,9 +122,10 @@ export class ReadingListService {
   }
 
   /**
-   * Remove an item from the reading list
-   * @param id Item ID
-   * @returns Promise with a boolean indicating success
+   * 🗑️ Remove something from your reading list
+   *
+   * Deletes a document from your reading list when you no longer
+   * want to keep track of it.
    */
   public async removeItem(id: string): Promise<boolean> {
     try {
@@ -126,8 +138,9 @@ export class ReadingListService {
   }
 
   /**
-   * Clear all items from the reading list
-   * @returns Promise that resolves when the list is cleared
+   * 🧹 Start fresh with an empty reading list
+   *
+   * Removes all items from your reading list in one go.
    */
   public async clearList(): Promise<void> {
     try {
@@ -139,8 +152,10 @@ export class ReadingListService {
   }
 
   /**
-   * Get completion statistics for the reading list
-   * @returns Promise with completion stats
+   * 📊 See how you're doing with your reading
+   *
+   * Shows you statistics about your reading progress,
+   * like how many items you've read and how many are left.
    */
   public async getCompletionStats(): Promise<{
     total: number;
