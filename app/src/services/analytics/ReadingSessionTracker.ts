@@ -1,8 +1,6 @@
-// src/services/analytics/ReadingSessionTracker.ts
+import { databaseService } from "@/services/database/DatabaseService";
 
-import { databaseService } from "../database/DatabaseService";
-
-export interface ReadingSession {
+export type ReadingSession = {
   id?: number;
   path: string;
   title: string;
@@ -15,11 +13,23 @@ export interface ReadingSession {
   wordCount: number | null; // Word count for the document
   isActive: boolean; // Whether session is currently active
   activityCheckpoints: number[]; // Timestamps of activity for detailed analytics
-}
+};
 
 /**
- * Service that tracks precise reading session times,
- * differentiating between active reading and idle time
+ * 📚 Reading Session Tracker
+ *
+ * This service keeps track of how long users spend reading documents.
+ * It's smart enough to know when you're actually reading vs when you've
+ * stepped away from your device!
+ *
+ * ⏱️ Tracks active reading time by monitoring user interactions
+ * 🔍 Distinguishes between active reading and idle time
+ * 📊 Stores detailed analytics about reading habits
+ * 🏆 Helps power reading streaks and achievements
+ *
+ * The tracker automatically records user activity like scrolling,
+ * clicking, and typing to determine when you're actively engaged
+ * with the content.
  */
 export class ReadingSessionTracker {
   private currentSession: ReadingSession | null = null;
@@ -28,11 +38,11 @@ export class ReadingSessionTracker {
   private readonly DEFAULT_IDLE_THRESHOLD = 60000; // 1 minute
 
   /**
-   * Start a new reading session
-   * @param path Document path
-   * @param title Document title
-   * @param wordCount Optional count of words in the document
-   * @param idleThreshold Optional custom idle threshold (default: 1 minute)
+   * 🚀 Begins tracking a new reading session
+   *
+   * Starts monitoring how long the user spends reading a document,
+   * tracking their activity to distinguish between active reading
+   * and idle time.
    */
   public startSession(
     path: string,
@@ -73,8 +83,10 @@ export class ReadingSessionTracker {
   }
 
   /**
-   * End the current reading session and save it
-   * @returns The completed session data
+   * 🏁 Completes the current reading session
+   *
+   * Finalizes the session, calculates active reading time,
+   * and saves all the data to the database for future analysis.
    */
   public async endSession(): Promise<ReadingSession | null> {
     if (!this.currentSession) {
@@ -126,7 +138,10 @@ export class ReadingSessionTracker {
   }
 
   /**
-   * Record user activity (scrolling, clicking, etc.)
+   * 👆 Notes that the user is actively engaging with content
+   *
+   * Called whenever the user interacts with the page to mark
+   * them as actively reading.
    */
   public recordActivity(): void {
     if (!this.currentSession) {
@@ -139,7 +154,10 @@ export class ReadingSessionTracker {
   }
 
   /**
-   * Check if the user has been idle
+   * 💤 Checks if the user has gone idle
+   *
+   * Periodically runs to see if the user has stopped interacting
+   * with the content for a while.
    */
   private checkActivity(): void {
     if (!this.currentSession) {
@@ -158,7 +176,10 @@ export class ReadingSessionTracker {
   }
 
   /**
-   * Set up event listeners to monitor user activity
+   * 👀 Sets up watchers for user activity
+   *
+   * Attaches event listeners to detect when the user is
+   * scrolling, clicking, typing, or otherwise engaging.
    */
   private monitorUserActivity(): void {
     // Capture all types of user activity
@@ -174,7 +195,9 @@ export class ReadingSessionTracker {
   }
 
   /**
-   * Remove all activity event listeners
+   * 🧹 Cleans up all activity listeners
+   *
+   * Removes the event listeners when a session ends.
    */
   private removeActivityListeners(): void {
     window.removeEventListener("scroll", this.handleUserActivity);
@@ -190,23 +213,31 @@ export class ReadingSessionTracker {
   }
 
   /**
-   * Handle user activity events
+   * 🖱️ Processes user activity events
+   *
+   * Called whenever the user interacts with the page.
    */
   private handleUserActivity = (): void => {
     this.recordActivity();
   };
 
   /**
-   * Throttled version of handleUserActivity for high-frequency events
+   * 🐢 Slowed-down version of activity handler
+   *
+   * Prevents too many events from firing at once for
+   * high-frequency actions like mouse movement.
    */
   private throttledHandleUserActivity = this.throttle(() => {
     this.recordActivity();
   }, 1000); // Throttle to once per second
 
   /**
-   * Handle document visibility changes (tab switching)
+   * 📱 Handles tab switching
+   *
+   * Detects when the user switches to a different tab or app,
+   * which helps track when they're not actively reading.
    */
-  private handleVisibilityChange = (): void => {
+  private handleVisibilityChange(): void {
     if (document.hidden && this.currentSession) {
       // User switched away from the tab
       this.currentSession.activityCheckpoints.push(Date.now());
@@ -214,10 +245,12 @@ export class ReadingSessionTracker {
       // User returned to the tab
       this.recordActivity();
     }
-  };
+  }
 
   /**
-   * Utility function to throttle high-frequency events
+   * 🛠️ Utility to prevent event overload
+   *
+   * Limits how often a function can be called.
    */
   private throttle(func: () => void, limit: number): () => void {
     let lastCall = 0;
@@ -231,9 +264,9 @@ export class ReadingSessionTracker {
   }
 
   /**
-   * Get all reading sessions for a document
-   * @param path Document path
-   * @returns Promise with array of sessions
+   * 📖 Retrieves all reading sessions for a specific document
+   *
+   * Finds every time the user has read a particular document.
    */
   public async getDocumentSessions(path: string): Promise<ReadingSession[]> {
     try {
@@ -249,10 +282,10 @@ export class ReadingSessionTracker {
   }
 
   /**
-   * Calculate total time spent reading a document
-   * @param path Document path
-   * @param useActiveTime Whether to use active time or total time
-   * @returns Promise with total milliseconds spent
+   * ⏲️ Calculates total reading time for a document
+   *
+   * Adds up all the time a user has spent reading a specific document,
+   * either counting all time or just active reading time.
    */
   public async getTimeSpentOnDocument(
     path: string,
@@ -271,16 +304,18 @@ export class ReadingSessionTracker {
   }
 
   /**
-   * Get the current active session if any
-   * @returns The current session or null
+   * 🔍 Gets the currently active reading session
+   *
+   * Returns the session that's currently in progress, if any.
    */
   public getCurrentSession(): ReadingSession | null {
     return this.currentSession;
   }
 
   /**
-   * Get all reading sessions
-   * @returns Promise with array of all sessions
+   * 📊 Retrieves all reading sessions
+   *
+   * Gets the complete history of reading sessions for analysis.
    */
   public async getAllSessions(): Promise<ReadingSession[]> {
     try {
@@ -292,5 +327,4 @@ export class ReadingSessionTracker {
   }
 }
 
-// Create and export a singleton instance
 export const readingSessionTracker = new ReadingSessionTracker();

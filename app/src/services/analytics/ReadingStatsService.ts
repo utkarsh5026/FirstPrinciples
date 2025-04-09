@@ -2,9 +2,8 @@
 
 import { databaseService } from "../database/DatabaseService";
 import { readingHistoryService } from "./ReadingHistoryService";
-import { readingListService } from "./ReadingListService";
 
-export interface ReadingStats {
+export type ReadingStats = {
   id: string;
   totalXP: number;
   level: number;
@@ -14,9 +13,9 @@ export interface ReadingStats {
   categoriesExplored: string[];
   percentComplete: number;
   lastReadAt: number | null;
-}
+};
 
-export interface ReadingAchievement {
+export type ReadingAchievement = {
   id: string;
   title: string;
   description: string;
@@ -25,9 +24,9 @@ export interface ReadingAchievement {
   progress: number;
   maxProgress: number;
   category: string;
-}
+};
 
-export interface ReadingChallenge {
+export type ReadingChallenge = {
   id: string;
   title: string;
   description: string;
@@ -36,7 +35,7 @@ export interface ReadingChallenge {
   reward: number;
   expiresAt: number | null;
   completed: boolean;
-}
+};
 
 /**
  * Service that manages reading stats, achievements, and challenges
