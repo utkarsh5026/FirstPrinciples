@@ -1194,6 +1194,123 @@
         }
       ],
       "files": []
+    },
+    {
+      "id": "typescript",
+      "name": "Typescript",
+      "icon": "Folder",
+      "subcategories": [
+        {
+          "id": "foundations",
+          "name": "Foundations",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "typescript/foundations/objects_and_interfaces.md",
+              "title": "Objects And Interfaces",
+              "description": "Documentation for Objects And Interfaces"
+            },
+            {
+              "path": "typescript/foundations/typescript_vs_javascript.md",
+              "title": "Typescript Vs Javascript",
+              "description": "Documentation for Typescript Vs Javascript"
+            },
+            {
+              "path": "typescript/foundations/type_alias.md",
+              "title": "Type Alias",
+              "description": "Documentation for Type Alias"
+            },
+            {
+              "path": "typescript/foundations/type_annotations.md",
+              "title": "Type Annotations",
+              "description": "Documentation for Type Annotations"
+            },
+            {
+              "path": "typescript/foundations/union_and_intersection.md",
+              "title": "Union And Intersection",
+              "description": "Documentation for Union And Intersection"
+            }
+          ]
+        },
+        {
+          "id": "object_oriented",
+          "name": "Object Oriented",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "typescript/object_oriented/abstract_classes.md",
+              "title": "Abstract Classes",
+              "description": "Documentation for Abstract Classes"
+            },
+            {
+              "path": "typescript/object_oriented/classes_and_access_modifiers.md",
+              "title": "Classes And Access Modifiers",
+              "description": "Documentation for Classes And Access Modifiers"
+            },
+            {
+              "path": "typescript/object_oriented/inheritance_and_extends.md",
+              "title": "Inheritance And Extends",
+              "description": "Documentation for Inheritance And Extends"
+            }
+          ]
+        },
+        {
+          "id": "type_system",
+          "name": "Type System",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "typescript/type_system/any_and_unknown.md",
+              "title": "Any And Unknown",
+              "description": "Documentation for Any And Unknown"
+            },
+            {
+              "path": "typescript/type_system/enums.md",
+              "title": "Enums",
+              "description": "Documentation for Enums"
+            },
+            {
+              "path": "typescript/type_system/keyof_and_typeof.md",
+              "title": "Keyof And Typeof",
+              "description": "Documentation for Keyof And Typeof"
+            },
+            {
+              "path": "typescript/type_system/literal_types.md",
+              "title": "Literal Types",
+              "description": "Documentation for Literal Types"
+            },
+            {
+              "path": "typescript/type_system/non_null_assertion.md",
+              "title": "Non Null Assertion",
+              "description": "Documentation for Non Null Assertion"
+            },
+            {
+              "path": "typescript/type_system/null_and_undefined.md",
+              "title": "Null And Undefined",
+              "description": "Documentation for Null And Undefined"
+            },
+            {
+              "path": "typescript/type_system/tuples.md",
+              "title": "Tuples",
+              "description": "Documentation for Tuples"
+            },
+            {
+              "path": "typescript/type_system/type_guards.md",
+              "title": "Type Guards",
+              "description": "Documentation for Type Guards"
+            },
+            {
+              "path": "typescript/type_system/type_narrowing.md",
+              "title": "Type Narrowing",
+              "description": "Documentation for Type Narrowing"
+            }
+          ]
+        }
+      ],
+      "files": []
     }
   ],
   "files": []
