@@ -1,5 +1,9 @@
 /**
- * Core service for managing IndexedDB operations
+ * 📚 Core service for managing IndexedDB operations
+ *
+ * This service provides a friendly interface to work with IndexedDB.
+ * It handles all the low-level database operations so you don't have to!
+ * Perfect for storing reading history, sessions, and user progress.
  */
 export class DatabaseService {
   private readonly DB_NAME = "firstPrinciplesDB";
@@ -7,8 +11,10 @@ export class DatabaseService {
   private db: IDBDatabase | null = null;
 
   /**
-   * Initialize the database and create object stores
-   * @returns Promise that resolves when database is ready
+   * 🚀 Sets up the database and creates all necessary storage containers
+   *
+   * This initializes our app's database and creates all the object stores
+   * we need for tracking reading history, sessions, lists, and achievements.
    */
   public async initDatabase(): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -83,10 +89,10 @@ export class DatabaseService {
   }
 
   /**
-   * Add an item to a specific object store
-   * @param storeName The object store name
-   * @param item The item to add
-   * @returns Promise with the generated key
+   * ✨ Adds a new item to our database
+   *
+   * Like adding a new book to your shelf! This stores a new item
+   * in the specified collection.
    */
   public async add<T>(storeName: string, item: T): Promise<IDBValidKey> {
     return new Promise((resolve, reject) => {
@@ -110,9 +116,10 @@ export class DatabaseService {
   }
 
   /**
-   * Get all items from a specific object store
-   * @param storeName The object store name
-   * @returns Promise with the array of items
+   * 📋 Gets all items from a collection
+   *
+   * Fetches everything from a specific storage area, like getting
+   * all books from your bookshelf at once.
    */
   public async getAll<T>(storeName: string): Promise<T[]> {
     return new Promise((resolve, reject) => {
@@ -136,10 +143,10 @@ export class DatabaseService {
   }
 
   /**
-   * Get an item by its key from a specific object store
-   * @param storeName The object store name
-   * @param key The key to retrieve
-   * @returns Promise with the item or undefined if not found
+   * 🔍 Finds a specific item by its unique key
+   *
+   * Like finding a specific book when you know exactly where it is!
+   * This retrieves a single item using its unique identifier.
    */
   public async getByKey<T>(
     storeName: string,
@@ -166,16 +173,15 @@ export class DatabaseService {
   }
 
   /**
-   * Get items by an index value from a specific object store
-   * @param storeName The object store name
-   * @param indexName The index name
-   * @param value The value to search for
-   * @returns Promise with an array of matching items
+   * 🧩 Finds items by a specific property
+   *
+   * Like finding all books by your favorite author! This searches
+   * for items that match a specific characteristic.
    */
   public async getByIndex<T>(
     storeName: string,
     indexName: string,
-    value: any
+    value: string | number | Date
   ): Promise<T[]> {
     return new Promise((resolve, reject) => {
       if (!this.db) {
@@ -199,10 +205,10 @@ export class DatabaseService {
   }
 
   /**
-   * Update an item in a specific object store
-   * @param storeName The object store name
-   * @param item The item to update (must include the key)
-   * @returns Promise that resolves when the update is complete
+   * 📝 Updates an existing item
+   *
+   * Like updating the notes in your favorite book! This changes
+   * the information for an item that's already in the database.
    */
   public async update<T extends { id: IDBValidKey }>(
     storeName: string,
@@ -229,10 +235,10 @@ export class DatabaseService {
   }
 
   /**
-   * Delete an item from a specific object store
-   * @param storeName The object store name
-   * @param key The key of the item to delete
-   * @returns Promise that resolves when the deletion is complete
+   * 🗑️ Removes an item from the database
+   *
+   * Like taking a book off your shelf when you're done with it!
+   * This permanently removes an item from storage.
    */
   public async delete(storeName: string, key: IDBValidKey): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -256,9 +262,10 @@ export class DatabaseService {
   }
 
   /**
-   * Clear all data from a specific object store
-   * @param storeName The object store name
-   * @returns Promise that resolves when the store is cleared
+   * 🧹 Cleans out an entire collection
+   *
+   * Like clearing an entire bookshelf to start fresh! This removes
+   * all items from a specific storage area.
    */
   public async clearStore(storeName: string): Promise<void> {
     return new Promise((resolve, reject) => {
