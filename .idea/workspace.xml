@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ea65abd-0441-4630-9fbb-83510917e99e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/advanced_types/branded_and_nominal.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/advanced_types/discriminated_unions.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/advanced_types/index_types.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/advanced_types/recursive_types.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/advanced_types/utility_types.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/content/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/content/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/generics/generic_classes.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/generics/generic_constraints.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/generics/generic_defaults.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/generics/generic_functions.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/generics/generic_parameters.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/generics/generic_type_inference.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/generics/generic_utility_types.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/content/typescript/generics/higher_order_type.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/services/database/DatabaseService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/services/database/DatabaseService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
