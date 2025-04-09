@@ -56,12 +56,11 @@ export function useReadingHistory() {
    * Records your reading activity and updates your history automatically!
    */
   const addToReadingHistory = useCallback(
-    async (path: string, title: string, content?: string) => {
+    async (path: string, title: string) => {
       try {
         const updatedItem = await readingHistoryService.addToReadingHistory(
           path,
-          title,
-          content
+          title
         );
 
         const history = await readingHistoryService.getAllHistory();

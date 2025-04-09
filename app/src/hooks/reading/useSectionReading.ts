@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { sectionReadingTracker } from "@/services/analytics/SectionReadingTracker";
-import { sectionAnalyticsController } from "@/services/analytics/SectionAnalyticsController";
-import { analyticsController } from "../services/analytics/AnalyticsController";
+import { useServices } from "@/context/ServiceContext";
 
 export interface SectionData {
   id: string;
@@ -21,34 +19,22 @@ interface SectionReadingState {
 }
 
 /**
- * 📚 Section Reading Tracker Hook
- *
- * This smart hook helps track a user's reading progress through document sections!
- *
- * ✨ What it does:
- * - Tracks which sections a user has read in a document
- * - Remembers where they left off between sessions
- * - Calculates reading progress for each section
- * - Provides navigation between sections
- * - Stores reading data for analytics
- *
- * 🧠 Perfect for building interactive reading experiences with progress tracking,
- * "mark as read" functionality, and seamless navigation between document sections.
- *
- * 💾 Automatically saves progress to localStorage and the analytics database
- * so users never lose their place!
+ * A modular hook for tracking reading progress through document sections
  */
-export function useSectionReadingTracker(
+export function useSectionReading(
   documentPath: string,
   documentTitle: string,
   sections: SectionData[],
   initialSectionIndex: number = 0
 ) {
+  // Get services from context
+  const {
+    sectionReadingTracker,
+    sectionAnalyticsController,
+    analyticsController,
+  } = useServices();
+
   // State for tracking reading progress
-  /**
-   * 📚 Reading State Management
-   * Tracks the user's progress through document sections with smart persistence
-   */
   const [readingState, setReadingState] = useState<SectionReadingState>({
     documentPath,
     documentTitle,
@@ -59,17 +45,10 @@ export function useSectionReadingTracker(
     isTracking: false,
   });
 
-  /**
-   * ⏱️ Progress Tracking Timer
-   * Keeps track of the interval that updates reading progress
-   */
+  // Progress tracking timer
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  /**
-   * 🔄 Initialize Reading State
-   * Loads saved progress from localStorage and sets up analytics tracking
-   * when the component mounts. Handles cleanup when unmounting.
-   */
+  // Initialize reading state
   useEffect(() => {
     try {
       const storedReadSections = localStorage.getItem(
@@ -99,6 +78,7 @@ export function useSectionReadingTracker(
     } catch (error) {
       console.error("Error loading section reading state:", error);
     }
+
     analyticsController.startReading(documentPath, documentTitle);
 
     // Clean up on unmount
@@ -115,13 +95,15 @@ export function useSectionReadingTracker(
       // End any active section tracking
       sectionReadingTracker.endSectionReading();
     };
-  }, [documentPath, documentTitle, sections]);
+  }, [
+    documentPath,
+    documentTitle,
+    sections,
+    analyticsController,
+    sectionReadingTracker,
+  ]);
 
-  /**
-   * 🚀 Begin Section Tracking
-   * Starts monitoring user's reading progress for the current section.
-   * Sets up periodic checks to update progress and mark sections as read.
-   */
+  // Start section tracking
   const startSectionTracking = useCallback(() => {
     if (readingState.isTracking) return;
 
@@ -172,13 +154,9 @@ export function useSectionReadingTracker(
       ...prev,
       isTracking: true,
     }));
-  }, [readingState]);
+  }, [readingState, sectionReadingTracker]);
 
-  /**
-   * 🛑 End Section Tracking
-   * Stops monitoring the current section and optionally marks it as complete.
-   * Cleans up timers and updates the reading state.
-   */
+  // Stop section tracking
   const stopSectionTracking = useCallback(
     (markComplete = false) => {
       sectionReadingTracker.endSectionReading(markComplete);
@@ -194,13 +172,7 @@ export function useSectionReadingTracker(
         isTracking: false,
       }));
 
-      /**
-       * 🎉 Adds the currently read section to the list of completed sections!
-       *
-       * This function checks which section the user is currently on and updates the reading state accordingly.
-       * If the section exists, it adds it to the read sections and saves this information in localStorage
-       * so that the user's progress is remembered even if they refresh the page. 📚✨
-       */
+      // Add current section to read sections if marking complete
       const addToReadSections = () => {
         const { currentSectionIndex, sections } = readingState;
         const currentSection = sections[currentSectionIndex];
@@ -225,14 +197,10 @@ export function useSectionReadingTracker(
 
       if (markComplete) addToReadSections();
     },
-    [readingState]
+    [readingState, sectionReadingTracker]
   );
 
-  /**
-   * ⬅️ Go to Previous Section
-   * Navigates to the previous section in the document and saves the position.
-   * Stops tracking the current section before moving.
-   */
+  // Navigate to previous section
   const navigateToPrevSection = useCallback(() => {
     const { currentSectionIndex } = readingState;
 
@@ -257,11 +225,7 @@ export function useSectionReadingTracker(
     return currentSectionIndex;
   }, [readingState, stopSectionTracking]);
 
-  /**
-   * ➡️ Go to Next Section
-   * Navigates to the next section in the document and saves the position.
-   * Marks the current section as complete before moving forward.
-   */
+  // Navigate to next section
   const navigateToNextSection = useCallback(() => {
     const { currentSectionIndex, sections } = readingState;
 
@@ -292,11 +256,7 @@ export function useSectionReadingTracker(
     return currentSectionIndex;
   }, [readingState, stopSectionTracking]);
 
-  /**
-   * 🔍 Jump to Specific Section
-   * Allows direct navigation to any section by index.
-   * Validates the target section and updates tracking accordingly.
-   */
+  // Navigate to specific section
   const navigateToSection = useCallback(
     (sectionIndex: number) => {
       if (
@@ -329,11 +289,7 @@ export function useSectionReadingTracker(
     [readingState, stopSectionTracking]
   );
 
-  /**
-   * ✅ Mark Section as Read
-   * Explicitly marks the current section as complete in both
-   * the local state and the analytics database.
-   */
+  // Mark current section as complete
   const markCurrentSectionComplete = useCallback(() => {
     const { currentSectionIndex, sections } = readingState;
     const currentSection = sections[currentSectionIndex];
@@ -348,22 +304,15 @@ export function useSectionReadingTracker(
         currentSection.id
       );
     }
-  }, [readingState, stopSectionTracking]);
+  }, [readingState, stopSectionTracking, sectionAnalyticsController]);
 
-  /**
-   * 📊 Fetch Document Statistics
-   * Retrieves detailed reading statistics for the current document
-   * from the analytics database.
-   */
+  // Get document statistics
   const getDocumentStats = useCallback(async () => {
     const stats = await sectionAnalyticsController.getDocumentStats();
     return stats.find((stat) => stat.path === readingState.documentPath);
-  }, [readingState.documentPath]);
+  }, [readingState.documentPath, sectionAnalyticsController]);
 
-  /**
-   * 🔎 Check Section Completion
-   * Determines if a specific section has been marked as read.
-   */
+  // Check if a section is completed
   const isSectionCompleted = useCallback(
     (sectionId: string) => {
       return readingState.readSections.has(sectionId);
@@ -371,10 +320,7 @@ export function useSectionReadingTracker(
     [readingState.readSections]
   );
 
-  /**
-   * 📏 Get Reading Progress
-   * Returns the current reading progress percentage for a specific section.
-   */
+  // Get reading progress for a section
   const getSectionProgress = useCallback(
     (sectionId: string) => {
       return readingState.sectionProgress.get(sectionId) || 0;
@@ -382,10 +328,7 @@ export function useSectionReadingTracker(
     [readingState.sectionProgress]
   );
 
-  /**
-   * 📈 Calculate Overall Completion
-   * Determines what percentage of the entire document has been read.
-   */
+  // Calculate overall document completion percentage
   const getDocumentCompletionPercentage = useCallback(() => {
     if (readingState.sections.length === 0) return 0;
 
@@ -393,11 +336,7 @@ export function useSectionReadingTracker(
     return (completedCount / readingState.sections.length) * 100;
   }, [readingState.readSections, readingState.sections.length]);
 
-  /**
-   * 🔄 Auto-Start Tracking
-   * Automatically begins tracking when the current section changes
-   * or when tracking is not active.
-   */
+  // Auto-start tracking when the current section changes
   useEffect(() => {
     // Start tracking the current section if not already tracking
     if (!readingState.isTracking) {
@@ -409,7 +348,7 @@ export function useSectionReadingTracker(
     startSectionTracking,
   ]);
 
-  // Expose the needed state and functions
+  // Return all necessary functions and state
   return {
     // Current state
     currentSectionIndex: readingState.currentSectionIndex,
@@ -438,5 +377,3 @@ export function useSectionReadingTracker(
     getDocumentStats,
   };
 }
-
-export default useSectionReadingTracker;
