@@ -27,26 +27,16 @@ export class ReadingHistoryService {
    */
   public async addToReadingHistory(
     path: string,
-    title: string,
-    content?: string
+    title: string
   ): Promise<ReadingHistoryItem> {
     try {
       // Get existing history entries for this document
-      const existingEntries =
-        await databaseService.getByIndex<ReadingHistoryItem>(
-          "readingHistory",
-          "path",
-          path
-        );
+      const existingEntries = await databaseService.getByIndex<
+        ReadingHistoryItem & { id: IDBValidKey }
+      >("readingHistory", "path", path);
 
       const existingEntry =
         existingEntries.length > 0 ? existingEntries[0] : null;
-
-      // Calculate words read
-      let wordCount = 0;
-      if (content) {
-        wordCount = wordCountEstimator.countWords(content);
-      }
 
       // Get actual time spent on this document from the session tracker
       const timeSpent = await readingSessionTracker.getTimeSpentOnDocument(
@@ -70,7 +60,6 @@ export class ReadingHistoryService {
         await databaseService.update("readingHistory", updatedEntry);
         return updatedEntry;
       } else {
-        // Create new entry
         const newEntry: ReadingHistoryItem = {
           path,
           title,

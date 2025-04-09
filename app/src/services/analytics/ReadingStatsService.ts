@@ -1,5 +1,3 @@
-// src/services/analytics/ReadingStatsService.ts
-
 import { databaseService } from "../database/DatabaseService";
 import { readingHistoryService } from "./ReadingHistoryService";
 
@@ -57,7 +55,7 @@ export class ReadingStatsService {
     try {
       const stats = await databaseService.getByKey<ReadingStats>(
         "stats",
-        this.STATS_ID
+        ReadingStatsService.STATS_ID
       );
 
       if (stats) {
@@ -66,7 +64,7 @@ export class ReadingStatsService {
 
       // If no stats exist, create default stats
       const defaultStats: ReadingStats = {
-        id: this.STATS_ID,
+        id: ReadingStatsService.STATS_ID,
         totalXP: 0,
         level: 1,
         currentStreak: 0,
@@ -432,7 +430,7 @@ export class ReadingStatsService {
           // If just unlocked, update unlockedAt and add XP
           if (unlocked && updatedAchievement.unlockedAt === null) {
             updatedAchievement.unlockedAt = now;
-            xpGained += this.XP_VALUES.ACHIEVEMENT_UNLOCKED;
+            xpGained += ReadingStatsService.XP_VALUES.ACHIEVEMENT_UNLOCKED;
           }
 
           // Save updated achievement

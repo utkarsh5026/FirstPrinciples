@@ -80,7 +80,6 @@ export function useReadingList() {
         const success = await readingListService.removeItem(id);
 
         if (success) {
-          // Update local state
           const items = await readingListService.getAllItems();
           setTodoList(items);
         }
@@ -105,7 +104,6 @@ export function useReadingList() {
         const updatedItem = await readingListService.toggleCompletion(id);
 
         if (updatedItem) {
-          // Update local state
           const items = await readingListService.getAllItems();
           setTodoList(items);
         }
