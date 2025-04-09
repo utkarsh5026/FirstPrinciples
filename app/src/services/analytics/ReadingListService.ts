@@ -15,7 +15,7 @@ export interface ReadingTodoItem {
  * 📚 Reading List Service
  *
  * This service helps you keep track of documents you want to read later!
- * Think of it as your personal reading todo list for the app.
+ * Think of it as your personal reading to-do list for the app.
  *
  * ✅ Add documents to read later
  * 📝 Track what you've already read

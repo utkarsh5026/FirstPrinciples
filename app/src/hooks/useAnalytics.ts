@@ -1,7 +1,7 @@
-// src/hooks/useAnalytics.ts
-
 import { useState, useEffect, useCallback } from "react";
-import { analyticsController } from "../services/analytics/AnalyticsController";
+import { analyticsController } from "@/services/analytics/AnalyticsController";
+import { readingListService } from "@/services/analytics/ReadingListService";
+import { readingHistoryService } from "@/services/analytics/ReadingHistoryService";
 
 /**
  * Custom hook for using the analytics system in React components
@@ -76,14 +76,9 @@ export function useAnalytics(availableDocuments: any[] = []) {
   // Add to reading list
   const addToReadingList = useCallback(async (path: string, title: string) => {
     try {
-      const result =
-        await analyticsController.readingListService.addToReadingList(
-          path,
-          title
-        );
+      const result = await readingListService.addToReadingList(path, title);
 
       if (result) {
-        // Refresh analytics data
         const data = await analyticsController.getAnalyticsData();
         setAnalyticsData(data);
       }
@@ -99,11 +94,9 @@ export function useAnalytics(availableDocuments: any[] = []) {
   // Toggle completion of reading list item
   const toggleTodoCompletion = useCallback(async (id: string) => {
     try {
-      const updatedItem =
-        await analyticsController.readingListService.toggleCompletion(id);
+      const updatedItem = await readingListService.toggleCompletion(id);
 
       if (updatedItem) {
-        // Refresh analytics data
         const data = await analyticsController.getAnalyticsData();
         setAnalyticsData(data);
       }
@@ -119,16 +112,11 @@ export function useAnalytics(availableDocuments: any[] = []) {
   // Remove item from reading list
   const removeFromReadingList = useCallback(async (id: string) => {
     try {
-      const result = await analyticsController.readingListService.removeItem(
-        id
-      );
-
+      const result = await readingListService.removeItem(id);
       if (result) {
-        // Refresh analytics data
         const data = await analyticsController.getAnalyticsData();
         setAnalyticsData(data);
       }
-
       return result;
     } catch (err) {
       console.error("Error removing from reading list:", err);
@@ -140,9 +128,7 @@ export function useAnalytics(availableDocuments: any[] = []) {
   // Clear reading list
   const clearReadingList = useCallback(async () => {
     try {
-      await analyticsController.readingListService.clearList();
-
-      // Refresh analytics data
+      await readingListService.clearList();
       const data = await analyticsController.getAnalyticsData();
       setAnalyticsData(data);
     } catch (err) {
@@ -154,9 +140,7 @@ export function useAnalytics(availableDocuments: any[] = []) {
   // Clear reading history
   const clearReadingHistory = useCallback(async () => {
     try {
-      await analyticsController.readingHistoryService.clearHistory();
-
-      // Refresh analytics data
+      await readingHistoryService.clearHistory();
       const data = await analyticsController.getAnalyticsData();
       setAnalyticsData(data);
     } catch (err) {

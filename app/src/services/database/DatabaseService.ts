@@ -84,6 +84,37 @@ export class DatabaseService {
         if (!db.objectStoreNames.contains("challenges")) {
           db.createObjectStore("challenges", { keyPath: "id" });
         }
+
+        // Section Readings store
+        if (!db.objectStoreNames.contains("sectionReadings")) {
+          const sectionStore = db.createObjectStore("sectionReadings", {
+            keyPath: "id",
+            autoIncrement: true,
+          });
+          sectionStore.createIndex("documentPath", "documentPath", {
+            unique: false,
+          });
+          sectionStore.createIndex("sectionId", "sectionId", { unique: false });
+          sectionStore.createIndex("startTime", "startTime", { unique: false });
+          sectionStore.createIndex("isComplete", "isComplete", {
+            unique: false,
+          });
+        }
+
+        // Document Stats store
+        if (!db.objectStoreNames.contains("documentStats")) {
+          const docStatsStore = db.createObjectStore("documentStats", {
+            keyPath: "path",
+          });
+          docStatsStore.createIndex(
+            "completionPercentage",
+            "completionPercentage",
+            { unique: false }
+          );
+          docStatsStore.createIndex("lastReadAt", "lastReadAt", {
+            unique: false,
+          });
+        }
       };
     });
   }

@@ -1201,6 +1201,54 @@
       "icon": "Folder",
       "subcategories": [
         {
+          "id": "advanced_types",
+          "name": "Advanced Types",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "typescript/advanced_types/branded_and_nominal.md",
+              "title": "Branded And Nominal",
+              "description": "Documentation for Branded And Nominal"
+            },
+            {
+              "path": "typescript/advanced_types/conditional_types.md",
+              "title": "Conditional Types",
+              "description": "Documentation for Conditional Types"
+            },
+            {
+              "path": "typescript/advanced_types/discriminated_unions.md",
+              "title": "Discriminated Unions",
+              "description": "Documentation for Discriminated Unions"
+            },
+            {
+              "path": "typescript/advanced_types/index_types.md",
+              "title": "Index Types",
+              "description": "Documentation for Index Types"
+            },
+            {
+              "path": "typescript/advanced_types/mapped_types.md",
+              "title": "Mapped Types",
+              "description": "Documentation for Mapped Types"
+            },
+            {
+              "path": "typescript/advanced_types/recursive_types.md",
+              "title": "Recursive Types",
+              "description": "Documentation for Recursive Types"
+            },
+            {
+              "path": "typescript/advanced_types/template_literal.md",
+              "title": "Template Literal",
+              "description": "Documentation for Template Literal"
+            },
+            {
+              "path": "typescript/advanced_types/utility_types.md",
+              "title": "Utility Types",
+              "description": "Documentation for Utility Types"
+            }
+          ]
+        },
+        {
           "id": "foundations",
           "name": "Foundations",
           "icon": "Folder",
@@ -1230,6 +1278,54 @@
               "path": "typescript/foundations/union_and_intersection.md",
               "title": "Union And Intersection",
               "description": "Documentation for Union And Intersection"
+            }
+          ]
+        },
+        {
+          "id": "generics",
+          "name": "Generics",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "typescript/generics/generic_classes.md",
+              "title": "Generic Classes",
+              "description": "Documentation for Generic Classes"
+            },
+            {
+              "path": "typescript/generics/generic_constraints.md",
+              "title": "Generic Constraints",
+              "description": "Documentation for Generic Constraints"
+            },
+            {
+              "path": "typescript/generics/generic_defaults.md",
+              "title": "Generic Defaults",
+              "description": "Documentation for Generic Defaults"
+            },
+            {
+              "path": "typescript/generics/generic_functions.md",
+              "title": "Generic Functions",
+              "description": "Documentation for Generic Functions"
+            },
+            {
+              "path": "typescript/generics/generic_parameters.md",
+              "title": "Generic Parameters",
+              "description": "Documentation for Generic Parameters"
+            },
+            {
+              "path": "typescript/generics/generic_type_inference.md",
+              "title": "Generic Type Inference",
+              "description": "Documentation for Generic Type Inference"
+            },
+            {
+              "path": "typescript/generics/generic_utility_types.md",
+              "title": "Generic Utility Types",
+              "description": "Documentation for Generic Utility Types"
+            },
+            {
+              "path": "typescript/generics/higher_order_type.md",
+              "title": "Higher Order Type",
+              "description": "Documentation for Higher Order Type"
             }
           ]
         },
