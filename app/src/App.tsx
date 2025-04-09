@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useState, useEffect, useRef } from "react";
 import CardDocumentViewer from "@/components/card/viewer/CardDocumentViewer";
 import ResponsiveSidebar from "@/components/navigation/sidebar/CategoryNavigation";
