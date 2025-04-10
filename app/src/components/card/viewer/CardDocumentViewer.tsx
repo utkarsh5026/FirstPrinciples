@@ -30,6 +30,13 @@ interface CardDocumentViewerProps {
  * @param {Function} props.setSelectedFile - Function to update the selected file
  * @returns {React.ReactElement} The rendered component
  */
+/**
+ * 🎉 CardDocumentViewer is a delightful component that brings markdown documents to life in a card-based view!
+ * It allows users to seamlessly load, display, and navigate through their favorite documents.
+ * With support for fullscreen mode, users can immerse themselves in their reading experience! 📖✨
+ *
+ * This component also integrates achievement popups, celebrating user milestones and making reading more engaging! 🏆
+ */
 const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
   selectedFile,
 }) => {
@@ -38,12 +45,8 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
   const contentRef = useRef<HTMLDivElement>(null);
   const cardContainerRef = useRef<HTMLDivElement>(null);
 
-  // Detect if the user is on a mobile device
   const { isMobile } = useMobile();
-
-  // Get theme context for dynamic styling
   const { currentTheme } = useTheme();
-
   const {
     markdownContent,
     loading,
@@ -57,14 +60,14 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
   } = useDocumentLoader(selectedFile);
 
   /**
-   * Toggle between fullscreen and normal viewing modes
+   * 🌟 This function toggles between fullscreen and normal viewing modes,
+   * allowing users to enjoy their documents in a more immersive way!
    */
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen);
   };
 
-  // Render fullscreen card view
-  if (isFullscreen) {
+  if (isFullscreen)
     return (
       <FullScreenCardView
         markdown={markdownContent}
@@ -72,13 +75,8 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
         parsedSections={parsedSections}
       />
     );
-  }
 
-  // Render loading state
-  if (loading) {
-    return <LoadingScreen />;
-  }
-
+  if (loading) return <LoadingScreen />;
   if (error) return <ErrorLoadingDocument error={error} />;
   if (!selectedFile) return <NoFileSelectedYet />;
 
