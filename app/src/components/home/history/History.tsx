@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Search } from "lucide-react";
+import React, { useState, useEffect, useMemo } from "react";
+
 import { ReadingHistoryItem } from "@/components/home/types";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 
@@ -9,6 +9,8 @@ import HistoryList from "./components/HistoryList";
 import HistoryTimeline from "./components/HistoryTimeline";
 import HistoryTrends from "./components/HistoryTrends";
 import EmptyHistory from "./components/EmptyHistory";
+import EmptyFilteredResult from "./components/EmptyFilteredResult";
+
 import { formatDate } from "../utils";
 import { useReadingHistory } from "@/hooks";
 
@@ -28,15 +30,16 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
   const [filteredHistory, setFilteredHistory] =
     useState<ReadingHistoryItem[]>(readingHistory);
 
-  const categories = [
-    "all",
-    ...new Set(
-      readingHistory.map((item) => item.path.split("/")[0] || "uncategorized")
-    ),
-  ];
+  const categories = useMemo(() => {
+    return [
+      "all",
+      ...new Set(
+        readingHistory.map((item) => item.path.split("/")[0] || "uncategorized")
+      ),
+    ];
+  }, [readingHistory]);
 
-  // Get time-based stats
-  const getTimeStats = () => {
+  const timeStats = useMemo(() => {
     const now = Date.now();
     const oneDay = 24 * 60 * 60 * 1000;
     const oneWeek = 7 * oneDay;
@@ -52,11 +55,8 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
       ).length,
       total: readingHistory.length,
     };
-  };
+  }, [readingHistory]);
 
-  const timeStats = getTimeStats();
-
-  // Apply filters to history items
   useEffect(() => {
     let filtered = [...readingHistory];
 
@@ -103,7 +103,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
   }, [readingHistory, searchQuery, selectedCategory, selectedTimeframe]);
 
   // Generate monthly reading data for trends
-  const generateMonthlyData = () => {
+  const monthlyData = useMemo(() => {
     const months: Record<string, number> = {};
     const now = new Date();
 
@@ -136,9 +136,11 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
         };
       })
       .sort((a, b) => a.date.getTime() - b.date.getTime());
-  };
+  }, [readingHistory]);
 
-  const monthlyData = generateMonthlyData();
+  if (readingHistory.length === 0) {
+    return <EmptyHistory />;
+  }
 
   return (
     <div className="space-y-4 md:space-y-6 px-1 md:px-0 pb-20 md:pb-0">
@@ -158,18 +160,8 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
         categories={categories}
       />
 
-      {readingHistory.length === 0 ? (
-        <EmptyHistory />
-      ) : filteredHistory.length === 0 ? (
-        <div className="text-center py-6 md:py-12 border border-primary/10 rounded-lg bg-primary/5">
-          <Search className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3 text-primary/30" />
-          <h3 className="text-base md:text-lg font-medium">
-            No matching results
-          </h3>
-          <p className="text-sm text-muted-foreground mt-1">
-            Try adjusting your search or filters
-          </p>
-        </div>
+      {filteredHistory.length === 0 ? (
+        <EmptyFilteredResult />
       ) : (
         <div className="mt-4">
           {viewMode === "list" && (
