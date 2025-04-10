@@ -23,7 +23,7 @@ import type {
   ReadingChallenge,
   ReadingStats,
 } from "@/utils/ReadingAnalyticsService";
-import { ReadingHistoryItem } from "@/components/home/types";
+import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import ReadingProgress from "./ReadingProgress";
 import DailyChallenges from "./DailyChallenges";
 import CategoryBreakDown from "./CategoryBreakdown";

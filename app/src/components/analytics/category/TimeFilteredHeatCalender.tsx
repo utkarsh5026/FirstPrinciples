@@ -25,7 +25,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { ReadingHistoryItem } from "@/hooks/useDocumentManager";
+import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import { FileMetadata } from "@/utils/MarkdownLoader";
 import useMobile from "@/hooks/useMobile";
 import { COLORS } from "../utils";

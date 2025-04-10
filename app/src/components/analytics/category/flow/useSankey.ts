@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { ReadingHistoryItem } from "@/hooks/useDocumentManager";
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import type { Category } from "@/utils/MarkdownLoader";
 
 export type SankeyNode = {

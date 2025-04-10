@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Target, Calendar, FolderTree, Sparkles } from "lucide-react";
 import { PiFlowArrow } from "react-icons/pi";
-import { ReadingHistoryItem } from "@/hooks/useDocumentManager";
+import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import { FileMetadata, MarkdownLoader, Category } from "@/utils/MarkdownLoader";
 import { ReadingStats } from "@/utils/ReadingAnalyticsService";
 import useMobile from "@/hooks/useMobile";

@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import type { ReadingStats } from "@/utils/ReadingAnalyticsService";
 import React from "react";
 import { Progress } from "@/components/ui/progress";
-import type { ReadingHistoryItem } from "@/hooks/useDocumentManager";
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 
 interface ReadingProgressProps {
   stats: ReadingStats;

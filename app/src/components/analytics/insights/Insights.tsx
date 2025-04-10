@@ -4,7 +4,7 @@ import { PieChart as PieChartIcon } from "lucide-react";
 
 import type { ReadingStats } from "@/utils/ReadingAnalyticsService";
 import type { AnalyticsData } from "../types";
-import type { ReadingHistoryItem } from "@/hooks/useDocumentManager";
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import CategoryInsights from "./CategoryInsights";
 import ProgressOverTime from "./ProgressOverTime";
 import WeekilyPattern from "./WeeklyPattern";

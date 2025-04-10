@@ -17,6 +17,8 @@ import AnalyticsOverview from "./overview";
 import CategoryInsightTab from "./category/CategoryInsightsTab";
 import { SiDeepl } from "react-icons/si";
 import { getStreakEmoji, monthNames } from "./utils";
+import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import { AnalyticsData } from "./types";
 
 const xpToNextLevel = 500;
 interface AnalyticsPageProps {
@@ -230,7 +232,7 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({
             currentLevelXP={currentLevelXP}
             isMobile={isMobile}
             thisWeekReadingCount={thisWeekReadingCount}
-            readingHistory={readingHistory}
+            readingHistory={readingHistory as ReadingHistoryItem[]}
             weeklyActivity={weeklyActivity.map((activity) => ({
               name: activity.day,
               count: activity.count,
@@ -238,7 +240,7 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({
             monthlyReadingData={monthlyReadingData}
             categoryBreakdown={categoryBreakdown}
             readingByHour={readingByHour}
-            recentActivity={recentActivity}
+            recentActivity={recentActivity as ReadingHistoryItem[]}
             challenges={challenges}
             actions={actions}
             onSelectDocument={onSelectDocument}
@@ -270,8 +272,8 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({
         <TabsContent value="insights">
           <Insights
             stats={stats}
-            readingHistory={readingHistory}
-            analyticsData={analyticsData}
+            readingHistory={readingHistory as ReadingHistoryItem[]}
+            analyticsData={analyticsData as AnalyticsData}
             monthlyReadingData={monthlyReadingData}
           />
         </TabsContent>
@@ -279,7 +281,7 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({
         <TabsContent value="deep">
           <CategoryInsightTab
             stats={stats}
-            readingHistory={readingHistory}
+            readingHistory={readingHistory as ReadingHistoryItem[]}
             availableDocuments={availableDocuments}
             onSelectDocument={onSelectDocument}
           />

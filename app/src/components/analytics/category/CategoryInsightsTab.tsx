@@ -1,6 +1,6 @@
 import React from "react";
 import { ReadingStats } from "@/utils/ReadingAnalyticsService";
-import { ReadingHistoryItem } from "@/hooks/useDocumentManager";
+import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import { FileMetadata } from "@/utils/MarkdownLoader";
 import CategoryAnalytics from "./CategoryAnalytics";
 
