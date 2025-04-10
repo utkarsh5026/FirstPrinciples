@@ -115,44 +115,13 @@ const HistoryTrends: React.FC<HistoryTrendsProps> = memo(
       color: currentTheme.foreground,
     };
 
-    // Mobile UI with collapsible sections
-    const ChartSection = ({
-      id,
-      title,
-      icon,
-      children,
-    }: {
-      id: string;
-      title: string;
-      icon: React.ReactNode;
-      children: React.ReactNode;
-    }) => (
-      <Card className="p-3 md:p-4 mb-4">
-        <Collapsible
-          open={openSection === id}
-          onOpenChange={(open) => setOpenSection(open ? id : "")}
-        >
-          <CollapsibleTrigger className="w-full flex items-center justify-between">
-            <h3 className="text-sm font-medium flex items-center">
-              {icon}
-              {title}
-            </h3>
-            <ChevronDown
-              className={`transition-transform h-4 w-4 text-muted-foreground ${
-                openSection === id ? "transform rotate-180" : ""
-              }`}
-            />
-          </CollapsibleTrigger>
-          <CollapsibleContent className="mt-3">{children}</CollapsibleContent>
-        </Collapsible>
-      </Card>
-    );
-
     return (
       <div className="space-y-2 md:space-y-6">
         {/* For mobile: collapsible charts */}
         <div className="md:hidden">
-          <ChartSection
+          <CollapsibleMobileChart
+            openSection={openSection}
+            setOpenSection={setOpenSection}
             id="monthly"
             title="Monthly Reading Trend"
             icon={<TrendingUp className="h-4 w-4 mr-2 text-primary/70" />}
@@ -195,9 +164,11 @@ const HistoryTrends: React.FC<HistoryTrendsProps> = memo(
                 </BarChart>
               </ResponsiveContainer>
             </div>
-          </ChartSection>
+          </CollapsibleMobileChart>
 
-          <ChartSection
+          <CollapsibleMobileChart
+            openSection={openSection}
+            setOpenSection={setOpenSection}
             id="weekday"
             title="Reading by Day of Week"
             icon={<BarChart2 className="h-4 w-4 mr-2 text-primary/70" />}
@@ -240,9 +211,11 @@ const HistoryTrends: React.FC<HistoryTrendsProps> = memo(
                 </BarChart>
               </ResponsiveContainer>
             </div>
-          </ChartSection>
+          </CollapsibleMobileChart>
 
-          <ChartSection
+          <CollapsibleMobileChart
+            openSection={openSection}
+            setOpenSection={setOpenSection}
             id="categories"
             title="Most Read Categories"
             icon={<PieChartIcon className="h-4 w-4 mr-2 text-primary/70" />}
@@ -289,9 +262,11 @@ const HistoryTrends: React.FC<HistoryTrendsProps> = memo(
                 </div>
               </div>
             )}
-          </ChartSection>
+          </CollapsibleMobileChart>
 
-          <ChartSection
+          <CollapsibleMobileChart
+            openSection={openSection}
+            setOpenSection={setOpenSection}
             id="timeOfDay"
             title="Reading by Time of Day"
             icon={<Clock className="h-4 w-4 mr-2 text-primary/70" />}
@@ -334,7 +309,7 @@ const HistoryTrends: React.FC<HistoryTrendsProps> = memo(
                 </BarChart>
               </ResponsiveContainer>
             </div>
-          </ChartSection>
+          </CollapsibleMobileChart>
         </div>
 
         {/* For desktop: original layout */}
@@ -516,6 +491,44 @@ const HistoryTrends: React.FC<HistoryTrendsProps> = memo(
       </div>
     );
   }
+);
+
+interface CollapsibleMobileChartProps {
+  id: string;
+  title: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+  openSection: string;
+  setOpenSection: (open: string) => void;
+}
+
+const CollapsibleMobileChart: React.FC<CollapsibleMobileChartProps> = ({
+  id,
+  title,
+  icon,
+  children,
+  openSection,
+  setOpenSection,
+}: CollapsibleMobileChartProps) => (
+  <Card className="p-3 md:p-4 mb-4">
+    <Collapsible
+      open={openSection === id}
+      onOpenChange={(open) => setOpenSection(open ? id : "")}
+    >
+      <CollapsibleTrigger className="w-full flex items-center justify-between">
+        <h3 className="text-sm font-medium flex items-center">
+          {icon}
+          {title}
+        </h3>
+        <ChevronDown
+          className={`transition-transform h-4 w-4 text-muted-foreground ${
+            openSection === id ? "transform rotate-180" : ""
+          }`}
+        />
+      </CollapsibleTrigger>
+      <CollapsibleContent className="mt-3">{children}</CollapsibleContent>
+    </Collapsible>
+  </Card>
 );
 
 export default HistoryTrends;
