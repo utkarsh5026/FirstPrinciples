@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    image: first-principles-docs:prod
+    container_name: first-principles-prod
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      # Optional: Mount content directory for easier updates
+      - ./app/public/content:/usr/share/nginx/html/content
+    networks:
+      - app-network
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
+
+networks:
+  app-network:
+    driver: bridge
