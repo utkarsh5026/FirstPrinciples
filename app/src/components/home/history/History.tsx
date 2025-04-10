@@ -18,6 +18,22 @@ interface HistoryProps {
   handleSelectDocument: (path: string, title: string) => void;
 }
 
+/**
+ * 📚 History Component
+ *
+ * This delightful component displays your reading history in a beautiful, organized way! ✨
+ * It allows you to explore your past readings through different visualizations and filters.
+ *
+ * ✅ Features:
+ * - View your reading history as a list, timeline, or trends visualization
+ * - Filter by categories, timeframes, or search for specific documents
+ * - See beautiful statistics about your reading habits
+ * - Navigate back to previously read documents with ease
+ *
+ * Think of it as your personal reading journal that helps you track and celebrate
+ * your knowledge journey! 🎉 It's designed to make revisiting your reading history
+ * a joyful experience rather than a chore. 📖✨
+ */
 const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
   const { readingHistory } = useReadingHistory();
   const { currentTheme } = useTheme();
@@ -30,6 +46,14 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
   const [filteredHistory, setFilteredHistory] =
     useState<ReadingHistoryItem[]>(readingHistory);
 
+  /**
+   * 🗂️ Categories Organization
+   *
+   * Magically extracts all unique categories from your reading history!
+   * Creates a friendly list of filters so you can easily find documents
+   * by their top-level folders. Always includes an "all" option so you
+   * can go back to seeing everything at once! 🌈
+   */
   const categories = useMemo(() => {
     return [
       "all",
@@ -39,6 +63,13 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     ];
   }, [readingHistory]);
 
+  /**
+   * 📊 Time Statistics
+   *
+   * Calculates fun statistics about your reading habits across different time periods!
+   * Tracks how many documents you've read today, this week, this month, and in total.
+   * These numbers help you visualize your reading journey and celebrate your progress! 🎯
+   */
   const timeStats = useMemo(() => {
     const now = Date.now();
     const oneDay = 24 * 60 * 60 * 1000;
@@ -57,6 +88,14 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     };
   }, [readingHistory]);
 
+  /**
+   * 🔍 History Filtering
+   *
+   * This magical effect transforms your reading history based on your filters!
+   * It applies your search queries, category selections, and timeframe choices
+   * to show you exactly the history items you're looking for. It's like having
+   * a personal librarian organizing your reading history! 📚✨
+   */
   useEffect(() => {
     let filtered = [...readingHistory];
 
@@ -102,29 +141,44 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     setFilteredHistory(filtered);
   }, [readingHistory, searchQuery, selectedCategory, selectedTimeframe]);
 
-  // Generate monthly reading data for trends
+  /**
+   * 📈 Monthly Reading Trends
+   *
+   * Creates beautiful data for the trends visualization! This transforms your
+   * reading history into monthly statistics so you can see how your reading
+   * habits change over time. It's like having a personal reading coach that
+   * celebrates your consistency and growth! 🌱📊
+   */
   const monthlyData = useMemo(() => {
     const months: Record<string, number> = {};
     const now = new Date();
+    const monthsToShow = 6;
 
-    // Create last 6 months entries
-    for (let i = 0; i < 6; i++) {
-      const d = new Date(now);
-      d.setMonth(d.getMonth() - i);
-      const monthKey = `${d.getFullYear()}-${d.getMonth() + 1}`;
-      months[monthKey] = 0;
-    }
+    const createMonthKey = (date: Date) =>
+      `${date.getFullYear()}-${date.getMonth() + 1}`;
 
-    // Fill with actual data
-    readingHistory.forEach((item) => {
-      const date = new Date(item.lastReadAt);
-      const monthKey = `${date.getFullYear()}-${date.getMonth() + 1}`;
-      if (months[monthKey] !== undefined) {
-        months[monthKey]++;
+    const initMonthlyData = (date: Date) => {
+      for (let i = 0; i < monthsToShow; i++) {
+        const d = new Date(date);
+        d.setMonth(d.getMonth() - i);
+        const monthKey = createMonthKey(d);
+        months[monthKey] = 0;
       }
-    });
+    };
 
-    // Convert to array format for visualization
+    const fillMonthData = () => {
+      readingHistory.forEach((item) => {
+        const date = new Date(item.lastReadAt);
+        const monthKey = createMonthKey(date);
+        if (months[monthKey] !== undefined) {
+          months[monthKey]++;
+        }
+      });
+    };
+
+    initMonthlyData(now);
+    fillMonthData();
+
     return Object.entries(months)
       .map(([key, count]) => {
         const [year, month] = key.split("-").map(Number);
@@ -138,9 +192,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
       .sort((a, b) => a.date.getTime() - b.date.getTime());
   }, [readingHistory]);
 
-  if (readingHistory.length === 0) {
-    return <EmptyHistory />;
-  }
+  if (readingHistory.length === 0) return <EmptyHistory />;
 
   return (
     <div className="space-y-4 md:space-y-6 px-1 md:px-0 pb-20 md:pb-0">
