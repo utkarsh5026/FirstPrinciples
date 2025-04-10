@@ -1,5 +1,5 @@
 import { ServicesContext, type ServicesContextType } from "./ServiceContext";
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 import { databaseService } from "@/services/database/DatabaseService";
 import { readingListService } from "@/services/analytics/ReadingListService";
 import { readingHistoryService } from "@/services/analytics/ReadingHistoryService";
@@ -30,6 +30,8 @@ interface ServicesProviderProps {
 export const ServicesProvider: React.FC<ServicesProviderProps> = ({
   children,
 }) => {
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [initError, setInitError] = useState<Error | null>(null);
   const serviceValues: ServicesContextType = useMemo(
     () => ({
       databaseService,
@@ -44,6 +46,72 @@ export const ServicesProvider: React.FC<ServicesProviderProps> = ({
     }),
     []
   );
+
+  useEffect(() => {
+    const initializeServices = async () => {
+      try {
+        // First, initialize the database
+        await databaseService.initDatabase();
+        console.log("Database initialized successfully");
+
+        // Then initialize the analytics controller which depends on the database
+        await analyticsController.initialize();
+        console.log("Analytics services initialized successfully");
+
+        setIsInitialized(true);
+      } catch (error) {
+        console.error("Failed to initialize services:", error);
+        setInitError(
+          error instanceof Error
+            ? error
+            : new Error("Unknown initialization error")
+        );
+      }
+    };
+
+    initializeServices();
+  }, []);
+
+  // Show a simple loading state while services are initializing
+  if (!isInitialized && !initError) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-background">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-foreground">Initializing application...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state if initialization failed
+  if (initError) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-background text-foreground">
+        <div className="max-w-md p-6 bg-card rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold text-destructive mb-4">
+            Initialization Error
+          </h2>
+          <p className="mb-4">
+            There was a problem initializing the application:
+          </p>
+          <div className="bg-muted p-3 rounded mb-4 overflow-auto max-h-40">
+            <code>{initError.message}</code>
+          </div>
+          <p className="mb-4">
+            Please try refreshing the page or contact support if the issue
+            persists.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors"
+          >
+            Refresh Page
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <ServicesContext.Provider value={serviceValues}>
