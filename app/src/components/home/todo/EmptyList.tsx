@@ -5,6 +5,18 @@ interface EmptyListProps {
   handleAddDocumentsModal: () => void;
 }
 
+/**
+ * 🌟 EmptyList Component
+ *
+ * This delightful component serves as a friendly reminder for users when their reading list is empty. 
+ * It creates a warm and inviting space that encourages users to add documents to their reading list, 
+ * helping them keep track of their learning journey. 📚✨
+ *
+ * The component features a charming illustration and a motivational message, 
+ * making it clear that users can easily start adding documents to their list. 
+ * The button provided allows users to open a modal for adding new documents, 
+ * ensuring a smooth and engaging experience. 😊
+ */
 const EmptyList: React.FC<EmptyListProps> = ({ handleAddDocumentsModal }) => {
   return (
     <div className="flex flex-col items-center justify-center py-16 px-4 bg-card border border-border/40 rounded-2xl text-center">
