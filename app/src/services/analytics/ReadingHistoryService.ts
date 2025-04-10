@@ -57,7 +57,12 @@ export class ReadingHistoryService {
           wordsRead: existingEntry.wordsRead + wordsRead,
         };
 
-        await databaseService.update("readingHistory", updatedEntry);
+        await databaseService.update(
+          "readingHistory",
+          updatedEntry as {
+            id: IDBValidKey;
+          }
+        );
         return updatedEntry;
       } else {
         const newEntry: ReadingHistoryItem = {

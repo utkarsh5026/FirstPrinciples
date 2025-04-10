@@ -1196,6 +1196,32 @@
       "files": []
     },
     {
+      "id": "redis",
+      "name": "Redis",
+      "icon": "Folder",
+      "subcategories": [
+        {
+          "id": "fundamentals",
+          "name": "Fundamentals",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "redis/fundamentals/introduction.md",
+              "title": "Introduction",
+              "description": "Documentation for Introduction"
+            },
+            {
+              "path": "redis/fundamentals/naming_conventions.md",
+              "title": "Naming Conventions",
+              "description": "Documentation for Naming Conventions"
+            }
+          ]
+        }
+      ],
+      "files": []
+    },
+    {
       "id": "typescript",
       "name": "Typescript",
       "icon": "Folder",

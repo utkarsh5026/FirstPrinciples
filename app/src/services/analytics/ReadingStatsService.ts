@@ -1,5 +1,9 @@
+import { FileMetadata } from "@/utils/MarkdownLoader";
 import { databaseService } from "../database/DatabaseService";
-import { readingHistoryService } from "./ReadingHistoryService";
+import {
+  ReadingHistoryItem,
+  readingHistoryService,
+} from "./ReadingHistoryService";
 
 export type ReadingStats = {
   id: string;
@@ -88,14 +92,13 @@ export class ReadingStatsService {
    * @param availableDocuments Array of all available documents
    * @returns Promise with updated stats
    */
-  public async updateStats(availableDocuments: any[]): Promise<ReadingStats> {
+  public async updateStats(
+    availableDocuments: FileMetadata[]
+  ): Promise<ReadingStats> {
     try {
       // Get current stats
       const stats = await this.getStats();
       const history = await readingHistoryService.getAllHistory();
-
-      // Calculate current stats
-      const now = Date.now();
 
       // Calculate categories explored
       const categories = new Set<string>();
@@ -144,7 +147,7 @@ export class ReadingStatsService {
    * @param history Array of reading history items
    * @returns Object with current and longest streak
    */
-  private async calculateReadingStreak(history: any[]): Promise<{
+  private async calculateReadingStreak(history: ReadingHistoryItem[]): Promise<{
     currentStreak: number;
     longestStreak: number;
   }> {
@@ -565,7 +568,6 @@ export class ReadingStatsService {
     try {
       const challenges = await this.getChallenges();
       const history = await readingHistoryService.getAllHistory();
-      const stats = await this.getStats();
       let xpGained = 0;
 
       // Get today's reading activity

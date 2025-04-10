@@ -1,18 +1,23 @@
-// src/services/analytics/AnalyticsController.ts
-
 import { databaseService } from "../database/DatabaseService";
-import { readingSessionTracker } from "./ReadingSessionTracker";
+import {
+  type ReadingSession,
+  readingSessionTracker,
+} from "./ReadingSessionTracker";
 import { wordCountEstimator } from "./WordCountEstimator";
-import { readingHistoryService } from "./ReadingHistoryService";
+import {
+  readingHistoryService,
+  type ReadingHistoryItem,
+} from "./ReadingHistoryService";
 import { readingListService } from "./ReadingListService";
 import { readingStatsService } from "./ReadingStatsService";
+import type { FileMetadata } from "@/utils/MarkdownLoader";
 
 /**
  * Controller that orchestrates all analytics services
  */
 export class AnalyticsController {
   // Reference to available documents
-  private availableDocuments: any[] = [];
+  private availableDocuments: FileMetadata[] = [];
 
   /**
    * Initialize all analytics services
@@ -43,7 +48,7 @@ export class AnalyticsController {
    * Set available documents to enable percentage calculations
    * @param documents Array of available documents
    */
-  public setAvailableDocuments(documents: any[]): void {
+  public setAvailableDocuments(documents: FileMetadata[]): void {
     this.availableDocuments = documents;
   }
 
@@ -81,11 +86,7 @@ export class AnalyticsController {
    * @param content Optional document content
    * @returns Promise with updated analytics data
    */
-  public async endReading(
-    path: string,
-    title: string,
-    content?: string
-  ): Promise<any> {
+  public async endReading(path: string, title: string) {
     try {
       // End the current reading session
       const session = await readingSessionTracker.endSession();
@@ -96,7 +97,7 @@ export class AnalyticsController {
       }
 
       // Add to reading history
-      await readingHistoryService.addToReadingHistory(path, title, content);
+      await readingHistoryService.addToReadingHistory(path, title);
 
       // Update stats
       await readingStatsService.updateStats(this.availableDocuments);
@@ -129,7 +130,7 @@ export class AnalyticsController {
    * Get all analytics data for the current user
    * @returns Promise with comprehensive analytics data
    */
-  public async getAnalyticsData(): Promise<any> {
+  public async getAnalyticsData() {
     try {
       const [stats, achievements, challenges, history, todoList, sessions] =
         await Promise.all([
@@ -179,7 +180,10 @@ export class AnalyticsController {
    * @param sessions Reading sessions
    * @returns Object with various insights
    */
-  private generateInsights(history: any[], sessions: any[]): any {
+  private generateInsights(
+    history: ReadingHistoryItem[],
+    sessions: ReadingSession[]
+  ) {
     // Calculate reading by category
     const categoryData: Record<string, number> = {};
     history.forEach((item) => {
@@ -297,7 +301,7 @@ export class AnalyticsController {
    * @param history Reading history items
    * @returns Array of monthly reading data
    */
-  private generateMonthlyData(history: any[]): any[] {
+  private generateMonthlyData(history: ReadingHistoryItem[]) {
     const months: Record<string, number> = {};
     const now = new Date();
 

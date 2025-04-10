@@ -2,9 +2,11 @@ import { databaseService } from "../database/DatabaseService";
 import {
   sectionReadingTracker,
   SectionReadingData,
+  type DocumentStats,
 } from "./SectionReadingTracker";
 import { wordCountEstimator } from "./WordCountEstimator";
 import { analyticsController } from "./AnalyticsController";
+import type { ReadingHistoryItem } from "./ReadingHistoryService";
 
 /**
  * Controller that manages section-level analytics
@@ -34,13 +36,17 @@ export class SectionAnalyticsController {
    * Get combined document completion stats
    * @returns Promise with document stats including completion percentages
    */
-  public async getDocumentStats(): Promise<any[]> {
+  public async getDocumentStats() {
     try {
       // Get all document stats
-      const docStats = await databaseService.getAll("documentStats");
+      const docStats = await databaseService.getAll<DocumentStats>(
+        "documentStats"
+      );
 
       // Get reading history for additional metadata
-      const readingHistory = await databaseService.getAll("readingHistory");
+      const readingHistory = await databaseService.getAll<ReadingHistoryItem>(
+        "readingHistory"
+      );
 
       // Combine stats with history data
       return docStats.map((stats) => {
@@ -48,10 +54,10 @@ export class SectionAnalyticsController {
         return {
           ...stats,
           title:
-            historyItem?.title ||
-            stats.path.split("/").pop().replace(".md", ""),
-          timeSpent: historyItem?.timeSpent || 0,
-          readCount: historyItem?.readCount || 0,
+            historyItem?.title ??
+            stats.path.split("/").pop()?.replace(".md", ""),
+          timeSpent: historyItem?.timeSpent ?? 0,
+          readCount: historyItem?.readCount ?? 0,
         };
       });
     } catch (error) {
@@ -167,18 +173,16 @@ export class SectionAnalyticsController {
   ): Promise<boolean> {
     try {
       // Get existing section reading data
-      const sections = await databaseService.getByIndex<SectionReadingData>(
-        "sectionReadings",
-        "sectionId",
-        sectionId
-      );
+      const sections = await databaseService.getByIndex<
+        SectionReadingData & { id: IDBValidKey }
+      >("sectionReadings", "sectionId", sectionId);
 
       // If section exists, update it
       if (sections.length > 0) {
         const section = sections[0];
         section.isComplete = true;
-        section.endTime = section.endTime || Date.now();
-        section.duration = section.duration || 60000; // Default to 1 minute if no duration
+        section.endTime = section.endTime ?? Date.now();
+        section.duration = section.duration ?? 60000; // Default to 1 minute if no duration
 
         await databaseService.update("sectionReadings", section);
 
@@ -197,7 +201,6 @@ export class SectionAnalyticsController {
           duration: 60000,
           wordCount: 0,
           isComplete: true,
-          activityCheckpoints: [Date.now() - 60000, Date.now()],
         };
 
         await databaseService.add("sectionReadings", newSection);
@@ -243,11 +246,9 @@ export class SectionAnalyticsController {
         const completionPercentage = (completedSections / totalSections) * 100;
 
         // Update document stats
-        const docStats = await databaseService.getByIndex(
-          "documentStats",
-          "path",
-          documentPath
-        );
+        const docStats = await databaseService.getByIndex<
+          DocumentStats & { id: IDBValidKey }
+        >("documentStats", "path", documentPath);
 
         if (docStats.length > 0) {
           await databaseService.update("documentStats", {
@@ -271,7 +272,7 @@ export class SectionAnalyticsController {
   /**
    * Get all analytics data including section-level metrics
    */
-  public async getAllAnalytics(): Promise<any> {
+  public async getAllAnalytics() {
     try {
       // Get base analytics from the main controller
       const baseAnalytics = await analyticsController.getAnalyticsData();

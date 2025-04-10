@@ -115,7 +115,6 @@ export function useReadingHistory() {
               completionPercentage: docStat.completionPercentage,
               // Use section analytics data for these metrics
               timeSpent: docStat.timeSpent || historyItem.timeSpent,
-              wordsRead: docStat.wordsRead || historyItem.wordsRead,
             };
           }
         }

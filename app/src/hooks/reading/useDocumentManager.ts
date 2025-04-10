@@ -215,8 +215,6 @@ export function useDocumentManager(onSelectFile: (path: string) => void) {
     formatDate,
     isLoading: isLoading || readingHistory.isLoading || readingList.isLoading,
     error: readingHistory.error ?? readingList.error,
-
-    // Include metrics directly
     metrics,
   };
 }
