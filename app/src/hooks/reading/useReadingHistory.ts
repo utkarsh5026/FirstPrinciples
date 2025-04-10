@@ -78,11 +78,7 @@ export function useReadingHistory() {
       try {
         await readingHistoryService.clearHistory();
         setReadingHistory([]);
-
-        // Also clear section reading data for consistency
         await sectionAnalyticsController.resetSectionAnalytics();
-
-        // Refresh metrics
         refreshMetrics();
       } catch (err) {
         console.error("Error clearing reading history:", err);
@@ -101,7 +97,6 @@ export function useReadingHistory() {
           path
         );
 
-        // Enhance with section analytics data
         if (historyItem) {
           const documentStats =
             await sectionAnalyticsController.getDocumentStats();
