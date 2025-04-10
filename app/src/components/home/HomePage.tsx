@@ -9,7 +9,7 @@ import {
   Info,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import useDocumentManager from "@/hooks/useDocumentManager";
+import { useDocumentManager } from "@/hooks/reading/useDocumentManager";
 import { Category, FileMetadata, MarkdownLoader } from "@/utils/MarkdownLoader";
 import Hero from "./Hero";
 import History from "./history/History";
