@@ -19,6 +19,7 @@ import MobileOptimizedTabs from "./MobileOptimizedTabs";
 import FileSelectionDialog from "./todo/AddTodoModal";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import AnalyticsPage from "../analytics/AnalyticsPage";
+import { useTabContext } from "./context/TabContext";
 
 interface HomePageProps {
   onSelectFile: (filepath: string) => void;
@@ -43,11 +44,8 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
     handleSelectDocument,
   } = useDocumentManager(onSelectFile);
 
-  // State for file selection dialog
   const [showFileDialog, setShowFileDialog] = useState(false);
-
-  // State for active tab
-  const [activeTab, setActiveTab] = useState("overview");
+  const { activeTab, setActiveTab } = useTabContext();
 
   // State for categories
   const [categories, setCategories] = useState<Category[]>([]);
@@ -238,10 +236,7 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
         )}
 
         {activeTab === "history" && (
-          <History
-            readingHistory={readingHistory}
-            handleSelectDocument={handleSelectDocument}
-          />
+          <History handleSelectDocument={handleSelectDocument} />
         )}
 
         {activeTab === "todo" && (
@@ -263,8 +258,7 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
         )}
       </div>
 
-      {/* Mobile Tabs - visible only on mobile */}
-      <MobileOptimizedTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+      <MobileOptimizedTabs />
 
       {/* File Selection Dialog - uses shadcn Dialog component */}
       <FileSelectionDialog

@@ -1,14 +1,12 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { LayoutDashboard, Clock, ListTodo, BarChart } from "lucide-react";
-
+import { useTabContext, TabType } from "./context/TabContext";
 interface MobileOptimizedTabsProps {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
   className?: string;
 }
 
-const tabs = [
+const tabs: { id: TabType; label: string; icon: React.ElementType }[] = [
   {
     id: "overview",
     label: "Overview",
@@ -45,10 +43,10 @@ const tabs = [
  * - Hidden on desktop screens (md breakpoint and above)
  */
 const MobileOptimizedTabs: React.FC<MobileOptimizedTabsProps> = ({
-  activeTab,
-  setActiveTab,
   className,
 }) => {
+  const { activeTab, setActiveTab } = useTabContext();
+
   return (
     <div
       className={cn(
