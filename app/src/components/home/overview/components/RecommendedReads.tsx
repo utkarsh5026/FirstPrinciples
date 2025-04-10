@@ -1,8 +1,10 @@
 import React from "react";
-import { Star, FileText } from "lucide-react";
+import { Star } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FileMetadata } from "@/utils/MarkdownLoader";
+import getIconForTech from "@/components/icons";
+import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface RecommendedReadsProps {
   featuredDocs: FileMetadata[];
@@ -10,6 +12,20 @@ interface RecommendedReadsProps {
   handleSelectDocument: (path: string, title: string) => void;
 }
 
+/**
+ * RecommendedReads component displays a list of recommended reading materials
+ * tailored to the user's interests. 📚✨
+ *
+ * This component takes in a selection of documents that are featured based on
+ * the user's reading habits and preferences. It aims to enhance the user's
+ * reading experience by providing personalized suggestions, making it easier
+ * for them to discover new content that aligns with their interests. 🌟
+ *
+ * The component also highlights the most read category, giving users insight
+ * into what topics are trending in their reading journey. If there are no
+ * recommendations available, it gently encourages users to read more to
+ * receive personalized suggestions. 😊
+ */
 const RecommendedReads: React.FC<RecommendedReadsProps> = ({
   featuredDocs,
   mostReadCategory,
@@ -38,21 +54,27 @@ const RecommendedReads: React.FC<RecommendedReadsProps> = ({
 
         {featuredDocs.length > 0 ? (
           <div className="grid grid-cols-2 gap-2">
-            {featuredDocs.map((doc) => (
-              <button
-                key={doc.path}
-                className="p-3 rounded-2xl border border-border/40 hover:border-primary/20 hover:bg-primary/5 transition-all text-left flex flex-col"
-                onClick={() => handleSelectDocument(doc.path, doc.title)}
-              >
-                <span className="text-sm font-medium line-clamp-2">
-                  {doc.title}
-                </span>
-                <div className="mt-auto pt-2 flex items-center text-xs text-muted-foreground">
-                  <FileText className="h-3 w-3 mr-1" />
-                  <span className="truncate">{doc.path.split("/")[0]}</span>
-                </div>
-              </button>
-            ))}
+            {featuredDocs.map(({ path, title }) => {
+              const category = path.split("/")[0];
+              const CategoryIcon = getIconForTech(category);
+              return (
+                <button
+                  key={path}
+                  className="p-3 rounded-2xl border border-border/40 hover:border-primary/20 hover:bg-primary/5 transition-all text-left flex flex-col"
+                  onClick={() => handleSelectDocument(path, title)}
+                >
+                  <span className="text-sm font-medium line-clamp-2">
+                    {title}
+                  </span>
+                  <div className="mt-auto pt-2 flex items-center text-xs text-muted-foreground">
+                    <CategoryIcon className="h-3 w-3 mr-1" />
+                    <span className="truncate">
+                      {fromSnakeToTitleCase(category)}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         ) : (
           <div className="text-center py-6 text-muted-foreground bg-card/50 rounded-lg">
