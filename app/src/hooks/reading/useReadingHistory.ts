@@ -4,10 +4,22 @@ import { useReadingMetrics } from "./useReadingMetrics";
 import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 
 /**
- * A focused, modular hook that manages reading history functionality
- * while using the centralized metrics system for statistics
+ * 📚✨ useReadingHistory
+ *
+ * A delightful hook that manages your reading journey across the app!
+ *
+ * This hook creates a seamless experience for tracking what you've read,
+ * how long you've spent reading, and your overall reading progress.
+ *
+ * ✅ Keeps a beautiful timeline of everything you've read
+ * ⏱️ Tracks your reading time without you having to think about it
+ * 📊 Provides rich metrics about your reading habits
+ * 🔄 Syncs with the central analytics system for accurate statistics
+ *
+ * Think of it as your personal reading companion that remembers everything
+ * for you and helps you build consistent reading habits! 📖💕
  */
-export function useReadingHistory() {
+export const useReadingHistory = () => {
   const { readingHistoryService, sectionAnalyticsController } = useServices();
   const { metrics, refreshMetrics } = useReadingMetrics();
 
@@ -18,7 +30,9 @@ export function useReadingHistory() {
   const [error, setError] = useState<string | null>(null);
 
   /**
-   * Load reading history from service
+   * 🔍 Fetches your reading history when the hook initializes
+   *
+   * Like a librarian pulling your reading record from the archives!
    */
   useEffect(() => {
     const loadReadingHistory = async () => {
@@ -39,9 +53,11 @@ export function useReadingHistory() {
   }, [readingHistoryService]);
 
   /**
-   * Add document to reading history
-   * This now just records the document was read, without tracking
-   * words or time (since that's handled by section analytics)
+   * 📝 Records a document you've just read
+   *
+   * Like adding a new entry to your reading journal! This function
+   * remembers what you read and when you read it, while the analytics
+   * system tracks the details like time spent and progress.
    */
   const addToReadingHistory = useCallback(
     async (path: string, title: string) => {
@@ -53,11 +69,9 @@ export function useReadingHistory() {
           title
         );
 
-        // Refresh the history and metrics
         const history = await readingHistoryService.getAllHistory();
         setReadingHistory(history);
 
-        // Refresh metrics to include this latest reading
         refreshMetrics();
 
         return updatedItem;
@@ -71,7 +85,10 @@ export function useReadingHistory() {
   );
 
   /**
-   * Clear reading history
+   * 🧹 Wipes your reading history clean
+   *
+   * Like starting a fresh chapter in your reading journey! This gives
+   * you a clean slate if you want to reset your reading metrics.
    */
   const clearReadingHistory = useCallback(async () => {
     if (confirm("Are you sure you want to clear your reading history?")) {
@@ -88,7 +105,11 @@ export function useReadingHistory() {
   }, [readingHistoryService, sectionAnalyticsController, refreshMetrics]);
 
   /**
-   * Get document history
+   * 🔎 Retrieves detailed history for a specific document
+   *
+   * Like finding a specific book in your reading journal and seeing
+   * all your notes about it! This combines basic history with rich
+   * analytics data to show your progress and time spent.
    */
   const getDocumentHistory = useCallback(
     async (path: string) => {
@@ -123,29 +144,34 @@ export function useReadingHistory() {
   );
 
   /**
-   * Get total reading time from metrics
+   * ⏱️ Gets your total reading time across all documents
+   *
+   * Like checking how many hours you've spent on your reading adventure!
    */
   const getTotalReadingTime = useCallback(() => {
     return metrics.totalTimeSpent;
   }, [metrics.totalTimeSpent]);
 
   /**
-   * Get total words read from metrics
+   * 📊 Gets the total number of words you've read
+   *
+   * Like counting all the words you've absorbed in your reading journey!
    */
   const getTotalWordsRead = useCallback(() => {
     return metrics.totalWordsRead;
   }, [metrics.totalWordsRead]);
 
   /**
-   * Refresh reading history
+   * 🔄 Refreshes your reading history and metrics
+   *
+   * Like updating your reading journal with the latest entries!
+   * This ensures you always see the most current information.
    */
   const refreshReadingHistory = useCallback(async () => {
     setIsLoading(true);
     try {
       const history = await readingHistoryService.getAllHistory();
       setReadingHistory(history);
-
-      // Also refresh metrics
       refreshMetrics();
 
       setError(null);
@@ -171,4 +197,4 @@ export function useReadingHistory() {
     // Expose metrics directly
     metrics,
   };
-}
+};
