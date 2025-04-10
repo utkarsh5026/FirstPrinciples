@@ -57,6 +57,8 @@ export const useDocumentLoader = (selectedFile: string) => {
     0
   );
 
+  console.log(documentTitle);
+
   /**
    * 📊 Records your reading activity and checks for cool achievements!
    * This function is like your personal reading journal keeper.
@@ -64,6 +66,7 @@ export const useDocumentLoader = (selectedFile: string) => {
   const recordReadingActivity = useCallback(
     async (path: string, title: string) => {
       try {
+        console.log("recordReadingActivity", path, title);
         await addToReadingHistory(path, title);
         await refreshMetrics();
         await loadAchievements();

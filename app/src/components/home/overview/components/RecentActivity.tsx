@@ -1,23 +1,25 @@
 import React from "react";
-import { Clock, BookOpen, ArrowUpRight } from "lucide-react";
+import { Clock, ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ReadingHistoryItem } from "@/components/home/types";
 import { useTheme } from "@/components/theme/context/ThemeContext";
+import getIconForTech from "@/components/icons";
+import { useTabContext } from "@/components/home/context/TabContext";
+import { useReadingHistory } from "@/hooks";
 
 interface RecentActivityProps {
-  readingHistory: ReadingHistoryItem[];
   handleSelectDocument: (path: string, title: string) => void;
   formatDate: (timestamp: number) => string;
 }
 
 const RecentActivity: React.FC<RecentActivityProps> = ({
-  readingHistory,
   handleSelectDocument,
   formatDate,
 }) => {
+  const { readingHistory } = useReadingHistory();
   const { currentTheme } = useTheme();
+  const { setActiveTab } = useTabContext();
 
   return (
     <Card className="p-4 border-primary/10 bg-gradient-to-r from-secondary/5 to-transparent hover:border-primary/30 transition-colors rounded-3xl">
@@ -40,27 +42,33 @@ const RecentActivity: React.FC<RecentActivityProps> = ({
 
       {readingHistory.length > 0 ? (
         <div className="space-y-2">
-          {readingHistory.slice(0, 3).map((item, idx) => (
-            <div
-              key={idx}
-              className="flex items-center gap-3 p-2 rounded-md hover:bg-primary/5 transition-colors cursor-pointer group"
-              onClick={() => handleSelectDocument(item.path, item.title)}
-            >
-              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                <BookOpen className="h-4 w-4 text-primary" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="text-sm font-medium truncate group-hover:text-primary transition-colors">
-                  {item.title}
+          {readingHistory.slice(0, 3).map(({ path, title, lastReadAt }) => {
+            const category = path.split("/")[0] || "uncategorized";
+            const CategoryIcon = getIconForTech(category);
+            return (
+              <button
+                key={path}
+                className="flex items-center gap-3 p-2 rounded-md hover:bg-primary/5 transition-colors cursor-pointer group w-full"
+                onClick={() => {
+                  handleSelectDocument(path, title);
+                }}
+              >
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                  <CategoryIcon className="h-4 w-4 text-primary" />
                 </div>
-                <div className="text-xs text-muted-foreground flex items-center">
-                  <Clock className="h-3 w-3 mr-1 inline-block" />
-                  <span>{formatDate(item.lastReadAt)}</span>
+                <div className="min-w-0 flex-1">
+                  <div className="text-sm font-medium truncate group-hover:text-primary transition-colors text-left">
+                    {title}
+                  </div>
+                  <div className="text-xs text-muted-foreground flex items-center">
+                    <Clock className="h-3 w-3 mr-1 inline-block" />
+                    <span>{formatDate(lastReadAt)}</span>
+                  </div>
                 </div>
-              </div>
-              <ArrowUpRight className="h-4 w-4 text-muted-foreground flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-          ))}
+                <ArrowUpRight className="h-4 w-4 text-muted-foreground flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
+            );
+          })}
         </div>
       ) : (
         <div className="text-center py-6 text-muted-foreground">
@@ -76,6 +84,9 @@ const RecentActivity: React.FC<RecentActivityProps> = ({
             variant="ghost"
             size="sm"
             className="text-xs text-primary hover:bg-primary/10"
+            onClick={() => {
+              setActiveTab("history");
+            }}
           >
             View all activity
           </Button>

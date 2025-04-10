@@ -1,5 +1,6 @@
 // src/services/analytics/ReadingHistoryService.ts
 
+import { fromSnakeToTitleCase } from "@/utils/string";
 import { databaseService } from "../database/DatabaseService";
 import { readingSessionTracker } from "./ReadingSessionTracker";
 import { wordCountEstimator } from "./WordCountEstimator";
@@ -38,17 +39,14 @@ export class ReadingHistoryService {
       const existingEntry =
         existingEntries.length > 0 ? existingEntries[0] : null;
 
-      // Get actual time spent on this document from the session tracker
       const timeSpent = await readingSessionTracker.getTimeSpentOnDocument(
         path,
         true
       );
       const wordsRead = wordCountEstimator.estimateWordsRead(timeSpent);
-
       const now = Date.now();
 
       if (existingEntry) {
-        // Update existing entry
         const updatedEntry: ReadingHistoryItem = {
           ...existingEntry,
           lastReadAt: now,
@@ -89,7 +87,15 @@ export class ReadingHistoryService {
    */
   public async getAllHistory(): Promise<ReadingHistoryItem[]> {
     try {
-      return await databaseService.getAll<ReadingHistoryItem>("readingHistory");
+      const history = await databaseService.getAll<ReadingHistoryItem>(
+        "readingHistory"
+      );
+      return history.map((item) => ({
+        ...item,
+        title: fromSnakeToTitleCase(
+          item.path.split("/").pop()?.replace(".md", "") ?? ""
+        ),
+      }));
     } catch (error) {
       console.error("Error getting reading history:", error);
       return [];

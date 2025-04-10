@@ -1,4 +1,4 @@
-import type { ReadingHistoryItem } from "@/hooks/useDocumentManager";
+import type { ReadingHistoryItem } from "@/hooks/reading/useReadingHistory";
 
 export type AnalyticsData = {
   weeklyActivity: { day: string; count: number }[];

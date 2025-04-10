@@ -12,7 +12,7 @@ import {
 } from "recharts";
 import { COLORS } from "../utils";
 import useMobile from "@/hooks/useMobile";
-import { ReadingHistoryItem } from "@/hooks/useDocumentManager";
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import { ReadingStats } from "@/utils/ReadingAnalyticsService";
 
 interface CategoryInsightsProps {

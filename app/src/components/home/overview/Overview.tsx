@@ -182,7 +182,6 @@ const Overview: React.FC<OverviewProps> = ({
           />
 
           <RecentActivity
-            readingHistory={readingHistory}
             handleSelectDocument={handleSelectDocument}
             formatDate={formatDate}
           />

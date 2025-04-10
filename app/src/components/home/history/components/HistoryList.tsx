@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ReadingHistoryItem } from "@/components/home/types";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import getIconForTech from "@/components/icons/iconMap";
+import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface HistoryListProps {
   filteredHistory: ReadingHistoryItem[];
@@ -89,6 +90,9 @@ const HistoryListItem: React.FC<{
   };
 
   const CategoryIcon = getIconForTech(category);
+  const title = fromSnakeToTitleCase(
+    item.path.split("/").pop()?.replace(".md", "") ?? ""
+  );
 
   return (
     <Card
@@ -102,7 +106,7 @@ const HistoryListItem: React.FC<{
 
         <div className="flex-1 min-w-0">
           <h4 className="font-medium text-sm md:text-base line-clamp-1">
-            {item.title}
+            {title}
           </h4>
           <div className="flex flex-wrap items-center text-xs text-muted-foreground mt-0.5 md:mt-1 gap-1 md:gap-2">
             <Badge

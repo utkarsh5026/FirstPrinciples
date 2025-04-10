@@ -7,6 +7,7 @@ import LoadingAnimation from "@/components/init/LoadingAnimation";
 import HomePage from "@/components/home/HomePage";
 import AppHeader from "@/components/layout/AppHeader";
 import AppWrapper from "@/components/welcome/Wrapper";
+import { TabProvider } from "@/components/home/context/TabProvider";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
@@ -133,7 +134,9 @@ function App() {
             className="w-full flex-1 overflow-y-auto pt-16 md:pt-16 px-4 md:px-8"
           >
             {showHomePage ? (
-              <HomePage onSelectFile={handleSelectFile} />
+              <TabProvider>
+                <HomePage onSelectFile={handleSelectFile} />
+              </TabProvider>
             ) : (
               <CardDocumentViewer selectedFile={selectedFile ?? ""} />
             )}

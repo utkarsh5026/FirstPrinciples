@@ -10,16 +10,14 @@ import HistoryTimeline from "./components/HistoryTimeline";
 import HistoryTrends from "./components/HistoryTrends";
 import EmptyHistory from "./components/EmptyHistory";
 import { formatDate } from "../utils";
+import { useReadingHistory } from "@/hooks";
 
 interface HistoryProps {
-  readingHistory: ReadingHistoryItem[];
   handleSelectDocument: (path: string, title: string) => void;
 }
 
-const History: React.FC<HistoryProps> = ({
-  readingHistory,
-  handleSelectDocument,
-}) => {
+const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
+  const { readingHistory } = useReadingHistory();
   const { currentTheme } = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -30,7 +28,6 @@ const History: React.FC<HistoryProps> = ({
   const [filteredHistory, setFilteredHistory] =
     useState<ReadingHistoryItem[]>(readingHistory);
 
-  // Extract all categories from reading history
   const categories = [
     "all",
     ...new Set(

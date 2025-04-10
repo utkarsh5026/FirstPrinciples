@@ -1,10 +1,8 @@
 import { Sparkles, FileText, CheckCircle2, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useTheme } from "@/components/theme/context/ThemeContext";
-import type {
-  ReadingHistoryItem,
-  ReadingTodoItem,
-} from "@/hooks/useDocumentManager";
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import type { ReadingTodoItem } from "@/services/analytics/ReadingListService";
 import type { FileMetadata } from "@/utils/MarkdownLoader";
 import { useEffect, useMemo, useState } from "react";
 
