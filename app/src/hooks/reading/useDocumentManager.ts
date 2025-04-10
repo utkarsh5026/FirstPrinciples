@@ -121,6 +121,11 @@ export function useDocumentManager(onSelectFile: (path: string) => void) {
     [readingHistory, readingList, analyticsController, onSelectFile]
   );
 
+  const loadMarkdown = useCallback(async (path: string) => {
+    const result = await MarkdownLoader.loadMarkdownContent(path);
+    return result;
+  }, []);
+
   /**
    * Get a selection of trending documents
    */
@@ -216,5 +221,6 @@ export function useDocumentManager(onSelectFile: (path: string) => void) {
     isLoading: isLoading || readingHistory.isLoading || readingList.isLoading,
     error: readingHistory.error ?? readingList.error,
     metrics,
+    loadMarkdown,
   };
 }

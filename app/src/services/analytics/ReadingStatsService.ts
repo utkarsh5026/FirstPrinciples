@@ -15,6 +15,11 @@ export type ReadingStats = {
   categoriesExplored: string[];
   percentComplete: number;
   lastReadAt: number | null;
+  recentLevelUp: {
+    previousLevel: number;
+    newLevel: number;
+    xpGained: number;
+  } | null;
 };
 
 export type ReadingAchievement = {
@@ -26,6 +31,7 @@ export type ReadingAchievement = {
   progress: number;
   maxProgress: number;
   category: string;
+  acknowledged: boolean;
 };
 
 export type ReadingChallenge = {
@@ -77,6 +83,7 @@ export class ReadingStatsService {
         categoriesExplored: [],
         percentComplete: 0,
         lastReadAt: null,
+        recentLevelUp: null,
       };
 
       await databaseService.add("stats", defaultStats);
@@ -238,40 +245,6 @@ export class ReadingStatsService {
   }
 
   /**
-   * Add XP to user stats
-   * @param amount Amount of XP to add
-   * @returns Promise with updated stats
-   */
-  public async addXP(amount: number): Promise<ReadingStats> {
-    try {
-      const stats = await this.getStats();
-      const oldLevel = stats.level;
-
-      // Update XP and level
-      const totalXP = stats.totalXP + amount;
-      const level = this.calculateLevel(totalXP);
-
-      const updatedStats: ReadingStats = {
-        ...stats,
-        totalXP,
-        level,
-      };
-
-      await databaseService.update("stats", updatedStats);
-
-      // If leveled up, check achievements
-      if (level > oldLevel) {
-        await this.checkAchievements();
-      }
-
-      return updatedStats;
-    } catch (error) {
-      console.error("Error adding XP:", error);
-      throw error;
-    }
-  }
-
-  /**
    * Calculate level from XP
    * @param xp Total XP
    * @returns Level
@@ -324,6 +297,7 @@ export class ReadingStatsService {
         progress: 0,
         maxProgress: 1,
         category: "reading",
+        acknowledged: false,
       },
       {
         id: "five_documents",
@@ -334,6 +308,7 @@ export class ReadingStatsService {
         progress: 0,
         maxProgress: 5,
         category: "reading",
+        acknowledged: false,
       },
       {
         id: "ten_documents",
@@ -344,6 +319,7 @@ export class ReadingStatsService {
         progress: 0,
         maxProgress: 10,
         category: "reading",
+        acknowledged: false,
       },
       {
         id: "three_day_streak",
@@ -354,6 +330,7 @@ export class ReadingStatsService {
         progress: 0,
         maxProgress: 3,
         category: "streak",
+        acknowledged: false,
       },
       {
         id: "explorer",
@@ -364,6 +341,7 @@ export class ReadingStatsService {
         progress: 0,
         maxProgress: 3,
         category: "diversity",
+        acknowledged: false,
       },
       {
         id: "level_up",
@@ -374,6 +352,7 @@ export class ReadingStatsService {
         progress: 0,
         maxProgress: 500,
         category: "progression",
+        acknowledged: false,
       },
     ];
   }
@@ -636,6 +615,81 @@ export class ReadingStatsService {
       return updatedChallenges;
     } catch (error) {
       console.error("Error updating challenges:", error);
+      throw error;
+    }
+  }
+
+  // Add to ReadingStatsService.ts
+
+  /**
+   * Mark an achievement as acknowledged (seen by the user)
+   * @param id Achievement ID
+   * @returns Promise that resolves when achievement is updated
+   */
+  public async acknowledgeAchievement(id: string): Promise<void> {
+    try {
+      const achievements = await this.getAchievements();
+      const achievement = achievements.find((a) => a.id === id);
+
+      if (achievement) {
+        const updatedAchievement = {
+          ...achievement,
+          acknowledged: true,
+        };
+
+        await databaseService.update("achievements", updatedAchievement);
+      }
+    } catch (error) {
+      console.error("Error acknowledging achievement:", error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get newly unlocked, unacknowledged achievements
+   * @returns Promise with array of new achievements
+   */
+  public async getNewAchievements(): Promise<ReadingAchievement[]> {
+    const achievements = await this.getAchievements();
+    return achievements.filter((a) => a.unlockedAt !== null && !a.acknowledged);
+  }
+
+  // Add to ReadingStatsService's addXP method
+
+  public async addXP(amount: number): Promise<ReadingStats> {
+    try {
+      const stats = await this.getStats();
+      const oldLevel = stats.level;
+
+      // Update XP and level
+      const totalXP = stats.totalXP + amount;
+      const level = this.calculateLevel(totalXP);
+
+      const updatedStats: ReadingStats = {
+        ...stats,
+        totalXP,
+        level,
+        // Add this to track level changes
+        recentLevelUp:
+          level > oldLevel
+            ? {
+                previousLevel: oldLevel,
+                newLevel: level,
+                xpGained: amount,
+              }
+            : null,
+      };
+
+      await databaseService.update("stats", updatedStats);
+
+      // If level increased, check achievements
+      if (level > oldLevel) {
+        await this.checkAchievements();
+      }
+
+      return updatedStats;
+    } catch (error) {
+      console.error("Error adding XP:", error);
       throw error;
     }
   }
