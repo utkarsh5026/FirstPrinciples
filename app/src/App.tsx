@@ -6,7 +6,6 @@ import { useTheme } from "@/components/theme/context/ThemeContext";
 import LoadingAnimation from "@/components/init/LoadingAnimation";
 import HomePage from "@/components/home/HomePage";
 import AppHeader from "@/components/layout/AppHeader";
-import { ReadingAnalyticsService } from "@/utils/ReadingAnalyticsService";
 import AppWrapper from "@/components/welcome/Wrapper";
 
 function App() {
@@ -35,14 +34,9 @@ function App() {
           }
         }
 
-        // Initialize the analytics service with available documents
-        ReadingAnalyticsService.setAvailableDocuments(fileMetadata);
-
-        // Check if there's a document slug in the URL hash
         const hashParams = window.location.hash.substring(1);
 
         if (hashParams) {
-          // If hash is present, try to find the file with this path
           const matchingFile = files.find((file) => {
             return (
               file === hashParams ||
