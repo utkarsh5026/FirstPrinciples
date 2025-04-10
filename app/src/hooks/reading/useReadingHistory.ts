@@ -1,5 +1,3 @@
-// src/hooks/reading/useReadingHistory.ts
-
 import { useState, useEffect, useCallback } from "react";
 import { useServices } from "@/context/ServiceContext";
 import { useReadingMetrics } from "./useReadingMetrics";
