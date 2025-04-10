@@ -47,14 +47,17 @@ export const ServicesProvider: React.FC<ServicesProviderProps> = ({
     []
   );
 
+  /**
+   * 🌟 This effect initializes essential services when the app starts.
+   * It sets up the database for data storage and prepares analytics services
+   * for tracking user interactions. 🚀 If successful, it logs messages to confirm
+   * readiness. If there's an error, it catches it and updates the app state. ⚠️
+   */
   useEffect(() => {
     const initializeServices = async () => {
       try {
-        // First, initialize the database
         await databaseService.initDatabase();
         console.log("Database initialized successfully");
-
-        // Then initialize the analytics controller which depends on the database
         await analyticsController.initialize();
         console.log("Analytics services initialized successfully");
 
@@ -84,7 +87,6 @@ export const ServicesProvider: React.FC<ServicesProviderProps> = ({
     );
   }
 
-  // Show error state if initialization failed
   if (initError) {
     return (
       <div className="flex items-center justify-center h-screen bg-background text-foreground">
