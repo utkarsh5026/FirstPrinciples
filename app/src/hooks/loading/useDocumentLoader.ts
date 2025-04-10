@@ -16,15 +16,20 @@ export type AchievementData = {
 };
 
 /**
- * Custom hook for loading, parsing and tracking document reading
+ * ✨ useDocumentLoader: Your magical document reading companion! ✨
  *
- * This hook centralizes document-related functionality:
- * - Loading markdown content from a file path
- * - Parsing document metadata
- * - Processing markdown into sections
- * - Calculating estimated reading time
- * - Tracking reading analytics and achievements
- * - Providing section navigation
+ * This delightful hook makes document reading a breeze by handling all the complex
+ * stuff behind the scenes. It's like having a personal librarian who:
+ *
+ * 📚 Fetches your markdown documents and prepares them for reading
+ * 🔍 Extracts important details like title and reading time
+ * 📊 Tracks your reading progress and habits
+ * 🏆 Celebrates your achievements with fun popups
+ * 📝 Organizes content into easy-to-navigate sections
+ *
+ * When you're reading documents in our app, this hook is working hard to make
+ * your experience smooth and rewarding! It connects with our achievement system
+ * to give you that dopamine boost when you reach milestones. 🎉
  */
 export const useDocumentLoader = (selectedFile: string) => {
   const [markdownContent, setMarkdownContent] = useState<string>("");
@@ -33,7 +38,6 @@ export const useDocumentLoader = (selectedFile: string) => {
   const [documentTitle, setDocumentTitle] = useState("");
   const [estimatedReadTime, setEstimatedReadTime] = useState(0);
 
-  // State for achievement popups
   const [showAchievementPopup, setShowAchievementPopup] = useState(false);
   const [achievementToShow, setAchievementToShow] =
     useState<AchievementData | null>(null);
@@ -45,10 +49,7 @@ export const useDocumentLoader = (selectedFile: string) => {
   const { addToReadingHistory } = useReadingHistory();
   const { metrics, refreshMetrics } = useReadingMetrics();
 
-  // Process markdown content into sections
   const { parsedSections } = useMarkdownProcessor(markdownContent);
-
-  // Use section reading tracking when content is available
   const sectionReading = useSectionReading(
     selectedFile,
     documentTitle,
@@ -57,21 +58,15 @@ export const useDocumentLoader = (selectedFile: string) => {
   );
 
   /**
-   * Record reading activity and check for achievements/levels
+   * 📊 Records your reading activity and checks for cool achievements!
+   * This function is like your personal reading journal keeper.
    */
   const recordReadingActivity = useCallback(
     async (path: string, title: string) => {
       try {
-        // Record the reading in history
         await addToReadingHistory(path, title);
-
-        // Refresh metrics to capture any changes
         await refreshMetrics();
-
-        // Check for achievements or level ups
         await loadAchievements();
-
-        // Start reading session via the analytics controller
         analyticsController.startReading(path, title);
       } catch (error) {
         console.error("Error recording reading activity:", error);
@@ -81,7 +76,8 @@ export const useDocumentLoader = (selectedFile: string) => {
   );
 
   /**
-   * Load document content and metadata from the selected file path
+   * 📚 Fetches your document and gets it ready for reading!
+   * Like a librarian finding the perfect book and preparing it for you.
    */
   const loadDocument = useCallback(async () => {
     if (!selectedFile) return;
@@ -120,6 +116,9 @@ export const useDocumentLoader = (selectedFile: string) => {
     }
   }, [selectedFile, wordCountEstimator, recordReadingActivity]);
 
+  /**
+   * 🎯 Closes achievement popups after you've seen your awesome rewards!
+   */
   const closeAchievementPopup = useCallback(() => {
     setShowAchievementPopup(false);
     acknowledgeAll();
@@ -127,7 +126,8 @@ export const useDocumentLoader = (selectedFile: string) => {
   }, [acknowledgeAll]);
 
   /**
-   * Load document when selected file changes
+   * 🔄 Automatically loads your document when you select a new one!
+   * It's like magic - just pick a document and it appears!
    */
   useEffect(() => {
     if (selectedFile) {
@@ -141,6 +141,10 @@ export const useDocumentLoader = (selectedFile: string) => {
     };
   }, [selectedFile, loadDocument, analyticsController, documentTitle]);
 
+  /**
+   * 🏆 Shows you fun achievement popups when you accomplish something cool!
+   * Everyone loves a little celebration of their progress!
+   */
   useEffect(() => {
     // When new achievements are detected, show the first one
     if (newAchievements.length > 0) {
@@ -148,7 +152,7 @@ export const useDocumentLoader = (selectedFile: string) => {
       setAchievementToShow({
         title: achievement.title,
         description: achievement.description,
-        xpGained: 75, // Default or get from achievement
+        xpGained: 75,
         isLevelUp: false,
         newLevel: 0,
       });
@@ -167,7 +171,6 @@ export const useDocumentLoader = (selectedFile: string) => {
     }
   }, [newAchievements, currentLevelUp]);
 
-  // Return all the necessary data and functions
   return {
     markdownContent,
     loading,
@@ -176,15 +179,11 @@ export const useDocumentLoader = (selectedFile: string) => {
     estimatedReadTime,
     parsedSections,
 
-    // Achievement data
     showAchievementPopup,
     closeAchievementPopup,
 
-    // Section reading data and functions
     sectionReading,
     achievementToShow,
-
-    // Reading metrics
     metrics,
   };
 };
