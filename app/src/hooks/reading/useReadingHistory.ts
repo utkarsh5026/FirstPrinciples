@@ -1,28 +1,18 @@
+// src/hooks/reading/useReadingHistory.ts
+
 import { useState, useEffect, useCallback } from "react";
 import { useServices } from "@/context/ServiceContext";
+import { useReadingMetrics } from "./useReadingMetrics";
 import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 
 /**
- * A focused, modular hook that manages only reading history functionality
- */
-/**
- * 📚 useReadingHistory - A delightful hook that manages your reading journey!
- *
- * This hook provides a complete solution for tracking your document reading history
- * with features like adding new entries, viewing past readings, and calculating
- * your reading statistics. ✨
- *
- * It handles all the complex state management and service interactions
- * behind the scenes, giving you a clean and simple interface to work with. 🧩
- *
- * The hook automatically loads your reading history when mounted and provides
- * helpful loading states and error handling to create a smooth user experience. 🌈
- *
- * Perfect for building reading trackers, progress indicators, or any feature
- * that needs to understand a user's reading patterns! 📖
+ * A focused, modular hook that manages reading history functionality
+ * while using the centralized metrics system for statistics
  */
 export function useReadingHistory() {
-  const { readingHistoryService } = useServices();
+  const { readingHistoryService, sectionAnalyticsController } = useServices();
+  const { metrics, refreshMetrics } = useReadingMetrics();
+
   const [readingHistory, setReadingHistory] = useState<ReadingHistoryItem[]>(
     []
   );
@@ -30,8 +20,7 @@ export function useReadingHistory() {
   const [error, setError] = useState<string | null>(null);
 
   /**
-   * 🔄 Load reading history from service
-   * Fetches your complete reading history when the hook is first used!
+   * Load reading history from service
    */
   useEffect(() => {
     const loadReadingHistory = async () => {
@@ -52,19 +41,26 @@ export function useReadingHistory() {
   }, [readingHistoryService]);
 
   /**
-   * 📝 Add document to reading history
-   * Records your reading activity and updates your history automatically!
+   * Add document to reading history
+   * This now just records the document was read, without tracking
+   * words or time (since that's handled by section analytics)
    */
   const addToReadingHistory = useCallback(
     async (path: string, title: string) => {
       try {
+        // We're still recording reading history but not tracking
+        // words or time here anymore - that comes from section analytics
         const updatedItem = await readingHistoryService.addToReadingHistory(
           path,
           title
         );
 
+        // Refresh the history and metrics
         const history = await readingHistoryService.getAllHistory();
         setReadingHistory(history);
+
+        // Refresh metrics to include this latest reading
+        refreshMetrics();
 
         return updatedItem;
       } catch (err) {
@@ -73,79 +69,93 @@ export function useReadingHistory() {
         return null;
       }
     },
-    [readingHistoryService]
+    [readingHistoryService, refreshMetrics]
   );
 
   /**
-   * 🧹 Clear reading history
-   * Start fresh with a clean slate! Includes a confirmation prompt.
+   * Clear reading history
    */
   const clearReadingHistory = useCallback(async () => {
     if (confirm("Are you sure you want to clear your reading history?")) {
       try {
         await readingHistoryService.clearHistory();
         setReadingHistory([]);
+
+        // Also clear section reading data for consistency
+        await sectionAnalyticsController.resetSectionAnalytics();
+
+        // Refresh metrics
+        refreshMetrics();
       } catch (err) {
         console.error("Error clearing reading history:", err);
         setError("Failed to clear reading history");
       }
     }
-  }, [readingHistoryService]);
+  }, [readingHistoryService, sectionAnalyticsController, refreshMetrics]);
 
   /**
-   * 🔍 Get document history
-   * Retrieve detailed history for a specific document!
+   * Get document history
    */
   const getDocumentHistory = useCallback(
     async (path: string) => {
       try {
-        return await readingHistoryService.getDocumentHistory(path);
+        const historyItem = await readingHistoryService.getDocumentHistory(
+          path
+        );
+
+        // Enhance with section analytics data
+        if (historyItem) {
+          const documentStats =
+            await sectionAnalyticsController.getDocumentStats();
+          const docStat = documentStats.find((stat) => stat.path === path);
+
+          if (docStat) {
+            return {
+              ...historyItem,
+              completionPercentage: docStat.completionPercentage,
+              // Use section analytics data for these metrics
+              timeSpent: docStat.timeSpent || historyItem.timeSpent,
+              wordsRead: docStat.wordsRead || historyItem.wordsRead,
+            };
+          }
+        }
+
+        return historyItem;
       } catch (err) {
         console.error("Error getting document history:", err);
         setError("Failed to get document history");
         return null;
       }
     },
-    [readingHistoryService]
+    [readingHistoryService, sectionAnalyticsController]
   );
 
   /**
-   * ⏱️ Get total reading time
-   * See how much time you've invested in reading!
+   * Get total reading time from metrics
    */
-  const getTotalReadingTime = useCallback(async () => {
-    try {
-      return await readingHistoryService.getTotalReadingTime();
-    } catch (err) {
-      console.error("Error getting total reading time:", err);
-      setError("Failed to calculate total reading time");
-      return 0;
-    }
-  }, [readingHistoryService]);
+  const getTotalReadingTime = useCallback(() => {
+    return metrics.totalTimeSpent;
+  }, [metrics.totalTimeSpent]);
 
   /**
-   * 📊 Get total words read
-   * Track your reading volume with word count statistics!
+   * Get total words read from metrics
    */
-  const getTotalWordsRead = useCallback(async () => {
-    try {
-      return await readingHistoryService.getTotalWordsRead();
-    } catch (err) {
-      console.error("Error getting total words read:", err);
-      setError("Failed to calculate total words read");
-      return 0;
-    }
-  }, [readingHistoryService]);
+  const getTotalWordsRead = useCallback(() => {
+    return metrics.totalWordsRead;
+  }, [metrics.totalWordsRead]);
 
   /**
-   * 🔄 Refresh reading history
-   * Get the latest data whenever you need it!
+   * Refresh reading history
    */
   const refreshReadingHistory = useCallback(async () => {
     setIsLoading(true);
     try {
       const history = await readingHistoryService.getAllHistory();
       setReadingHistory(history);
+
+      // Also refresh metrics
+      refreshMetrics();
+
       setError(null);
     } catch (err) {
       console.error("Error refreshing reading history:", err);
@@ -153,7 +163,7 @@ export function useReadingHistory() {
     } finally {
       setIsLoading(false);
     }
-  }, [readingHistoryService]);
+  }, [readingHistoryService, refreshMetrics]);
 
   return {
     readingHistory,
@@ -165,5 +175,8 @@ export function useReadingHistory() {
     getTotalReadingTime,
     getTotalWordsRead,
     refreshReadingHistory,
+
+    // Expose metrics directly
+    metrics,
   };
 }

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useServices } from "@/context/ServiceContext";
 import { useReadingList } from "./useReadingList";
 import { useReadingHistory } from "./useReadingHistory";
+import { useReadingMetrics } from "./useReadingMetrics";
 import {
   MarkdownLoader,
   type FileMetadata,
@@ -10,11 +11,12 @@ import {
 
 /**
  * A composable hook that combines other modular hooks
- * to provide document management functionality
+ * to provide document management functionality with centralized metrics
  */
 export function useDocumentManager(onSelectFile: (path: string) => void) {
   const readingList = useReadingList();
   const readingHistory = useReadingHistory();
+  const { metrics, refreshMetrics } = useReadingMetrics();
 
   const [availableDocuments, setAvailableDocuments] = useState<FileMetadata[]>(
     []
@@ -25,7 +27,7 @@ export function useDocumentManager(onSelectFile: (path: string) => void) {
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  const { analyticsController } = useServices();
+  const { analyticsController, sectionAnalyticsController } = useServices();
 
   /**
    * Load available documents from content index
@@ -54,8 +56,11 @@ export function useDocumentManager(onSelectFile: (path: string) => void) {
         setAvailableDocuments(allFiles);
         setFilteredDocuments(allFiles);
 
-        // Set available documents in analytics controller
+        // Set available documents in analytics controllers
         analyticsController.setAvailableDocuments(allFiles);
+
+        // Refresh metrics with the new document count
+        refreshMetrics();
       } catch (error) {
         console.error("Error loading documents:", error);
       } finally {
@@ -64,7 +69,7 @@ export function useDocumentManager(onSelectFile: (path: string) => void) {
     };
 
     loadDocuments();
-  }, [analyticsController]);
+  }, [analyticsController, refreshMetrics]);
 
   /**
    * Filter documents based on search query
@@ -89,33 +94,105 @@ export function useDocumentManager(onSelectFile: (path: string) => void) {
    * Handle selecting a document to read
    */
   const handleSelectDocument = useCallback(
-    (path: string, title: string) => {
-      // Add to reading history
-      readingHistory.addToReadingHistory(path, title);
+    async (path: string, title: string) => {
+      try {
+        // We'll add to reading history, but not track metrics here
+        // since that will be handled by the section analytics system
+        await readingHistory.addToReadingHistory(path, title);
 
-      // Mark as completed if in todo list
-      const todoItem = readingList.todoList.find(
-        (item) => item.path === path && !item.completed
-      );
-      if (todoItem) {
-        readingList.toggleTodoCompletion(todoItem.id);
+        // Mark as completed if in todo list
+        const todoItem = readingList.todoList.find(
+          (item) => item.path === path && !item.completed
+        );
+        if (todoItem) {
+          await readingList.toggleTodoCompletion(todoItem.id);
+        }
+
+        // Start a reading session - analytics controllers will handle
+        // synchronizing metrics between systems behind the scenes
+        await analyticsController.startReading(path, title);
+
+        // Open the document
+        onSelectFile(path);
+      } catch (error) {
+        console.error("Error selecting document:", error);
       }
-
-      // Open the document
-      onSelectFile(path);
     },
-    [readingHistory, readingList, onSelectFile]
+    [readingHistory, readingList, analyticsController, onSelectFile]
   );
 
   /**
-   * Get a selection of trending documents (random selection for demo purposes)
+   * Get a selection of trending documents
    */
-  const getTrendingDocuments = useCallback(() => {
-    if (availableDocuments.length <= 5) return availableDocuments;
+  const getTrendingDocuments = useCallback(async () => {
+    try {
+      // Use section analytics to get the most popular documents
+      const documentStats = await sectionAnalyticsController.getDocumentStats();
 
-    // Shuffle array and take first 5
-    return [...availableDocuments].sort(() => 0.5 - Math.random()).slice(0, 5);
-  }, [availableDocuments]);
+      // Sort by most recently read first
+      const sortedStats = documentStats
+        .filter((stat) => stat.lastReadAt)
+        .sort((a, b) => b.lastReadAt - a.lastReadAt);
+
+      // Get the corresponding document metadata
+      const trendingDocs = sortedStats
+        .slice(0, 5)
+        .map((stat) => {
+          return availableDocuments.find((doc) => doc.path === stat.path);
+        })
+        .filter(Boolean) as FileMetadata[];
+
+      // If we don't have enough trending docs, add some random ones
+      if (trendingDocs.length < 5 && availableDocuments.length > 0) {
+        const remainingDocs = availableDocuments
+          .filter((doc) => !trendingDocs.some((td) => td.path === doc.path))
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 5 - trendingDocs.length);
+
+        return [...trendingDocs, ...remainingDocs];
+      }
+
+      return trendingDocs;
+    } catch (error) {
+      console.error("Error getting trending documents:", error);
+
+      // Fallback to random selection
+      if (availableDocuments.length <= 5) return availableDocuments;
+      return [...availableDocuments]
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 5);
+    }
+  }, [availableDocuments, sectionAnalyticsController]);
+
+  /**
+   * Format date for display
+   */
+  const formatDate = useCallback((timestamp: number) => {
+    const date = new Date(timestamp);
+    const now = new Date();
+
+    // If today, show time
+    if (date.toDateString() === now.toDateString()) {
+      return `Today at ${date.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })}`;
+    }
+
+    // If yesterday, show "Yesterday"
+    const yesterday = new Date(now);
+    yesterday.setDate(now.getDate() - 1);
+    if (date.toDateString() === yesterday.toDateString()) {
+      return "Yesterday";
+    }
+
+    // Otherwise, show date
+    return date.toLocaleDateString(undefined, {
+      month: "short",
+      day: "numeric",
+      year: now.getFullYear() !== date.getFullYear() ? "numeric" : undefined,
+    });
+  }, []);
 
   return {
     readingHistory: readingHistory.readingHistory,
@@ -135,7 +212,11 @@ export function useDocumentManager(onSelectFile: (path: string) => void) {
 
     handleSelectDocument,
     getTrendingDocuments,
+    formatDate,
     isLoading: isLoading || readingHistory.isLoading || readingList.isLoading,
     error: readingHistory.error ?? readingList.error,
+
+    // Include metrics directly
+    metrics,
   };
 }
