@@ -1,21 +1,12 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
 import { PieChart as PieChartIcon } from "lucide-react";
-
-import type { ReadingStats } from "@/utils/ReadingAnalyticsService";
-import type { AnalyticsData } from "../types";
-import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import CategoryInsights from "./CategoryInsights";
-import ProgressOverTime from "./ProgressOverTime";
-import WeekilyPattern from "./WeeklyPattern";
-import TimeOfDay from "./TimeOfDay";
-
-interface InsightsProps {
-  stats: ReadingStats;
-  analyticsData: AnalyticsData;
-  readingHistory: ReadingHistoryItem[];
-  monthlyReadingData: { name: string; count: number }[];
-}
+import ProgressOverTime from "@/components/analytics/trends/ProgressOverTime";
+import {
+  ReadingByWeekDay,
+  TimeOfDayPreference,
+} from "@/components/analytics/trends";
 
 /**
  * 📊 Insights Component
@@ -35,14 +26,7 @@ interface InsightsProps {
  * their reading experience and stay motivated! 😊
  *
  */
-const Insights: React.FC<InsightsProps> = ({
-  stats,
-  analyticsData,
-  readingHistory,
-  monthlyReadingData,
-}) => {
-  const { weeklyActivity, readingByHour, categoryBreakdown } = analyticsData;
-
+const Insights: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Reading Habits */}
@@ -55,23 +39,23 @@ const Insights: React.FC<InsightsProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Weekly Pattern */}
-          <WeekilyPattern weeklyActivity={weeklyActivity} />
+          <ReadingByWeekDay />
 
-          {/* Time of Day Pattern */}
-          <TimeOfDay readingByHour={readingByHour} />
+          <TimeOfDayPreference />
         </div>
+        <div className="mt-6 pt-6 border-t border-border/40">
+          <h5 className="text-xs uppercase text-muted-foreground font-medium mb-3">
+            Progress Over Time
+          </h5>
 
-        {/* Reading Progress Over Time */}
-        <ProgressOverTime monthlyReadingData={monthlyReadingData} />
+          <div className="h-64">
+            <ProgressOverTime />
+          </div>
+        </div>
       </Card>
 
       {/* Category Insights */}
-      <CategoryInsights
-        readingHistory={readingHistory}
-        stats={stats}
-        categoryBreakdown={categoryBreakdown}
-      />
+      <CategoryInsights />
     </div>
   );
 };
