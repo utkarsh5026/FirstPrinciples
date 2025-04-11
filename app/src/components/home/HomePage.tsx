@@ -9,7 +9,7 @@ import {
   Info,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useDocumentManager } from "@/hooks/reading/useDocumentManager";
+import { useDocumentManager } from "@/context";
 import { Category, FileMetadata, MarkdownLoader } from "@/utils/MarkdownLoader";
 import Hero from "./Hero";
 import History from "./history/History";
@@ -32,7 +32,7 @@ interface HomePageProps {
  * This updated version is optimized for both mobile and desktop experiences and
  * includes analytics and gamification features.
  */
-const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
+const HomePage: React.FC<HomePageProps> = () => {
   const {
     readingHistory,
     todoList,
@@ -42,7 +42,7 @@ const HomePage: React.FC<HomePageProps> = ({ onSelectFile }) => {
     clearTodoList,
     availableDocuments,
     handleSelectDocument,
-  } = useDocumentManager(onSelectFile);
+  } = useDocumentManager();
 
   const [showFileDialog, setShowFileDialog] = useState(false);
   const { activeTab, setActiveTab } = useTabContext();

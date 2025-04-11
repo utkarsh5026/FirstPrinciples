@@ -12,7 +12,7 @@ import EmptyHistory from "./components/EmptyHistory";
 import EmptyFilteredResult from "./components/EmptyFilteredResult";
 
 import { formatDate } from "../utils";
-import { useReadingHistory } from "@/hooks";
+import { useReadingHistory } from "@/context";
 
 interface HistoryProps {
   handleSelectDocument: (path: string, title: string) => void;
