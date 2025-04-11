@@ -11,7 +11,9 @@ export type ReadingMetrics = {
   sectionsCompleted: number;
   averageReadingSpeed: number; // words per minute
   currentStreak: number;
+  longestStreak: number;
   lastReadAt: number | null;
+  currentLevel: number;
 };
 
 export type ReadingAnalyticsData = {

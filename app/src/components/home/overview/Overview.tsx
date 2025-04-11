@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { Zap, Activity } from "lucide-react";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { FileMetadata } from "@/utils/MarkdownLoader";
@@ -30,23 +30,8 @@ const Overview: React.FC<OverviewProps> = ({
   const { readingHistory, todoList, availableDocuments, toggleTodoCompletion } =
     useDocumentManager();
   const [featuredDocs, setFeaturedDocs] = useState<FileMetadata[]>([]);
-  const [categoryData, setCategoryData] = useState<
-    { name: string; value: number }[]
-  >([]);
-  const [weekdayData, setWeekdayData] = useState<
-    { name: string; count: number }[]
-  >([]);
-  const [mostReadCategory, setMostReadCategory] = useState<string>("None yet");
 
-  const chartColors = useMemo(() => {
-    return [
-      currentTheme.primary,
-      `${currentTheme.primary}DD`,
-      `${currentTheme.primary}BB`,
-      `${currentTheme.primary}99`,
-      `${currentTheme.primary}77`,
-    ];
-  }, [currentTheme]);
+  const [mostReadCategory, setMostReadCategory] = useState<string>("None yet");
 
   useEffect(() => {
     // Update stats when history or todo list changes
@@ -63,7 +48,6 @@ const Overview: React.FC<OverviewProps> = ({
       name,
       value,
     }));
-    setCategoryData(categoriesArray);
 
     // Find most read category
     if (categoriesArray.length > 0) {
@@ -88,8 +72,6 @@ const Overview: React.FC<OverviewProps> = ({
       const index = day === 0 ? 6 : day - 1;
       weekdays[index].count++;
     });
-
-    setWeekdayData(weekdays);
 
     // Get featured/recommended documents
     if (availableDocuments.length > 0) {
@@ -168,12 +150,7 @@ const Overview: React.FC<OverviewProps> = ({
             Reading Insights
           </h3>
 
-          <ReadingInsights
-            categoryData={categoryData}
-            weekdayData={weekdayData}
-            mostReadCategory={mostReadCategory}
-            chartColors={chartColors}
-          />
+          <ReadingInsights />
 
           <RecentActivity
             handleSelectDocument={handleSelectDocument}

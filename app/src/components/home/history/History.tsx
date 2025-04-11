@@ -112,54 +112,6 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     setFilteredHistory(filtered);
   }, [readingHistory, searchQuery, selectedCategory, selectedTimeframe]);
 
-  // Generate monthly reading data for trends
-  const monthlyData = useMemo(() => {
-    const months: Record<string, number> = {};
-    const now = new Date();
-    const monthsToShow = 6;
-
-    // Create a key for each month (YYYY-MM)
-    const createMonthKey = (date: Date) =>
-      `${date.getFullYear()}-${date.getMonth() + 1}`;
-
-    // Initialize data for the last 6 months
-    const initMonthlyData = (date: Date) => {
-      for (let i = 0; i < monthsToShow; i++) {
-        const d = new Date(date);
-        d.setMonth(d.getMonth() - i);
-        const monthKey = createMonthKey(d);
-        months[monthKey] = 0;
-      }
-    };
-
-    // Fill month data with reading counts
-    const fillMonthData = () => {
-      readingHistory.forEach((item) => {
-        const date = new Date(item.lastReadAt);
-        const monthKey = createMonthKey(date);
-        if (months[monthKey] !== undefined) {
-          months[monthKey]++;
-        }
-      });
-    };
-
-    initMonthlyData(now);
-    fillMonthData();
-
-    // Convert to array format for charts
-    return Object.entries(months)
-      .map(([key, count]) => {
-        const [year, month] = key.split("-").map(Number);
-        const date = new Date(year, month - 1);
-        return {
-          name: date.toLocaleDateString("en-US", { month: "short" }),
-          count,
-          date,
-        };
-      })
-      .sort((a, b) => a.date.getTime() - b.date.getTime());
-  }, [readingHistory]);
-
   if (readingHistory.length === 0) return <EmptyHistory />;
 
   return (
@@ -246,13 +198,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
               />
             )}
 
-            {viewMode === "trends" && (
-              <HistoryTrends
-                readingHistory={readingHistory}
-                monthlyData={monthlyData}
-                currentTheme={currentTheme}
-              />
-            )}
+            {viewMode === "trends" && <HistoryTrends />}
           </motion.div>
         )}
       </AnimatePresence>

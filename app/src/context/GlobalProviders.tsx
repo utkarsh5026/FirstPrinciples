@@ -1,4 +1,3 @@
-// src/context/GlobalProvider.tsx
 import React, { ReactNode } from "react";
 import { ThemeProvider } from "@/components/theme/context/ThemeProvider";
 import { ServicesProvider } from "@/context/services/ServiceProvider";
@@ -31,8 +30,8 @@ export const GlobalProviders: React.FC<GlobalProvidersProps> = ({
   return (
     <ThemeProvider>
       <ServicesProvider>
-        <ReadingMetricsProvider>
-          <ReadingHistoryProvider>
+        <ReadingHistoryProvider>
+          <ReadingMetricsProvider>
             <ReadingListProvider>
               <AchievementsProvider>
                 <DocumentManagerProvider onSelectFile={onSelectFile}>
@@ -40,8 +39,8 @@ export const GlobalProviders: React.FC<GlobalProvidersProps> = ({
                 </DocumentManagerProvider>
               </AchievementsProvider>
             </ReadingListProvider>
-          </ReadingHistoryProvider>
-        </ReadingMetricsProvider>
+          </ReadingMetricsProvider>
+        </ReadingHistoryProvider>
       </ServicesProvider>
     </ThemeProvider>
   );

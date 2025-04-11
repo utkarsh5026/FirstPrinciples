@@ -2,22 +2,22 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Target, Calendar, FolderTree, Sparkles } from "lucide-react";
 import { PiFlowArrow } from "react-icons/pi";
-import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
-import { FileMetadata, MarkdownLoader, Category } from "@/utils/MarkdownLoader";
-import { ReadingStats } from "@/utils/ReadingAnalyticsService";
+import { MarkdownLoader, Category } from "@/utils/MarkdownLoader";
 import useMobile from "@/hooks/useMobile";
 
 import CategoryCoverageMap from "./coverage";
 import SankeyKnowledgeFlow from "./flow";
 import TimeFilteredHeatCalendar from "./TimeFilteredHeatCalender";
-import CategoryInsights from "./insights/CategoryInsights";
+import CategoryInsights from "../../insights/CategoryInsights";
 import Introduction from "./Introduction";
 import Recommendations from "./recommendations";
+import {
+  useReadingHistory,
+  useDocumentManager,
+  useReadingMetrics,
+} from "@/context";
 
 interface EnhancedCategoryAnalyticsProps {
-  readingHistory: ReadingHistoryItem[];
-  availableDocuments: FileMetadata[];
-  stats: ReadingStats;
   onSelectDocument: (path: string, title: string) => void;
 }
 
@@ -67,14 +67,15 @@ const tabs = [
  * to guide your learning journey! 🧠💫
  */
 const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
-  readingHistory,
-  availableDocuments,
-  stats,
+  // stats,
   onSelectDocument,
 }) => {
   const { isMobile } = useMobile();
   const [activeView, setActiveView] = useState<AnalyticsView>("overview");
   const [categories, setCategories] = useState<Category[]>([]);
+  const { readingHistory } = useReadingHistory();
+  const { availableDocuments } = useDocumentManager();
+  const { analyticsData } = useReadingMetrics();
 
   /*
    🌳 Fetches the category structure from your knowledge base
@@ -155,11 +156,12 @@ const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
    🧮 Calculates your learning metrics to show progress and balance
    */
   const summaryStat = useMemo(() => {
+    const categoriesCount = analyticsData.categoryBreakdown.length;
     const totalCategories = new Set(
       availableDocuments.map((doc) => doc.path.split("/")[0])
     ).size;
-    const exploredCategories = stats.categoriesExplored.size;
-    const readDocuments = stats.documentsCompleted;
+    const exploredCategories = categoriesCount;
+    const readDocuments = readingHistory.length;
     const coverageScore = Math.round(
       (exploredCategories / Math.max(totalCategories, 1)) * 100
     );
@@ -186,9 +188,9 @@ const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
     };
   }, [
     availableDocuments,
-    stats.categoriesExplored,
-    stats.documentsCompleted,
+    readingHistory,
     radarData,
+    analyticsData.categoryBreakdown.length,
   ]);
 
   return (

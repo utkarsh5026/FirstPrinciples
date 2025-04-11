@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { ReadingHistoryContext } from "./HistoryContext";
 import { useServices } from "@/context/services/ServiceContext";
-import { useReadingMetrics } from "@/context/metrics/MetricsContext";
 import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 interface ReadingHistoryProviderProps {
   children: ReactNode;
@@ -23,7 +22,6 @@ export const ReadingHistoryProvider: React.FC<ReadingHistoryProviderProps> = ({
   children,
 }) => {
   const { readingHistoryService, sectionAnalyticsController } = useServices();
-  const { metrics, refreshMetrics } = useReadingMetrics();
 
   const [readingHistory, setReadingHistory] = useState<ReadingHistoryItem[]>(
     []
@@ -74,8 +72,6 @@ export const ReadingHistoryProvider: React.FC<ReadingHistoryProviderProps> = ({
         const history = await readingHistoryService.getAllHistory();
         setReadingHistory(history);
 
-        refreshMetrics();
-
         return updatedItem;
       } catch (err) {
         console.error("Error adding to reading history:", err);
@@ -83,7 +79,7 @@ export const ReadingHistoryProvider: React.FC<ReadingHistoryProviderProps> = ({
         return null;
       }
     },
-    [readingHistoryService, refreshMetrics]
+    [readingHistoryService]
   );
 
   /**
@@ -98,13 +94,12 @@ export const ReadingHistoryProvider: React.FC<ReadingHistoryProviderProps> = ({
         await readingHistoryService.clearHistory();
         setReadingHistory([]);
         await sectionAnalyticsController.resetSectionAnalytics();
-        refreshMetrics();
       } catch (err) {
         console.error("Error clearing reading history:", err);
         setError("Failed to clear reading history");
       }
     }
-  }, [readingHistoryService, sectionAnalyticsController, refreshMetrics]);
+  }, [readingHistoryService, sectionAnalyticsController]);
 
   /**
    * 🔎 Retrieves detailed history for a specific document
@@ -146,24 +141,6 @@ export const ReadingHistoryProvider: React.FC<ReadingHistoryProviderProps> = ({
   );
 
   /**
-   * ⏱️ Gets your total reading time across all documents
-   *
-   * Like checking how many hours you've spent on your reading adventure!
-   */
-  const getTotalReadingTime = useCallback(() => {
-    return metrics.totalTimeSpent;
-  }, [metrics.totalTimeSpent]);
-
-  /**
-   * 📊 Gets the total number of words you've read
-   *
-   * Like counting all the words you've absorbed in your reading journey!
-   */
-  const getTotalWordsRead = useCallback(() => {
-    return metrics.totalWordsRead;
-  }, [metrics.totalWordsRead]);
-
-  /**
    * 🔄 Refreshes your reading history and metrics
    *
    * Like updating your reading journal with the latest entries!
@@ -174,7 +151,6 @@ export const ReadingHistoryProvider: React.FC<ReadingHistoryProviderProps> = ({
     try {
       const history = await readingHistoryService.getAllHistory();
       setReadingHistory(history);
-      refreshMetrics();
 
       setError(null);
     } catch (err) {
@@ -183,7 +159,7 @@ export const ReadingHistoryProvider: React.FC<ReadingHistoryProviderProps> = ({
     } finally {
       setIsLoading(false);
     }
-  }, [readingHistoryService, refreshMetrics]);
+  }, [readingHistoryService]);
 
   const readingHistoryData = useMemo(
     () => ({
@@ -193,10 +169,7 @@ export const ReadingHistoryProvider: React.FC<ReadingHistoryProviderProps> = ({
       addToReadingHistory,
       clearReadingHistory,
       getDocumentHistory,
-      getTotalReadingTime,
-      getTotalWordsRead,
       refreshReadingHistory,
-      metrics,
     }),
     [
       readingHistory,
@@ -205,10 +178,7 @@ export const ReadingHistoryProvider: React.FC<ReadingHistoryProviderProps> = ({
       addToReadingHistory,
       clearReadingHistory,
       getDocumentHistory,
-      getTotalReadingTime,
-      getTotalWordsRead,
       refreshReadingHistory,
-      metrics,
     ]
   );
 

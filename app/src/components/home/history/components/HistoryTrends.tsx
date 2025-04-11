@@ -17,7 +17,7 @@ import {
   TimeOfTheDay,
   MonthlyTrend,
 } from "@/components/analytics/trends";
-import CategoryPieChart from "@/components/analytics/category/insights/CategoryPieChart";
+import CategoryPieChart from "@/components/insights/CategoryPieChart";
 
 /**
  * 📊 HistoryTrends

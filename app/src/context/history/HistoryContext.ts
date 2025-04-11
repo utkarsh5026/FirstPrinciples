@@ -11,18 +11,7 @@ export type ReadingHistoryContextType = {
   ) => Promise<ReadingHistoryItem | null>;
   clearReadingHistory: () => Promise<void>;
   getDocumentHistory: (path: string) => Promise<ReadingHistoryItem | null>;
-  getTotalReadingTime: () => number;
-  getTotalWordsRead: () => number;
   refreshReadingHistory: () => Promise<void>;
-  metrics: {
-    totalWordsRead: number;
-    totalTimeSpent: number;
-    documentsCompleted: number;
-    sectionsCompleted: number;
-    averageReadingSpeed: number;
-    currentStreak: number;
-    lastReadAt: number | null;
-  };
 };
 
 // Create the context with an undefined default value

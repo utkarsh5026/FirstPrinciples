@@ -30,7 +30,6 @@ interface ReadingAnalyticsActions {
 }
 
 interface ReadingAnalyticsData {
-  // Analytics data
   weeklyActivity: { day: string; count: number }[];
   categoryBreakdown: { name: string; value: number }[];
   readingByHour: { hour: number; count: number }[];

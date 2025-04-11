@@ -1,28 +1,17 @@
 import React from "react";
-import type {
-  ReadingChallenge,
-  ReadingStats,
-} from "@/utils/ReadingAnalyticsService";
-import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import type { ReadingChallenge } from "@/utils/ReadingAnalyticsService";
 import ReadingProgress from "./ReadingProgress";
 import DailyChallenges from "./DailyChallenges";
 import CategoryBreakDown from "./CategoryBreakdown";
 import ReadingTrends from "./ReadingTrends";
 import RecentReads from "./RecentReads";
+import useMobile from "@/hooks/useMobile";
+import { useReadingMetrics } from "@/context/metrics/MetricsContext";
 
 interface AnalyticsOverviewProps {
-  stats: ReadingStats;
-  isMobile: boolean;
   xpProgress: number;
   xpToNextLevel: number;
   currentLevelXP: number;
-  thisWeekReadingCount: number;
-  readingHistory: ReadingHistoryItem[];
-  weeklyActivity: { name: string; count: number }[];
-  monthlyReadingData: { name: string; count: number }[];
-  categoryBreakdown: { name: string; value: number }[];
-  readingByHour: { hour: number; count: number }[];
-  recentActivity: ReadingHistoryItem[];
   challenges: ReadingChallenge[];
   actions: {
     refreshChallenges: () => void;
@@ -31,22 +20,18 @@ interface AnalyticsOverviewProps {
 }
 
 const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
-  stats,
-  isMobile,
   xpProgress,
   xpToNextLevel,
   currentLevelXP,
-  thisWeekReadingCount,
-  weeklyActivity,
-  monthlyReadingData,
-  categoryBreakdown,
-  readingByHour,
-  recentActivity,
   challenges,
   actions,
-  readingHistory,
   onSelectDocument,
 }) => {
+  const { isMobile } = useMobile();
+  const { analyticsData } = useReadingMetrics();
+
+  const { categoryBreakdown, readingByHour, recentActivity } = analyticsData;
+
   return (
     <div className="space-y-6">
       {/* Progress Summary Section */}
@@ -54,12 +39,9 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
         {/* Left column: Summary and stats */}
         <div className="space-y-4">
           <ReadingProgress
-            stats={stats}
             currentLevelXP={currentLevelXP}
             xpToNextLevel={xpToNextLevel}
             xpProgress={xpProgress}
-            thisWeekReadingCount={thisWeekReadingCount}
-            readingHistory={readingHistory}
           />
 
           <DailyChallenges
@@ -81,10 +63,7 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
           />
 
           {/* Reading Trends - Bar Chart */}
-          <ReadingTrends
-            weeklyActivity={weeklyActivity}
-            monthlyReadingData={monthlyReadingData}
-          />
+          <ReadingTrends />
         </div>
       </div>
 

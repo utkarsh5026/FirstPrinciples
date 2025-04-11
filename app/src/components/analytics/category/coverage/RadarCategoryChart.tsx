@@ -5,8 +5,9 @@ import { Target } from "lucide-react";
 import { COLORS } from "../../utils";
 import useMobile from "@/hooks/useMobile";
 import { fromSnakeToTitleCase } from "@/utils/string";
-import RadarChart from "./RadarChart";
+import RadarChart from "@/components/insights/RadarChart";
 import StatCard from "./StatCard";
+import getIconForTech from "@/components/icons";
 
 interface CategoryRadarData {
   name: string;
@@ -69,6 +70,9 @@ const CategoryCoverageMap: React.FC<CategoryCoverageMapProps> = ({
       return { topCategory, weakestCategory, averageCoverage, chartData };
     }, [data]);
 
+  const TopCategoryIcon = getIconForTech(topCategory?.name);
+  const WeakestCategoryIcon = getIconForTech(weakestCategory?.name);
+
   return (
     <Card className="p-4 border-primary/10 rounded-2xl">
       <div className="flex justify-between items-center mb-3">
@@ -99,6 +103,7 @@ const CategoryCoverageMap: React.FC<CategoryCoverageMapProps> = ({
                 title="Top Category"
                 value={topCategory.name}
                 footer={`${Math.round(topCategory.percentage)}% complete`}
+                icon={<TopCategoryIcon className="h-4 w-4" />}
               />
             )}
 
@@ -107,6 +112,7 @@ const CategoryCoverageMap: React.FC<CategoryCoverageMapProps> = ({
                 title="Needs Attention"
                 value={fromSnakeToTitleCase(weakestCategory.name)}
                 footer={`${Math.round(weakestCategory.percentage)}% complete`}
+                icon={<WeakestCategoryIcon className="h-4 w-4" />}
               />
             )}
           </div>

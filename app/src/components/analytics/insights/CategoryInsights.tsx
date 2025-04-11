@@ -1,10 +1,8 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
 import { Filter } from "lucide-react";
-import {
-  CategoriesExplored,
-  CategoryPieChart,
-} from "@/components/analytics/category/insights";
+import { CategoriesExplored, CategoryPieChart } from "@/components/insights";
+import { fromSnakeToTitleCase } from "@/utils/string";
 
 /**
  * 🎉 CategoryInsights Component
@@ -41,7 +39,17 @@ const CategoryInsights: React.FC = () => {
           </h5>
 
           <div className="h-48">
-            <CategoryPieChart />
+            <CategoryPieChart
+              useThemeColors={false}
+              showTooltip
+              showLegend={false}
+              extraProps={{
+                labelLine: true,
+                label: ({ name }) => {
+                  return `${fromSnakeToTitleCase(name)}`;
+                },
+              }}
+            />
           </div>
         </div>
 

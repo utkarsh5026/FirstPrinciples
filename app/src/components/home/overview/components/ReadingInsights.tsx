@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Brain, Calendar } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import CategoryPieChart from "@/components/analytics/category/insights/CategoryPieChart";
+import CategoryPieChart from "@/components/insights/CategoryPieChart";
 import ReadingByWeekDay from "@/components/analytics/trends/ReadingByWeekDay";
 import { useReadingMetrics } from "@/context";
 

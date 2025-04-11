@@ -13,13 +13,13 @@ import { useDocumentManager } from "@/context";
 import { Category, FileMetadata, MarkdownLoader } from "@/utils/MarkdownLoader";
 import Hero from "./Hero";
 import History from "./history/History";
-import TodoList from "./todo/TodoList";
+import TodoList from "../todo/TodoList";
 import Overview from "./overview/Overview";
 import MobileOptimizedTabs from "./MobileOptimizedTabs";
-import FileSelectionDialog from "./todo/AddTodoModal";
+import FileSelectionDialog from "../todo/AddTodoModal";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import AnalyticsPage from "../analytics/AnalyticsPage";
 import { useTabContext } from "./context/TabContext";
+import AnalyticsView from "../analytics/AnalyticsView";
 
 interface HomePageProps {
   onSelectFile: (filepath: string) => void;
@@ -240,7 +240,7 @@ const HomePage: React.FC<HomePageProps> = () => {
         )}
 
         {activeTab === "analytics" && (
-          <AnalyticsPage
+          <AnalyticsView
             availableDocuments={availableDocuments}
             onSelectDocument={handleSelectDocument}
           />

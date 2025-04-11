@@ -2,11 +2,7 @@ import React from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, BookText, PieChart as PieChartIcon } from "lucide-react";
-import { COLORS } from "../utils";
 import {
-  PieChart,
-  Pie,
-  Cell,
   ResponsiveContainer,
   XAxis,
   YAxis,
@@ -15,6 +11,7 @@ import {
   AreaChart,
   CartesianGrid,
 } from "recharts";
+import { CategoryPieChart } from "@/components/insights";
 
 interface CategoryBreakDownProps {
   categoryBreakdown: { name: string; value: number }[];
@@ -24,7 +21,6 @@ interface CategoryBreakDownProps {
 
 const CategoryBreakDown: React.FC<CategoryBreakDownProps> = ({
   categoryBreakdown,
-  isMobile,
   readingByHour,
 }) => {
   return (
@@ -43,41 +39,7 @@ const CategoryBreakDown: React.FC<CategoryBreakDownProps> = ({
 
         {categoryBreakdown.length > 0 ? (
           <div className="h-64 md:h-72">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={categoryBreakdown}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={isMobile ? 40 : 60}
-                  outerRadius={isMobile ? 70 : 90}
-                  paddingAngle={4}
-                  dataKey="value"
-                  label={({ name, percent }) =>
-                    `${name} (${(percent * 100).toFixed(0)}%)`
-                  }
-                  labelLine={false}
-                >
-                  {categoryBreakdown.map((name, index) => (
-                    <Cell
-                      key={`cell-${name.name}`}
-                      fill={COLORS[index % COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-                <RechartsTooltip
-                  formatter={(value: number, name: string) => [
-                    `${value} documents`,
-                    name,
-                  ]}
-                  contentStyle={{
-                    backgroundColor: "rgba(22, 22, 22, 0.9)",
-                    border: "1px solid #333",
-                    borderRadius: "4px",
-                  }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
+            <CategoryPieChart />
           </div>
         ) : (
           <div className="h-64 flex items-center justify-center flex-col">

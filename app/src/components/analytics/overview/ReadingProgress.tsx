@@ -2,42 +2,52 @@ import { Card } from "@/components/ui/card";
 import { formatReadingTime, formatNumber } from "../utils";
 import { User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import type { ReadingStats } from "@/utils/ReadingAnalyticsService";
-import React from "react";
+import React, { useMemo } from "react";
 import { Progress } from "@/components/ui/progress";
-import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import { useReadingHistory, useReadingMetrics } from "@/context";
 
 interface ReadingProgressProps {
-  stats: ReadingStats;
   currentLevelXP: number;
   xpToNextLevel: number;
   xpProgress: number;
-  thisWeekReadingCount: number;
-  readingHistory: ReadingHistoryItem[];
 }
 
 const ReadingProgress: React.FC<ReadingProgressProps> = ({
-  stats,
   currentLevelXP,
   xpToNextLevel,
   xpProgress,
-  thisWeekReadingCount,
-  readingHistory,
 }) => {
+  const { metrics, analyticsData } = useReadingMetrics();
+  const { readingHistory } = useReadingHistory();
+
+  /**
+   * Calculates the number of documents read in the current week
+   */
+  const currentWeekReadingCount = useMemo(() => {
+    const today = new Date();
+    const startOfWeek = new Date(today);
+    startOfWeek.setDate(today.getDate() - today.getDay());
+    startOfWeek.setHours(0, 0, 0, 0);
+
+    return readingHistory.filter(
+      (item) => new Date(item.lastReadAt) >= startOfWeek
+    ).length;
+  }, [readingHistory]);
+
   const summary = [
     {
       heading: "This Week",
-      value: thisWeekReadingCount,
+      value: currentWeekReadingCount,
       description: "Documents read",
     },
     {
       heading: "Categories",
-      value: stats.categoriesExplored.size,
+      value: analyticsData.categoryBreakdown.length,
       description: "Explored",
     },
     {
       heading: "Reading Time",
-      value: formatReadingTime(stats.totalReadingTime),
+      value: formatReadingTime(metrics.totalTimeSpent),
       description: "Total time",
     },
     {
@@ -45,7 +55,7 @@ const ReadingProgress: React.FC<ReadingProgressProps> = ({
       value:
         readingHistory.length > 0
           ? formatReadingTime(
-              Math.round(stats.totalReadingTime / readingHistory.length)
+              Math.round(metrics.totalTimeSpent / readingHistory.length)
             )
           : "0 min",
       description: "Per document",
@@ -63,7 +73,7 @@ const ReadingProgress: React.FC<ReadingProgressProps> = ({
           variant="secondary"
           className="bg-primary/10 text-primary border-none rounded-2xl"
         >
-          Level {stats.level}
+          Level {metrics.currentLevel}
         </Badge>
       </div>
 
@@ -106,7 +116,7 @@ const ReadingProgress: React.FC<ReadingProgressProps> = ({
             </div>
           </div>
           <div className="text-xl font-bold">
-            {formatNumber(stats.estimatedWordsRead)}
+            {formatNumber(metrics.totalWordsRead)}
           </div>
         </div>
       </div>

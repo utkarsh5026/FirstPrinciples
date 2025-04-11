@@ -81,10 +81,7 @@ const AnalyticsView: React.FC<AnalyticsViewProps> = ({
         </div>
       ) : hasActivity ? (
         // Main analytics content when there's data to show
-        <AnalyticsPage
-          availableDocuments={availableDocuments}
-          onSelectDocument={onSelectDocument}
-        />
+        <AnalyticsPage onSelectDocument={onSelectDocument} />
       ) : (
         // Empty state when there's not enough reading activity
         <div className="flex flex-col items-center justify-center py-16 text-center">

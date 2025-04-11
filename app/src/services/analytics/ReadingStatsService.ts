@@ -43,6 +43,7 @@ export type ReadingChallenge = {
   reward: number;
   expiresAt: number | null;
   completed: boolean;
+  type: "documents" | "time" | "words" | "streak";
 };
 
 /**
@@ -484,6 +485,7 @@ export class ReadingStatsService {
         reward: 150,
         expiresAt: endOfDay.getTime(),
         completed: false,
+        type: "documents",
       },
       {
         id: "category_explorer",
@@ -494,6 +496,7 @@ export class ReadingStatsService {
         reward: 100,
         expiresAt: endOfDay.getTime(),
         completed: false,
+        type: "documents",
       },
       {
         id: "new_document",
@@ -504,6 +507,7 @@ export class ReadingStatsService {
         reward: 75,
         expiresAt: endOfDay.getTime(),
         completed: false,
+        type: "documents",
       },
     ];
   }

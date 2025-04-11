@@ -1,6 +1,6 @@
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { useServices } from "../services/ServiceContext";
-import { ReadingMetricsContext } from "./MetricsContext";
+import { ReadingMetricsContext, type ReadingMetrics } from "./MetricsContext";
 import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import { useReadingHistory } from "../history/HistoryContext";
 
@@ -13,19 +13,6 @@ const daysOfWeek = [
   "Friday",
   "Saturday",
 ] as const;
-
-/**
- * Interface for reading metrics data
- */
-export type ReadingMetrics = {
-  totalWordsRead: number;
-  totalTimeSpent: number; // in milliseconds
-  documentsCompleted: number;
-  sectionsCompleted: number;
-  averageReadingSpeed: number; // words per minute
-  currentStreak: number;
-  lastReadAt: number | null;
-};
 
 interface ReadingMetricsProviderProps {
   children: ReactNode;
@@ -55,7 +42,9 @@ export const ReadingMetricsProvider: React.FC<ReadingMetricsProviderProps> = ({
     sectionsCompleted: 0,
     averageReadingSpeed: 0,
     currentStreak: 0,
+    longestStreak: 0,
     lastReadAt: null,
+    currentLevel: 0,
   });
 
   const [isLoading, setIsLoading] = useState(true);
@@ -88,7 +77,7 @@ export const ReadingMetricsProvider: React.FC<ReadingMetricsProviderProps> = ({
       // Calculate total words read based on section content
       // This could be enhanced with more accurate word counts per section
       const totalWordsRead = sessions.reduce((total, session) => {
-        return total + (session.wordCount || 0);
+        return total + (session.wordCount ?? 0);
       }, 0);
 
       // Get document completion count
@@ -112,7 +101,8 @@ export const ReadingMetricsProvider: React.FC<ReadingMetricsProviderProps> = ({
       // We still use this since it has streak calculation logic
       const history = await readingHistoryService.getAllHistory();
       const readingDays = getUniqueReadingDays(history);
-      const { currentStreak } = calculateReadingStreak(readingDays);
+      const { currentStreak, longestStreak } =
+        calculateReadingStreak(readingDays);
 
       // Update metrics state
       setMetrics({
@@ -122,7 +112,9 @@ export const ReadingMetricsProvider: React.FC<ReadingMetricsProviderProps> = ({
         sectionsCompleted: sectionProgress.completedSections,
         averageReadingSpeed,
         currentStreak,
+        longestStreak,
         lastReadAt,
+        currentLevel: 0,
       });
 
       setError(null);
