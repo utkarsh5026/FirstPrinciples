@@ -5,6 +5,7 @@ import { X, Calendar, Check } from "lucide-react";
 import getIconForTech from "@/components/icons/iconMap";
 import { formatDate } from "../utils";
 import type { ReadingTodoItem } from "@/services/analytics/ReadingListService";
+import { useDocumentManager } from "@/context";
 
 interface TodoItemProps {
   category: string;
@@ -25,10 +26,9 @@ interface TodoItemProps {
 const TodoItem: React.FC<TodoItemProps> = ({
   category,
   items,
-  toggleTodoCompletion,
   handleSelectDocument,
-  removeFromTodoList,
 }) => {
+  const { toggleTodoCompletion, removeFromTodoList } = useDocumentManager();
   return (
     <div className="space-y-3">
       {/* Category header */}
