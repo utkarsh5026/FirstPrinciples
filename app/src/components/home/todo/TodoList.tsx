@@ -42,7 +42,6 @@ const TodoList: React.FC<TodoListProps> = ({
     clearReadingList,
     pendingCount,
     completedCount,
-    completionPercentage,
     totalCount,
   } = useReadingList();
 
@@ -87,14 +86,7 @@ const TodoList: React.FC<TodoListProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Header section with decorative elements */}
-      <TodoHeader
-        completedCount={completedCount}
-        completionPercentage={completionPercentage}
-        totalCount={totalCount}
-        pendingCount={pendingCount}
-        todoListLength={todoList.length}
-      />
+      <TodoHeader />
 
       {/* Tab navigation */}
       <Tabs

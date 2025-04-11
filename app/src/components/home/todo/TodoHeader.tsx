@@ -1,14 +1,7 @@
 import { BookOpen, CheckCircle2, Clock, ListTodo } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useTheme } from "@/components/theme/context/ThemeContext";
-
-interface TodoHeaderProps {
-  completedCount: number;
-  totalCount: number;
-  completionPercentage: number;
-  pendingCount: number;
-  todoListLength: number;
-}
+import { useReadingList } from "@/context";
 
 /**
  * 🎉 TodoHeader Component
@@ -23,14 +16,10 @@ interface TodoHeaderProps {
  * The background elements add a touch of flair, making your reading
  * experience even more enjoyable! 🌈
  */
-const TodoHeader: React.FC<TodoHeaderProps> = ({
-  completedCount,
-  completionPercentage,
-  totalCount,
-  pendingCount,
-  todoListLength,
-}) => {
+const TodoHeader: React.FC = () => {
   const { currentTheme } = useTheme();
+  const { pendingCount, completedCount, completionPercentage, totalCount } =
+    useReadingList();
 
   const stats = [
     {
@@ -87,7 +76,7 @@ const TodoHeader: React.FC<TodoHeaderProps> = ({
           ))}
         </div>
 
-        {todoListLength > 0 && (
+        {totalCount > 0 && (
           <div className="mt-4">
             <div className="text-xs text-muted-foreground mb-1">Completion</div>
             <div className="relative pt-1">
