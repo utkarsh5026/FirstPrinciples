@@ -1,5 +1,13 @@
 import React from "react";
-import { LayoutList, Clock, BarChart2 } from "lucide-react";
+import {
+  LayoutList,
+  Clock,
+  BarChart2,
+  CalendarDays,
+  CalendarRange,
+  CalendarCheck,
+  Award,
+} from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -39,10 +47,31 @@ const HistoryHeader: React.FC<HistoryHeaderProps> = ({
   return (
     <div className="flex flex-col md:flex-row justify-between gap-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <StatCard label="Today" value={timeStats.today} />
-        <StatCard label="This Week" value={timeStats.thisWeek} />
-        <StatCard label="This Month" value={timeStats.thisMonth} />
-        <StatCard label="Total" value={timeStats.total} highlight />
+        <StatCard
+          label="Today"
+          value={timeStats.today}
+          icon={CalendarDays}
+          iconColor="text-blue-400"
+        />
+        <StatCard
+          label="This Week"
+          value={timeStats.thisWeek}
+          icon={CalendarRange}
+          iconColor="text-green-400"
+        />
+        <StatCard
+          label="This Month"
+          value={timeStats.thisMonth}
+          icon={CalendarCheck}
+          iconColor="text-purple-400"
+        />
+        <StatCard
+          label="Total"
+          value={timeStats.total}
+          highlight
+          icon={Award}
+          iconColor="text-amber-400"
+        />
       </div>
 
       <div className="flex items-center mt-2 md:mt-0">
@@ -88,15 +117,26 @@ const StatCard: React.FC<{
   label: string;
   value: number;
   highlight?: boolean;
-}> = ({ label, value, highlight }) => {
+  icon?: React.ElementType;
+  iconColor?: string;
+}> = ({ label, value, highlight, icon: Icon, iconColor = "text-primary" }) => {
   return (
     <Card
-      className={`p-2 flex flex-col rounded-2xl items-center justify-center ${
+      className={`p-3 flex flex-row rounded-2xl items-center justify-between transition-all duration-200 hover:shadow-md ${
         highlight ? "border-primary/20 bg-primary/5" : "border-secondary/30"
       }`}
     >
-      <span className="text-lg md:text-xl font-bold">{value}</span>
-      <span className="text-xs text-muted-foreground">{label}</span>
+      <div className="flex flex-col">
+        <span className="text-lg md:text-xl font-bold">{value}</span>
+        <span className="text-xs text-muted-foreground">{label}</span>
+      </div>
+      {Icon && (
+        <div
+          className={`flex items-center justify-center ${iconColor} opacity-80`}
+        >
+          <Icon className="h-6 w-6 md:h-8 md:w-8" />
+        </div>
+      )}
     </Card>
   );
 };
