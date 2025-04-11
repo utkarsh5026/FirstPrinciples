@@ -6,12 +6,9 @@ import CategoryBreakDown from "./CategoryBreakdown";
 import ReadingTrends from "./ReadingTrends";
 import RecentReads from "./RecentReads";
 import useMobile from "@/hooks/useMobile";
-import { useReadingMetrics } from "@/context/metrics/MetricsContext";
+import { useReadingMetrics, useXP } from "@/context";
 
 interface AnalyticsOverviewProps {
-  xpProgress: number;
-  xpToNextLevel: number;
-  currentLevelXP: number;
   challenges: ReadingChallenge[];
   actions: {
     refreshChallenges: () => void;
@@ -20,15 +17,13 @@ interface AnalyticsOverviewProps {
 }
 
 const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
-  xpProgress,
-  xpToNextLevel,
-  currentLevelXP,
   challenges,
   actions,
   onSelectDocument,
 }) => {
   const { isMobile } = useMobile();
   const { analyticsData } = useReadingMetrics();
+  const { xpStats } = useXP();
 
   const { categoryBreakdown, readingByHour, recentActivity } = analyticsData;
 
@@ -39,9 +34,9 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
         {/* Left column: Summary and stats */}
         <div className="space-y-4">
           <ReadingProgress
-            currentLevelXP={currentLevelXP}
-            xpToNextLevel={xpToNextLevel}
-            xpProgress={xpProgress}
+            currentLevelXP={xpStats.currentLevelXP}
+            xpToNextLevel={xpStats.nextLevelXP}
+            xpProgress={xpStats.currentLevelXP / xpStats.nextLevelXP}
           />
 
           <DailyChallenges
@@ -67,7 +62,6 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
         </div>
       </div>
 
-      {/* Category Breakdown and Time of Day */}
       <CategoryBreakDown
         categoryBreakdown={categoryBreakdown}
         isMobile={isMobile}

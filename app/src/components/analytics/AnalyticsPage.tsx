@@ -10,9 +10,7 @@ import AnalyticsHeader from "./header/AnalyticsHeader";
 import Insights from "./insights";
 import AnalyticsOverview from "./overview";
 import { SiDeepl } from "react-icons/si";
-import { getStreakEmoji } from "./utils";
-import { useReadingMetrics } from "@/context";
-import Achievements from "../achievements/Achievments";
+import Achievements from "@/components/achievements/Achievments";
 import Activity from "./activity/Activity";
 import CategoryAnalytics from "./category/CategoryAnalytics";
 
@@ -60,8 +58,7 @@ const tabs = [
  * @param {Function} onSelectDocument - Callback function when a document is selected
  */
 const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onSelectDocument }) => {
-  const { metrics } = useReadingMetrics();
-
+  /**
   /**
    * Controls which analytics tab is currently active
    */
@@ -69,12 +66,7 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onSelectDocument }) => {
 
   return (
     <div className="space-y-6">
-      <AnalyticsHeader
-        xpProgress={10}
-        xpToNextLevel={100}
-        streakEmoji={getStreakEmoji(metrics.currentStreak)}
-        currentLevelXP={10}
-      />
+      <AnalyticsHeader />
 
       {/* Tabs Navigation */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -92,9 +84,6 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onSelectDocument }) => {
 
         <TabsContent value="overview">
           <AnalyticsOverview
-            xpProgress={0}
-            xpToNextLevel={0}
-            currentLevelXP={0}
             onSelectDocument={onSelectDocument}
             challenges={[]}
             actions={{
