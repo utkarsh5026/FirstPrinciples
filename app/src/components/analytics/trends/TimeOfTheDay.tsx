@@ -28,7 +28,7 @@ import { useMemo } from "react";
  * It analyzes the hourly reading data from analytics to generate meaningful insights
  * about user reading patterns throughout the day.
  */
-const TimeOfTheDay = () => {
+const TimeOfTheDay: React.FC = () => {
   const { currentTheme } = useTheme();
   const { analyticsData } = useReadingMetrics();
 

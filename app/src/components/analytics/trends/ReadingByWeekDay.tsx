@@ -40,44 +40,42 @@ const ReadingByWeekDay: React.FC = () => {
   };
 
   return (
-    <div className="h-56">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={analyticsData.weeklyActivity}
-          margin={{ top: 10, right: 10, left: 0, bottom: 5 }}
-        >
-          <XAxis
-            dataKey={(item) => item.day.slice(0, 3)}
-            tick={{
-              fill: currentTheme.foreground + "80",
-              fontSize: 10,
-            }}
-            axisLine={false}
-            tickLine={false}
-          />
-          <YAxis
-            tick={{
-              fill: currentTheme.foreground + "80",
-              fontSize: 10,
-            }}
-            axisLine={false}
-            tickLine={false}
-            allowDecimals={false}
-            width={25}
-          />
-          <RechartsTooltip
-            cursor={{ fill: currentTheme.primary + "10" }}
-            contentStyle={customTooltipStyle}
-            formatter={(value) => [`${value} documents`, "Read"]}
-          />
-          <Bar
-            dataKey="count"
-            fill={currentTheme.primary}
-            radius={[4, 4, 0, 0]}
-          />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart
+        data={analyticsData.weeklyActivity}
+        margin={{ top: 10, right: 10, left: 0, bottom: 5 }}
+      >
+        <XAxis
+          dataKey={(item) => item.day.slice(0, 3)}
+          tick={{
+            fill: currentTheme.foreground + "80",
+            fontSize: 10,
+          }}
+          axisLine={false}
+          tickLine={false}
+        />
+        <YAxis
+          tick={{
+            fill: currentTheme.foreground + "80",
+            fontSize: 10,
+          }}
+          axisLine={false}
+          tickLine={false}
+          allowDecimals={false}
+          width={25}
+        />
+        <RechartsTooltip
+          cursor={{ fill: currentTheme.primary + "10" }}
+          contentStyle={customTooltipStyle}
+          formatter={(value) => [`${value} documents`, "Read"]}
+        />
+        <Bar
+          dataKey="count"
+          fill={currentTheme.primary}
+          radius={[4, 4, 0, 0]}
+        />
+      </BarChart>
+    </ResponsiveContainer>
   );
 };
 
