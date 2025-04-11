@@ -7,7 +7,7 @@ import type { ReadingTodoItem } from "@/services/analytics/ReadingListService";
 import TodoHeader from "./TodoHeader";
 import EmptyList from "./EmptyList";
 import TodoItem from "./TodoItem";
-import { useDocumentManager } from "@/context";
+import { useReadingList } from "@/context";
 
 interface TodoListProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -35,8 +35,16 @@ const TodoList: React.FC<TodoListProps> = ({
   handleSelectDocument,
   setShowAddTodoModal,
 }) => {
-  const { todoList, removeFromTodoList, toggleTodoCompletion, clearTodoList } =
-    useDocumentManager();
+  const {
+    todoList,
+    removeFromReadingList,
+    toggleTodoCompletion,
+    clearReadingList,
+    pendingCount,
+    completedCount,
+    completionPercentage,
+    totalCount,
+  } = useReadingList();
 
   /**
    * 🔍 Active Tab State
@@ -70,32 +78,6 @@ const TodoList: React.FC<TodoListProps> = ({
 
     return categories;
   }, [todoList, activeTab]);
-
-  /**
-   * 📊 Reading Statistics
-   *
-   * Calculates all the fun statistics about your reading progress!
-   * Tracks how many items are pending, completed, and your overall
-   * completion percentage to keep you motivated! 🎯
-   */
-  const { pendingCount, completedCount, completionPercentage, totalCount } =
-    useMemo(() => {
-      const completedCount = todoList.filter((item) => item.completed).length;
-      const totalCount = todoList.length;
-
-      return {
-        pendingCount: todoList.filter((item) => !item.completed).length,
-        completedCount,
-        totalCount,
-        completionPercentage:
-          totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0,
-      };
-    }, [todoList]) as {
-      pendingCount: number;
-      completedCount: number;
-      completionPercentage: number;
-      totalCount: number;
-    };
 
   const tabs = [
     { key: "all", label: `All (${totalCount})` },
@@ -147,7 +129,7 @@ const TodoList: React.FC<TodoListProps> = ({
                     items={items}
                     toggleTodoCompletion={toggleTodoCompletion}
                     handleSelectDocument={handleSelectDocument}
-                    removeFromTodoList={removeFromTodoList}
+                    removeFromTodoList={removeFromReadingList}
                   />
                 ))
               ) : (
@@ -179,7 +161,7 @@ const TodoList: React.FC<TodoListProps> = ({
                 variant="ghost"
                 size="sm"
                 className="h-9 text-destructive hover:bg-destructive/10"
-                onClick={clearTodoList}
+                onClick={clearReadingList}
               >
                 Clear list
               </Button>
