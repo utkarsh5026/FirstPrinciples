@@ -30,7 +30,7 @@ const CategoryBreakDown: React.FC<CategoryBreakDownProps> = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Category Breakdown */}
-      <Card className="p-4 border-primary/10">
+      <Card className="p-4 border-primary/10 rounded-2xl">
         <div className="flex justify-between items-center mb-3">
           <h4 className="text-sm font-medium flex items-center">
             <BookText className="h-4 w-4 mr-2 text-primary" />
@@ -93,7 +93,7 @@ const CategoryBreakDown: React.FC<CategoryBreakDownProps> = ({
       </Card>
 
       {/* Time of Day */}
-      <Card className="p-4 border-primary/10">
+      <Card className="p-4 border-primary/10 rounded-2xl">
         <div className="flex justify-between items-center mb-3">
           <h4 className="text-sm font-medium flex items-center">
             <Clock className="h-4 w-4 mr-2 text-primary" />
