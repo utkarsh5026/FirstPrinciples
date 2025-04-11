@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useServices } from "@/context/ServiceContext";
+import { useServices } from "@/context/services/ServiceContext";
 import { useReadingMetrics } from "./useReadingMetrics";
 import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 

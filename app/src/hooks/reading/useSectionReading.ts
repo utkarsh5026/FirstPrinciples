@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useServices } from "@/context/ServiceContext";
+import { useServices } from "@/context/services/ServiceContext";
 
 export interface SectionData {
   id: string;

@@ -4,7 +4,7 @@ import { useMarkdownProcessor } from "@/hooks/useMarkdownProcessor";
 import { useReadingHistory } from "@/hooks/reading/useReadingHistory";
 import { useReadingMetrics } from "@/hooks/reading/useReadingMetrics";
 import { useSectionReading } from "@/hooks/reading/useSectionReading";
-import { useServices } from "@/context/ServiceContext";
+import { useServices } from "@/context/services/ServiceContext";
 import { useAchievements } from "@/hooks/reading/useAchievements";
 
 export type AchievementData = {

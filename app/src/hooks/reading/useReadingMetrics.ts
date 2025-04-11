@@ -1,7 +1,7 @@
 // src/hooks/reading/useReadingMetrics.ts
 
 import { useState, useEffect, useCallback } from "react";
-import { useServices } from "@/context/ServiceContext";
+import { useServices } from "@/context/services/ServiceContext";
 import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 
 /**
