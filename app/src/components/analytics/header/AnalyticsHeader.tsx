@@ -1,21 +1,9 @@
 import { Zap, Flame, Clock, BookOpenCheck } from "lucide-react";
-import { formatReadingTime, formatNumber } from "../utils";
+import { formatReadingTime, formatNumber, getStreakEmoji } from "../utils";
 import StatCard from "./StatCard";
-import { useReadingMetrics, useDocumentManager } from "@/context";
+import { useReadingMetrics, useDocumentManager, useXP } from "@/context";
 
-interface AnalyticsHeaderProps {
-  xpProgress: number;
-  xpToNextLevel: number;
-  streakEmoji: string;
-  currentLevelXP: number;
-}
-
-const AnalyticsHeader: React.FC<AnalyticsHeaderProps> = ({
-  xpProgress,
-  xpToNextLevel,
-  streakEmoji,
-  currentLevelXP,
-}) => {
+const AnalyticsHeader: React.FC = () => {
   const { metrics } = useReadingMetrics();
   const {
     currentStreak,
@@ -25,6 +13,7 @@ const AnalyticsHeader: React.FC<AnalyticsHeaderProps> = ({
     documentsCompleted,
   } = metrics;
   const { availableDocuments } = useDocumentManager();
+  const { xpStats } = useXP();
 
   const completionPercentage =
     (documentsCompleted / availableDocuments.length) * 100;
@@ -33,12 +22,12 @@ const AnalyticsHeader: React.FC<AnalyticsHeaderProps> = ({
       {/* Level and XP */}
       <StatCard
         title="Reading Level"
-        value={-1}
+        value={xpStats.currentLevelXP}
         subtitle="Level"
-        progressValue={xpProgress}
+        progressValue={xpStats.currentLevelXP / xpStats.nextLevelXP}
         progressLabels={{
-          left: `${currentLevelXP} XP`,
-          right: `${xpToNextLevel} XP`,
+          left: `${xpStats.currentLevelXP} XP`,
+          right: `${xpStats.nextLevelXP} XP`,
         }}
         icon={Zap}
       />
@@ -49,7 +38,9 @@ const AnalyticsHeader: React.FC<AnalyticsHeaderProps> = ({
         value={
           <div className="flex items-center">
             {currentStreak}
-            <span className="text-xl ml-1">{streakEmoji}</span>
+            <span className="text-xl ml-1">
+              {getStreakEmoji(currentStreak)}
+            </span>
             <span className="text-muted-foreground text-xs ml-1">days</span>
           </div>
         }

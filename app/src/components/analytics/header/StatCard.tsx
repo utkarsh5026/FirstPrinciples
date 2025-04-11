@@ -14,19 +14,25 @@ interface StatCardProps {
 }
 
 /**
- * StatCard component displays a card with a title, value, and optional subtitle, progress bar, and additional information.
- * It also includes a decorative icon.
+ * ✨ StatCard Component ✨
  *
- * @param {StatCardProps} props - The props for the component.
- * @param {string} props.title - The title of the card.
- * @param {ReactNode} props.value - The value to be displayed on the card.
- * @param {ReactNode} [props.subtitle] - The subtitle of the card.
- * @param {ReactNode[]} [props.additionalInfo] - Additional information to be displayed on the card.
- * @param {number} [props.progressValue] - The value for the progress bar.
- * @param {{ left?: ReactNode; right?: ReactNode }} [props.progressLabels] - Labels for the progress bar.
- * @param {LucideIcon} props.icon - The icon to be displayed on the card.
+ * A beautiful card component that displays statistics in a visually appealing way!
  *
- * @returns {React.ReactElement} The StatCard component.
+ * 🎯 Purpose:
+ * This component creates an elegant card to showcase important metrics and statistics
+ * with a clean, modern design. Perfect for dashboards and analytics sections!
+ *
+ * 🧩 Features:
+ * - Displays a title and prominent value
+ * - Shows optional subtitle for additional context
+ * - Includes a decorative icon for visual appeal
+ * - Can display a progress bar with customizable labels
+ * - Supports multiple lines of additional information
+ * - Responsive design with careful spacing
+ *
+ * 💡 Usage:
+ * Ideal for displaying user metrics, achievements, progress tracking,
+ * and any key performance indicators that need visual emphasis.
  */
 const StatCard: React.FC<StatCardProps> = ({
   title,
