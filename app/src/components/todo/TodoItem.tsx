@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { X, Calendar, Check } from "lucide-react";
 import getIconForTech from "@/components/icons/iconMap";
-import { formatDate } from "../utils";
+import { formatDate } from "../home/utils";
 import type { ReadingTodoItem } from "@/services/analytics/ReadingListService";
 import { useDocumentManager } from "@/context";
 
