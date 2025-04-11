@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-
+import { motion, AnimatePresence } from "framer-motion";
 import { ReadingHistoryItem } from "@/components/home/types";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 
@@ -19,20 +19,11 @@ interface HistoryProps {
 }
 
 /**
- * 📚 History Component
+ * Enhanced History Component
  *
- * This delightful component displays your reading history in a beautiful, organized way! ✨
- * It allows you to explore your past readings through different visualizations and filters.
- *
- * ✅ Features:
- * - View your reading history as a list, timeline, or trends visualization
- * - Filter by categories, timeframes, or search for specific documents
- * - See beautiful statistics about your reading habits
- * - Navigate back to previously read documents with ease
- *
- * Think of it as your personal reading journal that helps you track and celebrate
- * your knowledge journey! 🎉 It's designed to make revisiting your reading history
- * a joyful experience rather than a chore. 📖✨
+ * This component displays your reading history with a beautiful, modern design
+ * that works well on both mobile and desktop devices. It includes animations,
+ * improved spacing, and visual enhancements while maintaining all functionality.
  */
 const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
   const { readingHistory } = useReadingHistory();
@@ -46,14 +37,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
   const [filteredHistory, setFilteredHistory] =
     useState<ReadingHistoryItem[]>(readingHistory);
 
-  /**
-   * 🗂️ Categories Organization
-   *
-   * Magically extracts all unique categories from your reading history!
-   * Creates a friendly list of filters so you can easily find documents
-   * by their top-level folders. Always includes an "all" option so you
-   * can go back to seeing everything at once! 🌈
-   */
+  // Get unique categories from reading history
   const categories = useMemo(() => {
     return [
       "all",
@@ -63,13 +47,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     ];
   }, [readingHistory]);
 
-  /**
-   * 📊 Time Statistics
-   *
-   * Calculates fun statistics about your reading habits across different time periods!
-   * Tracks how many documents you've read today, this week, this month, and in total.
-   * These numbers help you visualize your reading journey and celebrate your progress! 🎯
-   */
+  // Calculate time statistics
   const timeStats = useMemo(() => {
     const now = Date.now();
     const oneDay = 24 * 60 * 60 * 1000;
@@ -88,14 +66,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     };
   }, [readingHistory]);
 
-  /**
-   * 🔍 History Filtering
-   *
-   * This magical effect transforms your reading history based on your filters!
-   * It applies your search queries, category selections, and timeframe choices
-   * to show you exactly the history items you're looking for. It's like having
-   * a personal librarian organizing your reading history! 📚✨
-   */
+  // Filter reading history based on search query, category, and timeframe
   useEffect(() => {
     let filtered = [...readingHistory];
 
@@ -141,22 +112,17 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     setFilteredHistory(filtered);
   }, [readingHistory, searchQuery, selectedCategory, selectedTimeframe]);
 
-  /**
-   * 📈 Monthly Reading Trends
-   *
-   * Creates beautiful data for the trends visualization! This transforms your
-   * reading history into monthly statistics so you can see how your reading
-   * habits change over time. It's like having a personal reading coach that
-   * celebrates your consistency and growth! 🌱📊
-   */
+  // Generate monthly reading data for trends
   const monthlyData = useMemo(() => {
     const months: Record<string, number> = {};
     const now = new Date();
     const monthsToShow = 6;
 
+    // Create a key for each month (YYYY-MM)
     const createMonthKey = (date: Date) =>
       `${date.getFullYear()}-${date.getMonth() + 1}`;
 
+    // Initialize data for the last 6 months
     const initMonthlyData = (date: Date) => {
       for (let i = 0; i < monthsToShow; i++) {
         const d = new Date(date);
@@ -166,6 +132,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
       }
     };
 
+    // Fill month data with reading counts
     const fillMonthData = () => {
       readingHistory.forEach((item) => {
         const date = new Date(item.lastReadAt);
@@ -179,6 +146,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     initMonthlyData(now);
     fillMonthData();
 
+    // Convert to array format for charts
     return Object.entries(months)
       .map(([key, count]) => {
         const [year, month] = key.split("-").map(Number);
@@ -195,52 +163,108 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
   if (readingHistory.length === 0) return <EmptyHistory />;
 
   return (
-    <div className="space-y-4 md:space-y-6 px-1 md:px-0 pb-20 md:pb-0">
-      <HistoryHeader
-        timeStats={timeStats}
-        viewMode={viewMode}
-        setViewMode={setViewMode}
-      />
+    <div className="space-y-6 px-1 md:px-4 pb-20 md:pb-6 max-w-5xl mx-auto">
+      {/* Glowing background effect */}
+      <div
+        className="absolute top-20 right-0 w-72 h-72 rounded-full opacity-10 blur-3xl -z-10"
+        style={{
+          background: `radial-gradient(circle, ${currentTheme.primary}, transparent)`,
+        }}
+      ></div>
+      <div
+        className="absolute bottom-20 left-0 w-64 h-64 rounded-full opacity-10 blur-3xl -z-10"
+        style={{
+          background: `radial-gradient(circle, ${currentTheme.primary}, transparent)`,
+        }}
+      ></div>
 
-      <HistoryFilters
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        selectedTimeframe={selectedTimeframe}
-        setSelectedTimeframe={setSelectedTimeframe}
-        categories={categories}
-      />
+      {/* Header section with statistics */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <HistoryHeader
+          timeStats={timeStats}
+          viewMode={viewMode}
+          setViewMode={setViewMode}
+        />
+      </motion.div>
 
-      {filteredHistory.length === 0 ? (
-        <EmptyFilteredResult />
-      ) : (
-        <div className="mt-4">
-          {viewMode === "list" && (
-            <HistoryList
-              filteredHistory={filteredHistory}
-              handleSelectDocument={handleSelectDocument}
-              formatDate={formatDate}
-            />
-          )}
+      {/* Filters section */}
+      <motion.div
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+        className="bg-card/60 backdrop-blur-sm border border-primary/10 p-4 rounded-2xl shadow-sm"
+      >
+        <HistoryFilters
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          selectedTimeframe={selectedTimeframe}
+          setSelectedTimeframe={setSelectedTimeframe}
+          categories={categories}
+        />
+      </motion.div>
 
-          {viewMode === "timeline" && (
-            <HistoryTimeline
-              filteredHistory={filteredHistory}
-              handleSelectDocument={handleSelectDocument}
-              formatDate={formatDate}
-            />
-          )}
+      {/* Content section with animated transitions */}
+      <AnimatePresence mode="wait">
+        {filteredHistory.length === 0 ? (
+          <motion.div
+            key="empty-results"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <EmptyFilteredResult />
+          </motion.div>
+        ) : (
+          <motion.div
+            key={viewMode}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="mt-4 bg-card/50 backdrop-blur-sm border border-primary/10 p-4 md:p-6 rounded-2xl shadow-sm"
+          >
+            {viewMode === "list" && (
+              <HistoryList
+                filteredHistory={filteredHistory}
+                handleSelectDocument={handleSelectDocument}
+                formatDate={formatDate}
+              />
+            )}
 
-          {viewMode === "trends" && (
-            <HistoryTrends
-              readingHistory={readingHistory}
-              monthlyData={monthlyData}
-              currentTheme={currentTheme}
-            />
-          )}
-        </div>
-      )}
+            {viewMode === "timeline" && (
+              <HistoryTimeline
+                filteredHistory={filteredHistory}
+                handleSelectDocument={handleSelectDocument}
+                formatDate={formatDate}
+              />
+            )}
+
+            {viewMode === "trends" && (
+              <HistoryTrends
+                readingHistory={readingHistory}
+                monthlyData={monthlyData}
+                currentTheme={currentTheme}
+              />
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Subtle mesh grid background pattern */}
+      <div
+        className="fixed inset-0 pointer-events-none opacity-5 -z-20"
+        style={{
+          backgroundImage: `radial-gradient(${currentTheme.primary}30 1px, transparent 1px)`,
+          backgroundSize: "20px 20px",
+        }}
+      ></div>
     </div>
   );
 };

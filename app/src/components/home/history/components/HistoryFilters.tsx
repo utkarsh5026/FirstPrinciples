@@ -1,5 +1,5 @@
 import React from "react";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, CalendarClock, Tag, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -14,6 +14,8 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 import useMobile from "@/hooks/useMobile";
 
 interface HistoryFiltersProps {
@@ -27,17 +29,11 @@ interface HistoryFiltersProps {
 }
 
 /**
- * 🌟 HistoryFilters Component
+ * Enhanced HistoryFilters Component
  *
- * This delightful component is your go-to for filtering through your reading history! 📚✨
- * It provides a charming interface that allows you to search for specific entries,
- * select categories, and choose timeframes, making it super easy to find what you're looking for! 🕵️‍♀️💖
- *
- * Whether you're on a mobile device or desktop, it adapts beautifully to your screen,
- * ensuring a smooth and enjoyable experience! 📱🌈
- *
- * With a search input for quick lookups and dropdowns for categories and timeframes,
- * it helps you manage your reading history effortlessly! 🎉
+ * A beautifully styled filter interface for the reading history.
+ * Features search functionality, category selection, and timeframe filtering
+ * with an optimized design for both mobile and desktop.
  */
 const HistoryFilters: React.FC<HistoryFiltersProps> = ({
   searchQuery,
@@ -50,7 +46,20 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
 }) => {
   const { isMobile } = useMobile();
 
-  if (isMobile)
+  // Clear all active filters
+  const clearFilters = () => {
+    setSearchQuery("");
+    setSelectedCategory("all");
+    setSelectedTimeframe("all");
+  };
+
+  // Check if any filters are active
+  const hasActiveFilters =
+    searchQuery !== "" ||
+    selectedCategory !== "all" ||
+    selectedTimeframe !== "all";
+
+  if (isMobile) {
     return (
       <MobileFilters
         searchQuery={searchQuery}
@@ -60,71 +69,166 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
         selectedTimeframe={selectedTimeframe}
         setSelectedTimeframe={setSelectedTimeframe}
         categories={categories}
+        clearFilters={clearFilters}
+        hasActiveFilters={hasActiveFilters}
       />
     );
+  }
 
   return (
-    <div className="flex flex-col sm:flex-row gap-3">
-      <div className="relative flex-1 rounded-4xl">
-        <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-        <Input
-          placeholder="Search history..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-9 rounded-2xl"
-        />
-      </div>
-
-      <div className="flex gap-2">
-        <div className="w-40">
-          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-            <SelectTrigger className="h-10">
-              <SelectValue placeholder="Category" />
-            </SelectTrigger>
-            <SelectContent className="font-cascadia-code rounded-2xl">
-              {categories.map((category) => (
-                <SelectItem key={category} value={category}>
-                  {category === "all" ? "All Categories" : category}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+    <div className="space-y-4">
+      <div className="flex flex-col sm:flex-row gap-3">
+        <div className="relative flex-1 rounded-xl group">
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+          <Input
+            placeholder="Search reading history..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-9 rounded-xl border-primary/10 focus:border-primary/30 bg-card/40 backdrop-blur-sm shadow-sm"
+          />
+          {searchQuery && (
+            <button
+              className="absolute right-3 top-2.5 text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => setSearchQuery("")}
+              title="Clear search"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
         </div>
 
-        <div className="w-32">
-          <Select
-            value={selectedTimeframe}
-            onValueChange={setSelectedTimeframe}
-          >
-            <SelectTrigger className="h-10">
-              <SelectValue placeholder="Time" />
-            </SelectTrigger>
-            <SelectContent className="font-cascadia-code rounded-2xl">
-              <SelectItem value="all">All Time</SelectItem>
-              <SelectItem value="today">Today</SelectItem>
-              <SelectItem value="week">This Week</SelectItem>
-              <SelectItem value="month">This Month</SelectItem>
-            </SelectContent>
-          </Select>
+        <div className="flex gap-2">
+          <div className="w-40">
+            <Select
+              value={selectedCategory}
+              onValueChange={setSelectedCategory}
+            >
+              <SelectTrigger className="h-10 rounded-xl border-primary/10 focus:border-primary/30 bg-card/40 backdrop-blur-sm shadow-sm">
+                <div className="flex items-center">
+                  <Tag className="h-3.5 w-3.5 mr-1.5 text-primary" />
+                  <SelectValue placeholder="Category" />
+                </div>
+              </SelectTrigger>
+              <SelectContent className="font-cascadia-code rounded-xl">
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category === "all" ? "All Categories" : category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="w-40">
+            <Select
+              value={selectedTimeframe}
+              onValueChange={setSelectedTimeframe}
+            >
+              <SelectTrigger className="h-10 rounded-xl border-primary/10 focus:border-primary/30 bg-card/40 backdrop-blur-sm shadow-sm">
+                <div className="flex items-center">
+                  <CalendarClock className="h-3.5 w-3.5 mr-1.5 text-primary" />
+                  <SelectValue placeholder="Time" />
+                </div>
+              </SelectTrigger>
+              <SelectContent className="font-cascadia-code rounded-xl">
+                <SelectItem value="all">All Time</SelectItem>
+                <SelectItem value="today">Today</SelectItem>
+                <SelectItem value="week">This Week</SelectItem>
+                <SelectItem value="month">This Month</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {hasActiveFilters && (
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-10 w-10 rounded-xl border-primary/10 hover:bg-primary/10 hover:text-primary transition-colors"
+              onClick={clearFilters}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
         </div>
       </div>
+
+      {/* Active filters display */}
+      {hasActiveFilters && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex flex-wrap gap-2 mt-3"
+        >
+          <div className="text-xs text-muted-foreground flex items-center mr-1">
+            <Filter className="h-3 w-3 mr-1" />
+            Active filters:
+          </div>
+
+          {searchQuery && (
+            <Badge
+              variant="outline"
+              className="text-xs bg-primary/5 border-primary/20 text-primary"
+            >
+              Search: {searchQuery}
+              <button
+                className="ml-1"
+                onClick={() => setSearchQuery("")}
+                title="Clear search"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </Badge>
+          )}
+
+          {selectedCategory !== "all" && (
+            <Badge
+              variant="outline"
+              className="text-xs bg-primary/5 border-primary/20 text-primary"
+            >
+              Category: {selectedCategory}
+              <button
+                className="ml-1"
+                onClick={() => setSelectedCategory("all")}
+                title="Clear category"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </Badge>
+          )}
+
+          {selectedTimeframe !== "all" && (
+            <Badge
+              variant="outline"
+              className="text-xs bg-primary/5 border-primary/20 text-primary"
+            >
+              Time: {getTimeframeLabel(selectedTimeframe)}
+              <button
+                className="ml-1"
+                onClick={() => setSelectedTimeframe("all")}
+                title="Clear time"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </Badge>
+          )}
+        </motion.div>
+      )}
     </div>
   );
 };
 
 /**
- * 🌟 MobileFilters Component
+ * Enhanced MobileFilters Component
  *
- * This charming little component is designed to provide a delightful filtering experience for your reading history! 📚✨
- * It allows users to easily search through their history and filter by category and time period, making it a breeze to find what they're looking for! 🕵️‍♀️💖
- *
- * With a user-friendly interface, it adapts beautifully to mobile devices, ensuring that you can manage your reading history on the go! 📱🌈
- *
- * The component features a search input for quick lookups, and it displays selected filters in a cute way, so you always know what you're filtering by! 🎉
- *
- * Plus, it includes a handy popover for selecting categories and timeframes, making the filtering process smooth and enjoyable! 🌟
+ * A mobile-optimized version of the filters interface with a popover for
+ * selecting categories and timeframes, and a clean display of active filters.
  */
-const MobileFilters: React.FC<HistoryFiltersProps> = ({
+const MobileFilters: React.FC<
+  HistoryFiltersProps & {
+    clearFilters: () => void;
+    hasActiveFilters: boolean;
+  }
+> = ({
   searchQuery,
   setSearchQuery,
   selectedCategory,
@@ -132,101 +236,142 @@ const MobileFilters: React.FC<HistoryFiltersProps> = ({
   selectedTimeframe,
   setSelectedTimeframe,
   categories,
+  clearFilters,
+  hasActiveFilters,
 }) => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="space-y-3">
       <div className="relative w-full">
         <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           placeholder="Search history..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-9 w-full"
+          className="pl-9 w-full rounded-xl border-primary/10 focus:border-primary/30 bg-card/40 backdrop-blur-sm shadow-sm"
         />
+        {searchQuery && (
+          <button
+            className="absolute right-3 top-2.5 text-muted-foreground hover:text-primary transition-colors"
+            onClick={() => setSearchQuery("")}
+            title="Clear search"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        )}
       </div>
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-wrap items-center gap-2">
           {selectedCategory !== "all" && (
-            <div className="text-xs text-primary bg-primary/10 px-2 py-1 rounded-full">
-              {selectedCategory}
-            </div>
+            <Badge
+              variant="outline"
+              className="text-xs bg-primary/5 border-primary/20 flex items-center gap-1"
+            >
+              <Tag className="h-3 w-3" /> {selectedCategory}
+              <button
+                onClick={() => setSelectedCategory("all")}
+                title="Clear category"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </Badge>
           )}
           {selectedTimeframe !== "all" && (
-            <div className="text-xs text-primary bg-primary/10 px-2 py-1 rounded-full">
+            <Badge
+              variant="outline"
+              className="text-xs bg-primary/5 border-primary/20 flex items-center gap-1"
+            >
+              <CalendarClock className="h-3 w-3" />{" "}
               {getTimeframeLabel(selectedTimeframe)}
-            </div>
+              <button
+                onClick={() => setSelectedTimeframe("all")}
+                title="Clear time"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </Badge>
           )}
         </div>
 
-        <Popover>
-          <PopoverTrigger asChild>
+        <div className="flex gap-2">
+          {hasActiveFilters && (
             <Button
               variant="outline"
               size="sm"
-              className="h-8 px-3 text-xs flex items-center"
+              className="h-8 text-xs border-destructive/20 text-destructive bg-destructive/5 hover:bg-destructive/10 rounded-lg"
+              onClick={clearFilters}
             >
-              <Filter className="mr-1 h-3 w-3" />
-              Filters
+              <X className="h-3 w-3 mr-1" />
+              Clear
             </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-[260px] p-3">
-            <div className="space-y-3">
-              <div className="space-y-1">
-                <label className="text-xs text-muted-foreground font-cascadia-code">
-                  Category
-                </label>
-                <Select
-                  value={selectedCategory}
-                  onValueChange={setSelectedCategory}
-                >
-                  <SelectTrigger className="h-8 text-xs rounded-2xl font-cascadia-code">
-                    <SelectValue placeholder="Category" />
-                  </SelectTrigger>
-                  <SelectContent className="font-cascadia-code rounded-2xl">
-                    {categories.map((category) => (
-                      <SelectItem key={category} value={category}>
-                        {category === "all" ? "All Categories" : category}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+          )}
 
-              <div className="space-y-1">
-                <label className="text-xs text-muted-foreground">
-                  Time Period
-                </label>
-                <Select
-                  value={selectedTimeframe}
-                  onValueChange={setSelectedTimeframe}
-                >
-                  <SelectTrigger className="h-8 text-xs font-cascadia-code rounded-2xl">
-                    <SelectValue placeholder="Time" />
-                  </SelectTrigger>
-                  <SelectContent className="font-cascadia-code rounded-2xl">
-                    <SelectItem value="all">All Time</SelectItem>
-                    <SelectItem value="today">Today</SelectItem>
-                    <SelectItem value="week">This Week</SelectItem>
-                    <SelectItem value="month">This Month</SelectItem>
-                  </SelectContent>
-                </Select>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-8 px-3 text-xs flex items-center border-primary/20 bg-primary/5 hover:bg-primary/10 rounded-lg"
+              >
+                <Filter className="mr-1 h-3 w-3" />
+                Filters
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-[260px] p-4 rounded-xl border border-primary/10 shadow-lg">
+              <div className="space-y-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs text-muted-foreground font-cascadia-code flex items-center">
+                    <Tag className="h-3 w-3 mr-1.5 text-primary" />
+                    Category
+                  </label>
+                  <Select
+                    value={selectedCategory}
+                    onValueChange={setSelectedCategory}
+                  >
+                    <SelectTrigger className="h-8 text-xs rounded-lg font-cascadia-code">
+                      <SelectValue placeholder="Category" />
+                    </SelectTrigger>
+                    <SelectContent className="font-cascadia-code rounded-xl">
+                      {categories.map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {category === "all" ? "All Categories" : category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs text-muted-foreground flex items-center">
+                    <CalendarClock className="h-3 w-3 mr-1.5 text-primary" />
+                    Time Period
+                  </label>
+                  <Select
+                    value={selectedTimeframe}
+                    onValueChange={setSelectedTimeframe}
+                  >
+                    <SelectTrigger className="h-8 text-xs font-cascadia-code rounded-lg">
+                      <SelectValue placeholder="Time" />
+                    </SelectTrigger>
+                    <SelectContent className="font-cascadia-code rounded-xl">
+                      <SelectItem value="all">All Time</SelectItem>
+                      <SelectItem value="today">Today</SelectItem>
+                      <SelectItem value="week">This Week</SelectItem>
+                      <SelectItem value="month">This Month</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-            </div>
-          </PopoverContent>
-        </Popover>
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
     </div>
   );
 };
 
 /**
- * 🎉 This function helps to convert a timeframe string into a user-friendly label!
- * It makes it easy for users to understand the selected time period at a glance. 😊
- *
- * Depending on the input, it returns a friendly label that can be displayed in the UI.
- * If the user selects "today", it shows "Today", and similarly for "week" and "month".
- * If none of these match, it defaults to "All Time", ensuring clarity for the user. 🌟
+ * Helper function to convert timeframe codes to readable labels
  */
 const getTimeframeLabel = (timeframe: string): string => {
   switch (timeframe) {
