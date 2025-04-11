@@ -7,13 +7,10 @@ import type { ReadingTodoItem } from "@/services/analytics/ReadingListService";
 import TodoHeader from "./TodoHeader";
 import EmptyList from "./EmptyList";
 import TodoItem from "./TodoItem";
+import { useDocumentManager } from "@/context";
 
 interface TodoListProps {
-  todoList: ReadingTodoItem[];
-  toggleTodoCompletion: (id: string) => void;
   handleSelectDocument: (path: string, title: string) => void;
-  removeFromTodoList: (id: string) => void;
-  clearTodoList: () => void;
   setShowAddTodoModal: (show: boolean) => void;
 }
 
@@ -35,13 +32,12 @@ type Tab = "all" | "pending" | "completed";
  * stay organized and motivated on your learning journey! 📚✨
  */
 const TodoList: React.FC<TodoListProps> = ({
-  todoList,
-  toggleTodoCompletion,
   handleSelectDocument,
-  removeFromTodoList,
-  clearTodoList,
   setShowAddTodoModal,
 }) => {
+  const { todoList, removeFromTodoList, toggleTodoCompletion, clearTodoList } =
+    useDocumentManager();
+
   /**
    * 🔍 Active Tab State
    *

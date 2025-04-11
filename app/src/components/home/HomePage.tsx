@@ -37,9 +37,6 @@ const HomePage: React.FC<HomePageProps> = () => {
     readingHistory,
     todoList,
     addToTodoList,
-    removeFromTodoList,
-    toggleTodoCompletion,
-    clearTodoList,
     availableDocuments,
     handleSelectDocument,
   } = useDocumentManager();
@@ -225,10 +222,6 @@ const HomePage: React.FC<HomePageProps> = () => {
               readingHistory={readingHistory}
             />
             <Overview
-              todoList={todoList}
-              readingHistory={readingHistory}
-              availableDocuments={availableDocuments}
-              toggleTodoCompletion={toggleTodoCompletion}
               handleSelectDocument={handleSelectDocument}
               setShowAddTodoModal={() => setShowFileDialog(true)}
             />
@@ -241,11 +234,7 @@ const HomePage: React.FC<HomePageProps> = () => {
 
         {activeTab === "todo" && (
           <TodoList
-            todoList={todoList}
-            toggleTodoCompletion={toggleTodoCompletion}
             handleSelectDocument={handleSelectDocument}
-            removeFromTodoList={removeFromTodoList}
-            clearTodoList={clearTodoList}
             setShowAddTodoModal={() => setShowFileDialog(true)}
           />
         )}

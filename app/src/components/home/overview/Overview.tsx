@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Zap, Activity } from "lucide-react";
 import { useTheme } from "@/components/theme/context/ThemeContext";
-import { ReadingHistoryItem, ReadingTodoItem } from "@/components/home/types";
 import { FileMetadata } from "@/utils/MarkdownLoader";
 import { ReadingAnalyticsService } from "@/utils/ReadingAnalyticsService";
 
@@ -13,28 +12,23 @@ import UpcomingReads from "./components/UpcomingReads";
 import DailyChallenge from "./components/DailyChallenge";
 import { formatDate, formatReadingTime, formatNumber } from "../utils";
 
+import { useDocumentManager } from "@/context";
+
 interface OverviewProps {
-  todoList: ReadingTodoItem[];
-  readingHistory: ReadingHistoryItem[];
-  availableDocuments: FileMetadata[];
   handleSelectDocument: (path: string, title: string) => void;
-  toggleTodoCompletion: (id: string) => void;
   setShowAddTodoModal: () => void;
 }
 
 const Overview: React.FC<OverviewProps> = ({
-  todoList,
-  readingHistory,
-  availableDocuments,
   handleSelectDocument,
-  toggleTodoCompletion,
-
   setShowAddTodoModal,
 }) => {
   const { currentTheme } = useTheme();
   const [stats, setStats] = useState(() =>
     ReadingAnalyticsService.getReadingStats()
   );
+  const { readingHistory, todoList, availableDocuments, toggleTodoCompletion } =
+    useDocumentManager();
   const [featuredDocs, setFeaturedDocs] = useState<FileMetadata[]>([]);
   const [categoryData, setCategoryData] = useState<
     { name: string; value: number }[]
