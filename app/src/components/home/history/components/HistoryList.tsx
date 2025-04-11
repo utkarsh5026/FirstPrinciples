@@ -130,7 +130,7 @@ const HistoryListItem: React.FC<{
 
         <div className="p-3 md:p-4 relative flex items-start gap-3">
           {/* Category Icon */}
-          <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-all duration-300 flex-shrink-0 border border-primary/10">
+          <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-all duration-300 flex-shrink-0 border border-primary/10">
             <CategoryIcon className="h-5 w-5 md:h-6 md:w-6 text-primary" />
           </div>
 

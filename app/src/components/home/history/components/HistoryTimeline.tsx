@@ -107,7 +107,7 @@ const HistoryTimeline: React.FC<HistoryTimelineProps> = memo(
               <div
                 className={cn(
                   isMobile ? "h-10 w-10" : "h-12 w-12",
-                  "bg-primary/10 backdrop-blur-sm rounded-xl flex items-center justify-center mr-3 md:mr-4 relative z-10 shadow-md border border-primary/20"
+                  "bg-primary/10 backdrop-blur-sm rounded-full flex items-center justify-center mr-3 md:mr-4 relative z-10 shadow-md border border-primary/20"
                 )}
                 style={{
                   background: `radial-gradient(circle at center, ${currentTheme.primary}20, ${currentTheme.primary}05)`,
@@ -177,7 +177,7 @@ const HistoryTimeline: React.FC<HistoryTimelineProps> = memo(
                       }}
                     />
 
-                    <div className="h-10 w-10 md:h-12 md:w-12 bg-primary/10 group-hover:bg-primary/20 rounded-xl flex items-center justify-center transition-all duration-300 flex-shrink-0 relative border border-primary/10">
+                    <div className="h-10 w-10 md:h-12 md:w-12 bg-primary/10 group-hover:bg-primary/20 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 relative border border-primary/10">
                       <CategoryIcon className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
 
