@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import getIconForTech from "@/components/icons";
 import { useTabContext } from "@/components/home/context/TabContext";
-import { useReadingHistory } from "@/hooks";
+import { useReadingHistory } from "@/context";
 
 interface RecentActivityProps {
   handleSelectDocument: (path: string, title: string) => void;

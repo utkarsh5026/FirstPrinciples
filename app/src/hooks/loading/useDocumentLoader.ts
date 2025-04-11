@@ -1,11 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import { useMarkdownProcessor } from "@/hooks/useMarkdownProcessor";
-import { useReadingHistory } from "@/hooks/reading/useReadingHistory";
-import { useReadingMetrics } from "@/hooks/reading/useReadingMetrics";
 import { useSectionReading } from "@/hooks/reading/useSectionReading";
-import { useServices } from "@/context/services/ServiceContext";
-import { useAchievements } from "@/hooks/reading/useAchievements";
+import {
+  useServices,
+  useReadingHistory,
+  useReadingMetrics,
+  useAchievements,
+} from "@/context";
 
 export type AchievementData = {
   title: string;
