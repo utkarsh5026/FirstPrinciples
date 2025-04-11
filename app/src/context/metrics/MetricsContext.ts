@@ -1,3 +1,4 @@
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import { createContext, useContext } from "react";
 
 /**
@@ -13,12 +14,22 @@ export type ReadingMetrics = {
   lastReadAt: number | null;
 };
 
+export type ReadingAnalyticsData = {
+  weeklyActivity: { day: string; count: number }[];
+  categoryBreakdown: { name: string; value: number }[];
+  readingByHour: { hour: number; count: number }[];
+  readingHeatmap: { date: string; count: number }[];
+  recentActivity: ReadingHistoryItem[];
+};
+
 export type ReadingMetricsContextType = {
   metrics: ReadingMetrics;
   isLoading: boolean;
   error: string | null;
   refreshMetrics: () => Promise<void>;
   formatReadingTime: (ms: number) => string;
+  analyticsData: ReadingAnalyticsData;
+  monthlyData: { name: string; count: number }[];
 };
 
 // Create the context with an undefined default value

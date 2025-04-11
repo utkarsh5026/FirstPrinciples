@@ -2,6 +2,17 @@ import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { useServices } from "../services/ServiceContext";
 import { ReadingMetricsContext } from "./MetricsContext";
 import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import { useReadingHistory } from "../history/HistoryContext";
+
+const daysOfWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+] as const;
 
 /**
  * Interface for reading metrics data
@@ -34,6 +45,8 @@ export const ReadingMetricsProvider: React.FC<ReadingMetricsProviderProps> = ({
     sectionAnalyticsController,
     readingHistoryService,
   } = useServices();
+
+  const { readingHistory } = useReadingHistory();
 
   const [metrics, setMetrics] = useState<ReadingMetrics>({
     totalWordsRead: 0,
@@ -252,6 +265,131 @@ export const ReadingMetricsProvider: React.FC<ReadingMetricsProviderProps> = ({
     }
   }, []);
 
+  const analyticsData = useMemo(() => {
+    const weeklyData = daysOfWeek.map((day) => ({ day, count: 0 }));
+
+    readingHistory.forEach((item) => {
+      const dayOfWeek = new Date(item.lastReadAt).getDay();
+      weeklyData[dayOfWeek].count++;
+    });
+
+    // Category breakdown data
+    const categories: Record<string, number> = {};
+
+    readingHistory.forEach((item) => {
+      // Extract category from path
+      const category = item.path.split("/")[0] || "uncategorized";
+      categories[category] = (categories[category] || 0) + 1;
+    });
+
+    // Convert to array format for charts
+    const categoryBreakdown = Object.entries(categories)
+      .map(([name, value]) => ({ name, value }))
+      .sort((a, b) => b.value - a.value);
+
+    // Reading by hour data
+    const hourlyData = Array.from({ length: 24 }, (_, hour) => ({
+      hour,
+      count: 0,
+    }));
+
+    readingHistory.forEach((item) => {
+      const hour = new Date(item.lastReadAt).getHours();
+      hourlyData[hour].count++;
+    });
+
+    // Reading heatmap data
+    const heatmapData: Record<string, number> = {};
+    const today = new Date();
+
+    // Initialize last 90 days with 0 count
+    for (let i = 0; i < 90; i++) {
+      const date = new Date(today);
+      date.setDate(date.getDate() - i);
+      const dateString = `${date.getFullYear()}-${
+        date.getMonth() + 1
+      }-${date.getDate()}`;
+      heatmapData[dateString] = 0;
+    }
+
+    // Count reading activities
+    readingHistory.forEach((item) => {
+      const date = new Date(item.lastReadAt);
+      const dateString = `${date.getFullYear()}-${
+        date.getMonth() + 1
+      }-${date.getDate()}`;
+
+      if (heatmapData[dateString] !== undefined) {
+        heatmapData[dateString]++;
+      }
+    });
+
+    // Convert to array format for visualization
+    const readingHeatmap = Object.entries(heatmapData)
+      .map(([date, count]) => ({ date, count }))
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+    // Recent activity
+    const recentActivity = [...readingHistory]
+      .sort((a, b) => b.lastReadAt - a.lastReadAt)
+      .slice(0, 5);
+
+    return {
+      weeklyActivity: weeklyData,
+      categoryBreakdown,
+      readingByHour: hourlyData,
+      readingHeatmap,
+      recentActivity,
+    };
+  }, [readingHistory]);
+
+  const monthlyData = useMemo(() => {
+    const months: Record<string, number> = {};
+    const now = new Date();
+    const monthsToShow = 6;
+
+    // Create a key for each month (YYYY-MM)
+    const createMonthKey = (date: Date) =>
+      `${date.getFullYear()}-${date.getMonth() + 1}`;
+
+    // Initialize data for the last 6 months
+    const initMonthlyData = (date: Date) => {
+      for (let i = 0; i < monthsToShow; i++) {
+        const d = new Date(date);
+        d.setMonth(d.getMonth() - i);
+        const monthKey = createMonthKey(d);
+        months[monthKey] = 0;
+      }
+    };
+
+    // Fill month data with reading counts
+    const fillMonthData = () => {
+      readingHistory.forEach((item) => {
+        const date = new Date(item.lastReadAt);
+        const monthKey = createMonthKey(date);
+        if (months[monthKey] !== undefined) {
+          months[monthKey]++;
+        }
+      });
+    };
+
+    initMonthlyData(now);
+    fillMonthData();
+
+    // Convert to array format for charts
+    return Object.entries(months)
+      .map(([key, count]) => {
+        const [year, month] = key.split("-").map(Number);
+        const date = new Date(year, month - 1);
+        return {
+          name: date.toLocaleDateString("en-US", { month: "short" }),
+          count,
+          date,
+        };
+      })
+      .sort((a, b) => a.date.getTime() - b.date.getTime());
+  }, [readingHistory]);
+
   const data = useMemo(
     () => ({
       metrics,
@@ -259,8 +397,18 @@ export const ReadingMetricsProvider: React.FC<ReadingMetricsProviderProps> = ({
       error,
       refreshMetrics: loadMetrics,
       formatReadingTime,
+      analyticsData,
+      monthlyData,
     }),
-    [metrics, isLoading, error, loadMetrics, formatReadingTime]
+    [
+      metrics,
+      isLoading,
+      error,
+      loadMetrics,
+      formatReadingTime,
+      analyticsData,
+      monthlyData,
+    ]
   );
 
   return (
