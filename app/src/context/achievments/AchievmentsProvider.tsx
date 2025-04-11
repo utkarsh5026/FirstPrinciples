@@ -47,29 +47,37 @@ export const EnhancedAchievementsProvider: React.FC<
     EnhancedAchievement[]
   >([]);
 
+  const formatedAchievements = useCallback(
+    (achievements: EnhancedAchievement[]) => {
+      return achievements.map((achievement) => ({
+        ...achievement,
+        tier: achievement.tier !== undefined ? achievement.tier : "bronze",
+        category:
+          achievement.category !== undefined
+            ? achievement.category
+            : "challenges",
+      }));
+    },
+    []
+  );
+
   /**
    * Load achievements data and stats
    */
   const loadAchievements = useCallback(async () => {
     setLoading(true);
     try {
-      // Get all achievements
-      const allAchievements =
-        await enhancedAchievementService.getAchievements();
-      setAchievements(
-        allAchievements.map((achievement) => ({
-          ...achievement,
-          tier: "bronze",
-          category: "challenges",
-        }))
+      const allAchievements = formatedAchievements(
+        await enhancedAchievementService.getAchievements()
+      );
+      setAchievements(allAchievements);
+
+      const newlyUnlocked = formatedAchievements(
+        await enhancedAchievementService.getNewAchievements()
       );
 
-      // Get new unacknowledged achievements
-      const newlyUnlocked =
-        await enhancedAchievementService.getNewAchievements();
       setNewAchievements(newlyUnlocked);
 
-      // Check for level up
       const stats = await readingStatsService.getStats();
       if (stats.recentLevelUp) {
         setCurrentLevelUp({
@@ -79,7 +87,7 @@ export const EnhancedAchievementsProvider: React.FC<
         });
       }
 
-      // Queue up notifications for new achievements
+      console.log(newlyUnlocked);
       if (newlyUnlocked.length > 0) {
         setNotificationQueue(newlyUnlocked);
       }
@@ -88,7 +96,7 @@ export const EnhancedAchievementsProvider: React.FC<
     } finally {
       setLoading(false);
     }
-  }, [enhancedAchievementService]);
+  }, [enhancedAchievementService, formatedAchievements]);
 
   /**
    * Check for new achievements based on recent activity
@@ -312,6 +320,8 @@ export const EnhancedAchievementsProvider: React.FC<
       resetAchievements,
     ]
   );
+
+  console.log(currentNotification);
 
   return (
     <AchievementsContext.Provider value={contextValue}>
