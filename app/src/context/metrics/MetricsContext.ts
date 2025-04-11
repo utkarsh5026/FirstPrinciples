@@ -1,5 +1,17 @@
 import { createContext, useContext } from "react";
-import type { ReadingMetrics } from "@/hooks/reading/useReadingMetrics";
+
+/**
+ * Interface for reading metrics data
+ */
+export type ReadingMetrics = {
+  totalWordsRead: number;
+  totalTimeSpent: number; // in milliseconds
+  documentsCompleted: number;
+  sectionsCompleted: number;
+  averageReadingSpeed: number; // words per minute
+  currentStreak: number;
+  lastReadAt: number | null;
+};
 
 export type ReadingMetricsContextType = {
   metrics: ReadingMetrics;

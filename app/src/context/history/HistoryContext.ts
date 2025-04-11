@@ -1,5 +1,4 @@
 import { createContext, useContext } from "react";
-
 import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 
 export type ReadingHistoryContextType = {

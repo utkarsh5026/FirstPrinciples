@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 import type { FileMetadata, ParsedMarkdown } from "@/utils/MarkdownLoader";
 import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import type { ReadingTodoItem } from "@/services/analytics/ReadingListService";
-import type { ReadingMetrics } from "@/hooks/reading/useReadingMetrics";
+import type { ReadingMetrics } from "@/context/metrics/MetricsContext";
 
 interface DocumentManagerContextType {
   // Reading history
