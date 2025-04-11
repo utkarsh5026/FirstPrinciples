@@ -1,36 +1,59 @@
-import React from "react";
-import { Brain, Calendar, FileText } from "lucide-react";
+import React, { useMemo } from "react";
+import { Brain, Calendar } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { useTheme } from "@/components/theme/context/ThemeContext";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  Tooltip as RechartsTooltip,
-} from "recharts";
+import CategoryPieChart from "@/components/analytics/category/insights/CategoryPieChart";
+import ReadingByWeekDay from "@/components/analytics/trends/ReadingByWeekDay";
+import { useReadingMetrics } from "@/context";
 
-interface ReadingInsightsProps {
-  categoryData: { name: string; value: number }[];
-  weekdayData: { name: string; count: number }[];
-  mostReadCategory: string;
-  chartColors: string[];
-}
+/**
+ * 📚 ReadingInsights Component
+ *
+ * This component provides a delightful overview of your reading habits!
+ * It showcases two main insights:
+ *
+ * 1. **Category Breakdown**: 🥳
+ *    - Visualizes the categories of your reading materials using a pie chart.
+ *    - It highlights the most read category, helping you understand your preferences better!
+ *
+ * 2. **Weekly Reading Patterns**: 📅
+ *    - Displays your reading activity throughout the week, allowing you to see when you read the most.
+ *    - If you haven't read much yet, it encourages you to read more to unlock your weekly patterns!
+ *
+ * The component utilizes hooks to compute the best day for reading and the best category based on your activity data.
+ * It ensures that you have a clear and engaging view of your reading journey! 🌟
+ */
+const ReadingInsights: React.FC = () => {
+  const { analyticsData } = useReadingMetrics();
 
-const ReadingInsights: React.FC<ReadingInsightsProps> = ({
-  categoryData,
-  weekdayData,
-  mostReadCategory,
-  chartColors,
-}) => {
-  const { currentTheme } = useTheme();
+  /**
+   * This hook calculates the best day for reading based on your weekly activity! 📅
+   * It analyzes how many times you've read on each day of the week and finds the day
+   * where you read the most. If you haven't read at all, it cheerfully returns "N/A"! 😊
+   */
+  const bestDay = useMemo(() => {
+    return analyticsData.weeklyActivity.length > 0
+      ? analyticsData.weeklyActivity.reduce(
+          (prev, current) => (prev.count > current.count ? prev : current),
+          analyticsData.weeklyActivity[0]
+        ).day
+      : "N/A";
+  }, [analyticsData]);
+
+  /**
+   * This hook identifies your favorite reading category! 📚✨
+   * It sorts the categories based on how many times you've read in each one,
+   * and then it picks the top one for you! This way, you can easily see
+   * what you love to read the most! 💖
+   */
+  const bestCategory = useMemo(() => {
+    const sorted = [...analyticsData.categoryBreakdown].sort(
+      (a, b) => b.value - a.value
+    );
+    return sorted[0].name;
+  }, [analyticsData]);
 
   return (
     <div className="grid grid-cols-2 gap-4">
-      {/* Category breakdown */}
       <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors rounded-3xl">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-30"></div>
 
@@ -39,58 +62,21 @@ const ReadingInsights: React.FC<ReadingInsightsProps> = ({
             <Brain className="h-3.5 w-3.5 mr-1.5 text-primary/70" />
             Categories
           </div>
-
-          {categoryData.length > 0 ? (
-            <div className="h-36 w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={categoryData}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={25}
-                    outerRadius={45}
-                    paddingAngle={5}
-                    dataKey="value"
-                    stroke="transparent"
-                  >
-                    {categoryData.map((entry, index) => (
-                      <Cell
-                        key={`cell-${entry.name}`}
-                        fill={chartColors[index % chartColors.length]}
-                      />
-                    ))}
-                  </Pie>
-                  <RechartsTooltip
-                    formatter={(value, name) => [`${value} docs`, name]}
-                    contentStyle={{
-                      background: currentTheme.cardBg,
-                      border: `1px solid ${currentTheme.border}`,
-                      borderRadius: "4px",
-                      color: currentTheme.foreground,
-                    }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          ) : (
-            <div className="h-36 flex items-center justify-center text-center">
-              <div className="text-muted-foreground text-xs">
-                <FileText className="h-8 w-8 mx-auto mb-2 opacity-30" />
-                <p>
-                  Read more documents
-                  <br />
-                  to see patterns
-                </p>
-              </div>
-            </div>
-          )}
+          <div className="h-32 w-full">
+            <CategoryPieChart
+              extraProps={{
+                innerRadius: 25,
+                outerRadius: 45,
+                paddingAngle: 5,
+                stroke: "transparent",
+              }}
+              showLegend={false}
+            />
+          </div>
 
           <div className="text-xs text-center text-muted-foreground mt-1">
             Most read:{" "}
-            <span className="font-medium text-primary/90">
-              {mostReadCategory}
-            </span>
+            <span className="font-medium text-primary/90">{bestCategory}</span>
           </div>
         </div>
       </Card>
@@ -105,36 +91,9 @@ const ReadingInsights: React.FC<ReadingInsightsProps> = ({
             Weekly Pattern
           </div>
 
-          {weekdayData.some((day) => day.count > 0) ? (
+          {analyticsData.weeklyActivity.some((day) => day.count > 0) ? (
             <div className="h-36 w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={weekdayData}
-                  margin={{ top: 5, right: 5, bottom: 5, left: 5 }}
-                >
-                  <XAxis
-                    dataKey="name"
-                    axisLine={false}
-                    tickLine={false}
-                    fontSize={10}
-                    tick={{ fill: currentTheme.foreground + "80" }}
-                  />
-                  <RechartsTooltip
-                    formatter={(value) => [`${value} docs`, "Read"]}
-                    contentStyle={{
-                      background: currentTheme.cardBg,
-                      border: `1px solid ${currentTheme.border}`,
-                      borderRadius: "4px",
-                      color: currentTheme.foreground,
-                    }}
-                  />
-                  <Bar
-                    dataKey="count"
-                    fill={currentTheme.primary}
-                    radius={[4, 4, 0, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <ReadingByWeekDay />
             </div>
           ) : (
             <div className="h-36 flex items-center justify-center text-center">
@@ -150,16 +109,10 @@ const ReadingInsights: React.FC<ReadingInsightsProps> = ({
           )}
 
           <div className="text-xs text-center text-muted-foreground mt-1">
-            {weekdayData.some((day) => day.count > 0) ? (
+            {analyticsData.weeklyActivity.some((day) => day.count > 0) ? (
               <span>
                 Best day:{" "}
-                <span className="font-medium text-primary/90">
-                  {
-                    weekdayData.reduce((prev, current) =>
-                      prev.count > current.count ? prev : current
-                    ).name
-                  }
-                </span>
+                <span className="font-medium text-primary/90">{bestDay}</span>
               </span>
             ) : (
               <span>Track your reading patterns</span>
