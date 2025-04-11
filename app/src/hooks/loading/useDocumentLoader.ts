@@ -44,8 +44,12 @@ export const useDocumentLoader = (selectedFile: string) => {
   const [achievementToShow, setAchievementToShow] =
     useState<AchievementData | null>(null);
 
-  const { newAchievements, currentLevelUp, acknowledgeAll, loadAchievements } =
-    useAchievements();
+  const {
+    newAchievements,
+    currentLevelUp,
+    acknowledgeAllAchievements,
+    loadAchievements,
+  } = useAchievements();
 
   const { analyticsController, wordCountEstimator } = useServices();
   const { addToReadingHistory } = useReadingHistory();
@@ -126,9 +130,9 @@ export const useDocumentLoader = (selectedFile: string) => {
    */
   const closeAchievementPopup = useCallback(() => {
     setShowAchievementPopup(false);
-    acknowledgeAll();
+    acknowledgeAllAchievements();
     setAchievementToShow(null);
-  }, [acknowledgeAll]);
+  }, [acknowledgeAllAchievements]);
 
   /**
    * 🔄 Automatically loads your document when you select a new one!

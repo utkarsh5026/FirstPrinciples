@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/services/analytics/EnhancedAchievementService.ts
 
 import { databaseService } from "../database/DatabaseService";
@@ -816,7 +817,7 @@ export class EnhancedAchievementService {
    */
   private calculateAchievementProgress(
     achievement: EnhancedAchievement,
-    stats: Record<string, number>
+    stats: Record<string, any>
   ): number {
     switch (achievement.id) {
       // Reading volume achievements
