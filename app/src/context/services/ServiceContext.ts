@@ -1,3 +1,5 @@
+// src/context/services/ServiceContext.ts - Updated version
+
 import { createContext, useContext } from "react";
 import { databaseService } from "@/services/database/DatabaseService";
 import { readingListService } from "@/services/analytics/ReadingListService";
@@ -8,6 +10,8 @@ import { sectionAnalyticsController } from "@/services/analytics/SectionAnalytic
 import { readingSessionTracker } from "@/services/analytics/ReadingSessionTracker";
 import { sectionReadingTracker } from "@/services/analytics/SectionReadingTracker";
 import { wordCountEstimator } from "@/services/analytics/WordCountEstimator";
+import { enhancedAchievementService } from "@/services/analytics/AchievmentService";
+import { xpService } from "@/services/analytics/XpService";
 
 /**
  * This type defines the shape of our Services Context, which holds
@@ -28,6 +32,8 @@ export type ServicesContextType = {
   readingSessionTracker: typeof readingSessionTracker;
   sectionReadingTracker: typeof sectionReadingTracker;
   wordCountEstimator: typeof wordCountEstimator;
+  enhancedAchievementService: typeof enhancedAchievementService;
+  xpService: typeof xpService;
 };
 
 /**

@@ -1,42 +1,35 @@
-import React from "react";
-import { ReadingAchievement } from "@/services/analytics/ReadingStatsService";
-import {
-  Award,
-  BookOpen,
-  BookText,
-  Flame,
-  Target,
-  Zap,
-  Clock,
-  CheckCircle2,
-  LockIcon,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Clock } from "lucide-react";
+import { type EnhancedAchievement } from "@/services/analytics/AchievmentService";
+import { Badge } from "@/components/ui/badge";
+import { categoryStyles, getAchievementIcon, tierStyles } from "./assets";
 
 interface AchievementCardProps {
-  achievement: ReadingAchievement;
-  variant?: "default" | "compact" | "detailed";
+  achievement: EnhancedAchievement;
   className?: string;
   onClick?: () => void;
+  showAnimation?: boolean;
 }
 
-/**
- * AchievementCard Component
- *
- * Displays an individual achievement with its icon, title, description, and progress.
- * Available in three variants: default, compact, and detailed.
- */
 export const AchievementCard: React.FC<AchievementCardProps> = ({
   achievement,
-  variant = "default",
   className,
   onClick,
+  showAnimation = true,
 }) => {
-  // Determine if the achievement is unlocked
+  const [shouldAnimate, setShouldAnimate] = useState(showAnimation);
   const isUnlocked = achievement.unlockedAt !== null;
+  const tierStyle = tierStyles[achievement.tier];
 
-  // Format the unlock date if available
+  const categoryStyle = categoryStyles[achievement.category];
+
+  const progressPercentage = Math.min(
+    100,
+    Math.round((achievement.progress / achievement.maxProgress) * 100)
+  );
+
   const formatUnlockDate = (timestamp: number | null) => {
     if (!timestamp) return "";
 
@@ -45,273 +38,99 @@ export const AchievementCard: React.FC<AchievementCardProps> = ({
     const diffMs = now.getTime() - date.getTime();
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-    if (diffDays < 1) {
-      return "Today";
-    } else if (diffDays === 1) {
-      return "Yesterday";
-    } else if (diffDays < 7) {
-      return `${diffDays} days ago`;
-    } else {
-      return date.toLocaleDateString(undefined, {
-        month: "short",
-        day: "numeric",
-        year: now.getFullYear() !== date.getFullYear() ? "numeric" : undefined,
-      });
-    }
+    if (diffDays < 1) return "Today";
+    if (diffDays === 1) return "Yesterday";
+    if (diffDays < 7) return `${diffDays} days ago`;
+
+    return date.toLocaleDateString(undefined, {
+      month: "short",
+      day: "numeric",
+      year: now.getFullYear() !== date.getFullYear() ? "numeric" : undefined,
+    });
   };
 
-  // Get the appropriate icon based on achievement category
-  const getAchievementIcon = () => {
-    switch (achievement.icon) {
-      case "BookOpen":
-        return <BookOpen />;
-      case "BookText":
-        return <BookText />;
-      case "Flame":
-        return <Flame />;
-      case "Target":
-        return <Target />;
-      case "Zap":
-        return <Zap />;
-      default:
-        return <Award />;
+  const isHidden = achievement.secret && !isUnlocked;
+
+  useEffect(() => {
+    if (showAnimation) {
+      const timer = setTimeout(() => {
+        setShouldAnimate(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
     }
-  };
+  }, [showAnimation]);
 
-  // Calculate progress percentage
-  const progressPercentage = Math.min(
-    100,
-    Math.round((achievement.progress / achievement.maxProgress) * 100)
-  );
-
-  // Compact variant
-  if (variant === "compact") {
-    return (
-      <div
-        className={cn(
-          "border rounded-lg p-3 relative overflow-hidden transition-all",
-          isUnlocked
-            ? "bg-primary/5 border-primary/20"
-            : "bg-card/80 border-border",
-          onClick && "cursor-pointer hover:border-primary/30",
-          className
-        )}
-        onClick={onClick}
-      >
-        <div className="flex items-center gap-2 mb-1.5">
-          <div
-            className={cn(
-              "p-1 rounded",
-              isUnlocked ? "bg-primary/20" : "bg-secondary/80"
-            )}
-          >
-            <div
-              className={cn(
-                "h-4 w-4",
-                isUnlocked ? "text-primary" : "text-foreground/50"
-              )}
-            >
-              {getAchievementIcon()}
-            </div>
-          </div>
-          <h3
-            className={cn(
-              "font-medium text-sm truncate pr-6",
-              !isUnlocked && "text-foreground/70"
-            )}
-          >
-            {achievement.title}
-          </h3>
-          {isUnlocked ? (
-            <div className="absolute top-3 right-3">
-              <CheckCircle2 className="h-4 w-4 text-primary" />
-            </div>
-          ) : (
-            <div className="absolute top-3 right-3">
-              <LockIcon className="h-4 w-4 text-foreground/30" />
-            </div>
-          )}
-        </div>
-
-        <div className="w-full bg-secondary/50 rounded-full h-1.5 overflow-hidden">
-          <div
-            className={cn(
-              "h-full rounded-full transition-all",
-              isUnlocked ? "bg-primary" : "bg-primary/40"
-            )}
-            style={{ width: `${progressPercentage}%` }}
-          />
-        </div>
-
-        <div className="flex justify-between text-xs mt-1.5">
-          <span className="text-foreground/60">
-            {achievement.progress} / {achievement.maxProgress}
-          </span>
-          <span
-            className={cn(
-              "font-medium",
-              isUnlocked ? "text-primary" : "text-foreground/60"
-            )}
-          >
-            {progressPercentage}%
-          </span>
-        </div>
-      </div>
-    );
-  }
-
-  // Detailed variant
-  if (variant === "detailed") {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className={cn(
-          "border rounded-xl p-4 relative overflow-hidden transition-all",
-          isUnlocked
-            ? "bg-primary/10 border-primary/30"
-            : "bg-card border-border",
-          onClick && "cursor-pointer hover:bg-primary/5",
-          className
-        )}
-        onClick={onClick}
-      >
-        <div className="flex items-start gap-3 mb-3">
-          <div
-            className={cn(
-              "p-2 rounded-lg",
-              isUnlocked ? "bg-primary/20" : "bg-secondary/80"
-            )}
-          >
-            <div
-              className={cn(
-                "h-6 w-6",
-                isUnlocked ? "text-primary" : "text-foreground/40"
-              )}
-            >
-              {getAchievementIcon()}
-            </div>
-          </div>
-
-          <div className="flex-1">
-            <h3 className="font-semibold text-base">{achievement.title}</h3>
-            <p className="text-sm text-foreground/70 mt-0.5">
-              {achievement.description}
-            </p>
-
-            {isUnlocked && (
-              <div className="flex items-center gap-1.5 mt-2 text-xs text-primary">
-                <Clock className="h-3.5 w-3.5" />
-                <span>Unlocked {formatUnlockDate(achievement.unlockedAt)}</span>
-              </div>
-            )}
-          </div>
-
-          {isUnlocked ? (
-            <div className="ml-auto">
-              <div className="bg-primary/20 p-1.5 rounded-full">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-              </div>
-            </div>
-          ) : (
-            <div className="ml-auto">
-              <div className="bg-secondary p-1.5 rounded-full">
-                <LockIcon className="h-5 w-5 text-foreground/30" />
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="w-full bg-background rounded-full h-2.5 mb-2 overflow-hidden">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${progressPercentage}%` }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className={cn(
-              "h-full rounded-full",
-              isUnlocked ? "bg-primary" : "bg-primary/40"
-            )}
-          />
-        </div>
-
-        <div className="flex justify-between text-xs">
-          <span className="text-foreground/70">
-            Progress: {achievement.progress} / {achievement.maxProgress}
-          </span>
-          <span
-            className={cn(
-              "font-medium",
-              isUnlocked ? "text-primary" : "text-foreground/60"
-            )}
-          >
-            {progressPercentage}%
-          </span>
-        </div>
-
-        {isUnlocked && !achievement.acknowledged && (
-          <div className="absolute top-0 right-0">
-            <div className="bg-primary text-primary-foreground text-xs font-medium px-2 py-0.5 rounded-bl-md">
-              New!
-            </div>
-          </div>
-        )}
-      </motion.div>
-    );
-  }
-
-  // Default variant
   return (
-    <div
+    <motion.div
+      initial={shouldAnimate ? { y: 20, opacity: 0 } : false}
+      animate={shouldAnimate ? { y: 0, opacity: 1 } : false}
+      transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.1 }}
       className={cn(
-        "border rounded-2xl p-4 relative overflow-hidden transition-colors",
-        isUnlocked ? "bg-card border-primary/20" : "bg-card/50 border-border",
-        onClick && "cursor-pointer hover:bg-primary/5",
+        "border rounded-2xl p-4 relative overflow-hidden transition-all shadow-sm",
+        isUnlocked
+          ? `${tierStyle.border} ${tierStyle.background} ${tierStyle.shadow}`
+          : "bg-card border-border",
+        onClick && "cursor-pointer hover:shadow-md",
         className
       )}
       onClick={onClick}
     >
-      <div className="flex items-center gap-3 mb-3">
+      <div className="flex items-start gap-3 mb-3">
         <div
           className={cn(
-            "p-2 rounded-md",
-            isUnlocked ? "bg-primary/20" : "bg-secondary/80"
+            "p-2 rounded-lg",
+            isUnlocked
+              ? `${categoryStyle.color} bg-background/80`
+              : "bg-secondary/80"
           )}
         >
-          <div
-            className={cn(
-              "h-5 w-5",
-              isUnlocked ? "text-primary" : "text-foreground/40"
-            )}
-          >
-            {getAchievementIcon()}
-          </div>
+          <div className="h-6 w-6">{getAchievementIcon(achievement.icon)}</div>
         </div>
 
-        <div>
-          <h3 className="font-medium">{achievement.title}</h3>
-          <p className="text-sm text-foreground/70">
-            {achievement.description}
+        <div className="flex-1">
+          <div className="flex items-center justify-between">
+            <h3
+              className={cn(
+                "font-semibold text-base",
+                isUnlocked ? tierStyle.textColor : "text-foreground/90"
+              )}
+            >
+              {isHidden ? "Hidden Achievement" : achievement.title}
+            </h3>
+
+            <Badge
+              variant="outline"
+              className={cn("ml-2 text-xs", tierStyle.badgeColor)}
+            >
+              {achievement.tier}
+            </Badge>
+          </div>
+
+          <p className="text-sm text-foreground/70 mt-1">
+            {isHidden
+              ? "Complete special actions to unlock this achievement"
+              : achievement.description}
           </p>
-        </div>
 
-        {isUnlocked ? (
-          <div className="ml-auto">
-            <CheckCircle2 className="h-5 w-5 text-primary" />
-          </div>
-        ) : (
-          <div className="ml-auto">
-            <LockIcon className="h-5 w-5 text-foreground/30" />
-          </div>
-        )}
+          {isUnlocked && (
+            <div className="flex items-center gap-1.5 mt-2 text-xs text-primary">
+              <Clock className="h-3.5 w-3.5" />
+              <span>Unlocked {formatUnlockDate(achievement.unlockedAt)}</span>
+            </div>
+          )}
+        </div>
       </div>
 
-      <div className="w-full bg-secondary rounded-full h-2 mb-2 overflow-hidden">
-        <div
+      <div className="w-full bg-background rounded-full h-2.5 mb-2 overflow-hidden">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: `${progressPercentage}%` }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           className={cn(
-            "h-full rounded-full transition-all",
-            isUnlocked ? "bg-primary" : "bg-primary/40"
+            "h-full rounded-full",
+            isUnlocked ? categoryStyle.color : "bg-primary/40"
           )}
-          style={{ width: `${progressPercentage}%` }}
         />
       </div>
 
@@ -319,15 +138,15 @@ export const AchievementCard: React.FC<AchievementCardProps> = ({
         <span className="text-foreground/70">
           Progress: {achievement.progress} / {achievement.maxProgress}
         </span>
-        <span className="font-medium">{progressPercentage}%</span>
+        <span
+          className={cn(
+            "font-medium",
+            isUnlocked ? tierStyle.textColor : "text-foreground/60"
+          )}
+        >
+          {progressPercentage}%
+        </span>
       </div>
-
-      {isUnlocked && (
-        <div className="text-xs flex items-center gap-1.5 mt-2 text-foreground/70">
-          <Clock className="h-3.5 w-3.5" />
-          <span>Unlocked {formatUnlockDate(achievement.unlockedAt)}</span>
-        </div>
-      )}
 
       {isUnlocked && !achievement.acknowledged && (
         <div className="absolute top-0 right-0">
@@ -336,7 +155,16 @@ export const AchievementCard: React.FC<AchievementCardProps> = ({
           </div>
         </div>
       )}
-    </div>
+
+      {shouldAnimate && isUnlocked && (
+        <motion.div
+          className="absolute inset-0 bg-white dark:bg-white pointer-events-none"
+          initial={{ opacity: 0.8 }}
+          animate={{ opacity: 0 }}
+          transition={{ duration: 1.5 }}
+        />
+      )}
+    </motion.div>
   );
 };
 

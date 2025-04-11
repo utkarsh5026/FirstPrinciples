@@ -9,7 +9,8 @@ import { sectionAnalyticsController } from "@/services/analytics/SectionAnalytic
 import { readingSessionTracker } from "@/services/analytics/ReadingSessionTracker";
 import { sectionReadingTracker } from "@/services/analytics/SectionReadingTracker";
 import { wordCountEstimator } from "@/services/analytics/WordCountEstimator";
-
+import { enhancedAchievementService } from "@/services/analytics/AchievmentService";
+import { xpService } from "@/services/analytics/XpService";
 interface ServicesProviderProps {
   children: ReactNode;
 }
@@ -43,6 +44,8 @@ export const ServicesProvider: React.FC<ServicesProviderProps> = ({
       readingSessionTracker,
       sectionReadingTracker,
       wordCountEstimator,
+      enhancedAchievementService,
+      xpService,
     }),
     []
   );

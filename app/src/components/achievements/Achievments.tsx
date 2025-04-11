@@ -1,246 +1,199 @@
+import { useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Zap, Trophy, Medal, ListTodo } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import AchievmentCard from "./AchievmentCard";
-import { useAchievements } from "@/context/achievments/AchievmentsContext";
+import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Lock, Award, Search, Check } from "lucide-react";
+import AchievementCard from "./AchievmentCard";
+import { type AchievementCategory } from "@/services/analytics/AchievmentService";
+import { cn } from "@/lib/utils";
+import { useAchievements } from "@/context";
 
-interface AchievementsProps {
-  xpProgress?: number;
-  xpToNextLevel?: number;
-  currentLevelXP?: number;
-  level?: number;
-  totalXP?: number;
-}
+import { categoryInfo } from "./assets";
+import Header from "./Header";
+import ProgressSummary from "./ProgressSummary";
+import NewAchievments from "./NewAchievments";
 
-/**
- * The Achievements component displays the user's reading achievements, progress, and level.
- * It includes a card for XP and level, a section for achievements in progress, a section for unlocked achievements,
- * and a section for all achievements.
- *
- * @param {Object} props - The component props.
- * @param {ReadingStats} props.stats - The user's reading statistics.
- * @param {number} props.xpProgress - The user's current XP progress.
- * @param {number} props.xpToNextLevel - The XP required to reach the next level.
- * @param {number} props.currentLevelXP - The XP required for the current level.
- * @param {ReadingAchievement[]} props.activeAchievements - The achievements the user is currently working on.
- * @param {ReadingAchievement[]} props.achievements - All achievements available.
- *
- * @returns {JSX.Element} The Achievements component.
- */
-const Achievements: React.FC<AchievementsProps> = ({
-  xpProgress = 0,
-  xpToNextLevel = 0,
-  currentLevelXP = 0,
-  level = 0,
-  totalXP = 0,
-}) => {
+export const Achievements = () => {
   const { achievements, newAchievements } = useAchievements();
+  const [selectedCategory, setSelectedCategory] = useState<
+    AchievementCategory | "all"
+  >("all");
+  const [searchValue, setSearchValue] = useState("");
+  const [showUnlocked, setShowUnlocked] = useState(true);
+  const [showLocked, setShowLocked] = useState(true);
+
+  const filteredAchievements = achievements.filter((achievement) => {
+    // Filter by category
+    if (
+      selectedCategory !== "all" &&
+      achievement.category !== selectedCategory
+    ) {
+      return false;
+    }
+
+    // Filter by search
+    if (
+      searchValue &&
+      !achievement.title.toLowerCase().includes(searchValue.toLowerCase())
+    ) {
+      return false;
+    }
+
+    // Filter by locked/unlocked status
+    if (!showUnlocked && achievement.unlockedAt !== null) {
+      return false;
+    }
+
+    if (!showLocked && achievement.unlockedAt === null) {
+      return false;
+    }
+
+    return true;
+  });
+
   return (
     <div className="space-y-6">
-      {/* XP and Level Card */}
-      <Card className="p-4 border-primary/10 bg-gradient-to-r from-primary/10 to-transparent overflow-hidden relative rounded-2xl">
-        <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-          <div className="relative">
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-primary flex items-center justify-center bg-background">
-              <span className="text-2xl md:text-3xl font-bold">{level}</span>
-            </div>
-            <div className="absolute -bottom-1 -right-1 bg-primary text-white rounded-full p-1">
-              <Zap className="h-4 w-4" />
-            </div>
+      <Header />
+      {newAchievements.length > 0 && <NewAchievments />}
+      <ProgressSummary />
 
-            {/* Decorative element */}
-            <div className="absolute -right-24 -bottom-24 opacity-5">
-              <Zap className="h-48 w-48 text-primary" />
-            </div>
-          </div>
-
-          <div className="flex-1">
-            <div className="flex justify-between items-baseline mb-1">
-              <h4 className="text-sm font-medium">Reading Level</h4>
-              <span className="text-xs text-muted-foreground">
-                {totalXP} total XP
-              </span>
-            </div>
-
-            <Progress value={xpProgress} className="h-2" />
-
-            <div className="flex justify-between mt-1.5 text-xs text-muted-foreground">
-              <span>{currentLevelXP} XP</span>
-              <span>
-                {xpToNextLevel - currentLevelXP} XP to level {level + 1}
-              </span>
-            </div>
-
-            <div className="mt-3 bg-background/30 p-2 rounded text-xs">
-              Complete achievements and reading challenges to earn XP and level
-              up
-            </div>
-          </div>
-        </div>
-      </Card>
-
-      {/* Achievements */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Achievements in progress */}
-        <Card className="p-4 border-primary/10 rounded-2xl">
-          <div className="flex justify-between items-center mb-3">
-            <h4 className="text-sm font-medium flex items-center">
-              <Medal className="h-4 w-4 mr-2 text-primary" />
-              In Progress
-            </h4>
-            <Badge variant="outline" className="text-xs">
-              {newAchievements.length} Active
-            </Badge>
-          </div>
-
-          <div className="space-y-3">
-            {newAchievements.map((achievement) => (
-              <div
-                key={achievement.id}
-                className="p-3 rounded-2xl border border-primary/10 bg-secondary/5"
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Trophy className="h-4 w-4 text-primary" />
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="flex justify-between items-start">
-                      <div className="text-sm font-medium">
-                        {achievement.title}
-                      </div>
-                      <Badge
-                        variant="outline"
-                        className="ml-1 border-primary/20 text-xs"
-                      >
-                        {achievement.progress}/{achievement.maxProgress}
-                      </Badge>
-                    </div>
-                    <div className="text-xs text-muted-foreground mt-0.5">
-                      {achievement.description}
-                    </div>
-                    <Progress
-                      value={
-                        (achievement.progress / achievement.maxProgress) * 100
-                      }
-                      className="h-1.5 mt-2"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-
-            {newAchievements.length === 0 && (
-              <div className="text-center py-6 text-muted-foreground">
-                <Medal className="h-8 w-8 mx-auto mb-2 opacity-30" />
-                <p className="text-sm">No achievements in progress</p>
-                <p className="text-xs mt-1">
-                  Start reading to work toward achievements
-                </p>
-              </div>
-            )}
-          </div>
-        </Card>
-
-        {/* Unlocked Achievements */}
-        <Card className="p-4 border-primary/10 rounded-2xl">
-          <div className="flex justify-between items-center mb-3">
-            <h4 className="text-sm font-medium flex items-center">
-              <Trophy className="h-4 w-4 mr-2 text-primary" />
-              Unlocked
-            </h4>
-            <Badge variant="outline" className="text-xs">
-              {achievements.filter((a) => a.unlockedAt !== null).length}{" "}
-              Achieved
-            </Badge>
-          </div>
-
-          <div className="space-y-3">
-            {achievements
-              .filter((achievement) => achievement.unlockedAt !== null)
-              .sort((a, b) => (b.unlockedAt ?? 0) - (a.unlockedAt ?? 0))
-              .slice(0, 5)
-              .map((achievement) => (
-                <div
-                  key={achievement.id}
-                  className="p-3 rounded-2xl border border-primary/10 bg-primary/5"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                      <Trophy className="h-4 w-4 text-primary" />
-                    </div>
-
-                    <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-start">
-                        <div className="text-sm font-medium">
-                          {achievement.title}
-                        </div>
-                        <Badge
-                          variant="outline"
-                          className="ml-1 border-green-500/30 text-green-500 text-xs"
-                        >
-                          Completed
-                        </Badge>
-                      </div>
-                      <div className="text-xs text-muted-foreground mt-0.5">
-                        {achievement.description}
-                      </div>
-                      <div className="text-xs text-muted-foreground mt-1.5">
-                        Unlocked:{" "}
-                        {achievement.unlockedAt
-                          ? new Date(
-                              achievement.unlockedAt
-                            ).toLocaleDateString()
-                          : ""}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-            {achievements.filter((a) => a.unlockedAt !== null).length === 0 && (
-              <div className="text-center py-6 text-muted-foreground">
-                <Trophy className="h-8 w-8 mx-auto mb-2 opacity-30" />
-                <p className="text-sm">No achievements unlocked yet</p>
-                <p className="text-xs mt-1">
-                  Keep reading to earn achievements
-                </p>
-              </div>
-            )}
-          </div>
-        </Card>
-      </div>
-
-      {/* All Achievements */}
-      <Card className="p-4 border-primary/10 rounded-2xl">
-        <div className="flex justify-between items-center mb-4">
-          <h4 className="text-sm font-medium flex items-center">
-            <ListTodo className="h-4 w-4 mr-2 text-primary" />
-            All Achievements
-          </h4>
-          <div className="text-xs text-muted-foreground">
-            {achievements.filter((a) => a.unlockedAt !== null).length}/
-            {achievements.length} Completed
-          </div>
-        </div>
-
-        <Progress
-          value={
-            (achievements.filter((a) => a.unlockedAt !== null).length /
-              achievements.length) *
-            100
+      <Card className="border-border rounded-2xl overflow-hidden">
+        <Tabs
+          defaultValue="all"
+          onValueChange={(value) =>
+            setSelectedCategory(value as AchievementCategory)
           }
-          className="h-2 mb-6"
-        />
+        >
+          <div className="p-4 pb-0">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="font-semibold">Achievement Categories</h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {achievements.map((achievement) => {
-            return (
-              <AchievmentCard key={achievement.id} achievement={achievement} />
-            );
-          })}
-        </div>
+              <div className="relative">
+                <Search className="h-4 w-4 absolute left-2 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="Search achievements..."
+                  className="pl-8 py-1 pr-2 text-sm bg-background border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 mb-4">
+              <button
+                onClick={() => setShowUnlocked(!showUnlocked)}
+                className={cn(
+                  "px-2 py-1 text-xs rounded-md transition-colors flex items-center gap-1",
+                  showUnlocked
+                    ? "bg-primary/20 text-primary"
+                    : "bg-secondary text-muted-foreground"
+                )}
+              >
+                <Check className="h-3 w-3" />
+                Unlocked
+              </button>
+
+              <button
+                onClick={() => setShowLocked(!showLocked)}
+                className={cn(
+                  "px-2 py-1 text-xs rounded-md transition-colors flex items-center gap-1",
+                  showLocked
+                    ? "bg-primary/20 text-primary"
+                    : "bg-secondary text-muted-foreground"
+                )}
+              >
+                <Lock className="h-3 w-3" />
+                Locked
+              </button>
+            </div>
+
+            <TabsList className="grid grid-cols-4 md:grid-cols-8 h-auto bg-transparent p-0 gap-1">
+              <TabsTrigger
+                value="all"
+                className="text-xs py-1.5 data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
+              >
+                <span className="flex flex-col items-center gap-1">
+                  <Award className="h-4 w-4" />
+                  <span className="hidden md:inline">All</span>
+                </span>
+              </TabsTrigger>
+
+              {(Object.keys(categoryInfo) as AchievementCategory[]).map(
+                (category) => (
+                  <TabsTrigger
+                    key={category}
+                    value={category}
+                    className={cn(
+                      "text-xs py-1.5 data-[state=active]:bg-primary/20 data-[state=active]:text-primary",
+                      categoryInfo[category].color
+                    )}
+                  >
+                    <span className="flex flex-col items-center gap-1">
+                      {categoryInfo[category].icon}
+                      <span className="hidden md:inline truncate">
+                        {categoryInfo[category].name}
+                      </span>
+                    </span>
+                  </TabsTrigger>
+                )
+              )}
+            </TabsList>
+          </div>
+
+          <Separator className="my-2" />
+
+          <TabsContent value="all" className="m-0">
+            <ScrollArea className="h-[400px] md:h-[500px] p-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {filteredAchievements.length > 0 ? (
+                  filteredAchievements.map((achievement) => (
+                    <AchievementCard
+                      key={achievement.id}
+                      achievement={achievement}
+                    />
+                  ))
+                ) : (
+                  <div className="col-span-full flex flex-col items-center justify-center py-12 text-muted-foreground">
+                    <Award className="h-12 w-12 mb-2 opacity-20" />
+                    <p>No achievements match your filters</p>
+                  </div>
+                )}
+              </div>
+            </ScrollArea>
+          </TabsContent>
+
+          {(Object.keys(categoryInfo) as AchievementCategory[]).map(
+            (category) => (
+              <TabsContent key={category} value={category} className="m-0">
+                <div className="p-4 pb-2">
+                  <p className="text-sm text-muted-foreground">
+                    {categoryInfo[category].description}
+                  </p>
+                </div>
+
+                <ScrollArea className="h-[400px] md:h-[450px] p-4 pt-0">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {filteredAchievements.length > 0 ? (
+                      filteredAchievements.map((achievement) => (
+                        <AchievementCard
+                          key={achievement.id}
+                          achievement={achievement}
+                        />
+                      ))
+                    ) : (
+                      <div className="col-span-full flex flex-col items-center justify-center py-12 text-muted-foreground">
+                        <Award className="h-12 w-12 mb-2 opacity-20" />
+                        <p>No achievements match your filters</p>
+                      </div>
+                    )}
+                  </div>
+                </ScrollArea>
+              </TabsContent>
+            )
+          )}
+        </Tabs>
       </Card>
     </div>
   );

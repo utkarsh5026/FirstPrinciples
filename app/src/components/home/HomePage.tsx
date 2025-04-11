@@ -33,13 +33,8 @@ interface HomePageProps {
  * includes analytics and gamification features.
  */
 const HomePage: React.FC<HomePageProps> = () => {
-  const {
-    readingHistory,
-    todoList,
-    addToTodoList,
-    availableDocuments,
-    handleSelectDocument,
-  } = useDocumentManager();
+  const { todoList, addToTodoList, availableDocuments, handleSelectDocument } =
+    useDocumentManager();
 
   const [showFileDialog, setShowFileDialog] = useState(false);
   const { activeTab, setActiveTab } = useTabContext();
@@ -216,11 +211,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       <div className="pt-2">
         {activeTab === "overview" && (
           <>
-            <Hero
-              availableDocuments={availableDocuments}
-              todoList={todoList}
-              readingHistory={readingHistory}
-            />
+            <Hero />
             <Overview
               handleSelectDocument={handleSelectDocument}
               setShowAddTodoModal={() => setShowFileDialog(true)}
