@@ -16,6 +16,10 @@ export type ReadingListContextType = {
     completionPercentage: number;
   }>;
   refreshReadingList: () => Promise<void>;
+  pendingCount: number;
+  completedCount: number;
+  completionPercentage: number;
+  totalCount: number;
 };
 
 // Create the context with an undefined default value

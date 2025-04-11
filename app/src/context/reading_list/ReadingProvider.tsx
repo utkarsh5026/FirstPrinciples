@@ -194,6 +194,32 @@ export const ReadingListProvider: React.FC<ReadingListProviderProps> = ({
     }
   }, [readingListService]);
 
+  /**
+   * 📊 Reading Statistics
+   *
+   * Calculates all the fun statistics about your reading progress!
+   * Tracks how many items are pending, completed, and your overall
+   * completion percentage to keep you motivated! 🎯
+   */
+  const { pendingCount, completedCount, completionPercentage, totalCount } =
+    useMemo(() => {
+      const completedCount = todoList.filter((item) => item.completed).length;
+      const totalCount = todoList.length;
+
+      return {
+        pendingCount: todoList.filter((item) => !item.completed).length,
+        completedCount,
+        totalCount,
+        completionPercentage:
+          totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0,
+      };
+    }, [todoList]) as {
+      pendingCount: number;
+      completedCount: number;
+      completionPercentage: number;
+      totalCount: number;
+    };
+
   const readingListData = useMemo(
     () => ({
       todoList,
@@ -205,6 +231,10 @@ export const ReadingListProvider: React.FC<ReadingListProviderProps> = ({
       clearReadingList,
       getCompletionStats,
       refreshReadingList,
+      pendingCount,
+      completedCount,
+      completionPercentage,
+      totalCount,
     }),
     [
       todoList,
@@ -216,6 +246,10 @@ export const ReadingListProvider: React.FC<ReadingListProviderProps> = ({
       clearReadingList,
       getCompletionStats,
       refreshReadingList,
+      pendingCount,
+      completedCount,
+      completionPercentage,
+      totalCount,
     ]
   );
 
