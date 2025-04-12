@@ -9,13 +9,19 @@ import { useDocumentManager } from "@/context/document/DocumentContext";
 import StatCard from "./StatCard";
 import CategoryRadarChart from "@/components/insights/RadarChart";
 
+interface CategoryCoverageMapProps {
+  compact: boolean;
+}
+
 /**
  * 🌟 CategoryCoverageMap is a vibrant visualization tool that brings your category coverage to life!
  * It creates a stunning radar/spider chart that allows users to easily see how well they are doing across different categories.
  * Each category shines as an axis, with the distance from the center representing reading completion.
  * 📊 This component is perfect for quickly grasping your strengths and areas that need a little extra love! 💖
  */
-const CategoryCoverageMap: React.FC = () => {
+const CategoryCoverageMap: React.FC<CategoryCoverageMapProps> = ({
+  compact = false,
+}) => {
   const { isMobile } = useMobile();
   const { availableDocuments, readingHistory } = useDocumentManager();
 
@@ -60,10 +66,8 @@ const CategoryCoverageMap: React.FC = () => {
 
     return chartData.map((item) => ({
       ...item,
-      // Use percentage value for the radar chart to normalize the data
       value: item.percentage,
       displayName: item.fullName ?? item.name,
-      // Create a short name for small screens
       shortName: item.name.substring(0, isMobile ? 1 : 3).toUpperCase(),
     }));
   }, [availableDocuments, readingHistory, isMobile]);
@@ -129,48 +133,51 @@ const CategoryCoverageMap: React.FC = () => {
               <CategoryRadarChart radarData={radarData} />
             </motion.div>
 
-            {/* Summary cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-20">
-              <StatCard
-                title="Average Coverage"
-                value={`${Math.round(averageCoverage)}%`}
-                footer={`Across ${totalCategories} ${
-                  totalCategories === 1 ? "category" : "categories"
-                }`}
-                icon={<Target className="h-4 w-4 text-primary/80" />}
-              />
-
-              {topCategory && (
+            {!compact && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-20">
                 <StatCard
-                  title="Top Category"
-                  value={topCategory.name}
-                  footer={`${Math.round(topCategory.percentage)}% complete`}
-                  icon={
-                    TopCategoryIcon ? (
-                      <TopCategoryIcon className="h-4 w-4 text-green-500" />
-                    ) : (
-                      <div className="w-3 h-3 rounded-full bg-green-500" />
-                    )
-                  }
-                  highlight={true}
+                  title="Average Coverage"
+                  value={`${Math.round(averageCoverage)}%`}
+                  footer={`Across ${totalCategories} ${
+                    totalCategories === 1 ? "category" : "categories"
+                  }`}
+                  icon={<Target className="h-4 w-4 text-primary/80" />}
                 />
-              )}
 
-              {weakestCategory && (
-                <StatCard
-                  title="Needs Attention"
-                  value={weakestCategory.name}
-                  footer={`${Math.round(weakestCategory.percentage)}% complete`}
-                  icon={
-                    WeakestCategoryIcon ? (
-                      <WeakestCategoryIcon className="h-4 w-4 text-amber-500" />
-                    ) : (
-                      <div className="w-3 h-3 rounded-full bg-amber-500" />
-                    )
-                  }
-                />
-              )}
-            </div>
+                {topCategory && (
+                  <StatCard
+                    title="Top Category"
+                    value={topCategory.name}
+                    footer={`${Math.round(topCategory.percentage)}% complete`}
+                    icon={
+                      TopCategoryIcon ? (
+                        <TopCategoryIcon className="h-4 w-4 text-green-500" />
+                      ) : (
+                        <div className="w-3 h-3 rounded-full bg-green-500" />
+                      )
+                    }
+                    highlight={true}
+                  />
+                )}
+
+                {weakestCategory && (
+                  <StatCard
+                    title="Needs Attention"
+                    value={weakestCategory.name}
+                    footer={`${Math.round(
+                      weakestCategory.percentage
+                    )}% complete`}
+                    icon={
+                      WeakestCategoryIcon ? (
+                        <WeakestCategoryIcon className="h-4 w-4 text-amber-500" />
+                      ) : (
+                        <div className="w-3 h-3 rounded-full bg-amber-500" />
+                      )
+                    }
+                  />
+                )}
+              </div>
+            )}
           </div>
         ) : (
           <div className="flex items-center justify-center h-64 text-muted-foreground">

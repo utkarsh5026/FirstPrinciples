@@ -6,7 +6,7 @@ import Insights from "./insights";
 import AnalyticsOverview from "./overview";
 import { SiDeepl } from "react-icons/si";
 import Achievements from "@/components/achievements/Achievments";
-import CategoryAnalytics from "./category/CategoryAnalytics";
+import CategoryAnalytics from "./deep";
 
 interface AnalyticsPageProps {
   onSelectDocument: (path: string, title: string) => void;

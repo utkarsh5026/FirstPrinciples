@@ -1,15 +1,20 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Target, Calendar, FolderTree, Sparkles } from "lucide-react";
+import {
+  Target,
+  Calendar,
+  FolderTree,
+  Sparkles,
+  BrainCircuit,
+} from "lucide-react";
 import { PiFlowArrow } from "react-icons/pi";
 import { MarkdownLoader, Category } from "@/utils/MarkdownLoader";
 import useMobile from "@/hooks/useMobile";
 
-import CategoryCoverageMap from "../deep/coverage";
-import SankeyKnowledgeFlow from "../deep/flow";
-import TimeFilteredHeatCalendar from "../deep/timeline/ReadingTimeline";
-import CategoryInsights from "../deep/hierarchy/CategoryInsights";
-import Introduction from "./Introduction";
+import CategoryCoverageMap from "./coverage";
+import SankeyKnowledgeFlow from "./flow";
+import TimeFilteredHeatCalendar from "./timeline/ReadingTimeline";
+import CategoryInsights from "./hierarchy/CategoryInsights";
 import Recommendations from "./recommendations";
 import {
   useReadingHistory,
@@ -195,9 +200,53 @@ const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
     analyticsData.categoryBreakdown.length,
   ]);
 
+  const stats = [
+    {
+      title: "Categories Explored",
+      value: summaryStat.exploredCategories,
+      total: summaryStat.totalCategories,
+    },
+    { title: "Coverage Score", value: summaryStat.coverageScore, total: 100 },
+    { title: "Balance Score", value: summaryStat.balanceScore, total: 100 },
+    { title: "Documents Read", value: summaryStat.readDocuments, total: 100 },
+  ];
+
   return (
     <div className="space-y-6">
-      <Introduction summaryStat={summaryStat} />
+      <Card className="p-4 border-primary/10 bg-gradient-to-r from-primary/5 to-transparent rounded-2xl">
+        <div className="flex items-start gap-4">
+          <div className="p-2 bg-primary/10 rounded-xl">
+            <BrainCircuit className="h-8 w-8 text-primary" />
+          </div>
+
+          <div className="flex-1">
+            <h3 className="text-lg font-medium">
+              Enhanced Knowledge Analytics
+            </h3>
+            <p className="text-sm text-muted-foreground mt-1">
+              Advanced visualizations that reveal connections between categories
+              and documents, showing how your knowledge flows and grows over
+              time.
+            </p>
+
+            <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+              {stats.map(({ title, value, total }) => {
+                return (
+                  <div
+                    className="bg-card p-2 rounded-2xl border border-border"
+                    key={title}
+                  >
+                    <div className="text-xs text-muted-foreground">{title}</div>
+                    <div className="text-base font-bold mt-1">
+                      {value}/{total}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </Card>
 
       {/* Visualization tabs */}
       <Tabs
