@@ -93,7 +93,7 @@ const CategoryRadarChart: React.FC<RadarChartProps> = ({
             />
 
             <PolarAngleAxis
-              dataKey={isMobile ? "shortName" : "name"}
+              dataKey="name"
               tick={{
                 fill: currentTheme.foreground,
                 fontSize: isMobile ? 10 : 12,
