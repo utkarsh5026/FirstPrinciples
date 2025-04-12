@@ -5,8 +5,8 @@ import { PiFlowArrow } from "react-icons/pi";
 import { MarkdownLoader, Category } from "@/utils/MarkdownLoader";
 import useMobile from "@/hooks/useMobile";
 
-import CategoryCoverageMap from "./coverage";
-import SankeyKnowledgeFlow from "./flow";
+import CategoryCoverageMap from "../deep/coverage";
+import SankeyKnowledgeFlow from "../deep/flow";
 import TimeFilteredHeatCalendar from "../deep/timeline/ReadingTimeline";
 import CategoryInsights from "../deep/hierarchy/CategoryInsights";
 import Introduction from "./Introduction";
@@ -224,10 +224,7 @@ const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
           <div className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Radar Chart */}
-              <CategoryCoverageMap
-                data={radarData}
-                title="Category Coverage Map"
-              />
+              <CategoryCoverageMap compact />
 
               <Card className="rounded-2xl p-8">
                 <HeatMapView
@@ -246,7 +243,7 @@ const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
         </TabsContent>
 
         <TabsContent value="radar">
-          <CategoryCoverageMap data={radarData} title="Category Coverage Map" />
+          <CategoryCoverageMap compact={false} />
         </TabsContent>
 
         <TabsContent value="flow">
