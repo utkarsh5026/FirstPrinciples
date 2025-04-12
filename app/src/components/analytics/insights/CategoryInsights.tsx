@@ -31,7 +31,7 @@ const CategoryInsights: React.FC = () => {
         </h4>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         {/* Category Distribution */}
         <div className="space-y-2">
           <h5 className="text-xs uppercase text-muted-foreground font-medium">
@@ -40,13 +40,14 @@ const CategoryInsights: React.FC = () => {
 
           <div className="h-48">
             <CategoryPieChart
-              useThemeColors={false}
               showTooltip
-              showLegend={false}
+              showLegend={true}
               extraProps={{
                 labelLine: true,
-                label: ({ name }) => {
-                  return `${fromSnakeToTitleCase(name)}`;
+                label: ({ percent, name }) => {
+                  return `${fromSnakeToTitleCase(name)} (${(
+                    percent * 100
+                  ).toPrecision(4)}%)`;
                 },
               }}
             />
@@ -59,7 +60,7 @@ const CategoryInsights: React.FC = () => {
             Categories Explored
           </h5>
 
-          <div className="h-48 overflow-auto">
+          <div className="h-64 overflow-auto">
             <CategoriesExplored />
           </div>
         </div>

@@ -12,6 +12,7 @@ import { useReadingHistory } from "./history/HistoryContext";
 import { useReadingMetrics } from "./metrics/MetricsContext";
 import { useServices } from "./services/ServiceContext";
 import { useXP } from "./xp/XpContext";
+import { useAnalytics } from "./analytics/AnalyticsContext";
 
 export {
   DocumentManagerProvider,
@@ -27,4 +28,5 @@ export {
   useReadingMetrics,
   useServices,
   useXP,
+  useAnalytics,
 };

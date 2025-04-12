@@ -32,6 +32,17 @@ export type ReadingMetricsContextType = {
   formatReadingTime: (ms: number) => string;
   analyticsData: ReadingAnalyticsData;
   monthlyData: { name: string; count: number }[];
+  generateMonthlyData: (
+    readingHistory: ReadingHistoryItem[],
+    currentMonth: Date
+  ) => {
+    activityMap: Record<string, number>;
+    weeks: number[][];
+    daysInMonth: number;
+    totalActiveDays: number;
+    totalReadings: number;
+    maxCount: number;
+  };
 };
 
 // Create the context with an undefined default value

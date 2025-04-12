@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import {
   Radar,
   RadarChart as RechartRadarChart,
@@ -6,9 +6,13 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis,
   ResponsiveContainer,
-  Tooltip as RechartsTooltip,
+  Tooltip,
 } from "recharts";
+import { motion } from "framer-motion";
 import useMobile from "@/hooks/useMobile";
+import { useTheme } from "@/components/theme/context/ThemeContext";
+import { ChartArea } from "lucide-react";
+import { useDocumentManager } from "@/context/document/DocumentContext";
 
 type CategoryRadarData = {
   name: string;
@@ -16,91 +20,220 @@ type CategoryRadarData = {
   value: number;
   totalValue: number;
   percentage: number;
-  fillColor?: string;
 };
 
 interface RadarChartProps {
-  chartData: CategoryRadarData[];
+  title?: string;
+  subtitle?: string;
 }
 
 /**
- * 🎨 RadarChart is a delightful visualization component that showcases category coverage
- * in a radar format! It helps users easily understand their progress across different
- * categories at a glance. 🌟
- *
- * 📱 This component is responsive and adapts to mobile screens, ensuring a great
- * experience no matter the device!
- *
- * 🛠️ It utilizes hooks to determine the screen size and adjusts the chart's appearance
- * accordingly, making it user-friendly and accessible.
- *
- * 🧩 The chart displays various categories with their respective completion percentages,
- * providing insights into areas of strength and those needing attention.
- *
- * 💡 Tooltips enhance the user experience by offering detailed information on hover,
- * making data exploration fun and engaging!
+ * Enhanced RadarChart component for visualizing category completion
+ * with improved aesthetics, animations, and mobile optimization.
  */
-const RadarChart: React.FC<RadarChartProps> = ({ chartData }) => {
+const CategoryRadarChart: React.FC<RadarChartProps> = ({
+  title = "Reading Coverage",
+  subtitle = "Category completion percentages",
+}) => {
   const { isMobile } = useMobile();
+  const { currentTheme } = useTheme();
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const { availableDocuments, readingHistory } = useDocumentManager();
+
+  /* 
+  🎯 Creates data for the radar visualization showing your category coverage
+   */
+  const radarData = useMemo(() => {
+    const categoryMap = new Map<string, { read: number; total: number }>();
+
+    availableDocuments.forEach((doc) => {
+      const category = doc.path.split("/")[0];
+      if (!categoryMap.has(category)) {
+        categoryMap.set(category, { read: 0, total: 0 });
+      }
+      const current = categoryMap.get(category)!;
+      categoryMap.set(category, { ...current, total: current.total + 1 });
+    });
+
+    readingHistory.forEach((item) => {
+      const category = item.path.split("/")[0];
+      if (categoryMap.has(category)) {
+        const current = categoryMap.get(category)!;
+        const uniqueReads = new Set(
+          readingHistory
+            .filter((h) => h.path.startsWith(category))
+            .map((h) => h.path)
+        ).size;
+        categoryMap.set(category, { ...current, read: uniqueReads });
+      }
+    });
+
+    const chartData = Array.from(categoryMap.entries())
+      .map(([name, { read, total }]) => ({
+        name,
+        fullName: name,
+        value: read,
+        totalValue: total,
+        percentage: total > 0 ? (read / total) * 100 : 0,
+      }))
+      .filter((item) => item.totalValue > 0)
+      .sort((a, b) => b.percentage - a.percentage);
+
+    return chartData.map((item) => ({
+      ...item,
+      // Use percentage value for the radar chart to normalize the data
+      value: item.percentage,
+      displayName: item.fullName ?? item.name,
+      // Create a short name for small screens
+      shortName: item.name.substring(0, isMobile ? 1 : 3).toUpperCase(),
+    }));
+  }, [availableDocuments, readingHistory, isMobile]);
+
+  if (!radarData || radarData.length === 0) {
+    return (
+      <motion.div
+        className="h-full flex items-center justify-center flex-col"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <ChartArea className="h-10 w-10 text-muted-foreground opacity-20 mb-3" />
+        <p className="text-sm text-muted-foreground">No radar data available</p>
+        <p className="text-xs text-muted-foreground mt-1">
+          Explore more categories to see insights
+        </p>
+      </motion.div>
+    );
+  }
+
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <RechartRadarChart cx="50%" cy="50%" outerRadius="80%" data={chartData}>
-        <PolarGrid strokeDasharray="3 3" stroke="var(--border)" />
-        <PolarAngleAxis
-          dataKey="name"
-          tick={{
-            fill: "var(--muted-foreground)",
-            fontSize: isMobile ? 10 : 12,
-          }}
-        />
-        <PolarRadiusAxis
-          angle={30}
-          domain={[0, 100]}
-          tick={{ fill: "var(--muted-foreground)" }}
-          tickCount={5}
-          stroke="var(--border)"
-        />
-        <RechartsTooltip
-          formatter={(
-            value: number,
-            _name: string,
-            props: {
-              payload?: {
-                name: string;
-                fullName?: string;
-                value: number;
-                totalValue: number;
-              };
-            }
-          ) => {
-            const item = props.payload;
-            if (!item) return ["N/A", "Unknown"];
-            return [
-              `${Math.round(value)}% Complete (${item.value}/${
-                item.totalValue
-              })`,
-              item.fullName ?? item.name,
-            ];
-          }}
-          contentStyle={{
-            backgroundColor: "rgba(22, 22, 22, 0.9)",
-            border: "1px solid #333",
-            borderRadius: "4px",
-          }}
-        />
-        <Radar
-          name="Coverage"
-          dataKey="value"
-          stroke="var(--primary)"
-          fill="var(--primary)"
-          fillOpacity={0.4}
-          activeDot={{
-            r: 8,
-          }}
-        />
-      </RechartRadarChart>
-    </ResponsiveContainer>
+    <div className="w-full h-full flex flex-col">
+      {(title || subtitle) && (
+        <div className="mb-2 text-center">
+          {title && <h4 className="text-sm font-medium">{title}</h4>}
+          {subtitle && (
+            <p className="text-xs text-muted-foreground mt-0.5">{subtitle}</p>
+          )}
+        </div>
+      )}
+
+      <div className="flex-1 relative">
+        {/* Absolute positioned items for custom overlay data */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="text-xs text-muted-foreground bg-background/80 px-2 py-0.5 rounded-full">
+            <ChartArea className="h-3 w-3 inline-block mr-1 text-primary" />
+            <span>{radarData.length} categories</span>
+          </div>
+        </div>
+
+        <ResponsiveContainer width="100%" height="100%">
+          <RechartRadarChart
+            cx="50%"
+            cy="50%"
+            outerRadius={isMobile ? "70%" : "80%"}
+            data={radarData}
+          >
+            <PolarGrid
+              stroke={`${currentTheme.border}`}
+              strokeDasharray="3 3"
+              strokeOpacity={0.5}
+            />
+
+            <PolarAngleAxis
+              dataKey={isMobile ? "shortName" : "name"}
+              tick={{
+                fill: currentTheme.foreground,
+                fontSize: isMobile ? 10 : 12,
+                fontWeight: 500,
+              }}
+              stroke={currentTheme.border}
+              tickLine={false}
+            />
+
+            {/* Percentage scale (0-100%) */}
+            <PolarRadiusAxis
+              angle={45}
+              domain={[0, 100]}
+              tick={{
+                fill: currentTheme.secondary,
+                fontSize: isMobile ? 9 : 10,
+              }}
+              tickCount={isMobile ? 3 : 5}
+              stroke={currentTheme.border}
+              axisLine={false}
+              tickFormatter={(value) => (value === 0 ? "" : `${value}%`)}
+            />
+
+            <Tooltip
+              content={({ active, payload }) => {
+                if (active && payload?.length) {
+                  const data = payload[0].payload as CategoryRadarData & {
+                    displayName: string;
+                  };
+                  return (
+                    <div className="bg-popover/95 border border-border rounded-md p-2 shadow-md">
+                      <p className="text-xs font-medium mb-1">
+                        {data.displayName}
+                      </p>
+                      <div className="flex justify-between gap-4">
+                        <p className="text-xs text-muted-foreground">
+                          <span className="font-medium text-primary">
+                            {data.value.toFixed(0)}%
+                          </span>{" "}
+                          complete
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {data.value} / {data.totalValue}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              }}
+            />
+
+            <Radar
+              name="Category Coverage"
+              dataKey="value"
+              stroke={currentTheme.primary}
+              strokeWidth={2}
+              fill={currentTheme.primary}
+              animationDuration={1000}
+              animationBegin={300}
+              isAnimationActive={true}
+              onMouseOut={() => setActiveIndex(null)}
+              dot={(props) => {
+                const isActive = activeIndex === props.index;
+                const opacity = isActive ? 1 : 0.7;
+                return (
+                  <circle
+                    {...props}
+                    r={isActive ? 5 : 3}
+                    fill={
+                      isActive ? currentTheme.background : currentTheme.primary
+                    }
+                    stroke={currentTheme.primary}
+                    strokeWidth={2}
+                    opacity={opacity}
+                    filter={isActive ? "url(#glow)" : undefined}
+                  />
+                );
+              }}
+              activeDot={{
+                r: 6,
+                fill: currentTheme.background,
+                stroke: currentTheme.primary,
+                strokeWidth: 2,
+                filter: "url(#glow)",
+                cursor: "pointer",
+              }}
+            />
+          </RechartRadarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
   );
 };
 
-export default RadarChart;
+export default CategoryRadarChart;

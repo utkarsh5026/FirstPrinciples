@@ -49,6 +49,7 @@ export const ReadingMetricsProvider: React.FC<ReadingMetricsProviderProps> = ({
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { generateMonthlyData } = useMonthlyData();
 
   /**
    * Load all reading metrics from section analytics
@@ -391,6 +392,7 @@ export const ReadingMetricsProvider: React.FC<ReadingMetricsProviderProps> = ({
       formatReadingTime,
       analyticsData,
       monthlyData,
+      generateMonthlyData,
     }),
     [
       metrics,
@@ -400,6 +402,7 @@ export const ReadingMetricsProvider: React.FC<ReadingMetricsProviderProps> = ({
       formatReadingTime,
       analyticsData,
       monthlyData,
+      generateMonthlyData,
     ]
   );
 
@@ -408,4 +411,91 @@ export const ReadingMetricsProvider: React.FC<ReadingMetricsProviderProps> = ({
       {children}
     </ReadingMetricsContext.Provider>
   );
+};
+
+const useMonthlyData = () => {
+  const formatDateKey = (date: Date): string => {
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+      2,
+      "0"
+    )}-${String(date.getDate()).padStart(2, "0")}`;
+  };
+  const generateMonthlyData = useCallback(
+    (readingHistory: ReadingHistoryItem[], currentMonth: Date) => {
+      const year = currentMonth.getFullYear();
+      const month = currentMonth.getMonth();
+
+      // Get the number of days in the month
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      // Create a map of dates to activity counts
+      const activityMap: Record<string, number> = {};
+
+      // Initialize all days in the month with zero
+      for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+        const dateKey = formatDateKey(date);
+        activityMap[dateKey] = 0;
+      }
+
+      // Add reading counts
+      readingHistory.forEach((item) => {
+        const date = new Date(item.lastReadAt);
+        // Only include if in the current month
+        if (date.getMonth() === month && date.getFullYear() === year) {
+          const dateKey = formatDateKey(date);
+          activityMap[dateKey] = (activityMap[dateKey] || 0) + 1;
+        }
+      });
+
+      // Calculate week structure for the month
+      const firstDay = new Date(year, month, 1).getDay(); // 0-6 (Sunday-Saturday)
+      const weeks: number[][] = [];
+      let currentWeek: number[] = Array(firstDay).fill(-1); // Fill with -1 for empty days
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        currentWeek.push(day);
+
+        // Start a new week on Saturday or last day
+        if (currentWeek.length === 7 || day === daysInMonth) {
+          // Pad the last week if needed
+          if (currentWeek.length < 7) {
+            currentWeek = [
+              ...currentWeek,
+              ...Array(7 - currentWeek.length).fill(-1),
+            ];
+          }
+
+          weeks.push(currentWeek);
+          currentWeek = [];
+        }
+      }
+
+      // Calculate stats
+      let totalActiveDays = 0;
+      let totalReadings = 0;
+
+      Object.values(activityMap).forEach((count) => {
+        if (count > 0) {
+          totalActiveDays++;
+          totalReadings += count;
+        }
+      });
+
+      // Find max count for color scale
+      const maxCount = Math.max(...Object.values(activityMap), 1);
+
+      return {
+        activityMap,
+        weeks,
+        daysInMonth,
+        totalActiveDays,
+        totalReadings,
+        maxCount,
+      };
+    },
+    []
+  );
+
+  return { generateMonthlyData };
 };

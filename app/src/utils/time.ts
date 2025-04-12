@@ -12,6 +12,16 @@ export type MonthName =
   | "November"
   | "December";
 
+export const daysOfWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+] as const;
+
 export type TimeRange = "week" | "month" | "quarter" | "year" | "all";
 
 export const formatRelativeTime = (timestamp: number | null) => {

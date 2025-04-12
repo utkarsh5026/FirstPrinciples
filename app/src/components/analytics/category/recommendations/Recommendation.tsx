@@ -2,6 +2,9 @@ import { Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import type { ReadingHistoryItem } from "@/components/home/types";
 import { Button } from "@/components/ui/button";
+import { useReadingHistory } from "@/context/history/HistoryContext";
+import { fromSnakeToTitleCase } from "@/utils/string";
+import getIconForTech from "@/components/icons";
 
 interface RecommendationsProps {
   readingHistory: ReadingHistoryItem[];
@@ -34,7 +37,6 @@ interface RecommendationsProps {
  * knowledge or where you're excelling! 📚✨
  */
 const Recommendations: React.FC<RecommendationsProps> = ({
-  readingHistory,
   radarData,
   balanceScore,
   coverageScore,
@@ -42,6 +44,7 @@ const Recommendations: React.FC<RecommendationsProps> = ({
   totalCategories,
   handleSelectItem,
 }) => {
+  const { readingHistory } = useReadingHistory();
   return (
     <Card className="p-4 border-primary/10">
       <div className="flex items-center mb-3">
@@ -88,22 +91,24 @@ const Recommendations: React.FC<RecommendationsProps> = ({
                       {radarData
                         .filter((item) => item.percentage < 30)
                         .slice(0, 3)
-                        .map((item) => (
-                          <li key={item.name} className="mt-1">
-                            <Button
-                              variant="link"
-                              className="h-auto p-0 text-primary text-xs"
-                              onClick={() =>
-                                handleSelectItem("category", item.name)
-                              }
-                            >
-                              {item.name}
-                            </Button>
-                            <span className="text-muted-foreground ml-1">
-                              ({Math.round(item.percentage)}% complete)
-                            </span>
-                          </li>
-                        ))}
+                        .map((item) => {
+                          const CategoryIcon = getIconForTech(item.name);
+                          return (
+                            <li key={item.name} className="mt-1 list-none">
+                              <Button
+                                variant="link"
+                                className="h-auto p-0 text-primary text-xs"
+                                onClick={() =>
+                                  handleSelectItem("category", item.name)
+                                }
+                              >
+                                <CategoryIcon className="h-2 w-2 mr-2" />
+                                {fromSnakeToTitleCase(item.name)} (
+                                {Math.round(item.percentage)}% complete)
+                              </Button>
+                            </li>
+                          );
+                        })}
                     </ul>
                   </div>
                 </div>

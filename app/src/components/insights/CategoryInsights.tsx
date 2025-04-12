@@ -16,10 +16,10 @@ import useMobile from "@/hooks/useMobile";
 
 import Loading from "./Loading";
 import useInsights from "./useInsights";
-import EnhancedTreeMap from "./TreeMap";
 import Summary from "./Summary";
 import Hierarchy from "./Hierarchy";
 import EnhancedDistribution from "./Distribution";
+import RadialBarChart from "./RadialBarChart";
 
 interface CategoryInsightsProps {
   readingHistory: ReadingHistoryItem[];
@@ -298,10 +298,7 @@ const CategoryInsights: React.FC<CategoryInsightsProps> = ({
                   {categoryData.length > 0 &&
                   treeMapData.children &&
                   treeMapData.children.length > 0 ? (
-                    <EnhancedTreeMap
-                      data={treeMapData.children}
-                      isMobile={isMobile}
-                    />
+                    <RadialBarChart />
                   ) : (
                     <div className="h-full flex items-center justify-center">
                       <div className="text-center text-muted-foreground">

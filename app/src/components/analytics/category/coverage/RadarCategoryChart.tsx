@@ -2,7 +2,6 @@ import React, { useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Target } from "lucide-react";
-import { COLORS } from "../../utils";
 import useMobile from "@/hooks/useMobile";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import RadarChart from "@/components/insights/RadarChart";
@@ -35,40 +34,29 @@ const CategoryCoverageMap: React.FC<CategoryCoverageMapProps> = ({
 }) => {
   const { isMobile } = useMobile();
 
-  const { topCategory, weakestCategory, averageCoverage, chartData } =
-    useMemo(() => {
-      const topCategory =
-        data.length > 0
-          ? data.reduce(
-              (max, item) => (item.percentage > max.percentage ? item : max),
-              data[0]
-            )
-          : null;
+  const { topCategory, weakestCategory, averageCoverage } = useMemo(() => {
+    const topCategory =
+      data.length > 0
+        ? data.reduce(
+            (max, item) => (item.percentage > max.percentage ? item : max),
+            data[0]
+          )
+        : null;
 
-      const weakestCategory =
-        data.length > 0
-          ? data.reduce(
-              (min, item) => (item.percentage < min.percentage ? item : min),
-              data[0]
-            )
-          : null;
+    const weakestCategory =
+      data.length > 0
+        ? data.reduce(
+            (min, item) => (item.percentage < min.percentage ? item : min),
+            data[0]
+          )
+        : null;
 
-      const averageCoverage =
-        data.reduce((sum, item) => sum + item.percentage, 0) /
-        Math.max(data.length, 1);
+    const averageCoverage =
+      data.reduce((sum, item) => sum + item.percentage, 0) /
+      Math.max(data.length, 1);
 
-      const chartData = data.map((item, index) => ({
-        ...item,
-        value: item.percentage,
-        fillColor: COLORS[index % COLORS.length],
-        name: fromSnakeToTitleCase(item.name),
-        fullName: item.fullName
-          ? fromSnakeToTitleCase(item.fullName)
-          : undefined,
-      }));
-
-      return { topCategory, weakestCategory, averageCoverage, chartData };
-    }, [data]);
+    return { topCategory, weakestCategory, averageCoverage };
+  }, [data]);
 
   const TopCategoryIcon = getIconForTech(topCategory?.name);
   const WeakestCategoryIcon = getIconForTech(weakestCategory?.name);
@@ -88,7 +76,7 @@ const CategoryCoverageMap: React.FC<CategoryCoverageMapProps> = ({
       {data.length > 0 ? (
         <div className="space-y-4">
           <div className={isMobile ? "h-64" : "h-80"}>
-            <RadarChart chartData={chartData} />
+            <RadarChart />
           </div>
 
           {/* Summary cards */}

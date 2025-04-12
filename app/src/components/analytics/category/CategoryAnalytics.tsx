@@ -7,7 +7,7 @@ import useMobile from "@/hooks/useMobile";
 
 import CategoryCoverageMap from "./coverage";
 import SankeyKnowledgeFlow from "./flow";
-import TimeFilteredHeatCalendar from "./TimeFilteredHeatCalender";
+import TimeFilteredHeatCalendar from "../deep/timeline/ReadingTimeline";
 import CategoryInsights from "../../insights/CategoryInsights";
 import Introduction from "./Introduction";
 import Recommendations from "./recommendations";
@@ -16,6 +16,8 @@ import {
   useDocumentManager,
   useReadingMetrics,
 } from "@/context";
+import HeatMapView from "@/components/analytics/deep/timeline/HeatMapView";
+import { Card } from "@/components/ui/card";
 
 interface EnhancedCategoryAnalyticsProps {
   onSelectDocument: (path: string, title: string) => void;
@@ -227,15 +229,12 @@ const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
                 title="Category Coverage Map"
               />
 
-              {/* Timeline */}
-              <TimeFilteredHeatCalendar
-                readingHistory={readingHistory}
-                availableDocuments={availableDocuments}
-                onSelectCategory={(categoryId) =>
-                  handleSelectItem("category", categoryId)
-                }
-                onSelectDocument={onSelectDocument}
-              />
+              <Card className="rounded-2xl p-8">
+                <HeatMapView
+                  filteredHistory={readingHistory}
+                  usePrevNextButtons={false}
+                />
+              </Card>
             </div>
 
             {/* Knowledge Flow */}
@@ -259,8 +258,6 @@ const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
 
         <TabsContent value="timeline">
           <TimeFilteredHeatCalendar
-            readingHistory={readingHistory}
-            availableDocuments={availableDocuments}
             onSelectCategory={(categoryId) =>
               handleSelectItem("category", categoryId)
             }

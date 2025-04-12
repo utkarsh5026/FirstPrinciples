@@ -7,6 +7,7 @@ import { ReadingMetricsProvider } from "@/context/metrics/MetricsProvider";
 import { EnhancedAchievementsProvider } from "@/context/achievments/AchievmentsProvider";
 import { XPProvider } from "@/context/xp/XpProvider";
 import { DocumentManagerProvider } from "@/context/document/DocumentProvider";
+import AnalyticsProvider from "./analytics/AnalyticsProvider";
 
 interface GlobalProvidersProps {
   children: ReactNode;
@@ -26,7 +27,7 @@ export const GlobalProviders: React.FC<GlobalProvidersProps> = ({
               <XPProvider>
                 <EnhancedAchievementsProvider>
                   <DocumentManagerProvider onSelectFile={onSelectFile}>
-                    {children}
+                    <AnalyticsProvider>{children}</AnalyticsProvider>
                   </DocumentManagerProvider>
                 </EnhancedAchievementsProvider>
               </XPProvider>
