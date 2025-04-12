@@ -1,19 +1,35 @@
 import React, { useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
-import { useReadingMetrics, useReadingHistory } from "@/context";
-import { BookText, Rocket, Bookmark } from "lucide-react";
+import { useReadingMetrics, useReadingHistory, useAnalytics } from "@/context";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  BookText,
+  Rocket,
+  Bookmark,
+  Clock,
+  Award,
+  PieChart,
+  BarChart3,
+  CalendarClock,
+} from "lucide-react";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { COLORS } from "@/lib/constants";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import getIconForTech from "@/components/icons";
 import useMobile from "@/hooks/useMobile";
 import { formatRelativeTime } from "@/utils/time";
+import { Badge } from "@/components/ui/badge";
 
-const CategoriesExplored: React.FC = () => {
+type ViewMode = "list" | "chart" | "timeline";
+
+const EnhancedCategoriesExplored: React.FC = () => {
+  const [viewMode, setViewMode] = React.useState<ViewMode>("list");
   const { analyticsData } = useReadingMetrics();
   const { categoryBreakdown } = analyticsData;
   const { readingHistory } = useReadingHistory();
+  const { totalCategoryBreakdown } = useAnalytics();
   const { currentTheme } = useTheme();
   const { isMobile } = useMobile();
 
@@ -70,8 +86,55 @@ const CategoriesExplored: React.FC = () => {
       .sort((a, b) => b.value - a.value);
   }, [categoryBreakdown, readingHistory]);
 
-  console.log(categoryCoverage);
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.06,
+      },
+    },
+  };
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 400, damping: 25 },
+    },
+  };
+
+  // Calculate overall stats
+  const stats = useMemo(() => {
+    const totalCategories = categoryCoverage.length;
+    const totalReads = readingHistory.length;
+    const totalTime = readingHistory.reduce(
+      (sum, item) => sum + (item.timeSpent || 0),
+      0
+    );
+
+    // Format time
+    const timeMinutes = Math.floor(totalTime / (1000 * 60));
+    let timeDisplay = "";
+    if (timeMinutes >= 60) {
+      const hours = Math.floor(timeMinutes / 60);
+      const mins = timeMinutes % 60;
+      timeDisplay = `${hours}h ${mins > 0 ? `${mins}m` : ""}`;
+    } else {
+      timeDisplay = `${timeMinutes}m`;
+    }
+
+    return {
+      totalCategories,
+      totalReads,
+      timeDisplay,
+    };
+  }, [categoryCoverage, readingHistory]);
+
+  // Empty state view
   if (categoryCoverage.length === 0) {
     return (
       <motion.div
@@ -92,139 +155,214 @@ const CategoriesExplored: React.FC = () => {
   }
 
   return (
-    <div className="space-y-4">
-      {isMobile ? (
-        // Mobile version - more compact
-        <div className="space-y-3">
-          {categoryCoverage.map((category) => {
-            const CategoryIcon = getIconForTech(category.name);
-            return (
-              <div key={category.name} className="space-y-1">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5">
-                    <div
-                      className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: category.color }}
-                    />
-                    <CategoryIcon
-                      className="w-3.5 h-3.5"
-                      style={{ color: category.color }}
-                    />
-                    <span className="text-xs truncate max-w-36">
-                      {category.displayName}
-                    </span>
-                  </div>
-                  <div className="text-xs opacity-80">
-                    {category.percentage}%
-                  </div>
-                </div>
+    <div className="h-full flex flex-col">
+      {/* View mode selector */}
+      <div className="mb-3 flex justify-between items-center">
+        <h4 className="text-sm font-medium flex items-center">
+          <Bookmark className="h-4 w-4 mr-2 text-primary" />
+          Categories Explored
+        </h4>
 
-                <Progress
-                  value={category.percentage}
-                  className="h-1.5"
-                  style={{
-                    backgroundImage: `linear-gradient(to right, ${currentTheme.primary}10, ${currentTheme.primary}05)`,
-                    borderRadius: "999px",
-                  }}
-                />
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        // Desktop version - more details
-        <div className="space-y-4">
-          {categoryCoverage.map((category) => {
-            const CategoryIcon = getIconForTech(category.name);
+        <Tabs
+          value={viewMode}
+          onValueChange={(v) => setViewMode(v as ViewMode)}
+        >
+          <TabsList className="h-8 p-0.5 bg-card border border-border/30">
+            <TabsTrigger
+              value="list"
+              className="h-7 text-xs px-2 data-[state=active]:bg-primary/10 data-[state=active]:text-primary"
+            >
+              <BookText className="h-3.5 w-3.5 mr-1" />
+              <span className={isMobile ? "sr-only" : "inline"}>List</span>
+            </TabsTrigger>
+            <TabsTrigger
+              value="chart"
+              className="h-7 text-xs px-2 data-[state=active]:bg-primary/10 data-[state=active]:text-primary"
+            >
+              <BarChart3 className="h-3.5 w-3.5 mr-1" />
+              <span className={isMobile ? "sr-only" : "inline"}>Chart</span>
+            </TabsTrigger>
+            <TabsTrigger
+              value="timeline"
+              className="h-7 text-xs px-2 data-[state=active]:bg-primary/10 data-[state=active]:text-primary"
+            >
+              <CalendarClock className="h-3.5 w-3.5 mr-1" />
+              <span className={isMobile ? "sr-only" : "inline"}>Timeline</span>
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+      </div>
 
-            return (
-              <div
-                key={category.name}
-                className="space-y-2 p-2 rounded-lg transition-all"
+      {/* Content area */}
+      <ScrollArea className="flex-1 overflow-y-auto pr-2">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={viewMode}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="h-full"
+          >
+            {viewMode === "list" && (
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="space-y-4"
               >
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-2.5 h-10 rounded-full flex-shrink-0"
-                    style={{
-                      backgroundColor: category.color,
-                    }}
-                  />
+                {categoryCoverage.map((category) => {
+                  const CategoryIcon = getIconForTech(category.name);
 
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-col">
-                      <div className="flex items-center gap-2">
-                        <CategoryIcon
-                          className="w-4 h-4"
-                          style={{ color: category.color }}
-                        />
-                        <span className="text-sm font-medium truncate">
-                          {category.displayName}
-                        </span>
-                      </div>
-
-                      <div className="flex justify-between mt-0.5">
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <BookText className="w-3 h-3" />
-                          <span>{category.value} documents</span>
+                  return (
+                    <motion.div
+                      key={category.name}
+                      variants={itemVariants}
+                      className="bg-card/50 rounded-lg border border-border/20 p-3 hover:border-primary/20 transition-colors"
+                      whileHover={{ y: -2, transition: { duration: 0.2 } }}
+                    >
+                      <div className="flex items-start">
+                        <div
+                          className="mr-3 p-2 rounded-md"
+                          style={{ backgroundColor: `${category.color}20` }}
+                        >
+                          <CategoryIcon
+                            className="w-5 h-5"
+                            style={{ color: category.color }}
+                          />
                         </div>
 
-                        {category.timeDisplay && (
-                          <div className="text-xs text-muted-foreground">
-                            <span>{category.timeDisplay} spent</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <h4 className="font-medium text-sm truncate">
+                                {category.displayName}
+                              </h4>
+                              <div className="flex items-center mt-0.5 gap-2">
+                                <div className="flex items-center text-xs text-muted-foreground">
+                                  <BookText className="w-3 h-3 mr-1" />
+                                  <span>{category.value} reads</span>
+                                </div>
+
+                                {category.timeDisplay && (
+                                  <div className="flex items-center text-xs text-muted-foreground">
+                                    <Clock className="w-3 h-3 mr-1" />
+                                    <span>{category.timeDisplay}</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+
+                            <Badge
+                              variant="outline"
+                              className="text-xs"
+                              style={{
+                                borderColor: `${category.color}40`,
+                                color: category.color,
+                              }}
+                            >
+                              {category.percentage}%
+                            </Badge>
                           </div>
-                        )}
+
+                          <div className="mt-2">
+                            <Progress
+                              value={category.percentage}
+                              className="h-1.5"
+                              style={{
+                                backgroundImage: `linear-gradient(to right, ${category.color}10, ${category.color}05)`,
+                                borderRadius: "999px",
+                              }}
+                              indicatorClassName="bg-none"
+                              indicatorStyle={{
+                                background: category.color,
+                              }}
+                            />
+                          </div>
+
+                          {category.lastRead && (
+                            <motion.div
+                              className="text-xs mt-2 flex items-center gap-1.5 text-muted-foreground"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                            >
+                              <Bookmark className="w-3 h-3" />
+                              <span>
+                                Last read{" "}
+                                {formatRelativeTime(category.lastRead)}
+                              </span>
+                            </motion.div>
+                          )}
+                        </div>
                       </div>
-                    </div>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            )}
 
-                    <div className="mt-1.5 flex items-center">
-                      <Progress
-                        value={category.percentage}
-                        className="h-1.5 flex-1"
-                        style={{
-                          backgroundImage: `linear-gradient(to right, ${currentTheme.primary}10, ${currentTheme.primary}05)`,
-                          borderRadius: "999px",
-                        }}
-                      />
-                      <span
-                        className="ml-2 text-xs font-medium"
-                        style={{ color: category.color }}
-                      >
-                        {category.percentage}%
-                      </span>
-                    </div>
-
-                    {/* Last read timestamp (only if we have data) */}
-                    {category.lastRead && (
-                      <motion.div
-                        className="text-xs mt-1 flex items-center gap-1.5 text-muted-foreground"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                      >
-                        <Bookmark className="w-3 h-3" />
-                        <span>
-                          Last read {formatRelativeTime(category.lastRead)}
-                        </span>
-                      </motion.div>
-                    )}
-                  </div>
+            {viewMode === "chart" && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="h-full"
+              >
+                <div className="flex flex-col items-center justify-center text-center h-full">
+                  <PieChart className="h-10 w-10 text-muted-foreground opacity-30 mb-3" />
+                  <p className="text-sm text-muted-foreground">
+                    Chart view coming soon
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Switch to the "Distribution" tab for category charts
+                  </p>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
+              </motion.div>
+            )}
 
+            {viewMode === "timeline" && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="h-full"
+              >
+                <div className="flex flex-col items-center justify-center text-center h-full">
+                  <CalendarClock className="h-10 w-10 text-muted-foreground opacity-30 mb-3" />
+                  <p className="text-sm text-muted-foreground">
+                    Timeline view coming soon
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    See your category exploration journey over time
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </ScrollArea>
+
+      {/* Stats footer */}
       <div className="mt-4 pt-3 border-t border-border/30">
         <div className="flex justify-between items-center text-xs text-muted-foreground">
           <div className="flex items-center gap-1">
             <Rocket className="w-3.5 h-3.5" />
-            <span>{categoryCoverage.length} categories discovered</span>
+            <span>{stats.totalCategories} categories explored</span>
           </div>
-          <div>{readingHistory.length} total reads</div>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
+              <BookText className="w-3.5 h-3.5" />
+              <span>{stats.totalReads} reads</span>
+            </div>
+            {stats.timeDisplay && (
+              <div className="flex items-center gap-1">
+                <Clock className="w-3.5 h-3.5" />
+                <span>{stats.timeDisplay} spent</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default CategoriesExplored;
+export default EnhancedCategoriesExplored;
