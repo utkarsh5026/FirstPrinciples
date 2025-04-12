@@ -6,7 +6,6 @@ import {
   Legend,
   Tooltip,
   TooltipProps,
-  LegendProps,
 } from "recharts";
 import { motion } from "framer-motion";
 import { BookIcon } from "lucide-react";
@@ -14,7 +13,6 @@ import { cn } from "@/lib/utils";
 import { useAnalytics } from "@/context";
 import { getRandomColors } from "@/lib/constants";
 import { fromSnakeToTitleCase } from "@/utils/string";
-import getIconForTech from "../icons";
 import useMobile from "@/hooks/useMobile";
 
 /**
@@ -117,56 +115,23 @@ const CategoryRadialBarChart: React.FC = () => {
     return null;
   };
 
-  // Enhanced custom legend
-  const CustomLegend = ({ payload }: LegendProps) => {
-    if (payload?.length === 0) {
-      return null;
-    }
-
-    return (
-      <div className="w-full overflow-hidden">
-        <div className="flex flex-wrap justify-center gap-2 px-2 max-h-32 overflow-y-auto">
-          {payload?.map(({ value, color }, index) => {
-            const CategoryIcon = getIconForTech(value);
-            return (
-              <motion.div
-                key={`${value}`}
-                className="flex items-center gap-1 bg-card/50 p-1 px-2 rounded-md text-sm shadow-sm border border-border/10 hover:bg-card hover:shadow transition-all"
-                style={{ cursor: "pointer" }}
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <CategoryIcon className="w-3 h-3" style={{ color }} />
-                <span className="truncate max-w-24 sm:max-w-32">
-                  {fromSnakeToTitleCase(value)}
-                </span>
-                <span className="font-medium text-primary whitespace-nowrap">
-                  {enrichedData[index].value}%
-                </span>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
-
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadialBarChart
         cx="50%"
         cy="50%"
         startAngle={0}
-        endAngle={180}
+        endAngle={360}
         data={enrichedData}
         barSize={isMobile ? 8 : 10}
       >
-        <RadialBar background dataKey="displayValue" cornerRadius={4} />
+        <RadialBar dataKey="displayValue" cornerRadius={4} />
         <Tooltip content={<CustomTooltip />} />
-        <Legend verticalAlign="bottom" height={36} content={<CustomLegend />} />
+        <Legend
+          verticalAlign="bottom"
+          height={24}
+          formatter={(value) => fromSnakeToTitleCase(value)}
+        />
       </RadialBarChart>
     </ResponsiveContainer>
   );

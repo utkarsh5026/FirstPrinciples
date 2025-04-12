@@ -5,12 +5,11 @@ import useMobile from "@/hooks/useMobile";
 import { cn } from "@/lib/utils";
 import { useAnalytics } from "@/context";
 import CategoryRadialBarChart from "@/components/insights/CategoryRadialBarChart";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 interface CategoryRadialChartProps {
   title?: string;
   subtitle?: string;
-  showLegend?: boolean;
-  legendPosition?: "top" | "right" | "bottom" | "left";
   className?: string;
 }
 
@@ -23,8 +22,6 @@ interface CategoryRadialChartProps {
 const CategoryRadialChart: React.FC<CategoryRadialChartProps> = ({
   title = "Completion Progress",
   subtitle,
-  showLegend = true,
-  legendPosition = "right",
   className,
 }) => {
   const { isMobile } = useMobile();
@@ -40,15 +37,6 @@ const CategoryRadialChart: React.FC<CategoryRadialChartProps> = ({
     );
     return Math.round(total / totalCategoryBreakdown.length);
   }, [totalCategoryBreakdown]);
-
-  // Simplified animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 0.5 },
-    },
-  };
 
   if (totalCategoryBreakdown.length === 0) {
     return (
@@ -69,54 +57,43 @@ const CategoryRadialChart: React.FC<CategoryRadialChartProps> = ({
   }
 
   return (
-    <motion.div
-      className={cn("w-full h-full relative", className)}
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {/* Header with title and average */}
-      {(title || subtitle) && (
-        <div
-          className={cn(
-            "flex justify-between items-center mb-2 px-1",
-            isMobile ? "flex-col items-start space-y-1" : ""
-          )}
-        >
-          <div>
-            {title && (
-              <h3 className="text-sm font-medium flex items-center gap-1.5">
-                <CircleIcon className="h-3 w-3 text-primary" />
-                {title}
-              </h3>
+    <Card className={cn("w-full h-full rounded-2xl border-none", className)}>
+      <CardHeader>
+        {(title || subtitle) && (
+          <div
+            className={cn(
+              "flex justify-between items-center mb-2 px-1",
+              isMobile ? "flex-col items-start space-y-1" : ""
             )}
-            {subtitle && (
-              <p className="text-xs text-muted-foreground mt-0.5">{subtitle}</p>
-            )}
-          </div>
+          >
+            <div>
+              {title && (
+                <h3 className="text-sm font-medium flex items-center gap-1.5">
+                  <CircleIcon className="h-3 w-3 text-primary" />
+                  {title}
+                </h3>
+              )}
+              {subtitle && (
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {subtitle}
+                </p>
+              )}
+            </div>
 
-          <div className="flex items-center gap-2">
-            <div className="text-xs text-muted-foreground">Average:</div>
-            <div className="text-sm font-medium flex items-center">
-              {averageCompletion}%
-              <TrendingUp className="h-3 w-3 ml-1 text-primary" />
+            <div className="flex items-center gap-2">
+              <div className="text-xs text-muted-foreground">Average:</div>
+              <div className="text-sm font-medium flex items-center">
+                {averageCompletion}%
+                <TrendingUp className="h-3 w-3 ml-1 text-primary" />
+              </div>
             </div>
           </div>
-        </div>
-      )}
-
-      {/* Main chart container */}
-      <div
-        className={cn(
-          "relative w-full overflow-hidden h-full",
-          showLegend &&
-            (legendPosition === "top" || legendPosition === "bottom")
-            ? "h-[calc(100%-35px)]"
-            : ""
         )}
-      >
+      </CardHeader>
+
+      <CardContent className={cn("relative w-full overflow-auto h-full")}>
         <CategoryRadialBarChart />
-        {/* Center text when no item is active */}
+
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
           <div className="flex flex-col items-center justify-center">
             <div className="text-3xl font-bold">{averageCompletion}%</div>
@@ -126,8 +103,8 @@ const CategoryRadialChart: React.FC<CategoryRadialChartProps> = ({
             </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </CardContent>
+    </Card>
   );
 };
 

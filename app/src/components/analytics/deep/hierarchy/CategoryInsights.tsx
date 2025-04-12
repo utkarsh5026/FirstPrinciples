@@ -293,7 +293,7 @@ const CategoryInsights: React.FC<CategoryInsightsProps> = ({
             )}
 
             {viewType === "treemap" && (
-              <div className="border rounded-lg p-4 relative h-[500px]">
+              <div className="border rounded-4xl p-4 h-[500px]">
                 <div className="h-full">
                   {categoryData.length > 0 &&
                   treeMapData.children &&
