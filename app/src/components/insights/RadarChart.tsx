@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import {
   Radar,
   RadarChart as RechartRadarChart,
@@ -12,12 +12,13 @@ import { motion } from "framer-motion";
 import useMobile from "@/hooks/useMobile";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { ChartArea } from "lucide-react";
-import { useDocumentManager } from "@/context/document/DocumentContext";
 
-type CategoryRadarData = {
-  name: string;
-  fullName?: string;
+type RadarData = {
   value: number;
+  displayName: string;
+  shortName: string;
+  name: string;
+  fullName: string;
   totalValue: number;
   percentage: number;
 };
@@ -25,6 +26,7 @@ type CategoryRadarData = {
 interface RadarChartProps {
   title?: string;
   subtitle?: string;
+  radarData: RadarData[];
 }
 
 /**
@@ -34,60 +36,11 @@ interface RadarChartProps {
 const CategoryRadarChart: React.FC<RadarChartProps> = ({
   title = "Reading Coverage",
   subtitle = "Category completion percentages",
+  radarData,
 }) => {
   const { isMobile } = useMobile();
   const { currentTheme } = useTheme();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const { availableDocuments, readingHistory } = useDocumentManager();
-
-  /* 
-  🎯 Creates data for the radar visualization showing your category coverage
-   */
-  const radarData = useMemo(() => {
-    const categoryMap = new Map<string, { read: number; total: number }>();
-
-    availableDocuments.forEach((doc) => {
-      const category = doc.path.split("/")[0];
-      if (!categoryMap.has(category)) {
-        categoryMap.set(category, { read: 0, total: 0 });
-      }
-      const current = categoryMap.get(category)!;
-      categoryMap.set(category, { ...current, total: current.total + 1 });
-    });
-
-    readingHistory.forEach((item) => {
-      const category = item.path.split("/")[0];
-      if (categoryMap.has(category)) {
-        const current = categoryMap.get(category)!;
-        const uniqueReads = new Set(
-          readingHistory
-            .filter((h) => h.path.startsWith(category))
-            .map((h) => h.path)
-        ).size;
-        categoryMap.set(category, { ...current, read: uniqueReads });
-      }
-    });
-
-    const chartData = Array.from(categoryMap.entries())
-      .map(([name, { read, total }]) => ({
-        name,
-        fullName: name,
-        value: read,
-        totalValue: total,
-        percentage: total > 0 ? (read / total) * 100 : 0,
-      }))
-      .filter((item) => item.totalValue > 0)
-      .sort((a, b) => b.percentage - a.percentage);
-
-    return chartData.map((item) => ({
-      ...item,
-      // Use percentage value for the radar chart to normalize the data
-      value: item.percentage,
-      displayName: item.fullName ?? item.name,
-      // Create a short name for small screens
-      shortName: item.name.substring(0, isMobile ? 1 : 3).toUpperCase(),
-    }));
-  }, [availableDocuments, readingHistory, isMobile]);
 
   if (!radarData || radarData.length === 0) {
     return (
@@ -167,7 +120,7 @@ const CategoryRadarChart: React.FC<RadarChartProps> = ({
             <Tooltip
               content={({ active, payload }) => {
                 if (active && payload?.length) {
-                  const data = payload[0].payload as CategoryRadarData & {
+                  const data = payload[0].payload as RadarData & {
                     displayName: string;
                   };
                   return (
