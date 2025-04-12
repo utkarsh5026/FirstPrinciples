@@ -8,7 +8,7 @@ import useMobile from "@/hooks/useMobile";
 import CategoryCoverageMap from "./coverage";
 import SankeyKnowledgeFlow from "./flow";
 import TimeFilteredHeatCalendar from "../deep/timeline/ReadingTimeline";
-import CategoryInsights from "../../insights/CategoryInsights";
+import CategoryInsights from "../deep/hierarchy/CategoryInsights";
 import Introduction from "./Introduction";
 import Recommendations from "./recommendations";
 import {

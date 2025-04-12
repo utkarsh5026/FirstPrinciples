@@ -15,11 +15,11 @@ import { FileMetadata, MarkdownLoader, Category } from "@/utils/MarkdownLoader";
 import useMobile from "@/hooks/useMobile";
 
 import Loading from "./Loading";
-import useInsights from "./useInsights";
+import useInsights from "../../../insights/useInsights";
 import Summary from "./Summary";
 import Hierarchy from "./Hierarchy";
 import EnhancedDistribution from "./Distribution";
-import RadialBarChart from "./RadialBarChart";
+import RadialBarChart from "./CategoryRadialChart";
 
 interface CategoryInsightsProps {
   readingHistory: ReadingHistoryItem[];
