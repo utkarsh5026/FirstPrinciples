@@ -46,6 +46,7 @@ const ReadingInsights: React.FC = () => {
    * what you love to read the most! 💖
    */
   const bestCategory = useMemo(() => {
+    if (analyticsData.categoryBreakdown.length == 0) return null;
     const sorted = [...analyticsData.categoryBreakdown].sort(
       (a, b) => b.value - a.value
     );
@@ -76,7 +77,9 @@ const ReadingInsights: React.FC = () => {
 
           <div className="text-xs text-center text-muted-foreground mt-1">
             Most read:{" "}
-            <span className="font-medium text-primary/90">{bestCategory}</span>
+            <span className="font-medium text-primary/90">
+              {bestCategory ?? "Not enough data"}
+            </span>
           </div>
         </div>
       </Card>
