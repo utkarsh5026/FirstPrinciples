@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import { Card } from "@/components/ui/card";
-import ActivityHeatmap from "../components/AnalyticsHeatmap";
 import { useReadingMetrics } from "@/context/metrics/MetricsContext";
 import { MonthlyTrend } from "../trends";
 import { LineChart } from "lucide-react";
@@ -19,7 +18,7 @@ const dayDescription = {
 const Activity: React.FC = () => {
   const { analyticsData, metrics } = useReadingMetrics();
   const { readingHistory } = useReadingHistory();
-  const { weeklyActivity, readingHeatmap } = analyticsData;
+  const { weeklyActivity } = analyticsData;
 
   const mostActiveDay = useMemo(() => {
     if (weeklyActivity.length === 0) return "—";
@@ -71,13 +70,6 @@ const Activity: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Heat Map */}
-      <ActivityHeatmap
-        data={readingHeatmap}
-        title="Reading Activity Calendar"
-        subtitle="Track your reading consistency over time"
-      />
-
       {/* Reading Stats Card */}
       <Card className="p-4 border-primary/10 bg-gradient-to-r from-primary/5 to-transparent rounded-2xl">
         <div className="flex justify-between items-center mb-4">

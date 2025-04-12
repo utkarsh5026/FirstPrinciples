@@ -7,6 +7,7 @@ import ReadingTrends from "./ReadingTrends";
 import RecentReads from "./RecentReads";
 import useMobile from "@/hooks/useMobile";
 import { useReadingMetrics, useXP } from "@/context";
+import Activity from "./Activity";
 
 interface AnalyticsOverviewProps {
   challenges: ReadingChallenge[];
@@ -67,6 +68,8 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
         isMobile={isMobile}
         readingByHour={readingByHour}
       />
+
+      <Activity />
     </div>
   );
 };

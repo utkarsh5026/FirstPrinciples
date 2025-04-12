@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  BarChart3,
-  Calendar,
-  Trophy,
-  PieChart as PieChartIcon,
-} from "lucide-react";
+import { BarChart3, Trophy, PieChart as PieChartIcon } from "lucide-react";
 import AnalyticsHeader from "./header/AnalyticsHeader";
 import Insights from "./insights";
 import AnalyticsOverview from "./overview";
 import { SiDeepl } from "react-icons/si";
 import Achievements from "@/components/achievements/Achievments";
-import Activity from "./activity/Activity";
 import CategoryAnalytics from "./category/CategoryAnalytics";
 
 interface AnalyticsPageProps {
@@ -22,10 +16,6 @@ const tabs = [
   {
     title: "Overview",
     icon: <BarChart3 className="h-3.5 w-3.5" />,
-  },
-  {
-    title: "Activity",
-    icon: <Calendar className="h-3.5 w-3.5" />,
   },
   {
     title: "Achievements",
@@ -77,7 +67,7 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onSelectDocument }) => {
               value={title.toLowerCase()}
               className="flex items-center gap-1 text-xs sm:text-sm"
             >
-              {icon}
+              {icon} {title}
             </TabsTrigger>
           ))}
         </TabsList>
@@ -90,10 +80,6 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onSelectDocument }) => {
               refreshChallenges: () => {},
             }}
           />
-        </TabsContent>
-
-        <TabsContent value="activity">
-          <Activity />
         </TabsContent>
 
         <TabsContent value="achievements">
