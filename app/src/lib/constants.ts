@@ -51,3 +51,14 @@ export const COLORS = [
   "#C0C5C1", // Silver Sage
   "#848884", // Smoke
 ] as const;
+
+export const getRandomColors = (count: number) => {
+  const idxSet = new Set<number>();
+
+  while (idxSet.size < count) {
+    const idx = Math.floor(Math.random() * COLORS.length);
+    idxSet.add(idx);
+  }
+
+  return Array.from(idxSet).map((idx) => COLORS[idx]);
+};
