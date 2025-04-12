@@ -6,70 +6,68 @@ import {
   Legend,
   Tooltip,
   TooltipProps,
+  LegendProps,
 } from "recharts";
 import { motion } from "framer-motion";
-import { useTheme } from "@/components/theme/context/ThemeContext";
 import { BookIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAnalytics } from "@/context";
+import { getRandomColors } from "@/lib/constants";
+import { fromSnakeToTitleCase } from "@/utils/string";
+import getIconForTech from "../icons";
+import useMobile from "@/hooks/useMobile";
 
 /**
  * Enhanced Radial Bar Chart with improved visuals and theme integration
  *
  * This component creates a visually stunning radial bar chart that adapts
  * to your application's theme colors and offers smooth animations.
+ * - Properly spaced bars for better visual separation
+ * - Mobile and desktop optimized view
+ * - Animated transitions for engagement
+ * - Accessible color contrast
+ * - Interactive tooltips with detailed information
  */
 const CategoryRadialBarChart: React.FC = () => {
-  const { currentTheme } = useTheme();
   const { totalCategoryBreakdown } = useAnalytics();
-
-  const colorPalette = useMemo(() => {
-    const baseColor = currentTheme.primary;
-
-    // Simplified color adjustment function
-    const adjustColor = (color: string, opacity: number) => {
-      return `${color}${Math.round(opacity * 255)
-        .toString(16)
-        .padStart(2, "0")}`;
-    };
-
-    return {
-      primary: baseColor,
-      secondary: currentTheme.secondary,
-      variants: [
-        baseColor,
-        adjustColor(baseColor, 0.8),
-        adjustColor(baseColor, 0.6),
-        adjustColor(baseColor, 0.4),
-        adjustColor(baseColor, 0.2),
-      ],
-      background: currentTheme.cardBg,
-      text: currentTheme.foreground,
-      muted: currentTheme.secondary,
-    };
-  }, [currentTheme]);
+  const { isMobile } = useMobile();
 
   const enrichedData = useMemo(() => {
-    return totalCategoryBreakdown
-      .map((item, index) => ({
+    if (!totalCategoryBreakdown || totalCategoryBreakdown.length === 0) {
+      return [];
+    }
+
+    const sortedData = [...totalCategoryBreakdown].sort(
+      (a, b) => b.percentage - a.percentage
+    );
+
+    const visibleData = sortedData.slice(0, 7);
+
+    const colors = getRandomColors(visibleData.length);
+
+    return visibleData.map((item, index) => {
+      return {
         ...item,
-        value: item.count,
         name: item.category,
-        fill: colorPalette.variants[index % colorPalette.variants.length],
+        value: Math.min(100, Math.round(item.percentage)), // Cap at 100%
+        fill: colors[index % colors.length],
         displayValue: item.count,
-        fullMark: item.categoryCount,
-        cornerRadius: 4,
-      }))
-      .sort((a, b) => b.percentage - a.percentage);
-  }, [totalCategoryBreakdown, colorPalette.variants]);
+        count: item.count,
+        categoryCount: item.categoryCount,
+      };
+    });
+  }, [totalCategoryBreakdown]);
+
   console.log(enrichedData);
 
-  if (enrichedData.length === 0) {
+  // Empty state
+  if (!enrichedData.length) {
     return (
       <motion.div
         className={cn("flex items-center justify-center h-60")}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
       >
         <div className="text-center">
           <BookIcon className="h-10 w-10 mx-auto mb-3 text-muted-foreground opacity-30" />
@@ -82,77 +80,93 @@ const CategoryRadialBarChart: React.FC = () => {
     );
   }
 
+  // Custom tooltip
   const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
 
       return (
-        <div className="bg-popover/95 border border-border p-2 px-3 rounded-lg shadow-lg">
-          <div className="flex items-center gap-2 mb-1">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="bg-popover/95 backdrop-blur-sm text-popover-foreground shadow-lg rounded-lg p-3 border border-border"
+        >
+          <div className="flex items-center gap-2 mb-1 border-b border-border/50 pb-1">
             <div
-              className="w-3 h-3 rounded-full"
+              className="w-3 h-3 rounded-full shadow-inner"
               style={{ backgroundColor: data.fill }}
             />
             <span className="font-medium text-sm">{data.name}</span>
           </div>
-          <div className="text-xs text-muted-foreground space-y-1">
+          <div className="text-xs space-y-2 mt-1">
             <div className="flex justify-between items-center gap-6">
-              <span>Completion:</span>
-              <span className="font-medium text-foreground">
-                {data.displayValue}%
-              </span>
+              <span className="text-muted-foreground">Completion:</span>
+              <span className="font-bold text-primary">{data.value}%</span>
             </div>
             <div className="flex justify-between items-center gap-6">
-              <span>Value:</span>
-              <span className="font-medium text-foreground">
-                {data.value} / {data.fullMark}
+              <span className="text-muted-foreground">Documents:</span>
+              <span className="font-medium">
+                {data.count} / {data.categoryCount}
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
       );
     }
 
     return null;
   };
 
-  console.log(enrichedData);
+  // Enhanced custom legend
+  const CustomLegend = ({ payload }: LegendProps) => {
+    if (payload?.length === 0) {
+      return null;
+    }
+
+    return (
+      <div className="w-full overflow-hidden">
+        <div className="flex flex-wrap justify-center gap-2 px-2 max-h-32 overflow-y-auto">
+          {payload?.map(({ value, color }, index) => {
+            const CategoryIcon = getIconForTech(value);
+            return (
+              <motion.div
+                key={`${value}`}
+                className="flex items-center gap-1 bg-card/50 p-1 px-2 rounded-md text-sm shadow-sm border border-border/10 hover:bg-card hover:shadow transition-all"
+                style={{ cursor: "pointer" }}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <CategoryIcon className="w-3 h-3" style={{ color }} />
+                <span className="truncate max-w-24 sm:max-w-32">
+                  {fromSnakeToTitleCase(value)}
+                </span>
+                <span className="font-medium text-primary whitespace-nowrap">
+                  {enrichedData[index].value}%
+                </span>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadialBarChart
         cx="50%"
         cy="50%"
-        innerRadius="50%"
-        outerRadius="90%"
-        barSize={10}
+        startAngle={0}
+        endAngle={180}
         data={enrichedData}
-        startAngle={180}
-        endAngle={0}
+        barSize={isMobile ? 8 : 10}
       >
-        <RadialBar
-          background
-          dataKey="value"
-          cornerRadius={5}
-          label={{
-            position: "insideStart",
-            fill: "#fff",
-            fontWeight: "bold",
-            fontSize: 12,
-          }}
-        />
+        <RadialBar background dataKey="displayValue" cornerRadius={4} />
         <Tooltip content={<CustomTooltip />} />
-        <Legend
-          iconSize={10}
-          layout="vertical"
-          verticalAlign="middle"
-          align="right"
-          wrapperStyle={{
-            fontSize: "12px",
-            paddingLeft: "10px",
-            color: "var(--color-foreground)",
-          }}
-        />
+        <Legend verticalAlign="bottom" height={36} content={<CustomLegend />} />
       </RadialBarChart>
     </ResponsiveContainer>
   );
