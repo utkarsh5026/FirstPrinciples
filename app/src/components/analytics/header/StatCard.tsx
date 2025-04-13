@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface StatCardProps {
   title: string;
@@ -11,28 +12,12 @@ interface StatCardProps {
   progressValue?: number;
   progressLabels?: { left?: ReactNode; right?: ReactNode };
   icon: LucideIcon;
+  colorScheme?: "primary" | "success" | "info" | "warning" | "default";
+  className?: string;
 }
 
 /**
- * ✨ StatCard Component ✨
- *
- * A beautiful card component that displays statistics in a visually appealing way!
- *
- * 🎯 Purpose:
- * This component creates an elegant card to showcase important metrics and statistics
- * with a clean, modern design. Perfect for dashboards and analytics sections!
- *
- * 🧩 Features:
- * - Displays a title and prominent value
- * - Shows optional subtitle for additional context
- * - Includes a decorative icon for visual appeal
- * - Can display a progress bar with customizable labels
- * - Supports multiple lines of additional information
- * - Responsive design with careful spacing
- *
- * 💡 Usage:
- * Ideal for displaying user metrics, achievements, progress tracking,
- * and any key performance indicators that need visual emphasis.
+ * Modern, clean StatCard component for displaying analytics data
  */
 const StatCard: React.FC<StatCardProps> = ({
   title,
@@ -42,49 +27,126 @@ const StatCard: React.FC<StatCardProps> = ({
   progressValue,
   progressLabels,
   icon: Icon,
+  colorScheme = "default",
+  className,
 }) => {
+  // Define color classes based on colorScheme
+  const getColorClasses = () => {
+    switch (colorScheme) {
+      case "primary":
+        return {
+          accent: "bg-primary",
+          text: "text-primary",
+          iconBg: "bg-primary/10",
+          progress: "bg-primary",
+        };
+      case "success":
+        return {
+          accent: "bg-emerald-500",
+          text: "text-emerald-500",
+          iconBg: "bg-emerald-500/10",
+          progress: "bg-emerald-500",
+        };
+      case "info":
+        return {
+          accent: "bg-blue-500",
+          text: "text-blue-500",
+          iconBg: "bg-blue-500/10",
+          progress: "bg-blue-500",
+        };
+      case "warning":
+        return {
+          accent: "bg-amber-500",
+          text: "text-amber-500",
+          iconBg: "bg-amber-500/10",
+          progress: "bg-amber-500",
+        };
+      default:
+        return {
+          accent: "bg-primary",
+          text: "text-primary",
+          iconBg: "bg-primary/10",
+          progress: "bg-primary",
+        };
+    }
+  };
+
+  const colorClasses = getColorClasses();
+
   return (
-    <Card className="p-4 border-primary/10 relative overflow-hidden rounded-2xl border-4">
-      <div className="text-xs text-muted-foreground">{title}</div>
-      <div className="mt-2 flex items-baseline">
-        <span className="text-2xl font-bold">{value}</span>
-        {subtitle && (
-          <span className="ml-2 text-xs text-muted-foreground">{subtitle}</span>
-        )}
-      </div>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      whileHover={{ scale: 1.02 }}
+      className={cn("h-full", className)}
+    >
+      <Card className="h-full p-0 overflow-hidden border rounded-2xl shadow-sm">
+        {/* Color accent at top */}
+        <div className={cn("h-1.5 w-full", colorClasses.accent)} />
 
-      {progressValue !== undefined && (
-        <div className="mt-2">
-          <Progress value={progressValue} className="h-1.5" />
-        </div>
-      )}
-
-      {progressLabels && (
-        <div className="flex justify-between mt-1.5 text-xs text-muted-foreground">
-          {progressLabels.left && <span>{progressLabels.left}</span>}
-          {progressLabels.right && <span>{progressLabels.right}</span>}
-        </div>
-      )}
-
-      {additionalInfo?.map((info, index) => {
-        const itemIndex = typeof info === "string" ? info : index;
-        const itemKey =
-          React.isValidElement(info) && info.key
-            ? info.key
-            : `info-item-${itemIndex}`;
-
-        return (
-          <div key={itemKey} className="mt-2 text-xs text-muted-foreground">
-            {info}
+        <div className="p-5">
+          {/* Header with icon and title */}
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              {title}
+            </h3>
+            <div className={cn("p-2 rounded-full", colorClasses.iconBg)}>
+              <Icon className={cn("h-4 w-4", colorClasses.text)} />
+            </div>
           </div>
-        );
-      })}
 
-      {/* Decorative element */}
-      <div className="absolute -right-3 -top-3 opacity-10">
-        <Icon className="h-16 w-16 text-primary" />
-      </div>
-    </Card>
+          {/* Main value and subtitle */}
+          <div className="mb-4">
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-bold">{value}</span>
+              {subtitle && (
+                <span className="text-xs text-muted-foreground">
+                  {subtitle}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Progress bar */}
+          {progressValue !== undefined && (
+            <div className="mb-3">
+              <div className="bg-muted/30 h-2 w-full rounded overflow-hidden">
+                <div
+                  className={cn("h-full rounded", colorClasses.progress)}
+                  style={{ width: `${progressValue}%` }}
+                />
+              </div>
+
+              {progressLabels && (
+                <div className="flex justify-between mt-1.5 text-xs text-muted-foreground">
+                  {progressLabels.left && <span>{progressLabels.left}</span>}
+                  {progressLabels.right && <span>{progressLabels.right}</span>}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Additional info */}
+          {additionalInfo && additionalInfo.length > 0 && (
+            <div className="space-y-1.5">
+              {additionalInfo.map((info, index) => {
+                const itemKey =
+                  React.isValidElement(info) && info.key
+                    ? info.key
+                    : `info-item-${index}`;
+
+                return (
+                  <div key={itemKey} className="text-xs text-muted-foreground">
+                    {info}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </Card>
+    </motion.div>
   );
 };
 
