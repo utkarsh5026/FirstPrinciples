@@ -4,11 +4,18 @@ import {
   type ReadingHistoryItem,
 } from "@/services/analytics/ReadingHistoryService";
 import { sectionAnalyticsController } from "@/services/analytics/SectionAnalyticsController";
+import { parseError } from "@/utils/error";
+
+type Streak = {
+  longestStreak: number;
+  currentStreak: number;
+};
 
 type State = {
   readingHistory: ReadingHistoryItem[];
   isLoading: boolean;
   error: string | null;
+  streak: Streak;
 };
 
 type Actions = {
@@ -20,6 +27,7 @@ type Actions = {
   getDocumentHistory: (path: string) => Promise<ReadingHistoryItem | null>;
   refreshReadingHistory: () => Promise<void>;
   initialize: () => Promise<void>;
+  calculateStreak: (readingHistory: ReadingHistoryItem[]) => Streak;
 };
 
 /**
@@ -39,6 +47,10 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
   readingHistory: [],
   isLoading: true,
   error: null,
+  streak: {
+    longestStreak: 0,
+    currentStreak: 0,
+  },
 
   /**
    * 📝 Add a document to reading history
@@ -46,23 +58,18 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
    */
   addToReadingHistory: async (path, title) => {
     try {
-      // Record the reading in the history service
       const updatedItem = await readingHistoryService.addToReadingHistory(
         path,
         title
       );
 
-      // Refresh the history in the store
       await get().refreshReadingHistory();
 
       return updatedItem;
     } catch (error) {
       console.error("Error adding to reading history:", error);
       set({
-        error:
-          error instanceof Error
-            ? error.message
-            : "Failed to add to reading history",
+        error: parseError(error, "Failed to add to reading history"),
       });
       return null;
     }
@@ -81,10 +88,7 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
       } catch (error) {
         console.error("Error clearing reading history:", error);
         set({
-          error:
-            error instanceof Error
-              ? error.message
-              : "Failed to clear reading history",
+          error: parseError(error, "Failed to clear reading history"),
         });
       }
     }
@@ -117,10 +121,7 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
     } catch (error) {
       console.error("Error getting document history:", error);
       set({
-        error:
-          error instanceof Error
-            ? error.message
-            : "Failed to get document history",
+        error: parseError(error, "Failed to get document history"),
       });
       return null;
     }
@@ -138,13 +139,123 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
     } catch (error) {
       console.error("Error refreshing reading history:", error);
       set({
-        error:
-          error instanceof Error
-            ? error.message
-            : "Failed to refresh reading history",
+        error: parseError(error, "Failed to refresh reading history"),
         isLoading: false,
       });
     }
+  },
+
+  /**
+   * 🔍 Calculate reading streak
+   * Get your reading streak!
+   */
+  calculateStreak: (readingHistory: ReadingHistoryItem[]) => {
+    /**
+     * 📅 Create a date key
+     * Get the date in a format that can be used to calculate streaks
+     */
+    const createDateKey = (date: Date): string => {
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    };
+
+    /**
+     * 📅 Get unique reading days
+     * Get the unique reading days from the reading history
+     */
+    const getUniqueReadingDays = (history: ReadingHistoryItem[]): string[] => {
+      const readingDays = new Set<string>();
+      history.forEach((item) => {
+        if (item.lastReadAt) {
+          const date = new Date(item.lastReadAt);
+          const dateKey = createDateKey(date);
+          readingDays.add(dateKey);
+        }
+      });
+      return Array.from(readingDays).sort((a, b) => a.localeCompare(b));
+    };
+
+    /**
+     * 📅 Calculate current streak
+     * Get the current streak of reading days
+     */
+    const calculateCurrentStreak = (readingDays: string[]): number => {
+      const today = new Date();
+      const todayString = createDateKey(today);
+
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayString = createDateKey(yesterday);
+
+      const hasToday = readingDays.includes(todayString);
+      const hasYesterday = readingDays.includes(yesterdayString);
+
+      let currentStreak = 0;
+
+      if (hasToday || hasYesterday) {
+        currentStreak = 1;
+
+        const startDate = hasToday ? yesterday : new Date(yesterday);
+        startDate.setDate(startDate.getDate() - 1);
+
+        const checkDate = startDate;
+
+        while (true) {
+          const checkDateKey = createDateKey(checkDate);
+          if (!readingDays.includes(checkDateKey)) break;
+
+          currentStreak++;
+          checkDate.setDate(checkDate.getDate() - 1);
+        }
+      }
+
+      return currentStreak;
+    };
+
+    /**
+     * 📅 Calculate longest streak
+     * Get the longest streak of reading days
+     */
+    const calculateLongestStreak = (readingDays: string[]): number => {
+      let longestStreak = currentStreak;
+      let tempStreak = 1;
+
+      for (let i = 1; i < readingDays.length; i++) {
+        const current = new Date(readingDays[i]);
+        const prev = new Date(readingDays[i - 1]);
+
+        const diffTime = current.getTime() - prev.getTime();
+        const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 1) {
+          tempStreak++;
+        } else {
+          tempStreak = 1;
+        }
+
+        if (tempStreak > longestStreak) {
+          longestStreak = tempStreak;
+        }
+      }
+
+      return longestStreak;
+    };
+
+    const readingDays = getUniqueReadingDays(readingHistory);
+
+    if (readingDays.length === 0)
+      return {
+        currentStreak: 0,
+        longestStreak: 0,
+      };
+
+    const sortedDays = [...readingDays].sort((a, b) => {
+      return new Date(a).getTime() - new Date(b).getTime();
+    });
+
+    const currentStreak = calculateCurrentStreak(sortedDays);
+    const longestStreak = calculateLongestStreak(sortedDays);
+
+    return { currentStreak, longestStreak };
   },
 
   /**
@@ -155,14 +266,12 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
     set({ isLoading: true });
     try {
       const history = await readingHistoryService.getAllHistory();
-      set({ readingHistory: history, error: null, isLoading: false });
+      const streak = get().calculateStreak(history);
+      set({ readingHistory: history, streak, error: null, isLoading: false });
     } catch (error) {
       console.error("Error loading reading history:", error);
       set({
-        error:
-          error instanceof Error
-            ? error.message
-            : "Failed to load reading history",
+        error: parseError(error, "Failed to load reading history"),
         isLoading: false,
       });
     }

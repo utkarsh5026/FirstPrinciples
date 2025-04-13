@@ -2,15 +2,13 @@ import React from "react";
 import { BookMarked, ListTodo, Calendar } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ReadingTodoItem } from "@/components/home/types";
 import { useTabContext } from "@/components/home/context/TabContext";
 import getIconForTech from "@/components/icons";
+import { useReadingStore } from "@/stores";
+import { formatDate } from "@/components/home/utils";
 
 interface UpcomingReadsProps {
-  todoList: ReadingTodoItem[];
   handleSelectDocument: (path: string, title: string) => void;
-  toggleTodoCompletion: (id: string) => void;
-  formatDate: (timestamp: number) => string;
   setShowAddTodoModal: () => void;
 }
 
@@ -29,13 +27,15 @@ interface UpcomingReadsProps {
  * across different devices. 🌈📱
  */
 const UpcomingReads: React.FC<UpcomingReadsProps> = ({
-  todoList,
   handleSelectDocument,
-  toggleTodoCompletion,
-  formatDate,
   setShowAddTodoModal,
 }) => {
   const { setActiveTab } = useTabContext();
+  const todoList = useReadingStore((state) => state.todoList);
+  const toggleTodoCompletion = useReadingStore(
+    (state) => state.toggleTodoCompletion
+  );
+
   return (
     <Card className="p-4 border-primary/10 bg-gradient-to-r from-primary/5 to-transparent hover:border-primary/30 transition-colors rounded-3xl">
       <div className="flex justify-between items-center mb-3">

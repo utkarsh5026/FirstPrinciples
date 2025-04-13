@@ -4,11 +4,11 @@ import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { ReadingHistoryItem } from "@/components/home/types";
+import { useHistoryStore } from "@/stores";
+import { getStreakEmoji } from "@/components/analytics/utils";
 
 interface StatsCardsProps {
   stats: {
-    currentStreak: number;
-    longestStreak: number;
     totalReadingTime: number;
     estimatedWordsRead: number;
     lastSessionDuration: number;
@@ -30,10 +30,12 @@ const StatsCards: React.FC<StatsCardsProps> = ({
   unreadDocs,
   completionPercentage,
 }) => {
+  const { currentStreak, longestStreak } = useHistoryStore(
+    (state) => state.streak
+  );
   const milestoneProgress =
     (nextMilestone.progress / nextMilestone.target) * 100;
-  const streakEmoji =
-    stats.currentStreak >= 7 ? "🔥" : stats.currentStreak >= 3 ? "🔆" : "✨";
+  const streakEmoji = getStreakEmoji(currentStreak);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -62,15 +64,15 @@ const StatsCards: React.FC<StatsCardsProps> = ({
         title="Current Streak"
         mainContent={
           <div className="flex items-center mb-2">
-            <span className="text-2xl font-bold">{stats.currentStreak}</span>
+            <span className="text-2xl font-bold">{currentStreak}</span>
             <span className="text-xl ml-1">{streakEmoji}</span>
             <span className="text-muted-foreground text-xs ml-1">days</span>
           </div>
         }
         footerContent={
           <>
-            <span>Best: {stats.longestStreak} days</span>
-            {stats.currentStreak > 0 && <span>Keep it up!</span>}
+            <span>Best: {longestStreak} days</span>
+            {currentStreak > 0 && <span>Keep it up!</span>}
           </>
         }
       />
