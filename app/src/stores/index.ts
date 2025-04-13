@@ -3,6 +3,7 @@ import { useDocumentStore } from "./documentStore";
 import { useHistoryStore } from "./historyStore";
 import { useCategoryStore } from "./categoryStore";
 import { useActivityStore } from "./activityStore";
+import { useHeatmapStore } from "./heatmapStore";
 import { useEffect, useState } from "react";
 
 /**
@@ -38,4 +39,5 @@ export {
   useHistoryStore,
   useInit,
   useActivityStore,
+  useHeatmapStore,
 };
