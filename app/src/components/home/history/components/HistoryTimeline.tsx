@@ -1,11 +1,12 @@
 import React, { memo, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Calendar, Clock, BookOpen, ArrowRight } from "lucide-react";
+import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
 import { ReadingHistoryItem } from "@/components/home/types";
 import getIconForTech from "@/components/icons/iconMap";
 import useMobile from "@/hooks/useMobile";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/components/theme/context/ThemeContext";
+import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface HistoryTimelineProps {
   filteredHistory: ReadingHistoryItem[];
@@ -195,8 +196,8 @@ const HistoryTimeline: React.FC<HistoryTimelineProps> = memo(
                         </div>
 
                         <div className="flex items-center">
-                          <BookOpen className="h-3 w-3 md:h-4 md:w-4 mr-1" />
-                          {category}
+                          <Tag className="h-3 w-3 md:h-4 md:w-4 mr-1" />
+                          {fromSnakeToTitleCase(category)}
                         </div>
                       </div>
                     </div>
