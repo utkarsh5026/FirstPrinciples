@@ -1222,6 +1222,50 @@
       "files": []
     },
     {
+      "id": "tailwind",
+      "name": "Tailwind",
+      "icon": "Folder",
+      "subcategories": [
+        {
+          "id": "fundamentals",
+          "name": "Fundamentals",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "tailwind/fundamentals/configuration.md",
+              "title": "Configuration",
+              "description": "Documentation for Configuration"
+            },
+            {
+              "path": "tailwind/fundamentals/utility_classes.md",
+              "title": "Utility Classes",
+              "description": "Documentation for Utility Classes"
+            },
+            {
+              "path": "tailwind/fundamentals/utility_first_css.md",
+              "title": "Utility First Css",
+              "description": "Documentation for Utility First Css"
+            }
+          ]
+        },
+        {
+          "id": "layout",
+          "name": "Layout",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "tailwind/layout/container_and_page_structure.md",
+              "title": "Container And Page Structure",
+              "description": "Documentation for Container And Page Structure"
+            }
+          ]
+        }
+      ],
+      "files": []
+    },
+    {
       "id": "typescript",
       "name": "Typescript",
       "icon": "Folder",

@@ -23,6 +23,7 @@ import { xpService } from "@/services/analytics/XpService";
  * analytics system. 📚✨
  */
 export type ServicesContextType = {
+  initialized: boolean;
   databaseService: typeof databaseService;
   readingListService: typeof readingListService;
   readingHistoryService: typeof readingHistoryService;

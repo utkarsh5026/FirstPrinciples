@@ -11,6 +11,7 @@ import { sectionReadingTracker } from "@/services/analytics/SectionReadingTracke
 import { wordCountEstimator } from "@/services/analytics/WordCountEstimator";
 import { enhancedAchievementService } from "@/services/analytics/AchievmentService";
 import { xpService } from "@/services/analytics/XpService";
+
 interface ServicesProviderProps {
   children: ReactNode;
 }
@@ -35,6 +36,7 @@ export const ServicesProvider: React.FC<ServicesProviderProps> = ({
   const [initError, setInitError] = useState<Error | null>(null);
   const serviceValues: ServicesContextType = useMemo(
     () => ({
+      initialized: isInitialized,
       databaseService,
       readingListService,
       readingHistoryService,
@@ -47,7 +49,7 @@ export const ServicesProvider: React.FC<ServicesProviderProps> = ({
       enhancedAchievementService,
       xpService,
     }),
-    []
+    [isInitialized]
   );
 
   /**
@@ -59,7 +61,7 @@ export const ServicesProvider: React.FC<ServicesProviderProps> = ({
   useEffect(() => {
     const initializeServices = async () => {
       try {
-        await databaseService.initDatabase();
+        // await databaseService.initDatabase();
         console.log("Database initialized successfully");
         await analyticsController.initialize();
         console.log("Analytics services initialized successfully");

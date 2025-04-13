@@ -2,29 +2,18 @@ import { Sparkles, FileText, CheckCircle2, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { useEffect, useMemo, useState } from "react";
-import { useDocumentManager } from "@/context";
+import { useDocumentStore, useHistoryStore, useReadingStore } from "@/stores";
 
-/**
- * Hero component with a more dynamic and visually appealing design.
- * Features gradient animations, better layout for mobile and desktop, and improved stat visualization.
- */
-/**
- * Hero component for the dashboard homepage
- *
- * Displays a visually appealing hero section with user greeting, progress stats,
- * and reading metrics. Features animated gradient backgrounds and responsive design.
- *
- * @param {FileMetadata[]} availableDocuments - List of all available documents in the system
- * @param {ReadingTodoItem[]} todoList - User's reading list with completed/pending status
- * @param {ReadingHistoryItem[]} readingHistory - User's reading history records
- * @returns {JSX.Element} A responsive hero component with user stats and greeting
- */
 const Hero: React.FC = () => {
   const { currentTheme } = useTheme();
   const [greeting, setGreeting] = useState("Hello");
   const [time, setTime] = useState("");
 
-  const { availableDocuments, todoList, readingHistory } = useDocumentManager();
+  const availableDocuments = useDocumentStore(
+    (state) => state.availableDocuments
+  );
+  const todoList = useReadingStore((state) => state.todoList);
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
 
   /**
    * Sets appropriate greeting based on time of day and formats current time

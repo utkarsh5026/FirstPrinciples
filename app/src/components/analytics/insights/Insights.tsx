@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { WeekdayPattern } from "./WeeklyPattern";
 import TimeOfDayInsightCard from "./TimeoftheDayInsights";
-import CategoryDistributionInsightCard from "./CategoryInsights";
 import { ProgressTrendInsightCard } from "./ProgressTrendInsights";
 import { useHistoryStore } from "@/stores";
 
@@ -30,7 +29,6 @@ const Insights = () => {
           <WeekdayPattern history={history} />
           <TimeOfDayInsightCard history={history} />
           <ProgressTrendInsightCard />
-          <CategoryDistributionInsightCard history={history} />
         </div>
       </motion.div>
     </div>

@@ -12,6 +12,19 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
   const { availableDocuments } = useDocumentManager();
   const { readingHistory } = useReadingHistory();
 
+  /**
+   * 🎉 createCatgegoryBreakDown
+   *
+   * This function takes your reading history and organizes it into a
+   * cute little breakdown of categories! 🌈 It counts how many times you've
+   * explored each category, helping you see where your interests lie! 📚✨
+   *
+   * It also calculates the percentage of each category in relation to your
+   * total reading history, giving you a clear view of your reading habits!
+   * Perfect for understanding your preferences and making informed choices!
+   *
+   * 🥳 Dive into your reading journey and discover your favorite categories!
+   */
   const createCatgegoryBreakDown = useCallback(
     (readingHistory: ReadingHistoryItem[]) => {
       const categoryMap: Record<string, number> = {};
@@ -40,6 +53,14 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
     [availableDocuments]
   );
 
+  /**
+   * 📊 totalCategoryBreakdown
+   *
+   * This charming little memoized value gives you the complete breakdown of
+   * categories based on your reading history! 🌟 It updates automatically
+   * whenever your reading history changes, ensuring you always have the latest
+   * insights into your reading habits! 📖💖
+   */
   const totalCategoryBreakdown = useMemo(() => {
     return createCatgegoryBreakDown(readingHistory);
   }, [createCatgegoryBreakDown, readingHistory]);

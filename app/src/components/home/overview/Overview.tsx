@@ -10,7 +10,7 @@ import RecentActivity from "./components/RecentActivity";
 import RecommendedReads from "./components/RecommendedReads";
 import UpcomingReads from "./components/UpcomingReads";
 import DailyChallenge from "./components/DailyChallenge";
-import { formatDate, formatReadingTime, formatNumber } from "../utils";
+import { formatReadingTime, formatNumber } from "../utils";
 
 import { useDocumentManager } from "@/context";
 
@@ -27,8 +27,7 @@ const Overview: React.FC<OverviewProps> = ({
   const [stats, setStats] = useState(() =>
     ReadingAnalyticsService.getReadingStats()
   );
-  const { readingHistory, todoList, availableDocuments, toggleTodoCompletion } =
-    useDocumentManager();
+  const { readingHistory, availableDocuments } = useDocumentManager();
   const [featuredDocs, setFeaturedDocs] = useState<FileMetadata[]>([]);
 
   const [mostReadCategory, setMostReadCategory] = useState<string>("None yet");
@@ -107,7 +106,7 @@ const Overview: React.FC<OverviewProps> = ({
 
       setFeaturedDocs(recommended);
     }
-  }, [readingHistory, todoList, availableDocuments, currentTheme]);
+  }, [readingHistory, availableDocuments, currentTheme]);
 
   const getNextMilestone = () => {
     const completedCount = readingHistory.length;
@@ -152,10 +151,7 @@ const Overview: React.FC<OverviewProps> = ({
 
           <ReadingInsights />
 
-          <RecentActivity
-            handleSelectDocument={handleSelectDocument}
-            formatDate={formatDate}
-          />
+          <RecentActivity handleSelectDocument={handleSelectDocument} />
         </div>
 
         <div className="space-y-4">
@@ -171,10 +167,7 @@ const Overview: React.FC<OverviewProps> = ({
           />
 
           <UpcomingReads
-            todoList={todoList}
             handleSelectDocument={handleSelectDocument}
-            toggleTodoCompletion={toggleTodoCompletion}
-            formatDate={formatDate}
             setShowAddTodoModal={setShowAddTodoModal}
           />
         </div>

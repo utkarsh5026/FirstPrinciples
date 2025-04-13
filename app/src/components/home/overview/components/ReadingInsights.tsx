@@ -2,8 +2,9 @@ import React, { useMemo } from "react";
 import { Brain, Calendar } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import CategoryPieChart from "@/components/insights/CategoryPieChart";
-import ReadingByWeekDay from "@/components/analytics/trends/ReadingByWeekDay";
+import ReadingByWeekDay from "@/components/insights/ReadingByWeekDay";
 import { useReadingMetrics } from "@/context";
+import { useCategoryStore } from "@/stores/categoryStore";
 
 /**
  * 📚 ReadingInsights Component
@@ -24,6 +25,9 @@ import { useReadingMetrics } from "@/context";
  */
 const ReadingInsights: React.FC = () => {
   const { analyticsData } = useReadingMetrics();
+  const categoryBreakdown = useCategoryStore(
+    (state) => state.categoryBreakdown
+  );
 
   /**
    * This hook calculates the best day for reading based on your weekly activity! 📅
@@ -46,12 +50,10 @@ const ReadingInsights: React.FC = () => {
    * what you love to read the most! 💖
    */
   const bestCategory = useMemo(() => {
-    if (analyticsData.categoryBreakdown.length == 0) return null;
-    const sorted = [...analyticsData.categoryBreakdown].sort(
-      (a, b) => b.value - a.value
-    );
-    return sorted[0].name;
-  }, [analyticsData]);
+    if (categoryBreakdown.length == 0) return null;
+    const sorted = [...categoryBreakdown].sort((a, b) => b.count - a.count);
+    return sorted[0].category;
+  }, [categoryBreakdown]);
 
   return (
     <div className="grid grid-cols-2 gap-4">

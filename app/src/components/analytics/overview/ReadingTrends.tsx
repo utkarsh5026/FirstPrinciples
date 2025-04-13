@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 import { LineChart } from "lucide-react";
 import { useState } from "react";
 import MonthlyReadingTrend from "../trends/MonthlyTrend";
-import WeekilyPattern from "../insights/WeeklyPattern";
+import { ReadingByWeekDay } from "../trends";
 
-type Period = "week" | "month" | "all";
+type Period = "week" | "month";
 
 const ReadingTrends: React.FC = () => {
   const [selectedPeriod, setSelectedPeriod] = useState<Period>("week");
@@ -40,23 +40,12 @@ const ReadingTrends: React.FC = () => {
           >
             Month
           </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className={cn(
-              "h-7 px-2 text-xs rounded-md",
-              selectedPeriod === "all" && "bg-card"
-            )}
-            onClick={() => setSelectedPeriod("all")}
-          >
-            All
-          </Button>
         </div>
       </div>
 
       <div className="h-52">
         {selectedPeriod === "month" && <MonthlyReadingTrend />}
-        {selectedPeriod === "week" && <WeekilyPattern />}
+        {selectedPeriod === "week" && <ReadingByWeekDay />}
       </div>
     </Card>
   );

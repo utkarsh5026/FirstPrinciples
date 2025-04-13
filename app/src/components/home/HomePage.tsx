@@ -20,6 +20,7 @@ import FileSelectionDialog from "@/components/todo/AddTodoModal";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { useTabContext } from "./context/TabContext";
 import AnalyticsView from "../analytics/AnalyticsView";
+import { useInit } from "@/stores";
 
 interface HomePageProps {
   onSelectFile: (filepath: string) => void;
@@ -34,6 +35,7 @@ interface HomePageProps {
  */
 const HomePage: React.FC<HomePageProps> = () => {
   console.log("HomePage");
+  useInit();
   const { availableDocuments, handleSelectDocument } = useDocumentManager();
 
   const [showFileDialog, setShowFileDialog] = useState(false);

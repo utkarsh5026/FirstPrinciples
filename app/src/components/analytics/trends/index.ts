@@ -1,4 +1,4 @@
-import ReadingByWeekDay from "./ReadingByWeekDay";
+import ReadingByWeekDay from "../../insights/ReadingByWeekDay";
 import TimeOfTheDay from "./TimeOfTheDay";
 import MonthlyTrend from "./MonthlyTrend";
 import ProgressOverTime from "./ProgressOverTime";
