@@ -55,18 +55,12 @@ const StatCard: React.FC<StatCardProps> = ({
           progress: "bg-blue-500",
         };
       case "warning":
+      default:
         return {
           accent: "bg-amber-500",
           text: "text-amber-500",
           iconBg: "bg-amber-500/10",
           progress: "bg-amber-500",
-        };
-      default:
-        return {
-          accent: "bg-primary",
-          text: "text-primary",
-          iconBg: "bg-primary/10",
-          progress: "bg-primary",
         };
     }
   };
@@ -85,7 +79,7 @@ const StatCard: React.FC<StatCardProps> = ({
         {/* Color accent at top */}
         <div className={cn("h-1.5 w-full", colorClasses.accent)} />
 
-        <div className="p-5">
+        <div className="p-5 -mt-4">
           {/* Header with icon and title */}
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">

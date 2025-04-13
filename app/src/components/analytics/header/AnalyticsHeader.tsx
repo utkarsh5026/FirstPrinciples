@@ -1,19 +1,20 @@
 import { Zap, Flame, Clock, BookOpenCheck } from "lucide-react";
 import { formatReadingTime, formatNumber, getStreakEmoji } from "../utils";
 import StatCard from "./StatCard";
-import { useReadingMetrics, useDocumentManager, useXP } from "@/context";
+import { useReadingMetrics, useXP } from "@/context";
+import { useHistoryStore, useDocumentStore } from "@/stores";
 
 const AnalyticsHeader: React.FC = () => {
   const { metrics } = useReadingMetrics();
-  const {
-    currentStreak,
-    longestStreak,
-    totalTimeSpent,
-    totalWordsRead,
-    documentsCompleted,
-  } = metrics;
-  const { availableDocuments } = useDocumentManager();
+  const { totalTimeSpent, totalWordsRead, documentsCompleted } = metrics;
   const { xpStats } = useXP();
+  const { currentStreak, longestStreak } = useHistoryStore(
+    (state) => state.streak
+  );
+
+  const availableDocuments = useDocumentStore(
+    (state) => state.availableDocuments
+  );
 
   const completionPercentage =
     availableDocuments.length > 0
