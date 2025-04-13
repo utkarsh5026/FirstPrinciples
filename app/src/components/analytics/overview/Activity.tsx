@@ -1,70 +1,84 @@
 import React, { useMemo } from "react";
 import { Card } from "@/components/ui/card";
-import { useReadingMetrics } from "@/context/metrics/MetricsContext";
 import { MonthlyTrend } from "../trends";
 import { LineChart } from "lucide-react";
-import { useReadingHistory } from "@/context/history/HistoryContext";
+import { useHistoryStore, useActivityStore } from "@/stores";
 import { getStreakEmoji } from "../utils";
-const dayDescription = {
-  Sun: "Sunday is Funday",
-  Mon: "Monday is Motivational",
-  Tue: "Tuesday is Tidy",
-  Wed: "Wednesday is Wacky",
-  Thu: "Thursday is Thankful",
-  Fri: "Friday is Fantastic",
-  Sat: "Saturday is Super",
-} as const;
 
+/**
+ * 📊 Activity Dashboard Component
+ *
+ * ✨ A beautiful dashboard that visualizes your reading habits and streaks!
+ * 🔍 Shows your current reading streak with fun emojis
+ * 📈 Displays weekly reading activity with most/least active days
+ * 📆 Includes a monthly trend visualization for long-term insights
+ * 🎯 Helps you track your reading consistency and celebrate progress
+ */
 const Activity: React.FC = () => {
-  const { analyticsData, metrics } = useReadingMetrics();
-  const { readingHistory } = useReadingHistory();
-  const { weeklyActivity } = analyticsData;
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
+  const { currentStreak } = useHistoryStore((state) => state.streak);
+  const calculateTotalWeeklyActivity = useActivityStore(
+    (state) => state.calculateTotalWeeklyActivity
+  );
+  const getWeeklyActivityMetrics = useActivityStore(
+    (state) => state.getWeeklyActivityMetrics
+  );
 
-  const mostActiveDay = useMemo(() => {
-    if (weeklyActivity.length === 0) return "—";
-    return weeklyActivity
-      .reduce(
-        (max, day) => (day.count > max.count ? day : max),
-        weeklyActivity[0]
-      )
-      .day.slice(0, 3);
-  }, [weeklyActivity]);
+  /**
+   * 🗓️ Filters reading history to only show current week's activity
+   */
+  const currentWeekHistory = useMemo(() => {
+    const startOfWeek = new Date();
+    startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+    startOfWeek.setHours(0, 0, 0, 0);
 
-  const currentWeekReadingCount = useMemo(() => {
     return readingHistory.filter((reading) => {
       const readingDate = new Date(reading.lastReadAt);
-      const startOfWeek = new Date();
-      startOfWeek.setDate(startOfWeek.getDate() - (startOfWeek.getDay() || 0));
       return readingDate >= startOfWeek;
-    }).length;
+    });
   }, [readingHistory]);
 
-  const streakEmoji = getStreakEmoji(metrics.currentStreak);
+  /**
+   * 📊 Calculates your most and least active days of the week
+   */
+  const { mostActiveDay, leastActiveDay } = useMemo(() => {
+    const weeklyActivity = calculateTotalWeeklyActivity(currentWeekHistory);
+    return getWeeklyActivityMetrics(weeklyActivity);
+  }, [
+    currentWeekHistory,
+    calculateTotalWeeklyActivity,
+    getWeeklyActivityMetrics,
+  ]);
 
+  const streakEmoji = getStreakEmoji(currentStreak);
+
+  /**
+   * 🌟 Summary cards showing your reading achievements
+   */
   const summary = [
     {
       heading: "Streak",
-      value: metrics.currentStreak,
+      value: currentStreak,
       emoji: streakEmoji,
       description: "Days in a row",
     },
     {
-      heading: "Best Streak",
-      value: metrics.longestStreak,
-      emoji: "😲",
-      description: "Consecutive days",
-    },
-    {
       heading: "This Week",
-      value: currentWeekReadingCount,
-      emoji: "📚",
+      value: currentWeekHistory.length,
+      emoji: "🚀",
       description: "Documents read",
     },
     {
       heading: "Most Active Day",
       emoji: "🌞",
-      value: mostActiveDay,
-      description: dayDescription[mostActiveDay as keyof typeof dayDescription],
+      value: mostActiveDay.day,
+      description: `You read ${mostActiveDay.count} documents`,
+    },
+    {
+      heading: "Least Active Day",
+      emoji: "🥹",
+      value: leastActiveDay.day,
+      description: `You only read ${leastActiveDay.count} documents`,
     },
   ];
 
