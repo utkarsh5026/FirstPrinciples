@@ -12,7 +12,7 @@ import EmptyHistory from "./components/EmptyHistory";
 import EmptyFilteredResult from "./components/EmptyFilteredResult";
 
 import { formatDate } from "../utils";
-import { useReadingHistory } from "@/context";
+import { useHistoryStore } from "@/stores";
 
 interface HistoryProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -26,7 +26,12 @@ interface HistoryProps {
  * improved spacing, and visual enhancements while maintaining all functionality.
  */
 const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
-  const { readingHistory } = useReadingHistory();
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
+  const refreshReadingHistory = useHistoryStore(
+    (state) => state.refreshReadingHistory
+  );
+
+  const getHistoryStats = useHistoryStore((state) => state.getHistoryStats);
   const { currentTheme } = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -36,6 +41,10 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
   );
   const [filteredHistory, setFilteredHistory] =
     useState<ReadingHistoryItem[]>(readingHistory);
+
+  useEffect(() => {
+    refreshReadingHistory();
+  }, [refreshReadingHistory]);
 
   // Get unique categories from reading history
   const categories = useMemo(() => {
@@ -49,22 +58,9 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
 
   // Calculate time statistics
   const timeStats = useMemo(() => {
-    const now = Date.now();
-    const oneDay = 24 * 60 * 60 * 1000;
-    const oneWeek = 7 * oneDay;
-    const oneMonth = 30 * oneDay;
-
-    return {
-      today: readingHistory.filter((item) => now - item.lastReadAt < oneDay)
-        .length,
-      thisWeek: readingHistory.filter((item) => now - item.lastReadAt < oneWeek)
-        .length,
-      thisMonth: readingHistory.filter(
-        (item) => now - item.lastReadAt < oneMonth
-      ).length,
-      total: readingHistory.length,
-    };
-  }, [readingHistory]);
+    const stats = getHistoryStats(selectedCategory);
+    return stats;
+  }, [selectedCategory, getHistoryStats]);
 
   // Filter reading history based on search query, category, and timeframe
   useEffect(() => {

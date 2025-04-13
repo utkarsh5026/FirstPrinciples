@@ -17,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import useMobile from "@/hooks/useMobile";
+import { fromSnakeToTitleCase } from "@/utils/string";
+import getIconForTech from "@/components/icons/iconMap";
 
 interface HistoryFiltersProps {
   searchQuery: string;
@@ -105,16 +107,25 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
             >
               <SelectTrigger className="h-10 rounded-xl border-primary/10 focus:border-primary/30 bg-card/40 backdrop-blur-sm shadow-sm">
                 <div className="flex items-center">
-                  <Tag className="h-3.5 w-3.5 mr-1.5 text-primary" />
                   <SelectValue placeholder="Category" />
                 </div>
               </SelectTrigger>
-              <SelectContent className="font-cascadia-code rounded-xl">
-                {categories.map((category) => (
-                  <SelectItem key={category} value={category}>
-                    {category === "all" ? "All Categories" : category}
-                  </SelectItem>
-                ))}
+              <SelectContent className="font-cascadia-code rounded-2xl">
+                {categories.map((category) => {
+                  const CategoryIcon = getIconForTech(category);
+                  return (
+                    <SelectItem key={category} value={category}>
+                      <div className="flex items-center">
+                        <CategoryIcon className="h-3.5 w-3.5 mr-1.5 text-primary" />
+                        <span className="text-sm">
+                          {category === "all"
+                            ? "All Categories"
+                            : fromSnakeToTitleCase(category)}
+                        </span>
+                      </div>
+                    </SelectItem>
+                  );
+                })}
               </SelectContent>
             </Select>
           </div>
@@ -143,10 +154,10 @@ const HistoryFilters: React.FC<HistoryFiltersProps> = ({
             <Button
               variant="outline"
               size="icon"
-              className="h-10 w-10 rounded-xl border-primary/10 hover:bg-primary/10 hover:text-primary transition-colors"
+              className="h-8 w-8 rounded-2xl border-2 border-primary hover:bg-primary/10 hover:text-primary transition-colors"
               onClick={clearFilters}
             >
-              <X className="h-4 w-4" />
+              <X className="h-4 w-4 text-primary" />
             </Button>
           )}
         </div>
