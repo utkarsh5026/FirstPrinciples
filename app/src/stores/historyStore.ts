@@ -11,11 +11,19 @@ type Streak = {
   currentStreak: number;
 };
 
+type HistoryStats = {
+  today: number;
+  thisWeek: number;
+  thisMonth: number;
+  total: number;
+};
+
 type State = {
   readingHistory: ReadingHistoryItem[];
   isLoading: boolean;
   error: string | null;
   streak: Streak;
+  statsCache: Record<string, HistoryStats>;
 };
 
 type Actions = {
@@ -28,6 +36,7 @@ type Actions = {
   refreshReadingHistory: () => Promise<void>;
   initialize: () => Promise<void>;
   calculateStreak: (readingHistory: ReadingHistoryItem[]) => Streak;
+  getHistoryStats: (category: string) => HistoryStats;
 };
 
 /**
@@ -51,6 +60,7 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
     longestStreak: 0,
     currentStreak: 0,
   },
+  statsCache: {},
 
   /**
    * 📝 Add a document to reading history
@@ -275,5 +285,41 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
         isLoading: false,
       });
     }
+  },
+
+  /**
+   * 📊 Get history stats for a specific category
+   * Get the stats for a specific category
+   */
+  getHistoryStats: (category: string) => {
+    const cachedStats = get().statsCache[category];
+    if (cachedStats) return cachedStats;
+
+    let history: ReadingHistoryItem[] = [];
+
+    if (category !== "all") {
+      history = get().readingHistory.filter((item) =>
+        item.path.split("/").includes(category)
+      );
+    } else {
+      history = get().readingHistory;
+    }
+
+    const now = Date.now();
+    const oneDay = 24 * 60 * 60 * 1000;
+    const oneWeek = 7 * oneDay;
+    const oneMonth = 30 * oneDay;
+
+    const stats = {
+      today: history.filter((item) => now - item.lastReadAt < oneDay).length,
+      thisWeek: history.filter((item) => now - item.lastReadAt < oneWeek)
+        .length,
+      thisMonth: history.filter((item) => now - item.lastReadAt < oneMonth)
+        .length,
+      total: history.length,
+    };
+
+    set({ statsCache: { ...get().statsCache, [category]: stats } });
+    return stats;
   },
 }));
