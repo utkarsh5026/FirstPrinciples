@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -7,7 +7,7 @@ import type { ReadingTodoItem } from "@/services/analytics/ReadingListService";
 import TodoHeader from "./TodoHeader";
 import EmptyList from "./EmptyList";
 import TodoItem from "./TodoItem";
-import { useReadingList } from "@/context";
+import { useReadingStore } from "@/stores";
 
 interface TodoListProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -35,15 +35,19 @@ const TodoList: React.FC<TodoListProps> = ({
   handleSelectDocument,
   setShowAddTodoModal,
 }) => {
-  const {
-    todoList,
-    removeFromReadingList,
-    toggleTodoCompletion,
-    clearReadingList,
-    pendingCount,
-    completedCount,
-    totalCount,
-  } = useReadingList();
+  const todoList = useReadingStore((state) => state.todoList);
+  const status = useReadingStore((state) => state.status);
+
+  const clearReadingList = useReadingStore((state) => state.clearReadingList);
+  const refreshReadingList = useReadingStore(
+    (state) => state.refreshReadingList
+  );
+
+  const { pendingCount, completedCount, totalCount } = status;
+
+  useEffect(() => {
+    refreshReadingList();
+  }, [refreshReadingList]);
 
   /**
    * 🔍 Active Tab State
@@ -61,6 +65,7 @@ const TodoList: React.FC<TodoListProps> = ({
    * by their top-level directory for a clean, organized view.
    */
   const categories = useMemo(() => {
+    console.log("TodoList categories");
     const filteredList = todoList.filter((item) => {
       if (activeTab === "pending") return !item.completed;
       if (activeTab === "completed") return item.completed;
@@ -119,9 +124,7 @@ const TodoList: React.FC<TodoListProps> = ({
                     key={category}
                     category={category}
                     items={items}
-                    toggleTodoCompletion={toggleTodoCompletion}
                     handleSelectDocument={handleSelectDocument}
-                    removeFromTodoList={removeFromReadingList}
                   />
                 ))
               ) : (

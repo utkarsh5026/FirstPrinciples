@@ -21,14 +21,13 @@ import {
 import { Category, FileMetadata } from "@/utils/MarkdownLoader";
 import { cn } from "@/lib/utils";
 import getIconForTech from "@/components/icons/iconMap";
+import { useReadingStore } from "@/stores";
 
 interface FileSelectionDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   availableDocuments: FileMetadata[];
   categories: Category[];
-  todoList: FileMetadata[];
-  onAddToTodoList: (filesToAdd: FileMetadata[]) => void;
 }
 
 /**
@@ -48,10 +47,15 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
   onOpenChange,
   availableDocuments,
   categories,
-  todoList,
-  onAddToTodoList,
 }) => {
-  // State for expanded categories
+  const todoList = useReadingStore((state) => state.todoList);
+  const addToTodoList = useReadingStore((state) => state.addToReadingList);
+
+  const handleAddMultipleToTodoList = (files: FileMetadata[]) => {
+    files.forEach((file) => {
+      addToTodoList(file.path, file.title);
+    });
+  };
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set()
   );
@@ -171,7 +175,7 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
 
   // Add selected files to the todo list
   const handleAddSelectedFiles = () => {
-    onAddToTodoList(selectedFiles);
+    handleAddMultipleToTodoList(selectedFiles);
     onOpenChange(false);
   };
 

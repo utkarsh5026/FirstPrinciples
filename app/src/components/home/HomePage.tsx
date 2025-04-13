@@ -10,13 +10,13 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDocumentManager } from "@/context";
-import { Category, FileMetadata, MarkdownLoader } from "@/utils/MarkdownLoader";
+import { Category, MarkdownLoader } from "@/utils/MarkdownLoader";
 import Hero from "./Hero";
 import History from "./history/History";
-import TodoList from "../todo/TodoList";
+import TodoList from "@/components/todo/TodoList";
 import Overview from "./overview/Overview";
 import MobileOptimizedTabs from "./MobileOptimizedTabs";
-import FileSelectionDialog from "../todo/AddTodoModal";
+import FileSelectionDialog from "@/components/todo/AddTodoModal";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { useTabContext } from "./context/TabContext";
 import AnalyticsView from "../analytics/AnalyticsView";
@@ -33,8 +33,8 @@ interface HomePageProps {
  * includes analytics and gamification features.
  */
 const HomePage: React.FC<HomePageProps> = () => {
-  const { todoList, addToTodoList, availableDocuments, handleSelectDocument } =
-    useDocumentManager();
+  console.log("HomePage");
+  const { availableDocuments, handleSelectDocument } = useDocumentManager();
 
   const [showFileDialog, setShowFileDialog] = useState(false);
   const { activeTab, setActiveTab } = useTabContext();
@@ -70,12 +70,6 @@ const HomePage: React.FC<HomePageProps> = () => {
       }
     }
   }, [activeTab]);
-
-  const handleAddMultipleToTodoList = (files: FileMetadata[]) => {
-    files.forEach((file) => {
-      addToTodoList(file.path, file.title);
-    });
-  };
 
   // Dismiss analytics intro alert
   const dismissAnalyticsIntro = () => {
@@ -246,8 +240,6 @@ const HomePage: React.FC<HomePageProps> = () => {
         onOpenChange={setShowFileDialog}
         availableDocuments={availableDocuments}
         categories={categories}
-        todoList={todoList}
-        onAddToTodoList={handleAddMultipleToTodoList}
       />
     </div>
   );

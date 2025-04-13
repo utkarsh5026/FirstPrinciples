@@ -5,14 +5,12 @@ import { X, Calendar, Check } from "lucide-react";
 import getIconForTech from "@/components/icons/iconMap";
 import { formatDate } from "../home/utils";
 import type { ReadingTodoItem } from "@/services/analytics/ReadingListService";
-import { useDocumentManager } from "@/context";
+import { useReadingStore } from "@/stores";
 
 interface TodoItemProps {
   category: string;
   items: ReadingTodoItem[];
-  toggleTodoCompletion: (id: string) => void;
   handleSelectDocument: (path: string, title: string) => void;
-  removeFromTodoList: (id: string) => void;
 }
 
 /**
@@ -28,7 +26,12 @@ const TodoItem: React.FC<TodoItemProps> = ({
   items,
   handleSelectDocument,
 }) => {
-  const { toggleTodoCompletion, removeFromTodoList } = useDocumentManager();
+  const toggleTodoCompletion = useReadingStore(
+    (state) => state.toggleTodoCompletion
+  );
+  const removeFromTodoList = useReadingStore(
+    (state) => state.removeFromReadingList
+  );
   return (
     <div className="space-y-3">
       {/* Category header */}

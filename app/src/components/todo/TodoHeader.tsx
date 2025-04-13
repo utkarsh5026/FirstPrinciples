@@ -1,7 +1,7 @@
 import { BookOpen, CheckCircle2, Clock, ListTodo } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useTheme } from "@/components/theme/context/ThemeContext";
-import { useReadingList } from "@/context";
+import { useReadingStore } from "@/stores";
 
 /**
  * 🎉 TodoHeader Component
@@ -18,10 +18,12 @@ import { useReadingList } from "@/context";
  */
 const TodoHeader: React.FC = () => {
   const { currentTheme } = useTheme();
-  const { pendingCount, completedCount, completionPercentage, totalCount } =
-    useReadingList();
+  const stats = useReadingStore((state) => state.status);
 
-  const stats = [
+  const { pendingCount, completedCount, completionPercentage, totalCount } =
+    stats;
+
+  const headerStats = [
     {
       icon: <BookOpen className="h-4 w-4 text-primary" />,
       label: "To Read",
@@ -71,7 +73,7 @@ const TodoHeader: React.FC = () => {
 
         {/* Reading list stats */}
         <div className="grid grid-cols-3 gap-4 mt-4">
-          {stats.map((stat) => (
+          {headerStats.map((stat) => (
             <StatCard key={stat.label} {...stat} />
           ))}
         </div>
