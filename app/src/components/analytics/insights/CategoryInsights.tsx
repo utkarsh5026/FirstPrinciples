@@ -1,72 +1,89 @@
-import React from "react";
-import { Card } from "@/components/ui/card";
-import { Filter } from "lucide-react";
-import { CategoriesExplored, CategoryPieChart } from "@/components/insights";
-import { fromSnakeToTitleCase } from "@/utils/string";
+import { CategoryPieChart } from "@/components/insights";
+import { BookOpen } from "lucide-react";
+import { memo, useMemo } from "react";
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import InsightCard from "./InsightCard";
+import { useCategoryStore } from "@/stores/categoryStore";
+
+interface CategoryDistributionInsightCardProps {
+  history: ReadingHistoryItem[];
+}
 
 /**
- * 🎉 CategoryInsights Component
+ * 📊 CategoryDistributionInsightCard
  *
- * This delightful component showcases the user's reading habits across different categories!
- * It provides a visual representation of how many documents have been read in each category,
- * helping users understand their reading preferences better. 📚✨
+ * A delightful visualization of your reading categories! ✨
+ * Shows which topics you love to read the most and how diverse
+ * your reading habits are across different categories.
  *
- * With a charming pie chart, users can easily see the distribution of their reading across
- * various categories, making it fun to explore their reading journey! 🌈
- *
- * Additionally, it highlights the categories explored by the user, showing how many documents
- * have been read in each category. This encourages users to dive deeper into their reading
- * habits and discover new genres! 📖💖
- *
- * If there are no categories explored yet, it gently nudges users to read more to fill
- * their reading palette! 🌟
+ * Features:
+ * - 🍩 Beautiful pie chart showing category distribution
+ * - 🏆 Highlights your favorite reading category
+ * - 🌈 Color-coded with pretty gradients based on your diversity
+ * - 📚 Counts how many different categories you've explored
  */
-const CategoryInsights: React.FC = () => {
-  return (
-    <Card className="p-4 border-primary/10 rounded-2xl">
-      <div className="flex justify-between items-center mb-3">
-        <h4 className="text-sm font-medium flex items-center">
-          <Filter className="h-4 w-4 mr-2 text-primary" />
-          Category Insights
-        </h4>
-      </div>
+const CategoryDistributionInsightCard: React.FC<CategoryDistributionInsightCardProps> =
+  memo(({ history }) => {
+    const createCategoryBreakdown = useCategoryStore(
+      (state) => state.createCategoryBreakdown
+    );
 
-      <div className="grid grid-cols-1 gap-6">
-        {/* Category Distribution */}
-        <div className="space-y-2">
-          <h5 className="text-xs uppercase text-muted-foreground font-medium">
-            Distribution
-          </h5>
+    /**
+     * 🔍 Discovers your favorite category and counts how many you've explored!
+     */
+    const { topCategory, categoriesCount } = useMemo(() => {
+      const categoryBreakDown = createCategoryBreakdown(history);
+      const topCategory = categoryBreakDown.find(
+        (category) =>
+          category.count === Math.max(...categoryBreakDown.map((c) => c.count))
+      );
+      return {
+        topCategory: topCategory?.category,
+        categoriesCount: categoryBreakDown.length,
+      };
+    }, [history, createCategoryBreakdown]);
 
-          <div className="h-48">
-            <CategoryPieChart
-              showTooltip
-              showLegend={true}
-              extraProps={{
-                labelLine: true,
-                label: ({ percent, name }) => {
-                  return `${fromSnakeToTitleCase(name)} (${(
-                    percent * 100
-                  ).toPrecision(4)}%)`;
-                },
-              }}
-            />
-          </div>
+    /**
+     * 🎨 Creates beautiful color themes based on your reading diversity!
+     * More categories = violet, fewer categories = amber! ✨
+     */
+    const getCategoryStyles = (categoryCount: number) => {
+      if (categoryCount > 3) {
+        return {
+          gradient: "from-violet-500/5 to-violet-500/10",
+          iconColor: "text-violet-500",
+        };
+      }
+      return {
+        gradient: "from-amber-500/5 to-amber-500/10",
+        iconColor: "text-amber-500",
+      };
+    };
+
+    const { gradient, iconColor } = getCategoryStyles(categoriesCount);
+
+    const insights = topCategory
+      ? [
+          { label: "Top category", value: topCategory, highlight: true },
+          { label: "Categories explored", value: categoriesCount.toString() },
+        ]
+      : [];
+
+    return (
+      <InsightCard
+        title="Category Distribution"
+        description="How your reading is distributed across categories"
+        icon={BookOpen}
+        insights={insights}
+        gradient={gradient}
+        iconColor={iconColor}
+        delay={0.3}
+      >
+        <div className="h-52 w-full">
+          <CategoryPieChart showLegend={true} />
         </div>
+      </InsightCard>
+    );
+  });
 
-        {/* Categories Explored */}
-        <div className="space-y-2">
-          <h5 className="text-xs uppercase text-muted-foreground font-medium">
-            Categories Explored
-          </h5>
-
-          <div className="h-64 overflow-auto">
-            <CategoriesExplored />
-          </div>
-        </div>
-      </div>
-    </Card>
-  );
-};
-
-export default CategoryInsights;
+export default CategoryDistributionInsightCard;

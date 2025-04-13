@@ -1,48 +1,110 @@
-import React, { useMemo } from "react";
+import { useMemo, memo } from "react";
+import InsightCard from "./InsightCard";
+import { CalendarDays } from "lucide-react";
 import { ReadingByWeekDay } from "../trends";
-import { useReadingMetrics } from "@/context";
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import { useActivityStore } from "@/stores";
+
+interface WeekdayPatternInsightCardProps {
+  history: ReadingHistoryItem[];
+}
 
 /**
- * 📅 WeekilyPattern Component
+ * 📊 WeekdayPatternInsightCard
  *
- * This component visualizes the user's reading activity throughout the week.
- * It provides a bar chart representation of how many documents were read on each day,
- * helping users identify their most active reading days. 📈✨
+ * A beautiful visualization of your weekly reading habits! ✨
+ * Shows which days you love to read the most and compares your
+ * weekend vs weekday reading patterns.
  *
- * If there are no reading activities recorded, it encourages users to read more
- * to uncover their day patterns. 📖💡
- *
- * The component also highlights the day with the highest reading activity,
- * making it easy for users to see when they are most engaged. 🌟
+ * Uses color-coded gradients to make your reading journey visually delightful!
+ * Emerald for weekend warriors 🏝️, cyan for weekday readers 📚
  */
-const WeekilyPattern: React.FC = () => {
-  const { analyticsData } = useReadingMetrics();
-
-  const mostActiveDay = useMemo(() => {
-    if (analyticsData.weeklyActivity.length === 0) return null;
-    return analyticsData.weeklyActivity.reduce(
-      (max, day) => (day.count > max.count ? day : max),
-      analyticsData.weeklyActivity[0]
+export const WeekdayPattern: React.FC<WeekdayPatternInsightCardProps> = memo(
+  ({ history = [] }) => {
+    const calculateTotalWeeklyActivity = useActivityStore(
+      (state) => state.calculateTotalWeeklyActivity
     );
-  }, [analyticsData.weeklyActivity]);
 
-  return (
-    <div className="space-y-2">
-      <h5 className="text-xs uppercase text-muted-foreground font-medium">
-        Day of Week Preference
-      </h5>
+    const getWeeklyActivityMetrics = useActivityStore(
+      (state) => state.getWeeklyActivityMetrics
+    );
 
-      <div className="h-48">
-        <ReadingByWeekDay />
-      </div>
+    /**
+     * 🔍 This magical function analyzes your weekly reading patterns!
+     * Discovers your most active reading day, least active day,
+     * and whether you're a weekend bookworm or weekday reader! 📖✨
+     */
+    const { mostActiveDay, leastActiveDay, weekendVsWeekday } = useMemo(() => {
+      const analyticsData = calculateTotalWeeklyActivity(history);
+      const { mostActiveDay, leastActiveDay } =
+        getWeeklyActivityMetrics(analyticsData);
+      const weekendVsWeekday = analyticsData.reduce(
+        (acc, day) => {
+          if (day.day === "Saturday" || day.day === "Sunday") {
+            acc.weekend += day.count;
+          } else {
+            acc.weekday += day.count;
+          }
+          return acc;
+        },
+        { weekend: 0, weekday: 0 }
+      );
+      return { mostActiveDay, leastActiveDay, weekendVsWeekday };
+    }, [history, calculateTotalWeeklyActivity, getWeeklyActivityMetrics]);
 
-      <div className="text-xs text-muted-foreground text-center mt-1">
-        {mostActiveDay
-          ? `Most active: ${mostActiveDay.day}`
-          : "No data yet"}
-      </div>
-    </div>
-  );
-};
+    /**
+     * 🎨 Creates beautiful color themes based on your reading style!
+     * Weekend warriors get emerald, weekday readers get cyan! 💫
+     */
+    const getWeekStyles = (weekend: number, weekday: number) => {
+      if (weekend > weekday) {
+        return {
+          gradient: "from-emerald-500/5 to-emerald-500/10",
+          iconColor: "text-emerald-500",
+        };
+      }
+      return {
+        gradient: "from-cyan-500/5 to-cyan-500/10",
+        iconColor: "text-cyan-500",
+      };
+    };
 
-export default WeekilyPattern;
+    const { gradient, iconColor } = getWeekStyles(
+      weekendVsWeekday.weekend,
+      weekendVsWeekday.weekday
+    );
+
+    const insights = mostActiveDay
+      ? [
+          { label: "Most active", value: mostActiveDay.day, highlight: true },
+          { label: "Least active", value: leastActiveDay.day },
+          {
+            label: "Weekend reads",
+            value: weekendVsWeekday.weekend.toString(),
+          },
+          {
+            label: "Weekday reads",
+            value: weekendVsWeekday.weekday.toString(),
+          },
+        ]
+      : [];
+
+    return (
+      <InsightCard
+        title="Weekly Reading Pattern"
+        description="Your reading activity throughout the week"
+        icon={CalendarDays}
+        insights={insights}
+        gradient={gradient}
+        iconColor={iconColor}
+        delay={0}
+      >
+        <div className="h-52 w-full">
+          <ReadingByWeekDay />
+        </div>
+      </InsightCard>
+    );
+  }
+);
+
+export default WeekdayPattern;
