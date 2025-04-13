@@ -6,18 +6,32 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import getIconForTech from "@/components/icons";
 import { useTabContext } from "@/components/home/context/TabContext";
-import { useReadingHistory } from "@/context";
+import { useHistoryStore } from "@/stores";
+import { formatDate } from "@/components/home/utils";
 
 interface RecentActivityProps {
   handleSelectDocument: (path: string, title: string) => void;
-  formatDate: (timestamp: number) => string;
 }
 
+/**
+ * 🎉 RecentActivity Component
+ *
+ * This delightful component showcases the user's recent reading activities!
+ * It brings a touch of joy by displaying the latest documents read,
+ * complete with timestamps and cute icons! 🌟
+ *
+ * If there's no reading history, it gently reminds users that
+ * their recent reads will appear here soon! 📚✨
+ *
+ * The component also allows users to navigate to their reading history
+ * with a simple click, making it easy to revisit past documents!
+ *
+ * Enjoy exploring your reading journey! 😊
+ */
 const RecentActivity: React.FC<RecentActivityProps> = ({
   handleSelectDocument,
-  formatDate,
 }) => {
-  const { readingHistory } = useReadingHistory();
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
   const { currentTheme } = useTheme();
   const { setActiveTab } = useTabContext();
 
