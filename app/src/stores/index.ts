@@ -2,6 +2,7 @@ import { useReadingStore } from "./readingStore";
 import { useDocumentStore } from "./documentStore";
 import { useHistoryStore } from "./historyStore";
 import { useCategoryStore } from "./categoryStore";
+import { useActivityStore } from "./activityStore";
 import { useEffect, useState } from "react";
 
 /**
@@ -14,6 +15,7 @@ const useInit = () => {
   const documentInit = useDocumentStore((state) => state.initialize);
   const historyInit = useHistoryStore((state) => state.initialize);
   const categoryInit = useCategoryStore((state) => state.initialize);
+  const activityInit = useActivityStore((state) => state.initialize);
 
   useEffect(() => {
     const init = async () => {
@@ -21,12 +23,19 @@ const useInit = () => {
       await documentInit();
       await historyInit();
       await categoryInit();
+      await activityInit();
       setLoading(false);
     };
     init();
-  }, [readingInit, documentInit, historyInit, categoryInit]);
+  }, [readingInit, documentInit, historyInit, categoryInit, activityInit]);
 
   return loading;
 };
 
-export { useReadingStore, useDocumentStore, useHistoryStore, useInit };
+export {
+  useReadingStore,
+  useDocumentStore,
+  useHistoryStore,
+  useInit,
+  useActivityStore,
+};
