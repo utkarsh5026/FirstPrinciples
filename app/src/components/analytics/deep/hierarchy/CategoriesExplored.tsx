@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
-import { useReadingMetrics, useReadingHistory, useAnalytics } from "@/context";
+import { useReadingMetrics, useReadingHistory } from "@/context";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -9,14 +9,12 @@ import {
   Rocket,
   Bookmark,
   Clock,
-  Award,
   PieChart,
   BarChart3,
   CalendarClock,
 } from "lucide-react";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { COLORS } from "@/lib/constants";
-import { useTheme } from "@/components/theme/context/ThemeContext";
 import getIconForTech from "@/components/icons";
 import useMobile from "@/hooks/useMobile";
 import { formatRelativeTime } from "@/utils/time";
@@ -29,8 +27,6 @@ const EnhancedCategoriesExplored: React.FC = () => {
   const { analyticsData } = useReadingMetrics();
   const { categoryBreakdown } = analyticsData;
   const { readingHistory } = useReadingHistory();
-  const { totalCategoryBreakdown } = useAnalytics();
-  const { currentTheme } = useTheme();
   const { isMobile } = useMobile();
 
   // Enhanced category coverage data with more stats
@@ -269,14 +265,6 @@ const EnhancedCategoriesExplored: React.FC = () => {
                             <Progress
                               value={category.percentage}
                               className="h-1.5"
-                              style={{
-                                backgroundImage: `linear-gradient(to right, ${category.color}10, ${category.color}05)`,
-                                borderRadius: "999px",
-                              }}
-                              indicatorClassName="bg-none"
-                              indicatorStyle={{
-                                background: category.color,
-                              }}
                             />
                           </div>
 
