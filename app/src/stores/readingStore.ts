@@ -12,23 +12,34 @@ export type ReadingStatus = {
   totalCount: number;
 };
 
-interface ReadingListState {
+type State = {
   todoList: ReadingTodoItem[];
   isLoading: boolean;
   error: string | null;
   status: ReadingStatus;
+};
 
+type Actions = {
   addToReadingList: (path: string, title: string) => Promise<boolean>;
   removeFromReadingList: (id: string) => Promise<boolean>;
   toggleTodoCompletion: (id: string) => Promise<ReadingTodoItem | null>;
   clearReadingList: () => Promise<void>;
   getCompletionStats: () => Promise<ReadingStatus>;
   refreshReadingList: () => Promise<void>;
+  initialize: () => Promise<void>;
+};
 
-  // initialize: () => Promise<void>;
-}
-
-export const useReadingStore = create<ReadingListState>((set, get) => ({
+/**
+ * 📚 Reading Store - A central hub for managing your reading list!
+ *
+ * This store keeps track of all your reading items, their completion status,
+ * and provides helpful statistics about your reading progress. ✨
+ *
+ * 🔖 Use it to add new documents to read later, mark items as complete,
+ * and get insights into your reading habits! Perfect for staying organized
+ * and motivated in your documentation journey. 📈
+ */
+export const useReadingStore = create<State & Actions>((set, get) => ({
   todoList: [],
   isLoading: true,
   error: null,
@@ -39,6 +50,10 @@ export const useReadingStore = create<ReadingListState>((set, get) => ({
     totalCount: 0,
   },
 
+  /**
+   * 📝 Adds a new document to your reading list!
+   * Keep track of interesting docs you want to read later. ✅
+   */
   addToReadingList: async (path, title) => {
     try {
       const success = await readingListService.addToReadingList(path, title);
@@ -57,6 +72,10 @@ export const useReadingStore = create<ReadingListState>((set, get) => ({
     }
   },
 
+  /**
+   * 🗑️ Removes an item from your reading list when you no longer need it!
+   * Keeps your list tidy and focused on what matters.
+   */
   removeFromReadingList: async (id) => {
     try {
       const success = await readingListService.removeItem(id);
@@ -75,6 +94,10 @@ export const useReadingStore = create<ReadingListState>((set, get) => ({
     }
   },
 
+  /**
+   * ✅ Toggles an item between completed and pending status!
+   * Track your progress and feel accomplished as you complete readings. 🎉
+   */
   toggleTodoCompletion: async (id) => {
     try {
       const updatedItem = await readingListService.toggleCompletion(id);
@@ -96,6 +119,10 @@ export const useReadingStore = create<ReadingListState>((set, get) => ({
     }
   },
 
+  /**
+   * 🧹 Clears your entire reading list with confirmation!
+   * Sometimes a fresh start is just what you need. 🌱
+   */
   clearReadingList: async () => {
     if (confirm("Are you sure you want to clear your reading list?")) {
       try {
@@ -119,6 +146,10 @@ export const useReadingStore = create<ReadingListState>((set, get) => ({
     }
   },
 
+  /**
+   * 📊 Gets statistics about your reading progress!
+   * See how much you've accomplished and what's still ahead. 🏆
+   */
   getCompletionStats: async () => {
     try {
       const stats = await readingListService.getCompletionStats();
@@ -142,6 +173,10 @@ export const useReadingStore = create<ReadingListState>((set, get) => ({
     }
   },
 
+  /**
+   * 🔄 Refreshes your reading list with the latest data!
+   * Keeps everything up-to-date and in sync. ✨
+   */
   refreshReadingList: async () => {
     set({ isLoading: true });
     try {
@@ -174,6 +209,10 @@ export const useReadingStore = create<ReadingListState>((set, get) => ({
     }
   },
 
+  /**
+   * 🚀 Initializes the reading list when the app starts!
+   * Gets everything ready for your reading adventures. 📚
+   */
   initialize: async () => {
     console.log("Initializing reading list");
     set({ isLoading: true });
