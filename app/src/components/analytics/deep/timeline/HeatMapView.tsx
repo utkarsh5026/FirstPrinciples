@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Calendar, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import {
   Tooltip,
   TooltipContent,
@@ -11,37 +11,68 @@ import {
 } from "@/components/ui/tooltip";
 import useMobile from "@/hooks/useMobile";
 import { getMonthName } from "@/utils/time";
-import { useReadingMetrics } from "@/context";
+import { useHeatmapStore } from "@/stores";
 
 interface HeatmapViewProps {
   filteredHistory: ReadingHistoryItem[];
   usePrevNextButtons?: boolean;
 }
 
+type CalendarData = {
+  date: string;
+  count: number;
+  dayOfMonth: number;
+  dayOfWeek: number;
+};
+
+/**
+ * 📊 HeatMapView Component
+ *
+ * A beautiful calendar heatmap that visualizes reading activity over time.
+ * Shows intensity of reading with color gradients - darker means more reading!
+ *
+ * ✨ Features:
+ * - Month navigation with pretty animations
+ * - Color-coded activity visualization
+ * - Detailed tooltips on hover
+ * - Responsive design for mobile and desktop
+ * - Empty state handling with friendly messages
+ */
 const HeatmapView: React.FC<HeatmapViewProps> = ({
   filteredHistory,
   usePrevNextButtons = true,
 }) => {
   const { isMobile } = useMobile();
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
-  const { generateMonthlyData } = useReadingMetrics();
+  const generateMonthlyData = useHeatmapStore((state) => state.getMonthlyData);
+  const [calendarData, setCalendarData] = useState<CalendarData[]>([]);
+  const [maxCount, setMaxCount] = useState<number>(0);
 
-  const calendarData = useMemo(() => {
-    const { activityMap } = generateMonthlyData(filteredHistory, currentMonth);
-    return Object.entries(activityMap).map(([date, count]) => ({
-      date,
-      count,
-      dayOfMonth: new Date(date).getDate(),
-      dayOfWeek: new Date(date).getDay(),
-    }));
+  /**
+   * 🔄 Fetches and processes calendar data when month or history changes
+   */
+  useEffect(() => {
+    const generateData = async () => {
+      const { activityMap, maxCount } = await generateMonthlyData(
+        filteredHistory,
+        currentMonth
+      );
+      setCalendarData(
+        Object.entries(activityMap).map(([date, count]) => ({
+          date,
+          count,
+          dayOfMonth: new Date(date).getDate(),
+          dayOfWeek: new Date(date).getDay(),
+        }))
+      );
+      setMaxCount(maxCount);
+    };
+    generateData();
   }, [filteredHistory, currentMonth, generateMonthlyData]);
 
-  // Get max count for scaling colors
-  const maxCount = useMemo(() => {
-    return Math.max(...calendarData.map((d) => d.count), 1);
-  }, [calendarData]);
-
-  // Navigate to previous month
+  /**
+   * ⬅️ Navigate to previous month
+   */
   const goToPreviousMonth = () => {
     setCurrentMonth((prevMonth) => {
       const newMonth = new Date(prevMonth);
@@ -50,6 +81,9 @@ const HeatmapView: React.FC<HeatmapViewProps> = ({
     });
   };
 
+  /**
+   * ➡️ Navigate to next month
+   */
   const goToNextMonth = () => {
     setCurrentMonth((prevMonth) => {
       const newMonth = new Date(prevMonth);
@@ -58,10 +92,16 @@ const HeatmapView: React.FC<HeatmapViewProps> = ({
     });
   };
 
+  /**
+   * 📅 Jump to current month
+   */
   const goToCurrentMonth = () => {
     setCurrentMonth(new Date());
   };
 
+  /**
+   * 🎨 Determines cell background color based on activity count
+   */
   const getColorForCount = (count: number) => {
     if (count === 0) return "bg-secondary/20";
 
@@ -78,6 +118,9 @@ const HeatmapView: React.FC<HeatmapViewProps> = ({
     return colorClasses[intensity];
   };
 
+  /**
+   * ✨ Animation variants for calendar cells
+   */
   const cellVariants = {
     hidden: { scale: 0.8, opacity: 0 },
     visible: (i: number) => ({
@@ -150,7 +193,6 @@ const HeatmapView: React.FC<HeatmapViewProps> = ({
 
             {/* Calendar grid */}
             <div className="grid grid-cols-7 gap-1">
-              {/* Empty cells for days before the first of the month */}
               {Array.from({
                 length: new Date(
                   currentMonth.getFullYear(),
@@ -222,7 +264,6 @@ const HeatmapView: React.FC<HeatmapViewProps> = ({
             </div>
           </div>
 
-          {/* Legend */}
           <div className="flex items-center justify-center mt-4">
             <div className="text-xs text-muted-foreground mr-2">Less</div>
             {[0, 1, 2, 3, 4].map((level) => (
@@ -242,7 +283,6 @@ const HeatmapView: React.FC<HeatmapViewProps> = ({
             <div className="text-xs text-muted-foreground ml-2">More</div>
           </div>
 
-          {/* Go to current month button */}
           {usePrevNextButtons && (
             <div className="flex justify-center my-6">
               <Button
