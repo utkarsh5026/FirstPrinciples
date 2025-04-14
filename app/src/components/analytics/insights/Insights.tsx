@@ -3,6 +3,7 @@ import { WeekdayPattern } from "./WeeklyPattern";
 import TimeOfDayInsightCard from "./TimeoftheDayInsights";
 import { ProgressTrendInsightCard } from "./ProgressTrendInsights";
 import { useHistoryStore } from "@/stores";
+import DayOfMonthActivityInsight from "./DayofMonth";
 
 /**
  * EnhancedInsights - Main component that combines all insight cards
@@ -29,6 +30,7 @@ const Insights = () => {
           <WeekdayPattern history={history} />
           <TimeOfDayInsightCard history={history} />
           <ProgressTrendInsightCard />
+          <DayOfMonthActivityInsight history={history} />
         </div>
       </motion.div>
     </div>

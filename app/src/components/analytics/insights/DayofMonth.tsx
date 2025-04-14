@@ -1,0 +1,388 @@
+import { memo, useMemo } from "react";
+import { Calendar, ArrowUp, ArrowDown } from "lucide-react";
+import InsightCard from "./InsightCard";
+import { useActivityStore } from "@/stores";
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ReferenceLine,
+  Cell,
+} from "recharts";
+import { motion } from "framer-motion";
+import { useTheme } from "@/components/theme/context/ThemeContext";
+import { cn } from "@/lib/utils";
+import useMobile from "@/hooks/useMobile";
+
+interface DayOfMonthActivityInsightProps {
+  history: ReadingHistoryItem[];
+}
+
+/**
+ * 📅 DayOfMonthActivityInsight
+ *
+ * A beautiful visualization showing which days of the month
+ * you prefer for reading! Are you an early-month reader,
+ * mid-month enthusiast, or end-of-month crammer?
+ *
+ * This component analyzes your reading patterns across monthly cycles
+ * and highlights your most active days.
+ */
+const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
+  memo(({ history }) => {
+    const { isMobile } = useMobile();
+    const { currentTheme } = useTheme();
+    const calculateTotalDailyActivity = useActivityStore(
+      (state) => state.calculateTotalDailyActivity
+    );
+    const getDailyActivityMetrics = useActivityStore(
+      (state) => state.getDailyActivityMetrics
+    );
+
+    /**
+     * 🎯 This analyzes your monthly reading patterns!
+     * Discovers which days of the month you're most likely to read,
+     * and identifies patterns in your monthly reading cycle.
+     */
+    const {
+      enhancedData,
+      mostActiveDay,
+      leastActiveDay,
+      average,
+      monthlyPattern,
+      maxValue,
+    } = useMemo(() => {
+      // Get daily activity data
+      const dailyData = calculateTotalDailyActivity(history);
+
+      // Get metrics (most/least active days)
+      const { mostActiveDay, leastActiveDay } =
+        getDailyActivityMetrics(dailyData);
+
+      // Filter out day 0 (which doesn't exist) and limit to 31 days
+      const validData = dailyData.filter((day) => day.day > 0 && day.day <= 31);
+
+      // Calculate average readings per day
+      const totalReadings = validData.reduce((sum, day) => sum + day.count, 0);
+      const average =
+        validData.length > 0 ? totalReadings / validData.length : 0;
+
+      // Determine pattern: early-month, mid-month, late-month
+      const earlyMonthTotal = validData
+        .filter((d) => d.day <= 10)
+        .reduce((sum, d) => sum + d.count, 0);
+      const midMonthTotal = validData
+        .filter((d) => d.day > 10 && d.day <= 20)
+        .reduce((sum, d) => sum + d.count, 0);
+      const lateMonthTotal = validData
+        .filter((d) => d.day > 20)
+        .reduce((sum, d) => sum + d.count, 0);
+
+      let monthlyPattern = "balanced";
+      if (earlyMonthTotal > midMonthTotal && earlyMonthTotal > lateMonthTotal) {
+        monthlyPattern = "early-month";
+      } else if (
+        midMonthTotal > earlyMonthTotal &&
+        midMonthTotal > lateMonthTotal
+      ) {
+        monthlyPattern = "mid-month";
+      } else if (
+        lateMonthTotal > earlyMonthTotal &&
+        lateMonthTotal > midMonthTotal
+      ) {
+        monthlyPattern = "late-month";
+      }
+
+      // Max value for chart scaling
+      const maxValue = Math.max(...validData.map((day) => day.count));
+
+      // Enhance data for visualization
+      const enhancedData = validData.map((day) => {
+        // Determine if it's a special day (e.g., beginning of week/month)
+        const isMonthStart = day.day === 1;
+        const isMonthEnd = day.day === 31;
+        const isQuarterMonth =
+          day.day === 7 || day.day === 15 || day.day === 23;
+        const isPeak = day.day === mostActiveDay.day;
+
+        // Determine bar color based on position in month and peak status
+        let barColor;
+        if (isPeak) {
+          barColor = currentTheme.primary;
+        } else if (isMonthStart || isMonthEnd) {
+          barColor = currentTheme.secondary || "#64748b";
+        } else if (isQuarterMonth) {
+          barColor = currentTheme.secondary || "#94a3b8";
+        } else {
+          barColor =
+            day.count > average
+              ? currentTheme.secondary + "90" || "#64748b90"
+              : currentTheme.secondary + "80" || "#94a3b870";
+        }
+
+        return {
+          ...day,
+          isPeak,
+          isSpecialDay: isMonthStart || isMonthEnd || isQuarterMonth,
+          barColor,
+          comparedToAvg:
+            average > 0 ? Math.round((day.count / average - 1) * 100) : 0,
+        };
+      });
+
+      return {
+        enhancedData,
+        mostActiveDay,
+        leastActiveDay,
+        average,
+        monthlyPattern,
+        maxValue,
+      };
+    }, [
+      history,
+      calculateTotalDailyActivity,
+      getDailyActivityMetrics,
+      currentTheme,
+    ]);
+
+    // Get gradient and icon color based on monthly pattern
+    const getPatternStyles = (pattern: string) => {
+      switch (pattern) {
+        case "early-month":
+          return {
+            gradient: "from-blue-500/5 to-blue-500/10",
+            iconColor: "text-blue-500",
+          };
+        case "mid-month":
+          return {
+            gradient: "from-purple-500/5 to-purple-500/10",
+            iconColor: "text-purple-500",
+          };
+        case "late-month":
+          return {
+            gradient: "from-amber-500/5 to-amber-500/10",
+            iconColor: "text-amber-500",
+          };
+        default:
+          return {
+            gradient: "from-slate-500/5 to-slate-500/10",
+            iconColor: "text-slate-500",
+          };
+      }
+    };
+
+    const { gradient, iconColor } = getPatternStyles(monthlyPattern);
+
+    // Get pattern display name
+    const getPatternDisplayName = (pattern: string) => {
+      switch (pattern) {
+        case "early-month":
+          return "Early-month focus";
+        case "mid-month":
+          return "Mid-month focus";
+        case "late-month":
+          return "Late-month focus";
+        default:
+          return "Balanced";
+      }
+    };
+
+    // Insights for the card
+    const insights = mostActiveDay
+      ? [
+          {
+            label: "Peak day",
+            value: mostActiveDay.day.toString(),
+            highlight: true,
+          },
+          {
+            label: "Pattern",
+            value: getPatternDisplayName(monthlyPattern),
+          },
+          {
+            label: "Least active",
+            value: leastActiveDay.day.toString(),
+          },
+          {
+            label: "Daily average",
+            value: average.toFixed(1),
+          },
+        ]
+      : [];
+
+    // Custom tooltip component
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const CustomTooltip = ({ active, payload }: any) => {
+      if (active && payload && payload.length) {
+        const data = payload[0].payload;
+
+        return (
+          <div className="bg-popover/95 backdrop-blur-sm text-popover-foreground shadow-lg rounded-lg p-3 border border-border">
+            <div className="flex items-center gap-2 border-b border-border/50 pb-1.5 mb-1.5">
+              <Calendar className="h-3.5 w-3.5 text-primary" />
+              <p className="text-sm font-medium flex items-center">
+                <span>Day {data.day}</span>
+                {data.isPeak && (
+                  <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded bg-primary/20 text-primary">
+                    Peak
+                  </span>
+                )}
+              </p>
+            </div>
+
+            <div className="flex justify-between gap-4 text-xs items-center">
+              <span className="text-muted-foreground">Documents read:</span>
+              <span className="font-bold text-primary">{data.count}</span>
+            </div>
+
+            {data.comparedToAvg !== 0 && (
+              <div className="flex justify-between gap-4 text-xs mt-1 items-center">
+                <span className="text-muted-foreground">
+                  Compared to average:
+                </span>
+                <span
+                  className={cn(
+                    "font-medium flex items-center",
+                    data.comparedToAvg > 0 ? "text-green-500" : "text-red-500"
+                  )}
+                >
+                  {data.comparedToAvg > 0 ? (
+                    <ArrowUp className="h-3 w-3 mr-0.5" />
+                  ) : (
+                    <ArrowDown className="h-3 w-3 mr-0.5" />
+                  )}
+                  {Math.abs(data.comparedToAvg)}%
+                </span>
+              </div>
+            )}
+          </div>
+        );
+      }
+      return null;
+    };
+
+    // If there's no data, show empty state
+    if (!enhancedData.length || maxValue === 0) {
+      return (
+        <motion.div
+          className="h-full flex items-center justify-center flex-col"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Calendar className="h-10 w-10 text-muted-foreground opacity-20 mb-2" />
+          <p className="text-sm text-muted-foreground">No monthly data yet</p>
+          <p className="text-xs text-muted-foreground mt-1">
+            Read more documents to reveal your monthly patterns
+          </p>
+        </motion.div>
+      );
+    }
+
+    return (
+      <InsightCard
+        title="Monthly Reading Cycle"
+        description="Your reading activity throughout the month"
+        icon={Calendar}
+        insights={insights}
+        gradient={gradient}
+        iconColor={iconColor}
+        delay={0.3}
+      >
+        <div className="h-60 w-full">
+          <motion.div
+            className="h-full w-full"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={enhancedData}
+                margin={{ top: 15, right: 5, left: 0, bottom: 5 }}
+                barCategoryGap={isMobile ? 1 : 2}
+              >
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke={currentTheme.border || "#333"}
+                  opacity={0.15}
+                  vertical={false}
+                />
+
+                <XAxis
+                  dataKey="day"
+                  tick={{
+                    fill: currentTheme.foreground + "80",
+                    fontSize: 10,
+                  }}
+                  axisLine={false}
+                  tickLine={false}
+                  interval={isMobile ? 4 : 2}
+                  padding={{ left: 10, right: 10 }}
+                />
+
+                <YAxis
+                  tick={{
+                    fill: currentTheme.foreground + "80",
+                    fontSize: 10,
+                  }}
+                  axisLine={false}
+                  tickLine={false}
+                  allowDecimals={false}
+                  width={25}
+                />
+
+                <Tooltip
+                  content={<CustomTooltip />}
+                  cursor={{
+                    fill: currentTheme.primary + "10",
+                    radius: 4,
+                  }}
+                />
+
+                {/* Average reading reference line */}
+                <ReferenceLine
+                  y={average}
+                  stroke={currentTheme.foreground}
+                  strokeDasharray="3 3"
+                  label={{
+                    value: "Avg",
+                    position: "right",
+                    fill: currentTheme.foreground + "80",
+                    fontSize: 9,
+                  }}
+                  strokeOpacity={0.4}
+                />
+
+                <Bar
+                  dataKey="count"
+                  radius={[4, 4, 0, 0]}
+                  animationDuration={1500}
+                  animationBegin={200}
+                >
+                  {enhancedData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={entry.barColor}
+                      fillOpacity={entry.isPeak ? 1 : 0.8}
+                      stroke={
+                        entry.isPeak ? currentTheme.background : undefined
+                      }
+                      strokeWidth={entry.isPeak ? 1 : 0}
+                    />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </motion.div>
+        </div>
+      </InsightCard>
+    );
+  });
+
+export default DayOfMonthActivityInsight;
