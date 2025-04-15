@@ -1,17 +1,5 @@
 import React, { useState } from "react";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  BarChart as RechartsBarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip as RechartsTooltip,
-  CartesianGrid,
-  Sector,
-} from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Sector } from "recharts";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart,
@@ -26,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { COLORS } from "@/lib/constants";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useMobile from "@/hooks/useMobile";
+import CategoryHorizontalBarChart from "@/components/insights/CategoryHorizontalBarChart";
 
 interface DistributionProps {
   selectedSubcategory: string | null;
@@ -380,107 +369,15 @@ const EnhancedDistribution: React.FC<DistributionProps> = ({
               </div>
             ) : (
               <div className="h-full">
-                <ResponsiveContainer width="100%" height="100%" debounce={50}>
-                  <RechartsBarChart
-                    data={sortedData}
-                    layout="vertical"
-                    margin={{
-                      top: 5,
-                      right: isMobile ? 5 : 30,
-                      left: isMobile ? 10 : 20,
-                      bottom: 30,
-                    }}
-                    barSize={isMobile ? 18 : 24}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
-                    <XAxis
-                      type="number"
-                      tick={{
-                        fontSize: isMobile ? 10 : 12,
-                        fill: currentTheme.foreground,
-                      }}
-                      tickMargin={8}
-                      axisLine={{ stroke: currentTheme.border, opacity: 0.3 }}
-                      tickLine={{ stroke: currentTheme.border, opacity: 0.3 }}
-                    />
-                    <YAxis
-                      type="category"
-                      dataKey="displayName"
-                      width={isMobile ? 80 : 140}
-                      tick={{
-                        fontSize: isMobile ? 10 : 12,
-                        fill: currentTheme.foreground,
-                      }}
-                      tickMargin={8}
-                      axisLine={{ stroke: currentTheme.border, opacity: 0.3 }}
-                      tickLine={{ stroke: currentTheme.border, opacity: 0.3 }}
-                    />
-                    <RechartsTooltip
-                      content={({ active, payload }) => {
-                        if (active && payload && payload.length) {
-                          const data = payload[0].payload;
-                          const tooltipName = data.fullName || data.name;
-                          let tooltipValue = `${data.count} reads`;
-
-                          if ("totalDocuments" in data) {
-                            const percentage = Math.round(
-                              (data.count / data.totalDocuments) * 100
-                            );
-                            tooltipValue = `${data.count} of ${data.totalDocuments} (${percentage}%)`;
-                          }
-
-                          return (
-                            <div style={customTooltipStyle}>
-                              <p className="font-medium text-sm mb-1">
-                                {tooltipName}
-                              </p>
-                              <p className="text-muted-foreground text-xs">
-                                {tooltipValue}
-                              </p>
-                            </div>
-                          );
-                        }
-                        return null;
-                      }}
-                    />
-                    <Bar
-                      dataKey="count"
-                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                      onClick={(data: any) => {
-                        if (data.path && typeof data.path === "string") {
-                          onSelectDocument(
-                            data.path,
-                            data.fullName || data.name
-                          );
-                        }
-                      }}
-                      isAnimationActive={true}
-                      animationDuration={600}
-                      cursor={selectedSubcategory ? "pointer" : "default"}
-                      label={
-                        isMobile
-                          ? false
-                          : {
-                              position: "right",
-                              offset: 5,
-                              fontSize: 11,
-                              fill: currentTheme.foreground,
-                              opacity: 0.7,
-                              formatter: (value: number) =>
-                                value > 0 ? value : "",
-                            }
-                      }
-                    >
-                      {sortedData.map((entry, index) => (
-                        <Cell
-                          key={`cell-${index}`}
-                          fill={entry.fill || COLORS[index % COLORS.length]}
-                          className="transition-opacity duration-200 hover:opacity-80"
-                        />
-                      ))}
-                    </Bar>
-                  </RechartsBarChart>
-                </ResponsiveContainer>
+                <CategoryHorizontalBarChart
+                  data={sortedData.map((item) => ({
+                    ...item,
+                    totalDocuments: item.totalDocuments || 0,
+                    percentage: item.percentage || 0,
+                  }))}
+                  onSelectDocument={onSelectDocument}
+                  selectedSubcategory={selectedSubcategory}
+                />
               </div>
             )
           ) : (

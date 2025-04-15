@@ -27,15 +27,7 @@ interface CardDocumentViewerProps {
  *
  * @param {Object} props - Component props
  * @param {string} props.selectedFile - Path to the currently selected markdown file
- * @param {Function} props.setSelectedFile - Function to update the selected file
  * @returns {React.ReactElement} The rendered component
- */
-/**
- * 🎉 CardDocumentViewer is a delightful component that brings markdown documents to life in a card-based view!
- * It allows users to seamlessly load, display, and navigate through their favorite documents.
- * With support for fullscreen mode, users can immerse themselves in their reading experience! 📖✨
- *
- * This component also integrates achievement popups, celebrating user milestones and making reading more engaging! 🏆
  */
 const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
   selectedFile,
@@ -73,6 +65,7 @@ const CardDocumentViewer: React.FC<CardDocumentViewerProps> = ({
         markdown={markdownContent}
         onExit={() => setIsFullscreen(false)}
         parsedSections={parsedSections}
+        documentPath={selectedFile}
       />
     );
 

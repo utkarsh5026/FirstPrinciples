@@ -321,7 +321,7 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
                     fontSize: 10,
                   }}
                   axisLine={false}
-                  tickLine={false}
+                  tickLine={true}
                   interval={isMobile ? 4 : 2}
                   padding={{ left: 10, right: 10 }}
                 />

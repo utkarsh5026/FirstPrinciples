@@ -6,58 +6,50 @@ import CardProgress from "../CardProgress";
 import { Menu, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionsSheet from "./sidebar/SectionsSheet";
-import { MarkdownSection } from "@/components/card/MarkdownCardView"; // Import shared type
+import { MarkdownSection } from "@/components/card/MarkdownCardView";
+import { useSectionArray } from "@/hooks/useSectiion";
 
 interface FullscreenCardViewProps {
   markdown: string;
   className?: string;
   onExit: () => void;
-  parsedSections?: MarkdownSection[]; // Accept pre-parsed sections
+  parsedSections?: MarkdownSection[];
+  documentPath: string;
 }
 
+/**
+ * FullscreenCardView component
+ *
+ * Shows document content in a fullscreen, card-based view with section tracking.
+ * Uses SectionReadingService (via the store and hook) to:
+ * - Mark sections as read when viewed
+ * - Track time spent on each section
+ * - Show reading progress
+ */
 const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   markdown,
   className,
   onExit,
   parsedSections,
+  documentPath,
 }) => {
   const [sections, setSections] = useState<MarkdownSection[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const cardContainerRef = useRef<HTMLDivElement>(null);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const totalCards = sections.length;
 
-  // Parse the markdown into sections if not already provided
-  useEffect(() => {
-    if (!markdown) return;
-
-    if (parsedSections && parsedSections.length > 0) {
-      // Use the pre-parsed sections if provided
-      console.log("Using pre-parsed sections in fullscreen view");
-      setSections(parsedSections);
-    } else {
-      // Fallback to parsing directly (should never happen with proper implementation)
-      console.time("FullscreenView - Parse Markdown");
-      const newSections = parseMarkdownIntoSections(markdown);
-      setSections(newSections);
-      console.timeEnd("FullscreenView - Parse Markdown");
-    }
-
-    setCurrentIndex(0); // Reset to first card when content changes
-  }, [markdown, parsedSections]);
-
-  // Scroll to top when changing cards
-  useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTop = 0;
-    }
-  }, [currentIndex]);
+  // Use our section tracking hook with the service
+  const { documentCompletionPercentage } = useSectionArray(
+    documentPath,
+    sections,
+    currentIndex
+  );
 
   // Set up swipe gestures for navigation
   useSwipeGesture({
-    targetRef: cardContainerRef as React.RefObject<HTMLElement>,
+    targetRef: scrollRef as React.RefObject<HTMLElement>,
     threshold: 50,
     onSwipeLeft: () => {
       if (currentIndex < totalCards - 1) {
@@ -71,8 +63,31 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     },
   });
 
+  // Use parsed sections if provided, otherwise parse markdown
+  useEffect(() => {
+    if (!markdown) return;
+
+    if (parsedSections && parsedSections.length > 0) {
+      setSections(parsedSections);
+    } else {
+      // Fallback to parsing directly
+      const newSections = parseMarkdownIntoSections(markdown);
+      setSections(newSections);
+    }
+
+    setCurrentIndex(0); // Reset to first card when content changes
+  }, [markdown, parsedSections]);
+
+  // Scroll to top when changing cards
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = 0;
+    }
+  }, [currentIndex]);
+
   // Legacy parser - only used as fallback
   const parseMarkdownIntoSections = (markdown: string): MarkdownSection[] => {
+    // (existing implementation)
     const lines = markdown.split("\n");
     const sections: MarkdownSection[] = [];
 
@@ -238,7 +253,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   return (
     <div
       className={cn("fixed inset-0 z-50 bg-[#202020] flex flex-col", className)}
-      ref={cardContainerRef}
     >
       {/* Header */}
       <div className="sticky top-0 z-20 flex items-center justify-between p-4 border-b border-border bg-card/50 backdrop-blur-sm">
@@ -252,7 +266,12 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           <ArrowLeft className="h-4 w-4" />
         </Button>
 
-        <div className="flex-1 text-center" />
+        {/* Section title - mobile optimized */}
+        <div className="flex-1 text-center truncate px-4">
+          <span className="text-sm font-medium md:text-base">
+            {currentSection.title}
+          </span>
+        </div>
 
         <Button
           variant="ghost"
@@ -265,16 +284,22 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         </Button>
       </div>
 
+      {/* Simple Progress Indicator */}
+      <div className="w-full h-1 bg-secondary/20">
+        <div
+          className="h-full bg-primary/80 transition-all duration-300"
+          style={{ width: `${documentCompletionPercentage}%` }}
+        />
+      </div>
+
       {/* Main content area */}
       <div
         className="flex-1 relative overflow-hidden"
-        style={{
-          height: "calc(100vh - 8rem)", // Ensure there's enough space for content
-        }}
+        style={{ height: "calc(100vh - 8rem)" }}
       >
         {/* Card content */}
         <div
-          ref={scrollAreaRef}
+          ref={scrollRef}
           className={cn(
             "h-full overflow-y-auto pb-16",
             isTransitioning ? "opacity-0" : "opacity-100",
