@@ -1,10 +1,12 @@
 import { Card } from "@/components/ui/card";
-import { formatReadingTime, formatNumber } from "../utils";
+import { formatNumber } from "../utils";
 import { User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import React, { useMemo } from "react";
 import { Progress } from "@/components/ui/progress";
-import { useReadingHistory, useReadingMetrics } from "@/context";
+import { useHistoryStore, useCategoryStore } from "@/stores";
+import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
+import { formatTimeInMs } from "@/utils/time";
 
 interface ReadingProgressProps {
   currentLevelXP: number;
@@ -12,16 +14,40 @@ interface ReadingProgressProps {
   xpProgress: number;
 }
 
+/**
+ * 🚀 ReadingProgress Component
+ *
+ * This component displays the user's reading progress, including their current level, XP progress, and various reading statistics.
+ * It's designed to be a fun and engaging way to track your reading journey! 📚
+ *
+ * It fetches data from the history store, category store, and global metrics hook to display:
+ * - The number of documents read in the current week 📆
+ * - The number of categories explored 🌍
+ * - The total time spent reading ⏰
+ * - The average session time per document 🕒
+ * - The total words read 📖
+ *
+ * The component also includes a progress bar to show the user's XP progress towards the next level. 🚀
+ *
+ * The intention behind this component is to provide a motivating and informative snapshot of the user's reading activity, encouraging them to keep reading and exploring! 📚💪
+ */
 const ReadingProgress: React.FC<ReadingProgressProps> = ({
   currentLevelXP,
   xpToNextLevel,
   xpProgress,
 }) => {
-  const { metrics, analyticsData } = useReadingMetrics();
-  const { readingHistory } = useReadingHistory();
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
+  const categoryBreakdown = useCategoryStore(
+    (state) => state.categoryBreakdown
+  );
+
+  const { totalWordsRead, totalTimeSpent, documents } = useGlobalMetrics();
 
   /**
-   * Calculates the number of documents read in the current week
+   * 🔄 currentWeekReadingCount Function
+   *
+   * This function calculates the number of documents read in the current week.
+   * It filters the reading history to include only documents read since the start of the week. 🔄
    */
   const currentWeekReadingCount = useMemo(() => {
     const today = new Date();
@@ -42,21 +68,19 @@ const ReadingProgress: React.FC<ReadingProgressProps> = ({
     },
     {
       heading: "Categories",
-      value: analyticsData.categoryBreakdown.length,
+      value: categoryBreakdown.length,
       description: "Explored",
     },
     {
       heading: "Reading Time",
-      value: formatReadingTime(metrics.totalTimeSpent),
+      value: formatTimeInMs(totalTimeSpent),
       description: "Total time",
     },
     {
       heading: "Avg. Session",
       value:
-        readingHistory.length > 0
-          ? formatReadingTime(
-              Math.round(metrics.totalTimeSpent / readingHistory.length)
-            )
+        documents.read > 0
+          ? formatTimeInMs(Math.round(totalTimeSpent / documents.read))
           : "0 min",
       description: "Per document",
     },
@@ -73,7 +97,7 @@ const ReadingProgress: React.FC<ReadingProgressProps> = ({
           variant="secondary"
           className="bg-primary/10 text-primary border-none rounded-2xl"
         >
-          Level {metrics.currentLevel}
+          Level 1
         </Badge>
       </div>
 
@@ -112,11 +136,11 @@ const ReadingProgress: React.FC<ReadingProgressProps> = ({
           <div>
             <div className="text-sm font-medium">Total Words Read</div>
             <div className="text-xs text-muted-foreground mt-0.5">
-              Estimated based on reading time
+              Calculated based on sections read
             </div>
           </div>
           <div className="text-xl font-bold">
-            {formatNumber(metrics.totalWordsRead)}
+            {formatNumber(totalWordsRead)}
           </div>
         </div>
       </div>
