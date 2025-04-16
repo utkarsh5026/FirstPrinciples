@@ -1,37 +1,29 @@
 import { create } from "zustand";
-import { sectionReadingService } from "../services/section/SectionReadingService";
+import { sectionReadingService } from "@/services/section/SectionReadingService";
+import type { LoadingWithError } from "./base/base";
+import { parseError } from "@/utils/error";
 
 // Store current reading state in memory only
-interface ReadingState {
+type ReadingState = {
   currentSectionId: string | null;
   documentPath: string | null;
   startTime: number | null;
   readSections: Set<string>; // Set of section IDs that have been read
-}
+};
 
 // Store state
-interface StoreState {
+type StoreState = LoadingWithError & {
   readingState: ReadingState;
   isInitialized: boolean;
-  isLoading: boolean;
-  error: string | null;
-}
+};
 
-// Store actions
 interface StoreActions {
-  // Initialize the store
   initialize: () => Promise<void>;
-  // Start tracking when a section is opened
   startReading: (documentPath: string, sectionId: string) => Promise<void>;
-  // End tracking when user navigates away
   endReading: () => Promise<void>;
-  // Check if a section has been read
   isSectionRead: (sectionId: string) => boolean;
-  // Get all read sections
   getReadSections: () => string[];
-  // Load read sections for a document
   loadReadSections: (documentPath: string) => Promise<void>;
-  // Get document completion percentage
   getDocumentCompletionPercentage: (
     documentPath: string,
     totalSections: number
@@ -46,6 +38,19 @@ interface StoreActions {
  * - Records time spent on each section
  * - Uses SectionReadingService to interact with IndexedDB
  */
+/**
+ * 📚 Section Store
+ *
+ * Your friendly reading tracker! ✨
+ *
+ * This store is like your personal reading assistant that remembers:
+ * - Which sections you've already read 👀
+ * - How much time you've spent on each section ⏱️
+ * - Your overall progress through documents 📊
+ *
+ * It quietly works in the background, storing your reading progress
+ * so you can pick up right where you left off!
+ */
 export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
   return {
     // Initial state
@@ -56,43 +61,39 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
       readSections: new Set<string>(),
     },
     isInitialized: false,
-    isLoading: false,
+    loading: false,
     error: null,
 
     /**
-     * Initialize the store and the service
+     * 🚀 Initialize the store
+     *
+     * Gets everything ready to track your reading journey!
      */
     initialize: async () => {
       try {
-        set({ isLoading: true });
-
-        // Initialize the section reading service
+        set({ loading: true });
         await sectionReadingService.initialize();
 
-        set({ isInitialized: true, isLoading: false, error: null });
+        set({ isInitialized: true, loading: false, error: null });
       } catch (error) {
         console.error("Error initializing section store:", error);
         set({
-          isLoading: false,
-          error:
-            error instanceof Error
-              ? error.message
-              : "Failed to initialize section store",
+          loading: false,
+          error: parseError(error, "Failed to initialize section store"),
         });
       }
     },
 
     /**
-     * Start reading a section
-     * - Mark it as read immediately
-     * - Store the start time
+     * 📖 Start reading a section
+     *
+     * Marks the beginning of your adventure in a new section!
+     * Remembers where you are and when you started reading.
      */
     startReading: async (documentPath, sectionId) => {
       try {
-        // First, end any current reading session
         const currentState = get().readingState;
         if (currentState.currentSectionId && currentState.startTime) {
-          // Calculate time spent
           const timeSpent = Date.now() - currentState.startTime;
 
           // Record the reading session
@@ -122,19 +123,15 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
         });
       } catch (error) {
         console.error("Error starting section reading:", error);
-        set({
-          error:
-            error instanceof Error
-              ? error.message
-              : "Failed to start reading section",
-        });
+        set({ error: parseError(error, "Failed to start reading section") });
       }
     },
 
     /**
-     * End the current reading session
-     * - Calculate time spent
-     * - Record to database via service
+     * 🏁 End the reading session
+     *
+     * Wraps up your current reading adventure and saves your progress!
+     * Like placing a bookmark before closing a book. ✨
      */
     endReading: async () => {
       try {
@@ -165,35 +162,40 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
       } catch (error) {
         console.error("Error ending section reading:", error);
         set({
-          error:
-            error instanceof Error
-              ? error.message
-              : "Failed to end reading section",
+          error: parseError(error, "Failed to end reading section"),
         });
       }
     },
 
     /**
-     * Check if a section has been read locally
-     * - Only checks the in-memory state, not the database
+     * 👀 Check if a section has been read
+     *
+     * A quick peek to see if you've already visited this section!
+     * Like checking if you've already seen that episode. 🍿
      */
     isSectionRead: (sectionId) => {
       return get().readingState.readSections.has(sectionId);
     },
 
     /**
-     * Get all read sections from memory
+     * 📋 Get all read sections
+     *
+     * Gives you a list of all the sections you've already explored!
+     * Like checking your travel history. 🗺️
      */
     getReadSections: () => {
       return Array.from(get().readingState.readSections);
     },
 
     /**
-     * Load read sections for a document from the database
+     * 🔄 Load read sections
+     *
+     * Fetches your reading history for a document from the database!
+     * Like finding all your old bookmarks. 📚
      */
     loadReadSections: async (documentPath) => {
       try {
-        set({ isLoading: true });
+        set({ loading: true });
 
         // Get read sections from the service
         const readSections = await sectionReadingService.getReadSections(
@@ -206,23 +208,23 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
             ...state.readingState,
             readSections,
           },
-          isLoading: false,
+          loading: false,
           error: null,
         }));
       } catch (error) {
         console.error("Error loading read sections:", error);
         set({
-          isLoading: false,
-          error:
-            error instanceof Error
-              ? error.message
-              : "Failed to load read sections",
+          loading: false,
+          error: parseError(error, "Failed to load read sections"),
         });
       }
     },
 
     /**
-     * Get document completion percentage from the service
+     * 📊 Get completion percentage
+     *
+     * Shows how much of the document you've already read!
+     * Like a progress bar for your reading journey. 🏆
      */
     getDocumentCompletionPercentage: async (documentPath, totalSections) => {
       try {
@@ -233,10 +235,7 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
       } catch (error) {
         console.error("Error calculating completion percentage:", error);
         set({
-          error:
-            error instanceof Error
-              ? error.message
-              : "Failed to calculate completion",
+          error: parseError(error, "Failed to calculate completion"),
         });
         return 0;
       }
