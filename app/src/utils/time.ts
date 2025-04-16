@@ -164,7 +164,7 @@ export const formatDateKey = (date: Date): string => {
  * or "05:20" to display durations, reading times, or other time measurements
  * in a way that's instantly recognizable to users.
  */
-export const formatTimeInMs = (ms: number): string => {
+export const formatTimeInMs = (ms: number, describe = true): string => {
   const totalSeconds = Math.floor(ms / 1000);
   const seconds = totalSeconds % 60;
   const totalMinutes = Math.floor(totalSeconds / 60);
@@ -176,7 +176,14 @@ export const formatTimeInMs = (ms: number): string => {
 
   if (hours > 0) {
     const formattedHours = String(hours).padStart(2, "0");
-    return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-  } else if (minutes > 0) return `${formattedMinutes}:${formattedSeconds}`;
-  else return `${formattedSeconds}s`;
+    return describe
+      ? `${formattedHours}h ${formattedMinutes}min ${formattedSeconds}sec`
+      : `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+  } else if (minutes > 0) {
+    return describe
+      ? `${formattedMinutes}min ${formattedSeconds}sec`
+      : `${formattedMinutes}:${formattedSeconds}`;
+  } else {
+    return describe ? `${formattedSeconds}sec` : `${formattedSeconds}s`;
+  }
 };
