@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
   const [time, setTime] = useState("");
 
   const { documents, streak } = useGlobalMetrics();
-  const { pendingReads, completedItems } = useTodoList();
+  const { pending, completed } = useTodoList();
 
   /**
    * 🕰️ Time-based Greeting Generator
@@ -51,8 +51,8 @@ const Hero: React.FC = () => {
 
   const badges = [
     { icon: <FileText />, label: "Documents read", value: documents.read },
-    { icon: <CheckCircle2 />, label: "Completed", value: completedItems },
-    { icon: <Clock />, label: "To read", value: pendingReads },
+    { icon: <CheckCircle2 />, label: "Completed", value: completed.length },
+    { icon: <Clock />, label: "To read", value: pending.length },
     { icon: <Sparkles />, label: "Day streak", value: streak.currentStreak },
   ];
 
