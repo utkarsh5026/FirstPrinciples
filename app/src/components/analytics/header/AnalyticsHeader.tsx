@@ -1,12 +1,28 @@
 import { Zap, Flame, Clock, BookOpenCheck } from "lucide-react";
-import { formatReadingTime, formatNumber, getStreakEmoji } from "../utils";
+import { formatNumber, getStreakEmoji } from "../utils";
 import StatCard from "./StatCard";
-import { useReadingMetrics, useXP } from "@/context";
 import { useHistoryStore, useDocumentStore } from "@/stores";
+import { useXP } from "@/context";
+import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
+import { formatTimeInMs } from "@/utils/time";
 
+/**
+ * ✨ AnalyticsHeader Component
+ *
+ * A beautiful dashboard header that showcases the user's reading achievements and progress!
+ * This component displays key metrics in an engaging, visually appealing format.
+ *
+ * 📊 Shows the user's reading level and XP progress in a delightful way
+ * 🔥 Tracks reading streaks to encourage daily reading habits
+ * ⏱️ Displays total reading time and words read to celebrate milestones
+ * 📚 Shows document completion progress to motivate continued learning
+ *
+ * The header is designed to be motivational and reward-focused, giving users
+ * instant feedback on their reading journey and encouraging consistent engagement.
+ */
 const AnalyticsHeader: React.FC = () => {
-  const { metrics } = useReadingMetrics();
-  const { totalTimeSpent, totalWordsRead, documentsCompleted } = metrics;
+  const { totalWordsRead, totalTimeSpent, documents } = useGlobalMetrics();
+
   const { xpStats } = useXP();
   const { currentStreak, longestStreak } = useHistoryStore(
     (state) => state.streak
@@ -18,7 +34,7 @@ const AnalyticsHeader: React.FC = () => {
 
   const completionPercentage =
     availableDocuments.length > 0
-      ? Math.round((documentsCompleted / availableDocuments.length) * 100)
+      ? Math.round((documents.read / availableDocuments.length) * 100)
       : 0;
 
   return (
@@ -62,7 +78,7 @@ const AnalyticsHeader: React.FC = () => {
       {/* Total Reading Time */}
       <StatCard
         title="Reading Time"
-        value={formatReadingTime(totalTimeSpent)}
+        value={formatTimeInMs(totalTimeSpent)}
         additionalInfo={[
           <span key="words-read">
             ~{formatNumber(totalWordsRead)} words read
@@ -75,7 +91,7 @@ const AnalyticsHeader: React.FC = () => {
       {/* Documents Completed */}
       <StatCard
         title="Documents Read"
-        value={documentsCompleted}
+        value={documents.read}
         subtitle={`of ${availableDocuments.length}`}
         progressValue={completionPercentage}
         additionalInfo={[
