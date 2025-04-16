@@ -2,7 +2,6 @@ import { create } from "zustand";
 import {
   type MarkdownSection,
   parseMarkdownIntoSections,
-  generatePreview,
 } from "@/services/section/parsing";
 import { estimateReadingTime } from "@/services/analytics/estimation";
 import { LoadingWithError } from "./base/base";
@@ -13,7 +12,6 @@ type State = LoadingWithError & {
   markdown: string;
   title: string;
   category: string;
-  preview: string;
   sections: MarkdownSection[];
   docPath: string;
   metrics: {
@@ -31,7 +29,6 @@ export const useCurrentDocumentStore = create<State & Actions>((set) => ({
   markdown: "",
   title: "",
   category: "",
-  preview: "",
   sections: [],
   docPath: "",
   metrics: {
@@ -57,7 +54,6 @@ export const useCurrentDocumentStore = create<State & Actions>((set) => ({
 
     try {
       const sections = parseMarkdownIntoSections(markdown);
-      const preview = generatePreview(markdown);
 
       const totalWords = sections.reduce(
         (acc, section) => acc + section.wordCount,
@@ -71,7 +67,6 @@ export const useCurrentDocumentStore = create<State & Actions>((set) => ({
         markdown,
         docPath: documentUrl,
         category,
-        preview,
         sections,
         metrics: { totalWords, totalTime, totalSections: sections.length },
         loading: false,

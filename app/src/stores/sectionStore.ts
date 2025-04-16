@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { sectionReadingService } from "@/services/section/SectionReadingService";
 import type { LoadingWithError } from "./base/base";
 import { parseError } from "@/utils/error";
+import { useHistoryStore } from "./historyStore";
 
 /**
  * Enhanced SectionReadingData with category and word count
@@ -151,6 +152,7 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
     ) => {
       try {
         const currentState = get().readingState;
+        const addToHistory = useHistoryStore.getState().addToReadingHistory;
 
         // End previous reading session if one exists
         if (currentState.currentSectionId && currentState.startTime) {
@@ -170,8 +172,10 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
               currentState.category,
               currentState.wordCount,
               timeSpent,
-              true // Mark as complete
+              true
             );
+
+            await addToHistory(documentPath, sectionTitle);
           }
         }
 

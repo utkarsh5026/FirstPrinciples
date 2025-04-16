@@ -44,7 +44,6 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({
   const title = useCurrentDocumentStore((state) => state.title);
 
   useEffect(() => {
-    console.log("selectedFileUrl", selectedFileUrl);
     load(selectedFileUrl);
   }, [selectedFileUrl, load]);
 
