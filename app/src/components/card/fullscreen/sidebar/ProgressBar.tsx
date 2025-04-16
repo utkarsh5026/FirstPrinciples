@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import ProgressBarWithLabel from "@/components/utils/ProgressBarWithLabel";
 import { cn } from "@/lib/utils";
 
@@ -7,20 +7,21 @@ interface ProgressBarProps {
   readSections: Set<string>;
   sections: { id: string; title: string }[];
   currentIndex: number;
-  setReadSections: (sections: Set<string>) => void;
+  setReadSections: () => void; // Changed to a function that resets progress
 }
 
 /**
- * ProgressBar component displays a progress bar with detailed progress stats, progress controls, and progress stages visualization.
+ * ProgressBar component displays a progress indicator for document navigation
+ * Shows detailed progress stats, controls, and a visual representation of section completion
  *
- * @param {ProgressBarProps} props - The component props.
- * @param {number} props.progressPercentage - The percentage of progress to display.
- * @param {Set<string>} props.readSections - The set of read sections.
- * @param {Array<{ id: string; title: string }>} props.sections - The array of all sections.
- * @param {number} props.currentIndex - The index of the current section.
- * @param {(sections: Set<string>) => void} props.setReadSections - The function to set the read sections.
+ * @param {ProgressBarProps} props - The component props
+ * @param {number} props.progressPercentage - The percentage of overall progress
+ * @param {Set<string>} props.readSections - Set of section IDs that have been read
+ * @param {Array<{ id: string; title: string }>} props.sections - The array of all sections
+ * @param {number} props.currentIndex - The index of the current section
+ * @param {() => void} props.setReadSections - Function to reset reading progress
  *
- * @returns {React.ReactElement} The ProgressBar component.
+ * @returns {React.ReactElement} The ProgressBar component
  */
 const ProgressBar: React.FC<ProgressBarProps> = ({
   progressPercentage,
@@ -30,21 +31,18 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   setReadSections,
 }) => {
   /**
-   * Function to get the class for a section bar based on its read and current status.
+   * Function to get the class for a section bar based on its read and current status
    *
-   * @param {boolean} isRead - Whether the section is read.
-   * @param {boolean} isCurrent - Whether the section is the current one.
+   * @param {boolean} isRead - Whether the section is read
+   * @param {boolean} isCurrent - Whether the section is the current one
    *
-   * @returns {string} The class for the section bar.
+   * @returns {string} The class for the section bar
    */
-  const getSectionBarClass = useCallback(
-    (isRead: boolean, isCurrent: boolean) => {
-      if (isRead) return "bg-primary/70";
-      if (isCurrent) return "bg-primary/30";
-      return "bg-secondary/30";
-    },
-    []
-  );
+  const getSectionBarClass = (isRead: boolean, isCurrent: boolean) => {
+    if (isRead) return "bg-primary/70";
+    if (isCurrent) return "bg-primary/30";
+    return "bg-secondary/30";
+  };
 
   return (
     <div className="space-y-2 mt-6">
@@ -85,12 +83,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 
         {/* Reset progress button */}
         <button
-          onClick={() => {
-            if (confirm("Reset your reading progress?")) {
-              setReadSections(new Set());
-              localStorage.removeItem("readCardSections");
-            }
-          }}
+          onClick={setReadSections}
           className="text-xs text-primary/70 hover:text-primary hover:underline transition-colors"
         >
           Reset progress

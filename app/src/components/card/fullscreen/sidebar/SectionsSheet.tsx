@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { ListOrdered, X } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -15,6 +15,8 @@ interface SectionsSheetProps {
   menuOpen: boolean;
   setMenuOpen: (open: boolean) => void;
   sections: MarkdownSection[];
+  readSections: Set<string>; // Now passed directly from parent
+  setReadSections?: (sections: Set<string>) => void; // Optional callback for updating read sections
 }
 
 /**
@@ -29,6 +31,8 @@ interface SectionsSheetProps {
  * @param {Function} props.handleSelectCard - A function to handle the selection of a section.
  * @param {boolean} props.menuOpen - A boolean indicating if the menu is open.
  * @param {Function} props.setMenuOpen - A function to set the menu open state.
+ * @param {Set<string>} props.readSections - Set of section IDs that have been read, passed from parent.
+ * @param {Function} props.setReadSections - Optional callback to update read sections in parent.
  */
 const SectionsSheet: React.FC<SectionsSheetProps> = ({
   currentIndex,
@@ -36,47 +40,30 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
   menuOpen,
   setMenuOpen,
   sections,
+  readSections,
+  setReadSections,
 }) => {
-  const [readSections, setReadSections] = useState<Set<string>>(new Set());
+  // State for tracking whether to show progress (preference only)
   const [showProgress, setShowProgress] = useState<boolean>(() => {
-    // Initialize from localStorage or default to true
+    // Initialize from localStorage or default to true for the preference only
     return localStorage.getItem("showCardProgress") !== "false";
   });
 
-  // Calculate progress percentage
   // Calculate progress percentage
   const progressPercentage = sections.length
     ? (readSections.size / sections.length) * 100
     : 0;
 
-  // Mark current section as read when it changes
-  useEffect(() => {
-    if (currentIndex >= 0 && currentIndex < sections.length && showProgress) {
-      const currentSection = sections[currentIndex];
-      setReadSections((prev) => {
-        const newReadSections = new Set(prev);
-        newReadSections.add(currentSection.id);
-        // Save to localStorage
-        localStorage.setItem(
-          "readCardSections",
-          JSON.stringify([...newReadSections])
-        );
-        return newReadSections;
-      });
-    }
-  }, [currentIndex, sections, showProgress]);
-
-  // Load read sections from localStorage on mount
-  useEffect(() => {
-    try {
-      const savedReadSections = localStorage.getItem("readCardSections");
-      if (savedReadSections) {
-        setReadSections(new Set(JSON.parse(savedReadSections)));
+  // Handle resetting progress (clearing read sections)
+  const handleResetProgress = () => {
+    if (confirm("Reset your reading progress?")) {
+      if (setReadSections) {
+        setReadSections(new Set());
       }
-    } catch (error) {
-      console.error("Error loading read sections from localStorage:", error);
+      // Still clear localStorage to be consistent
+      localStorage.removeItem("readCardSections");
     }
-  }, []);
+  };
 
   // Save progress display preference
   const handleToggleProgress = (checked: boolean) => {
@@ -139,7 +126,7 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
                 readSections={readSections}
                 sections={sections}
                 currentIndex={currentIndex}
-                setReadSections={setReadSections}
+                setReadSections={handleResetProgress}
               />
             )}
           </div>

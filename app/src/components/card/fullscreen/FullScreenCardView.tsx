@@ -374,13 +374,21 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         </div>
       </div>
 
-      {/* Sections Menu Sheet */}
+      {/* Sections Menu Sheet with read sections */}
       <SectionsSheet
         currentIndex={currentIndex}
         handleSelectCard={handleSelectCard}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
         sections={sections}
+        readSections={readSections}
+        setReadSections={(newSections) => {
+          setReadSections(newSections);
+          // If we're clearing progress, also update section store
+          if (newSections.size === 0) {
+            useSectionStore.getState().loadReadSections(documentPath);
+          }
+        }}
       />
 
       {/* Reading Stats Panel */}

@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Sector } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Sector,
+  Tooltip as RechartsTooltip,
+} from "recharts";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart,
@@ -298,9 +305,13 @@ const EnhancedDistribution: React.FC<DistributionProps> = ({
                         ))}
                       </Pie>
                       <RechartsTooltip
-                        content={({ active, payload }) => {
-                          if (active && payload && payload.length) {
-                            const data = payload[0].payload;
+                        content={(props) => {
+                          if (
+                            props.active &&
+                            props.payload &&
+                            props.payload.length
+                          ) {
+                            const data = props.payload[0].payload;
                             const tooltipName = data.fullName || data.name;
                             let tooltipValue = `${data.count} reads`;
 
@@ -372,8 +383,9 @@ const EnhancedDistribution: React.FC<DistributionProps> = ({
                 <CategoryHorizontalBarChart
                   data={sortedData.map((item) => ({
                     ...item,
-                    totalDocuments: item.totalDocuments || 0,
-                    percentage: item.percentage || 0,
+                    totalDocuments: item.count || 0,
+                    percentage: item.count || 0,
+                    path: item.name || "",
                   }))}
                   onSelectDocument={onSelectDocument}
                   selectedSubcategory={selectedSubcategory}

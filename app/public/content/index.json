@@ -1256,9 +1256,19 @@
           "subcategories": [],
           "files": [
             {
+              "path": "tailwind/layout/box_model_control.md",
+              "title": "Box Model Control",
+              "description": "Documentation for Box Model Control"
+            },
+            {
               "path": "tailwind/layout/container_and_page_structure.md",
               "title": "Container And Page Structure",
               "description": "Documentation for Container And Page Structure"
+            },
+            {
+              "path": "tailwind/layout/width_and_height_constraints.md",
+              "title": "Width And Height Constraints",
+              "description": "Documentation for Width And Height Constraints"
             }
           ]
         }
