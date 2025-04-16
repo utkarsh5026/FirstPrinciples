@@ -3,7 +3,6 @@ import { Clock, ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "@/components/theme/context/ThemeContext";
 import getIconForTech from "@/components/icons";
 import { useTabContext } from "@/components/home/context/TabContext";
 import { useHistoryStore } from "@/stores";
@@ -32,7 +31,6 @@ const RecentActivity: React.FC<RecentActivityProps> = ({
   handleSelectDocument,
 }) => {
   const readingHistory = useHistoryStore((state) => state.readingHistory);
-  const { currentTheme } = useTheme();
   const { setActiveTab } = useTabContext();
 
   return (
@@ -43,12 +41,8 @@ const RecentActivity: React.FC<RecentActivityProps> = ({
           Recent Activity
         </h4>
         <Badge
-          variant="outline"
-          className="text-xs"
-          style={{
-            borderColor: currentTheme.primary + "30",
-            color: currentTheme.primary,
-          }}
+          variant="default"
+          className="text-xs rounded-2xl text-amber-50 bg-primary/30"
         >
           Latest
         </Badge>
