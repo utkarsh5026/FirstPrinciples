@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { FileText, LayoutList, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import LoadingScreen from "@/components/core/LoadingScreen";
 import ErrorLoadingDocument from "./ErrorLoadingDocument";
 import FullScreenCardView from "@/components/card/fullscreen/FullScreenCardView";
 import NoFileSelectedYet from "./NoFileSelectedYet";
-import ProgressPanel from "./ProgressPanel";
 import DetailPanel from "./DetailPanel";
-import StatCard from "./StatCard";
-import PreviewPanel from "./PreviewPanel";
 import getIconForTech from "@/components/icons";
 import Header from "./Header";
 import StartReadingButton from "./StartReadingButton";
@@ -27,7 +23,6 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({
   selectedFileUrl,
 }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [activeTab, setActiveTab] = useState<"preview" | "info">("preview");
 
   const loading = useCurrentDocumentStore((state) => state.loading);
   const error = useCurrentDocumentStore((state) => state.error);
@@ -35,7 +30,6 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({
   const metrics = useCurrentDocumentStore((state) => state.metrics);
   const category = useCurrentDocumentStore((state) => state.category);
   const title = useCurrentDocumentStore((state) => state.title);
-  const preview = useCurrentDocumentStore((state) => state.preview);
 
   useEffect(() => {
     console.log("selectedFileUrl", selectedFileUrl);
@@ -91,75 +85,32 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({
               categoryIcon={<CategoryIcon className="h-3 w-3 mr-1.5" />}
               category={category}
               estimatedReadTime={formattedReadTime}
-              lastUpdatedFormatted={new Date().toLocaleDateString()}
               totalSections={totalSections}
               documentTitle={title}
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
             />
 
             {/* Main content area */}
             <div className="px-6 sm:px-8 pb-8">
               <AnimatePresence mode="wait">
-                {activeTab === "preview" ? (
-                  <motion.div
-                    key="preview"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="min-h-[200px]"
-                  >
-                    <PreviewPanel excerpt={preview} />
-
-                    {/* Enhanced reading progress display */}
-                    <ProgressPanel readingProgress={0} />
-
-                    {/* Section quick stats */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-                      <StatCard
-                        icon={
-                          <LayoutList className="h-4 w-4 text-primary/70" />
-                        }
-                        label="Sections"
-                        value={totalSections.toString() || "0"}
-                      />
-
-                      <StatCard
-                        icon={<FileText className="h-4 w-4 text-primary/70" />}
-                        label="Word Count"
-                        value={totalWords.toLocaleString()}
-                      />
-
-                      <StatCard
-                        icon={<Clock className="h-4 w-4 text-primary/70" />}
-                        label="Reading Time"
-                        value={formattedReadTime}
-                        className="col-span-2 sm:col-span-1"
-                      />
-                    </div>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="info"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="space-y-6 min-h-[200px]"
-                  >
-                    {/* Enhanced document details panel */}
-                    <DetailPanel
-                      totalSections={totalSections}
-                      wordCount={totalWords}
-                      estimatedReadTime={parseInt(
-                        formattedReadTime.split(":")[0]
-                      )}
-                      lastUpdatedFormatted={new Date().toLocaleDateString()}
-                      selectedFile={selectedFileUrl}
-                    />
-                  </motion.div>
-                )}
+                <motion.div
+                  key="info"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-6 min-h-[200px]"
+                >
+                  {/* Enhanced document details panel */}
+                  <DetailPanel
+                    totalSections={totalSections}
+                    wordCount={totalWords}
+                    estimatedReadTime={parseInt(
+                      formattedReadTime.split(":")[0]
+                    )}
+                    lastUpdatedFormatted={new Date().toLocaleDateString()}
+                    selectedFile={selectedFileUrl}
+                  />
+                </motion.div>
               </AnimatePresence>
 
               <StartReadingButton startReading={startReading} />

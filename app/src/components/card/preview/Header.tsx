@@ -1,28 +1,22 @@
 import { fromSnakeToTitleCase } from "@/utils/string";
-import { Calendar, Clock, LayoutList, FileText, Eye } from "lucide-react";
+import { Clock, LayoutList } from "lucide-react";
 import { motion } from "framer-motion";
-import TabButton from "./TabButton";
 
 interface HeaderProps {
   categoryIcon: React.ReactNode;
   category: string;
   estimatedReadTime: string;
-  lastUpdatedFormatted: string;
   totalSections: number;
   documentTitle: string;
-  activeTab: "preview" | "info";
-  setActiveTab: (tab: "preview" | "info") => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
   categoryIcon,
   category,
   estimatedReadTime,
-  lastUpdatedFormatted,
+
   totalSections,
   documentTitle,
-  activeTab,
-  setActiveTab,
 }) => {
   return (
     <div className="pt-8 px-6 sm:px-8 pb-4 relative">
@@ -52,11 +46,6 @@ const Header: React.FC<HeaderProps> = ({
           </div>
 
           <div className="flex items-center px-2 py-1 rounded-md bg-secondary/10">
-            <Calendar className="h-3 w-3 mr-1.5" />
-            {lastUpdatedFormatted}
-          </div>
-
-          <div className="flex items-center px-2 py-1 rounded-md bg-secondary/10">
             <LayoutList className="h-3 w-3 mr-1.5" />
             {totalSections} sections
           </div>
@@ -72,23 +61,6 @@ const Header: React.FC<HeaderProps> = ({
       >
         {documentTitle}
       </motion.h1>
-
-      {/* Enhanced tab navigation */}
-      <div className="flex border-b border-border/30 mb-6">
-        <TabButton
-          isActive={activeTab === "preview"}
-          onClick={() => setActiveTab("preview")}
-          icon={<Eye className="h-3.5 w-3.5 mr-1.5" />}
-          label="Preview"
-        />
-
-        <TabButton
-          isActive={activeTab === "info"}
-          onClick={() => setActiveTab("info")}
-          icon={<FileText className="h-3.5 w-3.5 mr-1.5" />}
-          label="Details"
-        />
-      </div>
     </div>
   );
 };
