@@ -21,15 +21,6 @@ interface FullscreenCardViewProps {
 }
 
 /**
- * Enhanced FullscreenCardView with advanced reading tracking
- *
- * Features:
- * - Tracks reading time with category and word count
- * - Shows reading progress and analytics
- * - Mobile-optimized UI with smooth transitions
- * - Swipe navigation between sections
- */
-/**
  * ✨ FullscreenCardView ✨
  *
  * A beautiful immersive reading experience that transforms your content into a
@@ -62,6 +53,9 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const sections = useCurrentDocumentStore((state) => state.sections);
   const documentPath = useCurrentDocumentStore((state) => state.docPath);
   const category = useCurrentDocumentStore((state) => state.category);
+  const readingState = useSectionStore((state) => state.readingState);
+
+  console.dir(readingState, { depth: null });
 
   const startReading = useSectionStore((state) => state.startReading);
   const endReading = useSectionStore((state) => state.endReading);

@@ -118,12 +118,16 @@ export class DatabaseService {
           const docStatsStore = db.createObjectStore("documentStats", {
             keyPath: "path",
           });
+          docStatsStore.createIndex("path", "path", { unique: true });
           docStatsStore.createIndex(
             "completionPercentage",
             "completionPercentage",
             { unique: false }
           );
           docStatsStore.createIndex("lastReadAt", "lastReadAt", {
+            unique: false,
+          });
+          docStatsStore.createIndex("category", "category", {
             unique: false,
           });
         }

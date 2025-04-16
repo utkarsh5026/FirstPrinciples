@@ -139,21 +139,30 @@ export class SectionReadingTracker {
 
       if (totalSections > 0) {
         const completionPercentage = (completedSections / totalSections) * 100;
-        const docStats = await databaseService.getByIndex<
-          DocumentStats & { id: IDBValidKey }
-        >("documentStats", "path", documentPath);
 
-        if (docStats.length > 0) {
-          await databaseService.update("documentStats", {
-            ...docStats[0],
-            completionPercentage: completionPercentage,
-          });
-        } else {
-          await databaseService.add("documentStats", {
-            path: documentPath,
-            completionPercentage: completionPercentage,
-            lastReadAt: Date.now(),
-          });
+        try {
+          const docStats = await databaseService.getByKey<DocumentStats>(
+            "documentStats",
+            documentPath
+          );
+
+          if (docStats) {
+            await databaseService.update("documentStats", {
+              ...docStats,
+              id: documentPath,
+              completionPercentage: completionPercentage,
+              lastReadAt: Date.now(),
+            });
+          } else {
+            await databaseService.add("documentStats", {
+              path: documentPath,
+              id: documentPath,
+              completionPercentage: completionPercentage,
+              lastReadAt: Date.now(),
+            });
+          }
+        } catch (error) {
+          console.error("Error updating document stats:", error);
         }
       }
     } catch (error) {
