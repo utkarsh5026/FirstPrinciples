@@ -1,51 +1,57 @@
 import { databaseService } from "@/services/database/DatabaseService";
 
 /**
- * Interface for section reading data stored in IndexedDB
+ * Enhanced interface for section reading data stored in IndexedDB
  */
 export type SectionReadingData = {
-  id?: IDBValidKey;
-  documentPath: string; // Path to the document being read
-  sectionId: string; // ID of the section being read
-  timeSpent: number; // Time spent on the section in milliseconds
-  lastReadAt: number; // Timestamp when the section was last read
+  id?: IDBValidKey; // Auto-generated unique ID
+  documentPath: string; // Path to the document
+  sectionId: string; // ID of the specific section
+  sectionTitle: string; // Title of the section
+  category: string; // Category of the document
+  wordCount: number; // Number of words in the section
+  timeSpent: number; // Time spent reading (milliseconds)
+  lastReadAt: number; // Timestamp when section was read
+  isComplete: boolean; // Whether section was completed
 };
 
 /**
- * SectionReadingService
- *
- * A dedicated service for tracking section reading activity.
- * This service:
- * - Marks sections as read immediately when opened
- * - Records time spent on each section
- * - Stores this data in IndexedDB
- * - Provides methods to query reading status and history
+ * Enhanced document stats with more metrics
  */
+export type DocumentStats = {
+  path: string; // Document path (primary key)
+  category: string; // Document category
+  completionPercentage: number; // % of document read
+  totalTimeSpent: number; // Total time spent reading
+  totalWordsRead: number; // Total words read
+  lastReadAt: number; // When last read
+  readCount: number; // Number of times accessed
+  averageTimePerSection: number; // Avg time per section
+};
+
 /**
- * 📚 SectionReadingService
+ * Enhanced SectionReadingService
  *
- * A friendly service that keeps track of your reading progress! ✨
- *
- * This service is like your personal reading assistant that remembers:
- * - Which sections you've already read 👀
- * - How much time you've spent on each section ⏱️
- * - Your overall progress through documents 📊
- *
- * It quietly works in the background, storing all this information
- * in your browser's database so you can pick up right where you left off!
- * Think of it as leaving bookmarks and notes automatically as you read.
+ * A dedicated service for tracking section reading activity with category support.
+ * This service:
+ * - Marks sections as read with category and word count information
+ * - Records time spent on each section
+ * - Provides category-based queries and analytics
+ * - Stores this data in IndexedDB
  */
 export class SectionReadingService {
-  private static readonly STORE_NAME = "sectionReadings";
+  private static readonly SECTION_READINGS_STORE = "sectionReadings";
+  private static readonly DOCUMENT_STATS_STORE = "documentStats";
 
   /**
-   * 🚀 Initialize the service
-   *
-   * Gets everything ready to track your reading journey!
+   * Initialize the service
    */
   public async initialize(): Promise<void> {
     try {
       await databaseService.initDatabase();
+
+      // Ensure required indexes exist (for database versions that might not have them)
+      this.ensureIndexes();
     } catch (error) {
       console.error("Error initializing SectionReadingService:", error);
       throw error;
@@ -53,26 +59,47 @@ export class SectionReadingService {
   }
 
   /**
-   * 📝 Record a section reading session
-   *
-   * Like a diary entry for your reading activity! Remembers that you
-   * spent time on a specific section of a document.
+   * Ensure all required indexes exist
+   * This is a safety measure for upgrading from old schemas
+   */
+  private async ensureIndexes(): Promise<void> {
+    // This would typically be handled by the database upgrade mechanism
+    // But including it here as a reference for what indexes we need
+    console.log(
+      "Indexes should be created in DatabaseService.ts onupgradeneeded"
+    );
+  }
+
+  /**
+   * Record a section reading session with enhanced data
    */
   public async recordSectionReading(
     documentPath: string,
     sectionId: string,
-    timeSpent: number
+    sectionTitle: string,
+    category: string,
+    wordCount: number,
+    timeSpent: number,
+    isComplete: boolean = false
   ): Promise<void> {
     try {
       // Only record if time spent is significant (> 500ms)
       if (timeSpent < 500) return;
 
-      await databaseService.add(SectionReadingService.STORE_NAME, {
+      // Add reading record
+      await databaseService.add(SectionReadingService.SECTION_READINGS_STORE, {
         documentPath,
         sectionId,
+        sectionTitle,
+        category,
+        wordCount,
         timeSpent,
         lastReadAt: Date.now(),
+        isComplete,
       });
+
+      // Update document stats
+      await this.updateDocumentStats(documentPath, category);
     } catch (error) {
       console.error("Error recording section reading:", error);
       throw error;
@@ -80,17 +107,95 @@ export class SectionReadingService {
   }
 
   /**
-   * 🔍 Get all section reading data for a document
-   *
-   * Retrieves your complete reading history for a specific document.
-   * Like checking your reading journal! 📔
+   * Update document-level statistics
+   */
+  private async updateDocumentStats(
+    documentPath: string,
+    category: string
+  ): Promise<void> {
+    try {
+      // Get existing document stats
+      const existingStatsArray = await databaseService.getByIndex<
+        DocumentStats & { id: IDBValidKey }
+      >(SectionReadingService.DOCUMENT_STATS_STORE, "path", documentPath);
+
+      const existingStats =
+        existingStatsArray.length > 0 ? existingStatsArray[0] : null;
+
+      // Get all readings for this document
+      const readings = await this.getDocumentSectionReadings(documentPath);
+
+      // Calculate completion percentage
+      const uniqueSectionIds = new Set(readings.map((r) => r.sectionId));
+      const completedSectionIds = new Set(
+        readings.filter((r) => r.isComplete).map((r) => r.sectionId)
+      );
+
+      const completionPercentage =
+        uniqueSectionIds.size > 0
+          ? (completedSectionIds.size / uniqueSectionIds.size) * 100
+          : 0;
+
+      // Calculate total time spent
+      const totalTimeSpent = readings.reduce(
+        (total, reading) => total + reading.timeSpent,
+        0
+      );
+
+      // Calculate total words read
+      const totalWordsRead = readings
+        .filter((r) => r.isComplete)
+        .reduce((total, reading) => total + (reading.wordCount || 0), 0);
+
+      // Calculate average time per section
+      const avgTimePerSection =
+        readings.length > 0 ? totalTimeSpent / readings.length : 0;
+
+      const lastReadAt = Date.now();
+
+      if (existingStats) {
+        // Update existing stats
+        await databaseService.update(
+          SectionReadingService.DOCUMENT_STATS_STORE,
+          {
+            ...existingStats,
+            category,
+            completionPercentage,
+            totalTimeSpent,
+            totalWordsRead,
+            lastReadAt,
+            readCount: existingStats.readCount + 1,
+            averageTimePerSection: avgTimePerSection,
+          }
+        );
+      } else {
+        // Create new stats
+        await databaseService.add(SectionReadingService.DOCUMENT_STATS_STORE, {
+          path: documentPath,
+          category,
+          completionPercentage,
+          totalTimeSpent,
+          totalWordsRead,
+          lastReadAt,
+          readCount: 1,
+          averageTimePerSection: avgTimePerSection,
+        });
+      }
+    } catch (error) {
+      console.error("Error updating document stats:", error);
+      // Don't throw here to prevent blocking the main recording function
+    }
+  }
+
+  /**
+   * Get all section reading data for a document
    */
   public async getDocumentSectionReadings(
     documentPath: string
   ): Promise<SectionReadingData[]> {
     try {
       return await databaseService.getByIndex<SectionReadingData>(
-        SectionReadingService.STORE_NAME,
+        SectionReadingService.SECTION_READINGS_STORE,
         "documentPath",
         documentPath
       );
@@ -101,10 +206,39 @@ export class SectionReadingService {
   }
 
   /**
-   * ✅ Get all read section IDs for a document
-   *
-   * Creates a checklist of all the sections you've already visited.
-   * Like collecting stamps for each place you've been! 💌
+   * Get all readings by category
+   */
+  public async getReadingsByCategory(
+    category: string
+  ): Promise<SectionReadingData[]> {
+    try {
+      return await databaseService.getByIndex<SectionReadingData>(
+        SectionReadingService.SECTION_READINGS_STORE,
+        "category",
+        category
+      );
+    } catch (error) {
+      console.error("Error getting readings by category:", error);
+      return [];
+    }
+  }
+
+  /**
+   * Get all section readings
+   */
+  public async getAllReadings(): Promise<SectionReadingData[]> {
+    try {
+      return await databaseService.getAll<SectionReadingData>(
+        SectionReadingService.SECTION_READINGS_STORE
+      );
+    } catch (error) {
+      console.error("Error getting all readings:", error);
+      return [];
+    }
+  }
+
+  /**
+   * Get all read section IDs for a document
    */
   public async getReadSections(documentPath: string): Promise<Set<string>> {
     try {
@@ -124,10 +258,7 @@ export class SectionReadingService {
   }
 
   /**
-   * ⏱️ Get total time spent on a document
-   *
-   * Adds up all your reading sessions to see how long you've spent
-   * with this document. Like a fitness tracker, but for reading! 🧠
+   * Get total time spent on a document
    */
   public async getTotalTimeSpent(documentPath: string): Promise<number> {
     try {
@@ -140,10 +271,22 @@ export class SectionReadingService {
   }
 
   /**
-   * 📊 Calculate document completion percentage
-   *
-   * Shows how much of the document you've explored!
-   * Like a progress bar for your reading adventure! 🎮
+   * Get total words read for a document
+   */
+  public async getTotalWordsRead(documentPath: string): Promise<number> {
+    try {
+      const readings = await this.getDocumentSectionReadings(documentPath);
+      return readings
+        .filter((reading) => reading.isComplete)
+        .reduce((total, reading) => total + (reading.wordCount || 0), 0);
+    } catch (error) {
+      console.error("Error calculating total words read:", error);
+      return 0;
+    }
+  }
+
+  /**
+   * Calculate document completion percentage
    */
   public async getCompletionPercentage(
     documentPath: string,
@@ -161,10 +304,7 @@ export class SectionReadingService {
   }
 
   /**
-   * 👀 Check if a specific section has been read
-   *
-   * Tells you if you've already visited a particular section.
-   * Like checking if you've already seen that episode! 🍿
+   * Check if a specific section has been read
    */
   public async isSectionRead(
     documentPath: string,
@@ -172,7 +312,7 @@ export class SectionReadingService {
   ): Promise<boolean> {
     try {
       const readings = await databaseService.getByIndex<SectionReadingData>(
-        SectionReadingService.STORE_NAME,
+        SectionReadingService.SECTION_READINGS_STORE,
         "sectionId",
         sectionId
       );
@@ -186,10 +326,58 @@ export class SectionReadingService {
   }
 
   /**
-   * 🧹 Clear all reading data for a document
-   *
-   * Wipes the slate clean for a fresh start with a document.
-   * Like erasing your footprints in the sand! 🏖️
+   * Get statistics for a category
+   */
+  public async getCategoryStatistics(category: string): Promise<{
+    totalTimeSpent: number;
+    totalWordsRead: number;
+    documentCount: number;
+    sectionCount: number;
+    averageTimePerSection: number;
+  }> {
+    try {
+      const readings = await this.getReadingsByCategory(category);
+
+      // Count unique documents
+      const uniqueDocuments = new Set(readings.map((r) => r.documentPath));
+
+      // Count unique sections
+      const uniqueSections = new Set(readings.map((r) => r.sectionId));
+
+      // Calculate time and words
+      const totalTimeSpent = readings.reduce(
+        (total, r) => total + r.timeSpent,
+        0
+      );
+      const totalWordsRead = readings
+        .filter((r) => r.isComplete)
+        .reduce((total, r) => total + (r.wordCount || 0), 0);
+
+      // Calculate average time per section
+      const averageTimePerSection =
+        uniqueSections.size > 0 ? totalTimeSpent / uniqueSections.size : 0;
+
+      return {
+        totalTimeSpent,
+        totalWordsRead,
+        documentCount: uniqueDocuments.size,
+        sectionCount: uniqueSections.size,
+        averageTimePerSection,
+      };
+    } catch (error) {
+      console.error("Error getting category statistics:", error);
+      return {
+        totalTimeSpent: 0,
+        totalWordsRead: 0,
+        documentCount: 0,
+        sectionCount: 0,
+        averageTimePerSection: 0,
+      };
+    }
+  }
+
+  /**
+   * Clear all reading data for a document
    */
   public async clearDocumentReadings(documentPath: string): Promise<void> {
     try {
@@ -199,16 +387,181 @@ export class SectionReadingService {
       for (const reading of readings) {
         if (reading.id) {
           await databaseService.delete(
-            SectionReadingService.STORE_NAME,
+            SectionReadingService.SECTION_READINGS_STORE,
             reading.id
           );
         }
+      }
+
+      // Delete document stats
+      const statsArray = await databaseService.getByIndex<
+        DocumentStats & { id: IDBValidKey }
+      >(SectionReadingService.DOCUMENT_STATS_STORE, "path", documentPath);
+
+      if (statsArray.length > 0) {
+        await databaseService.delete(
+          SectionReadingService.DOCUMENT_STATS_STORE,
+          statsArray[0].id
+        );
       }
     } catch (error) {
       console.error("Error clearing document readings:", error);
       throw error;
     }
   }
+
+  /**
+   * Get all document statistics
+   */
+  public async getAllDocumentStats(): Promise<DocumentStats[]> {
+    try {
+      return await databaseService.getAll<DocumentStats>(
+        SectionReadingService.DOCUMENT_STATS_STORE
+      );
+    } catch (error) {
+      console.error("Error getting all document stats:", error);
+      return [];
+    }
+  }
+
+  /**
+   * Get time spent reading on a specific day
+   */
+  public async getTimeSpentOnDay(date: Date): Promise<number> {
+    try {
+      // Create date range for the specified day
+      const startOfDay = new Date(date);
+      startOfDay.setHours(0, 0, 0, 0);
+
+      const endOfDay = new Date(date);
+      endOfDay.setHours(23, 59, 59, 999);
+
+      // Get all readings
+      const allReadings = await this.getAllReadings();
+
+      // Filter readings from the specified day and sum up time spent
+      return allReadings
+        .filter((reading) => {
+          const readDate = new Date(reading.lastReadAt);
+          return readDate >= startOfDay && readDate <= endOfDay;
+        })
+        .reduce((total, reading) => total + reading.timeSpent, 0);
+    } catch (error) {
+      console.error("Error calculating time spent on day:", error);
+      return 0;
+    }
+  }
+
+  /**
+   * Get words read on a specific day
+   */
+  public async getWordsReadOnDay(date: Date): Promise<number> {
+    try {
+      // Create date range for the specified day
+      const startOfDay = new Date(date);
+      startOfDay.setHours(0, 0, 0, 0);
+
+      const endOfDay = new Date(date);
+      endOfDay.setHours(23, 59, 59, 999);
+
+      // Get all readings
+      const allReadings = await this.getAllReadings();
+
+      // Filter readings from the specified day and sum up words read
+      return allReadings
+        .filter((reading) => {
+          const readDate = new Date(reading.lastReadAt);
+          return (
+            readDate >= startOfDay && readDate <= endOfDay && reading.isComplete
+          );
+        })
+        .reduce((total, reading) => total + (reading.wordCount || 0), 0);
+    } catch (error) {
+      console.error("Error calculating words read on day:", error);
+      return 0;
+    }
+  }
+
+  /**
+   * Calculate reading streak (consecutive days with reading activity)
+   */
+  public async calculateReadingStreak(): Promise<{
+    currentStreak: number;
+    longestStreak: number;
+  }> {
+    try {
+      const allReadings = await this.getAllReadings();
+
+      // Extract dates and convert to date-only strings (YYYY-MM-DD)
+      const readingDates = allReadings.map((reading) => {
+        const date = new Date(reading.lastReadAt);
+        return date.toISOString().split("T")[0];
+      });
+
+      // Get unique dates
+      const uniqueDates = [...new Set(readingDates)].sort();
+
+      if (uniqueDates.length === 0) {
+        return { currentStreak: 0, longestStreak: 0 };
+      }
+
+      // Calculate current streak
+      let currentStreak = 0;
+      const today = new Date().toISOString().split("T")[0];
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = yesterday.toISOString().split("T")[0];
+
+      // Check if today or yesterday is in the reading dates
+      if (uniqueDates.includes(today) || uniqueDates.includes(yesterdayStr)) {
+        currentStreak = 1;
+        const startDate = uniqueDates.includes(today)
+          ? yesterday
+          : new Date(yesterday);
+        startDate.setDate(startDate.getDate() - 1);
+
+        const checkDate = startDate;
+        while (true) {
+          const checkDateStr = checkDate.toISOString().split("T")[0];
+          if (!uniqueDates.includes(checkDateStr)) break;
+
+          currentStreak++;
+          checkDate.setDate(checkDate.getDate() - 1);
+        }
+      }
+
+      // Calculate longest streak
+      let longestStreak = currentStreak;
+      let tempStreak = 1;
+
+      for (let i = 1; i < uniqueDates.length; i++) {
+        const current = new Date(uniqueDates[i]);
+        const prev = new Date(uniqueDates[i - 1]);
+
+        // Calculate difference in days
+        const diffTime = current.getTime() - prev.getTime();
+        const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 1) {
+          // Consecutive day
+          tempStreak++;
+          longestStreak = Math.max(longestStreak, tempStreak);
+        } else {
+          // Gap in dates
+          tempStreak = 1;
+        }
+      }
+
+      return {
+        currentStreak,
+        longestStreak,
+      };
+    } catch (error) {
+      console.error("Error calculating reading streak:", error);
+      return { currentStreak: 0, longestStreak: 0 };
+    }
+  }
 }
 
+// Create and export a singleton instance
 export const sectionReadingService = new SectionReadingService();

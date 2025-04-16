@@ -24,6 +24,13 @@ export const daysOfWeek = [
 
 export type TimeRange = "week" | "month" | "quarter" | "year" | "all";
 
+/**
+ * 🕒 Formats a timestamp into a human-readable relative time
+ *
+ * Takes a timestamp and converts it into a friendly relative time string
+ * like "Today", "Yesterday", or "2 weeks ago" to help users understand
+ * when something happened without needing to process exact dates.
+ */
 export const formatRelativeTime = (timestamp: number | null) => {
   if (!timestamp) return "Never";
 
@@ -40,6 +47,12 @@ export const formatRelativeTime = (timestamp: number | null) => {
   return `${Math.floor(diffDays / 365)} years ago`;
 };
 
+/**
+ * 📅 Gets the full name of a month from its number
+ *
+ * Converts a month number (0-11) into its full name like "January" or "December"
+ * to make dates more readable and user-friendly in the interface.
+ */
 export const getMonthName = (month: number): MonthName => {
   return [
     "January",
@@ -57,6 +70,12 @@ export const getMonthName = (month: number): MonthName => {
   ][month] as MonthName;
 };
 
+/**
+ * 📊 Calculates the start date for different time ranges
+ *
+ * Determines the beginning date for time periods like week, month, quarter, or year
+ * to help with filtering data and creating time-based visualizations.
+ */
 export const getStartDate = (range: TimeRange): Date => {
   const now = new Date();
   switch (range) {
@@ -87,6 +106,13 @@ export const getStartDate = (range: TimeRange): Date => {
   }
 };
 
+/**
+ * ⏱️ Creates a friendly "time ago" string from a timestamp
+ *
+ * Converts a timestamp into human-readable phrases like "just now",
+ * "5 minutes ago", or "3 days ago" to give users an intuitive sense
+ * of when something happened.
+ */
 export const formatTimeAgo = (timestamp: number): string => {
   const seconds = Math.floor((Date.now() - timestamp) / 1000);
 
@@ -117,9 +143,40 @@ export const formatTimeAgo = (timestamp: number): string => {
   return new Date(timestamp).toLocaleDateString();
 };
 
+/**
+ * 🗓️ Creates a standardized date string for keys and IDs
+ *
+ * Formats a Date object into a consistent YYYY-MM-DD string
+ * that can be used for sorting, grouping, or as unique identifiers
+ * for date-based data.
+ */
 export const formatDateKey = (date: Date): string => {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
     2,
     "0"
   )}-${String(date.getDate()).padStart(2, "0")}`;
+};
+
+/**
+ * ⏲️ Formats milliseconds into a readable time string
+ *
+ * Converts raw milliseconds into a friendly time format like "01:30:45"
+ * or "05:20" to display durations, reading times, or other time measurements
+ * in a way that's instantly recognizable to users.
+ */
+export const formatTimeInMs = (ms: number): string => {
+  const totalSeconds = Math.floor(ms / 1000);
+  const seconds = totalSeconds % 60;
+  const totalMinutes = Math.floor(totalSeconds / 60);
+  const minutes = totalMinutes % 60;
+  const hours = Math.floor(totalMinutes / 60);
+
+  const formattedSeconds = String(seconds).padStart(2, "0");
+  const formattedMinutes = String(minutes).padStart(2, "0");
+
+  if (hours > 0) {
+    const formattedHours = String(hours).padStart(2, "0");
+    return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+  } else if (minutes > 0) return `${formattedMinutes}:${formattedSeconds}`;
+  else return `${formattedSeconds}s`;
 };

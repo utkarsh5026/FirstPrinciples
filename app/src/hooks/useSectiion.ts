@@ -17,7 +17,10 @@ import type { MarkdownSection } from "@/components/card/MarkdownCardView";
 export const useSection = (
   documentPath: string,
   currentSectionId: string | null,
-  totalSections: number
+  totalSections: number,
+  category: string,
+  wordCount: number,
+  sectionTitle: string
 ) => {
   const {
     startReading,
@@ -27,7 +30,7 @@ export const useSection = (
     loadReadSections,
     getDocumentCompletionPercentage,
     isInitialized,
-    isLoading,
+    loading,
     initialize,
     error,
   } = useSectionStore();
@@ -79,7 +82,13 @@ export const useSection = (
   useEffect(() => {
     if (documentPath && currentSectionId && isInitialized) {
       // Start new reading session
-      startReading(documentPath, currentSectionId);
+      startReading(
+        documentPath,
+        currentSectionId,
+        category,
+        wordCount,
+        sectionTitle
+      );
 
       // End reading when unmounting or changing sections
       return () => {
@@ -108,7 +117,7 @@ export const useSection = (
 
     // Service state
     isInitialized,
-    isLoading,
+    loading,
     error,
   };
 };
@@ -126,5 +135,5 @@ export const useSectionArray = (
       ? sections[currentIndex].id
       : null;
 
-  return useSection(documentPath, currentSectionId, sections.length);
+  return useSection(documentPath, currentSectionId, sections.length, category);
 };

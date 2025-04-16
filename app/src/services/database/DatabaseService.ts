@@ -96,9 +96,21 @@ export class DatabaseService {
           });
           sectionStore.createIndex("sectionId", "sectionId", { unique: false });
           sectionStore.createIndex("startTime", "startTime", { unique: false });
+          sectionStore.createIndex("category", "category", { unique: false });
+          sectionStore.createIndex("wordCount", "wordCount", { unique: false });
+          sectionStore.createIndex("lastReadAt", "lastReadAt", {
+            unique: false,
+          });
           sectionStore.createIndex("isComplete", "isComplete", {
             unique: false,
           });
+
+          // Compound indexes for more complex queries
+          sectionStore.createIndex(
+            "category_lastReadAt",
+            ["category", "lastReadAt"],
+            { unique: false }
+          );
         }
 
         // Document Stats store

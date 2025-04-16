@@ -1,21 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
-import { useMarkdownProcessor } from "@/hooks/useMarkdownProcessor";
-import { useSectionReading } from "@/hooks/reading/useSectionReading";
-import {
-  useServices,
-  useReadingHistory,
-  useReadingMetrics,
-  useAchievements,
-} from "@/context";
-
-export type AchievementData = {
-  title: string;
-  description: string;
-  xpGained: number;
-  isLevelUp: boolean;
-  newLevel: number;
-};
+import { useReadingStore } from "@/stores";
+import { analyticsController } from "@/services/analytics/AnalyticsController";
 
 /**
  * ✨ useDocumentLoader: Your magical document reading companion! ✨
@@ -38,32 +24,8 @@ export const useDocumentLoader = (selectedFile: string) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [documentTitle, setDocumentTitle] = useState("");
-  const [estimatedReadTime, setEstimatedReadTime] = useState(0);
 
-  const [showAchievementPopup, setShowAchievementPopup] = useState(false);
-  const [achievementToShow, setAchievementToShow] =
-    useState<AchievementData | null>(null);
-
-  const {
-    newAchievements,
-    currentLevelUp,
-    acknowledgeAllAchievements,
-    loadAchievements,
-  } = useAchievements();
-
-  const { analyticsController, wordCountEstimator } = useServices();
-  const { addToReadingHistory } = useReadingHistory();
-  const { metrics, refreshMetrics } = useReadingMetrics();
-
-  const { parsedSections } = useMarkdownProcessor(markdownContent);
-  const sectionReading = useSectionReading(
-    selectedFile,
-    documentTitle,
-    parsedSections,
-    0
-  );
-
-  console.log(documentTitle);
+  const { addToReadingList } = useReadingStore();
 
   /**
    * 📊 Records your reading activity and checks for cool achievements!
@@ -73,15 +35,12 @@ export const useDocumentLoader = (selectedFile: string) => {
     async (path: string, title: string) => {
       try {
         console.log("recordReadingActivity", path, title);
-        await addToReadingHistory(path, title);
-        await refreshMetrics();
-        await loadAchievements();
-        analyticsController.startReading(path, title);
+        await addToReadingList(path, title);
       } catch (error) {
         console.error("Error recording reading activity:", error);
       }
     },
-    [addToReadingHistory, refreshMetrics, analyticsController, loadAchievements]
+    [addToReadingList]
   );
 
   /**
@@ -110,10 +69,6 @@ export const useDocumentLoader = (selectedFile: string) => {
         MarkdownLoader.getFilenameFromPath(selectedFile);
       setDocumentTitle(title);
 
-      const wordCount = wordCountEstimator.countWords(result.content);
-      const readTimeMinutes = Math.max(1, Math.ceil(wordCount / 200));
-      setEstimatedReadTime(readTimeMinutes);
-
       setTimeout(() => {
         recordReadingActivity(selectedFile, title);
       }, 2000);
@@ -123,16 +78,7 @@ export const useDocumentLoader = (selectedFile: string) => {
     } finally {
       setLoading(false);
     }
-  }, [selectedFile, wordCountEstimator, recordReadingActivity]);
-
-  /**
-   * 🎯 Closes achievement popups after you've seen your awesome rewards!
-   */
-  const closeAchievementPopup = useCallback(() => {
-    setShowAchievementPopup(false);
-    acknowledgeAllAchievements();
-    setAchievementToShow(null);
-  }, [acknowledgeAllAchievements]);
+  }, [selectedFile, recordReadingActivity]);
 
   /**
    * 🔄 Automatically loads your document when you select a new one!
@@ -148,51 +94,12 @@ export const useDocumentLoader = (selectedFile: string) => {
         analyticsController.endReading(selectedFile, documentTitle);
       }
     };
-  }, [selectedFile, loadDocument, analyticsController, documentTitle]);
-
-  /**
-   * 🏆 Shows you fun achievement popups when you accomplish something cool!
-   * Everyone loves a little celebration of their progress!
-   */
-  useEffect(() => {
-    // When new achievements are detected, show the first one
-    if (newAchievements.length > 0) {
-      const achievement = newAchievements[0];
-      setAchievementToShow({
-        title: achievement.title,
-        description: achievement.description,
-        xpGained: 75,
-        isLevelUp: false,
-        newLevel: 0,
-      });
-      setShowAchievementPopup(true);
-    }
-    // Or show level up if there is one
-    else if (currentLevelUp) {
-      setAchievementToShow({
-        title: `Level ${currentLevelUp.newLevel} Reached!`,
-        description: `You've reached level ${currentLevelUp.newLevel}! Keep reading to unlock more features.`,
-        xpGained: currentLevelUp.xpGained,
-        isLevelUp: true,
-        newLevel: currentLevelUp.newLevel,
-      });
-      setShowAchievementPopup(true);
-    }
-  }, [newAchievements, currentLevelUp]);
+  }, [selectedFile, loadDocument, documentTitle]);
 
   return {
     markdownContent,
     loading,
     error,
     documentTitle,
-    estimatedReadTime,
-    parsedSections,
-
-    showAchievementPopup,
-    closeAchievementPopup,
-
-    sectionReading,
-    achievementToShow,
-    metrics,
   };
 };

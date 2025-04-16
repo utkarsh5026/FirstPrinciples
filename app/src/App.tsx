@@ -1,6 +1,5 @@
 // src/App.tsx
 import { useState, useEffect, useRef } from "react";
-import CardDocumentViewer from "@/components/card/viewer/CardDocumentViewer";
 import ResponsiveSidebar from "@/components/navigation/sidebar/CategoryNavigation";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import LoadingAnimation from "@/components/init/LoadingAnimation";
@@ -9,6 +8,7 @@ import AppHeader from "@/components/layout/AppHeader";
 import AppWrapper from "@/components/welcome/Wrapper";
 import { TabProvider } from "@/components/home/context/TabProvider";
 import { GlobalProviders } from "@/context/GlobalProviders";
+import DocumentPreview from "@/components/card/preview/DocumentPreview";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
@@ -140,7 +140,7 @@ function App() {
                   <HomePage onSelectFile={handleSelectFile} />
                 </TabProvider>
               ) : (
-                <CardDocumentViewer selectedFile={selectedFile ?? ""} />
+                <DocumentPreview selectedFileUrl={selectedFile ?? ""} />
               )}
             </main>
           </div>

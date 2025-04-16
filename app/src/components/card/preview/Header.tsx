@@ -6,7 +6,7 @@ import TabButton from "./TabButton";
 interface HeaderProps {
   categoryIcon: React.ReactNode;
   category: string;
-  estimatedReadTime: number;
+  estimatedReadTime: string;
   lastUpdatedFormatted: string;
   totalSections: number;
   documentTitle: string;

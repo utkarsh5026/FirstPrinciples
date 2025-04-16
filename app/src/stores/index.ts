@@ -6,6 +6,7 @@ import { useActivityStore } from "./activityStore";
 import { useHeatmapStore } from "./heatmapStore";
 import { useEffect, useState } from "react";
 import { useSectionStore } from "./sectionStore";
+import { useCurrentDocumentStore } from "./currentDocumentStore";
 
 /**
  * 🚀 Initializes all stores when the app starts
@@ -50,4 +51,5 @@ export {
   useActivityStore,
   useHeatmapStore,
   useSectionStore,
+  useCurrentDocumentStore,
 };

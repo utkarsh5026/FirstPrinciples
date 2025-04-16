@@ -3,247 +3,204 @@ import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
 import CardProgress from "../CardProgress";
-import { Menu, ArrowLeft } from "lucide-react";
+import {
+  Menu,
+  ArrowLeft,
+  ChevronRight,
+  ChevronLeft,
+  BarChart2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionsSheet from "./sidebar/SectionsSheet";
-import { MarkdownSection } from "@/components/card/MarkdownCardView";
-import { useSectionArray } from "@/hooks/useSectiion";
+import { useSectionStore, useCurrentDocumentStore } from "@/stores";
+import useMobile from "@/hooks/useMobile";
 
 interface FullscreenCardViewProps {
-  markdown: string;
   className?: string;
   onExit: () => void;
-  parsedSections?: MarkdownSection[];
-  documentPath: string;
 }
 
 /**
- * FullscreenCardView component
+ * Enhanced FullscreenCardView with advanced reading tracking
  *
- * Shows document content in a fullscreen, card-based view with section tracking.
- * Uses SectionReadingService (via the store and hook) to:
- * - Mark sections as read when viewed
- * - Track time spent on each section
- * - Show reading progress
+ * Features:
+ * - Tracks reading time with category and word count
+ * - Shows reading progress and analytics
+ * - Mobile-optimized UI with smooth transitions
+ * - Swipe navigation between sections
+ */
+/**
+ * ✨ FullscreenCardView ✨
+ *
+ * A beautiful immersive reading experience that transforms your content into a
+ * distraction-free fullscreen mode! 📚✨
+ *
+ * 🧠 Smart reading tracking keeps tabs on your progress and reading habits
+ * 🔄 Smooth transitions between sections with elegant fade effects
+ * 📱 Responsive design that works beautifully on both desktop and mobile
+ * 👆 Touch-friendly with intuitive swipe gestures for navigation
+ * 📊 Reading analytics to help you understand your reading patterns
+ * 🗂️ Easy section navigation with a handy sidebar menu
+ *
+ * This component creates a zen-like reading environment where you can focus
+ * completely on the content without distractions. Perfect for deep reading
+ * sessions or studying important material! 🧘‍♀️
  */
 const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
-  markdown,
   className,
   onExit,
-  parsedSections,
-  documentPath,
 }) => {
-  const [sections, setSections] = useState<MarkdownSection[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isMobile } = useMobile();
+
   const scrollRef = useRef<HTMLDivElement>(null);
-  const totalCards = sections.length;
+  const startTimeRef = useRef<number>(Date.now());
 
-  // Use our section tracking hook with the service
-  const { documentCompletionPercentage } = useSectionArray(
-    documentPath,
+  const markdown = useCurrentDocumentStore((state) => state.markdown);
+  const sections = useCurrentDocumentStore((state) => state.sections);
+  const documentPath = useCurrentDocumentStore((state) => state.docPath);
+  const category = useCurrentDocumentStore((state) => state.category);
+
+  const startReading = useSectionStore((state) => state.startReading);
+  const endReading = useSectionStore((state) => state.endReading);
+
+  /**
+   * 📚 Initializes the reading when the markdown is loaded
+   */
+  useEffect(() => {
+    if (!markdown) return;
+    setCurrentIndex(0);
+  }, [markdown]);
+
+  /**
+   * 📚 Initializes the reading when the sections are loaded
+   */
+  useEffect(() => {
+    const initializeReading = async () => {
+      if (sections.length === 0) return;
+
+      const currentSection = sections[currentIndex];
+      await startReading(
+        documentPath,
+        currentSection.id,
+        category,
+        currentSection.wordCount
+      );
+      startTimeRef.current = Date.now();
+    };
+
+    initializeReading();
+
+    return () => {
+      endReading();
+    };
+  }, [
     sections,
-    currentIndex
-  );
+    currentIndex,
+    documentPath,
+    category,
+    startReading,
+    endReading,
+  ]);
 
-  // Set up swipe gestures for navigation
+  /**
+   * 🔄 Smoothly transitions to a new section with a nice fade effect
+   * Tracks reading time and updates analytics too! 📊
+   */
+  const changeSection = async (newIndex: number) => {
+    await endReading();
+
+    setIsTransitioning(true);
+
+    setTimeout(async () => {
+      setCurrentIndex(newIndex);
+      setIsTransitioning(false);
+
+      const newSection = sections[newIndex];
+      await startReading(
+        documentPath,
+        newSection.id,
+        category,
+        newSection.wordCount
+      );
+
+      startTimeRef.current = Date.now();
+    }, 200);
+  };
+
+  /**
+   * 👆 Makes swiping work like magic for touch devices!
+   * Swipe left to go forward, right to go back
+   */
   useSwipeGesture({
     targetRef: scrollRef as React.RefObject<HTMLElement>,
     threshold: 50,
     onSwipeLeft: () => {
-      if (currentIndex < totalCards - 1) {
-        handleNextCard();
+      if (currentIndex < sections.length - 1) {
+        changeSection(currentIndex + 1);
       }
     },
     onSwipeRight: () => {
       if (currentIndex > 0) {
-        handlePrevCard();
+        changeSection(currentIndex - 1);
       }
     },
   });
 
-  // Use parsed sections if provided, otherwise parse markdown
-  useEffect(() => {
-    if (!markdown) return;
-
-    if (parsedSections && parsedSections.length > 0) {
-      setSections(parsedSections);
-    } else {
-      // Fallback to parsing directly
-      const newSections = parseMarkdownIntoSections(markdown);
-      setSections(newSections);
-    }
-
-    setCurrentIndex(0); // Reset to first card when content changes
-  }, [markdown, parsedSections]);
-
-  // Scroll to top when changing cards
+  /**
+   * 📜 Scrolls back to the top when changing sections
+   * No one likes starting in the middle! 😉
+   */
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = 0;
     }
   }, [currentIndex]);
 
-  // Legacy parser - only used as fallback
-  const parseMarkdownIntoSections = (markdown: string): MarkdownSection[] => {
-    // (existing implementation)
-    const lines = markdown.split("\n");
-    const sections: MarkdownSection[] = [];
-
-    let currentSection: MarkdownSection | null = null;
-    let inCodeBlock = false;
-    let introContent = "";
-
-    // Main parse pass
-    for (const rawLine of lines) {
-      const line = rawLine.trimEnd(); // Keep left indentation but trim right
-
-      // Check if we're in a code block
-      if (line.trim().startsWith("```")) {
-        inCodeBlock = !inCodeBlock;
-        if (currentSection) {
-          currentSection.content += line + "\n";
-        } else {
-          introContent += line + "\n";
-        }
-        continue;
-      }
-
-      // Skip heading detection inside code blocks
-      if (inCodeBlock) {
-        if (currentSection) {
-          currentSection.content += line + "\n";
-        } else {
-          introContent += line + "\n";
-        }
-        continue;
-      }
-
-      // Detect headings - more flexible regex patterns
-      // Match h1: # Heading text (any number of spaces after #)
-      const h1Match = line.match(/^#\s+(.+)$/);
-      // Match h2: ## Heading text (any number of spaces after ##)
-      const h2Match = line.match(/^##\s+(.+)$/);
-
-      if (h1Match) {
-        // H1 heading found
-        const title = h1Match[1].trim();
-
-        if (currentSection) {
-          sections.push(currentSection);
-        } else if (introContent.trim()) {
-          // Handle intro content before first heading
-          sections.push({
-            id: "introduction",
-            title: "Introduction",
-            content: introContent,
-            level: 0,
-          });
-          introContent = "";
-        }
-
-        currentSection = {
-          id: slugify(title),
-          title,
-          content: line + "\n",
-          level: 1,
-        };
-      } else if (h2Match) {
-        // H2 heading found
-        const title = h2Match[1].trim();
-
-        if (currentSection) {
-          sections.push(currentSection);
-        } else if (introContent.trim()) {
-          // Handle intro content before first heading
-          sections.push({
-            id: "introduction",
-            title: "Introduction",
-            content: introContent,
-            level: 0,
-          });
-          introContent = "";
-        }
-
-        currentSection = {
-          id: slugify(title),
-          title,
-          content: line + "\n",
-          level: 2,
-        };
-      } else if (currentSection) {
-        // Add content to the current section
-        currentSection.content += line + "\n";
-      } else {
-        // Content before the first heading
-        introContent += line + "\n";
-      }
-    }
-
-    // Add the last section
-    if (currentSection) {
-      sections.push(currentSection);
-    } else if (introContent.trim()) {
-      // If there's only content without headings
-      sections.push({
-        id: "content",
-        title: "Content",
-        content: introContent,
-        level: 0,
-      });
-    }
-
-    return sections;
-  };
-
-  // Helper function to create URL-friendly slug IDs
-  const slugify = (text: string): string => {
-    return text
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/--+/g, "-")
-      .replace(/^-+/, "")
-      .replace(/-+$/, "");
-  };
-
-  // Navigation handlers with animations
+  /**
+   * ⬅️ Go to previous section with a smooth transition
+   */
   const handlePrevCard = () => {
     if (currentIndex > 0) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex(currentIndex - 1);
-        setIsTransitioning(false);
-      }, 200);
+      changeSection(currentIndex - 1);
     }
   };
 
+  /**
+   * ➡️ Go to next section with a smooth transition
+   */
   const handleNextCard = () => {
     if (currentIndex < sections.length - 1) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex(currentIndex + 1);
-        setIsTransitioning(false);
-      }, 200);
+      changeSection(currentIndex + 1);
     }
   };
 
-  // Jump to a specific card
+  /**
+   * 🎯 Jump directly to a specific section
+   */
   const handleSelectCard = (index: number) => {
     if (index !== currentIndex) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex(index);
-        setIsTransitioning(false);
-      }, 200);
+      changeSection(index);
     }
+  };
+
+  /**
+   * 🚪 Safely exit fullscreen mode while saving reading progress
+   */
+  const handleExit = async () => {
+    await endReading();
+    onExit();
   };
 
   if (sections.length === 0) {
     return (
-      <div className="flex items-center justify-center h-screen bg-background text-muted-foreground">
-        No content to display in cards
+      <div className="fixed inset-0 z-50 bg-[#202020] flex items-center justify-center text-muted-foreground">
+        <div className="text-center">
+          <div className="animate-spin h-8 w-8 border-t-2 border-primary rounded-full mx-auto mb-4"></div>
+          <p>Loading content...</p>
+        </div>
       </div>
     );
   }
@@ -259,37 +216,34 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         <Button
           variant="ghost"
           size="icon"
-          onClick={onExit}
+          onClick={handleExit}
           className="h-8 w-8"
           aria-label="Exit fullscreen"
         >
           <ArrowLeft className="h-4 w-4" />
         </Button>
 
-        {/* Section title - mobile optimized */}
-        <div className="flex-1 text-center truncate px-4">
-          <span className="text-sm font-medium md:text-base">
-            {currentSection.title}
-          </span>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMenuOpen(true)}
+            className="h-8 w-8"
+            aria-label="View reading stats"
+          >
+            <BarChart2 className="h-4 w-4" />
+          </Button>
+
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMenuOpen(true)}
+            className="h-8 w-8"
+            aria-label="Open sections menu"
+          >
+            <Menu className="h-4 w-4" />
+          </Button>
         </div>
-
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setMenuOpen(true)}
-          className="h-8 w-8"
-          aria-label="Open sections menu"
-        >
-          <Menu className="h-4 w-4" />
-        </Button>
-      </div>
-
-      {/* Simple Progress Indicator */}
-      <div className="w-full h-1 bg-secondary/20">
-        <div
-          className="h-full bg-primary/80 transition-all duration-300"
-          style={{ width: `${documentCompletionPercentage}%` }}
-        />
       </div>
 
       {/* Main content area */}
@@ -320,33 +274,61 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       {/* Navigation Footer */}
       <div className="sticky bottom-0 border-t border-border bg-card/50 backdrop-blur-sm p-4">
         <div className="max-w-md mx-auto">
-          {/* Progress indicator only */}
+          {/* Progress indicator */}
           <CardProgress
             currentIndex={currentIndex}
             totalCards={sections.length}
             onSelectCard={handleSelectCard}
-            className="mb-0"
+            className="mb-2"
           />
+
+          {!isMobile && (
+            <div className="flex justify-between mt-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handlePrevCard}
+                disabled={currentIndex === 0}
+                className="h-9 gap-1 rounded-full font-cascadia-code cursor-pointer"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                <span className="sr-only sm:not-sr-only">Previous</span>
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleNextCard}
+                disabled={currentIndex === sections.length - 1}
+                className="h-9 gap-1 rounded-full font-cascadia-code cursor-pointer"
+              >
+                <span className="sr-only sm:not-sr-only">Next</span>
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Sections Menu Sheet */}
       <SectionsSheet
-        sections={sections}
         currentIndex={currentIndex}
         handleSelectCard={handleSelectCard}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
+        sections={sections}
       />
 
       {/* Touch swipe indicators (hidden visually but help with touch areas) */}
-      <div
+      <button
         className="absolute top-1/2 left-0 h-1/3 w-10 -translate-y-1/2"
         onClick={handlePrevCard}
+        title="Previous"
       />
-      <div
+      <button
         className="absolute top-1/2 right-0 h-1/3 w-10 -translate-y-1/2"
         onClick={handleNextCard}
+        title="Next"
       />
     </div>
   );

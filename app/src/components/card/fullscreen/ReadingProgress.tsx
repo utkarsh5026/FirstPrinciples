@@ -13,13 +13,14 @@ interface ReadingProgressProps {
 /**
  * ReadingProgress Component
  *
- * A sleek, mobile-friendly progress indicator that shows the user's reading progress
+ * A mobile-optimized progress indicator that shows the user's reading progress
  * for the current section and overall document.
  *
- * @param {number} percentage - The percentage of the current section that has been read
- * @param {number} documentProgress - The percentage of the entire document that has been read
- * @param {boolean} isRead - Whether the current section has been marked as read
- * @param {number} minutesLeft - Estimated minutes left to complete the section
+ * Features:
+ * - Smooth progress bar animations
+ * - Section completion indicator
+ * - Estimated reading time left
+ * - Overall document progress tracking
  */
 const ReadingProgress: React.FC<ReadingProgressProps> = ({
   percentage,

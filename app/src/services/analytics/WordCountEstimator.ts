@@ -1,8 +1,3 @@
-// src/services/analytics/WordCountEstimator.ts
-
-/**
- * Service to more accurately estimate document word counts and reading progress
- */
 export class WordCountEstimator {
   private static readonly AVERAGE_READING_SPEED_WPM = 250; // Words per minute
 

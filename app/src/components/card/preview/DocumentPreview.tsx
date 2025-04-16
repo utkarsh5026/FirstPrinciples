@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { wordCountEstimator } from "@/services/analytics/WordCountEstimator";
-import { formatDistanceToNow } from "date-fns";
 import { FileText, LayoutList, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import LoadingScreen from "@/components/core/LoadingScreen";
 import ErrorLoadingDocument from "./ErrorLoadingDocument";
 import FullScreenCardView from "@/components/card/fullscreen/FullScreenCardView";
 import NoFileSelectedYet from "./NoFileSelectedYet";
-import { useDocument } from "@/hooks/document/useDocument";
 import ProgressPanel from "./ProgressPanel";
 import DetailPanel from "./DetailPanel";
 import StatCard from "./StatCard";
@@ -15,71 +12,51 @@ import PreviewPanel from "./PreviewPanel";
 import getIconForTech from "@/components/icons";
 import Header from "./Header";
 import StartReadingButton from "./StartReadingButton";
+import { formatTimeInMs } from "@/utils/time";
+import { useCurrentDocumentStore } from "@/stores/currentDocumentStore";
 
 interface DocumentPreviewProps {
-  selectedFile: string;
+  selectedFileUrl: string;
 }
 
 /**
  * Enhanced CardDocumentViewer component with an elegant, mobile-optimized design
  * Features beautiful animations, thoughtful visual hierarchy and sophisticated aesthetics
  */
-const DocumentPreview: React.FC<DocumentPreviewProps> = ({ selectedFile }) => {
+const DocumentPreview: React.FC<DocumentPreviewProps> = ({
+  selectedFileUrl,
+}) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [excerpt, setExcerpt] = useState("");
   const [activeTab, setActiveTab] = useState<"preview" | "info">("preview");
 
-  const {
-    markdownContent,
-    loading,
-    error,
-    documentTitle,
-    estimatedReadTime,
-    generatePreview,
-    parsedSections,
-  } = useDocument(selectedFile);
+  const loading = useCurrentDocumentStore((state) => state.loading);
+  const error = useCurrentDocumentStore((state) => state.error);
+  const load = useCurrentDocumentStore((state) => state.load);
+  const metrics = useCurrentDocumentStore((state) => state.metrics);
+  const category = useCurrentDocumentStore((state) => state.category);
+  const title = useCurrentDocumentStore((state) => state.title);
+  const preview = useCurrentDocumentStore((state) => state.preview);
 
   useEffect(() => {
-    if (markdownContent) setExcerpt(generatePreview(markdownContent, 300, 2));
-  }, [markdownContent, generatePreview]);
+    console.log("selectedFileUrl", selectedFileUrl);
+    load(selectedFileUrl);
+  }, [selectedFileUrl, load]);
 
   const startReading = () => setIsFullscreen(true);
 
   const exitFullscreen = () => setIsFullscreen(false);
 
   if (isFullscreen) {
-    return (
-      <FullScreenCardView
-        markdown={markdownContent}
-        onExit={exitFullscreen}
-        parsedSections={parsedSections}
-        documentPath={selectedFile}
-      />
-    );
+    return <FullScreenCardView onExit={exitFullscreen} />;
   }
 
   if (loading) return <LoadingScreen />;
   if (error) return <ErrorLoadingDocument error={error} />;
-  if (!selectedFile) return <NoFileSelectedYet />;
+  if (!selectedFileUrl) return <NoFileSelectedYet />;
 
-  const category = selectedFile.split("/")[0] || "Uncategorized";
-  console.log(category);
+  const { totalWords, totalTime, totalSections } = metrics;
+  const formattedReadTime = formatTimeInMs(totalTime);
 
-  // Count total sections
-  const totalSections = parsedSections?.length || 0;
-
-  // Calculate word count
-  const wordCount = wordCountEstimator.countWords(markdownContent);
-
-  // Simulate last updated date (in real app would come from metadata)
-  const lastUpdated = new Date();
-  lastUpdated.setDate(lastUpdated.getDate() - 3);
-  const lastUpdatedFormatted = formatDistanceToNow(lastUpdated, {
-    addSuffix: true,
-  });
-
-  // Calculate reading progress (simulated for this example)
-  const readingProgress = 0; // 0% progress for new documents
   const CategoryIcon = getIconForTech(category);
 
   return (
@@ -113,10 +90,10 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({ selectedFile }) => {
             <Header
               categoryIcon={<CategoryIcon className="h-3 w-3 mr-1.5" />}
               category={category}
-              estimatedReadTime={estimatedReadTime}
-              lastUpdatedFormatted={lastUpdatedFormatted}
+              estimatedReadTime={formattedReadTime}
+              lastUpdatedFormatted={new Date().toLocaleDateString()}
               totalSections={totalSections}
-              documentTitle={documentTitle}
+              documentTitle={title}
               activeTab={activeTab}
               setActiveTab={setActiveTab}
             />
@@ -133,10 +110,10 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({ selectedFile }) => {
                     transition={{ duration: 0.3 }}
                     className="min-h-[200px]"
                   >
-                    <PreviewPanel excerpt={excerpt} />
+                    <PreviewPanel excerpt={preview} />
 
                     {/* Enhanced reading progress display */}
-                    <ProgressPanel readingProgress={readingProgress} />
+                    <ProgressPanel readingProgress={0} />
 
                     {/* Section quick stats */}
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
@@ -145,19 +122,19 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({ selectedFile }) => {
                           <LayoutList className="h-4 w-4 text-primary/70" />
                         }
                         label="Sections"
-                        value={totalSections.toString()}
+                        value={totalSections.toString() || "0"}
                       />
 
                       <StatCard
                         icon={<FileText className="h-4 w-4 text-primary/70" />}
                         label="Word Count"
-                        value={wordCount.toLocaleString()}
+                        value={totalWords.toLocaleString()}
                       />
 
                       <StatCard
                         icon={<Clock className="h-4 w-4 text-primary/70" />}
                         label="Reading Time"
-                        value={`${estimatedReadTime} min`}
+                        value={formattedReadTime}
                         className="col-span-2 sm:col-span-1"
                       />
                     </div>
@@ -174,10 +151,12 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({ selectedFile }) => {
                     {/* Enhanced document details panel */}
                     <DetailPanel
                       totalSections={totalSections}
-                      wordCount={wordCount}
-                      estimatedReadTime={estimatedReadTime}
-                      lastUpdatedFormatted={lastUpdatedFormatted}
-                      selectedFile={selectedFile}
+                      wordCount={totalWords}
+                      estimatedReadTime={parseInt(
+                        formattedReadTime.split(":")[0]
+                      )}
+                      lastUpdatedFormatted={new Date().toLocaleDateString()}
+                      selectedFile={selectedFileUrl}
                     />
                   </motion.div>
                 )}

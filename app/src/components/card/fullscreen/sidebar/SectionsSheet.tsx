@@ -7,13 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import ListOfContents from "./ListOfContents";
 import ProgressBar from "./ProgressBar";
+import { MarkdownSection } from "@/services/section/parsing";
 
 interface SectionsSheetProps {
-  sections: { id: string; title: string; level?: number }[];
   currentIndex: number;
   handleSelectCard: (index: number) => void;
   menuOpen: boolean;
   setMenuOpen: (open: boolean) => void;
+  sections: MarkdownSection[];
 }
 
 /**
@@ -30,11 +31,11 @@ interface SectionsSheetProps {
  * @param {Function} props.setMenuOpen - A function to set the menu open state.
  */
 const SectionsSheet: React.FC<SectionsSheetProps> = ({
-  sections,
   currentIndex,
   handleSelectCard,
   menuOpen,
   setMenuOpen,
+  sections,
 }) => {
   const [readSections, setReadSections] = useState<Set<string>>(new Set());
   const [showProgress, setShowProgress] = useState<boolean>(() => {
@@ -42,6 +43,7 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
     return localStorage.getItem("showCardProgress") !== "false";
   });
 
+  // Calculate progress percentage
   // Calculate progress percentage
   const progressPercentage = sections.length
     ? (readSections.size / sections.length) * 100
