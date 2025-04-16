@@ -8,12 +8,13 @@ import {
   type PieProps,
 } from "recharts";
 import useMobile from "@/hooks/useMobile";
-import { useReadingHistory, useReadingMetrics } from "@/context";
 import { BookText } from "lucide-react";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { fromSnakeToTitleCase, truncateText } from "@/utils/string";
 import { motion } from "framer-motion";
 import { getRandomColors } from "@/lib/constants";
+import { useCategoryStore } from "@/stores/categoryStore";
+import { useHistoryStore } from "@/stores";
 
 interface CategoryPieChartProps {
   extraProps?: Omit<PieProps, "data" | "dataKey" | "ref">;
@@ -29,9 +30,10 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = ({
   showLegend = true,
 }) => {
   const { isMobile } = useMobile();
-  const { readingHistory } = useReadingHistory();
-  const { analyticsData } = useReadingMetrics();
-  const { categoryBreakdown } = analyticsData;
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
+  const categoryBreakdown = useCategoryStore(
+    (state) => state.categoryBreakdown
+  );
   const { currentTheme } = useTheme();
 
   // Generate theme-based color palette
@@ -51,10 +53,10 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = ({
   const enrichedCategoryData = useMemo(() => {
     return categoryBreakdown.map((category) => ({
       ...category,
-      displayName: fromSnakeToTitleCase(category.name),
+      displayName: fromSnakeToTitleCase(category.category),
       percentage:
         readingHistory.length > 0
-          ? Math.round((category.value / readingHistory.length) * 100)
+          ? Math.round((category.count / readingHistory.length) * 100)
           : 0,
     }));
   }, [categoryBreakdown, readingHistory]);
@@ -121,14 +123,14 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = ({
             innerRadius={isMobile ? "40%" : "45%"}
             outerRadius={isMobile ? "70%" : "75%"}
             paddingAngle={4}
-            dataKey="value"
+            dataKey="percentage"
             filter="url(#shadow)"
             isAnimationActive={true}
             {...extraProps}
           >
-            {enrichedCategoryData.map((entry, index) => (
+            {enrichedCategoryData.map(({ category }, index) => (
               <Cell
-                key={`${entry.name}`}
+                key={`${category}`}
                 fill={colors[index % colors.length]}
                 style={{
                   filter: "brightness(1.1)",
@@ -170,10 +172,10 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = ({
                   </span>
                 );
               }}
-              payload={enrichedCategoryData.map((category, index) => {
+              payload={enrichedCategoryData.map(({ category }, index) => {
                 return {
-                  value: category.displayName,
-                  id: category.name,
+                  value: category,
+                  id: category,
                   type: "circle",
                   color: colors[index % colors.length],
                 };

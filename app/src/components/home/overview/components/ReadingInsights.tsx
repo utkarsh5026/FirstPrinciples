@@ -3,7 +3,7 @@ import { Brain, Calendar } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import CategoryPieChart from "@/components/insights/CategoryPieChart";
 import ReadingByWeekDay from "@/components/insights/ReadingByWeekDay";
-import { useReadingMetrics } from "@/context";
+import { useActivityStore } from "@/stores";
 import { useCategoryStore } from "@/stores/categoryStore";
 
 /**
@@ -24,7 +24,7 @@ import { useCategoryStore } from "@/stores/categoryStore";
  * It ensures that you have a clear and engaging view of your reading journey! 🌟
  */
 const ReadingInsights: React.FC = () => {
-  const { analyticsData } = useReadingMetrics();
+  const weeklyActivity = useActivityStore((state) => state.totalWeeklyActivity);
   const categoryBreakdown = useCategoryStore(
     (state) => state.categoryBreakdown
   );
@@ -35,13 +35,13 @@ const ReadingInsights: React.FC = () => {
    * where you read the most. If you haven't read at all, it cheerfully returns "N/A"! 😊
    */
   const bestDay = useMemo(() => {
-    return analyticsData.weeklyActivity.length > 0
-      ? analyticsData.weeklyActivity.reduce(
+    return weeklyActivity.length > 0
+      ? weeklyActivity.reduce(
           (prev, current) => (prev.count > current.count ? prev : current),
-          analyticsData.weeklyActivity[0]
+          weeklyActivity[0]
         ).day
       : "N/A";
-  }, [analyticsData]);
+  }, [weeklyActivity]);
 
   /**
    * This hook identifies your favorite reading category! 📚✨
@@ -96,7 +96,7 @@ const ReadingInsights: React.FC = () => {
             Weekly Pattern
           </div>
 
-          {analyticsData.weeklyActivity.some((day) => day.count > 0) ? (
+          {weeklyActivity.some((day) => day.count > 0) ? (
             <div className="h-36 w-full">
               <ReadingByWeekDay />
             </div>
@@ -114,7 +114,7 @@ const ReadingInsights: React.FC = () => {
           )}
 
           <div className="text-xs text-center text-muted-foreground mt-1">
-            {analyticsData.weeklyActivity.some((day) => day.count > 0) ? (
+            {weeklyActivity.some((day) => day.count > 0) ? (
               <span>
                 Best day:{" "}
                 <span className="font-medium text-primary/90">{bestDay}</span>
