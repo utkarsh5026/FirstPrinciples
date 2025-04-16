@@ -190,36 +190,28 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
    * No one likes starting in the middle! 😉
    */
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = 0;
-    }
+    if (scrollRef.current) scrollRef.current.scrollTop = 0;
   }, [currentIndex]);
 
   /**
    * ⬅️ Go to previous section with a smooth transition
    */
   const handlePrevCard = () => {
-    if (currentIndex > 0) {
-      changeSection(currentIndex - 1);
-    }
+    if (currentIndex > 0) changeSection(currentIndex - 1);
   };
 
   /**
    * ➡️ Go to next section with a smooth transition
    */
   const handleNextCard = () => {
-    if (currentIndex < sections.length - 1) {
-      changeSection(currentIndex + 1);
-    }
+    if (currentIndex < sections.length - 1) changeSection(currentIndex + 1);
   };
 
   /**
    * 🎯 Jump directly to a specific section
    */
   const handleSelectCard = (index: number) => {
-    if (index !== currentIndex) {
-      changeSection(index);
-    }
+    if (index !== currentIndex) changeSection(index);
   };
 
   /**
@@ -302,7 +294,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         </div>
       </div>
 
-      {/* Reading Progress Bar */}
       <ReadingProgress
         percentage={isCurrentSectionRead ? 100 : 0}
         documentProgress={documentProgress}
@@ -338,7 +329,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       {/* Navigation Footer */}
       <div className="sticky bottom-0 border-t border-border bg-card/50 backdrop-blur-sm p-4">
         <div className="max-w-md mx-auto">
-          {/* Progress indicator */}
           <CardProgress
             currentIndex={currentIndex}
             totalCards={sections.length}
@@ -384,7 +374,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         readSections={readSections}
         setReadSections={(newSections) => {
           setReadSections(newSections);
-          // If we're clearing progress, also update section store
           if (newSections.size === 0) {
             useSectionStore.getState().loadReadSections(documentPath);
           }
