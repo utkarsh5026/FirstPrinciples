@@ -5,6 +5,7 @@ import { useCategoryStore } from "./categoryStore";
 import { useActivityStore } from "./activityStore";
 import { useHeatmapStore } from "./heatmapStore";
 import { useEffect, useState } from "react";
+import { useSectionStore } from "./sectionStore";
 
 /**
  * 🚀 Initializes all stores when the app starts
@@ -17,7 +18,7 @@ const useInit = () => {
   const historyInit = useHistoryStore((state) => state.initialize);
   const categoryInit = useCategoryStore((state) => state.initialize);
   const activityInit = useActivityStore((state) => state.initialize);
-
+  const sectionInit = useSectionStore((state) => state.initialize);
   useEffect(() => {
     const init = async () => {
       await readingInit();
@@ -25,10 +26,18 @@ const useInit = () => {
       await historyInit();
       await categoryInit();
       await activityInit();
+      await sectionInit();
       setLoading(false);
     };
     init();
-  }, [readingInit, documentInit, historyInit, categoryInit, activityInit]);
+  }, [
+    readingInit,
+    documentInit,
+    historyInit,
+    categoryInit,
+    activityInit,
+    sectionInit,
+  ]);
 
   return loading;
 };
@@ -40,4 +49,5 @@ export {
   useInit,
   useActivityStore,
   useHeatmapStore,
+  useSectionStore,
 };
