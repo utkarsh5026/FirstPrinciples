@@ -16,13 +16,10 @@ import SankeyKnowledgeFlow from "./flow";
 import TimeFilteredHeatCalendar from "./timeline/ReadingTimeline";
 import CategoryInsights from "./hierarchy/CategoryInsights";
 import Recommendations from "./recommendations";
-import {
-  useReadingHistory,
-  useDocumentManager,
-  useReadingMetrics,
-} from "@/context";
+import { useHistoryStore, useDocumentStore } from "@/stores";
 import HeatMapView from "@/components/analytics/deep/timeline/HeatMapView";
 import { Card } from "@/components/ui/card";
+import { useCategoryStore } from "@/stores/categoryStore";
 
 interface EnhancedCategoryAnalyticsProps {
   onSelectDocument: (path: string, title: string) => void;
@@ -80,9 +77,13 @@ const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
   const { isMobile } = useMobile();
   const [activeView, setActiveView] = useState<AnalyticsView>("overview");
   const [categories, setCategories] = useState<Category[]>([]);
-  const { readingHistory } = useReadingHistory();
-  const { availableDocuments } = useDocumentManager();
-  const { analyticsData } = useReadingMetrics();
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
+  const availableDocuments = useDocumentStore(
+    (state) => state.availableDocuments
+  );
+  const categoryBreakdown = useCategoryStore(
+    (state) => state.categoryBreakdown
+  );
 
   /*
    🌳 Fetches the category structure from your knowledge base
@@ -163,7 +164,7 @@ const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
    🧮 Calculates your learning metrics to show progress and balance
    */
   const summaryStat = useMemo(() => {
-    const categoriesCount = analyticsData.categoryBreakdown.length;
+    const categoriesCount = categoryBreakdown.length;
     const totalCategories = new Set(
       availableDocuments.map((doc) => doc.path.split("/")[0])
     ).size;
@@ -193,12 +194,7 @@ const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
       coverageScore,
       balanceScore: Math.round(balanceScore),
     };
-  }, [
-    availableDocuments,
-    readingHistory,
-    radarData,
-    analyticsData.categoryBreakdown.length,
-  ]);
+  }, [availableDocuments, readingHistory, radarData, categoryBreakdown.length]);
 
   const stats = [
     {

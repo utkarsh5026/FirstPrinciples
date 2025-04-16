@@ -36,6 +36,7 @@ const TimeOfDayInsightCard: React.FC<TimeOfDayInsightCardProps> = memo(
       leastActiveHour,
       totalReadingEvents,
       preferredPeriod,
+      analyticsData,
     } = useMemo(() => {
       const analyticsData = calculateTotalReadingByHour(history);
       const { mostActiveHour, leastActiveHour } =
@@ -56,6 +57,7 @@ const TimeOfDayInsightCard: React.FC<TimeOfDayInsightCardProps> = memo(
         leastActiveHour,
         totalReadingEvents,
         preferredPeriod,
+        analyticsData,
       };
     }, [history, calculateTotalReadingByHour, getReadingByHourMetrics]);
 
@@ -128,7 +130,7 @@ const TimeOfDayInsightCard: React.FC<TimeOfDayInsightCardProps> = memo(
         delay={0.1}
       >
         <div className="h-52 w-full">
-          <TimeOfDayPreference />
+          <TimeOfDayPreference readingByHour={analyticsData} />
         </div>
       </InsightCard>
     );

@@ -8,7 +8,7 @@ import {
   YAxis,
   Cell,
 } from "recharts";
-import { useReadingMetrics } from "@/context";
+import { useActivityStore } from "@/stores";
 import { useMemo } from "react";
 
 /**
@@ -30,7 +30,7 @@ import { useMemo } from "react";
  */
 const TimeOfTheDay: React.FC = () => {
   const { currentTheme } = useTheme();
-  const { analyticsData } = useReadingMetrics();
+  const analyticsData = useActivityStore((state) => state.totalReadingByHour);
 
   /**
    * 📊 Processes hourly reading data into time-of-day categories
@@ -47,7 +47,7 @@ const TimeOfTheDay: React.FC = () => {
       { name: "Night", count: 0, color: "#7986CB" },
     ];
 
-    analyticsData.readingByHour.forEach(({ hour }) => {
+    analyticsData.forEach(({ hour }) => {
       switch (true) {
         case hour >= 5 && hour < 12:
           timeOfDayData[0].count++;
@@ -65,7 +65,7 @@ const TimeOfTheDay: React.FC = () => {
     });
 
     return timeOfDayData;
-  }, [analyticsData.readingByHour]);
+  }, [analyticsData]);
 
   return (
     <ResponsiveContainer width="100%" height="100%">

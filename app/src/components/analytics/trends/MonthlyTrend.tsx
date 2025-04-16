@@ -7,7 +7,7 @@ import {
   Tooltip as RechartsTooltip,
 } from "recharts";
 import { useTheme } from "@/components/theme/context/ThemeContext";
-import { useReadingMetrics } from "@/context";
+import { useActivityStore } from "@/stores";
 
 /**
  * 📊 MonthlyReadingTrend
@@ -27,7 +27,7 @@ import { useReadingMetrics } from "@/context";
  */
 const MonthlyReadingTrend: React.FC = () => {
   const { currentTheme } = useTheme();
-  const { monthlyData } = useReadingMetrics();
+  const monthlyData = useActivityStore((state) => state.totalDailyActivity);
 
   const customTooltipStyle = {
     background: currentTheme.cardBg || "#ffffff",

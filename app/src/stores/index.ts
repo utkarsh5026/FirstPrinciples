@@ -7,6 +7,7 @@ import { useHeatmapStore } from "./heatmapStore";
 import { useEffect, useState } from "react";
 import { useSectionStore } from "./sectionStore";
 import { useCurrentDocumentStore } from "./currentDocumentStore";
+import useReadingMetricsStore from "./document/readingMetrics";
 
 /**
  * 🚀 Initializes all stores when the app starts
@@ -52,4 +53,6 @@ export {
   useHeatmapStore,
   useSectionStore,
   useCurrentDocumentStore,
+  useReadingMetricsStore,
+  useCategoryStore,
 };

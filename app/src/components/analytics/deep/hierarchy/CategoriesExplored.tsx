@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
-import { useReadingMetrics, useReadingHistory } from "@/context";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -19,14 +18,16 @@ import getIconForTech from "@/components/icons";
 import useMobile from "@/hooks/useMobile";
 import { formatRelativeTime } from "@/utils/time";
 import { Badge } from "@/components/ui/badge";
+import { useHistoryStore, useCategoryStore } from "@/stores";
 
 type ViewMode = "list" | "chart" | "timeline";
 
 const EnhancedCategoriesExplored: React.FC = () => {
   const [viewMode, setViewMode] = React.useState<ViewMode>("list");
-  const { analyticsData } = useReadingMetrics();
-  const { categoryBreakdown } = analyticsData;
-  const { readingHistory } = useReadingHistory();
+  const categoryBreakdown = useCategoryStore(
+    (state) => state.categoryBreakdown
+  );
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
   const { isMobile } = useMobile();
 
   // Enhanced category coverage data with more stats
@@ -37,10 +38,10 @@ const EnhancedCategoriesExplored: React.FC = () => {
     const totalReads = readingHistory.length;
 
     return categoryBreakdown
-      .map((category, index) => {
+      .map(({ category, count }, index) => {
         // Calculate various metrics
         const categoryDocs = readingHistory.filter((item) =>
-          item.path.startsWith(category.name)
+          item.path.startsWith(category)
         );
 
         const lastReadItem = [...categoryDocs].sort(
@@ -65,12 +66,12 @@ const EnhancedCategoriesExplored: React.FC = () => {
 
         // Calculate readable percentage and ranking
         const percentage =
-          totalReads > 0 ? Math.round((category.value / totalReads) * 100) : 0;
+          totalReads > 0 ? Math.round((count / totalReads) * 100) : 0;
 
         return {
-          name: category.name,
-          displayName: fromSnakeToTitleCase(category.name),
-          value: category.value,
+          name: category,
+          displayName: fromSnakeToTitleCase(category),
+          value: count,
           percentage,
           timeSpent: totalTimeSpent,
           timeDisplay,

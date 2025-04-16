@@ -6,8 +6,9 @@ import CategoryBreakDown from "./CategoryBreakdown";
 import ReadingTrends from "./ReadingTrends";
 import RecentReads from "./RecentReads";
 import useMobile from "@/hooks/useMobile";
-import { useReadingMetrics, useXP } from "@/context";
+import { useActivityStore, useCategoryStore, useHistoryStore } from "@/stores";
 import Activity from "./Activity";
+import { useXP } from "@/context";
 
 interface AnalyticsOverviewProps {
   challenges: ReadingChallenge[];
@@ -23,10 +24,12 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
   onSelectDocument,
 }) => {
   const { isMobile } = useMobile();
-  const { analyticsData } = useReadingMetrics();
   const { xpStats } = useXP();
-
-  const { categoryBreakdown, readingByHour, recentActivity } = analyticsData;
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
+  const categoryBreakdown = useCategoryStore(
+    (state) => state.categoryBreakdown
+  );
+  const readingByHour = useActivityStore((state) => state.totalReadingByHour);
 
   return (
     <div className="space-y-6">
@@ -49,7 +52,7 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
         {/* Right column: Activity overview */}
         <div className="space-y-4">
           <RecentReads
-            recentActivity={recentActivity.map((item) => ({
+            recentActivity={readingHistory.map((item) => ({
               path: item.path,
               title: item.title,
               lastReadAt: new Date(item.lastReadAt).toLocaleString(),
@@ -64,7 +67,10 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
       </div>
 
       <CategoryBreakDown
-        categoryBreakdown={categoryBreakdown}
+        categoryBreakdown={categoryBreakdown.map((item) => ({
+          name: item.category,
+          value: item.count,
+        }))}
         isMobile={isMobile}
         readingByHour={readingByHour}
       />

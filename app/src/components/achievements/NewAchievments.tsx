@@ -2,12 +2,11 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Trophy, Check } from "lucide-react";
 import { useAchievements } from "@/context";
-import { useServices } from "@/context/services/ServiceContext";
 import AchievementCard from "./AchievmentCard";
+import { enhancedAchievementService } from "@/services/analytics/AchievmentService";
 
 const NewAchievments = () => {
   const { newAchievements } = useAchievements();
-  const { enhancedAchievementService } = useServices();
 
   const handleAcknowledgeAchievement = async (id: string) => {
     try {

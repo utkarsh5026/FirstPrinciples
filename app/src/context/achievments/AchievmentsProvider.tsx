@@ -5,12 +5,14 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { useServices } from "../services/ServiceContext";
-import { readingStatsService } from "@/services/analytics/ReadingStatsService";
 import { AchievementsContext } from "./AchievmentsContext";
-import { type EnhancedAchievement } from "@/services/analytics/AchievmentService";
+import {
+  enhancedAchievementService,
+  type EnhancedAchievement,
+} from "@/services/analytics/AchievmentService";
 import { AchievementNotification } from "@/components/achievements/AchievmentsNotification";
 import { useXP } from "../xp/XpContext";
+import { readingStatsService } from "@/services/analytics/ReadingStatsService";
 
 interface EnhancedAchievementsProviderProps {
   children: ReactNode;
@@ -25,7 +27,6 @@ interface EnhancedAchievementsProviderProps {
 export const EnhancedAchievementsProvider: React.FC<
   EnhancedAchievementsProviderProps
 > = ({ children }) => {
-  const { enhancedAchievementService } = useServices();
   const { addXP, refreshXPStats } = useXP();
 
   // State for achievements and stats

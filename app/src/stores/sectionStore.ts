@@ -71,7 +71,7 @@ interface StoreActions {
   ) => Promise<number>;
 
   // Word count and time tracking
-  getTotalWordsRead: (wordCountMap: Record<string, number>) => Promise<number>;
+  getTotalWordsRead: (wordCountMap?: Record<string, number>) => Promise<number>;
   getTotalTimeSpent: () => Promise<number>;
   getTimeSpentOnDay: (date: Date) => Promise<number>;
 

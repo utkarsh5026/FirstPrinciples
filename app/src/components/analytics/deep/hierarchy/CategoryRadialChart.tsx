@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import { CircleIcon, TrendingUp, BookIcon, BadgeCheck } from "lucide-react";
 import useMobile from "@/hooks/useMobile";
 import { cn } from "@/lib/utils";
-import { useAnalytics } from "@/context";
 import CategoryRadialBarChart from "@/components/insights/CategoryRadialBarChart";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { useCategoryStore } from "@/stores";
 
 interface CategoryRadialChartProps {
   title?: string;
@@ -26,7 +26,9 @@ const CategoryRadialChart: React.FC<CategoryRadialChartProps> = ({
 }) => {
   const { isMobile } = useMobile();
 
-  const { totalCategoryBreakdown } = useAnalytics();
+  const totalCategoryBreakdown = useCategoryStore(
+    (state) => state.categoryBreakdown
+  );
 
   // Calculate average completion
   const averageCompletion = useMemo(() => {

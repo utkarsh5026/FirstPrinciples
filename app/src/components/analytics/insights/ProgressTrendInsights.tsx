@@ -1,9 +1,10 @@
-import { useReadingMetrics } from "@/context";
 import { formatRelativeTime } from "@/utils/time";
 import { TrendingUp } from "lucide-react";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ProgressOverTime } from "../trends";
 import InsightCard from "./InsightCard";
+import { useHeatmapStore, useHistoryStore } from "@/stores";
+import { MonthlyDocumentCounts } from "@/stores/heatmapStore";
 
 /**
  * ProgressTrendInsightCard - Shows reading progress over time
@@ -12,25 +13,49 @@ import InsightCard from "./InsightCard";
  * showing their consistency and growth patterns.
  */
 export const ProgressTrendInsightCard = () => {
-  const { metrics, monthlyData } = useReadingMetrics();
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
+  const getMonthlyDocumentCounts = useHeatmapStore(
+    (state) => state.getMonthlyDocumentCounts
+  );
+  const [monthlyData, setMonthlyData] = useState<MonthlyDocumentCounts>();
+
+  useEffect(() => {
+    const fetchMonthlyData = async () => {
+      const currentMonth = new Date();
+      const prevSixMonths = new Date(
+        currentMonth.getFullYear(),
+        currentMonth.getMonth() - 6,
+        1
+      );
+      const data = await getMonthlyDocumentCounts(
+        readingHistory,
+        prevSixMonths,
+        currentMonth
+      );
+      setMonthlyData(data);
+    };
+    fetchMonthlyData();
+  }, [readingHistory, getMonthlyDocumentCounts]);
 
   const totalReadingEvents = useMemo(() => {
-    return monthlyData?.reduce((sum, month) => sum + month.count, 0) || 0;
+    return (
+      monthlyData?.months.reduce((sum, month) => sum + month.count, 0) || 0
+    );
   }, [monthlyData]);
 
   const mostActiveMonth = useMemo(() => {
-    if (!monthlyData?.length) return null;
-    return monthlyData.reduce(
+    if (!monthlyData?.months.length) return null;
+    return monthlyData.months.reduce(
       (max, month) => (month.count > max.count ? month : max),
-      monthlyData[0]
+      monthlyData.months[0]
     );
   }, [monthlyData]);
 
   const trend = useMemo(() => {
-    if (!monthlyData || monthlyData.length < 2) return "stable";
+    if (!monthlyData || monthlyData.months.length < 2) return "stable";
 
-    const lastMonth = monthlyData[monthlyData.length - 1];
-    const previousMonth = monthlyData[monthlyData.length - 2];
+    const lastMonth = monthlyData.months[monthlyData.months.length - 1];
+    const previousMonth = monthlyData.months[monthlyData.months.length - 2];
 
     if (lastMonth.count > previousMonth.count * 1.2) return "increasing";
     if (lastMonth.count < previousMonth.count * 0.8) return "decreasing";
@@ -55,11 +80,11 @@ export const ProgressTrendInsightCard = () => {
   const insights = [
     {
       label: "Last active",
-      value: formatRelativeTime(metrics.lastReadAt ?? 0),
+      value: formatRelativeTime(mostActiveMonth?.timestamp ?? 0),
     },
     {
       label: "Most active month",
-      value: mostActiveMonth?.name ?? "N/A",
+      value: mostActiveMonth?.label ?? "N/A",
     },
     {
       label: "Trend",
@@ -85,7 +110,9 @@ export const ProgressTrendInsightCard = () => {
       delay={0.2}
     >
       <div className="h-60 w-full">
-        <ProgressOverTime />
+        {monthlyData?.months && (
+          <ProgressOverTime monthlyData={monthlyData.months} />
+        )}
       </div>
     </InsightCard>
   );

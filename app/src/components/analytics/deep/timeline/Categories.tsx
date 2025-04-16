@@ -7,7 +7,7 @@ import { getRandomColors } from "@/lib/constants";
 import getIconForTech from "@/components/icons";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import type { TimeRange } from "@/utils/time";
-import { useAnalytics } from "@/context";
+import { useCategoryStore } from "@/stores";
 
 interface CategoriesViewProps {
   filteredHistory: ReadingHistoryItem[];
@@ -20,10 +20,12 @@ const CategoriesView: React.FC<CategoriesViewProps> = ({
   timeRange,
   onSelectCategory,
 }) => {
-  const { createCatgegoryBreakDown } = useAnalytics();
+  const createCategoryBreakdown = useCategoryStore(
+    (state) => state.createCategoryBreakdown
+  );
 
   const categoryData = useMemo(() => {
-    const result = createCatgegoryBreakDown(filteredHistory);
+    const result = createCategoryBreakdown(filteredHistory);
     const colors = getRandomColors(result.length);
     return result
       .map((category, index) => ({
@@ -31,7 +33,7 @@ const CategoriesView: React.FC<CategoriesViewProps> = ({
         color: colors[index % colors.length],
       }))
       .sort((a, b) => b.count - a.count);
-  }, [filteredHistory, createCatgegoryBreakDown]);
+  }, [filteredHistory, createCategoryBreakdown]);
 
   const timeRangeLabel = useMemo(() => {
     switch (timeRange) {

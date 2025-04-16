@@ -1,3 +1,4 @@
+// Enhanced heatmapStore.ts with getMonthlyDocumentCounts function
 import { create } from "zustand";
 import type { LoadingWithError } from "./base/base";
 import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
@@ -12,6 +13,18 @@ export type MonthlyData = {
   dataHash: string;
 };
 
+export type MonthlyDocumentCounts = {
+  months: Array<{
+    label: string; // Display name (e.g., "Jan 2024")
+    count: number; // Number of unique documents read
+    timestamp: number; // Unix timestamp (for sorting)
+    year: number; // Year
+    month: number; // Month (0-11)
+  }>;
+  totalDocuments: number;
+  maxCount: number;
+};
+
 type State = LoadingWithError & {
   monthCache: Record<string, MonthlyData>;
 };
@@ -21,6 +34,13 @@ type Actions = {
     readingHistory: ReadingHistoryItem[],
     month: Date
   ) => Promise<MonthlyData>;
+
+  // New function for document counts per month
+  getMonthlyDocumentCounts: (
+    readingHistory: ReadingHistoryItem[],
+    fromDate: Date,
+    toDate: Date
+  ) => Promise<MonthlyDocumentCounts>;
 };
 
 // Helper function to create a hash of the reading history array
@@ -136,6 +156,75 @@ export const useHeatmapStore = create<State & Actions>((set, get) => ({
       },
     }));
     return result;
+  },
+
+  // New function to calculate document counts per month within a date range
+  getMonthlyDocumentCounts: async (readingHistory, fromDate, toDate) => {
+    // Normalize dates to the first day of their respective months
+    const startDate = new Date(fromDate.getFullYear(), fromDate.getMonth(), 1);
+    const endDate = new Date(toDate.getFullYear(), toDate.getMonth(), 1);
+
+    // Create a map to store monthly document counts
+    const monthlyMap: Record<string, Set<string>> = {};
+
+    // Initialize all months in the range
+    let currentDate = new Date(startDate);
+    while (currentDate <= endDate) {
+      const key = `${currentDate.getFullYear()}-${currentDate.getMonth()}`;
+      monthlyMap[key] = new Set<string>();
+
+      // Move to next month
+      currentDate = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1,
+        1
+      );
+    }
+
+    // Process reading history
+    readingHistory.forEach((item) => {
+      const date = new Date(item.lastReadAt);
+      const itemMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+
+      // Only include if within our date range
+      if (itemMonth >= startDate && itemMonth <= endDate) {
+        const key = `${date.getFullYear()}-${date.getMonth()}`;
+        // Store unique document paths
+        monthlyMap[key].add(item.path);
+      }
+    });
+
+    // Convert to array format for visualization
+    const months = Object.entries(monthlyMap)
+      .map(([key, docSet]) => {
+        const [yearStr, monthStr] = key.split("-");
+        const year = parseInt(yearStr);
+        const month = parseInt(monthStr);
+        const date = new Date(year, month, 1);
+
+        return {
+          year,
+          month,
+          // Format as "Jan 2024"
+          label: date.toLocaleDateString("en-US", {
+            month: "short",
+            year: "numeric",
+          }),
+          count: docSet.size,
+          timestamp: date.getTime(),
+        };
+      })
+      .sort((a, b) => a.timestamp - b.timestamp); // Sort chronologically
+
+    // Calculate total and max stats
+    const totalDocuments = months.reduce((sum, month) => sum + month.count, 0);
+    const maxCount = Math.max(...months.map((month) => month.count), 1);
+
+    return {
+      months,
+      totalDocuments,
+      maxCount,
+    };
   },
 }));
 

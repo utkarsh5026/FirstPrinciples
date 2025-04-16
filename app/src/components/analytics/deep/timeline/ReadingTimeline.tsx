@@ -15,10 +15,10 @@ import GitHubStyleHeatmap from "./GithubHeatMap";
 import CategoriesView from "./Categories";
 import DocumentsView from "./Documents";
 import useMobile from "@/hooks/useMobile";
-import { useAnalytics, useDocumentManager } from "@/context";
 import { type TimeRange, getStartDate } from "@/utils/time";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import getIconForTech from "@/components/icons";
+import { useCategoryStore, useHistoryStore } from "@/stores";
 
 export type ViewMode = "heatmap" | "categories" | "documents";
 
@@ -35,13 +35,15 @@ const ReadingTimeline: React.FC<ReadingTimelineProps> = ({
   const [timeRange, setTimeRange] = useState<TimeRange>("month");
   const [viewMode, setViewMode] = useState<ViewMode>("heatmap");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const { readingHistory } = useDocumentManager();
-  const { createCatgegoryBreakDown } = useAnalytics();
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
+  const createCategoryBreakdown = useCategoryStore(
+    (state) => state.createCategoryBreakdown
+  );
 
   const categories = useMemo(() => {
-    const result = createCatgegoryBreakDown(readingHistory);
+    const result = createCategoryBreakdown(readingHistory);
     return result.map(({ category }) => category);
-  }, [readingHistory, createCatgegoryBreakDown]);
+  }, [readingHistory, createCategoryBreakdown]);
 
   const filteredHistory = useMemo(() => {
     const startDate = getStartDate(timeRange);

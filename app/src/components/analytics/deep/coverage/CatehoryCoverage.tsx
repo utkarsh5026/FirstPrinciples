@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import { Target, PieChart } from "lucide-react";
 import useMobile from "@/hooks/useMobile";
 import getIconForTech from "@/components/icons";
-import { useDocumentManager } from "@/context/document/DocumentContext";
 import StatCard from "./StatCard";
 import CategoryRadarChart from "@/components/insights/RadarChart";
+import { useHistoryStore, useDocumentStore } from "@/stores";
 
 interface CategoryCoverageMapProps {
   compact: boolean;
@@ -23,7 +23,10 @@ const CategoryCoverageMap: React.FC<CategoryCoverageMapProps> = ({
   compact = false,
 }) => {
   const { isMobile } = useMobile();
-  const { availableDocuments, readingHistory } = useDocumentManager();
+  const availableDocuments = useDocumentStore(
+    (state) => state.availableDocuments
+  );
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
 
   /* 
   🎯 Creates data for the radar visualization showing your category coverage

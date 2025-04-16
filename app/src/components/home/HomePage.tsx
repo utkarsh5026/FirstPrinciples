@@ -9,7 +9,6 @@ import {
   Info,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useDocumentManager } from "@/context";
 import { Category, MarkdownLoader } from "@/utils/MarkdownLoader";
 import Hero from "./Hero";
 import History from "./history/History";
@@ -20,7 +19,7 @@ import FileSelectionDialog from "@/components/todo/AddTodoModal";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { useTabContext } from "./context/TabContext";
 import AnalyticsView from "../analytics/AnalyticsView";
-import { useInit } from "@/stores";
+import { useInit, useDocumentStore } from "@/stores";
 
 interface HomePageProps {
   onSelectFile: (filepath: string) => void;
@@ -36,7 +35,12 @@ interface HomePageProps {
 const HomePage: React.FC<HomePageProps> = () => {
   console.log("HomePage");
   useInit();
-  const { availableDocuments, handleSelectDocument } = useDocumentManager();
+  const availableDocuments = useDocumentStore(
+    (state) => state.availableDocuments
+  );
+  const handleSelectDocument = useDocumentStore(
+    (state) => state.handleSelectDocument
+  );
 
   const [showFileDialog, setShowFileDialog] = useState(false);
   const { activeTab, setActiveTab } = useTabContext();

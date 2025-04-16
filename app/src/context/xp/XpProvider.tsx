@@ -1,8 +1,6 @@
-// src/context/xp/XPProvider.tsx
-
+import { xpService } from "@/services/analytics/XpService";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { XPContext } from "./XpContext";
-import { useServices } from "../services/ServiceContext";
 import { type XPStats } from "@/services/analytics/XpService";
 
 interface XPProviderProps {
@@ -10,8 +8,6 @@ interface XPProviderProps {
 }
 
 export const XPProvider: React.FC<XPProviderProps> = ({ children }) => {
-  const { xpService } = useServices();
-
   const [xpStats, setXPStats] = useState<XPStats>({
     id: "user_xp_stats",
     totalXP: 0,

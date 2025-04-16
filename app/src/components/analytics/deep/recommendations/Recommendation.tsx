@@ -20,7 +20,7 @@ import { fromSnakeToTitleCase } from "@/utils/string";
 import getIconForTech from "@/components/icons";
 import type { ReadingHistoryItem } from "@/components/home/types";
 import { cn } from "@/lib/utils";
-import { useReadingHistory } from "@/context/history/HistoryContext";
+import { useHistoryStore } from "@/stores";
 
 interface RecommendationsProps {
   readingHistory: ReadingHistoryItem[];
@@ -56,7 +56,7 @@ const Recommendations: React.FC<RecommendationsProps> = ({
   totalCategories,
   handleSelectItem,
 }) => {
-  const { readingHistory } = useReadingHistory();
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
   const [dismissedRecommendations, setDismissedRecommendations] = useState<
     string[]
   >([]);

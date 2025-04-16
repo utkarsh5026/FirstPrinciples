@@ -127,7 +127,7 @@ const CategoryRadialBarChart: React.FC = () => {
         data={enrichedData}
         barSize={isMobile ? 8 : 10}
       >
-        <RadialBar dataKey="displayValue" cornerRadius={4} />
+        <RadialBar dataKey="value" cornerRadius={4} />
         <Tooltip content={<CustomTooltip />} />
         <Legend
           verticalAlign="bottom"

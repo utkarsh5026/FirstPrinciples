@@ -10,9 +10,12 @@ import {
   AreaChart,
 } from "recharts";
 import { Clock, Sun, Moon, Coffee, Clipboard } from "lucide-react";
-import { useReadingMetrics } from "@/context";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+
+interface TimeOfDayPreferenceProps {
+  readingByHour: { hour: number; count: number }[];
+}
 
 /**
  * 📅 TimeOfDayPreference Component
@@ -29,17 +32,17 @@ import { motion } from "framer-motion";
  * - Responsive design for both mobile and desktop
  * - Empty state with helpful prompts
  */
-const TimeOfDayPreference: React.FC = () => {
-  const { analyticsData } = useReadingMetrics();
-
+const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
+  readingByHour,
+}) => {
   // Calculate key metrics about reading times
   const timeMetrics = useMemo(() => {
-    if (analyticsData.readingByHour.length === 0) return null;
+    if (readingByHour.length === 0) return null;
 
     // Find peak reading hour
-    const peak = analyticsData.readingByHour.reduce(
+    const peak = readingByHour.reduce(
       (max, hour) => (hour.count > max.count ? hour : max),
-      analyticsData.readingByHour[0]
+      readingByHour[0]
     );
 
     // Format display hour (12-hour format)
@@ -60,7 +63,7 @@ const TimeOfDayPreference: React.FC = () => {
     }
 
     // Calculate total readings and percentage at peak hour
-    const totalReadings = analyticsData.readingByHour.reduce(
+    const totalReadings = readingByHour.reduce(
       (sum, item) => sum + item.count,
       0
     );
@@ -75,7 +78,7 @@ const TimeOfDayPreference: React.FC = () => {
       night: 0, // 9pm-4am
     };
 
-    analyticsData.readingByHour.forEach((hour) => {
+    readingByHour.forEach((hour) => {
       if (hour.hour >= 5 && hour.hour < 12) {
         periodTotals.morning += hour.count;
       } else if (hour.hour >= 12 && hour.hour < 17) {
@@ -103,11 +106,11 @@ const TimeOfDayPreference: React.FC = () => {
       periodTotals,
       preferredPeriod,
     };
-  }, [analyticsData.readingByHour]);
+  }, [readingByHour]);
 
   // Prepare enhanced data for the chart with period markers
   const enhancedData = useMemo(() => {
-    return analyticsData.readingByHour.map((item) => {
+    return readingByHour.map((item) => {
       let period = "";
       if (item.hour === 6) period = "Morning";
       if (item.hour === 12) period = "Afternoon";
@@ -127,7 +130,7 @@ const TimeOfDayPreference: React.FC = () => {
             : `${item.hour - 12}pm`,
       };
     });
-  }, [analyticsData.readingByHour]);
+  }, [readingByHour]);
 
   // Get time period icon
   const getTimeIcon = (category: string) => {
@@ -218,7 +221,7 @@ const TimeOfDayPreference: React.FC = () => {
   };
 
   // If there's no data, show an empty state
-  if (!analyticsData.readingByHour.some((item) => item.count > 0)) {
+  if (!readingByHour.some((item) => item.count > 0)) {
     return (
       <motion.div
         className="h-full flex items-center justify-center flex-col"
