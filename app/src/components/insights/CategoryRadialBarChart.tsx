@@ -10,10 +10,10 @@ import {
 import { motion } from "framer-motion";
 import { BookIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useAnalytics } from "@/context";
 import { getRandomColors } from "@/lib/constants";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import useMobile from "@/hooks/useMobile";
+import { useCategoryStore } from "@/stores";
 
 /**
  * Enhanced Radial Bar Chart with improved visuals and theme integration
@@ -27,15 +27,17 @@ import useMobile from "@/hooks/useMobile";
  * - Interactive tooltips with detailed information
  */
 const CategoryRadialBarChart: React.FC = () => {
-  const { totalCategoryBreakdown } = useAnalytics();
+  const categoryBreakdown = useCategoryStore(
+    (state) => state.categoryBreakdown
+  );
   const { isMobile } = useMobile();
 
   const enrichedData = useMemo(() => {
-    if (!totalCategoryBreakdown || totalCategoryBreakdown.length === 0) {
+    if (!categoryBreakdown || categoryBreakdown.length === 0) {
       return [];
     }
 
-    const sortedData = [...totalCategoryBreakdown].sort(
+    const sortedData = [...categoryBreakdown].sort(
       (a, b) => b.percentage - a.percentage
     );
 
@@ -54,7 +56,7 @@ const CategoryRadialBarChart: React.FC = () => {
         categoryCount: item.categoryCount,
       };
     });
-  }, [totalCategoryBreakdown]);
+  }, [categoryBreakdown]);
 
   console.log(enrichedData);
 
