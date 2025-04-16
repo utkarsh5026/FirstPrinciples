@@ -16,8 +16,20 @@ interface DocumentPreviewProps {
 }
 
 /**
- * Enhanced CardDocumentViewer component with an elegant, mobile-optimized design
- * Features beautiful animations, thoughtful visual hierarchy and sophisticated aesthetics
+ * 📄✨ DocumentPreview
+ *
+ * A beautiful document preview component that displays information about the selected document
+ * in an elegant card format with sophisticated animations and visual effects.
+ *
+ * 🎨 Features lovely glass morphism effects and smooth transitions to create a premium feel
+ * 🔍 Shows document metadata like word count, reading time, and sections
+ * 📱 Fully responsive design that looks great on all devices
+ * 🚀 Transitions seamlessly to fullscreen reading mode when ready
+ *
+ * Internal components:
+ * - 🧩 Header: Displays the document title, category and quick stats at the top
+ * - 📊 DetailPanel: Shows comprehensive document information in a structured format
+ * - ▶️ StartReadingButton: Invites the user to begin their reading experience
  */
 const DocumentPreview: React.FC<DocumentPreviewProps> = ({
   selectedFileUrl,
@@ -82,7 +94,9 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({
           <div className="relative z-10">
             {/* Header section */}
             <Header
-              categoryIcon={<CategoryIcon className="h-3 w-3 mr-1.5" />}
+              categoryIcon={
+                <CategoryIcon className="h-5 w-5 mr-1.5 text-primary/90" />
+              }
               category={category}
               estimatedReadTime={formattedReadTime}
               totalSections={totalSections}
