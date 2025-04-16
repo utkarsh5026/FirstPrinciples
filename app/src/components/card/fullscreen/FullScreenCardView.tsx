@@ -14,6 +14,9 @@ import { Button } from "@/components/ui/button";
 import SectionsSheet from "./sidebar/SectionsSheet";
 import { useSectionStore, useCurrentDocumentStore } from "@/stores";
 import useMobile from "@/hooks/useMobile";
+import Stats from "./stats/Stats";
+import { AnimatePresence } from "framer-motion";
+import ReadingProgress from "./ReadingProgress";
 
 interface FullscreenCardViewProps {
   className?: string;
@@ -44,6 +47,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [statsOpen, setStatsOpen] = useState(false);
   const { isMobile } = useMobile();
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -53,12 +57,41 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const sections = useCurrentDocumentStore((state) => state.sections);
   const documentPath = useCurrentDocumentStore((state) => state.docPath);
   const category = useCurrentDocumentStore((state) => state.category);
-  const readingState = useSectionStore((state) => state.readingState);
 
-  console.dir(readingState, { depth: null });
+  // Calculate remaining reading time for current section
+  const calculateMinutesLeft = () => {
+    if (currentIndex >= sections.length) return 0;
+    const currentSection = sections[currentIndex];
+    if (!currentSection || !currentSection.wordCount) return 0;
+
+    // Use reading speed from reading state or default to 200 WPM
+    const readingSpeed = 200;
+    const wordsLeft = currentSection.wordCount;
+    return Math.ceil(wordsLeft / readingSpeed);
+  };
 
   const startReading = useSectionStore((state) => state.startReading);
   const endReading = useSectionStore((state) => state.endReading);
+  const isSectionRead = useSectionStore((state) => state.isSectionRead);
+  const loadReadSections = useSectionStore((state) => state.loadReadSections);
+
+  // Track read sections
+  const [readSections, setReadSections] = useState<Set<string>>(new Set());
+
+  /**
+   * 📚 Load read sections when document changes
+   */
+  useEffect(() => {
+    const fetchReadSections = async () => {
+      if (documentPath) {
+        await loadReadSections(documentPath);
+        const readSectionsArray = useSectionStore.getState().getReadSections();
+        setReadSections(new Set(readSectionsArray));
+      }
+    };
+
+    fetchReadSections();
+  }, [documentPath, loadReadSections]);
 
   /**
    * 📚 Initializes the reading when the markdown is loaded
@@ -80,7 +113,8 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         documentPath,
         currentSection.id,
         category,
-        currentSection.wordCount
+        currentSection.wordCount,
+        currentSection.title
       );
       startTimeRef.current = Date.now();
     };
@@ -117,10 +151,18 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         documentPath,
         newSection.id,
         category,
-        newSection.wordCount
+        newSection.wordCount,
+        newSection.title
       );
 
       startTimeRef.current = Date.now();
+
+      // Update read sections
+      setReadSections((prev) => {
+        const updated = new Set(prev);
+        updated.add(newSection.id);
+        return updated;
+      });
     }, 200);
   };
 
@@ -188,9 +230,17 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     onExit();
   };
 
+  /**
+   * 📊 Toggle stats panel visibility
+   */
+  const toggleStats = () => {
+    setStatsOpen(!statsOpen);
+    if (menuOpen) setMenuOpen(false);
+  };
+
   if (sections.length === 0) {
     return (
-      <div className="fixed inset-0 z-50 bg-[#202020] flex items-center justify-center text-muted-foreground">
+      <div className="fixed inset-0 z-50 bg-background flex items-center justify-center text-muted-foreground">
         <div className="text-center">
           <div className="animate-spin h-8 w-8 border-t-2 border-primary rounded-full mx-auto mb-4"></div>
           <p>Loading content...</p>
@@ -200,10 +250,22 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   }
 
   const currentSection = sections[currentIndex];
+  const isCurrentSectionRead = currentSection
+    ? isSectionRead(currentSection.id)
+    : false;
+
+  // Calculate document progress
+  const documentProgress =
+    sections.length > 0
+      ? Math.round((readSections.size / sections.length) * 100)
+      : 0;
 
   return (
     <div
-      className={cn("fixed inset-0 z-50 bg-[#202020] flex flex-col", className)}
+      className={cn(
+        "fixed inset-0 z-50 bg-background flex flex-col",
+        className
+      )}
     >
       {/* Header */}
       <div className="sticky top-0 z-20 flex items-center justify-between p-4 border-b border-border bg-card/50 backdrop-blur-sm">
@@ -221,7 +283,7 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setMenuOpen(true)}
+            onClick={toggleStats}
             className="h-8 w-8"
             aria-label="View reading stats"
           >
@@ -239,6 +301,14 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           </Button>
         </div>
       </div>
+
+      {/* Reading Progress Bar */}
+      <ReadingProgress
+        percentage={isCurrentSectionRead ? 100 : 0}
+        documentProgress={documentProgress}
+        isRead={isCurrentSectionRead}
+        minutesLeft={calculateMinutesLeft()}
+      />
 
       {/* Main content area */}
       <div
@@ -313,16 +383,32 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         sections={sections}
       />
 
+      {/* Reading Stats Panel */}
+      <AnimatePresence>
+        {statsOpen && (
+          <Stats
+            toggleStats={toggleStats}
+            documentPath={documentPath}
+            category={category}
+            sections={sections}
+            currentIndex={currentIndex}
+            readSections={readSections}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Touch swipe indicators (hidden visually but help with touch areas) */}
       <button
-        className="absolute top-1/2 left-0 h-1/3 w-10 -translate-y-1/2"
+        className="absolute top-1/2 left-0 h-1/3 w-10 -translate-y-1/2 z-10 opacity-0"
         onClick={handlePrevCard}
         title="Previous"
+        disabled={currentIndex === 0}
       />
       <button
-        className="absolute top-1/2 right-0 h-1/3 w-10 -translate-y-1/2"
+        className="absolute top-1/2 right-0 h-1/3 w-10 -translate-y-1/2 z-10 opacity-0"
         onClick={handleNextCard}
         title="Next"
+        disabled={currentIndex === sections.length - 1}
       />
     </div>
   );
