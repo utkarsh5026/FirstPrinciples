@@ -1,12 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import ResponsiveSidebar from "@/components/navigation/sidebar/CategoryNavigation";
-import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import LoadingAnimation from "@/components/init/LoadingAnimation";
 import HomePage from "@/components/home/HomePage";
 import AppHeader from "@/components/layout/AppHeader";
 import AppWrapper from "@/components/welcome/Wrapper";
 import { TabProvider } from "@/components/home/context/TabProvider";
 import DocumentPreview from "@/components/card/preview/DocumentPreview";
+import { useInit } from "./stores";
 
 /**
  * 🌟 App Component
@@ -29,58 +29,11 @@ import DocumentPreview from "@/components/card/preview/DocumentPreview";
  */
 export const App = () => {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [showHomePage, setShowHomePage] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const mainContentRef = useRef<HTMLDivElement>(null);
 
-  /* 
-  📚 Load available documents and initialize analytics
-   */
-  useEffect(() => {
-    const initializeApp = async () => {
-      const minLoadTime = new Promise((resolve) => setTimeout(resolve, 1000));
-
-      try {
-        // Load all available documents first
-        const files = await MarkdownLoader.getAvailableFiles();
-        const fileMetadata = [];
-
-        // Get metadata for each file
-        for (const file of files) {
-          const metadata = await MarkdownLoader.findFileMetadata(file);
-          if (metadata) {
-            fileMetadata.push(metadata);
-          }
-        }
-
-        const hashParams = window.location.hash.substring(1);
-
-        if (hashParams) {
-          const matchingFile = files.find((file) => {
-            return (
-              file === hashParams ||
-              file === `${hashParams}.md` ||
-              file.split("/").pop()?.replace(".md", "") === hashParams
-            );
-          });
-
-          if (matchingFile) {
-            setSelectedFile(matchingFile);
-            setShowHomePage(false);
-          }
-        }
-      } catch (err) {
-        console.error("Failed to initialize app:", err);
-      } finally {
-        // Wait for minimum loading time before hiding loader
-        await minLoadTime;
-        setIsLoading(false);
-      }
-    };
-
-    initializeApp();
-  }, []);
+  const loading = useInit();
 
   /* 
   📝 Handle file selection
@@ -123,10 +76,10 @@ export const App = () => {
   return (
     <AppWrapper>
       <div className="min-h-screen flex flex-col bg-background text-foreground">
-        {isLoading && <LoadingAnimation />}
+        {loading && <LoadingAnimation />}
 
         {/* App Header */}
-        {!isLoading && (
+        {!loading && (
           <AppHeader
             toggleSidebar={toggleSidebar}
             onNavigateHome={navigateToHome}
@@ -137,7 +90,7 @@ export const App = () => {
         {/* Main content with sidebar */}
         <div
           className={`flex flex-1 overflow-hidden relative ${
-            isLoading
+            loading
               ? "opacity-0"
               : "opacity-100 transition-opacity duration-500"
           }`}
@@ -169,7 +122,7 @@ export const App = () => {
         {/* Simple footer */}
         <footer
           className={`border-t mt-auto py-3 px-4 border-border font-cascadia-code ${
-            isLoading
+            loading
               ? "opacity-0"
               : "opacity-100 transition-opacity duration-500"
           }`}
