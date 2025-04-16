@@ -13,10 +13,15 @@ import {
   Legend,
   Label,
 } from "recharts";
-import { useReadingMetrics } from "@/context";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ContentType } from "recharts/types/component/Tooltip";
+import { MonthlyDocumentCounts } from "@/stores/heatmapStore";
+import { getMonthName } from "@/utils/time";
+
+interface ProgressOverTimeProps {
+  monthlyData: MonthlyDocumentCounts["months"];
+}
 
 /**
  * 🚀 ProgressOverTime Component
@@ -33,10 +38,7 @@ import { ContentType } from "recharts/types/component/Tooltip";
  * - Responsive design for both mobile and desktop
  * - Better axis formatting and visual indicators
  */
-const ProgressOverTime: React.FC = () => {
-  const { monthlyData } = useReadingMetrics();
-
-  // Calculate average reading count and other statistics
+const ProgressOverTime: React.FC<ProgressOverTimeProps> = ({ monthlyData }) => {
   const stats = useMemo(() => {
     if (!monthlyData || monthlyData.length === 0) {
       return { average: 0, highest: 0, trend: "neutral", total: 0 };
@@ -84,12 +86,10 @@ const ProgressOverTime: React.FC = () => {
   const renderTooltip = ({
     active,
     payload,
-    label,
   }: {
     active: boolean;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     payload: any;
-    label: string;
   }) => {
     if (active && payload?.length) {
       const count = payload[0].value;
@@ -99,7 +99,9 @@ const ProgressOverTime: React.FC = () => {
         <div className="bg-popover/95 backdrop-blur-sm text-popover-foreground shadow-lg rounded-lg p-3 border border-border">
           <div className="flex items-center gap-2 border-b border-border/50 pb-1.5 mb-1.5">
             <Calendar className="h-3.5 w-3.5 text-primary" />
-            <p className="text-sm font-medium">{label}</p>
+            <p className="text-sm font-medium">
+              {getMonthName(payload[0].payload.month)}
+            </p>
           </div>
           <div className="flex justify-between gap-4 text-xs items-center">
             <span className="text-muted-foreground">Documents read:</span>
@@ -215,7 +217,8 @@ const ProgressOverTime: React.FC = () => {
           />
 
           <XAxis
-            dataKey="name"
+            dataKey="month"
+            tickFormatter={(value) => getMonthName(value).slice(0, 3)}
             tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
             axisLine={{ stroke: chartAppearance.gridColor, opacity: 0.2 }}
             tickLine={false}
