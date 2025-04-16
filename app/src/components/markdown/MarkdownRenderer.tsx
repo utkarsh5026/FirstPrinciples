@@ -20,11 +20,30 @@ interface CustomMarkdownRendererProps {
   className?: string;
 }
 
+/**
+ * ✨ CustomMarkdownRenderer
+ *
+ * A delightful component that transforms markdown text into beautiful React components!
+ * This renderer handles all your markdown needs with style and grace.
+ *
+ * 🎨 Supports rich formatting including headings, paragraphs, lists, and more
+ * 🔗 Renders links with special handling for navigation
+ * 📊 Beautifully formats tables for data presentation
+ * 📝 Displays code blocks with proper syntax
+ * 🖼️ Renders images with optimized display
+ */
 const CustomMarkdownRenderer: React.FC<CustomMarkdownRendererProps> = ({
   markdown,
   className = "",
 }) => {
+  /**
+   * 🧩 Custom component mapping for markdown elements
+   * Each element gets its own specialized renderer for consistent styling
+   */
   const components = {
+    /* 
+    📚 Headings with different levels
+     */
     h1: (props: React.ComponentPropsWithoutRef<"h1">) => (
       <HeadingRender level={1} {...props} />
     ),
@@ -35,12 +54,16 @@ const CustomMarkdownRenderer: React.FC<CustomMarkdownRendererProps> = ({
       <HeadingRender level={3} {...props} />
     ),
 
-    // Paragraphs
+    /* 
+    📄 Paragraphs for text content
+     */
     p: (props: React.ComponentPropsWithoutRef<"p">) => (
       <ParagraphRender {...props} />
     ),
 
-    // Lists
+    /* 
+    📋 Lists for organizing information
+     */
     ul: (props: React.ComponentPropsWithoutRef<"ul">) => (
       <ListRender type="ul" props={props} />
     ),
@@ -51,17 +74,23 @@ const CustomMarkdownRenderer: React.FC<CustomMarkdownRendererProps> = ({
       <ListRender type="li" props={props} />
     ),
 
-    // Blockquotes
+    /* 
+    💬 Blockquotes for highlighting important text
+     */
     blockquote: (props: React.ComponentPropsWithoutRef<"blockquote">) => (
       <BlockquoteRender {...props} />
     ),
 
-    // Code blocks and inline code
+    /* 
+    💻 Code blocks with syntax highlighting
+     */
     code: (
       props: React.ComponentPropsWithoutRef<"code"> & { inline?: boolean }
     ) => <CodeRender {...props} />,
 
-    // Tables
+    /* 
+    📊 Tables for structured data
+     */
     table: (props: React.ComponentPropsWithoutRef<"table">) => (
       <TableRender type="table" props={props} />
     ),
@@ -81,17 +110,23 @@ const CustomMarkdownRenderer: React.FC<CustomMarkdownRendererProps> = ({
       <TableRender type="td" props={props} />
     ),
 
-    // Horizontal rule
+    /* 
+    ➖ Horizontal rule for section dividers
+     */
     hr: (props: React.ComponentPropsWithoutRef<"hr">) => (
       <HorizontalRuleRender {...props} />
     ),
 
-    // Links
+    /* 
+    🔗 Links with special handling
+     */
     a: (props: React.ComponentPropsWithoutRef<"a">) => (
       <LinkRender {...props}>{props.children}</LinkRender>
     ),
 
-    // Images
+    /* 
+    🖼️ Images with optimized display
+     */
     img: (props: React.ComponentPropsWithoutRef<"img">) => (
       <ImageRender {...props} />
     ),
@@ -101,11 +136,11 @@ const CustomMarkdownRenderer: React.FC<CustomMarkdownRendererProps> = ({
     <div className={cn("markdown-content font-type-mono", className)}>
       <ReactMarkdown
         components={components}
-        remarkPlugins={[remarkGfm]} // GitHub Flavored Markdown support
+        remarkPlugins={[remarkGfm]}
         rehypePlugins={[
-          rehypeRaw, // Allow HTML in markdown
-          rehypeSlug, // Add IDs to headings
-          [rehypeAutolinkHeadings, { behavior: "wrap" }], // Make headings linkable
+          rehypeRaw,
+          rehypeSlug,
+          [rehypeAutolinkHeadings, { behavior: "wrap" }],
         ]}
       >
         {markdown}
