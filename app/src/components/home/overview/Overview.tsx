@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Zap, Activity } from "lucide-react";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { FileMetadata } from "@/utils/MarkdownLoader";
-import { ReadingAnalyticsService } from "@/utils/ReadingAnalyticsService";
 
 import StatsCards from "./components/StatsCards";
 import ReadingInsights from "./components/ReadingInsights";
@@ -10,9 +9,7 @@ import RecentActivity from "./components/RecentActivity";
 import RecommendedReads from "./components/RecommendedReads";
 import UpcomingReads from "./components/UpcomingReads";
 import DailyChallenge from "./components/DailyChallenge";
-import { formatReadingTime, formatNumber } from "../utils";
-
-import { useDocumentManager } from "@/context";
+import { useDocumentStore, useHistoryStore } from "@/stores";
 
 interface OverviewProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -24,18 +21,15 @@ const Overview: React.FC<OverviewProps> = ({
   setShowAddTodoModal,
 }) => {
   const { currentTheme } = useTheme();
-  const [stats, setStats] = useState(() =>
-    ReadingAnalyticsService.getReadingStats()
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
+  const availableDocuments = useDocumentStore(
+    (state) => state.availableDocuments
   );
-  const { readingHistory, availableDocuments } = useDocumentManager();
   const [featuredDocs, setFeaturedDocs] = useState<FileMetadata[]>([]);
 
   const [mostReadCategory, setMostReadCategory] = useState<string>("None yet");
 
   useEffect(() => {
-    // Update stats when history or todo list changes
-    setStats(ReadingAnalyticsService.getReadingStats());
-
     // Generate category data for pie chart
     const categories: Record<string, number> = {};
     readingHistory.forEach((item) => {
@@ -119,28 +113,9 @@ const Overview: React.FC<OverviewProps> = ({
 
   const nextMilestone = getNextMilestone();
 
-  const todayReadsCount = readingHistory.filter((item) => {
-    const today = new Date().setHours(0, 0, 0, 0);
-    return new Date(item.lastReadAt).setHours(0, 0, 0, 0) === today;
-  }).length;
-
-  const unreadDocs = availableDocuments.length - readingHistory.length;
-
-  const completionPercentage = Math.round(
-    (readingHistory.length / Math.max(availableDocuments.length, 1)) * 100
-  );
-
   return (
     <div className="space-y-6">
-      <StatsCards
-        stats={stats}
-        readingHistory={readingHistory}
-        formatReadingTime={formatReadingTime}
-        formatNumber={formatNumber}
-        nextMilestone={nextMilestone}
-        unreadDocs={unreadDocs}
-        completionPercentage={completionPercentage}
-      />
+      <StatsCards nextMilestone={nextMilestone} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
@@ -173,7 +148,7 @@ const Overview: React.FC<OverviewProps> = ({
         </div>
       </div>
 
-      <DailyChallenge todayReadsCount={todayReadsCount} />
+      <DailyChallenge />
     </div>
   );
 };
