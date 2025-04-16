@@ -3,13 +3,13 @@ import { databaseService } from "@/services/database/DatabaseService";
 /**
  * Interface for section reading data stored in IndexedDB
  */
-export interface SectionReadingData {
+export type SectionReadingData = {
   id?: IDBValidKey;
   documentPath: string; // Path to the document being read
   sectionId: string; // ID of the section being read
   timeSpent: number; // Time spent on the section in milliseconds
   lastReadAt: number; // Timestamp when the section was last read
-}
+};
 
 /**
  * SectionReadingService
@@ -21,11 +21,27 @@ export interface SectionReadingData {
  * - Stores this data in IndexedDB
  * - Provides methods to query reading status and history
  */
+/**
+ * 📚 SectionReadingService
+ *
+ * A friendly service that keeps track of your reading progress! ✨
+ *
+ * This service is like your personal reading assistant that remembers:
+ * - Which sections you've already read 👀
+ * - How much time you've spent on each section ⏱️
+ * - Your overall progress through documents 📊
+ *
+ * It quietly works in the background, storing all this information
+ * in your browser's database so you can pick up right where you left off!
+ * Think of it as leaving bookmarks and notes automatically as you read.
+ */
 export class SectionReadingService {
   private static readonly STORE_NAME = "sectionReadings";
 
   /**
-   * Initialize the service, ensuring the database is ready
+   * 🚀 Initialize the service
+   *
+   * Gets everything ready to track your reading journey!
    */
   public async initialize(): Promise<void> {
     try {
@@ -37,12 +53,10 @@ export class SectionReadingService {
   }
 
   /**
-   * Record a section reading session
+   * 📝 Record a section reading session
    *
-   * @param documentPath Path to the document
-   * @param sectionId ID of the section read
-   * @param timeSpent Time spent reading in milliseconds
-   * @returns Promise that resolves when data is saved
+   * Like a diary entry for your reading activity! Remembers that you
+   * spent time on a specific section of a document.
    */
   public async recordSectionReading(
     documentPath: string,
@@ -66,10 +80,10 @@ export class SectionReadingService {
   }
 
   /**
-   * Get all section reading data for a document
+   * 🔍 Get all section reading data for a document
    *
-   * @param documentPath Path to the document
-   * @returns Promise with array of section reading data
+   * Retrieves your complete reading history for a specific document.
+   * Like checking your reading journal! 📔
    */
   public async getDocumentSectionReadings(
     documentPath: string
@@ -87,10 +101,10 @@ export class SectionReadingService {
   }
 
   /**
-   * Get all read section IDs for a document
+   * ✅ Get all read section IDs for a document
    *
-   * @param documentPath Path to the document
-   * @returns Promise with set of section IDs that have been read
+   * Creates a checklist of all the sections you've already visited.
+   * Like collecting stamps for each place you've been! 💌
    */
   public async getReadSections(documentPath: string): Promise<Set<string>> {
     try {
@@ -110,10 +124,10 @@ export class SectionReadingService {
   }
 
   /**
-   * Get total time spent on a document
+   * ⏱️ Get total time spent on a document
    *
-   * @param documentPath Path to the document
-   * @returns Promise with total time spent in milliseconds
+   * Adds up all your reading sessions to see how long you've spent
+   * with this document. Like a fitness tracker, but for reading! 🧠
    */
   public async getTotalTimeSpent(documentPath: string): Promise<number> {
     try {
@@ -126,11 +140,10 @@ export class SectionReadingService {
   }
 
   /**
-   * Calculate document completion percentage
+   * 📊 Calculate document completion percentage
    *
-   * @param documentPath Path to the document
-   * @param totalSections Total number of sections in the document
-   * @returns Promise with completion percentage (0-100)
+   * Shows how much of the document you've explored!
+   * Like a progress bar for your reading adventure! 🎮
    */
   public async getCompletionPercentage(
     documentPath: string,
@@ -148,11 +161,10 @@ export class SectionReadingService {
   }
 
   /**
-   * Check if a specific section has been read
+   * 👀 Check if a specific section has been read
    *
-   * @param documentPath Path to the document
-   * @param sectionId ID of the section to check
-   * @returns Promise with boolean indicating if section has been read
+   * Tells you if you've already visited a particular section.
+   * Like checking if you've already seen that episode! 🍿
    */
   public async isSectionRead(
     documentPath: string,
@@ -174,10 +186,10 @@ export class SectionReadingService {
   }
 
   /**
-   * Clear all reading data for a document
+   * 🧹 Clear all reading data for a document
    *
-   * @param documentPath Path to the document
-   * @returns Promise that resolves when data is cleared
+   * Wipes the slate clean for a fresh start with a document.
+   * Like erasing your footprints in the sand! 🏖️
    */
   public async clearDocumentReadings(documentPath: string): Promise<void> {
     try {
@@ -199,5 +211,4 @@ export class SectionReadingService {
   }
 }
 
-// Create and export singleton instance
 export const sectionReadingService = new SectionReadingService();
