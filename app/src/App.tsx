@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useState, useEffect, useRef } from "react";
 import ResponsiveSidebar from "@/components/navigation/sidebar/CategoryNavigation";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
@@ -7,17 +6,37 @@ import HomePage from "@/components/home/HomePage";
 import AppHeader from "@/components/layout/AppHeader";
 import AppWrapper from "@/components/welcome/Wrapper";
 import { TabProvider } from "@/components/home/context/TabProvider";
-import { GlobalProviders } from "@/context/GlobalProviders";
 import DocumentPreview from "@/components/card/preview/DocumentPreview";
 
-function App() {
+/**
+ * 🌟 App Component
+ *
+ * The main application component that orchestrates the entire user experience.
+ * It manages document selection, navigation, and UI state transitions.
+ *
+ * ✨ Features:
+ * - Loads and displays markdown documents
+ * - Handles navigation between home and document views
+ * - Manages responsive sidebar for easy document browsing
+ * - Provides smooth loading transitions
+ * - Supports URL hash-based navigation
+ *
+ * 🔄 Flow:
+ * 1. Shows loading animation on startup
+ * 2. Loads available documents in background
+ * 3. Renders either homepage or document preview based on user selection
+ * 4. Maintains navigation state and URL synchronization
+ */
+export const App = () => {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showHomePage, setShowHomePage] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const mainContentRef = useRef<HTMLDivElement>(null);
 
-  // Load available documents and initialize analytics
+  /* 
+  📚 Load available documents and initialize analytics
+   */
   useEffect(() => {
     const initializeApp = async () => {
       const minLoadTime = new Promise((resolve) => setTimeout(resolve, 1000));
@@ -63,7 +82,9 @@ function App() {
     initializeApp();
   }, []);
 
-  // Handle file selection
+  /* 
+  📝 Handle file selection
+   */
   const handleSelectFile = (filepath: string) => {
     setSelectedFile(filepath);
     setShowHomePage(false);
@@ -81,95 +102,94 @@ function App() {
     setSidebarOpen(false);
   };
 
-  // Handle navigation to home
+  /* 
+  🏠 Handle navigation to home
+   */
   const navigateToHome = () => {
     setSelectedFile(null);
     setShowHomePage(true);
     window.location.hash = "";
 
-    // Close sidebar on mobile when navigating home
     setSidebarOpen(false);
   };
 
-  // Toggle sidebar open/closed
+  /* 
+    🔄 Toggle sidebar visibility
+   */
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  // Wrap the app content with our GlobalProviders
   return (
-    <GlobalProviders onSelectFile={handleSelectFile}>
-      <AppWrapper>
-        <div className="min-h-screen flex flex-col bg-background text-foreground">
-          {/* Show loading animation when app is initializing */}
-          {isLoading && <LoadingAnimation />}
+    <AppWrapper>
+      <div className="min-h-screen flex flex-col bg-background text-foreground">
+        {isLoading && <LoadingAnimation />}
 
-          {/* App Header */}
-          {!isLoading && (
-            <AppHeader
-              toggleSidebar={toggleSidebar}
-              onNavigateHome={navigateToHome}
-              className="transition-opacity duration-500"
-            />
-          )}
+        {/* App Header */}
+        {!isLoading && (
+          <AppHeader
+            toggleSidebar={toggleSidebar}
+            onNavigateHome={navigateToHome}
+            className="transition-opacity duration-500"
+          />
+        )}
 
-          {/* Main content with sidebar */}
-          <div
-            className={`flex flex-1 overflow-hidden relative ${
-              isLoading
-                ? "opacity-0"
-                : "opacity-100 transition-opacity duration-500"
-            }`}
+        {/* Main content with sidebar */}
+        <div
+          className={`flex flex-1 overflow-hidden relative ${
+            isLoading
+              ? "opacity-0"
+              : "opacity-100 transition-opacity duration-500"
+          }`}
+        >
+          {/* Responsive sidebar with category navigation */}
+          <ResponsiveSidebar
+            onSelectFile={handleSelectFile}
+            currentFilePath={selectedFile ?? undefined}
+            onNavigateHome={navigateToHome}
+            sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen}
+          />
+
+          {/* Main content area with padding for header */}
+          <main
+            ref={mainContentRef}
+            className="w-full flex-1 overflow-y-auto pt-16 md:pt-16 px-4 md:px-8"
           >
-            {/* Responsive sidebar with category navigation */}
-            <ResponsiveSidebar
-              onSelectFile={handleSelectFile}
-              currentFilePath={selectedFile ?? undefined}
-              onNavigateHome={navigateToHome}
-              sidebarOpen={sidebarOpen}
-              setSidebarOpen={setSidebarOpen}
-            />
-
-            {/* Main content area with padding for header */}
-            <main
-              ref={mainContentRef}
-              className="w-full flex-1 overflow-y-auto pt-16 md:pt-16 px-4 md:px-8"
-            >
-              {showHomePage ? (
-                <TabProvider>
-                  <HomePage onSelectFile={handleSelectFile} />
-                </TabProvider>
-              ) : (
-                <DocumentPreview selectedFileUrl={selectedFile ?? ""} />
-              )}
-            </main>
-          </div>
-
-          {/* Simple footer */}
-          <footer
-            className={`border-t mt-auto py-3 px-4 border-border font-cascadia-code ${
-              isLoading
-                ? "opacity-0"
-                : "opacity-100 transition-opacity duration-500"
-            }`}
-          >
-            <div className="max-w-7xl mx-auto text-center text-xs text-muted-foreground">
-              <p>
-                Made with ❤️ by{" "}
-                <a
-                  href="https://github.com/utkarsh5026"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Utkarsh Priyadarshi
-                </a>
-              </p>
-            </div>
-          </footer>
+            {showHomePage ? (
+              <TabProvider>
+                <HomePage onSelectFile={handleSelectFile} />
+              </TabProvider>
+            ) : (
+              <DocumentPreview selectedFileUrl={selectedFile ?? ""} />
+            )}
+          </main>
         </div>
-      </AppWrapper>
-    </GlobalProviders>
+
+        {/* Simple footer */}
+        <footer
+          className={`border-t mt-auto py-3 px-4 border-border font-cascadia-code ${
+            isLoading
+              ? "opacity-0"
+              : "opacity-100 transition-opacity duration-500"
+          }`}
+        >
+          <div className="max-w-7xl mx-auto text-center text-xs text-muted-foreground">
+            <p>
+              Made with ❤️ by{" "}
+              <a
+                href="https://github.com/utkarsh5026"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Utkarsh Priyadarshi
+              </a>
+            </p>
+          </div>
+        </footer>
+      </div>
+    </AppWrapper>
   );
-}
+};
 
 export default App;
