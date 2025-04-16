@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import getIconForTech from "@/components/icons";
-import type { ReadingHistoryItem } from "@/components/home/types";
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import { cn } from "@/lib/utils";
 import { useHistoryStore } from "@/stores";
 
