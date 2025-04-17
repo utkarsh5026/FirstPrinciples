@@ -25,14 +25,29 @@ interface HomePageProps {
 }
 
 /**
- * Enhanced HomePage Component
+ * 🏠 HomePage Component
  *
- * Features:
- * - Uses Shadcn UI Tabs for better accessibility and design consistency
- * - Implements async loading for tab content to improve performance
- * - Artistic abstract SVG loaders with descriptive text for each tab
- * - Optimized for both mobile and desktop experiences
- * - Clean, uncluttered design that improves readability
+ * A beautiful, responsive dashboard for managing your reading activities.
+ *
+ * ✨ Features:
+ * - Tabbed interface for easy navigation between different views
+ * - Responsive design that works on both mobile and desktop
+ * - Lazy-loaded content for better performance
+ *
+ * 📱 Desktop Experience:
+ * - Full tab navigation with text labels
+ * - Spacious layout optimized for larger screens
+ *
+ * 📲 Mobile Experience:
+ * - Compact header with current tab name
+ * - Bottom navigation for easy thumb access
+ * - Optimized spacing for smaller screens
+ *
+ * 📚 Reading Management:
+ * - Overview of your reading activity
+ * - Track reading history
+ * - Maintain a reading list
+ * - Analyze your reading habits
  */
 const HomePage: React.FC<HomePageProps> = () => {
   useInit();
@@ -45,11 +60,11 @@ const HomePage: React.FC<HomePageProps> = () => {
 
   const [showFileDialog, setShowFileDialog] = useState(false);
   const { activeTab, setActiveTab } = useTabContext();
-
-  // State for categories
   const [categories, setCategories] = useState<Category[]>([]);
 
-  // Loading categories from the MarkdownLoader
+  /*
+   🔄 Load categories from the MarkdownLoader
+  */
   useEffect(() => {
     const loadCategories = async () => {
       try {
@@ -63,14 +78,16 @@ const HomePage: React.FC<HomePageProps> = () => {
     loadCategories();
   }, []);
 
-  // Handle tab change
+  /*
+   🔄 Handle tab change
+  */
   const handleTabChange = (value: string) => {
     setActiveTab(value as TabType);
   };
 
   return (
     <div className="w-full max-w-4xl mx-auto font-cascadia-code pt-2 md:pt-6 pb-20 md:pb-6">
-      {/* Desktop Tabs - Hidden on mobile */}
+      {/* 🖥️ Desktop Tabs - Hidden on mobile */}
       <div className="hidden md:block mb-6">
         <div className="flex items-center justify-between">
           <Tabs
@@ -110,7 +127,7 @@ const HomePage: React.FC<HomePageProps> = () => {
             </TabsList>
           </Tabs>
 
-          {/* Add button for desktop */}
+          {/* ➕ Add button for desktop */}
           {activeTab === "todo" && (
             <Button
               className="h-10 bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20 ml-4 rounded-xl"
@@ -122,7 +139,7 @@ const HomePage: React.FC<HomePageProps> = () => {
         </div>
       </div>
 
-      {/* Mobile tab heading with add button - visible only on mobile */}
+      {/* 📱 Mobile tab heading with add button - visible only on mobile */}
       <div className="md:hidden mb-4 flex items-center justify-between">
         <h2 className="text-xl font-medium flex items-center">
           {activeTab === "overview" && (
@@ -143,7 +160,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           {activeTab === "analytics" && "Analytics"}
         </h2>
 
-        {/* Add button for mobile */}
+        {/* ➕ Add button for mobile */}
         {activeTab === "todo" && (
           <Button
             className="h-9 w-9 p-0 rounded-full bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20"
@@ -154,11 +171,11 @@ const HomePage: React.FC<HomePageProps> = () => {
         )}
       </div>
 
-      {/* Tab Content with Suspense for lazy loading */}
+      {/* 📑 Tab Content with Suspense for lazy loading */}
       <div className="pt-2">
         <Tabs value={activeTab} className="w-full">
           <TabsContent value="overview" className="mt-0">
-            {/* Hero component is eagerly loaded for better initial experience */}
+            {/* 🌟 Hero component is eagerly loaded for better initial experience */}
             <Hero />
             <Suspense fallback={<OverviewTabLoader />}>
               <Overview
@@ -194,10 +211,10 @@ const HomePage: React.FC<HomePageProps> = () => {
         </Tabs>
       </div>
 
-      {/* Mobile optimized tabs at the bottom of the screen */}
+      {/* 📲 Mobile optimized tabs at the bottom of the screen */}
       <MobileOptimizedTabs />
 
-      {/* File Selection Dialog - uses shadcn Dialog component */}
+      {/* 📂 File Selection Dialog - uses shadcn Dialog component */}
       <FileSelectionDialog
         open={showFileDialog}
         onOpenChange={setShowFileDialog}
