@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
-import { ReadingHistoryItem } from "@/components/home/types";
+import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import getIconForTech from "@/components/icons/iconMap";
 import useMobile from "@/hooks/useMobile";
 import { cn } from "@/lib/utils";
