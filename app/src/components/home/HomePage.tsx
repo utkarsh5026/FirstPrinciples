@@ -15,10 +15,12 @@ import {
   AnalyticsTabLoader,
 } from "./TabLoaders";
 
-const Overview = lazy(() => import("./overview/Overview"));
-const History = lazy(() => import("./history/History"));
+const Overview = lazy(() => import("@/components/home/overview/Overview"));
+const History = lazy(() => import("@/components/history/History"));
 const TodoList = lazy(() => import("@/components/todo/TodoList"));
-const AnalyticsView = lazy(() => import("../analytics/AnalyticsView"));
+const AnalyticsView = lazy(
+  () => import("@/components/analytics/AnalyticsView")
+);
 
 interface HomePageProps {
   onSelectFile: (filepath: string) => void;

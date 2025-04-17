@@ -11,7 +11,7 @@ import HistoryTrends from "./components/HistoryTrends";
 import EmptyHistory from "./components/EmptyHistory";
 import EmptyFilteredResult from "./components/EmptyFilteredResult";
 
-import { formatDate } from "../utils";
+import { formatDate } from "@/components/home/utils";
 import { useHistoryStore } from "@/stores";
 
 interface HistoryProps {
