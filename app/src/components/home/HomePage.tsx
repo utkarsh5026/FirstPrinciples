@@ -1,39 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import {
-  LayoutDashboard,
-  Clock,
-  ListTodo,
-  Plus,
-  BarChart,
-  Info,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
+import { LayoutDashboard, Clock, ListTodo, Plus, BarChart } from "lucide-react";
 import { Category, MarkdownLoader } from "@/utils/MarkdownLoader";
 import Hero from "./Hero";
-import History from "./history/History";
-import TodoList from "@/components/todo/TodoList";
-import Overview from "./overview/Overview";
-import MobileOptimizedTabs from "./MobileOptimizedTabs";
 import FileSelectionDialog from "@/components/todo/AddTodoModal";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { useTabContext } from "./context/TabContext";
-import AnalyticsView from "../analytics/AnalyticsView";
+import { useTabContext, TabType } from "./context/TabContext";
 import { useInit, useDocumentStore } from "@/stores";
+import MobileOptimizedTabs from "./MobileOptimizedTabs";
+import {
+  OverviewTabLoader,
+  HistoryTabLoader,
+  TodoListLoader,
+  AnalyticsTabLoader,
+} from "./TabLoaders";
+
+const Overview = lazy(() => import("./overview/Overview"));
+const History = lazy(() => import("./history/History"));
+const TodoList = lazy(() => import("@/components/todo/TodoList"));
+const AnalyticsView = lazy(() => import("../analytics/AnalyticsView"));
 
 interface HomePageProps {
   onSelectFile: (filepath: string) => void;
 }
 
 /**
- * HomePage component displays a personalized dashboard for the documentation app
- * with reading history, analytics, and  list for articles to read later.
+ * Enhanced HomePage Component
  *
- * This updated version is optimized for both mobile and desktop experiences and
- * includes analytics and gamification features.
+ * Features:
+ * - Uses Shadcn UI Tabs for better accessibility and design consistency
+ * - Implements async loading for tab content to improve performance
+ * - Artistic abstract SVG loaders with descriptive text for each tab
+ * - Optimized for both mobile and desktop experiences
+ * - Clean, uncluttered design that improves readability
  */
 const HomePage: React.FC<HomePageProps> = () => {
-  console.log("HomePage");
   useInit();
   const availableDocuments = useDocumentStore(
     (state) => state.availableDocuments
@@ -47,9 +48,6 @@ const HomePage: React.FC<HomePageProps> = () => {
 
   // State for categories
   const [categories, setCategories] = useState<Category[]>([]);
-
-  // State for first-time analytics view
-  const [showAnalyticsIntro, setShowAnalyticsIntro] = useState(false);
 
   // Loading categories from the MarkdownLoader
   useEffect(() => {
@@ -65,83 +63,57 @@ const HomePage: React.FC<HomePageProps> = () => {
     loadCategories();
   }, []);
 
-  // Check if it's the first time viewing analytics
-  useEffect(() => {
-    if (activeTab === "analytics") {
-      const hasSeenAnalytics = localStorage.getItem("hasSeenAnalytics");
-      if (!hasSeenAnalytics) {
-        setShowAnalyticsIntro(true);
-        // Set localStorage to mark that user has seen analytics intro
-        localStorage.setItem("hasSeenAnalytics", "true");
-      }
-    }
-  }, [activeTab]);
-
-  // Dismiss analytics intro alert
-  const dismissAnalyticsIntro = () => {
-    setShowAnalyticsIntro(false);
+  // Handle tab change
+  const handleTabChange = (value: string) => {
+    setActiveTab(value as TabType);
   };
 
   return (
     <div className="w-full max-w-4xl mx-auto font-cascadia-code pt-2 md:pt-6 pb-20 md:pb-6">
       {/* Desktop Tabs - Hidden on mobile */}
-      <div className="hidden md:block">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex bg-card border border-border rounded-lg">
-            <button
-              onClick={() => setActiveTab("overview")}
-              className={cn(
-                "px-4 py-2 text-sm font-medium rounded-l-lg flex items-center",
-                activeTab === "overview"
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/20"
-              )}
-            >
-              <LayoutDashboard className="h-4 w-4 mr-2" />
-              Overview
-            </button>
-            <button
-              onClick={() => setActiveTab("history")}
-              className={cn(
-                "px-4 py-2 text-sm font-medium flex items-center",
-                activeTab === "history"
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/20"
-              )}
-            >
-              <Clock className="h-4 w-4 mr-2" />
-              Reading History
-            </button>
-            <button
-              onClick={() => setActiveTab("todo")}
-              className={cn(
-                "px-4 py-2 text-sm font-medium flex items-center",
-                activeTab === "todo"
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/20"
-              )}
-            >
-              <ListTodo className="h-4 w-4 mr-2" />
-              Reading List
-            </button>
-            <button
-              onClick={() => setActiveTab("analytics")}
-              className={cn(
-                "px-4 py-2 text-sm font-medium rounded-r-lg flex items-center",
-                activeTab === "analytics"
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/20"
-              )}
-            >
-              <BarChart className="h-4 w-4 mr-2" />
-              Analytics
-            </button>
-          </div>
+      <div className="hidden md:block mb-6">
+        <div className="flex items-center justify-between">
+          <Tabs
+            value={activeTab}
+            onValueChange={handleTabChange}
+            className="w-full"
+          >
+            <TabsList className="bg-card/60 backdrop-blur-sm border border-border rounded-xl grid grid-cols-4 h-11">
+              <TabsTrigger
+                value="overview"
+                className="data-[state=active]:bg-primary/10 data-[state=active]:text-primary rounded-l-xl flex items-center gap-2"
+              >
+                <LayoutDashboard className="h-4 w-4" />
+                <span>Overview</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="history"
+                className="data-[state=active]:bg-primary/10 data-[state=active]:text-primary flex items-center gap-2"
+              >
+                <Clock className="h-4 w-4" />
+                <span>Reading History</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="todo"
+                className="data-[state=active]:bg-primary/10 data-[state=active]:text-primary flex items-center gap-2"
+              >
+                <ListTodo className="h-4 w-4" />
+                <span>Reading List</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="analytics"
+                className="data-[state=active]:bg-primary/10 data-[state=active]:text-primary rounded-r-xl flex items-center gap-2"
+              >
+                <BarChart className="h-4 w-4" />
+                <span>Analytics</span>
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
 
           {/* Add button for desktop */}
           {activeTab === "todo" && (
             <Button
-              className="h-9 bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20"
+              className="h-10 bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20 ml-4 rounded-xl"
               onClick={() => setShowFileDialog(true)}
             >
               <Plus className="h-4 w-4 mr-1.5" /> Add Documents
@@ -174,7 +146,7 @@ const HomePage: React.FC<HomePageProps> = () => {
         {/* Add button for mobile */}
         {activeTab === "todo" && (
           <Button
-            className="h-8 w-8 p-0 rounded-full bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20"
+            className="h-9 w-9 p-0 rounded-full bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20"
             onClick={() => setShowFileDialog(true)}
           >
             <Plus className="h-4 w-4" />
@@ -182,62 +154,47 @@ const HomePage: React.FC<HomePageProps> = () => {
         )}
       </div>
 
-      {/* Analytics introduction alert */}
-      {showAnalyticsIntro && activeTab === "analytics" && (
-        <div className="px-4 mb-6">
-          <Alert className="bg-primary/5 border-primary/20">
-            <Info className="h-4 w-4 text-primary" />
-            <AlertTitle className="text-sm font-medium">
-              New Feature: Reading Analytics
-            </AlertTitle>
-            <AlertDescription className="text-xs text-muted-foreground">
-              Track your reading progress, earn achievements, and level up your
-              knowledge with our new analytics dashboard. Complete challenges to
-              earn XP and unlock new achievements.
-            </AlertDescription>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="mt-2 h-8 text-xs text-primary"
-              onClick={dismissAnalyticsIntro}
-            >
-              Got it
-            </Button>
-          </Alert>
-        </div>
-      )}
-
-      {/* Tab Content - shared between mobile and desktop */}
+      {/* Tab Content with Suspense for lazy loading */}
       <div className="pt-2">
-        {activeTab === "overview" && (
-          <>
+        <Tabs value={activeTab} className="w-full">
+          <TabsContent value="overview" className="mt-0">
+            {/* Hero component is eagerly loaded for better initial experience */}
             <Hero />
-            <Overview
-              handleSelectDocument={handleSelectDocument}
-              setShowAddTodoModal={() => setShowFileDialog(true)}
-            />
-          </>
-        )}
+            <Suspense fallback={<OverviewTabLoader />}>
+              <Overview
+                handleSelectDocument={handleSelectDocument}
+                setShowAddTodoModal={() => setShowFileDialog(true)}
+              />
+            </Suspense>
+          </TabsContent>
 
-        {activeTab === "history" && (
-          <History handleSelectDocument={handleSelectDocument} />
-        )}
+          <TabsContent value="history" className="mt-0">
+            <Suspense fallback={<HistoryTabLoader />}>
+              <History handleSelectDocument={handleSelectDocument} />
+            </Suspense>
+          </TabsContent>
 
-        {activeTab === "todo" && (
-          <TodoList
-            handleSelectDocument={handleSelectDocument}
-            setShowAddTodoModal={() => setShowFileDialog(true)}
-          />
-        )}
+          <TabsContent value="todo" className="mt-0">
+            <Suspense fallback={<TodoListLoader />}>
+              <TodoList
+                handleSelectDocument={handleSelectDocument}
+                setShowAddTodoModal={() => setShowFileDialog(true)}
+              />
+            </Suspense>
+          </TabsContent>
 
-        {activeTab === "analytics" && (
-          <AnalyticsView
-            availableDocuments={availableDocuments}
-            onSelectDocument={handleSelectDocument}
-          />
-        )}
+          <TabsContent value="analytics" className="mt-0">
+            <Suspense fallback={<AnalyticsTabLoader />}>
+              <AnalyticsView
+                availableDocuments={availableDocuments}
+                onSelectDocument={handleSelectDocument}
+              />
+            </Suspense>
+          </TabsContent>
+        </Tabs>
       </div>
 
+      {/* Mobile optimized tabs at the bottom of the screen */}
       <MobileOptimizedTabs />
 
       {/* File Selection Dialog - uses shadcn Dialog component */}
