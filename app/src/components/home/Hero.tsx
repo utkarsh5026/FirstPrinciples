@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <div className="relative overflow-hidden rounded-4xl md:rounded-8xl mb-6 md:mb-8">
+    <div className="relative overflow-hidden rounded-4xl md:rounded-8xl mb-6 md:mb-8 shadow-lg shadow-primary/30">
       <GradientBackground />
 
       <div className="relative z-10 px-5 py-6 md:px-8 md:py-10">
