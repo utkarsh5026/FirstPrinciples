@@ -10,6 +10,10 @@ export class DatabaseService {
   private readonly DB_VERSION = 1;
   private db: IDBDatabase | null = null;
 
+  private readonly cache: Map<string, { data: unknown; timestamp: number }> =
+    new Map();
+  private readonly CACHE_TTL = 5 * 60 * 1000; // 5 minutes cache lifetime
+
   /**
    * 🚀 Sets up the database and creates all necessary storage containers
    *
@@ -34,9 +38,6 @@ export class DatabaseService {
       request.onupgradeneeded = (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
 
-        // Create the object stores
-
-        // Reading History store
         if (!db.objectStoreNames.contains("readingHistory")) {
           const historyStore = db.createObjectStore("readingHistory", {
             keyPath: "id",
@@ -48,7 +49,6 @@ export class DatabaseService {
           });
         }
 
-        // Reading Sessions store (for tracking time spent)
         if (!db.objectStoreNames.contains("readingSessions")) {
           const sessionsStore = db.createObjectStore("readingSessions", {
             keyPath: "id",
@@ -61,7 +61,6 @@ export class DatabaseService {
           sessionsStore.createIndex("endTime", "endTime", { unique: false });
         }
 
-        // Reading Lists (todo) store
         if (!db.objectStoreNames.contains("readingLists")) {
           const todoStore = db.createObjectStore("readingLists", {
             keyPath: "id",
@@ -70,22 +69,18 @@ export class DatabaseService {
           todoStore.createIndex("completed", "completed", { unique: false });
         }
 
-        // Stats store
         if (!db.objectStoreNames.contains("stats")) {
           db.createObjectStore("stats", { keyPath: "id" });
         }
 
-        // Achievements store
         if (!db.objectStoreNames.contains("achievements")) {
           db.createObjectStore("achievements", { keyPath: "id" });
         }
 
-        // Challenges store
         if (!db.objectStoreNames.contains("challenges")) {
           db.createObjectStore("challenges", { keyPath: "id" });
         }
 
-        // Section Readings store
         if (!db.objectStoreNames.contains("sectionReadings")) {
           const sectionStore = db.createObjectStore("sectionReadings", {
             keyPath: "id",
@@ -154,6 +149,7 @@ export class DatabaseService {
 
       request.onsuccess = () => {
         resolve(request.result);
+        this.invalidateCache(storeName);
       };
 
       request.onerror = () => {
@@ -175,12 +171,21 @@ export class DatabaseService {
         return;
       }
 
+      const cacheKey = `getAll_${storeName}`;
+      const cached = this.getFromCache<T[]>(cacheKey);
+      if (cached) {
+        resolve(cached);
+        return;
+      }
+
       const transaction = this.db.transaction(storeName, "readonly");
       const store = transaction.objectStore(storeName);
       const request = store.getAll();
 
       request.onsuccess = () => {
-        resolve(request.result as T[]);
+        const result = request.result as T[];
+        this.cache.set(cacheKey, { data: result, timestamp: Date.now() });
+        resolve(result);
       };
 
       request.onerror = () => {
@@ -236,13 +241,22 @@ export class DatabaseService {
         return;
       }
 
+      const cacheKey = `getByIndex_${storeName}_${indexName}_${value}`;
+      const cached = this.getFromCache<T[]>(cacheKey);
+      if (cached) {
+        resolve(cached);
+        return;
+      }
+
       const transaction = this.db.transaction(storeName, "readonly");
       const store = transaction.objectStore(storeName);
       const index = store.index(indexName);
       const request = index.getAll(value);
 
       request.onsuccess = () => {
-        resolve(request.result as T[]);
+        const result = request.result as T[];
+        this.cache.set(cacheKey, { data: result, timestamp: Date.now() });
+        resolve(result);
       };
 
       request.onerror = () => {
@@ -273,6 +287,7 @@ export class DatabaseService {
 
       request.onsuccess = () => {
         resolve();
+        this.invalidateCache(storeName);
       };
 
       request.onerror = () => {
@@ -327,12 +342,36 @@ export class DatabaseService {
 
       request.onsuccess = () => {
         resolve();
+        this.invalidateCache(storeName);
       };
 
       request.onerror = () => {
         reject(request.error);
       };
     });
+  }
+
+  /**
+   * 🧹 Invalidates the cache for a specific store
+   *
+   * Clears the cache for a specific store or all stores if no store name is provided.
+   */
+  public invalidateCache(storeName?: string): void {
+    if (storeName) {
+      for (const key of this.cache.keys()) {
+        if (key.startsWith(`getAll_${storeName}`)) {
+          this.cache.delete(key);
+        }
+      }
+    } else this.cache.clear();
+  }
+
+  private getFromCache<T>(cacheKey: string): T | undefined {
+    const cached = this.cache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < this.CACHE_TTL) {
+      return cached.data as T;
+    }
+    return undefined;
   }
 }
 
