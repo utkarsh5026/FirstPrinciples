@@ -28,10 +28,11 @@ const useInit = () => {
       await historyInit();
       await categoryInit();
       await activityInit();
-      await sectionInit();
-      setLoading(false);
+      await sectionInit()
     };
-    init();
+    init().then(() => {
+      setLoading(false);
+    });
   }, [
     readingInit,
     documentInit,
