@@ -1,5 +1,4 @@
 import React from "react";
-import type { ReadingChallenge } from "@/utils/ReadingAnalyticsService";
 import ReadingProgress from "./ReadingProgress";
 import DailyChallenges from "./DailyChallenges";
 import CategoryBreakDown from "./CategoryBreakdown";
@@ -9,6 +8,17 @@ import useMobile from "@/hooks/useMobile";
 import { useActivityStore, useCategoryStore, useHistoryStore } from "@/stores";
 import Activity from "./Activity";
 import { useXP } from "@/context";
+
+export interface ReadingChallenge {
+  id: string;
+  title: string;
+  description: string;
+  goal: number;
+  progress: number;
+  reward: number;
+  expiresAt: number | null;
+  completed: boolean;
+}
 
 interface AnalyticsOverviewProps {
   challenges: ReadingChallenge[];

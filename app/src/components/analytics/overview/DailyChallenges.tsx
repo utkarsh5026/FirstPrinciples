@@ -3,8 +3,18 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Target, RefreshCw } from "lucide-react";
-import type { ReadingChallenge } from "@/utils/ReadingAnalyticsService";
 import { cn } from "@/lib/utils";
+
+export interface ReadingChallenge {
+  id: string;
+  title: string;
+  description: string;
+  goal: number;
+  progress: number;
+  reward: number;
+  expiresAt: number | null;
+  completed: boolean;
+}
 
 interface DailyChallengesProps {
   refreshChallenges: () => void;

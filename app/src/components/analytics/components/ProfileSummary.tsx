@@ -3,7 +3,6 @@ import { BookOpen, Flame } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { ReadingStats } from "@/utils/ReadingAnalyticsService";
 import type { ReadingLevel } from "@/components/analytics/levels";
 import {
   formatDate,
@@ -11,6 +10,20 @@ import {
   formatNumber,
   getStreakEmoji,
 } from "@/components/analytics/utils";
+
+export interface ReadingStats {
+  totalXP: number;
+  level: number;
+  totalReadingTime: number;
+  currentStreak: number;
+  longestStreak: number;
+  estimatedWordsRead: number;
+  documentsCompleted: number;
+  categoriesExplored: Set<string>;
+  percentComplete: number;
+  lastSessionDuration: number;
+  lastReadAt: number | null;
+}
 
 interface ProfileSummaryProps {
   stats: ReadingStats;
