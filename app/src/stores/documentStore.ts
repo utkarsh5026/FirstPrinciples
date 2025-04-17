@@ -9,6 +9,7 @@ import { useReadingStore } from "@/stores/readingStore";
 import { analyticsController } from "@/services/analytics/AnalyticsController";
 import { sectionAnalyticsController } from "@/services/analytics/SectionAnalyticsController";
 import { Category } from "@/utils/MarkdownLoader";
+import { DocumentCache } from "@/services/cache/DocumentCache";
 
 type State = {
   availableDocuments: FileMetadata[];
@@ -152,8 +153,8 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
    */
   loadMarkdown: async (path) => {
     try {
-      const result = await MarkdownLoader.loadMarkdownContent(path);
-      return result;
+      const documentCache = DocumentCache.getInstance();
+      return documentCache.getDocument(path);
     } catch (error) {
       console.error(`Error loading markdown: ${path}`, error);
       set({
