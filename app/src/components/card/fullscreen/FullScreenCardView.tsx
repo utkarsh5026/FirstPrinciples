@@ -16,7 +16,6 @@ import { useSectionStore, useCurrentDocumentStore } from "@/stores";
 import useMobile from "@/hooks/useMobile";
 import Stats from "./stats/Stats";
 import { AnimatePresence } from "framer-motion";
-import ReadingProgress from "./ReadingProgress";
 
 interface FullscreenCardViewProps {
   className?: string;
@@ -58,21 +57,8 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const documentPath = useCurrentDocumentStore((state) => state.docPath);
   const category = useCurrentDocumentStore((state) => state.category);
 
-  // Calculate remaining reading time for current section
-  const calculateMinutesLeft = () => {
-    if (currentIndex >= sections.length) return 0;
-    const currentSection = sections[currentIndex];
-    if (!currentSection || !currentSection.wordCount) return 0;
-
-    // Use reading speed from reading state or default to 200 WPM
-    const readingSpeed = 200;
-    const wordsLeft = currentSection.wordCount;
-    return Math.ceil(wordsLeft / readingSpeed);
-  };
-
   const startReading = useSectionStore((state) => state.startReading);
   const endReading = useSectionStore((state) => state.endReading);
-  const isSectionRead = useSectionStore((state) => state.isSectionRead);
   const loadReadSections = useSectionStore((state) => state.loadReadSections);
 
   // Track read sections
@@ -242,15 +228,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   }
 
   const currentSection = sections[currentIndex];
-  const isCurrentSectionRead = currentSection
-    ? isSectionRead(currentSection.id)
-    : false;
-
-  // Calculate document progress
-  const documentProgress =
-    sections.length > 0
-      ? Math.round((readSections.size / sections.length) * 100)
-      : 0;
 
   return (
     <div
@@ -293,13 +270,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           </Button>
         </div>
       </div>
-
-      <ReadingProgress
-        percentage={isCurrentSectionRead ? 100 : 0}
-        documentProgress={documentProgress}
-        isRead={isCurrentSectionRead}
-        minutesLeft={calculateMinutesLeft()}
-      />
 
       {/* Main content area */}
       <div
