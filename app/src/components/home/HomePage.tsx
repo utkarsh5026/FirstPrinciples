@@ -14,6 +14,7 @@ import {
   TodoListLoader,
   AnalyticsTabLoader,
 } from "./TabLoaders";
+import { useNavigate } from "react-router-dom";
 
 const Overview = lazy(() => import("@/components/home/overview/Overview"));
 const History = lazy(() => import("@/components/history/History"));
@@ -55,10 +56,17 @@ const HomePage: React.FC = () => {
   const handleSelectDocument = useDocumentStore(
     (state) => state.handleSelectDocument
   );
+  const navigate = useNavigate();
 
   const [showFileDialog, setShowFileDialog] = useState(false);
   const { activeTab, setActiveTab } = useTabContext();
   const [categories, setCategories] = useState<Category[]>([]);
+
+  const handleSelectFile = (filepath: string, title: string) => {
+    const encodedPath = encodeURIComponent(filepath);
+    navigate(`/documents/${encodedPath}`);
+    handleSelectDocument(filepath, title);
+  };
 
   /*
    🔄 Load categories from the MarkdownLoader
@@ -177,7 +185,7 @@ const HomePage: React.FC = () => {
             <Hero />
             <Suspense fallback={<OverviewTabLoader />}>
               <Overview
-                handleSelectDocument={handleSelectDocument}
+                handleSelectDocument={handleSelectFile}
                 setShowAddTodoModal={() => setShowFileDialog(true)}
               />
             </Suspense>
@@ -185,14 +193,14 @@ const HomePage: React.FC = () => {
 
           <TabsContent value="history" className="mt-0">
             <Suspense fallback={<HistoryTabLoader />}>
-              <History handleSelectDocument={handleSelectDocument} />
+              <History handleSelectDocument={handleSelectFile} />
             </Suspense>
           </TabsContent>
 
           <TabsContent value="todo" className="mt-0">
             <Suspense fallback={<TodoListLoader />}>
               <TodoList
-                handleSelectDocument={handleSelectDocument}
+                handleSelectDocument={handleSelectFile}
                 setShowAddTodoModal={() => setShowFileDialog(true)}
               />
             </Suspense>
@@ -202,7 +210,7 @@ const HomePage: React.FC = () => {
             <Suspense fallback={<AnalyticsTabLoader />}>
               <AnalyticsView
                 availableDocuments={availableDocuments}
-                onSelectDocument={handleSelectDocument}
+                onSelectDocument={handleSelectFile}
               />
             </Suspense>
           </TabsContent>

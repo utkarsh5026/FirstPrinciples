@@ -32,16 +32,13 @@ export const App = () => {
   📝 Handle file selection
    */
   const handleSelectFile = (filepath: string) => {
-    // Create a clean path for the URL (handle spaces and special characters)
     const encodedPath = encodeURIComponent(filepath);
     navigate(`/documents/${encodedPath}`);
 
-    // Scroll to top of content area
     if (mainContentRef.current) {
       mainContentRef.current.scrollTop = 0;
     }
 
-    // Close sidebar on mobile when selecting a file
     setSidebarOpen(false);
   };
 
