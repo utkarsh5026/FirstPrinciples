@@ -752,14 +752,14 @@
               "description": "Documentation for Fast Forward Vs Three Way"
             },
             {
-              "path": "git/merge/merges_at_the_object_level.md",
-              "title": "Merges At The Object Level",
-              "description": "Documentation for Merges At The Object Level"
-            },
-            {
               "path": "git/merge/merge_conflicts.md",
               "title": "Merge Conflicts",
               "description": "Documentation for Merge Conflicts"
+            },
+            {
+              "path": "git/merge/merges_at_the_object_level.md",
+              "title": "Merges At The Object Level",
+              "description": "Documentation for Merges At The Object Level"
             }
           ]
         },
@@ -1340,11 +1340,6 @@
               "description": "Documentation for Objects And Interfaces"
             },
             {
-              "path": "typescript/foundations/typescript_vs_javascript.md",
-              "title": "Typescript Vs Javascript",
-              "description": "Documentation for Typescript Vs Javascript"
-            },
-            {
               "path": "typescript/foundations/type_alias.md",
               "title": "Type Alias",
               "description": "Documentation for Type Alias"
@@ -1353,6 +1348,11 @@
               "path": "typescript/foundations/type_annotations.md",
               "title": "Type Annotations",
               "description": "Documentation for Type Annotations"
+            },
+            {
+              "path": "typescript/foundations/typescript_vs_javascript.md",
+              "title": "Typescript Vs Javascript",
+              "description": "Documentation for Typescript Vs Javascript"
             },
             {
               "path": "typescript/foundations/union_and_intersection.md",

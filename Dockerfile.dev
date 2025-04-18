@@ -1,0 +1,21 @@
+FROM node:20-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json first for better caching
+COPY app/package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# No need to copy application code - we'll use a volume mount in dev environment
+
+# Expose the Vite development server port
+EXPOSE 3000
+
+# Set development environment
+ENV NODE_ENV=development
+
+# Start the development server
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
