@@ -66,9 +66,19 @@ export class MarkdownLoader {
    * This ensures paths work both locally and on GitHub Pages
    */
   private static getBaseContentUrl(): string {
+    // Check if we're in a production environment (like Vercel)
+    const isProduction = import.meta.env.PROD;
+
     // Get any base URL path from Vite
     const base = import.meta.env.BASE_URL || "";
-    // Return a normalized path that works for both local dev and GitHub Pages
+
+    // For production builds on Vercel, ensure we use the absolute path from root
+    if (isProduction) {
+      // This ensures we always start from the domain root
+      return '/content/';
+    }
+
+    // For development, use the relative path approach
     return `${base}content/`.replace(/\/\/+/g, "/");
   }
 
