@@ -394,7 +394,7 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
                     </TooltipTrigger>
                     <TooltipContent
                       side="top"
-                      className="bg-card/95 backdrop-blur-sm border-primary/10 shadow-lg text-xs"
+                      className="bg-card/95 backdrop-blur-sm border-primary/10 shadow-lg text-xs font-medium font-cascadia-code"
                     >
                       <div className="font-medium">{formatDate(day.date)}</div>
                       {day.count === 0 ? (
