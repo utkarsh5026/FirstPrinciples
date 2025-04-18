@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useSectionStore } from "./sectionStore";
 import { useCurrentDocumentStore } from "./currentDocumentStore";
 import useReadingMetricsStore from "./document/readingMetrics";
+import { databaseService } from "@/services/database/DatabaseService";
 
 /**
  * 🚀 Initializes all stores when the app starts
@@ -23,12 +24,13 @@ const useInit = () => {
   const sectionInit = useSectionStore((state) => state.initialize);
   useEffect(() => {
     const init = async () => {
+      await databaseService.initDatabase();
       await readingInit();
       await documentInit();
       await historyInit();
       await categoryInit();
       await activityInit();
-      await sectionInit()
+      await sectionInit();
     };
     init().then(() => {
       setLoading(false);
