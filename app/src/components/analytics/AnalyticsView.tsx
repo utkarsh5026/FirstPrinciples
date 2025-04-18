@@ -1,15 +1,14 @@
 import React from "react";
 import AnalyticsPage from "./AnalyticsPage";
-import { Skeleton } from "@/components/ui/skeleton";
-import { FileMetadata } from "@/utils/MarkdownLoader";
+import type { FileMetadata } from "@/utils/MarkdownLoader";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Info } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { useHistoryStore } from "@/stores";
 
 interface AnalyticsViewProps {
   availableDocuments: FileMetadata[];
   onSelectDocument: (path: string, title: string) => void;
-  isLoading?: boolean;
 }
 
 /**
@@ -19,24 +18,11 @@ interface AnalyticsViewProps {
 const AnalyticsView: React.FC<AnalyticsViewProps> = ({
   availableDocuments,
   onSelectDocument,
-  isLoading = false,
 }) => {
   const [showInfo, setShowInfo] = React.useState(true);
+  const readingHistory = useHistoryStore((state) => state.readingHistory);
 
-  // Check if user has enough reading activity to show useful analytics
-  const hasActivity = React.useMemo(() => {
-    // Check local storage for reading history
-    const storedHistory = localStorage.getItem("readingHistory");
-    if (!storedHistory) return false;
-
-    try {
-      const history = JSON.parse(storedHistory);
-      return history.length >= 2;
-    } catch (e) {
-      console.error("Error parsing reading history:", e);
-      return false;
-    }
-  }, []);
+  const hasActivity = readingHistory.length >= 2;
 
   return (
     <div className="space-y-6">
@@ -63,27 +49,10 @@ const AnalyticsView: React.FC<AnalyticsViewProps> = ({
         </Alert>
       )}
 
-      {/* Loading state */}
-      {isLoading ? (
-        <div className="space-y-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <Skeleton key={i} className="h-24 w-full rounded-md" />
-            ))}
-          </div>
-
-          <Skeleton className="h-8 w-64 rounded-md" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Skeleton className="h-96 w-full rounded-md" />
-            <Skeleton className="h-96 w-full rounded-md" />
-          </div>
-        </div>
-      ) : hasActivity ? (
+      {hasActivity ? (
         // Main analytics content when there's data to show
         <AnalyticsPage onSelectDocument={onSelectDocument} />
       ) : (
-        // Empty state when there's not enough reading activity
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center mb-4">
             <BookOpen className="h-10 w-10 text-primary/70" />

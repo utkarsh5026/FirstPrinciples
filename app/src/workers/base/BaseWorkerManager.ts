@@ -229,7 +229,6 @@ export abstract class BaseWorkerManager<T extends object> {
     const now = Date.now();
 
     this.workers = this.workers.filter((workerEntry) => {
-      // Keep busy workers and recently used workers
       if (
         workerEntry.busy ||
         now - workerEntry.lastUsed < this.WORKER_TIMEOUT
