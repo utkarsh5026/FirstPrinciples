@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ProgressOverTime } from "../trends";
 import InsightCard from "./InsightCard";
 import { useHeatmapStore, useHistoryStore } from "@/stores";
-import { MonthlyDocumentCounts } from "@/stores/heatmapStore";
+import type { MonthlyDocumentCounts } from "@/services/history/heatmap";
 
 /**
  * ProgressTrendInsightCard - Shows reading progress over time
