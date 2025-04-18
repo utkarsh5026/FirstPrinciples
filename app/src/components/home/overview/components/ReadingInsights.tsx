@@ -56,7 +56,7 @@ const ReadingInsights: React.FC = () => {
   }, [categoryBreakdown]);
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="flex flex-col gap-4">
       <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors rounded-3xl">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-30"></div>
 
@@ -65,7 +65,7 @@ const ReadingInsights: React.FC = () => {
             <Brain className="h-3.5 w-3.5 mr-1.5 text-primary/70" />
             Categories
           </div>
-          <div className="h-32 w-full">
+          <div className="h-56 w-full">
             <CategoryPieChart
               descriptive={false}
               categoryBreakdown={categoryBreakdown}
