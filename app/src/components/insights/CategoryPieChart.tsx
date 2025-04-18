@@ -1,137 +1,202 @@
-import React, { useMemo } from "react";
-import {
-  PieChart as RechartsPieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Legend,
-  type PieProps,
-} from "recharts";
+import React, { memo, useMemo } from "react";
+import { PieChart as RechartsPieChart, Pie, Cell, Sector } from "recharts";
 import useMobile from "@/hooks/useMobile";
 import { BookText } from "lucide-react";
 import { useTheme } from "@/components/theme/context/ThemeContext";
-import { fromSnakeToTitleCase, truncateText } from "@/utils/string";
 import { motion } from "framer-motion";
-import { getRandomColors } from "@/lib/constants";
-import { useCategoryStore } from "@/stores/categoryStore";
-import { useHistoryStore } from "@/stores";
+import { CategoryBreakdown } from "@/stores/categoryStore";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+} from "@/components/ui/chart";
+import { PieSectorDataItem } from "recharts/types/polar/Pie";
+import getIconForTech from "../icons";
+import { cn } from "@/lib/utils";
+import { generateThemeColors } from "@/utils/colors";
+import { fromSnakeToTitleCase, truncateText } from "@/utils/string";
 
 interface CategoryPieChartProps {
-  extraProps?: Omit<PieProps, "data" | "dataKey" | "ref">;
-  showTooltip?: boolean;
-  useThemeColors?: boolean;
-  showLegend?: boolean;
-  animationDuration?: number;
+  descriptive?: boolean;
+  categoryBreakdown: CategoryBreakdown[];
 }
 
-const CategoryPieChart: React.FC<CategoryPieChartProps> = ({
-  extraProps = {},
-  useThemeColors = true,
-  showLegend = true,
-}) => {
-  const { isMobile } = useMobile();
-  const readingHistory = useHistoryStore((state) => state.readingHistory);
-  const categoryBreakdown = useCategoryStore(
-    (state) => state.categoryBreakdown
-  );
-  const { currentTheme } = useTheme();
+const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
+  ({ descriptive = true, categoryBreakdown }) => {
+    const { isMobile } = useMobile();
 
-  // Generate theme-based color palette
-  const chartThemeColors = useMemo(() => {
-    const baseColor = currentTheme.primary;
-    // Create a palette from the primary color with different saturations and lightness
-    return [
-      baseColor,
-      adjustColor(baseColor, { l: -10 }),
-      adjustColor(baseColor, { s: -15, l: 10 }),
-      adjustColor(baseColor, { h: 15, s: -10 }),
-      adjustColor(baseColor, { h: -15, s: -5, l: 5 }),
-    ];
-  }, [currentTheme]);
+    const { currentTheme } = useTheme();
 
-  // Generate rich data with helpful tooltips
-  const enrichedCategoryData = useMemo(() => {
-    return categoryBreakdown.map((category) => ({
-      ...category,
-      displayName: fromSnakeToTitleCase(category.category),
-      percentage:
-        readingHistory.length > 0
-          ? Math.round((category.count / readingHistory.length) * 100)
-          : 0,
-    }));
-  }, [categoryBreakdown, readingHistory]);
+    const chartThemeColors = useMemo(() => {
+      const baseColor = currentTheme.primary;
+      return generateThemeColors(baseColor, categoryBreakdown.length);
+    }, [currentTheme, categoryBreakdown]);
 
-  const colors = useThemeColors
-    ? chartThemeColors
-    : getRandomColors(categoryBreakdown.length);
+    const total = useMemo(() => {
+      return categoryBreakdown.reduce((acc, curr) => acc + curr.count, 0);
+    }, [categoryBreakdown]);
 
-  // Animated container with framer-motion
-  const chartContainer = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        delay: 0.1,
-        ease: "easeOut",
+    const descriptiveActiveShape = (props: PieSectorDataItem) => {
+      const RADIAN = Math.PI / 180;
+      const {
+        cx = 0,
+        cy = 0,
+        midAngle,
+        innerRadius = 0,
+        outerRadius = 0,
+        startAngle,
+        endAngle,
+        fill,
+        payload,
+        percent,
+      } = props;
+
+      console.log(props.payload);
+
+      const sin = Math.sin(-RADIAN * (midAngle ?? 0));
+      const cos = Math.cos(-RADIAN * (midAngle ?? 0));
+      const sx = cx + (outerRadius + 10) * cos;
+      const sy = cy + (outerRadius + 10) * sin;
+      const mx = cx + (outerRadius + 30) * cos;
+      const my = cy + (outerRadius + 30) * sin;
+      const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+      const ey = my;
+      const textAnchor = cos >= 0 ? "start" : "end";
+
+      return (
+        <g>
+          <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+            {payload.name}
+          </text>
+          <Sector
+            cx={cx}
+            cy={cy}
+            innerRadius={innerRadius}
+            outerRadius={outerRadius}
+            startAngle={startAngle}
+            endAngle={endAngle}
+            fill={fill}
+          />
+          <Sector
+            cx={cx}
+            cy={cy}
+            startAngle={startAngle}
+            endAngle={endAngle}
+            innerRadius={outerRadius + 6}
+            outerRadius={outerRadius + 10}
+            fill={fill}
+          />
+          <path
+            d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
+            stroke={fill}
+            fill="none"
+          />
+          <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+          <text
+            x={ex + (cos >= 0 ? 1 : -1) * 12}
+            y={ey}
+            textAnchor={textAnchor}
+            fillOpacity={0.8}
+            fill={currentTheme.foreground}
+          >{`${truncateText(fromSnakeToTitleCase(payload.category), 15)} (${
+            payload.count
+          }/${total})`}</text>
+
+          <text
+            x={ex + (cos >= 0 ? 1 : -1) * 12}
+            y={ey}
+            dy={18}
+            textAnchor={textAnchor}
+            fill={currentTheme.foreground}
+            fillOpacity={0.6}
+          >
+            {`(Rate ${(percent ?? 0 * 100).toFixed(2)}%)`}
+          </text>
+        </g>
+      );
+    };
+
+    const simpleActiveShape = (props: PieSectorDataItem) => {
+      const { outerRadius = 0 } = props;
+      return <Sector {...props} outerRadius={outerRadius + 5} />;
+    };
+
+    if (categoryBreakdown.length === 0) {
+      return (
+        <motion.div
+          className="h-full flex items-center justify-center flex-col"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <BookText className="h-10 w-10 text-muted-foreground opacity-20 mb-3" />
+          <p className="text-sm text-muted-foreground">No category data yet</p>
+          <p className="text-xs text-muted-foreground mt-1">
+            Read more documents to see insights
+          </p>
+        </motion.div>
+      );
+    }
+
+    const config: ChartConfig = {
+      category: {
+        label: "Category",
       },
-    },
-  };
+    };
 
-  if (enrichedCategoryData.length === 0) {
     return (
-      <motion.div
-        className="h-full flex items-center justify-center flex-col"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <BookText className="h-10 w-10 text-muted-foreground opacity-20 mb-3" />
-        <p className="text-sm text-muted-foreground">No category data yet</p>
-        <p className="text-xs text-muted-foreground mt-1">
-          Read more documents to see insights
-        </p>
-      </motion.div>
-    );
-  }
-
-  return (
-    <motion.div
-      className="w-full h-full"
-      initial="hidden"
-      animate="visible"
-      variants={chartContainer}
-    >
-      <ResponsiveContainer width="100%" height="100%">
+      <ChartContainer className="w-full h-full" config={config}>
         <RechartsPieChart>
-          <defs>
-            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow
-                dx="0"
-                dy="2"
-                stdDeviation="3"
-                floodOpacity="0.1"
-                floodColor={currentTheme.foreground}
+          {descriptive && <ChartLegend />}
+          <ChartTooltip
+            content={
+              <ChartTooltipContent
+                hideLabel
+                formatter={(value, name) => {
+                  const category = config[name as keyof typeof config];
+                  const CategoryIcon = getIconForTech(name as string);
+                  return (
+                    <div
+                      className={cn(
+                        "flex items-center text-xs text-muted-foreground gap-2 justify-between"
+                      )}
+                    >
+                      <div className="flex items-center gap-2">
+                        <CategoryIcon className="w-4 h-4 text-primary" />
+                        {category?.label || name}
+                      </div>
+                      <div className="items-baseline gap-0.5 font-cascadia-code font-medium tabular-nums text-foreground">
+                        {`${value}%`}
+                      </div>
+                    </div>
+                  );
+                }}
               />
-            </filter>
-          </defs>
+            }
+            cursor={false}
+            defaultIndex={1}
+          />
           <Pie
-            data={enrichedCategoryData}
+            data={categoryBreakdown}
             cx="50%"
             cy="50%"
             innerRadius={isMobile ? "40%" : "45%"}
             outerRadius={isMobile ? "70%" : "75%"}
             paddingAngle={4}
             dataKey="percentage"
-            filter="url(#shadow)"
+            nameKey="category"
             isAnimationActive={true}
-            {...extraProps}
+            activeShape={
+              descriptive ? descriptiveActiveShape : simpleActiveShape
+            }
+            activeIndex={0}
           >
-            {enrichedCategoryData.map(({ category }, index) => (
+            {categoryBreakdown.map(({ category }, index) => (
               <Cell
                 key={`${category}`}
-                fill={colors[index % colors.length]}
+                fill={chartThemeColors[index % chartThemeColors.length]}
                 style={{
                   filter: "brightness(1.1)",
                   transition: "filter 0.3s ease",
@@ -140,74 +205,10 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = ({
               />
             ))}
           </Pie>
-
-          {showLegend && (
-            <Legend
-              iconType="circle"
-              iconSize={isMobile ? 6 : 8}
-              layout={isMobile ? "horizontal" : "vertical"}
-              verticalAlign={isMobile ? "bottom" : "middle"}
-              align={isMobile ? "center" : "right"}
-              wrapperStyle={{
-                fontSize: isMobile ? 10 : 12,
-                padding: isMobile ? "0 4px" : "0 20px",
-                ...(isMobile ? { bottom: -5 } : { right: 0 }),
-                maxWidth: "40%",
-              }}
-              formatter={(_value, _entry, index) => {
-                const category = enrichedCategoryData[index];
-                const label = isMobile
-                  ? truncateText(category.displayName, 10)
-                  : category.displayName;
-                return (
-                  <span
-                    className="text-xs whitespace-nowrap"
-                    style={{
-                      color: currentTheme.foreground,
-                      transition: "color 0.3s ease",
-                      fontWeight: "normal",
-                    }}
-                  >
-                    {label} {category.percentage}%
-                  </span>
-                );
-              }}
-              payload={enrichedCategoryData.map(({ category }, index) => {
-                return {
-                  value: category,
-                  id: category,
-                  type: "circle",
-                  color: colors[index % colors.length],
-                };
-              })}
-            />
-          )}
         </RechartsPieChart>
-      </ResponsiveContainer>
-    </motion.div>
-  );
-};
-
-function adjustColor(
-  hexColor: string,
-  adjustments: { h?: number; s?: number; l?: number }
-) {
-  // Convert hex to RGB
-  let r = parseInt(hexColor.slice(1, 3), 16);
-  let g = parseInt(hexColor.slice(3, 5), 16);
-  let b = parseInt(hexColor.slice(5, 7), 16);
-
-  if (adjustments.l) {
-    const factor = adjustments.l > 0 ? 1.1 : 0.9;
-    r = Math.min(255, Math.max(0, Math.round(r * factor)));
-    g = Math.min(255, Math.max(0, Math.round(g * factor)));
-    b = Math.min(255, Math.max(0, Math.round(b * factor)));
+      </ChartContainer>
+    );
   }
-
-  // Convert back to hex
-  return `#${r.toString(16).padStart(2, "0")}${g
-    .toString(16)
-    .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
-}
+);
 
 export default CategoryPieChart;

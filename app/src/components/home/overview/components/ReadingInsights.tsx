@@ -67,13 +67,8 @@ const ReadingInsights: React.FC = () => {
           </div>
           <div className="h-32 w-full">
             <CategoryPieChart
-              extraProps={{
-                innerRadius: 25,
-                outerRadius: 45,
-                paddingAngle: 5,
-                stroke: "transparent",
-              }}
-              showLegend={false}
+              descriptive={false}
+              categoryBreakdown={categoryBreakdown}
             />
           </div>
 

@@ -4,7 +4,6 @@ import DailyChallenges from "./DailyChallenges";
 import CategoryBreakDown from "./CategoryBreakdown";
 import ReadingTrends from "./ReadingTrends";
 import RecentReads from "./RecentReads";
-import useMobile from "@/hooks/useMobile";
 import { useActivityStore, useCategoryStore, useHistoryStore } from "@/stores";
 import Activity from "./Activity";
 import { useXP } from "@/context";
@@ -33,7 +32,6 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
   actions,
   onSelectDocument,
 }) => {
-  const { isMobile } = useMobile();
   const { xpStats } = useXP();
   const readingHistory = useHistoryStore((state) => state.readingHistory);
   const categoryBreakdown = useCategoryStore(
@@ -77,11 +75,7 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
       </div>
 
       <CategoryBreakDown
-        categoryBreakdown={categoryBreakdown.map((item) => ({
-          name: item.category,
-          value: item.count,
-        }))}
-        isMobile={isMobile}
+        categoryBreakdown={categoryBreakdown}
         readingByHour={readingByHour}
       />
 

@@ -12,13 +12,28 @@ import {
   CartesianGrid,
 } from "recharts";
 import { CategoryPieChart } from "@/components/insights";
-
+import { CategoryBreakdown } from "@/stores/categoryStore";
 interface CategoryBreakDownProps {
-  categoryBreakdown: { name: string; value: number }[];
-  isMobile: boolean;
+  categoryBreakdown: CategoryBreakdown[];
   readingByHour: { hour: number; count: number }[];
 }
 
+/**
+ * 📊 CategoryBreakDown Component
+ *
+ * A delightful dashboard that visualizes your reading habits in two beautiful ways:
+ *
+ * 1. 📚 Reading by Category: Shows what types of content you love to read the most!
+ *    Presents your reading preferences as a colorful pie chart that makes your
+ *    reading journey more tangible and fun to explore.
+ *
+ * 2. ⏰ Reading by Time of Day: Reveals when you're most likely to curl up with a good read!
+ *    Displays your reading patterns throughout the day with a smooth area chart,
+ *    helping you discover your peak reading hours.
+ *
+ * Both visualizations provide empty states with friendly encouragement when you're
+ * just starting your reading adventure! ✨
+ */
 const CategoryBreakDown: React.FC<CategoryBreakDownProps> = ({
   categoryBreakdown,
   readingByHour,
@@ -39,7 +54,7 @@ const CategoryBreakDown: React.FC<CategoryBreakDownProps> = ({
 
         {categoryBreakdown.length > 0 ? (
           <div className="h-64 md:h-72">
-            <CategoryPieChart />
+            <CategoryPieChart categoryBreakdown={categoryBreakdown} />
           </div>
         ) : (
           <div className="h-64 flex items-center justify-center flex-col">
