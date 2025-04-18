@@ -22,10 +22,6 @@ const AnalyticsView = lazy(
   () => import("@/components/analytics/AnalyticsView")
 );
 
-interface HomePageProps {
-  onSelectFile: (filepath: string) => void;
-}
-
 /**
  * 🏠 HomePage Component
  *
@@ -51,7 +47,7 @@ interface HomePageProps {
  * - Maintain a reading list
  * - Analyze your reading habits
  */
-const HomePage: React.FC<HomePageProps> = () => {
+const HomePage: React.FC = () => {
   useInit();
   const availableDocuments = useDocumentStore(
     (state) => state.availableDocuments

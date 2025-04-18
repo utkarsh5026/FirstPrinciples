@@ -10,10 +10,7 @@ import Header from "./Header";
 import StartReadingButton from "./StartReadingButton";
 import { formatTimeInMs } from "@/utils/time";
 import { useCurrentDocumentStore } from "@/stores/currentDocumentStore";
-
-interface DocumentPreviewProps {
-  selectedFileUrl: string;
-}
+import { useParams } from "react-router-dom";
 
 /**
  * 📄✨ DocumentPreview
@@ -31,10 +28,10 @@ interface DocumentPreviewProps {
  * - 📊 DetailPanel: Shows comprehensive document information in a structured format
  * - ▶️ StartReadingButton: Invites the user to begin their reading experience
  */
-const DocumentPreview: React.FC<DocumentPreviewProps> = ({
-  selectedFileUrl,
-}) => {
+const DocumentPreview: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const { documentPath = "" } = useParams<{ documentPath: string }>();
 
   const loading = useCurrentDocumentStore((state) => state.loading);
   const error = useCurrentDocumentStore((state) => state.error);
@@ -44,8 +41,8 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({
   const title = useCurrentDocumentStore((state) => state.title);
 
   useEffect(() => {
-    load(selectedFileUrl);
-  }, [selectedFileUrl, load]);
+    load(documentPath);
+  }, [documentPath, load]);
 
   const startReading = () => setIsFullscreen(true);
 
@@ -57,7 +54,7 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({
 
   if (loading) return <LoadingScreen />;
   if (error) return <ErrorLoadingDocument error={error} />;
-  if (!selectedFileUrl) return <NoFileSelectedYet />;
+  if (!documentPath) return <NoFileSelectedYet />;
 
   const { totalWords, totalTime, totalSections } = metrics;
   const formattedReadTime = formatTimeInMs(totalTime);
@@ -121,7 +118,7 @@ const DocumentPreview: React.FC<DocumentPreviewProps> = ({
                       formattedReadTime.split(":")[0]
                     )}
                     lastUpdatedFormatted={new Date().toLocaleDateString()}
-                    selectedFile={selectedFileUrl}
+                    selectedFile={documentPath}
                   />
                 </motion.div>
               </AnimatePresence>

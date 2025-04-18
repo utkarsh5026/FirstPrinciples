@@ -1,11 +1,10 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import ResponsiveSidebar from "@/components/navigation/sidebar/CategoryNavigation";
 import LoadingAnimation from "@/components/init/LoadingAnimation";
-import HomePage from "@/components/home/HomePage";
 import AppHeader from "@/components/layout/AppHeader";
 import AppWrapper from "@/components/welcome/Wrapper";
 import { TabProvider } from "@/components/home/context/TabProvider";
-import DocumentPreview from "@/components/card/preview/DocumentPreview";
 import { useInit } from "./stores";
 
 /**
@@ -19,19 +18,13 @@ import { useInit } from "./stores";
  * - Handles navigation between home and document views
  * - Manages responsive sidebar for easy document browsing
  * - Provides smooth loading transitions
- * - Supports URL hash-based navigation
- *
- * 🔄 Flow:
- * 1. Shows loading animation on startup
- * 2. Loads available documents in background
- * 3. Renders either homepage or document preview based on user selection
- * 4. Maintains navigation state and URL synchronization
+ * - Supports URL-based navigation through React Router
  */
 export const App = () => {
-  const [selectedFile, setSelectedFile] = useState<string | null>(null);
-  const [showHomePage, setShowHomePage] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const mainContentRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const loading = useInit();
 
@@ -39,12 +32,9 @@ export const App = () => {
   📝 Handle file selection
    */
   const handleSelectFile = (filepath: string) => {
-    setSelectedFile(filepath);
-    setShowHomePage(false);
-
-    // Update URL hash
-    const slug = filepath.endsWith(".md") ? filepath.slice(0, -3) : filepath;
-    window.location.hash = slug;
+    // Create a clean path for the URL (handle spaces and special characters)
+    const encodedPath = encodeURIComponent(filepath);
+    navigate(`/documents/${encodedPath}`);
 
     // Scroll to top of content area
     if (mainContentRef.current) {
@@ -59,10 +49,7 @@ export const App = () => {
   🏠 Handle navigation to home
    */
   const navigateToHome = () => {
-    setSelectedFile(null);
-    setShowHomePage(true);
-    window.location.hash = "";
-
+    navigate("/");
     setSidebarOpen(false);
   };
 
@@ -72,6 +59,9 @@ export const App = () => {
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
+
+  // Check if we're on the home page
+  const isHomePage = location.pathname === "/";
 
   return (
     <AppWrapper>
@@ -98,7 +88,13 @@ export const App = () => {
           {/* Responsive sidebar with category navigation */}
           <ResponsiveSidebar
             onSelectFile={handleSelectFile}
-            currentFilePath={selectedFile ?? undefined}
+            currentFilePath={
+              location.pathname.startsWith("/documents/")
+                ? decodeURIComponent(
+                    location.pathname.split("/documents/")[1]?.split("/")[0]
+                  )
+                : undefined
+            }
             onNavigateHome={navigateToHome}
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
@@ -109,12 +105,12 @@ export const App = () => {
             ref={mainContentRef}
             className="w-full flex-1 overflow-y-auto pt-16 md:pt-16 px-4 md:px-8"
           >
-            {showHomePage ? (
+            {isHomePage ? (
               <TabProvider>
-                <HomePage onSelectFile={handleSelectFile} />
+                <Outlet />
               </TabProvider>
             ) : (
-              <DocumentPreview selectedFileUrl={selectedFile ?? ""} />
+              <Outlet />
             )}
           </main>
         </div>
