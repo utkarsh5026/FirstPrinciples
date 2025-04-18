@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
 import { Card } from "@/components/ui/card";
-import { MonthlyTrend } from "../trends";
 import { LineChart } from "lucide-react";
 import { useHistoryStore, useActivityStore } from "@/stores";
 import { getStreakEmoji } from "../utils";
+import { DayOfMonth } from "@/components/insights";
 
 /**
  * 📊 Activity Dashboard Component
@@ -35,6 +35,20 @@ const Activity: React.FC = () => {
     return readingHistory.filter((reading) => {
       const readingDate = new Date(reading.lastReadAt);
       return readingDate >= startOfWeek;
+    });
+  }, [readingHistory]);
+
+  /**
+   * 📅 Filters reading history to only show current month's activity
+   */
+  const currentMonthHistory = useMemo(() => {
+    const startOfMonth = new Date();
+    startOfMonth.setDate(1);
+    startOfMonth.setHours(0, 0, 0, 0);
+
+    return readingHistory.filter((reading) => {
+      const readingDate = new Date(reading.lastReadAt);
+      return readingDate >= startOfMonth;
     });
   }, [readingHistory]);
 
@@ -114,10 +128,13 @@ const Activity: React.FC = () => {
         {/* Monthly Insights */}
         <div className="mt-6">
           <h5 className="text-xs uppercase text-muted-foreground font-medium mb-3">
-            Monthly Activity
+            Current Month Activity{" "}
+            <span className="text-xs text-muted-foreground">
+              {`(${currentMonthHistory.length} documents read) 😎`}
+            </span>
           </h5>
-          <div className="h-56">
-            <MonthlyTrend />
+          <div className="h-96">
+            <DayOfMonth history={currentMonthHistory} />
           </div>
         </div>
       </Card>

@@ -1,6 +1,6 @@
 import { memo, useMemo } from "react";
 import { Calendar, ArrowUp, ArrowDown } from "lucide-react";
-import InsightCard from "./InsightCard";
+import InsightCard from "../analytics/insights/InsightCard";
 import { useActivityStore } from "@/stores";
 import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
 import {
@@ -14,10 +14,12 @@ import {
   ReferenceLine,
   Cell,
 } from "recharts";
+
 import { motion } from "framer-motion";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { cn } from "@/lib/utils";
 import useMobile from "@/hooks/useMobile";
+import { generateThemeColors } from "@/utils/colors";
 
 interface DayOfMonthActivityInsightProps {
   history: ReadingHistoryItem[];
@@ -59,6 +61,10 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
     } = useMemo(() => {
       // Get daily activity data
       const dailyData = calculateTotalDailyActivity(history);
+      const colors = generateThemeColors(
+        currentTheme.primary,
+        dailyData.length
+      );
 
       // Get metrics (most/least active days)
       const { mostActiveDay, leastActiveDay } =
@@ -102,7 +108,7 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
       const maxValue = Math.max(...validData.map((day) => day.count));
 
       // Enhance data for visualization
-      const enhancedData = validData.map((day) => {
+      const enhancedData = validData.map((day, index) => {
         // Determine if it's a special day (e.g., beginning of week/month)
         const isMonthStart = day.day === 1;
         const isMonthEnd = day.day === 31;
@@ -110,26 +116,11 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
           day.day === 7 || day.day === 15 || day.day === 23;
         const isPeak = day.day === mostActiveDay.day;
 
-        // Determine bar color based on position in month and peak status
-        let barColor;
-        if (isPeak) {
-          barColor = currentTheme.primary;
-        } else if (isMonthStart || isMonthEnd) {
-          barColor = currentTheme.secondary || "#64748b";
-        } else if (isQuarterMonth) {
-          barColor = currentTheme.secondary || "#94a3b8";
-        } else {
-          barColor =
-            day.count > average
-              ? currentTheme.secondary + "90" || "#64748b90"
-              : currentTheme.secondary + "80" || "#94a3b870";
-        }
-
         return {
           ...day,
           isPeak,
           isSpecialDay: isMonthStart || isMonthEnd || isQuarterMonth,
-          barColor,
+          barColor: colors[index],
           comparedToAvg:
             average > 0 ? Math.round((day.count / average - 1) * 100) : 0,
         };
@@ -353,21 +344,21 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
                   label={{
                     value: "Avg",
                     position: "right",
-                    fill: currentTheme.foreground + "80",
-                    fontSize: 9,
+                    fill: currentTheme.foreground,
+                    fontSize: 18,
                   }}
                   strokeOpacity={0.4}
                 />
 
                 <Bar
                   dataKey="count"
-                  radius={[4, 4, 0, 0]}
+                  radius={6}
                   animationDuration={1500}
                   animationBegin={200}
                 >
                   {enhancedData.map((entry, index) => (
                     <Cell
-                      key={`cell-${index}`}
+                      key={`${entry.day}-${index}`}
                       fill={entry.barColor}
                       fillOpacity={entry.isPeak ? 1 : 0.8}
                       stroke={
