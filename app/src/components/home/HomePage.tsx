@@ -1,7 +1,15 @@
+// src/components/home/HomePage.tsx
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Clock, ListTodo, Plus, BarChart } from "lucide-react";
+import {
+  LayoutDashboard,
+  Clock,
+  ListTodo,
+  Plus,
+  BarChart,
+  RefreshCcw,
+} from "lucide-react";
 import { Category, MarkdownLoader } from "@/utils/MarkdownLoader";
 import Hero from "./Hero";
 import FileSelectionDialog from "@/components/todo/AddTodoModal";
@@ -15,12 +23,58 @@ import {
   AnalyticsTabLoader,
 } from "./TabLoaders";
 import { useNavigate } from "react-router-dom";
+import { Card } from "@/components/ui/card";
 
-const Overview = lazy(() => import("@/components/home/overview/Overview"));
-const History = lazy(() => import("@/components/history/History"));
-const TodoList = lazy(() => import("@/components/todo/TodoList"));
-const AnalyticsView = lazy(
-  () => import("@/components/analytics/AnalyticsView")
+// Use React.lazy with error handling for each component
+const Overview = lazy(() =>
+  import("@/components/home/overview/Overview").catch((error) => {
+    console.error("Failed to load Overview component:", error);
+    return { default: () => <FallbackComponent name="Overview" /> };
+  })
+);
+
+const History = lazy(() =>
+  import("@/components/history/History").catch((error) => {
+    console.error("Failed to load History component:", error);
+    return { default: () => <FallbackComponent name="History" /> };
+  })
+);
+
+const TodoList = lazy(() =>
+  import("@/components/todo/TodoList").catch((error) => {
+    console.error("Failed to load TodoList component:", error);
+    return { default: () => <FallbackComponent name="Reading List" /> };
+  })
+);
+
+const AnalyticsView = lazy(() =>
+  import("@/components/analytics/AnalyticsView").catch((error) => {
+    console.error("Failed to load AnalyticsView component:", error);
+    return { default: () => <FallbackComponent name="Analytics" /> };
+  })
+);
+
+// Fallback component for when lazy loading fails
+const FallbackComponent = ({ name }: { name: string }) => (
+  <Card className="p-6 text-center border-dashed border-2 border-primary/20 bg-primary/5 flex flex-col items-center justify-center rounded-2xl">
+    <div className="h-12 w-12 md:h-16 md:w-16 mb-3 md:mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+      <RefreshCcw className="h-6 w-6 md:h-8 md:w-8 text-primary/50" />
+    </div>
+    <h3 className="text-base md:text-lg font-medium mb-1 md:mb-2">
+      Unable to load {name}
+    </h3>
+    <p className="text-sm text-muted-foreground max-w-md mb-4 md:mb-6">
+      We encountered an issue loading this content. This might be due to network
+      issues or a recent update.
+    </p>
+    <Button
+      onClick={() => window.location.reload()}
+      className="bg-primary text-primary-foreground text-sm"
+    >
+      <RefreshCcw className="mr-2 h-4 w-4" />
+      Refresh Page
+    </Button>
+  </Card>
 );
 
 /**
@@ -31,16 +85,19 @@ const AnalyticsView = lazy(
  * ✨ Features:
  * - Tabbed interface for easy navigation between different views
  * - Responsive design that works on both mobile and desktop
+ * - Resilient error handling for component loading
  * - Lazy-loaded content for better performance
  *
- * 📱 Desktop Experience:
- * - Full tab navigation with text labels
- * - Spacious layout optimized for larger screens
- *
- * 📲 Mobile Experience:
+ * 📱 Mobile Experience:
  * - Compact header with current tab name
  * - Bottom navigation for easy thumb access
  * - Optimized spacing for smaller screens
+ * - Smooth transitions between sections
+ *
+ * 💻 Desktop Experience:
+ * - Full tab navigation with text labels
+ * - Spacious layout optimized for larger screens
+ * - Consistent design language across all views
  *
  * 📚 Reading Management:
  * - Overview of your reading activity
@@ -61,6 +118,7 @@ const HomePage: React.FC = () => {
   const [showFileDialog, setShowFileDialog] = useState(false);
   const { activeTab, setActiveTab } = useTabContext();
   const [categories, setCategories] = useState<Category[]>([]);
+  const [tabError, setTabError] = useState<string | null>(null);
 
   const handleSelectFile = (filepath: string, title: string) => {
     const encodedPath = encodeURIComponent(filepath);
@@ -88,7 +146,17 @@ const HomePage: React.FC = () => {
    🔄 Handle tab change
   */
   const handleTabChange = (value: string) => {
+    // Reset any previous error when changing tabs
+    setTabError(null);
     setActiveTab(value as TabType);
+  };
+
+  /*
+   🛠️ Error handler for Suspense fallbacks
+  */
+  const handleComponentError = (error: Error) => {
+    console.error("Error loading component:", error);
+    setTabError(error.message);
   };
 
   return (
@@ -184,38 +252,62 @@ const HomePage: React.FC = () => {
             {/* 🌟 Hero component is eagerly loaded for better initial experience */}
             <Hero />
             <Suspense fallback={<OverviewTabLoader />}>
-              <Overview
-                handleSelectDocument={handleSelectFile}
-                setShowAddTodoModal={() => setShowFileDialog(true)}
-              />
+              <ErrorBoundary onError={handleComponentError}>
+                <Overview
+                  handleSelectDocument={handleSelectFile}
+                  setShowAddTodoModal={() => setShowFileDialog(true)}
+                />
+              </ErrorBoundary>
             </Suspense>
           </TabsContent>
 
           <TabsContent value="history" className="mt-0">
             <Suspense fallback={<HistoryTabLoader />}>
-              <History handleSelectDocument={handleSelectFile} />
+              <ErrorBoundary onError={handleComponentError}>
+                <History handleSelectDocument={handleSelectFile} />
+              </ErrorBoundary>
             </Suspense>
           </TabsContent>
 
           <TabsContent value="todo" className="mt-0">
             <Suspense fallback={<TodoListLoader />}>
-              <TodoList
-                handleSelectDocument={handleSelectFile}
-                setShowAddTodoModal={() => setShowFileDialog(true)}
-              />
+              <ErrorBoundary onError={handleComponentError}>
+                <TodoList
+                  handleSelectDocument={handleSelectFile}
+                  setShowAddTodoModal={() => setShowFileDialog(true)}
+                />
+              </ErrorBoundary>
             </Suspense>
           </TabsContent>
 
           <TabsContent value="analytics" className="mt-0">
             <Suspense fallback={<AnalyticsTabLoader />}>
-              <AnalyticsView
-                availableDocuments={availableDocuments}
-                onSelectDocument={handleSelectFile}
-              />
+              <ErrorBoundary onError={handleComponentError}>
+                <AnalyticsView
+                  availableDocuments={availableDocuments}
+                  onSelectDocument={handleSelectFile}
+                />
+              </ErrorBoundary>
             </Suspense>
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Display error message if component loading fails */}
+      {tabError && (
+        <Card className="p-4 mt-4 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-xl">
+          <p className="mb-2 font-medium">Error loading content:</p>
+          <p className="text-muted-foreground">{tabError}</p>
+          <Button
+            variant="outline"
+            size="sm"
+            className="mt-3"
+            onClick={() => window.location.reload()}
+          >
+            <RefreshCcw className="h-3 w-3 mr-1" /> Refresh Page
+          </Button>
+        </Card>
+      )}
 
       {/* 📲 Mobile optimized tabs at the bottom of the screen */}
       <MobileOptimizedTabs />
@@ -230,5 +322,19 @@ const HomePage: React.FC = () => {
     </div>
   );
 };
+
+// Component-level error boundary for catching errors in child components
+class ErrorBoundary extends React.Component<{
+  children: React.ReactNode;
+  onError: (error: Error) => void;
+}> {
+  componentDidCatch(error: Error) {
+    this.props.onError(error);
+  }
+
+  render() {
+    return this.props.children;
+  }
+}
 
 export default HomePage;

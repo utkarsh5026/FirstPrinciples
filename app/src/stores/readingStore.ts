@@ -181,7 +181,6 @@ export const useReadingStore = create<State & Actions>((set, get) => ({
     set({ isLoading: true });
     try {
       const items = await readingListService.getAllItems();
-      console.log("Items:", items);
 
       const completedCount = items.filter((item) => item.completed).length;
       const totalCount = items.length;
