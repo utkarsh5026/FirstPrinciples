@@ -2,6 +2,7 @@ import { xpService } from "@/services/analytics/XpService";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { XPContext } from "./XpContext";
 import { type XPStats } from "@/services/analytics/XpService";
+import { databaseService } from "@/services/database/DatabaseService";
 
 interface XPProviderProps {
   children: ReactNode;
@@ -19,12 +20,15 @@ export const XPProvider: React.FC<XPProviderProps> = ({ children }) => {
     lastLevelUp: null,
   });
 
+  console.log("XPProvider");
+
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   // Load XP stats on mount
   useEffect(() => {
     const loadXPStats = async () => {
+      await databaseService.initDatabase();
       setIsLoading(true);
       try {
         const stats = await xpService.getXPStats();
