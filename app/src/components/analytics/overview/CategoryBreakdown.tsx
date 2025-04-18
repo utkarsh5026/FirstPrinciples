@@ -2,17 +2,9 @@ import React from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, BookText, PieChart as PieChartIcon } from "lucide-react";
-import {
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-  Tooltip as RechartsTooltip,
-  Area,
-  AreaChart,
-  CartesianGrid,
-} from "recharts";
 import { CategoryPieChart } from "@/components/insights";
 import { CategoryBreakdown } from "@/stores/categoryStore";
+import TimeOfDayPreference from "@/components/insights/TimeOfDayPreference";
 interface CategoryBreakDownProps {
   categoryBreakdown: CategoryBreakdown[];
   readingByHour: { hour: number; count: number }[];
@@ -80,69 +72,10 @@ const CategoryBreakDown: React.FC<CategoryBreakDownProps> = ({
 
         {readingByHour.some((item) => item.count > 0) ? (
           <div className="h-64 md:h-72">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart
-                data={readingByHour}
-                margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
-              >
-                <defs>
-                  <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
-                    <stop
-                      offset="5%"
-                      stopColor="var(--primary)"
-                      stopOpacity={0.8}
-                    />
-                    <stop
-                      offset="95%"
-                      stopColor="var(--primary)"
-                      stopOpacity={0.2}
-                    />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  stroke="#333"
-                  opacity={0.1}
-                />
-                <XAxis
-                  dataKey="hour"
-                  tick={{ fontSize: 10 }}
-                  tickFormatter={(hour) => {
-                    if (hour === 0) return "12am";
-                    if (hour === 12) return "12pm";
-                    return hour < 12 ? `${hour}am` : `${hour - 12}pm`;
-                  }}
-                  axisLine={false}
-                  tickLine={false}
-                />
-                <YAxis
-                  allowDecimals={false}
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fontSize: 10 }}
-                />
-                <RechartsTooltip
-                  formatter={(value: number) => [`${value} documents`, "Read"]}
-                  labelFormatter={(hour) => {
-                    if (hour === 0) return "12:00 AM";
-                    if (hour === 12) return "12:00 PM";
-                    return hour < 12 ? `${hour}:00 AM` : `${hour - 12}:00 PM`;
-                  }}
-                  contentStyle={{
-                    backgroundColor: "rgba(22, 22, 22, 0.9)",
-                    border: "1px solid #333",
-                    borderRadius: "4px",
-                  }}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="count"
-                  stroke="var(--primary)"
-                  fillOpacity={1}
-                  fill="url(#colorCount)"
-                />
-              </AreaChart>
-            </ResponsiveContainer>
+            <TimeOfDayPreference
+              readingByHour={readingByHour}
+              descriptive={false}
+            />
           </div>
         ) : (
           <div className="h-64 flex items-center justify-center flex-col">

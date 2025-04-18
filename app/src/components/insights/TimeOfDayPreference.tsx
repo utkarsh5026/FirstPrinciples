@@ -1,20 +1,20 @@
 import React, { useMemo } from "react";
 import {
-  ResponsiveContainer,
   XAxis,
   YAxis,
-  Tooltip as RechartsTooltip,
   CartesianGrid,
   ReferenceLine,
   Area,
   AreaChart,
 } from "recharts";
+import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
 import { Clock, Sun, Moon, Coffee, Clipboard } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 interface TimeOfDayPreferenceProps {
   readingByHour: { hour: number; count: number }[];
+  descriptive?: boolean;
 }
 
 /**
@@ -34,6 +34,7 @@ interface TimeOfDayPreferenceProps {
  */
 const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
   readingByHour,
+  descriptive = true,
 }) => {
   // Calculate key metrics about reading times
   const timeMetrics = useMemo(() => {
@@ -45,9 +46,18 @@ const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
       readingByHour[0]
     );
 
-    // Format display hour (12-hour format)
-    const displayHour =
-      peak.hour === 0 ? 12 : peak.hour > 12 ? peak.hour - 12 : peak.hour;
+    const getDisplayHour = (hour: number) => {
+      switch (hour) {
+        case 0:
+          return 12;
+        case 12:
+          return 12;
+        default:
+          return hour > 12 ? hour - 12 : hour;
+      }
+    };
+
+    const displayHour = getDisplayHour(peak.hour);
     const period = peak.hour >= 12 ? "PM" : "AM";
 
     // Determine time of day category
@@ -110,6 +120,17 @@ const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
 
   // Prepare enhanced data for the chart with period markers
   const enhancedData = useMemo(() => {
+    const getFormattedHour = (hour: number) => {
+      switch (hour) {
+        case 0:
+          return "12am";
+        case 12:
+          return "12pm";
+        default:
+          return hour < 12 ? `${hour}am` : `${hour - 12}pm`;
+      }
+    };
+
     return readingByHour.map((item) => {
       let period = "";
       if (item.hour === 6) period = "Morning";
@@ -120,14 +141,7 @@ const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
       return {
         ...item,
         period,
-        formattedHour:
-          item.hour === 0
-            ? "12am"
-            : item.hour === 12
-            ? "12pm"
-            : item.hour < 12
-            ? `${item.hour}am`
-            : `${item.hour - 12}pm`,
+        formattedHour: getFormattedHour(item.hour),
       };
     });
   }, [readingByHour]);
@@ -155,7 +169,6 @@ const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
       const data = payload[0].payload;
       const hour = data.hour;
 
-      // Determine which part of the day this hour belongs to
       let timePeriod, periodColor, icon;
       if (hour >= 5 && hour < 12) {
         timePeriod = "Morning";
@@ -186,7 +199,7 @@ const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
           : `${hour - 12}:00 PM`;
 
       // Calculate percentage of day's reading at this hour
-      const totalReadings = timeMetrics?.totalReadings || 0;
+      const totalReadings = timeMetrics?.totalReadings ?? 0;
       const percentage =
         totalReadings > 0 ? Math.round((data.count / totalReadings) * 100) : 0;
 
@@ -247,48 +260,51 @@ const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
     >
       <div className="h-full space-y-3">
         {/* Period indicators */}
-        <div className="flex justify-between items-center h-6 px-2">
-          {timeMetrics && (
-            <div className="flex items-center gap-1.5">
-              {getTimeIcon(timeMetrics.timeCategory)}
-              <div className="text-xs">
-                <span>Peak: </span>
-                <span className="font-medium text-primary">
-                  {timeMetrics.displayHour}:00 {timeMetrics.period}
-                </span>
+        {descriptive && (
+          <div className="flex justify-between items-center h-6 px-2">
+            {timeMetrics && (
+              <div className="flex items-center gap-1.5">
+                {getTimeIcon(timeMetrics.timeCategory)}
+                <div className="text-xs">
+                  <span>Peak: </span>
+                  <span className="font-medium text-primary">
+                    {timeMetrics.displayHour}:00 {timeMetrics.period}
+                  </span>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {timeMetrics && (
-            <div className="text-xs flex items-center gap-2">
-              <div
-                className={cn(
-                  "px-1.5 py-0.5 rounded text-xs",
-                  timeMetrics.preferredPeriod.period === "morning"
-                    ? "bg-amber-500/10 text-amber-400"
-                    : timeMetrics.preferredPeriod.period === "afternoon"
-                    ? "bg-orange-500/10 text-orange-400"
-                    : timeMetrics.preferredPeriod.period === "evening"
-                    ? "bg-purple-500/10 text-purple-400"
-                    : "bg-indigo-500/10 text-indigo-400"
-                )}
-              >
-                {timeMetrics.preferredPeriod.period.charAt(0).toUpperCase() +
-                  timeMetrics.preferredPeriod.period.slice(1)}{" "}
-                reader
+            {timeMetrics && (
+              <div className="text-xs flex items-center gap-2">
+                <div
+                  className={cn(
+                    "px-1.5 py-0.5 rounded text-xs",
+                    timeMetrics.preferredPeriod.period === "morning"
+                      ? "bg-amber-500/10 text-amber-400"
+                      : timeMetrics.preferredPeriod.period === "afternoon"
+                      ? "bg-orange-500/10 text-orange-400"
+                      : timeMetrics.preferredPeriod.period === "evening"
+                      ? "bg-purple-500/10 text-purple-400"
+                      : "bg-indigo-500/10 text-indigo-400"
+                  )}
+                >
+                  {timeMetrics.preferredPeriod.period.charAt(0).toUpperCase() +
+                    timeMetrics.preferredPeriod.period.slice(1)}{" "}
+                  reader
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
 
         {/* The chart */}
         <div className="h-[calc(100%-1.5rem)]">
-          <ResponsiveContainer width="100%" height="100%">
+          <ChartContainer config={{}} className="h-full w-full">
             <AreaChart
               data={enhancedData}
               margin={{ top: 10, right: 0, bottom: 0, left: 0 }}
             >
+              <ChartTooltip content={renderTooltip} />
               <defs>
                 <linearGradient id="timeGradient" x1="0" y1="0" x2="0" y2="1">
                   <stop
@@ -307,7 +323,7 @@ const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
               <CartesianGrid
                 strokeDasharray="3 3"
                 stroke="var(--border)"
-                opacity={0.15}
+                opacity={0.5}
                 vertical={false}
               />
 
@@ -334,8 +350,6 @@ const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
                 tick={{ fontSize: 10, fill: "var(--muted-foreground)" }}
                 width={25}
               />
-
-              <RechartsTooltip content={renderTooltip} />
 
               {timeMetrics && (
                 <ReferenceLine
@@ -391,7 +405,7 @@ const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
                 }}
               />
             </AreaChart>
-          </ResponsiveContainer>
+          </ChartContainer>
         </div>
       </div>
     </motion.div>
