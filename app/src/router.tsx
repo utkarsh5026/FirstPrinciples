@@ -14,7 +14,7 @@ import DocumentPreview from "./components/card/preview/DocumentPreview";
  */
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/FirstPrinciples",
     element: <App />,
     children: [
       {
