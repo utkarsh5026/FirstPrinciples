@@ -18,6 +18,7 @@ import {
   MonthlyTrend,
 } from "@/components/analytics/trends";
 import CategoryPieChart from "@/components/insights/CategoryPieChart";
+import { useCategoryStore } from "@/stores/categoryStore";
 
 /**
  * 📊 HistoryTrends
@@ -42,6 +43,9 @@ const HistoryTrends: React.FC = () => {
    * Default is "monthly" to show the most comprehensive trend first!
    */
   const [openSection, setOpenSection] = useState<string>("monthly");
+  const categoryBreakdown = useCategoryStore(
+    (state) => state.categoryBreakdown
+  );
 
   return (
     <div className="space-y-2 md:space-y-6">
@@ -76,19 +80,7 @@ const HistoryTrends: React.FC = () => {
           icon={<PieChartIcon className="h-4 w-4 mr-2 text-primary/70" />}
         >
           <div className="h-56 flex items-center">
-            <CategoryPieChart
-              extraProps={{
-                innerRadius: 40,
-                outerRadius: 70,
-                paddingAngle: 5,
-                stroke: "transparent",
-                label: ({ name, percent }) =>
-                  `${name.substring(0, 8)}${name.length > 8 ? ".." : ""} (${(
-                    percent * 100
-                  ).toFixed(0)}%)`,
-              }}
-              useThemeColors={false}
-            />
+            <CategoryPieChart categoryBreakdown={categoryBreakdown} />
           </div>
         </CollapsibleMobileChart>
 
@@ -139,19 +131,7 @@ const HistoryTrends: React.FC = () => {
             </h3>
 
             <div className="h-64 flex items-center">
-              <CategoryPieChart
-                extraProps={{
-                  innerRadius: 40,
-                  outerRadius: 70,
-                  paddingAngle: 5,
-                  stroke: "transparent",
-                  label: ({ name, percent }) =>
-                    `${name.substring(0, 8)}${name.length > 8 ? ".." : ""} (${(
-                      percent * 100
-                    ).toFixed(0)}%)`,
-                }}
-                useThemeColors={false}
-              />
+              <CategoryPieChart categoryBreakdown={categoryBreakdown} />
             </div>
           </Card>
         </div>
