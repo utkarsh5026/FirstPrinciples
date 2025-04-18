@@ -1,8 +1,8 @@
 import ReadingByWeekDay from "../../insights/ReadingByWeekDay";
-import TimeOfTheDay from "./TimeOfTheDay";
-import MonthlyTrend from "./MonthlyTrend";
-import ProgressOverTime from "./ProgressOverTime";
-import TimeOfDayPreference from "./TimeOfDayPreference";
+import TimeOfTheDay from "../../insights/TimeOfTheDay";
+import MonthlyTrend from "../../insights/MonthlyTrend";
+import ProgressOverTime from "../../insights/ProgressOverTime";
+import TimeOfDayPreference from "../../insights/TimeOfDayPreference";
 
 export {
   ReadingByWeekDay,
