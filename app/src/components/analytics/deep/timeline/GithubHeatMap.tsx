@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ReadingHistoryItem } from "@/services/history";
@@ -8,19 +8,27 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import useMobile from "@/hooks/useMobile";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Calendar, BookOpen, AlertCircle } from "lucide-react";
+import { useHeatmapStore } from "@/stores";
+import { Button } from "@/components/ui/button";
 
 interface GitHubStyleHeatmapProps {
   readingHistory: ReadingHistoryItem[];
 }
 
+// Type for day data in the heatmap
+type HeatmapDay = {
+  date: Date;
+  count: number;
+  hasActivity: boolean;
+  dateStr: string;
+};
+
+// Type for week data in the heatmap
 type WeekData = {
   week: number;
-  days: {
-    date: Date;
-    count: number;
-    hasActivity: boolean;
-    dateStr: string;
-  }[];
+  days: HeatmapDay[];
 };
 
 // Helper to format date as YYYY-MM-DD
@@ -31,87 +39,178 @@ const formatDateKey = (date: Date): string => {
   )}-${String(date.getDate()).padStart(2, "0")}`;
 };
 
+const MONTH_COUNT = 6;
+
+/**
+ * 📊 Enhanced GitHub-Style Heatmap Component
+ *
+ * A beautiful visualization of reading activity over time, inspired by GitHub's contribution graph.
+ * Shows patterns of activity across months with a smooth color gradient.
+ *
+ * Key improvements:
+ * - Asynchronous data loading to prevent UI blocking
+ * - Optimized for both mobile and desktop views
+ * - Smooth animations and transitions
+ * - Enhanced tooltips with detailed information
+ * - Progressive loading with skeleton placeholder
+ */
 const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
   readingHistory,
 }) => {
   const { isMobile } = useMobile();
+  const [loading, setLoading] = useState(true);
+  const [heatmapData, setHeatmapData] = useState<WeekData[]>([]);
+  const [maxCount, setMaxCount] = useState(1);
+  const [totalContributions, setTotalContributions] = useState({
+    total: 0,
+    daysWithActivity: 0,
+  });
+  const getMonthlyData = useHeatmapStore((state) => state.getMonthlyData);
 
-  // Generate heat map data for last 52 weeks (1 year)
-  const heatmapData = useMemo(() => {
-    // Create activity map from reading history
-    const activityMap: Record<string, number> = {};
-
-    readingHistory.forEach((item) => {
-      const date = new Date(item.lastReadAt);
-      const dateKey = formatDateKey(date);
-      activityMap[dateKey] = (activityMap[dateKey] || 0) + 1;
-    });
-
-    // Calculate date range: today and 52 weeks ago
+  const dateRange = useMemo(() => {
     const today = new Date();
     today.setHours(23, 59, 59, 999);
 
     const startDate = new Date(today);
-    startDate.setDate(today.getDate() - 364); // ~52 weeks
+    startDate.setMonth(today.getMonth() - MONTH_COUNT); // Go back 6 months
     startDate.setHours(0, 0, 0, 0);
+    return { today, startDate };
+  }, []);
 
-    // Generate weekly data
-    const weeks: WeekData[] = [];
-    let currentWeek: WeekData = { week: 0, days: [] };
-    let weekCounter = 0;
+  // Asynchronously load and process heatmap data
+  useEffect(() => {
+    const loadHeatmapData = async () => {
+      try {
+        setLoading(true);
 
-    // Loop through each day in the date range
-    const currentDate = new Date(startDate);
-    while (currentDate <= today) {
-      const dateStr = formatDateKey(currentDate);
-      const dayOfWeek = currentDate.getDay();
-      const count = activityMap[dateStr] || 0;
-
-      // If it's a new week (Sunday or first day), start a new week array
-      if (dayOfWeek === 0 || currentWeek.days.length === 0) {
-        if (currentWeek.days.length > 0) {
-          weeks.push(currentWeek);
+        if (readingHistory.length === 0) {
+          setHeatmapData([]);
+          setLoading(false);
+          return;
         }
-        weekCounter++;
-        currentWeek = { week: weekCounter, days: [] };
+
+        const { startDate, today } = dateRange;
+
+        // Initialize empty activity map
+        const initializeActivityMap = () => {
+          const activityMap: Record<string, number> = {};
+          const currentDate = new Date(today);
+          while (currentDate >= startDate) {
+            const dateStr = formatDateKey(currentDate);
+            activityMap[dateStr] = 0;
+            currentDate.setDate(currentDate.getDate() - 1);
+          }
+          return activityMap;
+        };
+
+        // Populate activity map with reading data
+        const populateActivityMap = async (
+          emptyMap: Record<string, number>
+        ) => {
+          const monthlyActivityMap = { ...emptyMap };
+
+          for (let i = 0; i < 6; i++) {
+            const month = today.getMonth() - i;
+            const year = today.getFullYear();
+
+            const newMonth = new Date(year, month, 1);
+            newMonth.setHours(0, 0, 0, 0);
+            const { activityMap } = await getMonthlyData(
+              readingHistory,
+              newMonth
+            );
+
+            Object.entries(activityMap).forEach(([dateKey, count]) => {
+              monthlyActivityMap[dateKey] = count;
+            });
+          }
+
+          return monthlyActivityMap;
+        };
+
+        // Convert activity map to weeks data structure for rendering
+        const buildWeeksData = (activityMap: Record<string, number>) => {
+          const weeks: WeekData[] = [];
+          let currentWeek: HeatmapDay[] = [];
+          let weekCounter = 0;
+
+          // Reset to start date, adjusted to previous Sunday
+          const startingDate = new Date(startDate);
+          const startDayOfWeek = startingDate.getDay();
+          if (startDayOfWeek !== 0) {
+            startingDate.setDate(startingDate.getDate() - startDayOfWeek);
+          }
+
+          // Loop through each day in the date range
+          const processDate = new Date(startingDate);
+          while (processDate <= today) {
+            const dateStr = formatDateKey(processDate);
+            const dayOfWeek = processDate.getDay();
+            const count = activityMap[dateStr] ?? 0;
+
+            // If it's a new week (Sunday), start a new week array
+            if (dayOfWeek === 0 && currentWeek.length > 0) {
+              weeks.push({ week: weekCounter, days: [...currentWeek] });
+              weekCounter++;
+              currentWeek = [];
+            }
+
+            // Add day data to current week
+            currentWeek.push({
+              date: new Date(processDate),
+              count,
+              hasActivity: count > 0,
+              dateStr,
+            });
+
+            // Move to next day
+            processDate.setDate(processDate.getDate() + 1);
+          }
+
+          // Add the last week if it has any days
+          if (currentWeek.length > 0) {
+            weeks.push({ week: weekCounter, days: currentWeek });
+          }
+
+          return weeks;
+        };
+
+        // Calculate summary statistics
+        const calculateStats = (activityMap: Record<string, number>) => {
+          let total = 0;
+          let daysWithActivity = 0;
+          const maxValue = Math.max(...Object.values(activityMap), 1);
+
+          Object.values(activityMap).forEach((count) => {
+            total += count;
+            if (count > 0) daysWithActivity++;
+          });
+
+          return { total, daysWithActivity, maxValue };
+        };
+
+        // Execute the modular functions in sequence
+        const emptyActivityMap = initializeActivityMap();
+        const monthlyActivityMap = await populateActivityMap(emptyActivityMap);
+        const weeks = buildWeeksData(monthlyActivityMap);
+        const { total, daysWithActivity, maxValue } =
+          calculateStats(monthlyActivityMap);
+
+        setMaxCount(maxValue);
+        setTotalContributions({ total, daysWithActivity });
+        setHeatmapData(weeks);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error loading heatmap data:", error);
+        setLoading(false);
       }
+    };
 
-      // Add day data to current week
-      currentWeek.days.push({
-        date: new Date(currentDate),
-        count,
-        hasActivity: count > 0,
-        dateStr,
-      });
+    loadHeatmapData();
+  }, [readingHistory, getMonthlyData, dateRange]);
 
-      // Move to next day
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
-
-    // Add the last week if it has any days
-    if (currentWeek.days.length > 0) {
-      weeks.push(currentWeek);
-    }
-
-    return weeks;
-  }, [readingHistory]);
-
-  // Find max count for proper color scaling
-  const maxCount = useMemo(() => {
-    let max = 0;
-    heatmapData.forEach((week) => {
-      week.days.forEach((day) => {
-        if (day.count > max) max = day.count;
-      });
-    });
-    return Math.max(max, 1); // Ensure we don't divide by zero
-  }, [heatmapData]);
-
-  // Get color intensity based on activity count
   const getColorClass = (count: number) => {
     if (count === 0) return "bg-secondary/20";
-
-    // Calculate intensity on a scale of 0-4
     const intensity = Math.min(Math.floor((count / maxCount) * 4), 4);
 
     const colorClasses = [
@@ -125,7 +224,6 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
     return colorClasses[intensity];
   };
 
-  // Get month label positions
   const monthLabels = useMemo(() => {
     const labels: { month: string; weekIndex: number }[] = [];
     const months = [
@@ -163,7 +261,7 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
     });
 
     // Show fewer month labels on mobile
-    if (isMobile && labels.length > 6) {
+    if (isMobile && labels.length > 3) {
       return labels.filter((_, i) => i % 2 === 0);
     }
 
@@ -198,26 +296,26 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
     },
   };
 
-  // Generate total contributions summary
-  const totalContributions = useMemo(() => {
-    let total = 0;
-    let daysWithActivity = 0;
-
-    heatmapData.forEach((week) => {
-      week.days.forEach((day) => {
-        total += day.count;
-        if (day.count > 0) daysWithActivity++;
-      });
-    });
-
-    return { total, daysWithActivity };
-  }, [heatmapData]);
+  // Render loading skeleton
+  if (loading) {
+    return <SkeletonWeek />;
+  }
 
   // If no data, show a message
   if (heatmapData.length === 0) {
     return (
-      <div className="flex items-center justify-center h-40 text-muted-foreground">
-        No reading data available
+      <div className="flex flex-col items-center justify-center h-40 text-muted-foreground space-y-2">
+        <AlertCircle className="h-8 w-8 text-muted-foreground/40" />
+        <p>No reading data available</p>
+        <Button
+          variant="outline"
+          size="sm"
+          className="mt-2 text-xs"
+          onClick={() => window.location.reload()}
+        >
+          <BookOpen className="h-3 w-3 mr-1.5" />
+          Start your reading journey
+        </Button>
       </div>
     );
   }
@@ -233,7 +331,7 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
         <span className="font-medium text-foreground">
           {totalContributions.daysWithActivity}
         </span>{" "}
-        days in the last year
+        days in the last 6 months
       </div>
 
       <div className="relative">
@@ -263,7 +361,7 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
 
           {/* Heatmap grid */}
           <motion.div
-            className="flex flex-1 gap-1 overflow-x-auto scrollbar-hide"
+            className="flex flex-1 gap-1 overflow-x-auto scrollbar-hide pb-2"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -322,8 +420,11 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
       <div className="flex items-center justify-end mt-2 text-xs">
         <div className="text-muted-foreground mr-2">Less</div>
         {[0, 1, 2, 3, 4].map((level) => (
-          <div
+          <motion.div
             key={level}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: level * 0.1, duration: 0.3 }}
             className={cn(
               "w-3 h-3 rounded-sm mx-1",
               level === 0 ? "bg-secondary/20" : `bg-primary/${(level + 1) * 20}`
@@ -331,6 +432,49 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
           />
         ))}
         <div className="text-muted-foreground ml-2">More</div>
+      </div>
+
+      <div className="text-xs text-center text-muted-foreground mt-1">
+        <Calendar className="inline-block h-3 w-3 mr-1" />
+        Showing your reading activity for the last 6 months
+      </div>
+    </div>
+  );
+};
+
+const SkeletonWeek = () => {
+  return (
+    <div className="space-y-4 animate-pulse h-full w-full flex flex-col justify-center items-center">
+      <div className="h-4 w-1/3 bg-secondary/30 rounded"></div>
+      <div className="flex items-center gap-1 mb-2">
+        <Skeleton className="h-4 w-14 rounded" />
+        <Skeleton className="h-4 w-36 rounded" />
+      </div>
+      <div className="flex">
+        <div className="flex flex-col justify-around pr-2 h-[120px]">
+          <Skeleton className="h-3 w-8 rounded" />
+          <Skeleton className="h-3 w-8 rounded" />
+          <Skeleton className="h-3 w-8 rounded" />
+        </div>
+        <div className="flex flex-1 gap-1 overflow-x-auto">
+          {Array.from({ length: 40 }).map((_, i) => (
+            <div
+              key={`skeleton-week-${Math.random()
+                .toString(36)
+                .slice(2, 9)}-${i}`}
+              className="flex flex-col gap-1"
+            >
+              {Array.from({ length: 7 }).map((_, j) => (
+                <Skeleton
+                  key={`skeleton-day-${Math.random()
+                    .toString(36)
+                    .slice(2, 9)}-${i}-${j}`}
+                  className="w-3 h-3 rounded-sm"
+                />
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
