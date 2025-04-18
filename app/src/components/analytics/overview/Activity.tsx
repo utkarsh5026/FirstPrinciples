@@ -133,9 +133,7 @@ const Activity: React.FC = () => {
               {`(${currentMonthHistory.length} documents read) 😎`}
             </span>
           </h5>
-          <div className="h-96">
-            <DayOfMonth history={currentMonthHistory} />
-          </div>
+          <DayOfMonth history={currentMonthHistory} />
         </div>
       </Card>
     </div>
