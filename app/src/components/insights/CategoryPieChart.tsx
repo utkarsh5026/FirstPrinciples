@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { PieChart as RechartsPieChart, Pie, Cell, Sector } from "recharts";
 import useMobile from "@/hooks/useMobile";
-import { BookText } from "lucide-react";
+import { BookText, TrendingUp, PieChart } from "lucide-react";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { motion } from "framer-motion";
 import { CategoryBreakdown } from "@/stores/categoryStore";
@@ -10,7 +10,6 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  ChartLegend,
 } from "@/components/ui/chart";
 import { PieSectorDataItem } from "recharts/types/polar/Pie";
 import getIconForTech from "../icons";
@@ -26,7 +25,6 @@ interface CategoryPieChartProps {
 const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
   ({ descriptive = true, categoryBreakdown }) => {
     const { isMobile } = useMobile();
-
     const { currentTheme } = useTheme();
 
     const chartThemeColors = useMemo(() => {
@@ -34,11 +32,81 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
       return generateThemeColors(baseColor, categoryBreakdown.length);
     }, [currentTheme, categoryBreakdown]);
 
-    const total = useMemo(() => {
-      return categoryBreakdown.reduce((acc, curr) => acc + curr.count, 0);
+    // Calculate key metrics about reading categories
+    const categoryMetrics = useMemo(() => {
+      if (categoryBreakdown.length === 0) return null;
+
+      // Find most read category
+      const mostRead = [...categoryBreakdown].sort(
+        (a, b) => b.count - a.count
+      )[0];
+
+      // Find least read category with at least one read
+      const leastRead =
+        [...categoryBreakdown]
+          .filter((cat) => cat.count > 0)
+          .sort((a, b) => a.count - b.count)[0] || null;
+
+      // Calculate total readings
+      const totalReadings = categoryBreakdown.reduce(
+        (sum, category) => sum + category.count,
+        0
+      );
+
+      // Calculate total documents
+      const totalDocuments = categoryBreakdown.reduce(
+        (sum, category) => sum + category.categoryCount,
+        0
+      );
+
+      // Calculate coverage percentage (how many categories have been read)
+      const categoriesWithReads = categoryBreakdown.filter(
+        (category) => category.count > 0
+      ).length;
+
+      const coveragePercentage = Math.round(
+        (categoriesWithReads / categoryBreakdown.length) * 100
+      );
+
+      // Determine diversity score (how evenly reading is spread across categories)
+      // Higher score means more diverse reading habits
+      const equalShare = totalReadings / categoryBreakdown.length;
+      const deviations = categoryBreakdown.map((cat) =>
+        Math.abs(cat.count - equalShare)
+      );
+      const avgDeviation =
+        deviations.reduce((sum, dev) => sum + dev, 0) / deviations.length;
+
+      const diversityScore = Math.max(
+        0,
+        Math.min(100, Math.round(100 - (avgDeviation / (equalShare || 1)) * 50))
+      );
+
+      // Derive reading pattern description
+      let readingPattern = "Balanced";
+      if (mostRead && mostRead.count > totalReadings * 0.5) {
+        readingPattern = "Focused";
+      } else if (diversityScore > 70) {
+        readingPattern = "Diverse";
+      } else if (categoriesWithReads < categoryBreakdown.length * 0.5) {
+        readingPattern = "Selective";
+      }
+
+      return {
+        mostRead,
+        leastRead,
+        totalReadings,
+        totalDocuments,
+        categoriesWithReads,
+        totalCategories: categoryBreakdown.length,
+        coveragePercentage,
+        diversityScore,
+        readingPattern,
+      };
     }, [categoryBreakdown]);
 
-    const descriptiveActiveShape = (props: PieSectorDataItem) => {
+    // Create more detailed active pie sector shape
+    const renderActiveShape = (props: PieSectorDataItem) => {
       const RADIAN = Math.PI / 180;
       const {
         cx = 0,
@@ -50,10 +118,10 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
         endAngle,
         fill,
         payload,
-        percent,
       } = props;
 
-      console.log(props.payload);
+      // Extract data from payload
+      const data = payload as CategoryBreakdown & { name: string };
 
       const sin = Math.sin(-RADIAN * (midAngle ?? 0));
       const cos = Math.cos(-RADIAN * (midAngle ?? 0));
@@ -67,9 +135,7 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
 
       return (
         <g>
-          <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-            {payload.name}
-          </text>
+          {/* Inner sector */}
           <Sector
             cx={cx}
             cy={cy}
@@ -79,6 +145,8 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
             endAngle={endAngle}
             fill={fill}
           />
+
+          {/* Outer highlight sector */}
           <Sector
             cx={cx}
             cy={cy}
@@ -88,41 +156,33 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
             outerRadius={outerRadius + 10}
             fill={fill}
           />
+
+          {/* Connecting line and dot */}
           <path
             d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
             stroke={fill}
             fill="none"
           />
           <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-          <text
-            x={ex + (cos >= 0 ? 1 : -1) * 12}
-            y={ey}
-            textAnchor={textAnchor}
-            fillOpacity={0.8}
-            fill={currentTheme.foreground}
-          >{`${truncateText(fromSnakeToTitleCase(payload.category), 15)} (${
-            payload.count
-          }/${total})`}</text>
 
+          {/* Category name and count */}
           <text
             x={ex + (cos >= 0 ? 1 : -1) * 12}
             y={ey}
-            dy={18}
             textAnchor={textAnchor}
             fill={currentTheme.foreground}
-            fillOpacity={0.6}
+            fontSize={12}
+            fontWeight="bold"
           >
-            {`(Rate ${(percent ?? 0 * 100).toFixed(2)}%)`}
+            {truncateText(fromSnakeToTitleCase(data.category), 15)}
           </text>
+
+          {/* Percentage and count */}
         </g>
       );
     };
 
-    const simpleActiveShape = (props: PieSectorDataItem) => {
-      const { outerRadius = 0 } = props;
-      return <Sector {...props} outerRadius={outerRadius + 5} />;
-    };
-
+    // Handle empty state gracefully
     if (categoryBreakdown.length === 0) {
       return (
         <motion.div
@@ -147,66 +207,158 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
     };
 
     return (
-      <ChartContainer className="w-full h-full" config={config}>
-        <RechartsPieChart>
-          {descriptive && <ChartLegend />}
-          <ChartTooltip
-            content={
-              <ChartTooltipContent
-                hideLabel
-                formatter={(value, name) => {
-                  const category = config[name as keyof typeof config];
-                  const CategoryIcon = getIconForTech(name as string);
-                  return (
-                    <div
-                      className={cn(
-                        "flex items-center text-xs text-muted-foreground gap-2 justify-between"
-                      )}
-                    >
-                      <div className="flex items-center gap-2">
-                        <CategoryIcon className="w-4 h-4 text-primary" />
-                        {category?.label || name}
-                      </div>
-                      <div className="items-baseline gap-0.5 font-cascadia-code font-medium tabular-nums text-foreground">
-                        {`${value}%`}
-                      </div>
-                    </div>
-                  );
-                }}
+      <motion.div
+        className="h-full flex flex-col items-center justify-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        {/* Metrics Summary Section */}
+        {descriptive && categoryMetrics && (
+          <div className="flex justify-between items-center h-6 px-2 mb-3 w-full">
+            <div className="flex items-center gap-1.5">
+              <PieChart className="h-4 w-4 text-primary" />
+              <div className="text-xs">
+                <span>Top: </span>
+                <span className="font-medium text-primary">
+                  {fromSnakeToTitleCase(categoryMetrics.mostRead.category)}
+                </span>
+              </div>
+            </div>
+
+            <div className="text-xs flex items-center gap-2">
+              <div
+                className={cn(
+                  "px-1.5 py-0.5 rounded text-xs",
+                  categoryMetrics.readingPattern === "Focused"
+                    ? "bg-primary/20 text-primary"
+                    : categoryMetrics.readingPattern === "Diverse"
+                    ? "bg-green-500/20 text-green-400"
+                    : categoryMetrics.readingPattern === "Selective"
+                    ? "bg-amber-500/20 text-amber-400"
+                    : "bg-blue-500/20 text-blue-400"
+                )}
+              >
+                {categoryMetrics.readingPattern} reader
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Main Chart */}
+        <div className="flex-grow">
+          <ChartContainer className="w-full h-full" config={config}>
+            <RechartsPieChart>
+              <ChartTooltip
+                content={
+                  <ChartTooltipContent
+                    hideLabel
+                    formatter={(_value, _name, props) => {
+                      const payload = props?.payload;
+                      if (!payload) return null;
+
+                      const CategoryIcon = getIconForTech(payload.category);
+                      return (
+                        <div className="space-y-2">
+                          <div className="flex items-center text-sm font-medium gap-2 pb-1.5 border-b border-border/50">
+                            <CategoryIcon className="w-4 h-4 text-primary" />
+                            {fromSnakeToTitleCase(payload.category)}
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
+                            <span className="text-muted-foreground">
+                              Documents read:
+                            </span>
+                            <span className="font-bold text-primary text-right">
+                              {payload.count}
+                            </span>
+
+                            <span className="text-muted-foreground">
+                              Total in category:
+                            </span>
+                            <span className="text-right">
+                              {payload.categoryCount}
+                            </span>
+
+                            <span className="text-muted-foreground">
+                              Completion:
+                            </span>
+                            <span className="text-right font-medium">
+                              {payload.categoryCount > 0
+                                ? Math.round(
+                                    (payload.count / payload.categoryCount) *
+                                      100
+                                  )
+                                : 0}
+                              %
+                            </span>
+
+                            <span className="text-muted-foreground">
+                              Of total reading:
+                            </span>
+                            <span className="text-right">
+                              {payload.percentage}%
+                            </span>
+                          </div>
+
+                          {payload.count > 0 &&
+                            categoryMetrics?.mostRead.category ===
+                              payload.category && (
+                              <div className="mt-1 pt-1.5 border-t border-border/50 text-xs text-green-400 flex items-center">
+                                <TrendingUp className="h-3 w-3 mr-1" />
+                                Your most-read category
+                              </div>
+                            )}
+                        </div>
+                      );
+                    }}
+                  />
+                }
+                cursor={false}
               />
-            }
-            cursor={false}
-            defaultIndex={1}
-          />
-          <Pie
-            data={categoryBreakdown}
-            cx="50%"
-            cy="50%"
-            innerRadius={isMobile ? "40%" : "45%"}
-            outerRadius={isMobile ? "70%" : "75%"}
-            paddingAngle={4}
-            dataKey="percentage"
-            nameKey="category"
-            isAnimationActive={true}
-            activeShape={
-              descriptive ? descriptiveActiveShape : simpleActiveShape
-            }
-            activeIndex={0}
-          >
-            {categoryBreakdown.map(({ category }, index) => (
-              <Cell
-                key={`${category}`}
-                fill={chartThemeColors[index % chartThemeColors.length]}
-                style={{
-                  filter: "brightness(1.1)",
-                  transition: "filter 0.3s ease",
-                  cursor: "pointer",
-                }}
-              />
-            ))}
-          </Pie>
-        </RechartsPieChart>
-      </ChartContainer>
+              <Pie
+                data={categoryBreakdown}
+                cx="50%"
+                cy="50%"
+                innerRadius={isMobile ? "40%" : "45%"}
+                outerRadius={isMobile ? "70%" : "75%"}
+                paddingAngle={4}
+                dataKey="percentage"
+                nameKey="category"
+                isAnimationActive={true}
+                activeIndex={0}
+                activeShape={renderActiveShape}
+              >
+                {categoryBreakdown.map(({ category }, index) => (
+                  <Cell
+                    key={`${category}`}
+                    fill={chartThemeColors[index % chartThemeColors.length]}
+                    style={{
+                      filter:
+                        index === 0 ? "brightness(1.2)" : "brightness(1.1)",
+                      transition: "filter 0.3s ease",
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+              </Pie>
+            </RechartsPieChart>
+          </ChartContainer>
+        </div>
+
+        {/* Bottom Insights Section */}
+        {descriptive && categoryMetrics && (
+          <div className="text-xs text-muted-foreground mt-2 px-2 py-1.5 bg-secondary/20 rounded-md flex justify-between gap-2">
+            <span>
+              {categoryMetrics.categoriesWithReads} of{" "}
+              {categoryMetrics.totalCategories} categories explored
+            </span>
+            <span className="font-medium">
+              {categoryMetrics.coveragePercentage}% coverage
+            </span>
+          </div>
+        )}
+      </motion.div>
     );
   }
 );
