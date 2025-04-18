@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { motion } from "framer-motion";
 import { LayoutList, Calendar, BookOpen, Clock } from "lucide-react";
-import { useSectionStore } from "@/stores";
+import { useCurrentDocumentStore, useSectionStore } from "@/stores";
 import { cn } from "@/lib/utils";
 
 interface DetailPanelProps {
@@ -25,12 +25,15 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
   const [completionPercentage, setCompletionPercentage] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  console.log("readSections", readSections);
+
   // Get section store functions
   const loadReadSections = useSectionStore((state) => state.loadReadSections);
   const getReadSections = useSectionStore((state) => state.getReadSections);
   const getDocumentCompletionPercentage = useSectionStore(
     (state) => state.getDocumentCompletionPercentage
   );
+  const sections = useCurrentDocumentStore((state) => state.sections);
 
   // Load read sections when component mounts or selectedFile changes
   useEffect(() => {
@@ -220,14 +223,13 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
               <div className="flex flex-wrap gap-1">
                 {Array.from({ length: totalSections }).map((_, i) => {
                   const isRead = readSections.some(
-                    (id) =>
-                      id.includes(`section-${i + 1}`) || id.includes(`heading-`)
+                    (id) => sections[i].id === id
                   );
                   return (
                     <motion.div
-                      key={i}
+                      key={sections[i].id}
                       className={cn(
-                        "w-4 h-4 rounded-sm",
+                        "w-4 h-4 rounded-2xl",
                         isRead ? "bg-primary/80" : "bg-secondary/40"
                       )}
                       initial={{ scale: 0, opacity: 0 }}
