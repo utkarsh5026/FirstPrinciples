@@ -292,10 +292,14 @@ const Stats: React.FC<StatsProps> = ({
             />
 
             {/* Section Reading Insights - Visualizing time spent per section */}
-            <ReadingInsights timeSpentBySection={docStats.timeSpentBySection} />
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <ReadingInsights
+                timeSpentBySection={docStats.timeSpentBySection}
+              />
 
-            {/* Reading Speed Curve - How reading speed changes across document */}
-            <ReadingSpeedCurve readingCurve={prepareReadingCurve()} />
+              {/* Reading Speed Curve - How reading speed changes across document */}
+              <ReadingSpeedCurve readingCurve={prepareReadingCurve()} />
+            </div>
 
             <SectionCompletionMap sections={getSectionRows()} />
 

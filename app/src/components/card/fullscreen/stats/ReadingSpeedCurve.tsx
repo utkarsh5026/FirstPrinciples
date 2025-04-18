@@ -2,14 +2,14 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
   LineChart,
   Line,
   Area,
+  Tooltip,
 } from "recharts";
 import { cn } from "@/lib/utils";
 import { BarChart2 } from "lucide-react";
+import { ChartContainer } from "@/components/ui/chart";
 
 interface ReadingSpeedCurveProps {
   readingCurve: { index: number; wpm: number }[];
@@ -28,10 +28,10 @@ const ReadingSpeedCurve: React.FC<ReadingSpeedCurveProps> = ({
       <div
         className={cn(
           "bg-secondary/5 border border-border/20 rounded-lg p-4",
-          "h-56 transition-all hover:shadow-md hover:border-border/40"
+          "h-56 transition-all hover:shadow-md hover:border-border/40 font-cascadia-code"
         )}
       >
-        <ResponsiveContainer width="100%" height="100%">
+        <ChartContainer config={{}} className="h-full w-full">
           <LineChart
             data={readingCurve}
             margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
@@ -134,7 +134,7 @@ const ReadingSpeedCurve: React.FC<ReadingSpeedCurveProps> = ({
               animationEasing="ease-in-out"
             />
           </LineChart>
-        </ResponsiveContainer>
+        </ChartContainer>
       </div>
     </div>
   );
