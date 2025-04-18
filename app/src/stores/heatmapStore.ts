@@ -1,7 +1,6 @@
-// Enhanced heatmapStore.ts with getMonthlyDocumentCounts function
 import { create } from "zustand";
 import type { LoadingWithError } from "./base/base";
-import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import type { ReadingHistoryItem } from "@/services/history";
 
 export type MonthlyData = {
   activityMap: Record<string, number>;

@@ -2,7 +2,7 @@ import { create } from "zustand";
 import {
   readingHistoryService,
   type ReadingHistoryItem,
-} from "@/services/analytics/ReadingHistoryService";
+} from "@/services/history";
 import { sectionAnalyticsController } from "@/services/analytics/SectionAnalyticsController";
 import { parseError } from "@/utils/error";
 

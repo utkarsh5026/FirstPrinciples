@@ -1,9 +1,16 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { LineChart } from "lucide-react";
 import { useHistoryStore, useActivityStore } from "@/stores";
 import { getStreakEmoji } from "../utils";
 import { DayOfMonth } from "@/components/insights";
+import type { WeeklyActivity } from "@/services/history/activity";
+type Activity = {
+  streak: number;
+  currentWeek: number;
+  mostActiveDay: WeeklyActivity;
+  leastActiveDay: WeeklyActivity;
+};
 
 /**
  * 📊 Activity Dashboard Component
@@ -24,6 +31,13 @@ const Activity: React.FC = () => {
     (state) => state.getWeeklyActivityMetrics
   );
 
+  const [activity, setActivity] = useState<Activity>({
+    streak: 0,
+    currentWeek: 0,
+    mostActiveDay: { day: "Sunday", count: 0 },
+    leastActiveDay: { day: "Sunday", count: 0 },
+  });
+
   /**
    * 🗓️ Filters reading history to only show current week's activity
    */
@@ -38,6 +52,28 @@ const Activity: React.FC = () => {
     });
   }, [readingHistory]);
 
+  useEffect(() => {
+    const createActivity = async () => {
+      const weeklyActivity = await calculateTotalWeeklyActivity(readingHistory);
+      const { mostActiveDay, leastActiveDay } =
+        getWeeklyActivityMetrics(weeklyActivity);
+      setActivity({
+        streak: currentStreak,
+        currentWeek: currentWeekHistory.length,
+        mostActiveDay,
+        leastActiveDay,
+      });
+    };
+
+    createActivity();
+  }, [
+    readingHistory,
+    currentStreak,
+    calculateTotalWeeklyActivity,
+    getWeeklyActivityMetrics,
+    currentWeekHistory.length,
+  ]);
+
   /**
    * 📅 Filters reading history to only show current month's activity
    */
@@ -51,18 +87,6 @@ const Activity: React.FC = () => {
       return readingDate >= startOfMonth;
     });
   }, [readingHistory]);
-
-  /**
-   * 📊 Calculates your most and least active days of the week
-   */
-  const { mostActiveDay, leastActiveDay } = useMemo(() => {
-    const weeklyActivity = calculateTotalWeeklyActivity(currentWeekHistory);
-    return getWeeklyActivityMetrics(weeklyActivity);
-  }, [
-    currentWeekHistory,
-    calculateTotalWeeklyActivity,
-    getWeeklyActivityMetrics,
-  ]);
 
   const streakEmoji = getStreakEmoji(currentStreak);
 
@@ -85,14 +109,14 @@ const Activity: React.FC = () => {
     {
       heading: "Most Active Day",
       emoji: "🌞",
-      value: mostActiveDay.day,
-      description: `You read ${mostActiveDay.count} documents`,
+      value: activity.mostActiveDay.day,
+      description: `You read ${activity.mostActiveDay.count} documents`,
     },
     {
       heading: "Least Active Day",
       emoji: "🥹",
-      value: leastActiveDay.day,
-      description: `You only read ${leastActiveDay.count} documents`,
+      value: activity.leastActiveDay.day,
+      description: `You only read ${activity.leastActiveDay.count} documents`,
     },
   ];
 

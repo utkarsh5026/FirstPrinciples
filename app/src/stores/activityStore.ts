@@ -1,23 +1,16 @@
-import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
-import { daysOfWeek } from "@/utils/time";
+import type { ReadingHistoryItem } from "@/services/history/ReadingHistoryService";
 import { create } from "zustand";
 import { useHistoryStore } from "./historyStore";
 import { parseError } from "@/utils/error";
-
-type DailyActivity = {
-  day: number;
-  count: number;
-};
-
-type WeeklyActivity = {
-  day: (typeof daysOfWeek)[number];
-  count: number;
-};
-
-type HourlyActivity = {
-  hour: number;
-  count: number;
-};
+import {
+  DailyActivity,
+  WeeklyActivity,
+  HourlyActivity,
+  getDailyActivityMetrics,
+  getWeeklyActivityMetrics,
+  getReadingByHourMetrics,
+} from "@/services/history/activity";
+import { analyticsWorkerManager } from "@/workers";
 
 type State = {
   totalWeeklyActivity: WeeklyActivity[];
@@ -31,13 +24,16 @@ type State = {
 type Actions = {
   calculateTotalWeeklyActivity: (
     history: ReadingHistoryItem[]
-  ) => WeeklyActivity[];
+  ) => Promise<WeeklyActivity[]>;
+
   calculateTotalReadingByHour: (
     history: ReadingHistoryItem[]
-  ) => HourlyActivity[];
+  ) => Promise<HourlyActivity[]>;
+
   calculateTotalDailyActivity: (
     history: ReadingHistoryItem[]
-  ) => DailyActivity[];
+  ) => Promise<DailyActivity[]>;
+
   getDailyActivityMetrics: (dailyActivity: DailyActivity[]) => {
     mostActiveDay: DailyActivity;
     leastActiveDay: DailyActivity;
@@ -69,21 +65,26 @@ export const useActivityStore = create<State & Actions>((set, get) => {
   /*
    🔄 Listen for changes in reading history and update activity stats
    */
-  useHistoryStore.subscribe((state) => {
-    const weeklyActivity = get().calculateTotalWeeklyActivity(
-      state.readingHistory
-    );
-    const readingByHour = get().calculateTotalReadingByHour(
-      state.readingHistory
-    );
-    const dailyActivity = get().calculateTotalDailyActivity(
-      state.readingHistory
-    );
-    set({
-      totalWeeklyActivity: weeklyActivity,
-      totalReadingByHour: readingByHour,
-      totalDailyActivity: dailyActivity,
-    });
+  useHistoryStore.subscribe(async (state) => {
+    try {
+      get()
+        .calculateTotalWeeklyActivity(state.readingHistory)
+        .then((weeklyActivity) => {
+          set({ totalWeeklyActivity: weeklyActivity });
+        });
+      get()
+        .calculateTotalReadingByHour(state.readingHistory)
+        .then((readingByHour) => {
+          set({ totalReadingByHour: readingByHour });
+        });
+      get()
+        .calculateTotalDailyActivity(state.readingHistory)
+        .then((dailyActivity) => {
+          set({ totalDailyActivity: dailyActivity });
+        });
+    } catch (error) {
+      set({ error: parseError(error) });
+    }
   });
 
   return {
@@ -98,17 +99,7 @@ export const useActivityStore = create<State & Actions>((set, get) => {
      * Shows your reading patterns across a 24-hour cycle.
      */
     calculateTotalReadingByHour: (history) => {
-      const hourlyData = Array.from({ length: 24 }, (_, hour) => ({
-        hour,
-        count: 0,
-      }));
-
-      history.forEach((item) => {
-        const hour = new Date(item.lastReadAt).getHours();
-        hourlyData[hour].count++;
-      });
-
-      return hourlyData;
+      return analyticsWorkerManager.calculateReadingByHour(history);
     },
 
     /**
@@ -116,14 +107,7 @@ export const useActivityStore = create<State & Actions>((set, get) => {
      * Perfect for seeing if you're a weekend reader or weekday warrior.
      */
     calculateTotalWeeklyActivity: (history) => {
-      const weeklyData = daysOfWeek.map((day) => ({ day, count: 0 }));
-
-      history.forEach((item) => {
-        const dayOfWeek = new Date(item.lastReadAt).getDay();
-        weeklyData[dayOfWeek].count++;
-      });
-
-      return weeklyData;
+      return analyticsWorkerManager.calculateWeeklyActivity(history);
     },
 
     /**
@@ -131,17 +115,7 @@ export const useActivityStore = create<State & Actions>((set, get) => {
      * See if you prefer reading at the beginning, middle, or end of the month.
      */
     calculateTotalDailyActivity: (history) => {
-      const dailyData = Array.from({ length: 31 }, (_, day) => ({
-        day,
-        count: 0,
-      }));
-
-      history.forEach((item) => {
-        const day = new Date(item.lastReadAt).getDate();
-        dailyData[day].count++;
-      });
-
-      return dailyData;
+      return analyticsWorkerManager.calculateDailyActivity(history);
     },
 
     /**
@@ -152,9 +126,11 @@ export const useActivityStore = create<State & Actions>((set, get) => {
       set({ isLoading: true });
       try {
         const history = useHistoryStore.getState().readingHistory;
-        const weeklyActivity = get().calculateTotalWeeklyActivity(history);
-        const readingByHour = get().calculateTotalReadingByHour(history);
-        const dailyActivity = get().calculateTotalDailyActivity(history);
+        const weeklyActivity = await get().calculateTotalWeeklyActivity(
+          history
+        );
+        const readingByHour = await get().calculateTotalReadingByHour(history);
+        const dailyActivity = await get().calculateTotalDailyActivity(history);
         set({
           totalWeeklyActivity: weeklyActivity,
           totalReadingByHour: readingByHour,
@@ -171,23 +147,7 @@ export const useActivityStore = create<State & Actions>((set, get) => {
      * Perfect for seeing if you're a weekend reader or weekday warrior.
      */
     getDailyActivityMetrics: (dailyActivity) => {
-      if (dailyActivity.length === 0)
-        return {
-          mostActiveDay: { day: 0, count: 0 },
-          leastActiveDay: { day: 0, count: 0 },
-        };
-
-      const mostActiveDay = dailyActivity.reduce(
-        (max, day) => (day.count > max.count ? day : max),
-        dailyActivity[0]
-      );
-
-      const leastActiveDay = dailyActivity.reduce(
-        (min, day) => (day.count < min.count ? day : min),
-        dailyActivity[0]
-      );
-
-      return { mostActiveDay, leastActiveDay };
+      return getDailyActivityMetrics(dailyActivity);
     },
 
     /**
@@ -195,23 +155,7 @@ export const useActivityStore = create<State & Actions>((set, get) => {
      * Perfect for seeing if you're a weekend reader or weekday warrior.
      */
     getWeeklyActivityMetrics: (weeklyActivity) => {
-      if (weeklyActivity.length === 0)
-        return {
-          mostActiveDay: { day: "Sunday", count: 0 },
-          leastActiveDay: { day: "Sunday", count: 0 },
-        };
-
-      const mostActiveDay = weeklyActivity.reduce(
-        (max, day) => (day.count > max.count ? day : max),
-        weeklyActivity[0]
-      );
-
-      const leastActiveDay = weeklyActivity.reduce(
-        (min, day) => (day.count < min.count ? day : min),
-        weeklyActivity[0]
-      );
-
-      return { mostActiveDay, leastActiveDay };
+      return getWeeklyActivityMetrics(weeklyActivity);
     },
 
     /**
@@ -219,23 +163,7 @@ export const useActivityStore = create<State & Actions>((set, get) => {
      * Perfect for seeing if you're a morning or night owl.
      */
     getReadingByHourMetrics: (readingByHour) => {
-      if (readingByHour.length === 0)
-        return {
-          mostActiveHour: { hour: 0, count: 0 },
-          leastActiveHour: { hour: 0, count: 0 },
-        };
-
-      const mostActiveHour = readingByHour.reduce(
-        (max, hour) => (hour.count > max.count ? hour : max),
-        readingByHour[0]
-      );
-
-      const leastActiveHour = readingByHour.reduce(
-        (min, hour) => (hour.count < min.count ? hour : min),
-        readingByHour[0]
-      );
-
-      return { mostActiveHour, leastActiveHour };
+      return getReadingByHourMetrics(readingByHour);
     },
   };
 });

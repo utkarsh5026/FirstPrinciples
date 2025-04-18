@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Clock, BookOpen, BookText, Search } from "lucide-react";
-import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import { ReadingHistoryItem } from "@/services/history";
 import { COLORS } from "@/lib/constants";
 import getIconForTech from "@/components/icons";
 import { formatTimeAgo } from "@/utils/time";

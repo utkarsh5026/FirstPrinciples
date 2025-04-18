@@ -5,7 +5,7 @@ import { sectionAnalyticsController } from "@/services/analytics/SectionAnalytic
 import {
   readingHistoryService,
   type ReadingHistoryItem,
-} from "@/services/analytics/ReadingHistoryService";
+} from "@/services/history";
 import { formatDateKey } from "@/utils/time";
 import { useDocumentStore } from "./documentStore";
 

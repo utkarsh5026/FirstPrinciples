@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import type { ReadingHistoryItem } from "@/services/history";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 
 import HistoryHeader from "./components/HistoryHeader";

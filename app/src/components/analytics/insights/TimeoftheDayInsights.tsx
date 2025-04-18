@@ -1,13 +1,22 @@
 import InsightCard from "./InsightCard";
 import { Clock } from "lucide-react";
-import { memo, useMemo } from "react";
+import { memo, useEffect, useState } from "react";
 import { TimeOfDayPreference } from "../trends";
 import { useActivityStore } from "@/stores";
-import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import type { ReadingHistoryItem } from "@/services/history";
+import type { HourlyActivity } from "@/services/history/activity";
 
 interface TimeOfDayInsightCardProps {
   history: ReadingHistoryItem[];
 }
+
+type TimeOfDayInsightCard = {
+  mostActiveHour: HourlyActivity;
+  leastActiveHour: HourlyActivity;
+  totalReadingEvents: number;
+  preferredPeriod: string;
+  analyticsData: HourlyActivity[];
+};
 
 /**
  * ⏰ TimeOfDayInsightCard
@@ -18,6 +27,13 @@ interface TimeOfDayInsightCardProps {
  */
 const TimeOfDayInsightCard: React.FC<TimeOfDayInsightCardProps> = memo(
   ({ history }) => {
+    const [insights, setInsights] = useState<TimeOfDayInsightCard>({
+      mostActiveHour: { hour: 0, count: 0 },
+      leastActiveHour: { hour: 0, count: 0 },
+      totalReadingEvents: 0,
+      preferredPeriod: "",
+      analyticsData: [],
+    });
     const calculateTotalReadingByHour = useActivityStore(
       (state) => state.calculateTotalReadingByHour
     );
@@ -31,34 +47,32 @@ const TimeOfDayInsightCard: React.FC<TimeOfDayInsightCardProps> = memo(
      * It reveals your most and least active reading hours,
      * counts how many times you've read, and identifies your favorite time of day to dive into a book! 📚✨
      */
-    const {
-      mostActiveHour,
-      leastActiveHour,
-      totalReadingEvents,
-      preferredPeriod,
-      analyticsData,
-    } = useMemo(() => {
-      const analyticsData = calculateTotalReadingByHour(history);
-      const { mostActiveHour, leastActiveHour } =
-        getReadingByHourMetrics(analyticsData);
-      const totalReadingEvents =
-        analyticsData?.reduce((sum, hour) => sum + hour.count, 0) || 0;
+    useEffect(() => {
+      const createInsights = async () => {
+        const analyticsData = await calculateTotalReadingByHour(history);
+        const { mostActiveHour, leastActiveHour } =
+          getReadingByHourMetrics(analyticsData);
+        const totalReadingEvents =
+          analyticsData?.reduce((sum, hour) => sum + hour.count, 0) || 0;
 
-      const getPreferredPeriod = (hour: number) => {
-        if (hour >= 5 && hour < 12) return "morning";
-        if (hour >= 12 && hour < 17) return "afternoon";
-        if (hour >= 17 && hour < 21) return "evening";
-        return "night";
+        const getPreferredPeriod = (hour: number) => {
+          if (hour >= 5 && hour < 12) return "morning";
+          if (hour >= 12 && hour < 17) return "afternoon";
+          if (hour >= 17 && hour < 21) return "evening";
+          return "night";
+        };
+
+        const preferredPeriod = getPreferredPeriod(mostActiveHour.hour);
+        setInsights({
+          mostActiveHour,
+          leastActiveHour,
+          totalReadingEvents,
+          preferredPeriod,
+          analyticsData,
+        });
       };
 
-      const preferredPeriod = getPreferredPeriod(mostActiveHour.hour);
-      return {
-        mostActiveHour,
-        leastActiveHour,
-        totalReadingEvents,
-        preferredPeriod,
-        analyticsData,
-      };
+      createInsights();
     }, [history, calculateTotalReadingByHour, getReadingByHourMetrics]);
 
     /**
@@ -99,38 +113,41 @@ const TimeOfDayInsightCard: React.FC<TimeOfDayInsightCardProps> = memo(
       }
     };
 
-    const insights = mostActiveHour
+    const cardInsights = insights.mostActiveHour
       ? [
           {
             label: "Peak hour",
-            value: formatHour(mostActiveHour.hour),
+            value: formatHour(insights.mostActiveHour.hour),
           },
           {
             label: "Preferred time",
-            value: preferredPeriod ?? "N/A",
+            value: insights.preferredPeriod ?? "N/A",
             highlight: true,
           },
           {
             label: "Least active hour",
-            value: formatHour(leastActiveHour.hour),
+            value: formatHour(insights.leastActiveHour.hour),
           },
-          { label: "Reading events", value: totalReadingEvents.toString() },
+          {
+            label: "Reading events",
+            value: insights.totalReadingEvents.toString(),
+          },
         ]
       : [];
 
-    const { timeGradient, timeIconColor } = getStyles(preferredPeriod);
+    const { timeGradient, timeIconColor } = getStyles(insights.preferredPeriod);
     return (
       <InsightCard
         title="Time of Day Preference"
         description="When you're most likely to read throughout the day"
         icon={Clock}
-        insights={insights}
+        insights={cardInsights}
         gradient={timeGradient}
         iconColor={timeIconColor}
         delay={0.1}
       >
         <div className="h-52 w-full">
-          <TimeOfDayPreference readingByHour={analyticsData} />
+          <TimeOfDayPreference readingByHour={insights.analyticsData} />
         </div>
       </InsightCard>
     );

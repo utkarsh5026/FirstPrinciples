@@ -1,8 +1,8 @@
-import { memo, useMemo } from "react";
+import { memo, useEffect, useState } from "react";
 import { Calendar, ArrowUp, ArrowDown } from "lucide-react";
 import InsightCard from "../analytics/insights/InsightCard";
 import { useActivityStore } from "@/stores";
-import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import type { ReadingHistoryItem } from "@/services/history";
 import {
   ResponsiveContainer,
   BarChart,
@@ -20,10 +20,27 @@ import { useTheme } from "@/components/theme/context/ThemeContext";
 import { cn } from "@/lib/utils";
 import useMobile from "@/hooks/useMobile";
 import { generateThemeColors } from "@/utils/colors";
+import type { DailyActivity } from "@/services/history/activity";
 
 interface DayOfMonthActivityInsightProps {
   history: ReadingHistoryItem[];
 }
+
+type DayOfMonthActivityInsights = {
+  data: {
+    isPeak: boolean;
+    isSpecialDay: boolean;
+    barColor: string;
+    comparedToAvg: number;
+    day: number;
+    count: number;
+  }[];
+  mostActiveDay: DailyActivity;
+  leastActiveDay: DailyActivity;
+  average: number;
+  monthlyPattern: string;
+  maxValue: number;
+};
 
 /**
  * 📅 DayOfMonthActivityInsight
@@ -46,94 +63,65 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
       (state) => state.getDailyActivityMetrics
     );
 
+    const [insights, setInsights] = useState<DayOfMonthActivityInsights>({
+      data: [],
+      mostActiveDay: { day: 0, count: 0 },
+      leastActiveDay: { day: 0, count: 0 },
+      average: 0,
+      monthlyPattern: "",
+      maxValue: 0,
+    });
     /**
      * 🎯 This analyzes your monthly reading patterns!
      * Discovers which days of the month you're most likely to read,
      * and identifies patterns in your monthly reading cycle.
      */
-    const {
-      enhancedData,
-      mostActiveDay,
-      leastActiveDay,
-      average,
-      monthlyPattern,
-      maxValue,
-    } = useMemo(() => {
-      // Get daily activity data
-      const dailyData = calculateTotalDailyActivity(history);
-      const colors = generateThemeColors(
-        currentTheme.primary,
-        dailyData.length
-      );
+    useEffect(() => {
+      const createInsights = async () => {
+        const dailyData = await calculateTotalDailyActivity(history);
 
-      // Get metrics (most/least active days)
-      const { mostActiveDay, leastActiveDay } =
-        getDailyActivityMetrics(dailyData);
+        const colors = generateThemeColors(
+          currentTheme.primary,
+          dailyData.length
+        );
 
-      // Filter out day 0 (which doesn't exist) and limit to 31 days
-      const validData = dailyData.filter((day) => day.day > 0 && day.day <= 31);
+        const { mostActiveDay, leastActiveDay } =
+          getDailyActivityMetrics(dailyData);
 
-      // Calculate average readings per day
-      const totalReadings = validData.reduce((sum, day) => sum + day.count, 0);
-      const average =
-        validData.length > 0 ? totalReadings / validData.length : 0;
+        const validData = dailyData.filter(
+          (day) => day.day > 0 && day.day <= 31
+        );
 
-      // Determine pattern: early-month, mid-month, late-month
-      const earlyMonthTotal = validData
-        .filter((d) => d.day <= 10)
-        .reduce((sum, d) => sum + d.count, 0);
-      const midMonthTotal = validData
-        .filter((d) => d.day > 10 && d.day <= 20)
-        .reduce((sum, d) => sum + d.count, 0);
-      const lateMonthTotal = validData
-        .filter((d) => d.day > 20)
-        .reduce((sum, d) => sum + d.count, 0);
+        const monthlyPattern = figureOutMonthlyPattern(validData);
+        const { average, maxValue } = calculateDailyMetrics(validData);
 
-      let monthlyPattern = "balanced";
-      if (earlyMonthTotal > midMonthTotal && earlyMonthTotal > lateMonthTotal) {
-        monthlyPattern = "early-month";
-      } else if (
-        midMonthTotal > earlyMonthTotal &&
-        midMonthTotal > lateMonthTotal
-      ) {
-        monthlyPattern = "mid-month";
-      } else if (
-        lateMonthTotal > earlyMonthTotal &&
-        lateMonthTotal > midMonthTotal
-      ) {
-        monthlyPattern = "late-month";
-      }
+        const enhancedData = validData.map((day, index) => {
+          const isMonthStart = day.day === 1;
+          const isMonthEnd = day.day === 31;
+          const isQuarterMonth =
+            day.day === 7 || day.day === 15 || day.day === 23;
+          const isPeak = day.day === mostActiveDay.day;
 
-      // Max value for chart scaling
-      const maxValue = Math.max(...validData.map((day) => day.count));
+          return {
+            ...day,
+            isPeak,
+            isSpecialDay: isMonthStart || isMonthEnd || isQuarterMonth,
+            barColor: colors[index],
+            comparedToAvg:
+              average > 0 ? Math.round((day.count / average - 1) * 100) : 0,
+          };
+        });
 
-      // Enhance data for visualization
-      const enhancedData = validData.map((day, index) => {
-        // Determine if it's a special day (e.g., beginning of week/month)
-        const isMonthStart = day.day === 1;
-        const isMonthEnd = day.day === 31;
-        const isQuarterMonth =
-          day.day === 7 || day.day === 15 || day.day === 23;
-        const isPeak = day.day === mostActiveDay.day;
-
-        return {
-          ...day,
-          isPeak,
-          isSpecialDay: isMonthStart || isMonthEnd || isQuarterMonth,
-          barColor: colors[index],
-          comparedToAvg:
-            average > 0 ? Math.round((day.count / average - 1) * 100) : 0,
-        };
-      });
-
-      return {
-        enhancedData,
-        mostActiveDay,
-        leastActiveDay,
-        average,
-        monthlyPattern,
-        maxValue,
+        setInsights({
+          data: enhancedData,
+          mostActiveDay,
+          leastActiveDay,
+          average,
+          monthlyPattern,
+          maxValue,
+        });
       };
+      createInsights();
     }, [
       history,
       calculateTotalDailyActivity,
@@ -167,7 +155,7 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
       }
     };
 
-    const { gradient, iconColor } = getPatternStyles(monthlyPattern);
+    const { gradient, iconColor } = getPatternStyles(insights.monthlyPattern);
 
     // Get pattern display name
     const getPatternDisplayName = (pattern: string) => {
@@ -184,24 +172,24 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
     };
 
     // Insights for the card
-    const insights = mostActiveDay
+    const cardInsights = insights.mostActiveDay
       ? [
           {
             label: "Peak day",
-            value: mostActiveDay.day.toString(),
+            value: insights.mostActiveDay.day.toString(),
             highlight: true,
           },
           {
             label: "Pattern",
-            value: getPatternDisplayName(monthlyPattern),
+            value: getPatternDisplayName(insights.monthlyPattern),
           },
           {
             label: "Least active",
-            value: leastActiveDay.day.toString(),
+            value: insights.leastActiveDay.day.toString(),
           },
           {
             label: "Daily average",
-            value: average.toFixed(1),
+            value: insights.average.toFixed(1),
           },
         ]
       : [];
@@ -258,7 +246,7 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
     };
 
     // If there's no data, show empty state
-    if (!enhancedData.length || maxValue === 0) {
+    if (!insights.data.length || insights.maxValue === 0) {
       return (
         <motion.div
           className="h-full flex items-center justify-center flex-col"
@@ -280,7 +268,7 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
         title="Monthly Reading Cycle"
         description="Your reading activity throughout the month"
         icon={Calendar}
-        insights={insights}
+        insights={cardInsights}
         gradient={gradient}
         iconColor={iconColor}
         delay={0.3}
@@ -294,7 +282,7 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
           >
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
-                data={enhancedData}
+                data={insights.data}
                 margin={{ top: 15, right: 5, left: 0, bottom: 5 }}
                 barCategoryGap={isMobile ? 1 : 2}
               >
@@ -338,7 +326,7 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
 
                 {/* Average reading reference line */}
                 <ReferenceLine
-                  y={average}
+                  y={insights.average}
                   stroke={currentTheme.foreground}
                   strokeDasharray="3 3"
                   label={{
@@ -356,7 +344,7 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
                   animationDuration={1500}
                   animationBegin={200}
                 >
-                  {enhancedData.map((entry, index) => (
+                  {insights.data.map((entry, index) => (
                     <Cell
                       key={`${entry.day}-${index}`}
                       fill={entry.barColor}
@@ -375,5 +363,52 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
       </InsightCard>
     );
   });
+
+const figureOutMonthlyPattern = (data: DailyActivity[]): string => {
+  const earlyMonthTotal = data
+    .filter((d) => d.day <= 10)
+    .reduce((sum, d) => sum + d.count, 0);
+
+  const midMonthTotal = data
+    .filter((d) => d.day > 10 && d.day <= 20)
+    .reduce((sum, d) => sum + d.count, 0);
+
+  const lateMonthTotal = data
+    .filter((d) => d.day > 20)
+    .reduce((sum, d) => sum + d.count, 0);
+
+  let monthlyPattern = "balanced";
+  if (earlyMonthTotal > midMonthTotal && earlyMonthTotal > lateMonthTotal) {
+    monthlyPattern = "early-month";
+  } else if (
+    midMonthTotal > earlyMonthTotal &&
+    midMonthTotal > lateMonthTotal
+  ) {
+    monthlyPattern = "mid-month";
+  } else if (
+    lateMonthTotal > earlyMonthTotal &&
+    lateMonthTotal > midMonthTotal
+  ) {
+    monthlyPattern = "late-month";
+  }
+
+  return monthlyPattern;
+};
+
+const calculateDailyMetrics = (
+  data: DailyActivity[]
+): {
+  average: number;
+  maxValue: number;
+} => {
+  const totalReadings = data.reduce((sum, day) => sum + day.count, 0);
+  const average = data.length > 0 ? totalReadings / data.length : 0;
+  const maxValue = Math.max(...data.map((day) => day.count));
+
+  return {
+    average,
+    maxValue,
+  };
+};
 
 export default DayOfMonthActivityInsight;

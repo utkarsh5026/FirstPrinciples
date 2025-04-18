@@ -2,8 +2,8 @@
 
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { databaseService } from "../database/DatabaseService";
-import { readingSessionTracker } from "./ReadingSessionTracker";
-import { wordCountEstimator } from "./WordCountEstimator";
+import { readingSessionTracker } from "@/services/analytics/ReadingSessionTracker";
+import { wordCountEstimator } from "@/services/analytics/WordCountEstimator";
 
 export interface ReadingHistoryItem {
   id?: number;
@@ -135,35 +135,4 @@ export class ReadingHistoryService {
       return null;
     }
   }
-
-  /**
-   * Calculate total time spent reading across all documents
-   * @returns Promise with total time in milliseconds
-   */
-  public async getTotalReadingTime(): Promise<number> {
-    try {
-      const history = await this.getAllHistory();
-      return history.reduce((total, item) => total + item.timeSpent, 0);
-    } catch (error) {
-      console.error("Error calculating total reading time:", error);
-      return 0;
-    }
-  }
-
-  /**
-   * Calculate total words read across all documents
-   * @returns Promise with total words read
-   */
-  public async getTotalWordsRead(): Promise<number> {
-    try {
-      const history = await this.getAllHistory();
-      return history.reduce((total, item) => total + item.wordsRead, 0);
-    } catch (error) {
-      console.error("Error calculating total words read:", error);
-      return 0;
-    }
-  }
 }
-
-// Create and export a singleton instance
-export const readingHistoryService = new ReadingHistoryService();

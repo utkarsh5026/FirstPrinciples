@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { File } from "lucide-react";
-import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import type { ReadingHistoryItem } from "@/services/history";
 import type { Category } from "@/utils/MarkdownLoader";
 import useMobile from "@/hooks/useMobile";
 import { cn } from "@/lib/utils";

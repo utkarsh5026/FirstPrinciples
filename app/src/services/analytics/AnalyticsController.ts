@@ -7,7 +7,7 @@ import { wordCountEstimator } from "./WordCountEstimator";
 import {
   readingHistoryService,
   type ReadingHistoryItem,
-} from "./ReadingHistoryService";
+} from "@/services/history";
 import { readingListService } from "./ReadingListService";
 import { readingStatsService } from "./ReadingStatsService";
 import type { FileMetadata } from "@/utils/MarkdownLoader";

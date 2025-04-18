@@ -6,7 +6,7 @@ import {
 } from "./SectionReadingTracker";
 import { wordCountEstimator } from "./WordCountEstimator";
 import { analyticsController } from "./AnalyticsController";
-import type { ReadingHistoryItem } from "./ReadingHistoryService";
+import type { ReadingHistoryItem } from "@/services/history";
 
 /**
  * Controller that manages section-level analytics

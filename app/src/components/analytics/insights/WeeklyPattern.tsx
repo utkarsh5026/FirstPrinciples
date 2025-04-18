@@ -1,13 +1,20 @@
-import { useMemo, memo } from "react";
+import { memo, useState, useEffect } from "react";
 import InsightCard from "./InsightCard";
 import { CalendarDays } from "lucide-react";
 import { ReadingByWeekDay } from "../trends";
-import type { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import type { ReadingHistoryItem } from "@/services/history";
 import { useActivityStore } from "@/stores";
+import { WeeklyActivity } from "@/services/history/activity";
 
 interface WeekdayPatternInsightCardProps {
   history: ReadingHistoryItem[];
 }
+
+type WeeklyPatternInsightCard = {
+  mostActiveDay: WeeklyActivity;
+  leastActiveDay: WeeklyActivity;
+  weekendVsWeekday: { weekend: number; weekday: number };
+};
 
 /**
  * 📊 WeekdayPatternInsightCard
@@ -29,27 +36,37 @@ export const WeekdayPattern: React.FC<WeekdayPatternInsightCardProps> = memo(
       (state) => state.getWeeklyActivityMetrics
     );
 
+    const [insights, setInsights] = useState<WeeklyPatternInsightCard>({
+      mostActiveDay: { day: "Sunday", count: 0 },
+      leastActiveDay: { day: "Sunday", count: 0 },
+      weekendVsWeekday: { weekend: 0, weekday: 0 },
+    });
+
     /**
      * 🔍 This magical function analyzes your weekly reading patterns!
      * Discovers your most active reading day, least active day,
      * and whether you're a weekend bookworm or weekday reader! 📖✨
      */
-    const { mostActiveDay, leastActiveDay, weekendVsWeekday } = useMemo(() => {
-      const analyticsData = calculateTotalWeeklyActivity(history);
-      const { mostActiveDay, leastActiveDay } =
-        getWeeklyActivityMetrics(analyticsData);
-      const weekendVsWeekday = analyticsData.reduce(
-        (acc, day) => {
-          if (day.day === "Saturday" || day.day === "Sunday") {
-            acc.weekend += day.count;
-          } else {
-            acc.weekday += day.count;
-          }
-          return acc;
-        },
-        { weekend: 0, weekday: 0 }
-      );
-      return { mostActiveDay, leastActiveDay, weekendVsWeekday };
+    useEffect(() => {
+      const createInsights = async () => {
+        const analyticsData = await calculateTotalWeeklyActivity(history);
+        const { mostActiveDay, leastActiveDay } =
+          getWeeklyActivityMetrics(analyticsData);
+        const weekendVsWeekday = analyticsData.reduce(
+          (acc, day) => {
+            if (day.day === "Saturday" || day.day === "Sunday") {
+              acc.weekend += day.count;
+            } else {
+              acc.weekday += day.count;
+            }
+            return acc;
+          },
+          { weekend: 0, weekday: 0 }
+        );
+        setInsights({ mostActiveDay, leastActiveDay, weekendVsWeekday });
+      };
+
+      createInsights();
     }, [history, calculateTotalWeeklyActivity, getWeeklyActivityMetrics]);
 
     /**
@@ -70,21 +87,25 @@ export const WeekdayPattern: React.FC<WeekdayPatternInsightCardProps> = memo(
     };
 
     const { gradient, iconColor } = getWeekStyles(
-      weekendVsWeekday.weekend,
-      weekendVsWeekday.weekday
+      insights.weekendVsWeekday.weekend,
+      insights.weekendVsWeekday.weekday
     );
 
-    const insights = mostActiveDay
+    const cardInsights = insights.mostActiveDay
       ? [
-          { label: "Most active", value: mostActiveDay.day, highlight: true },
-          { label: "Least active", value: leastActiveDay.day },
+          {
+            label: "Most active",
+            value: insights.mostActiveDay.day,
+            highlight: true,
+          },
+          { label: "Least active", value: insights.leastActiveDay.day },
           {
             label: "Weekend reads",
-            value: weekendVsWeekday.weekend.toString(),
+            value: insights.weekendVsWeekday.weekend.toString(),
           },
           {
             label: "Weekday reads",
-            value: weekendVsWeekday.weekday.toString(),
+            value: insights.weekendVsWeekday.weekday.toString(),
           },
         ]
       : [];
@@ -94,7 +115,7 @@ export const WeekdayPattern: React.FC<WeekdayPatternInsightCardProps> = memo(
         title="Weekly Reading Pattern"
         description="Your reading activity throughout the week"
         icon={CalendarDays}
-        insights={insights}
+        insights={cardInsights}
         gradient={gradient}
         iconColor={iconColor}
         delay={0}

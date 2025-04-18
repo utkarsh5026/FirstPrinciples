@@ -10,7 +10,7 @@ import {
   Filter,
   Loader2,
 } from "lucide-react";
-import { ReadingHistoryItem } from "@/services/analytics/ReadingHistoryService";
+import { ReadingHistoryItem } from "@/services/history";
 import { FileMetadata, MarkdownLoader, Category } from "@/utils/MarkdownLoader";
 import useMobile from "@/hooks/useMobile";
 

@@ -1,9 +1,6 @@
 import { FileMetadata } from "@/utils/MarkdownLoader";
 import { databaseService } from "../database/DatabaseService";
-import {
-  ReadingHistoryItem,
-  readingHistoryService,
-} from "./ReadingHistoryService";
+import { ReadingHistoryItem, readingHistoryService } from "@/services/history";
 
 export type ReadingStats = {
   id: string;
