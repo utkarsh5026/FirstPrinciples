@@ -1,12 +1,9 @@
 import { create } from "zustand";
-import {
-  type MarkdownSection,
-  parseMarkdownIntoSections,
-} from "@/services/section/parsing";
-import { estimateReadingTime } from "@/services/analytics/estimation";
 import { LoadingWithError } from "./base/base";
 import { parseError } from "@/utils/error";
 import { MarkdownLoader } from "@/utils/MarkdownLoader";
+import { MarkdownSection } from "@/services/section/parsing";
+import { markdownWorkerManager } from "@/workers/markdown/MarkdownWorkerManager";
 
 type State = LoadingWithError & {
   markdown: string;
@@ -53,14 +50,16 @@ export const useCurrentDocumentStore = create<State & Actions>((set) => ({
     const category = documentUrl.split("/")[0].toLowerCase();
 
     try {
-      const sections = parseMarkdownIntoSections(markdown);
+      const sections = await markdownWorkerManager.parseMarkdown(markdown);
 
       const totalWords = sections.reduce(
         (acc, section) => acc + section.wordCount,
         0
       );
 
-      const totalTime = estimateReadingTime(totalWords);
+      const totalTime = await markdownWorkerManager.estimateReadingTime(
+        totalWords
+      );
 
       set({
         title: MarkdownLoader.getFilenameFromPath(documentUrl),
