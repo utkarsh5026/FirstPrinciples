@@ -27,7 +27,7 @@ export type Variant = "default" | "emphasis" | "subtle";
  * @param delay Initial delay for entrance animations
  * @returns Animation control properties and state handlers
  */
-export const useContainerAnimation = (delay = 0) => {
+export function useContainerAnimation(delay = 0) {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [activeInsight, setActiveInsight] = useState<number | null>(null);
@@ -84,6 +84,19 @@ export const useContainerAnimation = (delay = 0) => {
         transition: {
           duration: 0.4,
           delay: delay + 0.1,
+          ease: "easeOut",
+        },
+      },
+    },
+    // New animation for header action
+    headerAction: {
+      hidden: { opacity: 0, x: 10 },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 0.4,
+          delay: delay + 0.15,
           ease: "easeOut",
         },
       },
@@ -169,7 +182,7 @@ export const useContainerAnimation = (delay = 0) => {
     getContentAnimation,
     getInsightAnimation,
   };
-};
+}
 
 /**
  * Custom hook for creating color themes based on different visual styles

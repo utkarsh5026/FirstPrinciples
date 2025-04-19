@@ -28,7 +28,7 @@ interface InsightCardProps {
   icon: React.ElementType;
   infoTooltip?: string;
   children: React.ReactNode;
-  insights: {
+  insights?: {
     label: string;
     value: string;
     highlight?: boolean;
@@ -40,6 +40,7 @@ interface InsightCardProps {
   variant?: Variant;
   delay?: number;
   footer?: React.ReactNode;
+  headerAction?: React.ReactNode;
   onCardClick?: () => void;
 }
 
@@ -56,6 +57,7 @@ interface InsightCardProps {
  * - Detailed insights with individual icons and tooltips
  * - Mobile-optimized layout and interactions
  * - Optional footer section
+ * - Optional header action element in the top-right corner
  * - Stunning visual effects and micro-interactions
  */
 const CardContainer: React.FC<InsightCardProps> = ({
@@ -70,9 +72,9 @@ const CardContainer: React.FC<InsightCardProps> = ({
   variant = "default",
   delay = 0,
   footer,
+  headerAction,
   onCardClick,
 }) => {
-  // Use custom hooks for animations and theming
   const {
     cardRef,
     isVisible,
@@ -94,7 +96,7 @@ const CardContainer: React.FC<InsightCardProps> = ({
       initial="hidden"
       animate={isVisible ? "visible" : "hidden"}
       variants={animationStates.card}
-      className="h-full"
+      className="h-full w-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -118,8 +120,8 @@ const CardContainer: React.FC<InsightCardProps> = ({
             ></div>
 
             <div className="flex items-center justify-between relative z-10">
-              <div className="space-y-1">
-                <CardTitle className="text-sm font-medium flex items-center">
+              <div className="flex items-center space-y-0">
+                <div className="flex items-center space-x-2">
                   {Icon && (
                     <div
                       className={cn(
@@ -131,48 +133,69 @@ const CardContainer: React.FC<InsightCardProps> = ({
                       <Icon className="h-3.5 w-3.5" />
                     </div>
                   )}
-                  {title}
+                  <CardTitle className="text-sm font-medium flex items-center">
+                    {title}
 
-                  {infoTooltip && (
-                    <Tooltip delayDuration={300}>
-                      <TooltipTrigger asChild>
-                        <motion.div
-                          className={cn(
-                            "ml-2 opacity-40 hover:opacity-100 cursor-help transition-opacity",
-                            styles["info-icon"]
-                          )}
-                          whileHover={{ rotate: [0, -5, 5, -5, 0], scale: 1.1 }}
-                          transition={{ duration: 0.5 }}
+                    {infoTooltip && (
+                      <Tooltip delayDuration={300}>
+                        <TooltipTrigger asChild>
+                          <motion.div
+                            className={cn(
+                              "ml-2 opacity-40 hover:opacity-100 cursor-help transition-opacity",
+                              styles["info-icon"]
+                            )}
+                            whileHover={{
+                              rotate: [0, -5, 5, -5, 0],
+                              scale: 1.1,
+                            }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            <Info className="h-3.5 w-3.5 text-foreground" />
+                          </motion.div>
+                        </TooltipTrigger>
+                        <TooltipContent
+                          side="top"
+                          className="max-w-xs bg-card/95 backdrop-blur-sm border border-border/40 shadow-lg p-3 rounded-xl"
                         >
-                          <Info className="h-3.5 w-3.5 text-foreground" />
-                        </motion.div>
-                      </TooltipTrigger>
-                      <TooltipContent
-                        side="top"
-                        className="max-w-xs bg-card/95 backdrop-blur-sm border border-border/40 shadow-lg p-3 rounded-xl"
-                      >
-                        <p className="text-xs">{infoTooltip}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  )}
-
-                  {isClickable && (
-                    <motion.div
-                      className="ml-auto"
-                      animate={{ x: isHovered ? 3 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                    </motion.div>
-                  )}
-                </CardTitle>
-                {description && (
-                  <CardDescription className="text-xs">
-                    {description}
-                  </CardDescription>
-                )}
+                          <p className="text-xs">{infoTooltip}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    )}
+                  </CardTitle>
+                </div>
               </div>
+
+              {/* Header action area - NEW */}
+              {headerAction && (
+                <motion.div
+                  variants={animationStates.headerAction}
+                  className={cn(
+                    "ml-auto flex items-center",
+                    styles["header-action"]
+                  )}
+                >
+                  {headerAction}
+                </motion.div>
+              )}
+
+              {/* Clickable card indicator */}
+              {isClickable && !headerAction && (
+                <motion.div
+                  className="ml-auto"
+                  animate={{ x: isHovered ? 3 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                </motion.div>
+              )}
             </div>
+
+            {/* Description rendered below title */}
+            {description && (
+              <CardDescription className="text-xs mt-1">
+                {description}
+              </CardDescription>
+            )}
 
             {/* Insights badges with improved styling */}
             {insights && insights.length > 0 && (
@@ -265,15 +288,11 @@ const CardContainer: React.FC<InsightCardProps> = ({
 
         {footer && (
           <motion.div variants={animationStates.footer}>
-            <CardFooter className="px-6 py-3 border-t border-border/20 bg-secondary/10 backdrop-blur-sm">
+            <CardFooter className="px-6 py-3 border-t border-border/20 bg-secondary/10 backdrop-blur-sm font-cascadia-code">
               {footer}
             </CardFooter>
           </motion.div>
         )}
-
-        {/* Decorative elements for visual appeal */}
-        {/* <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full blur-2xl bg-primary/10 pointer-events-none"></div>
-        <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full blur-xl bg-primary/5 pointer-events-none"></div> */}
       </Card>
     </motion.div>
   );
