@@ -1,14 +1,11 @@
 import { useTheme } from "@/components/theme/context/ThemeContext";
-import {
-  Bar,
-  BarChart,
-  Tooltip as RechartsTooltip,
-  XAxis,
-  YAxis,
-  Cell,
-} from "recharts";
+import { Bar, BarChart, XAxis, YAxis, Cell } from "recharts";
 import ChartContainer from "../chart/ChartContainer";
-import { ChartContainer as ChartContainerUI } from "../ui/chart";
+import {
+  ChartContainer as ChartContainerUI,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "../ui/chart";
 import { useActivityStore } from "@/stores";
 import { useMemo } from "react";
 import { generateThemeColors } from "@/utils/colors";
@@ -93,31 +90,28 @@ const TimeOfTheDay: React.FC = () => {
       <ChartContainerUI config={{}} className="h-full w-full">
         <BarChart
           data={timeOfDayData}
-          margin={{ top: 10, right: 10, left: 0, bottom: 5 }}
+          layout="vertical"
+          margin={{ top: 10, right: 30, left: 40, bottom: 5 }}
         >
-          <XAxis
-            dataKey={(item) => item.name}
-            tick={{ fill: currentTheme.foreground + "80" }}
-            axisLine={false}
-            tickLine={false}
+          <ChartTooltip
+            content={<ChartTooltipContent />}
+            formatter={(value) => [`${value} documents`, "Read"]}
           />
-          <YAxis
+          <XAxis
+            type="number"
             tick={{ fill: currentTheme.foreground + "80" }}
             axisLine={false}
             tickLine={false}
             allowDecimals={false}
           />
-          <RechartsTooltip
-            cursor={{ fill: currentTheme.primary + "10" }}
-            contentStyle={{
-              backgroundColor: currentTheme.cardBg || "#ffffff",
-              border: `1px solid ${currentTheme.border}`,
-              borderRadius: "4px",
-              color: currentTheme.foreground,
-            }}
-            formatter={(value) => [`${value} documents`, "Read"]}
+          <YAxis
+            type="category"
+            dataKey="name"
+            tick={{ fill: currentTheme.foreground + "80" }}
+            axisLine={false}
+            tickLine={false}
           />
-          <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+          <Bar dataKey="count" radius={5}>
             {timeOfDayData.map((entry) => (
               <Cell key={entry.name} fill={entry.color} />
             ))}
