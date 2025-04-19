@@ -1,21 +1,29 @@
 import React, { memo, useMemo } from "react";
 import { PieChart as RechartsPieChart, Pie, Cell, Sector } from "recharts";
 import useMobile from "@/hooks/useMobile";
-import { BookText, TrendingUp, PieChart } from "lucide-react";
+import {
+  BookText,
+  TrendingUp,
+  PieChart,
+  Shuffle,
+  Filter,
+  Scale,
+  Target,
+} from "lucide-react";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { motion } from "framer-motion";
 import { CategoryBreakdown } from "@/stores/categoryStore";
 import {
   ChartConfig,
-  ChartContainer,
+  ChartContainer as ShadcnChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { PieSectorDataItem } from "recharts/types/polar/Pie";
 import getIconForTech from "../icons";
-import { cn } from "@/lib/utils";
 import { generateThemeColors } from "@/utils/colors";
 import { fromSnakeToTitleCase, truncateText } from "@/utils/string";
+import ChartContainer from "../chart/ChartContainer";
 
 interface CategoryPieChartProps {
   descriptive?: boolean;
@@ -182,23 +190,7 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
       );
     };
 
-    // Handle empty state gracefully
-    if (categoryBreakdown.length === 0) {
-      return (
-        <motion.div
-          className="h-full flex items-center justify-center flex-col"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <BookText className="h-10 w-10 text-muted-foreground opacity-20 mb-3" />
-          <p className="text-sm text-muted-foreground">No category data yet</p>
-          <p className="text-xs text-muted-foreground mt-1">
-            Read more documents to see insights
-          </p>
-        </motion.div>
-      );
-    }
+    if (categoryBreakdown.length === 0) return <NoCategoryData />;
 
     const config: ChartConfig = {
       category: {
@@ -206,163 +198,182 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
       },
     };
 
+    const getClasses = () => {
+      switch (categoryMetrics?.readingPattern) {
+        case "Focused":
+          return {
+            className: "bg-primary/20 text-primary",
+            label: "Focused",
+            icon: <Target className="h-4 w-4 text-primary" />,
+          };
+        case "Diverse":
+          return {
+            className: "bg-green-500/20 text-green-400",
+            label: "Diverse",
+            icon: <Shuffle className="h-4 w-4 text-green-400" />,
+          };
+        case "Selective":
+          return {
+            className: "bg-amber-500/20 text-amber-400",
+            label: "Selective",
+            icon: <Filter className="h-4 w-4 text-amber-400" />,
+          };
+        default:
+          return {
+            className: "bg-blue-500/20 text-blue-400",
+            label: "Balanced",
+            icon: <Scale className="h-4 w-4 text-blue-400" />,
+          };
+      }
+    };
+
+    const { icon, className } = getClasses();
+
+    const left = categoryMetrics?.mostRead.category
+      ? {
+          icon: <PieChart className="h-4 w-4 text-primary" />,
+          label: "Top: ",
+          value: fromSnakeToTitleCase(categoryMetrics?.mostRead.category),
+        }
+      : undefined;
+
+    const right = categoryMetrics?.leastRead.category
+      ? {
+          icon: icon,
+          value: `${categoryMetrics.readingPattern} reader`,
+          className: className,
+        }
+      : undefined;
+
     return (
-      <motion.div
-        className="h-full w-full flex flex-col items-center justify-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="h-full space-y-3">
-          {/* Metrics Summary Section */}
-          {descriptive && categoryMetrics && (
-            <div className="flex justify-between items-center h-6 px-2 mb-3 w-full">
-              <div className="flex items-center gap-1.5">
-                <PieChart className="h-4 w-4 text-primary" />
-                <div className="text-xs">
-                  <span>Top: </span>
-                  <span className="font-medium text-primary">
-                    {fromSnakeToTitleCase(categoryMetrics.mostRead.category)}
-                  </span>
-                </div>
-              </div>
+      <ChartContainer left={left} right={right}>
+        <ShadcnChartContainer className="w-full h-full" config={config}>
+          <RechartsPieChart>
+            <ChartTooltip
+              content={
+                <ChartTooltipContent
+                  hideLabel
+                  formatter={(_value, _name, props) => {
+                    const payload = props?.payload;
+                    if (!payload) return null;
 
-              <div className="text-xs flex items-center gap-2">
-                <div
-                  className={cn(
-                    "px-1.5 py-0.5 rounded text-xs",
-                    categoryMetrics.readingPattern === "Focused"
-                      ? "bg-primary/20 text-primary"
-                      : categoryMetrics.readingPattern === "Diverse"
-                      ? "bg-green-500/20 text-green-400"
-                      : categoryMetrics.readingPattern === "Selective"
-                      ? "bg-amber-500/20 text-amber-400"
-                      : "bg-blue-500/20 text-blue-400"
-                  )}
-                >
-                  {categoryMetrics.readingPattern} reader
-                </div>
-              </div>
-            </div>
-          )}
+                    const CategoryIcon = getIconForTech(payload.category);
+                    return (
+                      <div className="space-y-2">
+                        <div className="flex items-center text-sm font-medium gap-2 pb-1.5 border-b border-border/50">
+                          <CategoryIcon className="w-4 h-4 text-primary" />
+                          {fromSnakeToTitleCase(payload.category)}
+                        </div>
 
-          {/* Main Chart */}
-          <div className="flex-grow h-[calc(100%-1.5rem)]">
-            <ChartContainer className="w-full h-full" config={config}>
-              <RechartsPieChart>
-                <ChartTooltip
-                  content={
-                    <ChartTooltipContent
-                      hideLabel
-                      formatter={(_value, _name, props) => {
-                        const payload = props?.payload;
-                        if (!payload) return null;
+                        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
+                          <span className="text-muted-foreground">
+                            Documents read:
+                          </span>
+                          <span className="font-bold text-primary text-right">
+                            {payload.count}
+                          </span>
 
-                        const CategoryIcon = getIconForTech(payload.category);
-                        return (
-                          <div className="space-y-2">
-                            <div className="flex items-center text-sm font-medium gap-2 pb-1.5 border-b border-border/50">
-                              <CategoryIcon className="w-4 h-4 text-primary" />
-                              {fromSnakeToTitleCase(payload.category)}
+                          <span className="text-muted-foreground">
+                            Total in category:
+                          </span>
+                          <span className="text-right">
+                            {payload.categoryCount}
+                          </span>
+
+                          <span className="text-muted-foreground">
+                            Completion:
+                          </span>
+                          <span className="text-right font-medium">
+                            {payload.categoryCount > 0
+                              ? Math.round(
+                                  (payload.count / payload.categoryCount) * 100
+                                )
+                              : 0}
+                            %
+                          </span>
+
+                          <span className="text-muted-foreground">
+                            Of total reading:
+                          </span>
+                          <span className="text-right">
+                            {payload.percentage}%
+                          </span>
+                        </div>
+
+                        {payload.count > 0 &&
+                          categoryMetrics?.mostRead.category ===
+                            payload.category && (
+                            <div className="mt-1 pt-1.5 border-t border-border/50 text-xs text-green-400 flex items-center">
+                              <TrendingUp className="h-3 w-3 mr-1" />
+                              Your most-read category
                             </div>
-
-                            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
-                              <span className="text-muted-foreground">
-                                Documents read:
-                              </span>
-                              <span className="font-bold text-primary text-right">
-                                {payload.count}
-                              </span>
-
-                              <span className="text-muted-foreground">
-                                Total in category:
-                              </span>
-                              <span className="text-right">
-                                {payload.categoryCount}
-                              </span>
-
-                              <span className="text-muted-foreground">
-                                Completion:
-                              </span>
-                              <span className="text-right font-medium">
-                                {payload.categoryCount > 0
-                                  ? Math.round(
-                                      (payload.count / payload.categoryCount) *
-                                        100
-                                    )
-                                  : 0}
-                                %
-                              </span>
-
-                              <span className="text-muted-foreground">
-                                Of total reading:
-                              </span>
-                              <span className="text-right">
-                                {payload.percentage}%
-                              </span>
-                            </div>
-
-                            {payload.count > 0 &&
-                              categoryMetrics?.mostRead.category ===
-                                payload.category && (
-                                <div className="mt-1 pt-1.5 border-t border-border/50 text-xs text-green-400 flex items-center">
-                                  <TrendingUp className="h-3 w-3 mr-1" />
-                                  Your most-read category
-                                </div>
-                              )}
-                          </div>
-                        );
-                      }}
-                    />
-                  }
-                  cursor={false}
+                          )}
+                      </div>
+                    );
+                  }}
                 />
-                <Pie
-                  data={categoryBreakdown}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={isMobile ? "40%" : "45%"}
-                  outerRadius={isMobile ? "70%" : "75%"}
-                  paddingAngle={4}
-                  dataKey="percentage"
-                  nameKey="category"
-                  isAnimationActive={true}
-                  activeIndex={0}
-                  activeShape={renderActiveShape}
-                >
-                  {categoryBreakdown.map(({ category }, index) => (
-                    <Cell
-                      key={`${category}`}
-                      fill={chartThemeColors[index % chartThemeColors.length]}
-                      style={{
-                        filter:
-                          index === 0 ? "brightness(1.2)" : "brightness(1.1)",
-                        transition: "filter 0.3s ease",
-                        cursor: "pointer",
-                      }}
-                    />
-                  ))}
-                </Pie>
-              </RechartsPieChart>
-            </ChartContainer>
-          </div>
+              }
+              cursor={false}
+            />
+            <Pie
+              data={categoryBreakdown}
+              cx="50%"
+              cy="50%"
+              innerRadius={isMobile ? "40%" : "45%"}
+              outerRadius={isMobile ? "70%" : "75%"}
+              paddingAngle={4}
+              dataKey="percentage"
+              nameKey="category"
+              isAnimationActive={true}
+              activeIndex={0}
+              activeShape={renderActiveShape}
+            >
+              {categoryBreakdown.map(({ category }, index) => (
+                <Cell
+                  key={`${category}`}
+                  fill={chartThemeColors[index % chartThemeColors.length]}
+                  style={{
+                    filter: index === 0 ? "brightness(1.2)" : "brightness(1.1)",
+                    transition: "filter 0.3s ease",
+                    cursor: "pointer",
+                  }}
+                />
+              ))}
+            </Pie>
+          </RechartsPieChart>
+        </ShadcnChartContainer>
 
-          {/* Bottom Insights Section */}
-          {descriptive && categoryMetrics && (
-            <div className="text-xs text-muted-foreground mt-2 px-2 py-1.5 bg-secondary/20 rounded-md flex justify-between gap-2">
-              <span>
-                {categoryMetrics.categoriesWithReads} of{" "}
-                {categoryMetrics.totalCategories} categories explored
-              </span>
-              <span className="font-medium">
-                {categoryMetrics.coveragePercentage}% coverage
-              </span>
-            </div>
-          )}
-        </div>
-      </motion.div>
+        {descriptive && categoryMetrics && (
+          <div className="text-xs text-muted-foreground mt-2 px-2 py-1.5 bg-secondary/20 rounded-md flex justify-between gap-2">
+            <span>
+              {categoryMetrics.categoriesWithReads} of{" "}
+              {categoryMetrics.totalCategories} categories explored
+            </span>
+            <span className="font-medium">
+              {categoryMetrics.coveragePercentage}% coverage
+            </span>
+          </div>
+        )}
+      </ChartContainer>
     );
   }
 );
+
+const NoCategoryData = () => {
+  return (
+    <motion.div
+      className="h-full flex items-center justify-center flex-col"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <BookText className="h-10 w-10 text-muted-foreground opacity-20 mb-3" />
+      <p className="text-sm text-muted-foreground">No category data yet</p>
+      <p className="text-xs text-muted-foreground mt-1">
+        Read more documents to see insights
+      </p>
+    </motion.div>
+  );
+};
 
 export default CategoryPieChart;
