@@ -253,7 +253,7 @@ const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
 
   return (
     <motion.div
-      className="h-full"
+      className="h-full w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
