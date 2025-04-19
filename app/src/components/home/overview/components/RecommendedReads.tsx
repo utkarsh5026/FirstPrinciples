@@ -1,10 +1,10 @@
 import React from "react";
 import { Star } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { FileMetadata } from "@/utils/MarkdownLoader";
 import getIconForTech from "@/components/icons";
 import { fromSnakeToTitleCase } from "@/utils/string";
+import CardContainer from "@/components/container/CardContainer";
+import { Badge } from "@/components/ui/badge";
 
 interface RecommendedReadsProps {
   featuredDocs: FileMetadata[];
@@ -28,30 +28,32 @@ interface RecommendedReadsProps {
  */
 const RecommendedReads: React.FC<RecommendedReadsProps> = ({
   featuredDocs,
-  mostReadCategory,
   handleSelectDocument,
+  mostReadCategory,
 }) => {
   return (
-    <Card className="p-4 border-primary/10 hover:border-primary/30 transition-colors overflow-hidden relative rounded-3xl">
-      {/* Decorative background element */}
-      <div className="absolute right-0 top-0 w-32 h-32 bg-gradient-radial from-primary/5 to-transparent rounded-full -mr-8 -mt-8 opacity-50"></div>
-
-      <div className="relative">
-        <div className="flex justify-between items-center mb-3">
-          <h4 className="text-sm font-medium flex items-center">
-            <Star className="h-4 w-4 mr-2 text-primary/70" />
-            Recommended for You
-          </h4>
-          {mostReadCategory !== "None yet" && (
-            <Badge
-              variant="secondary"
-              className="text-xs bg-primary/10 border-none text-primary"
-            >
-              Based on {mostReadCategory}
-            </Badge>
-          )}
-        </div>
-
+    <CardContainer
+      title="Recommended Reads"
+      description="Based on your reading history"
+      icon={Star}
+      variant="subtle"
+      headerAction={
+        <Badge
+          variant="outline"
+          className="cursor-pointer border-primary/40 text-primary rounded-full"
+        >
+          <span className="text-xs">
+            {`Based on ${fromSnakeToTitleCase(mostReadCategory)}`}
+          </span>
+        </Badge>
+      }
+      footer={
+        <p className="text-xs text-muted-foreground">
+          We recommend you to read more to get personalized suggestions 😊
+        </p>
+      }
+    >
+      <div className="flex flex-col border-2 rounded-2xl">
         {featuredDocs.length > 0 ? (
           <div className="grid grid-cols-2 gap-2">
             {featuredDocs.map(({ path, title }) => {
@@ -86,7 +88,7 @@ const RecommendedReads: React.FC<RecommendedReadsProps> = ({
           </div>
         )}
       </div>
-    </Card>
+    </CardContainer>
   );
 };
 

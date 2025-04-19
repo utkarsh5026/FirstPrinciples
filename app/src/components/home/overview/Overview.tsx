@@ -80,7 +80,7 @@ const Overview: React.FC<OverviewProps> = ({
               doc.path.startsWith(topCategory) &&
               !readingHistory.some((item) => item.path === doc.path)
           )
-          .slice(0, 4);
+          .slice(0, 8);
       }
 
       // If not enough recommended docs, add some random ones
@@ -128,8 +128,7 @@ const Overview: React.FC<OverviewProps> = ({
 
           <RecentActivity handleSelectDocument={handleSelectDocument} />
         </div>
-
-        <div className="space-y-4">
+        <div className="space-y-4 flex flex-col gap-4">
           <h3 className="text-sm font-medium flex items-center">
             <Zap className="mr-2 h-4 w-4 text-primary" />
             Continue Learning
@@ -145,6 +144,8 @@ const Overview: React.FC<OverviewProps> = ({
             handleSelectDocument={handleSelectDocument}
             setShowAddTodoModal={setShowAddTodoModal}
           />
+
+          <div className="flex-grow border-2 rounded-2xl" />
         </div>
       </div>
 

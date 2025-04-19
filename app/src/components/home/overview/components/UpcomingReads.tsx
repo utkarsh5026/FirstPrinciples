@@ -1,11 +1,11 @@
 import React from "react";
 import { BookMarked, ListTodo, Calendar } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useTabContext } from "@/components/home/context/TabContext";
 import getIconForTech from "@/components/icons";
 import { useReadingStore } from "@/stores";
 import { formatDate } from "@/components/home/utils";
+import CardContainer from "@/components/container/CardContainer";
 
 interface UpcomingReadsProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -37,12 +37,12 @@ const UpcomingReads: React.FC<UpcomingReadsProps> = ({
   );
 
   return (
-    <Card className="p-4 border-primary/10 bg-gradient-to-r from-primary/5 to-transparent hover:border-primary/30 transition-colors rounded-3xl">
-      <div className="flex justify-between items-center mb-3">
-        <h4 className="text-sm font-medium flex items-center">
-          <BookMarked className="h-4 w-4 mr-2 text-primary/70" />
-          Upcoming Reads
-        </h4>
+    <CardContainer
+      title="Upcoming Reads"
+      description="Add documents you want to read later"
+      icon={BookMarked}
+      variant="subtle"
+      headerAction={
         <Button
           variant="outline"
           size="sm"
@@ -52,13 +52,13 @@ const UpcomingReads: React.FC<UpcomingReadsProps> = ({
           <ListTodo className="h-3 w-3 mr-1.5" />
           Add
         </Button>
-      </div>
-
+      }
+    >
       {todoList.filter((item) => !item.completed).length > 0 ? (
         <div className="space-y-2">
           {todoList
             .filter((item) => !item.completed)
-            .slice(0, 3)
+            .slice(0, 6)
             .map(({ id, path, title, addedAt }) => {
               const category = path.split("/")[0] || "uncategorized";
               const CategoryIcon = getIconForTech(category);
@@ -119,7 +119,7 @@ const UpcomingReads: React.FC<UpcomingReadsProps> = ({
           </Button>
         </div>
       )}
-    </Card>
+    </CardContainer>
   );
 };
 
