@@ -8,10 +8,10 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import useMobile from "@/hooks/useMobile";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar, BookOpen, AlertCircle } from "lucide-react";
 import { useHeatmapStore } from "@/stores";
 import { Button } from "@/components/ui/button";
+import CardContainer from "@/components/container/CardContainer";
 
 interface GitHubStyleHeatmapProps {
   readingHistory: ReadingHistoryItem[];
@@ -58,7 +58,6 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
   readingHistory,
 }) => {
   const { isMobile } = useMobile();
-  const [loading, setLoading] = useState(true);
   const [heatmapData, setHeatmapData] = useState<WeekData[]>([]);
   const [maxCount, setMaxCount] = useState(1);
   const [totalContributions, setTotalContributions] = useState({
@@ -81,11 +80,8 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
   useEffect(() => {
     const loadHeatmapData = async () => {
       try {
-        setLoading(true);
-
         if (readingHistory.length === 0) {
           setHeatmapData([]);
-          setLoading(false);
           return;
         }
 
@@ -199,10 +195,8 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
         setMaxCount(maxValue);
         setTotalContributions({ total, daysWithActivity });
         setHeatmapData(weeks);
-        setLoading(false);
       } catch (error) {
         console.error("Error loading heatmap data:", error);
-        setLoading(false);
       }
     };
 
@@ -296,186 +290,174 @@ const GitHubStyleHeatmap: React.FC<GitHubStyleHeatmapProps> = ({
     },
   };
 
-  // Render loading skeleton
-  if (loading) {
-    return <SkeletonWeek />;
-  }
-
   // If no data, show a message
   if (heatmapData.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center h-40 text-muted-foreground space-y-2">
-        <AlertCircle className="h-8 w-8 text-muted-foreground/40" />
-        <p>No reading data available</p>
-        <Button
-          variant="outline"
-          size="sm"
-          className="mt-2 text-xs"
-          onClick={() => window.location.reload()}
-        >
-          <BookOpen className="h-3 w-3 mr-1.5" />
-          Start your reading journey
-        </Button>
-      </div>
-    );
+    return <NoDataAvaliable />;
   }
 
   return (
-    <div className="space-y-4">
-      {/* Contribution summary */}
-      <div className="text-xs text-muted-foreground mb-2">
-        <span className="font-medium text-foreground">
-          {totalContributions.total}
-        </span>{" "}
-        documents read across{" "}
-        <span className="font-medium text-foreground">
-          {totalContributions.daysWithActivity}
-        </span>{" "}
-        days in the last 6 months
-      </div>
-
-      <div className="relative">
-        {/* Month labels on top */}
-        <div className="flex mb-1 pl-7 text-xs text-muted-foreground">
-          {monthLabels.map((label, i) => (
-            <div
-              key={`month-${i}`}
-              className="absolute text-xs"
-              style={{
-                left: `${(label.weekIndex / heatmapData.length) * 100}%`,
-                transform: "translateX(-50%)",
-              }}
-            >
-              {label.month}
-            </div>
-          ))}
+    <CardContainer
+      title="Past 6 Months"
+      icon={Calendar}
+      variant="subtle"
+      baseColor="orange"
+      description="A heatmap of your reading activity over the past 6 months."
+      insights={[
+        {
+          icon: BookOpen,
+          label: "Total Documents Read",
+          value: totalContributions.total.toString(),
+          highlight: true,
+        },
+        {
+          icon: Calendar,
+          label: "Total Days Read",
+          value: totalContributions.daysWithActivity.toString(),
+        },
+      ]}
+    >
+      <div className="space-y-4">
+        {/* Contribution summary */}
+        <div className="text-xs text-muted-foreground mb-2">
+          <span className="font-medium text-foreground">
+            {totalContributions.total}
+          </span>{" "}
+          documents read across{" "}
+          <span className="font-medium text-foreground">
+            {totalContributions.daysWithActivity}
+          </span>{" "}
+          days in the last 6 months
         </div>
 
-        <div className="flex">
-          {/* Day of week labels */}
-          <div className="flex flex-col justify-around pr-2 text-xs text-muted-foreground h-[120px]">
-            <div>Mon</div>
-            <div>Wed</div>
-            <div>Fri</div>
-          </div>
-
-          {/* Heatmap grid */}
-          <motion.div
-            className="flex flex-1 gap-1 overflow-x-auto scrollbar-hide pb-2"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {heatmapData.map((week, weekIndex) => (
-              <div key={`week-${week.week}`} className="flex flex-col gap-1">
-                {/* Fill in empty cells for incomplete first week */}
-                {weekIndex === 0 &&
-                  week.days[0].date.getDay() !== 0 &&
-                  Array.from({ length: week.days[0].date.getDay() }).map(
-                    (_, i) => <div key={`empty-${i}`} className="w-3 h-3"></div>
-                  )}
-
-                {week.days.map((day, dayIndex) => (
-                  <Tooltip key={`day-${day.dateStr}`} delayDuration={300}>
-                    <TooltipTrigger asChild>
-                      <motion.div
-                        variants={cellVariants}
-                        className={cn(
-                          "w-3 h-3 rounded-sm cursor-pointer transform transition-all duration-100 hover:scale-125",
-                          getColorClass(day.count)
-                        )}
-                        style={{
-                          // Small randomized animation delay for wave effect
-                          transitionDelay: `${
-                            ((weekIndex * 7 + dayIndex) % 5) * 20
-                          }ms`,
-                        }}
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent
-                      side="top"
-                      className="bg-card/95 backdrop-blur-sm border-primary/10 shadow-lg text-xs font-medium font-cascadia-code"
-                    >
-                      <div className="font-medium">{formatDate(day.date)}</div>
-                      {day.count === 0 ? (
-                        <span className="text-muted-foreground">
-                          No reading activity
-                        </span>
-                      ) : (
-                        <span>
-                          {day.count}{" "}
-                          {day.count === 1 ? "document" : "documents"} read
-                        </span>
-                      )}
-                    </TooltipContent>
-                  </Tooltip>
-                ))}
+        <div className="relative">
+          {/* Month labels on top */}
+          <div className="flex mb-1 pl-7 text-xs text-muted-foreground">
+            {monthLabels.map((label, i) => (
+              <div
+                key={`month-${i}`}
+                className="absolute text-xs"
+                style={{
+                  left: `${(label.weekIndex / heatmapData.length) * 100}%`,
+                  transform: "translateX(-50%)",
+                }}
+              >
+                {label.month}
               </div>
             ))}
-          </motion.div>
+          </div>
+
+          <div className="flex">
+            {/* Day of week labels */}
+            <div className="flex flex-col justify-around pr-2 text-xs text-muted-foreground h-[120px]">
+              <div>Mon</div>
+              <div>Wed</div>
+              <div>Fri</div>
+            </div>
+
+            {/* Heatmap grid */}
+            <motion.div
+              className="flex flex-1 gap-1 overflow-x-auto scrollbar-hide pb-2"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              {heatmapData.map((week, weekIndex) => (
+                <div key={`week-${week.week}`} className="flex flex-col gap-1">
+                  {/* Fill in empty cells for incomplete first week */}
+                  {weekIndex === 0 &&
+                    week.days[0].date.getDay() !== 0 &&
+                    Array.from({ length: week.days[0].date.getDay() }).map(
+                      (_, i) => (
+                        <div key={`empty-${i}`} className="w-3 h-3"></div>
+                      )
+                    )}
+
+                  {week.days.map((day, dayIndex) => (
+                    <Tooltip key={`day-${day.dateStr}`} delayDuration={300}>
+                      <TooltipTrigger asChild>
+                        <motion.div
+                          variants={cellVariants}
+                          className={cn(
+                            "w-3 h-3 rounded-sm cursor-pointer transform transition-all duration-100 hover:scale-125",
+                            getColorClass(day.count)
+                          )}
+                          style={{
+                            // Small randomized animation delay for wave effect
+                            transitionDelay: `${
+                              ((weekIndex * 7 + dayIndex) % 5) * 20
+                            }ms`,
+                          }}
+                        />
+                      </TooltipTrigger>
+                      <TooltipContent
+                        side="top"
+                        className="bg-card/95 backdrop-blur-sm border-primary/10 shadow-lg text-xs font-medium font-cascadia-code"
+                      >
+                        <div className="font-medium">
+                          {formatDate(day.date)}
+                        </div>
+                        {day.count === 0 ? (
+                          <span className="text-muted-foreground">
+                            No reading activity
+                          </span>
+                        ) : (
+                          <span>
+                            {day.count}{" "}
+                            {day.count === 1 ? "document" : "documents"} read
+                          </span>
+                        )}
+                      </TooltipContent>
+                    </Tooltip>
+                  ))}
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Legend */}
+        <div className="flex items-center justify-end mt-2 text-xs">
+          <div className="text-muted-foreground mr-2">Less</div>
+          {[0, 1, 2, 3, 4].map((level) => (
+            <motion.div
+              key={level}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: level * 0.1, duration: 0.3 }}
+              className={cn(
+                "w-3 h-3 rounded-sm mx-1",
+                level === 0
+                  ? "bg-secondary/20"
+                  : `bg-primary/${(level + 1) * 20}`
+              )}
+            />
+          ))}
+          <div className="text-muted-foreground ml-2">More</div>
+        </div>
+
+        <div className="text-xs text-center text-muted-foreground mt-1">
+          <Calendar className="inline-block h-3 w-3 mr-1" />
+          Showing your reading activity for the last 6 months
         </div>
       </div>
-
-      {/* Legend */}
-      <div className="flex items-center justify-end mt-2 text-xs">
-        <div className="text-muted-foreground mr-2">Less</div>
-        {[0, 1, 2, 3, 4].map((level) => (
-          <motion.div
-            key={level}
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: level * 0.1, duration: 0.3 }}
-            className={cn(
-              "w-3 h-3 rounded-sm mx-1",
-              level === 0 ? "bg-secondary/20" : `bg-primary/${(level + 1) * 20}`
-            )}
-          />
-        ))}
-        <div className="text-muted-foreground ml-2">More</div>
-      </div>
-
-      <div className="text-xs text-center text-muted-foreground mt-1">
-        <Calendar className="inline-block h-3 w-3 mr-1" />
-        Showing your reading activity for the last 6 months
-      </div>
-    </div>
+    </CardContainer>
   );
 };
 
-const SkeletonWeek = () => {
+const NoDataAvaliable = () => {
   return (
-    <div className="space-y-4 animate-pulse h-full w-full flex flex-col justify-center items-center">
-      <div className="h-4 w-1/3 bg-secondary/30 rounded"></div>
-      <div className="flex items-center gap-1 mb-2">
-        <Skeleton className="h-4 w-14 rounded" />
-        <Skeleton className="h-4 w-36 rounded" />
-      </div>
-      <div className="flex">
-        <div className="flex flex-col justify-around pr-2 h-[120px]">
-          <Skeleton className="h-3 w-8 rounded" />
-          <Skeleton className="h-3 w-8 rounded" />
-          <Skeleton className="h-3 w-8 rounded" />
-        </div>
-        <div className="flex flex-1 gap-1 overflow-x-auto">
-          {Array.from({ length: 40 }).map((_, i) => (
-            <div
-              key={`skeleton-week-${Math.random()
-                .toString(36)
-                .slice(2, 9)}-${i}`}
-              className="flex flex-col gap-1"
-            >
-              {Array.from({ length: 7 }).map((_, j) => (
-                <Skeleton
-                  key={`skeleton-day-${Math.random()
-                    .toString(36)
-                    .slice(2, 9)}-${i}-${j}`}
-                  className="w-3 h-3 rounded-sm"
-                />
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="flex flex-col items-center justify-center h-40 text-muted-foreground space-y-2">
+      <AlertCircle className="h-8 w-8 text-muted-foreground/40" />
+      <p>No reading data available</p>
+      <Button
+        variant="outline"
+        size="sm"
+        className="mt-2 text-xs"
+        onClick={() => window.location.reload()}
+      >
+        <BookOpen className="h-3 w-3 mr-1.5" />
+        Start your reading journey
+      </Button>
     </div>
   );
 };

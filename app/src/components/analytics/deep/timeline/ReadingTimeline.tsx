@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
-import { Calendar, Filter, Clock } from "lucide-react";
+import { Calendar, Filter, Clock, BookOpen, Crosshair } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -16,9 +16,8 @@ import CategoriesView from "./Categories";
 import DocumentsView from "./Documents";
 import useMobile from "@/hooks/useMobile";
 import { type TimeRange, getStartDate } from "@/utils/time";
-import { fromSnakeToTitleCase } from "@/utils/string";
-import getIconForTech from "@/components/icons";
 import { useCategoryStore, useHistoryStore } from "@/stores";
+import TimelineCard from "./TimelineCard";
 
 export type ViewMode = "heatmap" | "categories" | "documents";
 
@@ -49,9 +48,19 @@ const ReadingTimeline: React.FC<ReadingTimelineProps> = ({
     const startDate = getStartDate(timeRange);
 
     return readingHistory.filter(
-      (item) => new Date(item.lastReadAt) >= startDate
+      (item) =>
+        new Date(item.lastReadAt) >= startDate &&
+        (selectedCategory === null || item.path.startsWith(selectedCategory))
     );
-  }, [readingHistory, timeRange]);
+  }, [readingHistory, timeRange, selectedCategory]);
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  const handleTimeRangeChange = (timeRange: TimeRange) => {
+    setTimeRange(timeRange);
+  };
 
   return (
     <div className="w-full flex flex-col gap-4">
@@ -123,43 +132,6 @@ const ReadingTimeline: React.FC<ReadingTimelineProps> = ({
             </div>
 
             {/* Category filter for documents view */}
-            {viewMode === "documents" && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-4 flex items-center gap-2"
-              >
-                <div className="text-xs text-muted-foreground">
-                  Filter by category:
-                </div>
-                <Select
-                  value={selectedCategory ?? "all"}
-                  onValueChange={(value) =>
-                    setSelectedCategory(value === "all" ? null : value)
-                  }
-                >
-                  <SelectTrigger className="h-7 text-xs bg-card border-border/50 focus:ring-primary/20 focus:border-primary/30 rounded-2xl">
-                    <SelectValue placeholder="All Categories" />
-                  </SelectTrigger>
-                  <SelectContent className="rounded-2xl font-cascadia-code">
-                    <SelectItem value="all">All Categories</SelectItem>
-                    {categories.map((category) => {
-                      const Icon = getIconForTech(category);
-                      return (
-                        <SelectItem
-                          key={category}
-                          value={category}
-                          className="flex items-center gap-2"
-                        >
-                          <Icon className="h-3 w-3 mr-1" />
-                          {fromSnakeToTitleCase(category)}
-                        </SelectItem>
-                      );
-                    })}
-                  </SelectContent>
-                </Select>
-              </motion.div>
-            )}
 
             {/* Content Views with Animation */}
             <AnimatePresence mode="wait">
@@ -190,34 +162,53 @@ const ReadingTimeline: React.FC<ReadingTimelineProps> = ({
                   />
                 </motion.div>
               )}
-
-              {viewMode === "documents" && (
-                <motion.div
-                  key="documents"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <DocumentsView
-                    filteredHistory={filteredHistory}
-                    selectedCategory={selectedCategory}
-                    onSelectDocument={onSelectDocument}
-                  />
-                </motion.div>
-              )}
             </AnimatePresence>
           </div>
         </div>
       </Card>
 
-      <Card className="border border-primary/10 bg-card/50 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:shadow-md hover:shadow-primary/5 rounded-2xl p-8">
-        <div className="flex items-center">
-          <Calendar className="h-4 w-4 mr-2 text-primary" />
-          <h4 className="text-sm font-medium">Past One Year</h4>
-        </div>
-        <GitHubStyleHeatmap readingHistory={readingHistory} />
-      </Card>
+      <TimelineCard
+        readingHistory={filteredHistory}
+        categories={categories}
+        handleCategoryChange={handleCategoryChange}
+        handleTimeRangeChange={handleTimeRangeChange}
+        currentTimeRange={timeRange}
+        currentCategory={selectedCategory}
+        props={{
+          title: "Documents TimeLine",
+          description: "A look at all the documents you've read in the past 🤗",
+          icon: BookOpen,
+          variant: "subtle",
+          insights: [
+            {
+              icon: BookOpen,
+              label: "Total Documents Read",
+              value: filteredHistory.length.toString(),
+              highlight: true,
+            },
+            {
+              label: "Most Read Document",
+              value:
+                filteredHistory.reduce((acc, curr) => {
+                  return acc.readCount > curr.readCount ? acc : curr;
+                }, filteredHistory[0]).title || "No documents read",
+              icon: Crosshair,
+            },
+          ],
+        }}
+      >
+        {({
+          readingHistory: filteredHistory,
+          currentCategory: selectedCategory,
+        }) => (
+          <DocumentsView
+            filteredHistory={filteredHistory}
+            selectedCategory={selectedCategory}
+            onSelectDocument={onSelectDocument}
+          />
+        )}
+      </TimelineCard>
+      <GitHubStyleHeatmap readingHistory={readingHistory} />
     </div>
   );
 };
