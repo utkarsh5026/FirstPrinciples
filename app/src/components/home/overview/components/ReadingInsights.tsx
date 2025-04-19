@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Brain, Calendar } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import CategoryPieChart from "@/components/insights/CategoryPieChart";
 import ReadingByWeekDay from "@/components/insights/ReadingByWeekDay";
 import { useActivityStore } from "@/stores";
 import { useCategoryStore } from "@/stores/categoryStore";
+import CardContainer from "@/components/container/CardContainer";
 
 /**
  * 📚 ReadingInsights Component
@@ -29,97 +29,48 @@ const ReadingInsights: React.FC = () => {
     (state) => state.categoryBreakdown
   );
 
-  /**
-   * This hook calculates the best day for reading based on your weekly activity! 📅
-   * It analyzes how many times you've read on each day of the week and finds the day
-   * where you read the most. If you haven't read at all, it cheerfully returns "N/A"! 😊
-   */
-  const bestDay = useMemo(() => {
-    return weeklyActivity.length > 0
-      ? weeklyActivity.reduce(
-          (prev, current) => (prev.count > current.count ? prev : current),
-          weeklyActivity[0]
-        ).day
-      : "N/A";
-  }, [weeklyActivity]);
-
-  /**
-   * This hook identifies your favorite reading category! 📚✨
-   * It sorts the categories based on how many times you've read in each one,
-   * and then it picks the top one for you! This way, you can easily see
-   * what you love to read the most! 💖
-   */
-  const bestCategory = useMemo(() => {
-    if (categoryBreakdown.length == 0) return null;
-    const sorted = [...categoryBreakdown].sort((a, b) => b.count - a.count);
-    return sorted[0].category;
-  }, [categoryBreakdown]);
-
   return (
     <div className="flex flex-col gap-4">
-      <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors rounded-3xl">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-30"></div>
-
-        <div className="relative">
-          <div className="text-xs text-muted-foreground mb-2 flex items-center">
-            <Brain className="h-3.5 w-3.5 mr-1.5 text-primary/70" />
-            Categories
-          </div>
-          <div className="h-56 w-full">
-            <CategoryPieChart
-              descriptive={false}
-              categoryBreakdown={categoryBreakdown}
-            />
-          </div>
-
-          <div className="text-xs text-center text-muted-foreground mt-1">
-            Most read:{" "}
-            <span className="font-medium text-primary/90">
-              {bestCategory ?? "Not enough data"}
-            </span>
-          </div>
+      <CardContainer
+        title="Categories Breakdown"
+        icon={Brain}
+        insights={[]}
+        description="What do you read the most? 🤔"
+        variant="subtle"
+      >
+        <div className="h-56 w-full">
+          <CategoryPieChart
+            descriptive={false}
+            categoryBreakdown={categoryBreakdown}
+          />
         </div>
-      </Card>
+      </CardContainer>
 
       {/* Weekly pattern */}
-      <Card className="relative p-4 border-primary/10 overflow-hidden group hover:border-primary/30 transition-colors rounded-3xl">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-30"></div>
-
-        <div className="relative">
-          <div className="text-xs text-muted-foreground mb-2 flex items-center">
-            <Calendar className="h-3.5 w-3.5 mr-1.5 text-primary/70" />
-            Weekly Pattern
+      <CardContainer
+        title="Weekly Pattern"
+        icon={Calendar}
+        insights={[]}
+        description="When do you read the most? 📅"
+        variant="subtle"
+      >
+        {weeklyActivity.some((day) => day.count > 0) ? (
+          <div className="h-52 w-full">
+            <ReadingByWeekDay />
           </div>
-
-          {weeklyActivity.some((day) => day.count > 0) ? (
-            <div className="h-36 w-full">
-              <ReadingByWeekDay />
+        ) : (
+          <div className="h-36 flex items-center justify-center text-center">
+            <div className="text-muted-foreground text-xs">
+              <Calendar className="h-8 w-8 mx-auto mb-2 opacity-30" />
+              <p>
+                Read more to see
+                <br />
+                your weekly patterns
+              </p>
             </div>
-          ) : (
-            <div className="h-36 flex items-center justify-center text-center">
-              <div className="text-muted-foreground text-xs">
-                <Calendar className="h-8 w-8 mx-auto mb-2 opacity-30" />
-                <p>
-                  Read more to see
-                  <br />
-                  your weekly patterns
-                </p>
-              </div>
-            </div>
-          )}
-
-          <div className="text-xs text-center text-muted-foreground mt-1">
-            {weeklyActivity.some((day) => day.count > 0) ? (
-              <span>
-                Best day:{" "}
-                <span className="font-medium text-primary/90">{bestDay}</span>
-              </span>
-            ) : (
-              <span>Track your reading patterns</span>
-            )}
           </div>
-        </div>
-      </Card>
+        )}
+      </CardContainer>
     </div>
   );
 };
