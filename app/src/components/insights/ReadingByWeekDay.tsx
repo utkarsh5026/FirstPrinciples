@@ -136,22 +136,8 @@ const ReadingByWeekDay: React.FC = () => {
     return null;
   };
 
-  // If there's no data, show an empty state
   if (!chartData.totalCount) {
-    return (
-      <motion.div
-        className="h-full flex items-center justify-center flex-col"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <CalendarDays className="h-10 w-10 text-muted-foreground opacity-20 mb-2" />
-        <p className="text-sm text-muted-foreground">No weekly data yet</p>
-        <p className="text-xs text-muted-foreground mt-1">
-          Read more documents to reveal your weekly patterns
-        </p>
-      </motion.div>
-    );
+    return <EmptyState />;
   }
 
   const getRight = () => {
@@ -260,6 +246,23 @@ const ReadingByWeekDay: React.FC = () => {
         </BarChart>
       </ChartContainerUI>
     </ChartContainer>
+  );
+};
+
+const EmptyState = () => {
+  return (
+    <motion.div
+      className="h-full flex items-center justify-center flex-col"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <CalendarDays className="h-10 w-10 text-muted-foreground opacity-20 mb-2" />
+      <p className="text-sm text-muted-foreground">No weekly data yet</p>
+      <p className="text-xs text-muted-foreground mt-1">
+        Read more documents to reveal your weekly patterns
+      </p>
+    </motion.div>
   );
 };
 
