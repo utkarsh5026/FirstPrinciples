@@ -22,7 +22,7 @@ export const daysOfWeek = [
   "Saturday",
 ] as const;
 
-export type TimeRange = "week" | "month" | "quarter" | "year" | "all";
+export type TimeRange = "week" | "month" | "quarter" | "year" | "all" | "today";
 
 /**
  * 🕒 Formats a timestamp into a human-readable relative time
@@ -99,6 +99,11 @@ export const getStartDate = (range: TimeRange): Date => {
     }
     case "all": {
       return new Date(0); // Beginning of time
+    }
+    case "today": {
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      today.setHours(0, 0, 0, 0);
+      return today;
     }
     default: {
       return new Date(0); // Beginning of time
