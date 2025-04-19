@@ -8,20 +8,25 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Zap, Info } from "lucide-react";
+import { Zap, Info, ChevronRight } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useState } from "react";
-import styles from "./container.module.css"; // Use CSS modules instead of direct import
+import {
+  useContainerAnimation,
+  useInsightTheme,
+  type Color,
+  type Variant,
+} from "./useContainer";
+import styles from "./container.module.css";
 
 interface InsightCardProps {
   title: string;
   description?: string;
   icon: React.ElementType;
-  infoTooltip?: React.ReactNode;
+  infoTooltip?: string;
   children: React.ReactNode;
   insights: {
     label: string;
@@ -31,28 +36,29 @@ interface InsightCardProps {
     tooltip?: string;
   }[];
   className?: string;
-  gradient?: string;
+  baseColor?: Color;
+  variant?: Variant;
   delay?: number;
-  iconColor?: string;
   footer?: React.ReactNode;
+  onCardClick?: () => void;
 }
 
 /**
- * ChartContainer - A reusable component for displaying analytics insights
+ * EnhancedInsightCard - An improved analytics visualization component
  *
- * This component creates a beautiful, consistent card layout for different analytics
- * visualizations, with proper heading, description, and data summary.
- * It includes subtle animations, color gradients, and visual enhancements.
+ * This component creates a beautiful, interactive card layout for different analytics
+ * visualizations, with smooth animations, informative tooltips, and mobile optimization.
  *
  * Features:
- * - Animated entrance and hover effects
- * - Support for tooltips on both card level and individual insights
- * - Customizable gradient backgrounds
+ * - Scroll-triggered animations with customizable delays
+ * - Interactive hover effects and tooltips
+ * - Theming with different color variants
+ * - Detailed insights with individual icons and tooltips
  * - Mobile-optimized layout and interactions
  * - Optional footer section
- * - Icon support for individual insights
+ * - Stunning visual effects and micro-interactions
  */
-const ChartContainer: React.FC<InsightCardProps> = ({
+const CardContainer: React.FC<InsightCardProps> = ({
   title,
   description,
   icon: Icon,
@@ -60,83 +66,51 @@ const ChartContainer: React.FC<InsightCardProps> = ({
   children,
   insights,
   className,
-  gradient = "from-primary/5 to-primary/10",
+  baseColor = "primary",
+  variant = "default",
   delay = 0,
-  iconColor = "text-primary",
   footer,
+  onCardClick,
 }) => {
-  const [hovered, setHovered] = useState(false);
+  // Use custom hooks for animations and theming
+  const {
+    cardRef,
+    isVisible,
+    isHovered,
+    animationStates,
+    handleMouseEnter,
+    handleMouseLeave,
+    handleInsightHover,
+    getContentAnimation,
+  } = useContainerAnimation(delay);
 
-  // Animation variants
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        delay: delay,
-        ease: "easeOut",
-      },
-    },
-  };
+  const { gradient, iconColor } = useInsightTheme(baseColor, variant);
 
-  const headerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.4,
-        delay: delay + 0.1,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const contentVariants = {
-    hidden: { opacity: 0, scale: 0.98 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        delay: delay + 0.2,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const footerVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        delay: delay + 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
+  // Determine if card is clickable
+  const isClickable = !!onCardClick;
 
   return (
     <motion.div
+      ref={cardRef}
       initial="hidden"
-      animate="visible"
-      variants={cardVariants}
+      animate={isVisible ? "visible" : "hidden"}
+      variants={animationStates.card}
       className="h-full"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <Card
         className={cn(
-          "overflow-hidden border-primary/10 h-full shadow-sm hover:shadow-md transition-all duration-300 rounded-2xl",
-          `bg-gradient-to-br ${gradient}`,
+          "overflow-hidden border-primary/10 h-full shadow-sm transition-all duration-300 rounded-2xl",
+          "relative bg-gradient-to-br",
+          gradient,
           className,
-          styles["insight-card"]
+          styles["insight-card"],
+          isClickable && "cursor-pointer hover:ring-1 hover:ring-primary/20"
         )}
+        onClick={onCardClick}
       >
-        <motion.div variants={headerVariants}>
+        <motion.div variants={animationStates.header}>
           <CardHeader className="pb-2 relative">
             {/* Beautiful subtle pattern overlay */}
             <div
@@ -178,9 +152,19 @@ const ChartContainer: React.FC<InsightCardProps> = ({
                         side="top"
                         className="max-w-xs bg-card/95 backdrop-blur-sm border border-border/40 shadow-lg p-3 rounded-xl"
                       >
-                        <div className="text-xs">{infoTooltip}</div>
+                        <p className="text-xs">{infoTooltip}</p>
                       </TooltipContent>
                     </Tooltip>
+                  )}
+
+                  {isClickable && (
+                    <motion.div
+                      className="ml-auto"
+                      animate={{ x: isHovered ? 3 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                    </motion.div>
                   )}
                 </CardTitle>
                 {description && (
@@ -199,14 +183,14 @@ const ChartContainer: React.FC<InsightCardProps> = ({
 
                   return (
                     <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: delay + 0.3 + idx * 0.1,
-                        ease: "easeOut",
+                      key={insight.label}
+                      variants={animationStates.insight(idx)}
+                      whileHover={{
+                        y: -2,
+                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                       }}
+                      onHoverStart={() => handleInsightHover(idx)}
+                      onHoverEnd={() => handleInsightHover(null)}
                       className={cn(
                         "text-xs py-1 px-3 rounded-full flex items-center gap-1.5 border border-border/40",
                         insight.highlight
@@ -268,7 +252,7 @@ const ChartContainer: React.FC<InsightCardProps> = ({
           </CardHeader>
         </motion.div>
 
-        <motion.div variants={contentVariants}>
+        <motion.div variants={animationStates.content}>
           <CardContent className={cn("pt-0 relative", !insights && "pt-2")}>
             {/* Inner shadow to add depth to the chart area */}
             <div
@@ -277,8 +261,7 @@ const ChartContainer: React.FC<InsightCardProps> = ({
             ></div>
             <div className="relative z-10">
               <motion.div
-                animate={hovered ? { scale: 1.02 } : { scale: 1 }}
-                transition={{ duration: 0.3 }}
+                animate={getContentAnimation()}
                 className={styles["chart-container"]}
               >
                 {children}
@@ -288,7 +271,7 @@ const ChartContainer: React.FC<InsightCardProps> = ({
         </motion.div>
 
         {footer && (
-          <motion.div variants={footerVariants}>
+          <motion.div variants={animationStates.footer}>
             <CardFooter className="px-6 py-3 border-t border-border/20 bg-secondary/10 backdrop-blur-sm">
               {footer}
             </CardFooter>
@@ -296,11 +279,11 @@ const ChartContainer: React.FC<InsightCardProps> = ({
         )}
 
         {/* Decorative elements for visual appeal */}
-        <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full blur-2xl bg-primary/10 pointer-events-none"></div>
-        <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full blur-xl bg-primary/5 pointer-events-none"></div>
+        {/* <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full blur-2xl bg-primary/10 pointer-events-none"></div>
+        <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full blur-xl bg-primary/5 pointer-events-none"></div> */}
       </Card>
     </motion.div>
   );
 };
 
-export default ChartContainer;
+export default CardContainer;

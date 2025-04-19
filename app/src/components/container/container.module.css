@@ -30,16 +30,7 @@
     }
 }
 
-/* Shimmering effect animation */
-@keyframes shimmer {
-    0% {
-        background-position: -200% 0;
-    }
 
-    100% {
-        background-position: 200% 0;
-    }
-}
 
 /* Subtle attention-grabbing animation */
 @keyframes attention {
@@ -96,7 +87,6 @@
     bottom: 0;
     background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     background-size: 200% 200%;
-    animation: shimmer 3s linear infinite;
     opacity: 0;
     transition: opacity 0.3s ease;
 }

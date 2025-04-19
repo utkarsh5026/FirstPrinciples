@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 
+export type Color = "primary" | "blue" | "green" | "purple" | "amber" | "red";
+export type Variant = "default" | "emphasis" | "subtle";
+
 /**
  * Custom hook for managing animation states and interactions for InsightCard components
  *
@@ -163,7 +166,10 @@ export const useContainerAnimation = (delay = 0) => {
  * @param variant Theme variant (default, emphasis, subtle)
  * @returns Object with color styles for the card
  */
-export const useInsightTheme = (baseColor = "primary", variant = "default") => {
+export const useInsightTheme = (
+  baseColor: Color = "primary",
+  variant: Variant = "default"
+) => {
   // Define color mappings based on variant
   const colorMap: Record<string, Record<string, string>> = {
     primary: {
