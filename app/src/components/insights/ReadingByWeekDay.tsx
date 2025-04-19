@@ -4,7 +4,6 @@ import { useActivityStore } from "@/stores/activityStore";
 import {
   Bar,
   BarChart,
-  ResponsiveContainer,
   Tooltip as RechartsTooltip,
   XAxis,
   YAxis,
@@ -20,9 +19,14 @@ import {
   Calendar,
   ArrowUp,
   ArrowDown,
+  Coffee,
+  Briefcase,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { generateThemeColors } from "@/utils/colors";
+import { generateWeeklyActivityInsights } from "@/services/activity/insights";
+import ChartContainer from "@/components/chart/ChartContainer";
+import { ChartContainer as ChartContainerUI } from "@/components/ui/chart";
 
 /**
  * 🌞 ReadingByWeekDay Component
@@ -43,104 +47,18 @@ const ReadingByWeekDay: React.FC = () => {
   const { currentTheme } = useTheme();
   const weeklyActivity = useActivityStore((state) => state.totalWeeklyActivity);
 
-  // Calculate key metrics and enhancements for the chart
   const chartData = useMemo(() => {
-    if (!weeklyActivity || weeklyActivity.length === 0) {
-      return {
-        enhancedData: [],
-        peakDay: null,
-        lowestDay: null,
-        average: 0,
-        totalCount: 0,
-        weekdayAvg: 0,
-        weekendAvg: 0,
-        weekdayTotal: 0,
-        weekendTotal: 0,
-        preferredType: null,
-        maxValue: 0,
-      };
-    }
-
-    // Calculate peak and lowest days
-    const peakDay = [...weeklyActivity].sort((a, b) => b.count - a.count)[0];
-    const activeDays = weeklyActivity.filter((day) => day.count > 0);
-    const lowestDay =
-      activeDays.length > 0
-        ? [...activeDays].sort((a, b) => a.count - b.count)[0]
-        : null;
-
-    // Calculate totals and averages
-    const totalCount = weeklyActivity.reduce((sum, day) => sum + day.count, 0);
-    const average = totalCount / 7;
-
-    // Calculate weekday vs weekend averages
-    const weekdays = weeklyActivity.filter(
-      (day) => !["Saturday", "Sunday"].includes(day.day)
-    );
-    const weekends = weeklyActivity.filter((day) =>
-      ["Saturday", "Sunday"].includes(day.day)
-    );
-
-    const weekdayTotal = weekdays.reduce((sum, day) => sum + day.count, 0);
-    const weekendTotal = weekends.reduce((sum, day) => sum + day.count, 0);
-
-    const weekdayAvg = weekdayTotal / 5;
-    const weekendAvg = weekendTotal / 2;
-
-    // Determine if user prefers weekdays or weekends for reading
-    const preferredType =
-      weekdayAvg > weekendAvg
-        ? "weekday"
-        : weekendAvg > weekdayAvg
-        ? "weekend"
-        : "even";
-
-    const colors = generateThemeColors(
-      currentTheme.primary,
-      weeklyActivity.length
-    );
-
-    // Enhance the data with additional properties
-    const enhancedData = weeklyActivity.map((day, index) => {
-      // Check if it's a weekend
-      const isWeekend = ["Saturday", "Sunday"].includes(day.day);
-
-      // Calculate relative metrics
-      const comparedToAvg =
-        day.count > 0 ? Math.round((day.count / average - 1) * 100) : 0;
-
-      // Determine if it's the peak day
-      const isPeak = day.day === peakDay.day;
-      const barColor = colors[index];
-
-      // Add day type and short day name
-      return {
-        ...day,
-        shortDay: day.day.slice(0, 3),
-        isWeekend,
-        isPeak,
-        barColor,
-        comparedToAvg,
-      };
-    });
-
-    // Find maximum value for chart scaling
-    const maxValue = Math.max(...enhancedData.map((day) => day.count));
+    const insights = generateWeeklyActivityInsights(weeklyActivity);
 
     return {
-      enhancedData,
-      peakDay,
-      lowestDay,
-      average,
-      totalCount,
-      weekdayAvg,
-      weekendAvg,
-      weekdayTotal,
-      weekendTotal,
-      preferredType,
-      maxValue,
+      ...insights,
+      enhancedData: insights.dayData,
     };
-  }, [weeklyActivity, currentTheme]);
+  }, [weeklyActivity]);
+
+  const colors = useMemo(() => {
+    return generateThemeColors(currentTheme.primary, chartData.dayData.length);
+  }, [currentTheme, chartData]);
 
   // Custom tooltip component with enhanced information
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -236,124 +154,112 @@ const ReadingByWeekDay: React.FC = () => {
     );
   }
 
+  const getRight = () => {
+    if (chartData.preferredType === "weekend") {
+      return {
+        label: "Weekend reader",
+        icon: Coffee,
+        className: "bg-secondary/20 text-secondary-foreground",
+      };
+    }
+    return {
+      label: "Weekday reader",
+      icon: Briefcase,
+      className: "bg-accent/20 text-accent-foreground",
+    };
+  };
+
+  const left = {
+    icon: CalendarDays,
+    label: "Peak: ",
+    value: chartData.peakDay?.day ?? "None",
+  };
+
+  const right = {
+    icon: getRight().icon,
+    value: getRight().label,
+    className: getRight().className,
+  };
+
   return (
-    <div className="h-full">
-      {/* Top stats bar */}
-      <div className="flex justify-between items-center h-6 px-2 mb-3">
-        <div className="flex items-center gap-1.5">
-          <TrendingUp className="h-4 w-4 text-primary" />
-          <div className="text-xs">
-            <span>Peak: </span>
-            <span className="font-medium text-primary">
-              {chartData.peakDay?.day}
-            </span>
-          </div>
-        </div>
+    <ChartContainer left={left} right={right}>
+      <ChartContainerUI config={{}} className="h-full w-full">
+        <BarChart
+          data={chartData.enhancedData}
+          margin={{ top: 15, right: 5, left: 0, bottom: 5 }}
+        >
+          <CartesianGrid
+            strokeDasharray="3 3"
+            stroke={currentTheme.border || "#333"}
+            opacity={0.15}
+            vertical={false}
+          />
 
-        <div className="text-xs flex items-center gap-2">
-          <div
-            className={cn(
-              "px-1.5 py-0.5 rounded text-xs",
-              chartData.preferredType === "weekend"
-                ? "bg-secondary/20 text-secondary-foreground"
-                : chartData.preferredType === "weekday"
-                ? "bg-accent/20 text-accent-foreground"
-                : "bg-primary/20 text-primary"
-            )}
+          <XAxis
+            dataKey="shortDay"
+            tick={{
+              fill: currentTheme.foreground + "80",
+              fontSize: 11,
+            }}
+            axisLine={false}
+            tickLine={false}
+            padding={{ left: 10, right: 10 }}
+          />
+
+          <YAxis
+            tick={{
+              fill: currentTheme.foreground + "80",
+              fontSize: 10,
+            }}
+            axisLine={false}
+            tickLine={false}
+            allowDecimals={false}
+            width={25}
+          />
+
+          <RechartsTooltip
+            content={<CustomTooltip />}
+            cursor={{
+              fill: currentTheme.primary + "10",
+              radius: 4,
+            }}
+          />
+
+          {/* Average reading reference line */}
+          <ReferenceLine
+            y={chartData.average}
+            stroke={currentTheme.foreground}
+            strokeDasharray="3 3"
+            strokeOpacity={0.4}
           >
-            {chartData.preferredType === "weekend"
-              ? "Weekend reader"
-              : chartData.preferredType === "weekday"
-              ? "Weekday reader"
-              : "Balanced reader"}
-          </div>
-        </div>
-      </div>
+            <Label
+              value="Average"
+              position="insideTopRight"
+              fill={currentTheme.foreground + "80"}
+              fontSize={9}
+              offset={5}
+            />
+          </ReferenceLine>
 
-      <motion.div
-        className="h-[calc(100%-1.5rem)]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={chartData.enhancedData}
-            margin={{ top: 15, right: 5, left: 0, bottom: 5 }}
+          <Bar
+            dataKey="count"
+            radius={5}
+            animationDuration={1500}
+            animationBegin={200}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke={currentTheme.border || "#333"}
-              opacity={0.15}
-              vertical={false}
-            />
-
-            <XAxis
-              dataKey="shortDay"
-              tick={{
-                fill: currentTheme.foreground + "80",
-                fontSize: 11,
-              }}
-              axisLine={false}
-              tickLine={false}
-              padding={{ left: 10, right: 10 }}
-            />
-
-            <YAxis
-              tick={{
-                fill: currentTheme.foreground + "80",
-                fontSize: 10,
-              }}
-              axisLine={false}
-              tickLine={false}
-              allowDecimals={false}
-              width={25}
-            />
-
-            <RechartsTooltip
-              content={<CustomTooltip />}
-              cursor={{
-                fill: currentTheme.primary + "10",
-                radius: 4,
-              }}
-            />
-
-            {/* Average reading reference line */}
-            <ReferenceLine
-              y={chartData.average}
-              stroke={currentTheme.foreground}
-              strokeDasharray="3 3"
-              strokeOpacity={0.4}
-            >
-              <Label
-                value="Average"
-                position="insideTopRight"
-                fill={currentTheme.foreground + "80"}
-                fontSize={9}
-                offset={5}
+            {chartData.enhancedData.map((entry, index) => (
+              <Cell
+                key={`${entry.day}-${index}`}
+                fill={colors[index]}
+                fillOpacity={entry.isPeak ? 1 : 0.8}
+                stroke={entry.isPeak ? currentTheme.background : undefined}
+                strokeWidth={entry.isPeak ? 1 : 0}
               />
-            </ReferenceLine>
-
-            <Bar
-              dataKey="count"
-              radius={[4, 4, 0, 0]}
-              animationDuration={1500}
-              animationBegin={200}
-            >
-              {chartData.enhancedData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={entry.barColor}
-                  fillOpacity={entry.isPeak ? 1 : 0.8}
-                  stroke={entry.isPeak ? currentTheme.background : undefined}
-                  strokeWidth={entry.isPeak ? 1 : 0}
-                />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
-      </motion.div>
-    </div>
+            ))}
+          </Bar>
+        </BarChart>
+      </ChartContainerUI>
+    </ChartContainer>
   );
 };
 

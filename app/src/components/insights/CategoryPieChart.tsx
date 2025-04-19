@@ -23,7 +23,7 @@ import { PieSectorDataItem } from "recharts/types/polar/Pie";
 import getIconForTech from "../icons";
 import { generateThemeColors } from "@/utils/colors";
 import { fromSnakeToTitleCase, truncateText } from "@/utils/string";
-import ChartContainer from "../chart/ChartContainer";
+import ChartContainer from "@/components/chart/ChartContainer";
 
 interface CategoryPieChartProps {
   descriptive?: boolean;
@@ -204,25 +204,25 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
           return {
             className: "bg-primary/20 text-primary",
             label: "Focused",
-            icon: <Target className="h-4 w-4 text-primary" />,
+            icon: Target,
           };
         case "Diverse":
           return {
             className: "bg-green-500/20 text-green-400",
             label: "Diverse",
-            icon: <Shuffle className="h-4 w-4 text-green-400" />,
+            icon: Shuffle,
           };
         case "Selective":
           return {
             className: "bg-amber-500/20 text-amber-400",
             label: "Selective",
-            icon: <Filter className="h-4 w-4 text-amber-400" />,
+            icon: Filter,
           };
         default:
           return {
             className: "bg-blue-500/20 text-blue-400",
             label: "Balanced",
-            icon: <Scale className="h-4 w-4 text-blue-400" />,
+            icon: Scale,
           };
       }
     };
@@ -231,7 +231,7 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
 
     const left = categoryMetrics?.mostRead.category
       ? {
-          icon: <PieChart className="h-4 w-4 text-primary" />,
+          icon: PieChart,
           label: "Top: ",
           value: fromSnakeToTitleCase(categoryMetrics?.mostRead.category),
         }
