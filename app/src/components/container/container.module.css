@@ -127,9 +127,4 @@
     .insight-card {
         border-radius: 1rem;
     }
-
-    .chart-container {
-        max-height: 250px;
-        overflow: hidden;
-    }
 }

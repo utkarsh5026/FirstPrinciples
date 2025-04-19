@@ -100,7 +100,7 @@ const CardContainer: React.FC<InsightCardProps> = ({
     >
       <Card
         className={cn(
-          "overflow-hidden border-primary/10 h-full shadow-sm transition-all duration-300 rounded-2xl",
+          "overflow-auto border-primary/10 h-full shadow-sm transition-all duration-300 rounded-2xl",
           "relative bg-gradient-to-br",
           gradient,
           className,
