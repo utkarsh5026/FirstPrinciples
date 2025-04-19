@@ -79,13 +79,8 @@
 .insight-card {
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.insight-card:hover {
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
 
 .insight-card:hover::before {
     opacity: 0.1;
@@ -114,26 +109,14 @@
     animation: attention 0.5s ease;
 }
 
-.chart-container {
-    transition: all 0.3s ease;
-}
 
-.chart-container:hover {
-    animation: glow 2s infinite;
-}
+
 
 .info-icon {
     animation: float 3s ease-in-out infinite;
 }
 
-/* Header action styles */
-.header-action {
-    transition: all 0.2s ease;
-}
 
-.header-action:hover {
-    animation: pop 0.5s ease;
-}
 
 /* Mobile optimizations */
 @media (max-width: 640px) {

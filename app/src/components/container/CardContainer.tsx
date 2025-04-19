@@ -22,7 +22,7 @@ import {
 } from "./useContainer";
 import styles from "./container.module.css";
 
-interface InsightCardProps {
+export interface CardContainerProps {
   title: string;
   description?: string;
   icon: React.ElementType;
@@ -60,7 +60,7 @@ interface InsightCardProps {
  * - Optional header action element in the top-right corner
  * - Stunning visual effects and micro-interactions
  */
-const CardContainer: React.FC<InsightCardProps> = ({
+const CardContainer: React.FC<CardContainerProps> = ({
   title,
   description,
   icon: Icon,
@@ -82,7 +82,6 @@ const CardContainer: React.FC<InsightCardProps> = ({
     animationStates,
     handleMouseEnter,
     handleMouseLeave,
-    getContentAnimation,
   } = useContainerAnimation(delay);
 
   const { gradient, iconColor } = useInsightTheme(baseColor, variant);
@@ -275,14 +274,7 @@ const CardContainer: React.FC<InsightCardProps> = ({
               className="absolute inset-0 pointer-events-none rounded-xl"
               style={{ boxShadow: "inset 0 2px 4px rgba(0,0,0,0.05)" }}
             ></div>
-            <div className="relative z-10">
-              <motion.div
-                animate={getContentAnimation()}
-                className={styles["chart-container"]}
-              >
-                {children}
-              </motion.div>
-            </div>
+            <div className="relative z-10">{children}</div>
           </CardContent>
         </motion.div>
 
