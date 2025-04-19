@@ -1,6 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 
-export type Color = "primary" | "blue" | "green" | "purple" | "amber" | "red";
+export type Color =
+  | "primary"
+  | "blue"
+  | "green"
+  | "purple"
+  | "amber"
+  | "red"
+  | "gray"
+  | "teal"
+  | "pink"
+  | "indigo"
+  | "yellow"
+  | "orange";
 export type Variant = "default" | "emphasis" | "subtle";
 
 /**
@@ -202,6 +214,37 @@ export const useInsightTheme = (
       emphasis: "from-red-500/10 to-red-500/20",
       subtle: "from-red-500/2 to-red-500/5",
     },
+    // New colors
+    gray: {
+      default: "from-gray-500/5 to-gray-500/10",
+      emphasis: "from-gray-500/10 to-gray-500/20",
+      subtle: "from-gray-500/2 to-gray-500/5",
+    },
+    teal: {
+      default: "from-teal-500/5 to-teal-500/10",
+      emphasis: "from-teal-500/10 to-teal-500/20",
+      subtle: "from-teal-500/2 to-teal-500/5",
+    },
+    pink: {
+      default: "from-pink-500/5 to-pink-500/10",
+      emphasis: "from-pink-500/10 to-pink-500/20",
+      subtle: "from-pink-500/2 to-pink-500/5",
+    },
+    indigo: {
+      default: "from-indigo-500/5 to-indigo-500/10",
+      emphasis: "from-indigo-500/10 to-indigo-500/20",
+      subtle: "from-indigo-500/2 to-indigo-500/5",
+    },
+    yellow: {
+      default: "from-yellow-500/5 to-yellow-500/10",
+      emphasis: "from-yellow-500/10 to-yellow-500/20",
+      subtle: "from-yellow-500/2 to-yellow-500/5",
+    },
+    orange: {
+      default: "from-orange-500/5 to-orange-500/10",
+      emphasis: "from-orange-500/10 to-orange-500/20",
+      subtle: "from-orange-500/2 to-orange-500/5",
+    },
   };
 
   // Get appropriate text color based on base color
@@ -212,6 +255,13 @@ export const useInsightTheme = (
     purple: "text-violet-500",
     amber: "text-amber-500",
     red: "text-red-500",
+    // New colors
+    gray: "text-gray-500",
+    teal: "text-teal-500",
+    pink: "text-pink-500",
+    indigo: "text-indigo-500",
+    yellow: "text-yellow-500",
+    orange: "text-orange-500",
   };
 
   // Return theme object with gradient and icon color

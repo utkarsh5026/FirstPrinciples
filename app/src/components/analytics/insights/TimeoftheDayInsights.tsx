@@ -1,10 +1,11 @@
-import InsightCard from "./InsightCard";
+import CardContainer from "@/components/container/CardContainer";
 import { Clock } from "lucide-react";
 import { memo, useEffect, useState } from "react";
 import { TimeOfDayPreference } from "../trends";
 import { useActivityStore } from "@/stores";
 import type { ReadingHistoryItem } from "@/services/history";
 import type { HourlyActivity } from "@/services/history/activity";
+import { Color } from "@/components/container/useContainer";
 
 interface TimeOfDayInsightCardProps {
   history: ReadingHistoryItem[];
@@ -88,28 +89,16 @@ const TimeOfDayInsightCard: React.FC<TimeOfDayInsightCardProps> = memo(
     /**
      * 🎨 Provides beautiful color themes for each time period
      */
-    const getStyles = (period: string) => {
+    const getColorAccordingToPeriod = (period: string): Color => {
       switch (period) {
         case "morning":
-          return {
-            timeGradient: "from-blue-500/5 to-blue-500/10",
-            timeIconColor: "text-blue-500",
-          };
+          return "blue";
         case "afternoon":
-          return {
-            timeGradient: "from-orange-500/5 to-orange-500/10",
-            timeIconColor: "text-orange-500",
-          };
+          return "orange";
         case "evening":
-          return {
-            timeGradient: "from-purple-500/5 to-purple-500/10",
-            timeIconColor: "text-purple-500",
-          };
+          return "purple";
         default:
-          return {
-            timeGradient: "from-indigo-500/5 to-indigo-500/10",
-            timeIconColor: "text-indigo-500",
-          };
+          return "indigo";
       }
     };
 
@@ -134,22 +123,19 @@ const TimeOfDayInsightCard: React.FC<TimeOfDayInsightCardProps> = memo(
           },
         ]
       : [];
-
-    const { timeGradient, timeIconColor } = getStyles(insights.preferredPeriod);
     return (
-      <InsightCard
+      <CardContainer
         title="Time of Day Preference"
         description="When you're most likely to read throughout the day"
         icon={Clock}
         insights={cardInsights}
-        gradient={timeGradient}
-        iconColor={timeIconColor}
+        baseColor={getColorAccordingToPeriod(insights.preferredPeriod)}
         delay={0.1}
       >
         <div className="h-52 w-full">
           <TimeOfDayPreference readingByHour={insights.analyticsData} />
         </div>
-      </InsightCard>
+      </CardContainer>
     );
   }
 );

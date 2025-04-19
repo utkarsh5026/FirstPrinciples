@@ -1,5 +1,5 @@
 import { memo, useState, useEffect } from "react";
-import InsightCard from "./InsightCard";
+import CardContainer from "@/components/container/CardContainer";
 import { CalendarDays } from "lucide-react";
 import { ReadingByWeekDay } from "../trends";
 import type { ReadingHistoryItem } from "@/services/history";
@@ -69,28 +69,6 @@ export const WeekdayPattern: React.FC<WeekdayPatternInsightCardProps> = memo(
       createInsights();
     }, [history, calculateTotalWeeklyActivity, getWeeklyActivityMetrics]);
 
-    /**
-     * 🎨 Creates beautiful color themes based on your reading style!
-     * Weekend warriors get emerald, weekday readers get cyan! 💫
-     */
-    const getWeekStyles = (weekend: number, weekday: number) => {
-      if (weekend > weekday) {
-        return {
-          gradient: "from-emerald-500/5 to-emerald-500/10",
-          iconColor: "text-emerald-500",
-        };
-      }
-      return {
-        gradient: "from-cyan-500/5 to-cyan-500/10",
-        iconColor: "text-cyan-500",
-      };
-    };
-
-    const { gradient, iconColor } = getWeekStyles(
-      insights.weekendVsWeekday.weekend,
-      insights.weekendVsWeekday.weekday
-    );
-
     const cardInsights = insights.mostActiveDay
       ? [
           {
@@ -111,19 +89,22 @@ export const WeekdayPattern: React.FC<WeekdayPatternInsightCardProps> = memo(
       : [];
 
     return (
-      <InsightCard
+      <CardContainer
         title="Weekly Reading Pattern"
         description="Your reading activity throughout the week"
         icon={CalendarDays}
         insights={cardInsights}
-        gradient={gradient}
-        iconColor={iconColor}
+        baseColor={"primary"}
+        variant={"subtle"}
         delay={0}
+        infoTooltip={
+          "This chart shows your reading activity throughout the week. The most active day is the day with the highest number of reads, and the least active day is the day with the lowest number of reads. The weekend reads are the number of reads on the weekend, and the weekday reads are the number of reads on the weekdays."
+        }
       >
         <div className="h-52 w-full">
           <ReadingByWeekDay />
         </div>
-      </InsightCard>
+      </CardContainer>
     );
   }
 );

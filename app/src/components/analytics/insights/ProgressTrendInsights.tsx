@@ -2,9 +2,10 @@ import { formatRelativeTime } from "@/utils/time";
 import { TrendingUp } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { ProgressOverTime } from "../trends";
-import InsightCard from "./InsightCard";
+import CardContainer from "@/components/container/CardContainer";
 import { useHeatmapStore, useHistoryStore } from "@/stores";
 import type { MonthlyDocumentCounts } from "@/services/history/heatmap";
+import { Color } from "@/components/container/useContainer";
 
 /**
  * ProgressTrendInsightCard - Shows reading progress over time
@@ -62,20 +63,16 @@ export const ProgressTrendInsightCard = () => {
     return "stable";
   }, [monthlyData]);
 
-  // Color by trend
-  const trendGradient =
-    trend === "increasing"
-      ? "from-green-500/5 to-green-500/10"
-      : trend === "decreasing"
-      ? "from-red-500/5 to-red-500/10"
-      : "from-yellow-500/5 to-yellow-500/10"; // stable
-
-  const trendIconColor =
-    trend === "increasing"
-      ? "text-green-500"
-      : trend === "decreasing"
-      ? "text-red-500"
-      : "text-yellow-500"; // stable
+  const getColorAccordingToTrend = (trend: string): Color => {
+    switch (trend) {
+      case "increasing":
+        return "green";
+      case "decreasing":
+        return "red";
+      default:
+        return "yellow";
+    }
+  };
 
   const insights = [
     {
@@ -100,13 +97,12 @@ export const ProgressTrendInsightCard = () => {
   ];
 
   return (
-    <InsightCard
+    <CardContainer
       title="Reading Progress"
       description="Your reading activity trends over time"
       icon={TrendingUp}
       insights={insights}
-      gradient={trendGradient}
-      iconColor={trendIconColor}
+      baseColor={getColorAccordingToTrend(trend)}
       delay={0.2}
     >
       <div className="h-60 w-full">
@@ -114,6 +110,6 @@ export const ProgressTrendInsightCard = () => {
           <ProgressOverTime monthlyData={monthlyData.months} />
         )}
       </div>
-    </InsightCard>
+    </CardContainer>
   );
 };

@@ -22,6 +22,7 @@ import {
   ArrowDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { generateThemeColors } from "@/utils/colors";
 
 /**
  * 🌞 ReadingByWeekDay Component
@@ -94,8 +95,13 @@ const ReadingByWeekDay: React.FC = () => {
         ? "weekend"
         : "even";
 
+    const colors = generateThemeColors(
+      currentTheme.primary,
+      weeklyActivity.length
+    );
+
     // Enhance the data with additional properties
-    const enhancedData = weeklyActivity.map((day) => {
+    const enhancedData = weeklyActivity.map((day, index) => {
       // Check if it's a weekend
       const isWeekend = ["Saturday", "Sunday"].includes(day.day);
 
@@ -105,16 +111,7 @@ const ReadingByWeekDay: React.FC = () => {
 
       // Determine if it's the peak day
       const isPeak = day.day === peakDay.day;
-
-      // Determine bar color based on weekend status and peak
-      let barColor;
-      if (isPeak) {
-        barColor = currentTheme.primary;
-      } else if (isWeekend) {
-        barColor = currentTheme.secondary || "#64748b";
-      } else {
-        barColor = currentTheme.secondary || "#94a3b8";
-      }
+      const barColor = colors[index];
 
       // Add day type and short day name
       return {

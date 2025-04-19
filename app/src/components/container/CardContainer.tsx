@@ -80,7 +80,6 @@ const CardContainer: React.FC<InsightCardProps> = ({
     animationStates,
     handleMouseEnter,
     handleMouseLeave,
-    handleInsightHover,
     getContentAnimation,
   } = useContainerAnimation(delay);
 
@@ -185,12 +184,6 @@ const CardContainer: React.FC<InsightCardProps> = ({
                     <motion.div
                       key={insight.label}
                       variants={animationStates.insight(idx)}
-                      whileHover={{
-                        y: -2,
-                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                      }}
-                      onHoverStart={() => handleInsightHover(idx)}
-                      onHoverEnd={() => handleInsightHover(null)}
                       className={cn(
                         "text-xs py-1 px-3 rounded-full flex items-center gap-1.5 border border-border/40",
                         insight.highlight
