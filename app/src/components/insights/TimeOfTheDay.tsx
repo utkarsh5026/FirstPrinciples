@@ -2,14 +2,17 @@ import { useTheme } from "@/components/theme/context/ThemeContext";
 import {
   Bar,
   BarChart,
-  ResponsiveContainer,
   Tooltip as RechartsTooltip,
   XAxis,
   YAxis,
   Cell,
 } from "recharts";
+import ChartContainer from "../chart/ChartContainer";
+import { ChartContainer as ChartContainerUI } from "../ui/chart";
 import { useActivityStore } from "@/stores";
 import { useMemo } from "react";
+import { generateThemeColors } from "@/utils/colors";
+import { Book, Clock } from "lucide-react";
 
 /**
  * 🕰️ TimeOfTheDay
@@ -40,11 +43,12 @@ const TimeOfTheDay: React.FC = () => {
    * gets its own distinctive color to create a visually appealing chart.
    */
   const timeOfDayData = useMemo(() => {
+    const colors = generateThemeColors(currentTheme.primary, 4);
     const timeOfDayData = [
-      { name: "Morning", count: 0, color: "#FFCB8E" },
-      { name: "Afternoon", count: 0, color: "#FFE07D" },
-      { name: "Evening", count: 0, color: "#B39DDB" },
-      { name: "Night", count: 0, color: "#7986CB" },
+      { name: "Morning", count: 0, color: colors[0] },
+      { name: "Afternoon", count: 0, color: colors[1] },
+      { name: "Evening", count: 0, color: colors[2] },
+      { name: "Night", count: 0, color: colors[3] },
     ];
 
     analyticsData.forEach(({ hour }) => {
@@ -65,43 +69,62 @@ const TimeOfTheDay: React.FC = () => {
     });
 
     return timeOfDayData;
-  }, [analyticsData]);
+  }, [analyticsData, currentTheme.primary]);
+
+  const peak = timeOfDayData.reduce((acc, curr) => {
+    return acc.count > curr.count ? acc : curr;
+  }, timeOfDayData[0]);
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart
-        data={timeOfDayData}
-        margin={{ top: 10, right: 10, left: 0, bottom: 5 }}
-      >
-        <XAxis
-          dataKey={(item) => item.name}
-          tick={{ fill: currentTheme.foreground + "80" }}
-          axisLine={false}
-          tickLine={false}
-        />
-        <YAxis
-          tick={{ fill: currentTheme.foreground + "80" }}
-          axisLine={false}
-          tickLine={false}
-          allowDecimals={false}
-        />
-        <RechartsTooltip
-          cursor={{ fill: currentTheme.primary + "10" }}
-          contentStyle={{
-            backgroundColor: currentTheme.cardBg || "#ffffff",
-            border: `1px solid ${currentTheme.border}`,
-            borderRadius: "4px",
-            color: currentTheme.foreground,
-          }}
-          formatter={(value) => [`${value} documents`, "Read"]}
-        />
-        <Bar dataKey="count" radius={[4, 4, 0, 0]}>
-          {timeOfDayData.map((entry) => (
-            <Cell key={entry.name} fill={entry.color} />
-          ))}
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+    <ChartContainer
+      left={{
+        icon: Clock,
+        label: "Peak: ",
+        value: peak.name ?? "None",
+      }}
+      right={{
+        icon: Book,
+        value: `${timeOfDayData.reduce(
+          (acc, curr) => acc + curr.count,
+          0
+        )} documents`,
+      }}
+    >
+      <ChartContainerUI config={{}} className="h-full w-full">
+        <BarChart
+          data={timeOfDayData}
+          margin={{ top: 10, right: 10, left: 0, bottom: 5 }}
+        >
+          <XAxis
+            dataKey={(item) => item.name}
+            tick={{ fill: currentTheme.foreground + "80" }}
+            axisLine={false}
+            tickLine={false}
+          />
+          <YAxis
+            tick={{ fill: currentTheme.foreground + "80" }}
+            axisLine={false}
+            tickLine={false}
+            allowDecimals={false}
+          />
+          <RechartsTooltip
+            cursor={{ fill: currentTheme.primary + "10" }}
+            contentStyle={{
+              backgroundColor: currentTheme.cardBg || "#ffffff",
+              border: `1px solid ${currentTheme.border}`,
+              borderRadius: "4px",
+              color: currentTheme.foreground,
+            }}
+            formatter={(value) => [`${value} documents`, "Read"]}
+          />
+          <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+            {timeOfDayData.map((entry) => (
+              <Cell key={entry.name} fill={entry.color} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ChartContainerUI>
+    </ChartContainer>
   );
 };
 
