@@ -3,8 +3,8 @@ import { WeekdayPattern } from "./WeeklyPattern";
 import TimeOfDayInsightCard from "./TimeoftheDayInsights";
 import { ProgressTrendInsightCard } from "./ProgressTrendInsights";
 import { useHistoryStore } from "@/stores";
-import DayOfMonthActivityInsight from "../../insights/DayofMonth";
-import CategoryCoverageMap from "@/components/analytics/insights/CategoryCoverage";
+import DayOfMonthActivityInsight from "../../../insights/DayofMonth";
+import CategoryCoverageMap from "@/components/analytics/components/insights/CategoryCoverage";
 
 /**
  * EnhancedInsights - Main component that combines all insight cards

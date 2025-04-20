@@ -1,6 +1,6 @@
 import { memo, useEffect, useState } from "react";
 import { Calendar, ArrowUp, ArrowDown } from "lucide-react";
-import InsightCard from "../analytics/insights/InsightCard";
+import InsightCard from "../analytics/components/insights/InsightCard";
 import { useActivityStore } from "@/stores";
 import type { ReadingHistoryItem } from "@/services/history";
 import {

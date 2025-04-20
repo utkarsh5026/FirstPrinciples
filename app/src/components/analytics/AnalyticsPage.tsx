@@ -6,8 +6,8 @@ import {
   PieChart as PieChartIcon,
 } from "lucide-react";
 import AnalyticsHeader from "./header/AnalyticsHeader";
-import Insights from "./insights";
-import AnalyticsOverview from "./components/overview";
+import Insights from "./components/insights";
+import AnalyticsOverview from "./components/overview/AnnalyticsOverview";
 import { SiDeepl } from "react-icons/si";
 import CategoryAnalytics from "./deep";
 

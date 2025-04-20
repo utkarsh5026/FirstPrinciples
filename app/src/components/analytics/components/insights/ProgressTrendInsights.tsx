@@ -1,7 +1,7 @@
 import { formatRelativeTime } from "@/utils/time";
 import { TrendingUp } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { ProgressOverTime } from "../trends";
+import { ProgressOverTime } from "../../trends";
 import CardContainer from "@/components/container/CardContainer";
 import { useHeatmapStore, useHistoryStore } from "@/stores";
 import type { MonthlyDocumentCounts } from "@/services/analytics/heatmap-generator";
