@@ -1,10 +1,8 @@
 import { create } from "zustand";
-import {
-  readingHistoryService,
-  type ReadingHistoryItem,
-} from "@/services/history";
+import { type ReadingHistoryItem } from "@/services/history";
 import { sectionAnalyticsController } from "@/services/analytics/SectionAnalyticsController";
 import { parseError } from "@/utils/error";
+import * as readingHistoryService from "@/services/reading/reading-history-service";
 
 type Streak = {
   longestStreak: number;

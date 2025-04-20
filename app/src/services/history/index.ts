@@ -6,14 +6,9 @@ import {
   getWeeklyActivityMetrics,
   getReadingByHourMetrics,
 } from "./activity";
-import {
-  ReadingHistoryService,
-  type ReadingHistoryItem,
-} from "./ReadingHistoryService";
+import { type ReadingHistoryItem } from "../reading/reading-history-service";
 
 import { calculateStreak, createCategoryBreakdown } from "./analytics";
-
-const readingHistoryService = new ReadingHistoryService();
 
 export {
   calculateStreak,
@@ -24,6 +19,5 @@ export {
   getDailyActivityMetrics,
   getWeeklyActivityMetrics,
   getReadingByHourMetrics,
-  readingHistoryService,
   type ReadingHistoryItem,
 };

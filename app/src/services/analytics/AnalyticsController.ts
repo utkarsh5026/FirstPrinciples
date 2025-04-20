@@ -4,13 +4,11 @@ import {
   readingSessionTracker,
 } from "./ReadingSessionTracker";
 import { wordCountEstimator } from "./WordCountEstimator";
-import {
-  readingHistoryService,
-  type ReadingHistoryItem,
-} from "@/services/history";
+import { type ReadingHistoryItem } from "@/services/history";
 import * as readingListService from "@/services/reading/reading-list-service";
 import { readingStatsService } from "./ReadingStatsService";
 import type { FileMetadata } from "@/services/document/document-loader";
+import * as readingHistoryService from "@/services/reading/reading-history-service";
 
 /**
  * Controller that orchestrates all analytics services

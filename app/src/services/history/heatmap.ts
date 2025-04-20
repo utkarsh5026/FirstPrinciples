@@ -1,4 +1,4 @@
-import type { ReadingHistoryItem } from "./ReadingHistoryService";
+import type { ReadingHistoryItem } from "../reading/reading-history-service";
 
 export type MonthlyData = {
   activityMap: Record<string, number>;

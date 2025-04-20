@@ -1,4 +1,4 @@
-import type { ReadingHistoryItem } from "@/services/history/ReadingHistoryService";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { create } from "zustand";
 import { useHistoryStore } from "./historyStore";
 import { parseError } from "@/utils/error";

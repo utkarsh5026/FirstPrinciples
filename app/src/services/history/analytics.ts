@@ -1,4 +1,4 @@
-import type { ReadingHistoryItem } from "./ReadingHistoryService";
+import type { ReadingHistoryItem } from "../reading/reading-history-service";
 import type { FileMetadata } from "@/utils/MarkdownLoader";
 
 export const createCategoryBreakdown = (
