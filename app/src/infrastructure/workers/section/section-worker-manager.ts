@@ -2,6 +2,7 @@ import {
   BaseWorkerManager,
   type WorkerManagerConfig,
 } from "@/infrastructure/workers/base/base-worker-manager";
+import { CategoryStats } from "@/services/analytics/section-analytics";
 import type { SectionReadingData } from "@/services/section/SectionReadingService";
 
 /**
@@ -18,6 +19,13 @@ export interface SectionWorkerAPI {
     wordCountMap?: Record<string, number>
   ): Promise<number>;
   getReadingSpeed(readings: SectionReadingData[]): Promise<number>;
+  getDailyReadingStats(
+    readings: SectionReadingData[],
+    days: number
+  ): Promise<{ date: string; timeSpent: number; wordsRead: number }[]>;
+  getCategoryStats(
+    readings: SectionReadingData[]
+  ): Promise<Record<string, CategoryStats>>;
 }
 
 export class SectionWorkerManager extends BaseWorkerManager<SectionWorkerAPI> {
@@ -67,5 +75,23 @@ export class SectionWorkerManager extends BaseWorkerManager<SectionWorkerAPI> {
     readings: SectionReadingData[]
   ): Promise<number> {
     return this.executeTask((proxy) => proxy.getReadingSpeed(readings));
+  }
+
+  /**
+   * 📊 Shows your reading stats for the last X days
+   */
+  public async getDailyReadingStats(
+    readings: SectionReadingData[],
+    days: number
+  ): Promise<{ date: string; timeSpent: number; wordsRead: number }[]> {
+    return this.executeTask((proxy) =>
+      proxy.getDailyReadingStats(readings, days)
+    );
+  }
+
+  public async getCategoryStats(
+    readings: SectionReadingData[]
+  ): Promise<Record<string, CategoryStats>> {
+    return this.executeTask((proxy) => proxy.getCategoryStats(readings));
   }
 }

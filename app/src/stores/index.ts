@@ -6,7 +6,7 @@ import { useActivityStore } from "./activityStore";
 import { useHeatmapStore } from "./heatmapStore";
 import { useEffect, useState } from "react";
 import { useSectionStore } from "./reading/section-store";
-import { useCurrentDocumentStore } from "./document/currentDocumentStore";
+import { useCurrentDocumentStore } from "./document/current-document-store";
 import useReadingMetricsStore from "./document/readingMetrics";
 import { databaseService } from "@/infrastructure/storage";
 

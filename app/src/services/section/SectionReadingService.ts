@@ -258,34 +258,6 @@ export class SectionReadingService {
   }
 
   /**
-   * Get total time spent on a document
-   */
-  public async getTotalTimeSpent(documentPath: string): Promise<number> {
-    try {
-      const readings = await this.getDocumentSectionReadings(documentPath);
-      return readings.reduce((total, reading) => total + reading.timeSpent, 0);
-    } catch (error) {
-      console.error("Error calculating total time spent:", error);
-      return 0;
-    }
-  }
-
-  /**
-   * Get total words read for a document
-   */
-  public async getTotalWordsRead(documentPath: string): Promise<number> {
-    try {
-      const readings = await this.getDocumentSectionReadings(documentPath);
-      return readings
-        .filter((reading) => reading.isComplete)
-        .reduce((total, reading) => total + (reading.wordCount || 0), 0);
-    } catch (error) {
-      console.error("Error calculating total words read:", error);
-      return 0;
-    }
-  }
-
-  /**
    * Calculate document completion percentage
    */
   public async getCompletionPercentage(
@@ -326,57 +298,6 @@ export class SectionReadingService {
   }
 
   /**
-   * Get statistics for a category
-   */
-  public async getCategoryStatistics(category: string): Promise<{
-    totalTimeSpent: number;
-    totalWordsRead: number;
-    documentCount: number;
-    sectionCount: number;
-    averageTimePerSection: number;
-  }> {
-    try {
-      const readings = await this.getReadingsByCategory(category);
-
-      // Count unique documents
-      const uniqueDocuments = new Set(readings.map((r) => r.documentPath));
-
-      // Count unique sections
-      const uniqueSections = new Set(readings.map((r) => r.sectionId));
-
-      // Calculate time and words
-      const totalTimeSpent = readings.reduce(
-        (total, r) => total + r.timeSpent,
-        0
-      );
-      const totalWordsRead = readings
-        .filter((r) => r.isComplete)
-        .reduce((total, r) => total + (r.wordCount || 0), 0);
-
-      // Calculate average time per section
-      const averageTimePerSection =
-        uniqueSections.size > 0 ? totalTimeSpent / uniqueSections.size : 0;
-
-      return {
-        totalTimeSpent,
-        totalWordsRead,
-        documentCount: uniqueDocuments.size,
-        sectionCount: uniqueSections.size,
-        averageTimePerSection,
-      };
-    } catch (error) {
-      console.error("Error getting category statistics:", error);
-      return {
-        totalTimeSpent: 0,
-        totalWordsRead: 0,
-        documentCount: 0,
-        sectionCount: 0,
-        averageTimePerSection: 0,
-      };
-    }
-  }
-
-  /**
    * Clear all reading data for a document
    */
   public async clearDocumentReadings(documentPath: string): Promise<void> {
@@ -411,20 +332,6 @@ export class SectionReadingService {
   }
 
   /**
-   * Get all document statistics
-   */
-  public async getAllDocumentStats(): Promise<DocumentStats[]> {
-    try {
-      return await databaseService.getAll<DocumentStats>(
-        SectionReadingService.DOCUMENT_STATS_STORE
-      );
-    } catch (error) {
-      console.error("Error getting all document stats:", error);
-      return [];
-    }
-  }
-
-  /**
    * Get time spent reading on a specific day
    */
   public async getTimeSpentOnDay(date: Date): Promise<number> {
@@ -449,116 +356,6 @@ export class SectionReadingService {
     } catch (error) {
       console.error("Error calculating time spent on day:", error);
       return 0;
-    }
-  }
-
-  /**
-   * Get words read on a specific day
-   */
-  public async getWordsReadOnDay(date: Date): Promise<number> {
-    try {
-      // Create date range for the specified day
-      const startOfDay = new Date(date);
-      startOfDay.setHours(0, 0, 0, 0);
-
-      const endOfDay = new Date(date);
-      endOfDay.setHours(23, 59, 59, 999);
-
-      // Get all readings
-      const allReadings = await this.getAllReadings();
-
-      // Filter readings from the specified day and sum up words read
-      return allReadings
-        .filter((reading) => {
-          const readDate = new Date(reading.lastReadAt);
-          return (
-            readDate >= startOfDay && readDate <= endOfDay && reading.isComplete
-          );
-        })
-        .reduce((total, reading) => total + (reading.wordCount || 0), 0);
-    } catch (error) {
-      console.error("Error calculating words read on day:", error);
-      return 0;
-    }
-  }
-
-  /**
-   * Calculate reading streak (consecutive days with reading activity)
-   */
-  public async calculateReadingStreak(): Promise<{
-    currentStreak: number;
-    longestStreak: number;
-  }> {
-    try {
-      const allReadings = await this.getAllReadings();
-
-      // Extract dates and convert to date-only strings (YYYY-MM-DD)
-      const readingDates = allReadings.map((reading) => {
-        const date = new Date(reading.lastReadAt);
-        return date.toISOString().split("T")[0];
-      });
-
-      // Get unique dates
-      const uniqueDates = [...new Set(readingDates)].sort();
-
-      if (uniqueDates.length === 0) {
-        return { currentStreak: 0, longestStreak: 0 };
-      }
-
-      // Calculate current streak
-      let currentStreak = 0;
-      const today = new Date().toISOString().split("T")[0];
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      const yesterdayStr = yesterday.toISOString().split("T")[0];
-
-      // Check if today or yesterday is in the reading dates
-      if (uniqueDates.includes(today) || uniqueDates.includes(yesterdayStr)) {
-        currentStreak = 1;
-        const startDate = uniqueDates.includes(today)
-          ? yesterday
-          : new Date(yesterday);
-        startDate.setDate(startDate.getDate() - 1);
-
-        const checkDate = startDate;
-        while (true) {
-          const checkDateStr = checkDate.toISOString().split("T")[0];
-          if (!uniqueDates.includes(checkDateStr)) break;
-
-          currentStreak++;
-          checkDate.setDate(checkDate.getDate() - 1);
-        }
-      }
-
-      // Calculate longest streak
-      let longestStreak = currentStreak;
-      let tempStreak = 1;
-
-      for (let i = 1; i < uniqueDates.length; i++) {
-        const current = new Date(uniqueDates[i]);
-        const prev = new Date(uniqueDates[i - 1]);
-
-        // Calculate difference in days
-        const diffTime = current.getTime() - prev.getTime();
-        const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
-
-        if (diffDays === 1) {
-          // Consecutive day
-          tempStreak++;
-          longestStreak = Math.max(longestStreak, tempStreak);
-        } else {
-          // Gap in dates
-          tempStreak = 1;
-        }
-      }
-
-      return {
-        currentStreak,
-        longestStreak,
-      };
-    } catch (error) {
-      console.error("Error calculating reading streak:", error);
-      return { currentStreak: 0, longestStreak: 0 };
     }
   }
 }

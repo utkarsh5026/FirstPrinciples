@@ -259,7 +259,7 @@ const getFileBreadcrumbs = async (
     ];
 
     // Check if file is directly in this category
-    if (category.files && category.files.some((file) => file.path === path)) {
+    if (category.files?.some((file) => file.path === path)) {
       breadcrumbs.push(...newPath);
       return true;
     }

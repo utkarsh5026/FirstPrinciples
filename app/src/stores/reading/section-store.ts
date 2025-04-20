@@ -1,29 +1,13 @@
 import { create } from "zustand";
-import { sectionReadingService } from "@/services/section/SectionReadingService";
+import {
+  sectionReadingService,
+  SectionReadingData,
+} from "@/services/section/SectionReadingService";
 import type { LoadingWithError } from "../base/base";
 import { parseError } from "@/utils/error";
 import { useHistoryStore } from "./history-store";
-import {
-  getTimeSpentOnDay,
-  getTotalWordsRead,
-} from "@/services/analytics/section-analytics";
+import { sectionWorkerManager } from "@/infrastructure/workers";
 
-/**
- * Enhanced SectionReadingData with category and word count
- */
-export type EnhancedSectionReadingData = {
-  id?: IDBValidKey; // Auto-generated unique ID
-  documentPath: string; // Path to the document
-  sectionId: string; // ID of the specific section
-  sectionTitle: string; // Title of the section
-  category: string; // Category of the document
-  wordCount: number; // Number of words in the section
-  timeSpent: number; // Time spent reading (milliseconds)
-  lastReadAt: number; // Timestamp when section was read
-  isComplete: boolean; // Whether section was completed
-};
-
-// Store current reading state in memory only
 type ReadingState = {
   currentSectionId: string | null;
   sectionTitle: string | null;
@@ -80,9 +64,7 @@ interface StoreActions {
   getTimeSpentOnDay: (date: Date) => Promise<number>;
 
   // Category-based analytics
-  getReadingsByCategory: (
-    category: string
-  ) => Promise<EnhancedSectionReadingData[]>;
+  getReadingsByCategory: (category: string) => Promise<SectionReadingData[]>;
   getCategoryStats: () => Promise<Record<string, CategoryStats>>;
 
   // Reading speed analytics
@@ -338,7 +320,10 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
     getTotalWordsRead: async (wordCountMap) => {
       try {
         const allReadings = await sectionReadingService.getAllReadings();
-        return getTotalWordsRead(allReadings, wordCountMap);
+        return sectionWorkerManager.getTotalWordsRead(
+          allReadings,
+          wordCountMap
+        );
       } catch (error) {
         console.error("Error calculating total words read:", error);
         set({
@@ -372,10 +357,8 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
      */
     getTimeSpentOnDay: async (date) => {
       try {
-        return getTimeSpentOnDay(
-          date,
-          await sectionReadingService.getAllReadings()
-        );
+        const allReadings = await sectionReadingService.getAllReadings();
+        return sectionWorkerManager.getTimeSpentOnDay(date, allReadings);
       } catch (error) {
         console.error("Error calculating time spent on day:", error);
         set({
@@ -407,46 +390,10 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
     getCategoryStats: async () => {
       try {
         const allReadings = await sectionReadingService.getAllReadings();
-
-        // Create map of category stats
-        const categoryMap: Record<string, CategoryStats> = {};
-
-        // Process each reading
-        allReadings.forEach((reading) => {
-          const { category, timeSpent, wordCount, isComplete, lastReadAt } =
-            reading;
-
-          if (!category) return;
-
-          if (!categoryMap[category]) {
-            categoryMap[category] = {
-              totalTimeSpent: 0,
-              totalWordsRead: 0,
-              documentCount: 0,
-              lastReadAt: 0,
-            };
-          }
-
-          const stats = categoryMap[category];
-          stats.totalTimeSpent += timeSpent;
-          stats.lastReadAt = Math.max(stats.lastReadAt, lastReadAt);
-
-          if (isComplete) {
-            stats.totalWordsRead += wordCount || 0;
-          }
-
-          // Count unique documents per category (using a Set internally)
-          const docSet = new Set<string>();
+        const categoryMap = await sectionWorkerManager.getCategoryStats(
           allReadings
-            .filter((r) => r.category === category)
-            .forEach((r) => docSet.add(r.documentPath));
-
-          stats.documentCount = docSet.size;
-        });
-
-        // Update state with category stats
+        );
         set({ categoryStats: categoryMap });
-
         return categoryMap;
       } catch (error) {
         console.error("Error getting category stats:", error);
@@ -463,21 +410,7 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
     getReadingSpeed: async () => {
       try {
         const allReadings = await sectionReadingService.getAllReadings();
-
-        // Sum up words and time
-        let totalWords = 0;
-        let totalTime = 0; // In milliseconds
-
-        allReadings
-          .filter((reading) => reading.isComplete && reading.wordCount)
-          .forEach((reading) => {
-            totalWords += reading.wordCount || 0;
-            totalTime += reading.timeSpent;
-          });
-
-        // Calculate WPM
-        const minutes = totalTime / (1000 * 60);
-        return minutes > 0 ? Math.round(totalWords / minutes) : 0;
+        return sectionWorkerManager.getReadingSpeed(allReadings);
       } catch (error) {
         console.error("Error calculating reading speed:", error);
         set({
@@ -492,58 +425,8 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
      */
     getDailyReadingStats: async (days = 7) => {
       try {
-        // Create date range
-        const endDate = new Date();
-        const startDate = new Date();
-        startDate.setDate(startDate.getDate() - (days - 1));
-
-        // Initialize daily stats
-        const dailyStats: Record<
-          string,
-          { timeSpent: number; wordsRead: number }
-        > = {};
-
-        // Fill with zero values for all days in the range
-        for (let i = 0; i < days; i++) {
-          const date = new Date(startDate);
-          date.setDate(date.getDate() + i);
-          const dateKey = date.toISOString().split("T")[0];
-          dailyStats[dateKey] = { timeSpent: 0, wordsRead: 0 };
-        }
-
-        // Get all readings
         const allReadings = await sectionReadingService.getAllReadings();
-
-        // Group by day
-        allReadings.forEach((reading) => {
-          const readDate = new Date(reading.lastReadAt);
-          // Only include readings within our date range
-          if (readDate >= startDate && readDate <= endDate) {
-            const dateKey = readDate.toISOString().split("T")[0];
-
-            // Initialize if needed
-            if (!dailyStats[dateKey]) {
-              dailyStats[dateKey] = { timeSpent: 0, wordsRead: 0 };
-            }
-
-            // Add time spent
-            dailyStats[dateKey].timeSpent += reading.timeSpent;
-
-            // Add words read (only for completed sections)
-            if (reading.isComplete) {
-              dailyStats[dateKey].wordsRead += reading.wordCount || 0;
-            }
-          }
-        });
-
-        // Convert to array format
-        return Object.entries(dailyStats)
-          .map(([date, stats]) => ({
-            date,
-            timeSpent: stats.timeSpent,
-            wordsRead: stats.wordsRead,
-          }))
-          .sort((a, b) => a.date.localeCompare(b.date));
+        return sectionWorkerManager.getDailyReadingStats(allReadings, days);
       } catch (error) {
         console.error("Error getting daily reading stats:", error);
         set({
