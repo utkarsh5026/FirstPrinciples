@@ -3,16 +3,9 @@ import { formatNumber } from "../utils";
 import { User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import React, { useMemo } from "react";
-import { Progress } from "@/components/ui/progress";
 import { useHistoryStore, useCategoryStore } from "@/stores";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
 import { formatTimeInMs } from "@/utils/time";
-
-interface ReadingProgressProps {
-  currentLevelXP: number;
-  xpToNextLevel: number;
-  xpProgress: number;
-}
 
 /**
  * 🚀 ReadingProgress Component
@@ -31,11 +24,7 @@ interface ReadingProgressProps {
  *
  * The intention behind this component is to provide a motivating and informative snapshot of the user's reading activity, encouraging them to keep reading and exploring! 📚💪
  */
-const ReadingProgress: React.FC<ReadingProgressProps> = ({
-  currentLevelXP,
-  xpToNextLevel,
-  xpProgress,
-}) => {
+const ReadingProgress: React.FC = () => {
   const readingHistory = useHistoryStore((state) => state.readingHistory);
   const categoryBreakdown = useCategoryStore(
     (state) => state.categoryBreakdown
@@ -103,15 +92,6 @@ const ReadingProgress: React.FC<ReadingProgressProps> = ({
 
       <div className="space-y-4">
         {/* XP Bar */}
-        <div>
-          <div className="flex justify-between text-xs mb-1">
-            <span>XP Progress</span>
-            <span>
-              {currentLevelXP} / {xpToNextLevel} XP
-            </span>
-          </div>
-          <Progress value={xpProgress} className="h-2" />
-        </div>
 
         {/* Reading Stats */}
         <div className="grid grid-cols-2 gap-3">

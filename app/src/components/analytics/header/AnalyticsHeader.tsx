@@ -1,8 +1,7 @@
-import { Zap, Flame, Clock, BookOpenCheck } from "lucide-react";
+import { Flame, Clock, BookOpenCheck } from "lucide-react";
 import { formatNumber, getStreakEmoji } from "../utils";
 import StatCard from "./StatCard";
 import { useHistoryStore, useDocumentStore } from "@/stores";
-import { useXP } from "@/context";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
 import { formatTimeInMs } from "@/utils/time";
 
@@ -23,7 +22,6 @@ import { formatTimeInMs } from "@/utils/time";
 const AnalyticsHeader: React.FC = () => {
   const { totalWordsRead, totalTimeSpent, documents } = useGlobalMetrics();
 
-  const { xpStats } = useXP();
   const { currentStreak, longestStreak } = useHistoryStore(
     (state) => state.streak
   );
@@ -39,20 +37,6 @@ const AnalyticsHeader: React.FC = () => {
 
   return (
     <div className="grid grid-cols-2 gap-4 md:grid-cols-4 animate-in fade-in duration-500">
-      {/* Level and XP */}
-      <StatCard
-        title="Reading Level"
-        value={xpStats.level}
-        subtitle={`${xpStats.totalXP} XP total`}
-        progressValue={(xpStats.currentLevelXP / xpStats.nextLevelXP) * 100}
-        progressLabels={{
-          left: `${xpStats.currentLevelXP} XP`,
-          right: `${xpStats.nextLevelXP} XP needed`,
-        }}
-        icon={Zap}
-        colorScheme="primary"
-      />
-
       {/* Reading Streak */}
       <StatCard
         title="Current Streak"

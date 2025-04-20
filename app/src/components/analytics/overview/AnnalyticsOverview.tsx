@@ -6,7 +6,6 @@ import ReadingTrends from "./ReadingTrends";
 import RecentReads from "./RecentReads";
 import { useActivityStore, useCategoryStore, useHistoryStore } from "@/stores";
 import Activity from "./Activity";
-import { useXP } from "@/context";
 
 export interface ReadingChallenge {
   id: string;
@@ -32,7 +31,6 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
   actions,
   onSelectDocument,
 }) => {
-  const { xpStats } = useXP();
   const readingHistory = useHistoryStore((state) => state.readingHistory);
   const categoryBreakdown = useCategoryStore(
     (state) => state.categoryBreakdown
@@ -45,11 +43,7 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left column: Summary and stats */}
         <div className="space-y-4">
-          <ReadingProgress
-            currentLevelXP={xpStats.currentLevelXP}
-            xpToNextLevel={xpStats.nextLevelXP}
-            xpProgress={xpStats.currentLevelXP / xpStats.nextLevelXP}
-          />
+          <ReadingProgress />
 
           <DailyChallenges
             refreshChallenges={actions.refreshChallenges}

@@ -1,6 +1,6 @@
 import React from "react";
 import AnalyticsPage from "./AnalyticsPage";
-import type { FileMetadata } from "@/utils/MarkdownLoader";
+import type { FileMetadata } from "@/services/document";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Info } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";

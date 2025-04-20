@@ -3,8 +3,8 @@
 
 import { databaseService } from "@/infrastructure/storage";
 import * as readingHistoryService from "@/services/reading/reading-history-service";
-import { readingSessionTracker } from "./ReadingSessionTracker";
-import { sectionAnalyticsController } from "./SectionAnalyticsController";
+import { readingSessionTracker } from "../analytics/ReadingSessionTracker";
+import { sectionAnalyticsController } from "../analytics/SectionAnalyticsController";
 
 /**
  * Achievement difficulty level - determines XP rewards and visual treatment
@@ -888,5 +888,4 @@ export class EnhancedAchievementService {
   }
 }
 
-// Create and export singleton instance
 export const enhancedAchievementService = new EnhancedAchievementService();
