@@ -1,4 +1,6 @@
 import type { SectionReadingData } from "@/services/section/SectionReadingService";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
+import type { FileMetadata } from "@/services/document";
 
 export type CategoryMetrics = {
   wordsRead: number;
@@ -115,4 +117,60 @@ export const getCategoryTimeSpent = (
   );
 
   return totalTime;
+};
+
+/**
+ * 📝 Category Breakdown
+ *
+ * Creates a breakdown of categories and their counts.
+ * Great for seeing which categories you're most interested in!
+ */
+export const createCategoryBreakdown = (
+  readingHistory: ReadingHistoryItem[],
+  availableDocuments: FileMetadata[]
+) => {
+  const categoryMap: Record<string, number> = {};
+  readingHistory.forEach((item) => {
+    const category = item.path.split("/")[0] || "uncategorized";
+    categoryMap[category] = (categoryMap[category] || 0) + 1;
+  });
+
+  const total = Object.values(categoryMap).reduce(
+    (sum, count) => sum + count,
+    0
+  );
+
+  const result = Object.entries(categoryMap);
+  return result
+    .map(([category, count]) => ({
+      category,
+      count,
+      categoryCount: availableDocuments.filter(
+        (doc) => doc.path.split("/")[0] === category
+      ).length,
+      percentage: total > 0 ? Math.round((count / total) * 100) : 0,
+    }))
+    .sort((a, b) => b.count - a.count);
+};
+
+/**
+ * 🔍 Create a category map
+ * Get the category map from the reading history
+ */
+export const createCategoryMap = (
+  readingHistory: ReadingHistoryItem[]
+): Record<string, ReadingHistoryItem[]> => {
+  const categoryMap: Record<string, ReadingHistoryItem[]> = {};
+  readingHistory.forEach((item) => {
+    const category = item.path.split("/")[0] || "uncategorized";
+    categoryMap[category] = [...(categoryMap[category] || []), item];
+  });
+
+  for (const category in categoryMap) {
+    const sorted = [...categoryMap[category]];
+    sorted.sort((a, b) => b.lastReadAt - a.lastReadAt);
+    categoryMap[category] = sorted;
+  }
+
+  return categoryMap;
 };

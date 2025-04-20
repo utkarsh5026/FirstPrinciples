@@ -7,7 +7,6 @@ import { useHeatmapStore } from "./heatmapStore";
 import { useEffect, useState } from "react";
 import { useSectionStore } from "./reading/section-store";
 import { useCurrentDocumentStore } from "./document/current-document-store";
-import useReadingMetricsStore from "./document/readingMetrics";
 import { databaseService } from "@/infrastructure/storage";
 
 /**
@@ -56,6 +55,5 @@ export {
   useHeatmapStore,
   useSectionStore,
   useCurrentDocumentStore,
-  useReadingMetricsStore,
   useCategoryStore,
 };

@@ -22,6 +22,12 @@ const getInitialTheme = (): ThemeOption => {
   }
 };
 
+/**
+ * 🎨 Theme Store
+ *
+ * This store manages the current theme of the application.
+ * It allows you to set the theme and get the current theme.
+ */
 export const useThemeStore = create<ThemeState>((set) => ({
   currentTheme: getInitialTheme(),
   setTheme: (theme: ThemeOption) => {

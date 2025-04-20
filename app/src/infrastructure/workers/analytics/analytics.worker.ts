@@ -1,8 +1,10 @@
 import * as Comlink from "comlink";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import type { CategoryBreakdown } from "@/stores/categoryStore";
-import { createCategoryBreakdown } from "@/services/history";
-import { createCategoryMap } from "@/services/history/analytics";
+import {
+  createCategoryBreakdown,
+  createCategoryMap,
+} from "@/services/analytics/category-analytics";
 import type { FileMetadata } from "@/services/document";
 import {
   calculateTotalWeeklyActivity,
