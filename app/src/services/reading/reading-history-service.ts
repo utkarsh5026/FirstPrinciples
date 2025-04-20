@@ -3,6 +3,14 @@ import { databaseService } from "../database/DatabaseService";
 import { readingSessionTracker } from "@/services/analytics/ReadingSessionTracker";
 import { wordCountEstimator } from "@/services/analytics/WordCountEstimator";
 
+const STORE_NAME = "readingHistory";
+
+/**
+ * 📚 Reading History Service
+ *
+ * Tracks and manages your reading journey across documents.
+ * Remembers what you've read, when you read it, and how much time you spent!
+ */
 export interface ReadingHistoryItem {
   id?: number;
   path: string;
@@ -14,10 +22,10 @@ export interface ReadingHistoryItem {
 }
 
 /**
- * Add a document to reading history
- * @param path Document path
- * @param title Document title
- * @returns Promise with the added or updated history item
+ * 📝 Add a document to reading history
+ *
+ * Records that you've read something! Updates existing entries
+ * or creates new ones to track your reading progress.
  */
 export async function addToReadingHistory(
   path: string,
@@ -27,7 +35,7 @@ export async function addToReadingHistory(
     // Get existing history entries for this document
     const existingEntries = await databaseService.getByIndex<
       ReadingHistoryItem & { id: IDBValidKey }
-    >("readingHistory", "path", path);
+    >(STORE_NAME, "path", path);
 
     const existingEntry =
       existingEntries.length > 0 ? existingEntries[0] : null;
@@ -49,7 +57,7 @@ export async function addToReadingHistory(
       };
 
       await databaseService.update(
-        "readingHistory",
+        STORE_NAME,
         updatedEntry as {
           id: IDBValidKey;
         }
@@ -65,7 +73,7 @@ export async function addToReadingHistory(
         wordsRead: wordsRead,
       };
 
-      const id = await databaseService.add("readingHistory", newEntry);
+      const id = await databaseService.add(STORE_NAME, newEntry);
       return { ...newEntry, id: id as number };
     }
   } catch (error) {
@@ -75,13 +83,15 @@ export async function addToReadingHistory(
 }
 
 /**
- * Get all reading history items
- * @returns Promise with array of all history items
+ * 📋 Get all reading history items
+ *
+ * Fetches your complete reading history so you can see
+ * everything you've been learning about!
  */
 export async function getAllHistory(): Promise<ReadingHistoryItem[]> {
   try {
     const history = await databaseService.getAll<ReadingHistoryItem>(
-      "readingHistory"
+      STORE_NAME
     );
     return history.map((item) => ({
       ...item,
@@ -96,12 +106,14 @@ export async function getAllHistory(): Promise<ReadingHistoryItem[]> {
 }
 
 /**
- * Clear all reading history
- * @returns Promise that resolves when history is cleared
+ * 🧹 Clear all reading history
+ *
+ * Wipes your reading slate clean! Sometimes you just
+ * want to start fresh with tracking what you've read.
  */
 export async function clearHistory(): Promise<void> {
   try {
-    await databaseService.clearStore("readingHistory");
+    await databaseService.clearStore(STORE_NAME);
   } catch (error) {
     console.error("Error clearing reading history:", error);
     throw error;
@@ -109,16 +121,17 @@ export async function clearHistory(): Promise<void> {
 }
 
 /**
- * Get history item for a specific document
- * @param path Document path
- * @returns Promise with history item or null if not found
+ * 🔍 Get history item for a specific document
+ *
+ * Checks if you've read a particular document before
+ * and retrieves your reading stats for it!
  */
 export async function getDocumentHistory(
   path: string
 ): Promise<ReadingHistoryItem | null> {
   try {
     const items = await databaseService.getByIndex<ReadingHistoryItem>(
-      "readingHistory",
+      STORE_NAME,
       "path",
       path
     );
