@@ -2,7 +2,7 @@ import { create } from "zustand";
 import {
   sectionReadingService,
   SectionReadingData,
-} from "@/services/section/SectionReadingService";
+} from "@/services/reading/section-reading-service";
 import type { LoadingWithError } from "../base/base";
 import { parseError } from "@/utils/error";
 import { useHistoryStore } from "./history-store";

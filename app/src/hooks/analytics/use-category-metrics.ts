@@ -1,5 +1,5 @@
 import { sectionWorkerManager } from "@/infrastructure/workers";
-import { SectionReadingData } from "@/services/section/SectionReadingService";
+import { SectionReadingData } from "@/services/reading/section-reading-service";
 import { useCallback } from "react";
 import { withErrorHandling } from "@/utils/functions/error";
 

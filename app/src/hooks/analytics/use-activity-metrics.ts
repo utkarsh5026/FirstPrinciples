@@ -10,7 +10,7 @@ import {
   getReadingByHourMetrics as getReadingByHourMetricsService,
 } from "@/services/analytics/activity-analyzer";
 
-import type { ReadingHistoryItem } from "@/services/history";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { withErrorHandling } from "@/utils/functions/error";
 import { useCallback } from "react";
 

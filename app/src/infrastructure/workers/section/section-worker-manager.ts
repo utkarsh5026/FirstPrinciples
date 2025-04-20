@@ -4,7 +4,7 @@ import {
 } from "@/infrastructure/workers/base/base-worker-manager";
 import type { CategoryMetrics } from "@/services/analytics/category-analytics";
 import type { CategoryStats } from "@/services/analytics/section-analytics";
-import type { SectionReadingData } from "@/services/section/SectionReadingService";
+import type { SectionReadingData } from "@/services/reading/section-reading-service";
 
 /**
  * API interface for the markdown worker

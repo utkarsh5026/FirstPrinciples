@@ -1,4 +1,4 @@
-import type { SectionReadingData } from "@/services/section/SectionReadingService";
+import type { SectionReadingData } from "@/services/reading/section-reading-service";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import type { FileMetadata } from "@/services/document";
 

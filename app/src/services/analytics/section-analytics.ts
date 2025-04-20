@@ -1,4 +1,4 @@
-import type { SectionReadingData } from "@/services/section/SectionReadingService";
+import type { SectionReadingData } from "@/services/reading/section-reading-service";
 
 export type CategoryStats = {
   totalTimeSpent: number;

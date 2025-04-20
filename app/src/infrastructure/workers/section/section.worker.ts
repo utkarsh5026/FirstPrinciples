@@ -1,4 +1,4 @@
-import { SectionReadingData } from "@/services/section/SectionReadingService";
+import { SectionReadingData } from "@/services/reading/section-reading-service";
 import * as Comlink from "comlink";
 import {
   getTimeSpentOnDay,

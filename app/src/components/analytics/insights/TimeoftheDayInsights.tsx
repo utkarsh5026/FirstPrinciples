@@ -2,7 +2,7 @@ import CardContainer from "@/components/container/CardContainer";
 import { Clock } from "lucide-react";
 import { memo, useEffect, useState } from "react";
 import { TimeOfDayPreference } from "../trends";
-import type { ReadingHistoryItem } from "@/services/history";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import type { HourlyActivity } from "@/services/analytics/activity-analyzer";
 import { Color } from "@/components/container/useContainer";
 import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";
