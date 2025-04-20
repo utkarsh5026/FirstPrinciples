@@ -2,10 +2,7 @@
 import { create } from "zustand";
 import { readingSessionTracker } from "@/services/analytics/ReadingSessionTracker";
 import { sectionAnalyticsController } from "@/services/analytics/SectionAnalyticsController";
-import {
-  readingHistoryService,
-  type ReadingHistoryItem,
-} from "@/services/history";
+import { type ReadingHistoryItem } from "@/services/history";
 import { formatDateKey } from "@/utils/time";
 import { useDocumentStore } from "./document/documentStore";
 

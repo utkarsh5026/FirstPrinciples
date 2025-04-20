@@ -6,7 +6,7 @@ import {
   Bar,
   Tooltip as RechartsTooltip,
 } from "recharts";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { useActivityStore } from "@/stores";
 
 /**

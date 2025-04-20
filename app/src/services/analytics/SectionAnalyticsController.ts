@@ -4,9 +4,9 @@ import {
   SectionReadingData,
   type DocumentStats,
 } from "./SectionReadingTracker";
-import { wordCountEstimator } from "./WordCountEstimator";
 import { analyticsController } from "./AnalyticsController";
 import type { ReadingHistoryItem } from "@/services/history";
+import { estimateReadingTime, countWords } from "./word-count-estimation";
 
 /**
  * Controller that manages section-level analytics
@@ -156,8 +156,8 @@ export class SectionAnalyticsController {
    * @returns Estimated reading time in minutes
    */
   public getEstimatedSectionReadingTime(sectionContent: string): number {
-    const wordCount = wordCountEstimator.countWords(sectionContent);
-    const timeMs = wordCountEstimator.estimateReadingTime(wordCount);
+    const wordCount = countWords(sectionContent);
+    const timeMs = estimateReadingTime(wordCount);
     return Math.ceil(timeMs / (1000 * 60)); // Convert to minutes and round up
   }
 

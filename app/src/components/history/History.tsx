@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ReadingHistoryItem } from "@/services/history";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 
 import HistoryHeader from "./components/HistoryHeader";
 import HistoryFilters from "./components/HistoryFilters";

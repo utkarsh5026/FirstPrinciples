@@ -3,12 +3,12 @@ import {
   type ReadingSession,
   readingSessionTracker,
 } from "./ReadingSessionTracker";
-import { wordCountEstimator } from "./WordCountEstimator";
 import { type ReadingHistoryItem } from "@/services/history";
 import * as readingListService from "@/services/reading/reading-list-service";
 import { readingStatsService } from "./ReadingStatsService";
 import type { FileMetadata } from "@/services/document/document-loader";
 import * as readingHistoryService from "@/services/reading/reading-history-service";
+import { countWords } from "./word-count-estimation";
 
 /**
  * Controller that orchestrates all analytics services
@@ -66,7 +66,7 @@ export class AnalyticsController {
       // Count words in the document if content is provided
       let wordCount;
       if (content) {
-        wordCount = wordCountEstimator.countWords(content);
+        wordCount = countWords(content);
       }
 
       // Start a reading session

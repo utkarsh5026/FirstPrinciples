@@ -1,5 +1,5 @@
 import { ReadingSessionTracker } from "./ReadingSessionTracker";
-import { wordCountEstimator } from "./WordCountEstimator";
+import { countWords, estimateReadingTime } from "./word-count-estimation";
 import { databaseService } from "@/infrastructure/storage";
 
 export type SectionReadingData = {
@@ -59,7 +59,7 @@ export class SectionReadingTracker {
     if (this.currentSection) {
       this.endSectionReading();
     }
-    const wordCount = wordCountEstimator.countWords(sectionContent);
+    const wordCount = countWords(sectionContent);
 
     this.currentSection = {
       sectionId,
@@ -95,7 +95,7 @@ export class SectionReadingTracker {
 
     this.currentSection.endTime = now;
     this.currentSection.duration = now - this.currentSection.startTime;
-    const estimatedTimeNeeded = wordCountEstimator.estimateReadingTime(
+    const estimatedTimeNeeded = estimateReadingTime(
       this.currentSection.wordCount
     );
 
@@ -180,7 +180,7 @@ export class SectionReadingTracker {
   public checkSectionProgress(): number {
     if (!this.currentSection) return 0;
 
-    const estimatedTimeNeeded = wordCountEstimator.estimateReadingTime(
+    const estimatedTimeNeeded = estimateReadingTime(
       this.currentSection.wordCount
     );
 

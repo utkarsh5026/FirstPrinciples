@@ -1,7 +1,7 @@
 import React from "react";
 import { LucideProps } from "lucide-react";
 import { motion } from "framer-motion";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 
 interface FeatureCardProps {
   Icon: React.ForwardRefExoticComponent<

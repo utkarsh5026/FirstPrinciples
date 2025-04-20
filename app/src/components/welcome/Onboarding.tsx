@@ -11,7 +11,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import useMobile from "@/hooks/device/use-mobile";

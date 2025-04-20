@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import type { ReadingHistoryItem } from "@/services/history";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import getIconForTech from "@/components/icons/iconMap";
 import { fromSnakeToTitleCase } from "@/utils/string";
 

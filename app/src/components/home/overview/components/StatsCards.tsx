@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { BookCopy, Flame, Clock, Trophy } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { formatNumber, getStreakEmoji } from "@/components/analytics/utils";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
 import { useSectionStore } from "@/stores";

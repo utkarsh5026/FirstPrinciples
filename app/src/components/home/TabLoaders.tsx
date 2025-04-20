@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 
 /**
  * A collection of abstract SVG shapes used as loading indicators

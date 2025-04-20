@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { motion } from "framer-motion";
 import { LayoutList, Calendar, BookOpen, Clock } from "lucide-react";
 import { useCurrentDocumentStore, useSectionStore } from "@/stores";

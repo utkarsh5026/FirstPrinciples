@@ -3,7 +3,7 @@ import { useRouteError, isRouteErrorResponse, Link } from "react-router-dom";
 import { Home, RefreshCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 
 /**
  * ErrorBoundary Component

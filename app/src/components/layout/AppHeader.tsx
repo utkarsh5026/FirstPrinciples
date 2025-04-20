@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Menu, Home } from "lucide-react";

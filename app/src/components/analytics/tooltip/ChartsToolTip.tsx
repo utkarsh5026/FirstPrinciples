@@ -1,6 +1,6 @@
 import { Tooltip as RechartsTooltip } from "recharts";
 import { Formatter } from "recharts/types/component/DefaultTooltipContent";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 
 interface ChartsToolTipProps {
   formatter: Formatter<number, string>;

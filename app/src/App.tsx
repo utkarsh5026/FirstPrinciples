@@ -6,6 +6,7 @@ import AppHeader from "@/components/layout/AppHeader";
 import AppWrapper from "@/components/welcome/Wrapper";
 import { TabProvider } from "@/components/home/context/TabProvider";
 import { useInit } from "./stores";
+import { useTheme } from "@/hooks/ui/use-theme";
 
 /**
  * 🌟 App Component
@@ -25,6 +26,7 @@ export const App = () => {
   const mainContentRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
+  useTheme();
 
   const loading = useInit();
 

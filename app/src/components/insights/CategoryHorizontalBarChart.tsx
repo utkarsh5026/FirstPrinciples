@@ -9,7 +9,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import useMobile from "@/hooks/device/use-mobile";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { COLORS } from "@/lib/constants";
 
 type CateggoryBarData = {

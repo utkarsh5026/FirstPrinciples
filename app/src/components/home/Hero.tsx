@@ -1,6 +1,6 @@
 import { Sparkles, FileText, CheckCircle2, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { useEffect, useState } from "react";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
 import useTodoList from "@/hooks/document/use-document-list";

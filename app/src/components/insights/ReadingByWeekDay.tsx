@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { useActivityStore } from "@/stores/activityStore";
 import {
   Bar,

@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import { motion } from "framer-motion";
 import useMobile from "@/hooks/device/use-mobile";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { ChartArea } from "lucide-react";
 
 type RadarData = {

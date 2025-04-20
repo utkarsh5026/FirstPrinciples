@@ -10,7 +10,7 @@ import {
   Scale,
   Target,
 } from "lucide-react";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { motion } from "framer-motion";
 import { CategoryBreakdown } from "@/stores/categoryStore";
 import {

@@ -30,7 +30,7 @@ export const useTheme = () => {
   }, [currentTheme]);
 
   return {
-    theme: currentTheme,
+    currentTheme,
     setTheme: (theme: ThemeOption) => setTheme(theme),
   };
 };

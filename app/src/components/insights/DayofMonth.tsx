@@ -16,7 +16,7 @@ import {
 } from "recharts";
 
 import { motion } from "framer-motion";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { cn } from "@/lib/utils";
 import useMobile from "@/hooks/device/use-mobile";
 import { generateThemeColors } from "@/utils/colors";

@@ -1,6 +1,6 @@
 import { BookOpen, CheckCircle2, Clock, ListTodo } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { useTheme } from "@/components/theme/context/ThemeContext";
+import { useTheme } from "@/hooks/ui/use-theme";
 import { useReadingStore } from "@/stores";
 
 /**
