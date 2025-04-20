@@ -1,7 +1,7 @@
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { databaseService } from "@/infrastructure/storage";
 import { readingSessionTracker } from "@/services/analytics/ReadingSessionTracker";
-import { wordCountEstimator } from "@/services/analytics/WordCountEstimator";
+import { estimateWordsRead } from "@/services/analytics/word-count-estimation";
 
 const STORE_NAME = "readingHistory";
 
@@ -32,7 +32,6 @@ export async function addToReadingHistory(
   title: string
 ): Promise<ReadingHistoryItem> {
   try {
-    // Get existing history entries for this document
     const existingEntries = await databaseService.getByIndex<
       ReadingHistoryItem & { id: IDBValidKey }
     >(STORE_NAME, "path", path);
@@ -44,7 +43,7 @@ export async function addToReadingHistory(
       path,
       true
     );
-    const wordsRead = wordCountEstimator.estimateWordsRead(timeSpent);
+    const wordsRead = estimateWordsRead(timeSpent);
     const now = Date.now();
 
     if (existingEntry) {
