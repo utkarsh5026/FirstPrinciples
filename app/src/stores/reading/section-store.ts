@@ -1,8 +1,12 @@
 import { create } from "zustand";
 import { sectionReadingService } from "@/services/section/SectionReadingService";
-import type { LoadingWithError } from "./base/base";
+import type { LoadingWithError } from "../base/base";
 import { parseError } from "@/utils/error";
-import { useHistoryStore } from "./reading/history-store";
+import { useHistoryStore } from "./history-store";
+import {
+  getTimeSpentOnDay,
+  getTotalWordsRead,
+} from "@/services/analytics/section-analytics";
 
 /**
  * Enhanced SectionReadingData with category and word count
@@ -334,39 +338,7 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
     getTotalWordsRead: async (wordCountMap) => {
       try {
         const allReadings = await sectionReadingService.getAllReadings();
-
-        // Extract unique section IDs that have been read and marked complete
-        const readSectionIds = new Set<string>();
-        allReadings
-          .filter((reading) => reading.isComplete)
-          .forEach((reading) => readSectionIds.add(reading.sectionId));
-
-        // Sum up word counts for all read sections
-        let totalWords = 0;
-
-        // If wordCountMap is provided, use it for sections in the map
-        if (wordCountMap) {
-          for (const sectionId of readSectionIds) {
-            if (wordCountMap[sectionId]) {
-              totalWords += wordCountMap[sectionId];
-            } else {
-              // For sections not in the map, use the word count from the reading data
-              const sectionReadings = allReadings.filter(
-                (r) => r.sectionId === sectionId && r.isComplete
-              );
-              if (sectionReadings.length > 0) {
-                totalWords += sectionReadings[0].wordCount || 0;
-              }
-            }
-          }
-        } else {
-          // If no map provided, use the word counts from the reading data
-          for (const reading of allReadings.filter((r) => r.isComplete)) {
-            totalWords += reading.wordCount || 0;
-          }
-        }
-
-        return totalWords;
+        return getTotalWordsRead(allReadings, wordCountMap);
       } catch (error) {
         console.error("Error calculating total words read:", error);
         set({
@@ -400,22 +372,10 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
      */
     getTimeSpentOnDay: async (date) => {
       try {
-        // Create date range for the specified day
-        const startOfDay = new Date(date);
-        startOfDay.setHours(0, 0, 0, 0);
-
-        const endOfDay = new Date(date);
-        endOfDay.setHours(23, 59, 59, 999);
-
-        // Get all readings and filter by date
-        const allReadings = await sectionReadingService.getAllReadings();
-
-        return allReadings
-          .filter((reading) => {
-            const readDate = new Date(reading.lastReadAt);
-            return readDate >= startOfDay && readDate <= endOfDay;
-          })
-          .reduce((total, reading) => total + reading.timeSpent, 0);
+        return getTimeSpentOnDay(
+          date,
+          await sectionReadingService.getAllReadings()
+        );
       } catch (error) {
         console.error("Error calculating time spent on day:", error);
         set({

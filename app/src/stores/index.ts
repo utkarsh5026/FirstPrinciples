@@ -5,7 +5,7 @@ import { useCategoryStore } from "./categoryStore";
 import { useActivityStore } from "./activityStore";
 import { useHeatmapStore } from "./heatmapStore";
 import { useEffect, useState } from "react";
-import { useSectionStore } from "./sectionStore";
+import { useSectionStore } from "./reading/section-store";
 import { useCurrentDocumentStore } from "./document/currentDocumentStore";
 import useReadingMetricsStore from "./document/readingMetrics";
 import { databaseService } from "@/infrastructure/storage";
