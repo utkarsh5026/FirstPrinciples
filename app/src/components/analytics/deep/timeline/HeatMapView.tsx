@@ -297,24 +297,27 @@ const HeatmapView: React.FC<HeatmapViewProps> = ({
           )}
 
           {/* Empty state */}
-          {calendarData.every((day) => day.count === 0) && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-center py-4 text-muted-foreground"
-            >
-              <AlertCircle className="h-8 w-8 mx-auto mb-2 opacity-25" />
-              <p>No reading activity in this month</p>
-              <p className="text-xs mt-1">
-                Try changing the time range or navigating to a different month
-              </p>
-            </motion.div>
-          )}
+          {calendarData.every((day) => day.count === 0) && <EmptyHeatmapView />}
         </motion.div>
       </AnimatePresence>
     </div>
   );
 };
 
+const EmptyHeatmapView = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3 }}
+      className="text-center py-4 text-muted-foreground"
+    >
+      <AlertCircle className="h-8 w-8 mx-auto mb-2 opacity-25" />
+      <p>No reading activity in this month</p>
+      <p className="text-xs mt-1">
+        Try changing the time range or navigating to a different month
+      </p>
+    </motion.div>
+  );
+};
 export default HeatmapView;
