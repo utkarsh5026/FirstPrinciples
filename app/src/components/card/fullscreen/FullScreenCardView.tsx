@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
-import { useSwipeGesture } from "@/hooks/device/useSwipeGesture";
+import { useSwipeGesture } from "@/hooks/device/use-swipe-gesture";
 import CardProgress from "./CardProgress";
 import {
   Menu,
