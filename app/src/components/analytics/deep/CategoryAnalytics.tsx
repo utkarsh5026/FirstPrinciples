@@ -14,7 +14,7 @@ import {
 } from "@/services/document/document-loader";
 import useMobile from "@/hooks/device/use-mobile";
 
-import CategoryCoverageMap from "./coverage";
+import CategoryCoverageMap from "@/components/analytics/insights/CategoryCoverage";
 import SankeyKnowledgeFlow from "./flow";
 import TimeFilteredHeatCalendar from "./timeline/ReadingTimeline";
 import CategoryInsights from "./hierarchy/CategoryInsights";

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { LineChart } from "lucide-react";
 import { useHistoryStore } from "@/stores";
-import { getStreakEmoji } from "../utils";
+import { getStreakEmoji } from "../../utils";
 import { DayOfMonth } from "@/components/insights";
 import type { WeeklyActivity } from "@/services/analytics/activity-analyzer";
 import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";

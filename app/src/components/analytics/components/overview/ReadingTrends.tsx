@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LineChart } from "lucide-react";
 import { useState } from "react";
-import MonthlyReadingTrend from "../../insights/MonthlyTrend";
-import { ReadingByWeekDay } from "../trends";
+import MonthlyReadingTrend from "../../../insights/MonthlyTrend";
+import { ReadingByWeekDay } from "../../trends";
 
 type Period = "week" | "month";
 

@@ -1,4 +1,4 @@
-import { formatNumber } from "../utils";
+import { formatNumber } from "../../utils";
 import { User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import React, { useMemo } from "react";

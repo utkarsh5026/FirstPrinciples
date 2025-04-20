@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BarChart3, PieChart as PieChartIcon } from "lucide-react";
+import {
+  ActivityIcon,
+  BarChart3,
+  PieChart as PieChartIcon,
+} from "lucide-react";
 import AnalyticsHeader from "./header/AnalyticsHeader";
 import Insights from "./insights";
-import AnalyticsOverview from "./overview";
+import AnalyticsOverview from "./components/overview";
 import { SiDeepl } from "react-icons/si";
 import CategoryAnalytics from "./deep";
 
@@ -19,6 +23,10 @@ const tabs = [
   {
     title: "Insights",
     icon: <PieChartIcon className="h-3.5 w-3.5" />,
+  },
+  {
+    title: "Activity",
+    icon: <ActivityIcon className="h-3.5 w-3.5" />,
   },
   {
     title: "Deep",
