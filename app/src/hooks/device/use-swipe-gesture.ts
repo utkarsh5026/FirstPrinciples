@@ -8,7 +8,24 @@ interface SwipeGestureOptions {
   targetRef?: React.RefObject<HTMLElement>;
 }
 
-export function useSwipeGesture(options: SwipeGestureOptions = {}) {
+/**
+ * ✨ useSwipeGesture ✨
+ *
+ * A delightful hook that adds touch gesture superpowers to your components! 👆✨
+ *
+ * This hook is your friendly gesture detector that works behind the scenes to:
+ *
+ * 👈 Detect left swipes for navigation or dismissal actions
+ * 👉 Catch right swipes for revealing menus or previous content
+ * 👆👆 Recognize double taps for zooming or special actions
+ * 🎯 Target specific elements or use the entire document
+ * 🔄 Provide controls to pause and resume gesture detection
+ * 📏 Customize sensitivity with adjustable thresholds
+ *
+ * Perfect for creating intuitive touch interactions that feel natural on mobile!
+ * Let this hook handle the complex touch event logic while you focus on the user experience. 😊
+ */
+export const useSwipeGesture = (options: SwipeGestureOptions = {}) => {
   const {
     threshold = 50,
     onSwipeLeft,
@@ -17,13 +34,28 @@ export function useSwipeGesture(options: SwipeGestureOptions = {}) {
     targetRef,
   } = options;
 
+  /**
+   * 📱 Gesture State
+   *
+   * Keeps track of touch positions and timing for accurate gesture detection
+   */
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const lastTapRef = useRef<number>(0);
   const [isListening, setIsListening] = useState(true);
 
+  /**
+   * 👆 Touch Event Handler
+   *
+   * Sets up and manages all the touch event listeners for detecting swipes and taps
+   */
   useEffect(() => {
     const targetElement = targetRef?.current || document;
 
+    /**
+     * ✋ handleTouchStart
+     *
+     * Captures the initial touch position and checks for double taps
+     */
     const handleTouchStart = (e: TouchEvent) => {
       if (!isListening) return;
 
@@ -44,6 +76,11 @@ export function useSwipeGesture(options: SwipeGestureOptions = {}) {
       lastTapRef.current = now;
     };
 
+    /**
+     * 👋 handleTouchEnd
+     *
+     * Calculates the swipe direction and distance, then triggers the appropriate callback
+     */
     const handleTouchEnd = (e: TouchEvent) => {
       if (!isListening || !touchStartRef.current) return;
 
@@ -100,9 +137,14 @@ export function useSwipeGesture(options: SwipeGestureOptions = {}) {
     targetRef,
   ]);
 
+  /**
+   * 🎮 Gesture Controls
+   *
+   * Returns helpful functions to control the gesture detection behavior
+   */
   return {
     pauseListening: () => setIsListening(false),
     resumeListening: () => setIsListening(true),
     isListening,
   };
-}
+};

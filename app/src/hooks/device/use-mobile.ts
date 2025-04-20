@@ -9,20 +9,23 @@ interface UseMobileOptions {
 }
 
 /**
- * useMobile - A robust React hook for detecting mobile devices
+ * ✨ useMobile ✨
  *
- * This hook determines if the current device is a mobile device (phone or tablet)
- * using multiple detection strategies for improved accuracy across browsers and devices.
+ * A smart little hook that figures out what kind of device your users are on! 📱💻
  *
- * @param {Object} options - Configuration options
- * @param {number} options.phoneBreakpoint - Max width to consider as a phone (default: 768px)
- * @param {number} options.tabletBreakpoint - Max width to consider as a tablet (default: 1024px)
- * @param {number} options.debounceDelay - Delay for resize debouncing (default: 150ms)
- * @param {boolean} options.detectTouch - Enable detection based on touch capabilities (default: true)
- * @param {string} options.initialDevice - Initial device type for SSR ('desktop', 'tablet', 'phone')
- * @returns {Object} - Device information including isMobile, isPhone, isTablet, etc.
+ * This hook is your friendly device detective that works behind the scenes to:
+ *
+ * 🔍 Identify if someone is browsing on a phone, tablet, or desktop
+ * 👆 Detect touch capabilities for better interaction design
+ * 📏 Track screen dimensions as users resize their browsers
+ * 🔄 Smoothly handle orientation changes on mobile devices
+ * 🧠 Use multiple detection strategies for super accurate results
+ * 🚀 Work seamlessly with server-side rendering
+ *
+ * Perfect for creating responsive experiences that feel just right on any device!
+ * Let this hook do the heavy lifting while you focus on building amazing UIs. 😊
  */
-function useMobile(options: UseMobileOptions = {}) {
+const useMobile = (options: UseMobileOptions = {}) => {
   const {
     phoneBreakpoint = 768,
     tabletBreakpoint = 1024,
@@ -31,7 +34,12 @@ function useMobile(options: UseMobileOptions = {}) {
     initialDevice = "desktop",
   } = options;
 
-  // Default state for SSR
+  /**
+   * 🏠 initialState
+   *
+   * Creates a cozy starting point for our device detection!
+   * Handles server-side rendering with a smile. 😌
+   */
   const initialState = useMemo(
     () => ({
       isMobile: initialDevice !== "desktop",
@@ -45,14 +53,17 @@ function useMobile(options: UseMobileOptions = {}) {
   );
 
   const [deviceInfo, setDeviceInfo] = useState(initialState);
-
-  // Refs for handling debounce and dimensions
   const resizeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dimensionsRef = useRef({ width: 0, height: 0 });
 
-  // Detect device type based on screen size and capabilities
+  /**
+   * 🕵️‍♀️ detectDevice
+   *
+   * Our clever detective function that examines all the clues to figure out
+   * what device is being used! Considers screen size, touch capabilities,
+   * pointer types, and even special edge cases. 🔎
+   */
   const detectDevice = useCallback(() => {
-    // Handle server-side rendering gracefully
     if (typeof window === "undefined") {
       return initialState;
     }
@@ -62,33 +73,25 @@ function useMobile(options: UseMobileOptions = {}) {
     const height = window.innerHeight;
     dimensionsRef.current = { width, height };
 
-    // Touch capability detection - combined approaches for better accuracy
     const touchCapable = Boolean(
       "ontouchstart" in window || navigator.maxTouchPoints > 0
     );
 
-    // Get device characteristics from media queries
     const hasCoarsePointer =
       window.matchMedia?.("(pointer: coarse)").matches ?? false;
     const hasFinePointer =
       window.matchMedia?.("(pointer: fine)").matches ?? false;
     const prefersMobile = window.matchMedia?.("(hover: none)").matches ?? false;
 
-    // Determine device type primarily based on screen width
     let detectedDeviceType = "desktop";
     let isPhoneDetected = false;
     let isTabletDetected = false;
 
-    // Phone detection
     if (width < phoneBreakpoint) {
       detectedDeviceType = "phone";
       isPhoneDetected = true;
-    }
-    // Tablet detection
-    else if (width < tabletBreakpoint) {
-      // Additional checks for tablets vs small desktops
+    } else if (width < tabletBreakpoint) {
       if (detectTouch && (touchCapable || prefersMobile)) {
-        // If it has touch but also a fine pointer, it might be a touchscreen laptop
         if (!hasFinePointer || hasCoarsePointer || height > width) {
           detectedDeviceType = "tablet";
           isTabletDetected = true;
@@ -96,7 +99,6 @@ function useMobile(options: UseMobileOptions = {}) {
       }
     }
 
-    // Edge cases:
     // 1. Large tablets (iPad Pro, etc.)
     if (
       width >= tabletBreakpoint &&
@@ -145,16 +147,26 @@ function useMobile(options: UseMobileOptions = {}) {
     };
   }, [phoneBreakpoint, tabletBreakpoint, detectTouch, initialState]);
 
-  // Handle resize events with debouncing
+  /**
+   * 📱 Device Watcher
+   *
+   * Keeps an eye on your device as it changes! Watches for resizes,
+   * orientation flips, and all sorts of device gymnastics. 🤸‍♀️
+   * Smart enough to avoid unnecessary updates with debouncing magic! ✨
+   */
   useEffect(() => {
-    // Skip for SSR
     if (typeof window === "undefined") return;
 
-    // Initial detection
     setDeviceInfo(detectDevice());
 
+    /**
+     * 📐 handleResize
+     *
+     * Our size-watching friend that notices when your screen changes
+     * and updates everything accordingly! Uses clever debouncing to
+     * stay efficient. 🧠
+     */
     const handleResize = () => {
-      // Skip if dimensions haven't actually changed (some mobile browsers fire resize on scroll)
       if (
         window.innerWidth === dimensionsRef.current.width &&
         window.innerHeight === dimensionsRef.current.height
@@ -162,7 +174,6 @@ function useMobile(options: UseMobileOptions = {}) {
         return;
       }
 
-      // Debounce to prevent excessive updates
       if (resizeTimerRef.current) {
         clearTimeout(resizeTimerRef.current);
       }
@@ -172,12 +183,9 @@ function useMobile(options: UseMobileOptions = {}) {
       }, debounceDelay);
     };
 
-    // Listen for resize events
     window.addEventListener("resize", handleResize);
 
-    // Mobile-specific events and fixes
     if (detectTouch) {
-      // Orientation change event for mobile devices
       window.addEventListener("orientationchange", handleResize);
 
       // Some mobile browsers need a slight delay to report correct dimensions
@@ -187,7 +195,6 @@ function useMobile(options: UseMobileOptions = {}) {
       }, 300);
     }
 
-    // Clean up event listeners
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("orientationchange", handleResize);
@@ -199,6 +206,6 @@ function useMobile(options: UseMobileOptions = {}) {
   }, [detectDevice, debounceDelay, detectTouch]);
 
   return deviceInfo;
-}
+};
 
 export default useMobile;
