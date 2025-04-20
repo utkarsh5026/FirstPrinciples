@@ -4,7 +4,7 @@ import CategoryBreakDown from "./CategoryBreakdown";
 import ReadingTrends from "./ReadingTrends";
 import { useActivityStore, useCategoryStore, useHistoryStore } from "@/stores";
 import Activity from "./Activity";
-import HeatMapView from "../../deep/timeline/HeatMapView";
+import HeatMapView from "../timeline/HeatMapView";
 import CategoryCoverageMap from "@/components/analytics/components/insights/CategoryCoverage";
 
 export interface ReadingChallenge {

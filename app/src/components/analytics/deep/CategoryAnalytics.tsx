@@ -16,11 +16,11 @@ import useMobile from "@/hooks/device/use-mobile";
 
 import CategoryCoverageMap from "@/components/analytics/components/insights/CategoryCoverage";
 import SankeyKnowledgeFlow from "./flow";
-import TimeFilteredHeatCalendar from "./timeline/ReadingTimeline";
+import TimeFilteredHeatCalendar from "../components/timeline/ReadingTimeline";
 import CategoryInsights from "./hierarchy/CategoryInsights";
 import Recommendations from "./recommendations";
 import { useHistoryStore, useDocumentStore } from "@/stores";
-import HeatMapView from "@/components/analytics/deep/timeline/HeatMapView";
+import HeatMapView from "@/components/analytics/components/timeline/HeatMapView";
 import { Card } from "@/components/ui/card";
 import { useCategoryStore } from "@/stores/categoryStore";
 
