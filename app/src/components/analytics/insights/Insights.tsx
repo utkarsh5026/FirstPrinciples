@@ -4,6 +4,7 @@ import TimeOfDayInsightCard from "./TimeoftheDayInsights";
 import { ProgressTrendInsightCard } from "./ProgressTrendInsights";
 import { useHistoryStore } from "@/stores";
 import DayOfMonthActivityInsight from "../../insights/DayofMonth";
+import CategoryCoverageMap from "../deep/coverage";
 
 /**
  * EnhancedInsights - Main component that combines all insight cards
@@ -13,7 +14,6 @@ import DayOfMonthActivityInsight from "../../insights/DayofMonth";
  */
 const Insights = () => {
   const history = useHistoryStore((state) => state.readingHistory);
-  console.log(history);
 
   return (
     <div className="space-y-6">
@@ -27,6 +27,7 @@ const Insights = () => {
         transition={{ duration: 0.5 }}
       >
         <div className="grid grid-cols-1  gap-4 md:gap-6">
+          <CategoryCoverageMap compact={false} />
           <WeekdayPattern history={history} />
           <TimeOfDayInsightCard history={history} />
           <ProgressTrendInsightCard />
