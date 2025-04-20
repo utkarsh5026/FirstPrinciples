@@ -4,7 +4,7 @@ import { useMarkdownProcessor } from "@/hooks/useMarkdownProcessor";
 import {
   estimateReadingTime,
   countWords,
-} from "@/services/analytics/estimation";
+} from "@/services/analytics/word-count-estimation";
 
 interface Metrics {
   estimatedWordCount: number;

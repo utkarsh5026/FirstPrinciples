@@ -4,7 +4,7 @@ import { CalendarDays } from "lucide-react";
 import { ReadingByWeekDay } from "../trends";
 import type { ReadingHistoryItem } from "@/services/history";
 import { useActivityStore } from "@/stores";
-import { WeeklyActivity } from "@/services/history/activity";
+import { WeeklyActivity } from "@/services/analytics/activity-analyzer";
 
 interface WeekdayPatternInsightCardProps {
   history: ReadingHistoryItem[];

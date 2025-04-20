@@ -1,9 +1,10 @@
-// src/workers/markdown/markdown.worker.ts
 import * as Comlink from "comlink";
-import { countWords } from "@/services/analytics/estimation";
+import {
+  countWords,
+  estimateReadingTime,
+} from "@/services/analytics/word-count-estimation";
 import { parseMarkdownIntoSections, slugify } from "@/services/section/parsing";
 import { type MarkdownSection } from "@/services/section/parsing";
-import { wordCountEstimator } from "@/services/analytics/WordCountEstimator";
 
 /**
  * Worker implementation for markdown processing
@@ -41,7 +42,7 @@ class MarkdownWorker {
    * @returns Estimated reading time in milliseconds
    */
   estimateReadingTime(wordCount: number, readingSpeed?: number): number {
-    return wordCountEstimator.estimateReadingTime(wordCount, readingSpeed);
+    return estimateReadingTime(wordCount, readingSpeed);
   }
 
   /**

@@ -9,7 +9,7 @@ import {
   getDailyActivityMetrics,
   getWeeklyActivityMetrics,
   getReadingByHourMetrics,
-} from "@/services/history/activity";
+} from "@/services/analytics/activity-analyzer";
 import { analyticsWorkerManager } from "@/infrastructure/workers";
 
 type State = {

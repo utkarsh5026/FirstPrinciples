@@ -1,4 +1,4 @@
-import { WeeklyActivity } from "@/services/history/activity";
+import { WeeklyActivity } from "@/services/analytics/activity-analyzer";
 
 type WeeklyActivityInsights = {
   dayData: (WeeklyActivity & {

@@ -4,7 +4,7 @@ import { memo, useEffect, useState } from "react";
 import { TimeOfDayPreference } from "../trends";
 import { useActivityStore } from "@/stores";
 import type { ReadingHistoryItem } from "@/services/history";
-import type { HourlyActivity } from "@/services/history/activity";
+import type { HourlyActivity } from "@/services/analytics/activity-analyzer";
 import { Color } from "@/components/container/useContainer";
 
 interface TimeOfDayInsightCardProps {

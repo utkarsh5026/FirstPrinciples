@@ -1,4 +1,4 @@
-import { countWords } from "@/services/analytics/estimation";
+import { countWords } from "@/services/analytics/word-count-estimation";
 
 export type MarkdownSection = {
   id: string;

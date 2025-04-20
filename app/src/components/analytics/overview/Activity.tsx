@@ -4,7 +4,7 @@ import { LineChart } from "lucide-react";
 import { useHistoryStore, useActivityStore } from "@/stores";
 import { getStreakEmoji } from "../utils";
 import { DayOfMonth } from "@/components/insights";
-import type { WeeklyActivity } from "@/services/history/activity";
+import type { WeeklyActivity } from "@/services/analytics/activity-analyzer";
 type Activity = {
   streak: number;
   currentWeek: number;

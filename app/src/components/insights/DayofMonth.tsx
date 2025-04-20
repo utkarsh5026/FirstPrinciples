@@ -20,7 +20,7 @@ import { useTheme } from "@/components/theme/context/ThemeContext";
 import { cn } from "@/lib/utils";
 import useMobile from "@/hooks/useMobile";
 import { generateThemeColors } from "@/utils/colors";
-import type { DailyActivity } from "@/services/history/activity";
+import type { DailyActivity } from "@/services/analytics/activity-analyzer";
 
 interface DayOfMonthActivityInsightProps {
   history: ReadingHistoryItem[];
