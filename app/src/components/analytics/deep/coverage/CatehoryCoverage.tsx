@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { Target, PieChart } from "lucide-react";
@@ -8,6 +7,7 @@ import getIconForTech from "@/components/icons";
 import StatCard from "./StatCard";
 import CategoryRadarChart from "@/components/insights/RadarChart";
 import { useHistoryStore, useDocumentStore } from "@/stores";
+import CardContainer from "@/components/container/CardContainer";
 
 interface CategoryCoverageMapProps {
   compact: boolean;
@@ -108,23 +108,19 @@ const CategoryCoverageMap: React.FC<CategoryCoverageMapProps> = ({
     : null;
 
   return (
-    <Card className="overflow-hidden border-primary/10 rounded-2xl shadow-md">
+    <CardContainer
+      title="Category Coverage Map"
+      icon={PieChart}
+      variant="subtle"
+      description="See the coverage of your Reading Journey 😊"
+      headerAction={
+        <Badge variant="outline" className="text-xs font-normal">
+          {totalCategories} {totalCategories === 1 ? "Category" : "Categories"}
+        </Badge>
+      }
+      baseColor="pink"
+    >
       <div className="p-4 space-y-4">
-        <div className="flex justify-between items-center">
-          <h4 className="font-medium flex items-center">
-            <Target className="h-4 w-4 mr-2 text-primary" />
-            Category Coverage Map
-          </h4>
-          <Badge variant="outline" className="text-xs font-normal">
-            {totalCategories}{" "}
-            {totalCategories === 1 ? "Category" : "Categories"}
-          </Badge>
-        </div>
-
-        <p className="text-xs text-muted-foreground -mt-2">
-          See the coverage of your Reading Journey 😊
-        </p>
-
         {radarData.length > 0 ? (
           <div className="space-y-4">
             <motion.div
@@ -199,7 +195,7 @@ const CategoryCoverageMap: React.FC<CategoryCoverageMapProps> = ({
           </div>
         )}
       </div>
-    </Card>
+    </CardContainer>
   );
 };
 

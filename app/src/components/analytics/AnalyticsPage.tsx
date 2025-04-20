@@ -68,13 +68,7 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onSelectDocument }) => {
         </TabsList>
 
         <TabsContent value="overview">
-          <AnalyticsOverview
-            onSelectDocument={onSelectDocument}
-            challenges={[]}
-            actions={{
-              refreshChallenges: () => {},
-            }}
-          />
+          <AnalyticsOverview />
         </TabsContent>
 
         <TabsContent value="insights">

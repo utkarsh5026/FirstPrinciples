@@ -1,4 +1,3 @@
-import { Card } from "@/components/ui/card";
 import { formatNumber } from "../utils";
 import { User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -6,6 +5,7 @@ import React, { useMemo } from "react";
 import { useHistoryStore, useCategoryStore } from "@/stores";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
 import { formatTimeInMs } from "@/utils/time";
+import CardContainer from "@/components/container/CardContainer";
 
 /**
  * 🚀 ReadingProgress Component
@@ -76,20 +76,20 @@ const ReadingProgress: React.FC = () => {
   ];
 
   return (
-    <Card className="p-4 border-primary/10 bg-gradient-to-r from-primary/5 to-transparent rounded-3xl">
-      <div className="flex justify-between items-center mb-3">
-        <h4 className="text-sm font-medium flex items-center">
-          <User className="h-4 w-4 mr-2 text-primary" />
-          Reading Progress
-        </h4>
+    <CardContainer
+      title="Reading Progress"
+      icon={User}
+      variant="subtle"
+      description="Track your reading progress and achievements 🔥"
+      headerAction={
         <Badge
           variant="secondary"
           className="bg-primary/10 text-primary border-none rounded-2xl"
         >
           Level 1
         </Badge>
-      </div>
-
+      }
+    >
       <div className="space-y-4">
         {/* XP Bar */}
 
@@ -124,7 +124,7 @@ const ReadingProgress: React.FC = () => {
           </div>
         </div>
       </div>
-    </Card>
+    </CardContainer>
   );
 };
 

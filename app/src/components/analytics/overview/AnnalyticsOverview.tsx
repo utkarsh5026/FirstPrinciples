@@ -1,11 +1,11 @@
 import React from "react";
 import ReadingProgress from "./ReadingProgress";
-import DailyChallenges from "./DailyChallenges";
 import CategoryBreakDown from "./CategoryBreakdown";
 import ReadingTrends from "./ReadingTrends";
-import RecentReads from "./RecentReads";
 import { useActivityStore, useCategoryStore, useHistoryStore } from "@/stores";
 import Activity from "./Activity";
+import HeatMapView from "../deep/timeline/HeatMapView";
+import CategoryCoverageMap from "../deep/coverage";
 
 export interface ReadingChallenge {
   id: string;
@@ -18,19 +18,7 @@ export interface ReadingChallenge {
   completed: boolean;
 }
 
-interface AnalyticsOverviewProps {
-  challenges: ReadingChallenge[];
-  actions: {
-    refreshChallenges: () => void;
-  };
-  onSelectDocument: (path: string, title: string) => void;
-}
-
-const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
-  challenges,
-  actions,
-  onSelectDocument,
-}) => {
+const AnalyticsOverview: React.FC = () => {
   const readingHistory = useHistoryStore((state) => state.readingHistory);
   const categoryBreakdown = useCategoryStore(
     (state) => state.categoryBreakdown
@@ -42,28 +30,19 @@ const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
       {/* Progress Summary Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left column: Summary and stats */}
-        <div className="space-y-4">
+        <div className="space-y-4 flex flex-col gap-4">
           <ReadingProgress />
 
-          <DailyChallenges
-            refreshChallenges={actions.refreshChallenges}
-            challenges={challenges}
-          />
+          <CategoryCoverageMap compact={true} />
         </div>
 
-        {/* Right column: Activity overview */}
-        <div className="space-y-4">
-          <RecentReads
-            recentActivity={readingHistory.map((item) => ({
-              path: item.path,
-              title: item.title,
-              lastReadAt: new Date(item.lastReadAt).toLocaleString(),
-              readCount: item.readCount,
-            }))}
-            onSelectDocument={onSelectDocument}
+        <div className="space-y-4 flex flex-col gap-4">
+          <HeatMapView
+            filteredHistory={readingHistory}
+            usePrevNextButtons={false}
+            compact={true}
           />
 
-          {/* Reading Trends - Bar Chart */}
           <ReadingTrends />
         </div>
       </div>
