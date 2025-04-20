@@ -141,3 +141,25 @@ export const calculateStreak = (readingHistory: ReadingHistoryItem[]) => {
 
   return { currentStreak, longestStreak };
 };
+
+/**
+ * 🔍 Create a category map
+ * Get the category map from the reading history
+ */
+export const createCategoryMap = (
+  readingHistory: ReadingHistoryItem[]
+): Record<string, ReadingHistoryItem[]> => {
+  const categoryMap: Record<string, ReadingHistoryItem[]> = {};
+  readingHistory.forEach((item) => {
+    const category = item.path.split("/")[0] || "uncategorized";
+    categoryMap[category] = [...(categoryMap[category] || []), item];
+  });
+
+  for (const category in categoryMap) {
+    const sorted = [...categoryMap[category]];
+    sorted.sort((a, b) => b.lastReadAt - a.lastReadAt);
+    categoryMap[category] = sorted;
+  }
+
+  return categoryMap;
+};

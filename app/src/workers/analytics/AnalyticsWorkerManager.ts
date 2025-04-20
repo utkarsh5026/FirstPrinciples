@@ -43,6 +43,10 @@ export interface AnalyticsWorkerAPI {
     readingByHour: HourlyActivity[];
     dailyActivity: DailyActivity[];
   }>;
+
+  createCategoryMap(
+    readingHistory: ReadingHistoryItem[]
+  ): Promise<Record<string, ReadingHistoryItem[]>>;
 }
 
 /**

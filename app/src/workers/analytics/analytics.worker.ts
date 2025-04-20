@@ -8,6 +8,7 @@ import {
   createCategoryBreakdown,
   calculateStreak,
 } from "@/services/history";
+import { createCategoryMap } from "@/services/history/analytics";
 import type { FileMetadata } from "@/utils/MarkdownLoader";
 
 class AnalyticsWorker {
@@ -75,6 +76,15 @@ class AnalyticsWorker {
       readingByHour,
       dailyActivity,
     };
+  }
+
+  /**
+   * Create a category map
+   */
+  createCategoryMap(
+    readingHistory: ReadingHistoryItem[]
+  ): Record<string, ReadingHistoryItem[]> {
+    return createCategoryMap(readingHistory);
   }
 }
 
