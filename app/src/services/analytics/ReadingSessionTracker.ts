@@ -1,4 +1,4 @@
-import { databaseService } from "@/services/database/DatabaseService";
+import { databaseService } from "@/infrastructure/storage/indexed-db";
 
 export type ReadingSession = {
   id?: number;

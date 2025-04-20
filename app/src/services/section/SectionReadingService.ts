@@ -1,4 +1,4 @@
-import { databaseService } from "@/services/database/DatabaseService";
+import { databaseService } from "@/infrastructure/storage/indexed-db";
 
 /**
  * Enhanced interface for section reading data stored in IndexedDB

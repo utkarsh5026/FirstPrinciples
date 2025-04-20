@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // src/services/analytics/EnhancedAchievementService.ts
 
-import { databaseService } from "../database/DatabaseService";
+import { databaseService } from "../../infrastructure/storage/indexed-db";
 import { readingHistoryService } from "@/services/history";
 import { readingSessionTracker } from "./ReadingSessionTracker";
 import { sectionAnalyticsController } from "./SectionAnalyticsController";

@@ -1,4 +1,4 @@
-import { databaseService } from "../database/DatabaseService";
+import { databaseService } from "../../infrastructure/storage/indexed-db";
 import {
   type ReadingSession,
   readingSessionTracker,

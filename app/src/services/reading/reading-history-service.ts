@@ -1,5 +1,5 @@
 import { fromSnakeToTitleCase } from "@/utils/string";
-import { databaseService } from "../database/DatabaseService";
+import { databaseService } from "@/infrastructure/storage";
 import { readingSessionTracker } from "@/services/analytics/ReadingSessionTracker";
 import { wordCountEstimator } from "@/services/analytics/WordCountEstimator";
 

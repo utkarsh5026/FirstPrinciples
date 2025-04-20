@@ -1,6 +1,6 @@
 import { ReadingSessionTracker } from "./ReadingSessionTracker";
 import { wordCountEstimator } from "./WordCountEstimator";
-import { databaseService } from "../database/DatabaseService";
+import { databaseService } from "../../infrastructure/storage/indexed-db";
 
 export type SectionReadingData = {
   sectionId: string;

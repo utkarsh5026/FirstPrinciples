@@ -1,5 +1,5 @@
 import { type ReadingHistoryItem } from "@/services/history";
-import { databaseService } from "../database/DatabaseService";
+import { databaseService } from "../../infrastructure/storage/indexed-db";
 import * as readingHistoryService from "@/services/reading/reading-history-service";
 import { type FileMetadata } from "@/services/document/document-loader";
 
