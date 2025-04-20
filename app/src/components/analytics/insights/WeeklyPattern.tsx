@@ -3,9 +3,8 @@ import CardContainer from "@/components/container/CardContainer";
 import { CalendarDays } from "lucide-react";
 import { ReadingByWeekDay } from "../trends";
 import type { ReadingHistoryItem } from "@/services/history";
-import { useActivityStore } from "@/stores";
 import { WeeklyActivity } from "@/services/analytics/activity-analyzer";
-
+import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";
 interface WeekdayPatternInsightCardProps {
   history: ReadingHistoryItem[];
 }
@@ -28,13 +27,8 @@ type WeeklyPatternInsightCard = {
  */
 export const WeekdayPattern: React.FC<WeekdayPatternInsightCardProps> = memo(
   ({ history = [] }) => {
-    const calculateTotalWeeklyActivity = useActivityStore(
-      (state) => state.calculateTotalWeeklyActivity
-    );
-
-    const getWeeklyActivityMetrics = useActivityStore(
-      (state) => state.getWeeklyActivityMetrics
-    );
+    const { calculateTotalWeeklyActivity, getWeeklyActivityMetrics } =
+      useActivityMetrics();
 
     const [insights, setInsights] = useState<WeeklyPatternInsightCard>({
       mostActiveDay: { day: "Sunday", count: 0 },
@@ -51,7 +45,7 @@ export const WeekdayPattern: React.FC<WeekdayPatternInsightCardProps> = memo(
       const createInsights = async () => {
         const analyticsData = await calculateTotalWeeklyActivity(history);
         const { mostActiveDay, leastActiveDay } =
-          getWeeklyActivityMetrics(analyticsData);
+          await getWeeklyActivityMetrics(analyticsData);
         const weekendVsWeekday = analyticsData.reduce(
           (acc, day) => {
             if (day.day === "Saturday" || day.day === "Sunday") {

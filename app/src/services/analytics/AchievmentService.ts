@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // src/services/analytics/EnhancedAchievementService.ts
 
-import { databaseService } from "../../infrastructure/storage/indexed-db";
-import { readingHistoryService } from "@/services/history";
+import { databaseService } from "@/infrastructure/storage";
+import * as readingHistoryService from "@/services/reading/reading-history-service";
 import { readingSessionTracker } from "./ReadingSessionTracker";
 import { sectionAnalyticsController } from "./SectionAnalyticsController";
 

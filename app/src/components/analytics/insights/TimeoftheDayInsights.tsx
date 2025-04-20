@@ -2,10 +2,10 @@ import CardContainer from "@/components/container/CardContainer";
 import { Clock } from "lucide-react";
 import { memo, useEffect, useState } from "react";
 import { TimeOfDayPreference } from "../trends";
-import { useActivityStore } from "@/stores";
 import type { ReadingHistoryItem } from "@/services/history";
 import type { HourlyActivity } from "@/services/analytics/activity-analyzer";
 import { Color } from "@/components/container/useContainer";
+import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";
 
 interface TimeOfDayInsightCardProps {
   history: ReadingHistoryItem[];
@@ -35,13 +35,9 @@ const TimeOfDayInsightCard: React.FC<TimeOfDayInsightCardProps> = memo(
       preferredPeriod: "",
       analyticsData: [],
     });
-    const calculateTotalReadingByHour = useActivityStore(
-      (state) => state.calculateTotalReadingByHour
-    );
 
-    const getReadingByHourMetrics = useActivityStore(
-      (state) => state.getReadingByHourMetrics
-    );
+    const { calculateTotalReadingByHour, getReadingByHourMetrics } =
+      useActivityMetrics();
 
     /**
      * 🎉 This magical function gathers insights about your reading habits!
@@ -52,7 +48,7 @@ const TimeOfDayInsightCard: React.FC<TimeOfDayInsightCardProps> = memo(
       const createInsights = async () => {
         const analyticsData = await calculateTotalReadingByHour(history);
         const { mostActiveHour, leastActiveHour } =
-          getReadingByHourMetrics(analyticsData);
+          await getReadingByHourMetrics(analyticsData);
         const totalReadingEvents =
           analyticsData?.reduce((sum, hour) => sum + hour.count, 0) || 0;
 

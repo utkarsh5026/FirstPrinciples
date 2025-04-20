@@ -1,16 +1,26 @@
 import { analyticsWorkerManager } from "@/infrastructure/workers";
-import {
+import type {
   DailyActivity,
   WeeklyActivity,
   HourlyActivity,
+} from "@/services/analytics/activity-analyzer";
+import {
   getDailyActivityMetrics as getDailyActivityMetricsService,
   getWeeklyActivityMetrics as getWeeklyActivityMetricsService,
   getReadingByHourMetrics as getReadingByHourMetricsService,
 } from "@/services/analytics/activity-analyzer";
+
 import type { ReadingHistoryItem } from "@/services/history";
 import { withErrorHandling } from "@/utils/functions/error";
 import { useCallback } from "react";
 
+/**
+ * 📊 Activity Metrics Hook
+ *
+ * This hook provides comprehensive analytics about your reading habits,
+ * including daily, weekly, and hourly activity patterns.
+ *
+ **/
 export const useActivityMetrics = () => {
   /**
    * ⏰ Analyzes what hours of the day you love to read!
@@ -25,7 +35,7 @@ export const useActivityMetrics = () => {
           errorPrefix: "Failed to calculate reading by hour",
           logError: true,
         }
-      );
+      )();
     },
     []
   );
@@ -43,7 +53,7 @@ export const useActivityMetrics = () => {
           errorPrefix: "Failed to calculate weekly activity",
           logError: true,
         }
-      );
+      )();
     },
     []
   );
@@ -55,13 +65,17 @@ export const useActivityMetrics = () => {
   const calculateTotalDailyActivity = useCallback(
     (history: ReadingHistoryItem[]) => {
       return withErrorHandling(
-        () => analyticsWorkerManager.calculateDailyActivity(history),
+        async () => {
+          const dailyActivity =
+            await analyticsWorkerManager.calculateDailyActivity(history);
+          return dailyActivity;
+        },
         [],
         {
           errorPrefix: "Failed to calculate daily activity",
           logError: true,
         }
-      );
+      )();
     },
     []
   );
@@ -98,18 +112,23 @@ export const useActivityMetrics = () => {
    * Perfect for seeing if you're a weekend reader or weekday warrior.
    */
   const getWeeklyActivityMetrics = useCallback(
-    (weeklyActivity: WeeklyActivity[]) => {
+    (
+      weeklyActivity: WeeklyActivity[]
+    ): Promise<{
+      mostActiveDay: WeeklyActivity;
+      leastActiveDay: WeeklyActivity;
+    }> => {
       return withErrorHandling(
         async () => getWeeklyActivityMetricsService(weeklyActivity),
         {
           mostActiveDay: {
-            day: "",
+            day: "Sunday",
             count: 0,
-          },
+          } as WeeklyActivity,
           leastActiveDay: {
-            day: "",
+            day: "Sunday",
             count: 0,
-          },
+          } as WeeklyActivity,
         },
         {
           errorPrefix: "Failed to get weekly activity metrics",

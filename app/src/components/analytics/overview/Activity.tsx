@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { LineChart } from "lucide-react";
-import { useHistoryStore, useActivityStore } from "@/stores";
+import { useHistoryStore } from "@/stores";
 import { getStreakEmoji } from "../utils";
 import { DayOfMonth } from "@/components/insights";
 import type { WeeklyActivity } from "@/services/analytics/activity-analyzer";
+import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";
 type Activity = {
   streak: number;
   currentWeek: number;
@@ -24,12 +25,8 @@ type Activity = {
 const Activity: React.FC = () => {
   const readingHistory = useHistoryStore((state) => state.readingHistory);
   const { currentStreak } = useHistoryStore((state) => state.streak);
-  const calculateTotalWeeklyActivity = useActivityStore(
-    (state) => state.calculateTotalWeeklyActivity
-  );
-  const getWeeklyActivityMetrics = useActivityStore(
-    (state) => state.getWeeklyActivityMetrics
-  );
+  const { calculateTotalWeeklyActivity, getWeeklyActivityMetrics } =
+    useActivityMetrics();
 
   const [activity, setActivity] = useState<Activity>({
     streak: 0,
@@ -55,8 +52,9 @@ const Activity: React.FC = () => {
   useEffect(() => {
     const createActivity = async () => {
       const weeklyActivity = await calculateTotalWeeklyActivity(readingHistory);
-      const { mostActiveDay, leastActiveDay } =
-        getWeeklyActivityMetrics(weeklyActivity);
+      const { mostActiveDay, leastActiveDay } = await getWeeklyActivityMetrics(
+        weeklyActivity
+      );
       setActivity({
         streak: currentStreak,
         currentWeek: currentWeekHistory.length,

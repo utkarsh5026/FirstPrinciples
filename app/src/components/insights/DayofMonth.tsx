@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils";
 import useMobile from "@/hooks/device/use-mobile";
 import { generateThemeColors } from "@/utils/colors";
 import type { DailyActivity } from "@/services/analytics/activity-analyzer";
+import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";
 
 interface DayOfMonthActivityInsightProps {
   history: ReadingHistoryItem[];
@@ -56,12 +57,9 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
   memo(({ history }) => {
     const { isMobile } = useMobile();
     const { currentTheme } = useTheme();
-    const calculateTotalDailyActivity = useActivityStore(
-      (state) => state.calculateTotalDailyActivity
-    );
-    const getDailyActivityMetrics = useActivityStore(
-      (state) => state.getDailyActivityMetrics
-    );
+
+    const { calculateTotalDailyActivity, getDailyActivityMetrics } =
+      useActivityMetrics();
 
     const [insights, setInsights] = useState<DayOfMonthActivityInsights>({
       data: [],
@@ -85,8 +83,9 @@ const DayOfMonthActivityInsight: React.FC<DayOfMonthActivityInsightProps> =
           dailyData.length
         );
 
-        const { mostActiveDay, leastActiveDay } =
-          getDailyActivityMetrics(dailyData);
+        const { mostActiveDay, leastActiveDay } = await getDailyActivityMetrics(
+          dailyData
+        );
 
         const validData = dailyData.filter(
           (day) => day.day > 0 && day.day <= 31
