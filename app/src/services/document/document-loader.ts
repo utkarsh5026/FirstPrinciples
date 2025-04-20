@@ -5,6 +5,12 @@ import { Buffer } from "buffer";
 // Make Buffer globally available
 globalThis.Buffer = Buffer;
 
+/**
+ * 📄 Markdown Frontmatter
+ *
+ * The essential metadata that makes our documents organized and discoverable!
+ * Contains titles, dates, and categorization info for all our content. ✨
+ */
 export type MarkdownFrontmatter = {
   title: string;
   createdAt?: string;
@@ -15,13 +21,22 @@ export type MarkdownFrontmatter = {
   tags?: string[];
 };
 
+/**
+ * 📝 Parsed Markdown
+ *
+ * A neatly packaged markdown document with its content and metadata separated!
+ * Makes rendering and displaying documents a breeze! 🌈
+ */
 export interface ParsedMarkdown {
   content: string;
   frontmatter: MarkdownFrontmatter;
 }
 
 /**
- * Interface for a category in the index
+ * 📁 Content Category
+ *
+ * Organizes our documents into beautiful hierarchical structures!
+ * Creates an intuitive navigation system for exploring content. 🗂️
  */
 export type Category = {
   id: string;
@@ -32,7 +47,10 @@ export type Category = {
 };
 
 /**
- * Interface for the complete index structure
+ * 🗺️ Content Index
+ *
+ * The master map of all our content organization!
+ * Helps users discover and navigate through our document library. 🧭
  */
 export type ContentIndex = {
   categories: Category[];
@@ -40,8 +58,10 @@ export type ContentIndex = {
 };
 
 /**
-/**
- * Interface for file metadata in the index
+ * 📌 File Metadata
+ *
+ * The essential details about each document in our system!
+ * Makes documents searchable and helps with quick previews. 🔍
  */
 export type FileMetadata = {
   path: string;
@@ -49,6 +69,12 @@ export type FileMetadata = {
   description?: string;
 };
 
+/**
+ * 🔄 Fetch Content Index
+ *
+ * Retrieves our content structure from the server!
+ * Builds the foundation for our entire document navigation system. 🏗️
+ */
 const fetchContentIndex = async (): Promise<ContentIndex> => {
   try {
     const baseUrl = getBaseContentUrl();
@@ -68,11 +94,19 @@ const fetchContentIndex = async (): Promise<ContentIndex> => {
   }
 };
 
+/**
+ * 💾 Load Content Index
+ *
+ * Gets our content structure with smart caching!
+ * Speeds up the app by avoiding unnecessary network requests. ⚡
+ */
 const loadContentIndex = withCache(fetchContentIndex);
 
 /**
- * Get the base URL for content files based on the environment
- * This ensures paths work both locally and on GitHub Pages
+ * 🔗 Get Base Content URL
+ *
+ * Figures out where our content lives based on the environment!
+ * Works seamlessly in development and production environments. 🌐
  */
 const getBaseContentUrl = (): string => {
   const isProduction = import.meta.env.PROD;
@@ -86,6 +120,12 @@ const getBaseContentUrl = (): string => {
   return `${base}content/`.replace(/\/\/+/g, "/");
 };
 
+/**
+ * 📂 Get Categories
+ *
+ * Fetches all the content categories for navigation!
+ * Builds the foundation of our sidebar navigation. 🧩
+ */
 const getCategories = async (): Promise<Category[]> => {
   try {
     const index = await loadContentIndex();
@@ -96,6 +136,12 @@ const getCategories = async (): Promise<Category[]> => {
   }
 };
 
+/**
+ * 📚 Load Markdown Content
+ *
+ * Fetches and parses a markdown document for display!
+ * Transforms raw markdown into structured content ready for rendering. ✨
+ */
 const loadMarkdownContent = async (
   filepath: string
 ): Promise<ParsedMarkdown | null> => {
@@ -138,6 +184,12 @@ const loadMarkdownContent = async (
   }
 };
 
+/**
+ * 🔍 Find File Metadata
+ *
+ * Hunts through our content index to find details about a specific file!
+ * Helps enhance document display with titles and descriptions. 🕵️‍♀️
+ */
 const findFileMetadata = async (path: string): Promise<FileMetadata | null> => {
   const index = await loadContentIndex();
 
@@ -174,6 +226,12 @@ const findFileMetadata = async (path: string): Promise<FileMetadata | null> => {
   return null;
 };
 
+/**
+ * 🧭 Get File Breadcrumbs
+ *
+ * Creates a trail of breadcrumbs to show where a document lives!
+ * Helps users understand document hierarchy and navigate back easily. 🍞
+ */
 const getFileBreadcrumbs = async (
   path: string,
   contentIndex: ContentIndex
