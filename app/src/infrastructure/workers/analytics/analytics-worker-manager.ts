@@ -4,12 +4,12 @@ import {
 } from "@/infrastructure/workers/base/base-worker-manager";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import type { CategoryBreakdown } from "@/stores/categoryStore";
-import type { FileMetadata } from "@/utils/MarkdownLoader";
+import type { FileMetadata } from "@/services/document";
 import type {
   DailyActivity,
   WeeklyActivity,
   HourlyActivity,
-} from "@/services/history/activity";
+} from "@/services/analytics/activity-analyzer";
 
 export interface AnalyticsWorkerAPI {
   // Streak calculations (from historyStore)

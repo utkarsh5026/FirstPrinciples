@@ -17,14 +17,6 @@ export type HourlyActivity = {
 };
 
 /**
- * 📊 Reading Analytics Utilities
- *
- * A collection of helpful functions that analyze reading patterns and habits!
- * These functions power our beautiful charts and insights to help readers
- * understand their reading behaviors better.
- */
-
-/**
  * ⏰ Discovers what hours of the day you love to read!
  *
  * Analyzes your reading history to show patterns across a 24-hour cycle.
