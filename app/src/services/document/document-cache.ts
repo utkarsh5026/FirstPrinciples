@@ -1,4 +1,4 @@
-import { type ParsedMarkdown, loadMarkdownContent } from "@/services/document";
+import { type ParsedMarkdown, loadMarkdownContent } from "./document-loader";
 
 /**
  * 📚 Document Cache Service

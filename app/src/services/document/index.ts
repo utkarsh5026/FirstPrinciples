@@ -2,6 +2,7 @@ import {
   loadMarkdownContent,
   getCategories,
   getFileBreadcrumbs,
+  loadContentIndex,
   type ContentIndex,
   type Category,
   type FileMetadata,
@@ -12,6 +13,7 @@ import {
   slugify,
   getFilenameFromPath,
 } from "./document-parser";
+import { DocumentCache } from "./document-cache";
 
 export {
   loadMarkdownContent,
@@ -20,6 +22,8 @@ export {
   slugify,
   getFilenameFromPath,
   getFileBreadcrumbs,
+  loadContentIndex,
+  DocumentCache,
   type ContentIndex,
   type Category,
   type FileMetadata,

@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { useHistoryStore } from "@/stores/historyStore";
 import { useReadingStore } from "@/stores/readingStore";
 import { analyticsController } from "@/services/analytics/AnalyticsController";
-import { DocumentCache } from "@/services/cache/DocumentCache";
 import {
   loadContentIndex,
   getFileBreadcrumbs,
@@ -10,7 +9,8 @@ import {
   type Category,
   type FileMetadata,
   type ParsedMarkdown,
-} from "@/services/document/document-loader";
+  DocumentCache,
+} from "@/services/document";
 
 type State = {
   availableDocuments: FileMetadata[];
