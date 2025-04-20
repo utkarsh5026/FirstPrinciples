@@ -9,7 +9,7 @@ import getIconForTech from "@/components/icons";
 import Header from "./Header";
 import StartReadingButton from "./StartReadingButton";
 import { formatTimeInMs } from "@/utils/time";
-import { useCurrentDocumentStore } from "@/stores/currentDocumentStore";
+import { useCurrentDocumentStore } from "@/stores/document/currentDocumentStore";
 import { useParams } from "react-router-dom";
 
 /**

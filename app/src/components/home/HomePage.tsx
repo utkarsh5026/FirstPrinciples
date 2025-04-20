@@ -10,7 +10,6 @@ import {
   BarChart,
   RefreshCcw,
 } from "lucide-react";
-import { Category, MarkdownLoader } from "@/utils/MarkdownLoader";
 import Hero from "./Hero";
 import FileSelectionDialog from "@/components/todo/AddTodoModal";
 import { useTabContext, TabType } from "./context/TabContext";
@@ -24,6 +23,7 @@ import {
 } from "./TabLoaders";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
+import { type Category, getCategories } from "@/services/document";
 
 // Use React.lazy with error handling for each component
 const Overview = lazy(() =>
@@ -132,7 +132,7 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     const loadCategories = async () => {
       try {
-        const loadedCategories = await MarkdownLoader.getCategories();
+        const loadedCategories = await getCategories();
         setCategories(loadedCategories);
       } catch (error) {
         console.error("Failed to load categories:", error);

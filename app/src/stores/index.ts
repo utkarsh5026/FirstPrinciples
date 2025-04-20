@@ -1,12 +1,12 @@
 import { useReadingStore } from "./readingStore";
-import { useDocumentStore } from "./documentStore";
+import { useDocumentStore } from "./document/documentStore";
 import { useHistoryStore } from "./historyStore";
 import { useCategoryStore } from "./categoryStore";
 import { useActivityStore } from "./activityStore";
 import { useHeatmapStore } from "./heatmapStore";
 import { useEffect, useState } from "react";
 import { useSectionStore } from "./sectionStore";
-import { useCurrentDocumentStore } from "./currentDocumentStore";
+import { useCurrentDocumentStore } from "./document/currentDocumentStore";
 import useReadingMetricsStore from "./document/readingMetrics";
 import { databaseService } from "@/services/database/DatabaseService";
 

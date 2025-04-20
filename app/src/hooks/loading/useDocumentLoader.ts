@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import { useReadingStore } from "@/stores";
 import { analyticsController } from "@/services/analytics/AnalyticsController";
+import { loadMarkdownContent, getFilenameFromPath } from "@/services/document";
 
 /**
  * ✨ useDocumentLoader: Your magical document reading companion! ✨
@@ -54,7 +54,7 @@ export const useDocumentLoader = (selectedFile: string) => {
     setError(null);
 
     try {
-      const result = await MarkdownLoader.loadMarkdownContent(selectedFile);
+      const result = await loadMarkdownContent(selectedFile);
 
       if (!result) {
         setError("Document not found");
@@ -65,8 +65,7 @@ export const useDocumentLoader = (selectedFile: string) => {
       setMarkdownContent(result.content);
 
       const title =
-        result.frontmatter.title ||
-        MarkdownLoader.getFilenameFromPath(selectedFile);
+        result.frontmatter.title || getFilenameFromPath(selectedFile);
       setDocumentTitle(title);
 
       setTimeout(() => {

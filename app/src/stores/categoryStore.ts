@@ -1,6 +1,6 @@
 import type { ReadingHistoryItem } from "@/services/history";
 import { create } from "zustand";
-import { useDocumentStore } from "./documentStore";
+import { useDocumentStore } from "./document/documentStore";
 import { useHistoryStore } from "./historyStore";
 import { parseError } from "@/utils/error";
 

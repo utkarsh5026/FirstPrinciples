@@ -1,19 +1,21 @@
 import { create } from "zustand";
-import {
-  MarkdownLoader,
-  type FileMetadata,
-  type ParsedMarkdown,
-} from "@/utils/MarkdownLoader";
 import { useHistoryStore } from "@/stores/historyStore";
 import { useReadingStore } from "@/stores/readingStore";
 import { analyticsController } from "@/services/analytics/AnalyticsController";
-import { sectionAnalyticsController } from "@/services/analytics/SectionAnalyticsController";
-import { Category } from "@/utils/MarkdownLoader";
 import { DocumentCache } from "@/services/cache/DocumentCache";
+import {
+  loadContentIndex,
+  getFileBreadcrumbs,
+  type ContentIndex,
+  type Category,
+  type FileMetadata,
+  type ParsedMarkdown,
+} from "@/services/document/document-loader";
 
 type State = {
   availableDocuments: FileMetadata[];
   filteredDocuments: FileMetadata[];
+  contentIndex: ContentIndex;
   selectedFile: string | null;
   searchQuery: string;
   isLoading: boolean;
@@ -25,8 +27,11 @@ type Actions = {
   selectFile: (path: string) => void;
   handleSelectDocument: (path: string, title: string) => Promise<void>;
   loadMarkdown: (path: string) => Promise<ParsedMarkdown | null>;
-  getTrendingDocuments: () => Promise<FileMetadata[]>;
   initialize: () => Promise<void>;
+  loadContentIndex: () => Promise<ContentIndex>;
+  getFileBreadcrumbs: (
+    path: string
+  ) => Promise<{ id: string; name: string; icon?: string }[]>;
 };
 
 /**
@@ -73,6 +78,14 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
    * ❌ Error message if something goes wrong
    */
   error: null,
+
+  /**
+   * 📄 Content index for all documents
+   */
+  contentIndex: {
+    categories: [],
+    files: [],
+  },
 
   /**
    * 🔍 Filter documents based on search query
@@ -166,52 +179,6 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
   },
 
   /**
-   * 🔥 Get trending documents based on reading history
-   * Helps discover popular content!
-   */
-  getTrendingDocuments: async () => {
-    try {
-      const documentStats = await sectionAnalyticsController.getDocumentStats();
-
-      // Sort by most recently read first
-      const sortedStats = documentStats
-        .filter((stat) => stat.lastReadAt)
-        .sort((a, b) => b.lastReadAt - a.lastReadAt);
-
-      // Get the corresponding document metadata
-      const { availableDocuments } = get();
-      const trendingDocs = sortedStats
-        .slice(0, 5)
-        .map((stat) => {
-          return availableDocuments.find((doc) => doc.path === stat.path);
-        })
-        .filter(Boolean) as FileMetadata[];
-
-      // If we don't have enough trending docs, add some random ones
-      if (trendingDocs.length < 5 && availableDocuments.length > 0) {
-        const remainingDocs = availableDocuments
-          .filter((doc) => !trendingDocs.some((td) => td.path === doc.path))
-          .sort(() => 0.5 - Math.random())
-          .slice(0, 5 - trendingDocs.length);
-
-        return [...trendingDocs, ...remainingDocs];
-      }
-
-      return trendingDocs;
-    } catch (error) {
-      console.error("Error getting trending documents:", error);
-
-      // Fallback to random selection
-      const { availableDocuments } = get();
-      if (availableDocuments.length <= 5) return availableDocuments;
-
-      return [...availableDocuments]
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 5);
-    }
-  },
-
-  /**
    * 🚀 Initialize the document store
    * Loads all documents and sets up initial state!
    */
@@ -219,7 +186,7 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
     try {
       set({ isLoading: true });
 
-      const contentIndex = await MarkdownLoader.loadContentIndex();
+      const contentIndex = await loadContentIndex();
       const allFiles: FileMetadata[] = [...contentIndex.files];
 
       const collectFilesFromCategories = (categories: Category[]) => {
@@ -241,6 +208,7 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
         filteredDocuments: allFiles,
         isLoading: false,
         error: null,
+        contentIndex,
       });
 
       // Set available documents in analytics controllers
@@ -272,5 +240,21 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
           error instanceof Error ? error.message : "Error loading documents",
       });
     }
+  },
+
+  /**
+   * 📄 Load the content index
+   * Fetches and parses the content index for all documents
+   */
+  loadContentIndex: async () => {
+    return await loadContentIndex();
+  },
+
+  /**
+   * 📚 Get breadcrumbs for a file
+   * Returns the breadcrumbs for a given file path
+   */
+  getFileBreadcrumbs: async (path) => {
+    return await getFileBreadcrumbs(path, get().contentIndex);
   },
 }));

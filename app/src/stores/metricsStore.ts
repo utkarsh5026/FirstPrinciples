@@ -7,7 +7,7 @@ import {
   type ReadingHistoryItem,
 } from "@/services/history";
 import { formatDateKey } from "@/utils/time";
-import { useDocumentStore } from "./documentStore";
+import { useDocumentStore } from "./document/documentStore";
 
 // Define types
 export type ReadingMetrics = {

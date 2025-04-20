@@ -174,9 +174,64 @@ const findFileMetadata = async (path: string): Promise<FileMetadata | null> => {
   return null;
 };
 
+const getFileBreadcrumbs = async (
+  path: string,
+  contentIndex: ContentIndex
+): Promise<{ id: string; name: string; icon?: string }[]> => {
+  const breadcrumbs: { id: string; name: string; icon?: string }[] = [];
+
+  // Check if it's a root file
+  const rootFile = contentIndex.files.find((file) => file.path === path);
+  if (rootFile) {
+    return breadcrumbs; // Empty breadcrumbs for root files
+  }
+
+  // Helper function to search categories recursively
+  const searchInCategory = (
+    category: Category,
+    currentPath: { id: string; name: string; icon?: string }[] = []
+  ): boolean => {
+    const newPath = [
+      ...currentPath,
+      {
+        id: category.id,
+        name: category.name,
+        icon: category.icon,
+      },
+    ];
+
+    // Check if file is directly in this category
+    if (category.files && category.files.some((file) => file.path === path)) {
+      breadcrumbs.push(...newPath);
+      return true;
+    }
+
+    // Search subcategories
+    if (category.subcategories) {
+      for (const subcategory of category.subcategories) {
+        if (searchInCategory(subcategory, newPath)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  };
+
+  // Search in all categories
+  for (const category of contentIndex.categories) {
+    if (searchInCategory(category)) {
+      break;
+    }
+  }
+
+  return breadcrumbs;
+};
+
 export {
   getCategories,
   getBaseContentUrl,
   loadContentIndex,
   loadMarkdownContent,
+  getFileBreadcrumbs,
 };

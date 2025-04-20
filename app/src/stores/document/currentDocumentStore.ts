@@ -1,9 +1,9 @@
 import { create } from "zustand";
-import { LoadingWithError } from "./base/base";
+import { LoadingWithError } from "../base/base";
 import { parseError } from "@/utils/error";
-import { MarkdownLoader } from "@/utils/MarkdownLoader";
 import { MarkdownSection } from "@/services/section/parsing";
 import { markdownWorkerManager } from "@/workers/markdown/MarkdownWorkerManager";
+import { getFilenameFromPath, loadMarkdownContent } from "@/services/document";
 
 type State = LoadingWithError & {
   markdown: string;
@@ -38,9 +38,7 @@ export const useCurrentDocumentStore = create<State & Actions>((set) => ({
 
   load: async (documentUrl: string) => {
     set({ loading: true, error: null });
-    const loadedDocument = await MarkdownLoader.loadMarkdownContent(
-      documentUrl
-    );
+    const loadedDocument = await loadMarkdownContent(documentUrl);
     if (!loadedDocument) {
       set({ loading: false, error: "Failed to load markdown" });
       return;
@@ -62,7 +60,7 @@ export const useCurrentDocumentStore = create<State & Actions>((set) => ({
       );
 
       set({
-        title: MarkdownLoader.getFilenameFromPath(documentUrl),
+        title: getFilenameFromPath(documentUrl),
         markdown,
         docPath: documentUrl,
         category,

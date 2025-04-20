@@ -1,5 +1,8 @@
 import { useMemo, useCallback } from "react";
-import { MarkdownLoader } from "@/utils/MarkdownLoader";
+import {
+  extractHeadingsFromMarkdown,
+  slugify as slugifyParser,
+} from "@/services/document/document-parser";
 
 export type MarkdownSection = {
   id: string;
@@ -31,8 +34,7 @@ export function useMarkdownProcessor(markdownContent: string) {
     if (!markdownContent) return [];
 
     console.time("Extract TOC");
-    const headings =
-      MarkdownLoader.extractHeadingsFromMarkdown(markdownContent);
+    const headings = extractHeadingsFromMarkdown(markdownContent);
     const items = headings.map((heading) => ({
       id: heading.id,
       content: heading.text,
@@ -50,13 +52,7 @@ export function useMarkdownProcessor(markdownContent: string) {
    * Takes headings and converts them into clean IDs for navigation and linking!
    */
   const slugify = useCallback((text: string): string => {
-    return text
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/--+/g, "-")
-      .replace(/^-+/, "")
-      .replace(/-+$/, "");
+    return slugifyParser(text);
   }, []);
 
   /**

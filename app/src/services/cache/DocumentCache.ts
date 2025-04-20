@@ -1,4 +1,4 @@
-import { type ParsedMarkdown, MarkdownLoader } from "@/utils/MarkdownLoader";
+import { type ParsedMarkdown, loadMarkdownContent } from "@/services/document";
 
 /**
  * 📚 Document Cache Service
@@ -51,7 +51,7 @@ export class DocumentCache {
     }
 
     try {
-      const document = await MarkdownLoader.loadMarkdownContent(path);
+      const document = await loadMarkdownContent(path);
 
       if (document) {
         this.cache.set(path, {

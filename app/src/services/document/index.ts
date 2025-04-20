@@ -1,4 +1,12 @@
-import { loadMarkdownContent, getCategories } from "./document-loader";
+import {
+  loadMarkdownContent,
+  getCategories,
+  getFileBreadcrumbs,
+  type ContentIndex,
+  type Category,
+  type FileMetadata,
+  type ParsedMarkdown,
+} from "./document-loader";
 import {
   extractHeadingsFromMarkdown,
   slugify,
@@ -11,4 +19,9 @@ export {
   extractHeadingsFromMarkdown,
   slugify,
   getFilenameFromPath,
+  getFileBreadcrumbs,
+  type ContentIndex,
+  type Category,
+  type FileMetadata,
+  type ParsedMarkdown,
 };

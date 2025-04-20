@@ -16,8 +16,9 @@ import {
   FolderOpen,
   LayoutDashboard,
 } from "lucide-react";
-import { Category, FileMetadata, MarkdownLoader } from "@/utils/MarkdownLoader";
+import { type Category, type FileMetadata } from "@/services/document";
 import { getIconForTech } from "@/components/icons/iconMap";
+import { useDocumentStore } from "@/stores/document/documentStore";
 
 // Types for our component props
 interface ResponsiveSidebarProps {
@@ -53,6 +54,11 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   const searchInputRef = useRef<HTMLInputElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
+  const contentIndex = useDocumentStore((state) => state.contentIndex);
+  const getFileBreadcrumbs = useDocumentStore(
+    (state) => state.getFileBreadcrumbs
+  );
+
   // Check for mobile screen size
   useEffect(() => {
     const handleResize = () => {
@@ -68,8 +74,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     const loadCategories = async () => {
       try {
         setLoading(true);
-        // Load real data from MarkdownLoader
-        const contentIndex = await MarkdownLoader.loadContentIndex();
         setCategories(contentIndex.categories || []);
         setRootFiles(contentIndex.files || []);
         setFilteredCategories(contentIndex.categories || []);
@@ -77,9 +81,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
 
         // If there is a current file, expand its parent categories
         if (currentFilePath) {
-          const breadcrumbs = await MarkdownLoader.getFileBreadcrumbs(
-            currentFilePath
-          );
+          const breadcrumbs = await getFileBreadcrumbs(currentFilePath);
           const newExpandedCategories = new Set<string>();
 
           // Add all parent categories to expanded set
