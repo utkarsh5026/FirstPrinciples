@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PlusCircle } from "lucide-react";
-import type { ReadingTodoItem } from "@/services/analytics/ReadingListService";
+import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
 import TodoHeader from "./TodoHeader";
 import EmptyList from "./EmptyList";
 import TodoItem from "./TodoItem";

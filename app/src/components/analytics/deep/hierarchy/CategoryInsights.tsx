@@ -11,7 +11,11 @@ import {
   Loader2,
 } from "lucide-react";
 import { ReadingHistoryItem } from "@/services/history";
-import { FileMetadata, MarkdownLoader, Category } from "@/utils/MarkdownLoader";
+import {
+  getCategories,
+  type FileMetadata,
+  type Category,
+} from "@/services/document/document-loader";
 import useMobile from "@/hooks/useMobile";
 
 import Loading from "./Loading";
@@ -77,7 +81,7 @@ const CategoryInsights: React.FC<CategoryInsightsProps> = ({
     const fetchCategories = async () => {
       setLoadingCategories(true);
       try {
-        const fetchedCategories = await MarkdownLoader.getCategories();
+        const fetchedCategories = await getCategories();
         setCategories(fetchedCategories);
         setError(null);
       } catch (err) {

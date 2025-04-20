@@ -8,9 +8,9 @@ import {
   readingHistoryService,
   type ReadingHistoryItem,
 } from "@/services/history";
-import { readingListService } from "./ReadingListService";
+import * as readingListService from "@/services/reading/reading-list-service";
 import { readingStatsService } from "./ReadingStatsService";
-import type { FileMetadata } from "@/utils/MarkdownLoader";
+import type { FileMetadata } from "@/services/document/document-loader";
 
 /**
  * Controller that orchestrates all analytics services

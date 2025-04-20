@@ -8,7 +8,10 @@ import {
   BrainCircuit,
 } from "lucide-react";
 import { PiFlowArrow } from "react-icons/pi";
-import { MarkdownLoader, Category } from "@/utils/MarkdownLoader";
+import {
+  getCategories,
+  type Category,
+} from "@/services/document/document-loader";
 import useMobile from "@/hooks/useMobile";
 
 import CategoryCoverageMap from "./coverage";
@@ -91,7 +94,7 @@ const CategoryAnalytics: React.FC<EnhancedCategoryAnalyticsProps> = ({
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const fetchedCategories = await MarkdownLoader.getCategories();
+        const fetchedCategories = await getCategories();
         setCategories(fetchedCategories);
       } catch (error) {
         console.error("Error fetching categories:", error);

@@ -1,9 +1,7 @@
 import { create } from "zustand";
-import {
-  readingListService,
-  type ReadingTodoItem,
-} from "@/services/analytics/ReadingListService";
+import * as readingListService from "@/services/reading/reading-list-service";
 import { parseError } from "@/utils/error";
+import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
 
 export type ReadingStatus = {
   pendingCount: number;

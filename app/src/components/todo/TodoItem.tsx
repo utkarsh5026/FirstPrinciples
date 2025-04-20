@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { X, Calendar, Check } from "lucide-react";
 import getIconForTech from "@/components/icons/iconMap";
 import { formatDate } from "../home/utils";
-import type { ReadingTodoItem } from "@/services/analytics/ReadingListService";
+import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
 import { useReadingStore } from "@/stores";
 
 interface TodoItemProps {

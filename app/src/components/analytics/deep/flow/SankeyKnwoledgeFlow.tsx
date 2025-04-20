@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { File } from "lucide-react";
 import type { ReadingHistoryItem } from "@/services/history";
-import type { Category } from "@/utils/MarkdownLoader";
+import { type Category } from "@/services/document/document-loader";
 import useMobile from "@/hooks/useMobile";
 import { cn } from "@/lib/utils";
 import { PiFlowArrow } from "react-icons/pi";
