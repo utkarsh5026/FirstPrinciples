@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Calendar, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { ReadingHistoryItem } from "@/services/history";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import {
   Tooltip,
   TooltipContent,

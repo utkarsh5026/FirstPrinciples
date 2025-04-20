@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { ReadingHistoryItem } from "@/services/history";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import {
   Tooltip,
   TooltipContent,

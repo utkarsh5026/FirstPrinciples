@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Filter, BarChart3 } from "lucide-react";
-import type { ReadingHistoryItem } from "@/services/history";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { getRandomColors } from "@/lib/constants";
 import getIconForTech from "@/components/icons";
 import { fromSnakeToTitleCase } from "@/utils/string";

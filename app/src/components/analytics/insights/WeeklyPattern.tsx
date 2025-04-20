@@ -2,7 +2,7 @@ import { memo, useState, useEffect } from "react";
 import CardContainer from "@/components/container/CardContainer";
 import { CalendarDays } from "lucide-react";
 import { ReadingByWeekDay } from "../trends";
-import type { ReadingHistoryItem } from "@/services/history";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { WeeklyActivity } from "@/services/analytics/activity-analyzer";
 import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";
 interface WeekdayPatternInsightCardProps {
