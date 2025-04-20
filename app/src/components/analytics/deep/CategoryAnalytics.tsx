@@ -12,7 +12,7 @@ import {
   getCategories,
   type Category,
 } from "@/services/document/document-loader";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 
 import CategoryCoverageMap from "./coverage";
 import SankeyKnowledgeFlow from "./flow";

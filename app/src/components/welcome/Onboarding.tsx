@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import FeatureCard from "./FeatureCard";
 
 const features = [

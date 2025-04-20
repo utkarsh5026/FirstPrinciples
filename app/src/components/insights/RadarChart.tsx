@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from "recharts";
 import { motion } from "framer-motion";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { ChartArea } from "lucide-react";
 

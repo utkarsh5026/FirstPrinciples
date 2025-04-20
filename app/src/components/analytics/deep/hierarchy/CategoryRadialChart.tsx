@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { CircleIcon, TrendingUp, BookIcon, BadgeCheck } from "lucide-react";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import { cn } from "@/lib/utils";
 import CategoryRadialBarChart from "@/components/insights/CategoryRadialBarChart";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";

@@ -12,7 +12,7 @@ import { BookIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getRandomColors } from "@/lib/constants";
 import { fromSnakeToTitleCase } from "@/utils/string";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import { useCategoryStore } from "@/stores";
 
 /**

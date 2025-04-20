@@ -6,7 +6,7 @@ import {
 } from "recharts";
 import { COLORS } from "../../utils";
 import type { SankeyData, SankeyNode } from "./useSankey";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 
 interface SankeyChartProps {
   sankeyData: SankeyData;

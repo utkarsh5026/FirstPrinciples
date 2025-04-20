@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
-import { useSwipeGesture } from "@/hooks/useSwipeGesture";
+import { useSwipeGesture } from "@/hooks/device/useSwipeGesture";
 import CardProgress from "./CardProgress";
 import {
   Menu,
@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import SectionsSheet from "./sidebar/SectionsSheet";
 import { useSectionStore, useCurrentDocumentStore } from "@/stores";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import Stats from "./stats/Stats";
 import { AnimatePresence } from "framer-motion";
 

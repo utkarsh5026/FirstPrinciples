@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { File } from "lucide-react";
 import type { ReadingHistoryItem } from "@/services/history";
 import { type Category } from "@/services/document/document-loader";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import { cn } from "@/lib/utils";
 import { PiFlowArrow } from "react-icons/pi";
 import useSankey from "./useSankey";

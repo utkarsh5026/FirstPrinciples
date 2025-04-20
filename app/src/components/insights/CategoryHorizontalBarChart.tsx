@@ -8,7 +8,7 @@ import {
   Tooltip as RechartsTooltip,
   CartesianGrid,
 } from "recharts";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { COLORS } from "@/lib/constants";
 

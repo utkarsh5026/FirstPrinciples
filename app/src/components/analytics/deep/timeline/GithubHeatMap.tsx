@@ -7,7 +7,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import { Calendar, BookOpen, AlertCircle } from "lucide-react";
 import { useHeatmapStore } from "@/stores";
 import { Button } from "@/components/ui/button";

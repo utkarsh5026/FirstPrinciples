@@ -20,7 +20,7 @@ import { useTheme } from "@/components/theme/context/ThemeContext";
 import { Button } from "@/components/ui/button";
 import { COLORS } from "@/lib/constants";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import CategoryHorizontalBarChart from "@/components/insights/CategoryHorizontalBarChart";
 
 interface DistributionProps {

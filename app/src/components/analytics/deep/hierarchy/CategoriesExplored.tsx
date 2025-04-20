@@ -15,7 +15,7 @@ import {
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { COLORS } from "@/lib/constants";
 import getIconForTech from "@/components/icons";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import { formatRelativeTime } from "@/utils/time";
 import { Badge } from "@/components/ui/badge";
 import { useHistoryStore, useCategoryStore } from "@/stores";

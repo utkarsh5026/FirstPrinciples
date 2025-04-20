@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { PieChart as RechartsPieChart, Pie, Cell, Sector } from "recharts";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import {
   BookText,
   TrendingUp,

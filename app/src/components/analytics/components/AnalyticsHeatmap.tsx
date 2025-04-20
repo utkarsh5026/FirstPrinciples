@@ -5,7 +5,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { BarChart3, Calendar, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 
 // Type for the heatmap activity data
 interface ActivityData {

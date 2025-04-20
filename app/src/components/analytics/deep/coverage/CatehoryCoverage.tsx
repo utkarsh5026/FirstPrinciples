@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { Target, PieChart } from "lucide-react";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import getIconForTech from "@/components/icons";
 import StatCard from "./StatCard";
 import CategoryRadarChart from "@/components/insights/RadarChart";

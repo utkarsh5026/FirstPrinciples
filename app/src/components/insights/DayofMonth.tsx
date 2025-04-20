@@ -18,7 +18,7 @@ import {
 import { motion } from "framer-motion";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { cn } from "@/lib/utils";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import { generateThemeColors } from "@/utils/colors";
 import type { DailyActivity } from "@/services/analytics/activity-analyzer";
 

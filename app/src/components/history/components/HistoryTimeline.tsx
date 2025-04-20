@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
 import type { ReadingHistoryItem } from "@/services/history";
 import getIconForTech from "@/components/icons/iconMap";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { fromSnakeToTitleCase } from "@/utils/string";

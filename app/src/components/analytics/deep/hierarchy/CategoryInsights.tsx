@@ -16,7 +16,7 @@ import {
   type FileMetadata,
   type Category,
 } from "@/services/document/document-loader";
-import useMobile from "@/hooks/useMobile";
+import useMobile from "@/hooks/device/use-mobile";
 
 import Loading from "./Loading";
 import useInsights from "../../../insights/useInsights";
