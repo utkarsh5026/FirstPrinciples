@@ -1,6 +1,6 @@
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { create } from "zustand";
-import { useHistoryStore } from "./historyStore";
+import { useHistoryStore } from "./reading/history-store";
 import { parseError } from "@/utils/error";
 import {
   DailyActivity,

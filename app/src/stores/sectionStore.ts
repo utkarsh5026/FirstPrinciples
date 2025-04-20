@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { sectionReadingService } from "@/services/section/SectionReadingService";
 import type { LoadingWithError } from "./base/base";
 import { parseError } from "@/utils/error";
-import { useHistoryStore } from "./historyStore";
+import { useHistoryStore } from "./reading/history-store";
 
 /**
  * Enhanced SectionReadingData with category and word count

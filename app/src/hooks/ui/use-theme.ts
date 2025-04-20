@@ -2,6 +2,13 @@ import { useEffect } from "react";
 import { useThemeStore } from "@/stores/ui/theme-store";
 import { ThemeOption } from "@/theme/themes";
 
+/**
+ * 🎨 A delightful theme hook that lets users personalize their experience!
+ *
+ * This hook provides a way to set and apply themes to the application.
+ * It also ensures that the dark mode is always enabled.
+ *
+ */
 export const useTheme = () => {
   const { currentTheme, setTheme } = useThemeStore();
 

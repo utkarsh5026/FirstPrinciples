@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { useHistoryStore } from "@/stores/historyStore";
+import { useHistoryStore } from "@/stores/reading/history-store";
 import { useReadingStore } from "@/stores/readingStore";
 import { analyticsController } from "@/services/analytics/AnalyticsController";
 import {
