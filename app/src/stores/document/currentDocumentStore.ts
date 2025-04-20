@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { LoadingWithError } from "../base/base";
 import { parseError } from "@/utils/error";
 import { MarkdownSection } from "@/services/section/parsing";
-import { markdownWorkerManager } from "@/workers/markdown/MarkdownWorkerManager";
+import { markdownWorkerManager } from "@/infrastructure/workers/markdown/markdown-worker-manager";
 import { getFilenameFromPath, loadMarkdownContent } from "@/services/document";
 
 type State = LoadingWithError & {

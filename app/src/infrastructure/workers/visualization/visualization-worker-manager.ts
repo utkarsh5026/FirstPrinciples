@@ -1,7 +1,7 @@
 import {
   BaseWorkerManager,
   type WorkerManagerConfig,
-} from "@/workers/base/BaseWorkerManager";
+} from "@/infrastructure/workers/base/base-worker-manager";
 import type { ReadingHistoryItem } from "@/services/history";
 import type {
   MonthlyData,

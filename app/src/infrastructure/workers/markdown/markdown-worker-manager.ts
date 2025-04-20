@@ -1,7 +1,7 @@
 import {
   BaseWorkerManager,
   type WorkerManagerConfig,
-} from "@/workers/base/BaseWorkerManager";
+} from "@/infrastructure/workers/base/base-worker-manager";
 import type { MarkdownSection } from "@/services/section/parsing";
 
 /**
