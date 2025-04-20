@@ -5,7 +5,7 @@ import {
   MonthlyDocumentCounts,
   generateMonthlyHeatmapData,
   calculateMonthlyDocumentCounts,
-} from "@/services/history/heatmap";
+} from "@/services/analytics/heatmap-generator";
 
 class VisualizationWorker {
   /**

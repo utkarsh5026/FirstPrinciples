@@ -16,7 +16,7 @@ import {
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import type { ContentType } from "recharts/types/component/Tooltip";
-import type { MonthlyDocumentCounts } from "@/services/history/heatmap";
+import type { MonthlyDocumentCounts } from "@/services/analytics/heatmap-generator";
 import { getMonthName } from "@/utils/time";
 
 interface ProgressOverTimeProps {

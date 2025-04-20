@@ -6,7 +6,7 @@ import {
   type MonthlyData,
   type MonthlyDocumentCounts,
   createDateKey,
-} from "@/services/history/heatmap";
+} from "@/services/analytics/heatmap-generator";
 
 type MonthlyDataWithHash = MonthlyData & {
   dataHash: string;

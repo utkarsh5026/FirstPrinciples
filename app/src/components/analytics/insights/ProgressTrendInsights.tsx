@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ProgressOverTime } from "../trends";
 import CardContainer from "@/components/container/CardContainer";
 import { useHeatmapStore, useHistoryStore } from "@/stores";
-import type { MonthlyDocumentCounts } from "@/services/history/heatmap";
+import type { MonthlyDocumentCounts } from "@/services/analytics/heatmap-generator";
 import { Color } from "@/components/container/useContainer";
 
 /**

@@ -6,7 +6,7 @@ import type { ReadingHistoryItem } from "@/services/history";
 import type {
   MonthlyData,
   MonthlyDocumentCounts,
-} from "@/services/history/heatmap";
+} from "@/services/analytics/heatmap-generator";
 
 export interface VisualizationWorkerAPI {
   // Heatmap data generation
