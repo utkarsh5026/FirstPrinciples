@@ -1,6 +1,6 @@
 // src/services/analytics/XPService.ts
 
-import { databaseService } from "../../infrastructure/storage/indexed-db";
+import { databaseService } from "@/infrastructure/storage";
 import { readingStatsService } from "./ReadingStatsService";
 
 export interface XPStats {

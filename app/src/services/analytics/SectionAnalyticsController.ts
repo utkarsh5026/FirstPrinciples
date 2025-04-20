@@ -1,4 +1,4 @@
-import { databaseService } from "../../infrastructure/storage/indexed-db";
+import { databaseService } from "@/infrastructure/storage";
 import {
   sectionReadingTracker,
   SectionReadingData,

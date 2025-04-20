@@ -374,6 +374,3 @@ export class DatabaseService {
     return undefined;
   }
 }
-
-// Create and export a singleton instance
-export const databaseService = new DatabaseService();

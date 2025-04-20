@@ -10,7 +10,7 @@ import {
   getWeeklyActivityMetrics,
   getReadingByHourMetrics,
 } from "@/services/history/activity";
-import { analyticsWorkerManager } from "@/workers";
+import { analyticsWorkerManager } from "@/infrastructure/workers";
 
 type State = {
   totalWeeklyActivity: WeeklyActivity[];

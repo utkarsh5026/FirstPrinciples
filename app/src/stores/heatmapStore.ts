@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { LoadingWithError } from "./base/base";
-import type { ReadingHistoryItem } from "@/services/history";
-import { visualizationWorkerManager } from "@/workers";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
+import { visualizationWorkerManager } from "@/infrastructure/workers";
 import {
   type MonthlyData,
   type MonthlyDocumentCounts,

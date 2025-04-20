@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useSectionStore } from "./sectionStore";
 import { useCurrentDocumentStore } from "./document/currentDocumentStore";
 import useReadingMetricsStore from "./document/readingMetrics";
-import { databaseService } from "@/infrastructure/storage/indexed-db";
+import { databaseService } from "@/infrastructure/storage";
 
 /**
  * 🚀 Initializes all stores when the app starts

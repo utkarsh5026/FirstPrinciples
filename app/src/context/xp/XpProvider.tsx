@@ -2,7 +2,7 @@ import { xpService } from "@/services/analytics/XpService";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { XPContext } from "./XpContext";
 import { type XPStats } from "@/services/analytics/XpService";
-import { databaseService } from "@/infrastructure/storage/indexed-db";
+import { databaseService } from "@/infrastructure/storage";
 
 interface XPProviderProps {
   children: ReactNode;
