@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { useTheme } from "@/components/theme/context/ThemeContext";
 import { useEffect, useState } from "react";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
-import useTodoList from "@/hooks/reading/useTodoList";
+import useTodoList from "@/hooks/document/use-document-list";
 
 /**
  * 🌟 Hero Component
