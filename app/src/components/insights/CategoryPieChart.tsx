@@ -15,15 +15,15 @@ import { motion } from "framer-motion";
 import { CategoryBreakdown } from "@/stores/categoryStore";
 import {
   ChartConfig,
-  ChartContainer as ShadcnChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
+  ChartContainer as ShadcnChartContainer,
 } from "@/components/ui/chart";
 import { PieSectorDataItem } from "recharts/types/polar/Pie";
 import getIconForTech from "../icons";
 import { generateThemeColors } from "@/utils/colors";
 import { fromSnakeToTitleCase, truncateText } from "@/utils/string";
 import ChartContainer from "@/components/chart/ChartContainer";
+import useChartTooltip from "../chart/tooltip/use-chart-tooltip";
 
 interface CategoryPieChartProps {
   descriptive?: boolean;
@@ -190,6 +190,53 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
       );
     };
 
+    const renderCategoryTooltip = useChartTooltip({
+      getTitle: (payload) => {
+        const CategoryIcon = getIconForTech(payload.category);
+        return (
+          <div className="flex items-center gap-2">
+            <CategoryIcon className="w-4 h-4 text-primary" />
+            {fromSnakeToTitleCase(payload.category)}
+          </div>
+        );
+      },
+
+      getSections: (payload) => [
+        {
+          label: "Documents read:",
+          value: payload.count,
+          highlight: true,
+        },
+        {
+          label: "Total in category:",
+          value: payload.categoryCount,
+        },
+        {
+          label: "Completion:",
+          value: `${
+            payload.categoryCount > 0
+              ? Math.round((payload.count / payload.categoryCount) * 100)
+              : 0
+          }%`,
+        },
+        {
+          label: "Of total reading:",
+          value: `${payload.percentage}%`,
+        },
+      ],
+
+      getFooter: (payload) => {
+        return payload.count > 0 &&
+          categoryMetrics?.mostRead.category === payload.category
+          ? {
+              message: "Your most-read category",
+              icon: TrendingUp,
+              className: "text-green-400",
+            }
+          : undefined;
+      },
+    });
+
     if (categoryBreakdown.length === 0) return <NoCategoryData />;
 
     const config: ChartConfig = {
@@ -250,69 +297,7 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = memo(
         <ShadcnChartContainer className="w-full h-full" config={config}>
           <RechartsPieChart>
             <ChartTooltip
-              content={
-                <ChartTooltipContent
-                  hideLabel
-                  formatter={(_value, _name, props) => {
-                    const payload = props?.payload;
-                    if (!payload) return null;
-
-                    const CategoryIcon = getIconForTech(payload.category);
-                    return (
-                      <div className="space-y-2">
-                        <div className="flex items-center text-sm font-medium gap-2 pb-1.5 border-b border-border/50">
-                          <CategoryIcon className="w-4 h-4 text-primary" />
-                          {fromSnakeToTitleCase(payload.category)}
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
-                          <span className="text-muted-foreground">
-                            Documents read:
-                          </span>
-                          <span className="font-bold text-primary text-right">
-                            {payload.count}
-                          </span>
-
-                          <span className="text-muted-foreground">
-                            Total in category:
-                          </span>
-                          <span className="text-right">
-                            {payload.categoryCount}
-                          </span>
-
-                          <span className="text-muted-foreground">
-                            Completion:
-                          </span>
-                          <span className="text-right font-medium">
-                            {payload.categoryCount > 0
-                              ? Math.round(
-                                  (payload.count / payload.categoryCount) * 100
-                                )
-                              : 0}
-                            %
-                          </span>
-
-                          <span className="text-muted-foreground">
-                            Of total reading:
-                          </span>
-                          <span className="text-right">
-                            {payload.percentage}%
-                          </span>
-                        </div>
-
-                        {payload.count > 0 &&
-                          categoryMetrics?.mostRead.category ===
-                            payload.category && (
-                            <div className="mt-1 pt-1.5 border-t border-border/50 text-xs text-green-400 flex items-center">
-                              <TrendingUp className="h-3 w-3 mr-1" />
-                              Your most-read category
-                            </div>
-                          )}
-                      </div>
-                    );
-                  }}
-                />
-              }
+              content={(props) => renderCategoryTooltip(props as any)}
               cursor={false}
             />
             <Pie
