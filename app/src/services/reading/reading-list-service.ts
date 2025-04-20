@@ -9,6 +9,8 @@ export interface ReadingTodoItem {
   completedAt: number | null;
 }
 
+const STORE_NAME = "readingLists";
+
 /**
  * 📥 Add a document to your reading list
  *
@@ -19,18 +21,16 @@ export async function addToReadingList(
   title: string
 ): Promise<boolean> {
   try {
-    // Check if document is already in the list
     const existingItems = await databaseService.getByIndex<ReadingTodoItem>(
-      "readingLists",
+      STORE_NAME,
       "path",
       path
     );
 
     if (existingItems.length > 0) {
-      return false; // Already in the list
+      return false;
     }
 
-    // Create new todo item
     const newItem: ReadingTodoItem = {
       id: crypto.randomUUID(),
       path,
@@ -40,7 +40,7 @@ export async function addToReadingList(
       completedAt: null,
     };
 
-    await databaseService.add("readingLists", newItem);
+    await databaseService.add(STORE_NAME, newItem);
     return true;
   } catch (error) {
     console.error("Error adding to reading list:", error);
@@ -55,7 +55,7 @@ export async function addToReadingList(
  */
 export async function getAllItems(): Promise<ReadingTodoItem[]> {
   try {
-    return await databaseService.getAll<ReadingTodoItem>("readingLists");
+    return await databaseService.getAll<ReadingTodoItem>(STORE_NAME);
   } catch (error) {
     console.error("Error getting reading list items:", error);
     return [];
@@ -70,7 +70,7 @@ export async function getAllItems(): Promise<ReadingTodoItem[]> {
 export async function getItem(id: string): Promise<ReadingTodoItem | null> {
   try {
     const item = await databaseService.getByKey<ReadingTodoItem>(
-      "readingLists",
+      STORE_NAME,
       id
     );
     return item || null;
@@ -101,7 +101,7 @@ export async function toggleCompletion(
       completedAt: item.completed ? null : Date.now(),
     };
 
-    await databaseService.update("readingLists", updatedItem);
+    await databaseService.update(STORE_NAME, updatedItem);
     return updatedItem;
   } catch (error) {
     console.error("Error toggling completion status:", error);
@@ -117,7 +117,7 @@ export async function toggleCompletion(
  */
 export async function removeItem(id: string): Promise<boolean> {
   try {
-    await databaseService.delete("readingLists", id);
+    await databaseService.delete(STORE_NAME, id);
     return true;
   } catch (error) {
     console.error("Error removing item from reading list:", error);
@@ -132,7 +132,7 @@ export async function removeItem(id: string): Promise<boolean> {
  */
 export async function clearList(): Promise<void> {
   try {
-    await databaseService.clearStore("readingLists");
+    await databaseService.clearStore(STORE_NAME);
   } catch (error) {
     console.error("Error clearing reading list:", error);
     throw error;
