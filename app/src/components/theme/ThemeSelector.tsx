@@ -7,10 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  type ThemeOption as ThemeTypeOption,
-  themes,
-} from "@/components/theme/themes";
+import { type ThemeOption as ThemeTypeOption, themes } from "@/theme/themes";
 import { Palette } from "lucide-react";
 import ThemeOption from "./ThemeOption";
 
@@ -21,21 +18,23 @@ interface ThemeSelectorProps {
 }
 
 /**
- * Enhanced ThemeSelector component with a mobile-friendly interface
- * and improved visual display of available themes.
+ * 🎨 A delightful theme selector that lets users personalize their experience!
  *
- * Features:
- * - Compact, touch-friendly design
- * - Organized theme categorization
- * - Color previews for each theme
- * - Responsive layout that works well on both mobile and desktop
+ * This component creates a dropdown menu with a cute palette button that reveals
+ * a world of beautiful themes to choose from.
  *
- * @param {Object} props - Component properties
- * @param {string} props.currentTheme - Current theme name
- * @param {Function} props.onThemeChange - Handler for theme changes
- * @param {string} props.className - Optional CSS class names
+ * ✨ Features:
+ * - Shows popular themes for quick selection
+ * - Provides access to all available themes
+ * - Highlights the currently active theme
+ * - Perfectly responsive for both mobile and desktop
+ *
+ * 🧠 Smart organization:
+ * - Separates themes into "Popular" and "All Themes" tabs
+ * - Displays visual previews of each theme's colors
+ * - Maintains a compact, touch-friendly design
  */
-const EnhancedThemeSelector: React.FC<ThemeSelectorProps> = ({
+const ThemeSelector: React.FC<ThemeSelectorProps> = ({
   currentTheme,
   onThemeChange,
   className,
@@ -46,6 +45,7 @@ const EnhancedThemeSelector: React.FC<ThemeSelectorProps> = ({
 
   return (
     <DropdownMenu>
+      {/* 🎭 Theme button - cute little trigger for the dropdown */}
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
@@ -57,10 +57,12 @@ const EnhancedThemeSelector: React.FC<ThemeSelectorProps> = ({
         </Button>
       </DropdownMenuTrigger>
 
+      {/* 🎁 Theme menu - where all the magic happens! */}
       <DropdownMenuContent
         align="end"
         className="w-screen max-w-[280px] p-3 bg-card border-border rounded-2xl"
       >
+        {/* 📑 Tab navigation - for switching between theme collections */}
         <div className="mb-3">
           <Tabs
             defaultValue="popular"
@@ -78,7 +80,9 @@ const EnhancedThemeSelector: React.FC<ThemeSelectorProps> = ({
           </Tabs>
         </div>
 
+        {/* 📜 Scrollable theme list - for browsing all the pretty options */}
         <div className="max-h-64 overflow-y-auto pr-1 -mr-1">
+          {/* ✨ Popular themes section */}
           <div
             className={cn(
               "grid grid-cols-1 gap-1.5",
@@ -95,6 +99,7 @@ const EnhancedThemeSelector: React.FC<ThemeSelectorProps> = ({
             ))}
           </div>
 
+          {/* 🌈 All themes section */}
           <div
             className={cn(
               "grid grid-cols-1 gap-1.5",
@@ -116,4 +121,4 @@ const EnhancedThemeSelector: React.FC<ThemeSelectorProps> = ({
   );
 };
 
-export default EnhancedThemeSelector;
+export default ThemeSelector;

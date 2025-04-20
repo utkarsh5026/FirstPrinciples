@@ -1,5 +1,5 @@
 import React from "react";
-import type { ThemeOption as ThemeTypeOption } from "@/components/theme/themes";
+import type { ThemeOption as ThemeTypeOption } from "@/theme/themes";
 import { cn } from "@/lib/utils";
 import { FiCheck } from "react-icons/fi";
 
@@ -10,15 +10,22 @@ interface ThemeOptionProps {
 }
 
 /**
- * ThemeOption component represents an individual theme option in the theme selector.
- * It displays a color preview, the theme name, and an active indicator if the theme is currently selected.
+ * 🎨 A beautiful theme option button that shows off a theme's personality!
  *
- * @param {Object} props - The properties for the ThemeOption component.
- * @param {ThemeTypeOption} props.theme - The theme object containing the theme's details such as name, background, and primary colors.
- * @param {boolean} props.isActive - A boolean indicating whether this theme option is currently active (selected).
- * @param {Function} props.onSelect - A callback function to be called when the theme option is selected.
+ * This component creates a delightful, interactive button for each theme option:
  *
- * @returns {JSX.Element} The rendered ThemeOption component.
+ * ✨ Features:
+ * - Shows a gorgeous gradient preview of the theme colors
+ * - Displays the theme name in a cute font
+ * - Highlights the currently active theme with a subtle background
+ * - Shows a checkmark for the selected theme
+ * - Provides smooth hover effects for better user feedback
+ *
+ * 🌈 The gradient preview blends the theme's background and primary colors
+ * to give users a quick visual sense of the theme's aesthetic.
+ *
+ * 💫 When selected, the theme gets a subtle highlight and checkmark
+ * to help users know which theme they're currently using!
  */
 const ThemeOption: React.FC<ThemeOptionProps> = ({
   theme,

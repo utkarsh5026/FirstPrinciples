@@ -3,7 +3,7 @@ import { useTheme } from "@/hooks/ui/use-theme";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Menu, Home } from "lucide-react";
-import EnhancedThemeSelector from "@/components/theme/selector/ThemeSelector";
+import ThemeSelector from "@/components/theme/ThemeSelector";
 
 interface AppHeaderProps {
   toggleSidebar: () => void;
@@ -109,7 +109,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
 
       {/* Right side - Theme selector */}
       <div>
-        <EnhancedThemeSelector
+        <ThemeSelector
           currentTheme={currentTheme.name}
           onThemeChange={setTheme}
         />
