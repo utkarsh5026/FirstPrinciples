@@ -8,6 +8,12 @@ import {
   getCategoryStats,
   type CategoryStats,
 } from "@/services/analytics/section-analytics";
+import {
+  getCategoryWordsRead,
+  getCategoryTimeSpent,
+  getCategoryMetrics,
+  type CategoryMetrics,
+} from "@/services/analytics/category-analytics";
 
 class SectionWorker {
   getTimeSpentOnDay: (
@@ -42,6 +48,27 @@ class SectionWorker {
     readings: SectionReadingData[]
   ) => Promise<Record<string, CategoryStats>> = async (readings) => {
     return getCategoryStats(readings);
+  };
+
+  getCategoryWordsRead: (
+    readings: SectionReadingData[],
+    category?: string
+  ) => Promise<number> = async (readings, category) => {
+    return getCategoryWordsRead(readings, category);
+  };
+
+  getCategoryTimeSpent: (
+    readings: SectionReadingData[],
+    category?: string
+  ) => Promise<number> = async (readings, category) => {
+    return getCategoryTimeSpent(readings, category);
+  };
+
+  getCategoryMetrics: (
+    readings: SectionReadingData[],
+    category?: string
+  ) => Promise<CategoryMetrics> = async (readings, category) => {
+    return getCategoryMetrics(readings, category);
   };
 }
 

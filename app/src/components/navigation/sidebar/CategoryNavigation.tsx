@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { type Category, type FileMetadata } from "@/services/document";
 import { getIconForTech } from "@/components/icons/iconMap";
-import { useDocumentStore } from "@/stores/document/documentStore";
+import { useDocumentStore } from "@/stores/document/document-store";
 
 // Types for our component props
 interface ResponsiveSidebarProps {

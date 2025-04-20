@@ -4,7 +4,7 @@ import { readingSessionTracker } from "@/services/analytics/ReadingSessionTracke
 import { sectionAnalyticsController } from "@/services/analytics/SectionAnalyticsController";
 import { type ReadingHistoryItem } from "@/services/history";
 import { formatDateKey } from "@/utils/time";
-import { useDocumentStore } from "./document/documentStore";
+import { useDocumentStore } from "./document/document-store";
 
 // Define types
 export type ReadingMetrics = {

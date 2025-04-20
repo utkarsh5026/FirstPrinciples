@@ -2,7 +2,8 @@ import {
   BaseWorkerManager,
   type WorkerManagerConfig,
 } from "@/infrastructure/workers/base/base-worker-manager";
-import { CategoryStats } from "@/services/analytics/section-analytics";
+import type { CategoryMetrics } from "@/services/analytics/category-analytics";
+import type { CategoryStats } from "@/services/analytics/section-analytics";
 import type { SectionReadingData } from "@/services/section/SectionReadingService";
 
 /**
@@ -26,6 +27,18 @@ export interface SectionWorkerAPI {
   getCategoryStats(
     readings: SectionReadingData[]
   ): Promise<Record<string, CategoryStats>>;
+  getCategoryWordsRead(
+    readings: SectionReadingData[],
+    category?: string
+  ): Promise<number>;
+  getCategoryTimeSpent(
+    readings: SectionReadingData[],
+    category?: string
+  ): Promise<number>;
+  getCategoryMetrics(
+    readings: SectionReadingData[],
+    category?: string
+  ): Promise<CategoryMetrics>;
 }
 
 export class SectionWorkerManager extends BaseWorkerManager<SectionWorkerAPI> {
@@ -93,5 +106,32 @@ export class SectionWorkerManager extends BaseWorkerManager<SectionWorkerAPI> {
     readings: SectionReadingData[]
   ): Promise<Record<string, CategoryStats>> {
     return this.executeTask((proxy) => proxy.getCategoryStats(readings));
+  }
+
+  public async getCategoryWordsRead(
+    readings: SectionReadingData[],
+    category?: string
+  ): Promise<number> {
+    return this.executeTask((proxy) =>
+      proxy.getCategoryWordsRead(readings, category)
+    );
+  }
+
+  public async getCategoryTimeSpent(
+    readings: SectionReadingData[],
+    category?: string
+  ): Promise<number> {
+    return this.executeTask((proxy) =>
+      proxy.getCategoryTimeSpent(readings, category)
+    );
+  }
+
+  public async getCategoryMetrics(
+    readings: SectionReadingData[],
+    category?: string
+  ): Promise<CategoryMetrics> {
+    return this.executeTask((proxy) =>
+      proxy.getCategoryMetrics(readings, category)
+    );
   }
 }

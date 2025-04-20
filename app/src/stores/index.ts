@@ -1,5 +1,5 @@
 import { useReadingStore } from "./readingStore";
-import { useDocumentStore } from "./document/documentStore";
+import { useDocumentStore } from "./document/document-store";
 import { useHistoryStore } from "./reading/history-store";
 import { useCategoryStore } from "./categoryStore";
 import { useActivityStore } from "./activityStore";
