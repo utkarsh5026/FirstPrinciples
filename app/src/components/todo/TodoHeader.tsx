@@ -2,6 +2,7 @@ import { BookOpen, CheckCircle2, Clock, ListTodo } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useTheme } from "@/hooks/ui/use-theme";
 import { useReadingStore } from "@/stores";
+import CardContainer from "../container/CardContainer";
 
 /**
  * 🎉 TodoHeader Component
@@ -43,7 +44,12 @@ const TodoHeader: React.FC = () => {
   ];
 
   return (
-    <div className="relative overflow-hidden border border-primary/20 bg-card p-6 rounded-4xl">
+    <CardContainer
+      title="Reading List"
+      icon={ListTodo}
+      description="Track documents you want to read, Basicly a todo list ❤️‍🔥"
+      variant="subtle"
+    >
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-primary/5 blur-3xl"></div>
       <div className="absolute bottom-0 left-0 h-24 w-24 rounded-full bg-primary/5 blur-xl"></div>
@@ -56,21 +62,6 @@ const TodoHeader: React.FC = () => {
       ></div>
 
       <div className="relative">
-        {/* Header with icon */}
-        <div className="mb-4 flex items-center justify-between">
-          <div className="flex items-center">
-            <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-              <ListTodo className="h-5 w-5 text-primary" />
-            </div>
-            <div>
-              <h2 className="text-xl font-bold">Reading List</h2>
-              <p className="text-xs text-muted-foreground">
-                Track documents you want to read
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Reading list stats */}
         <div className="grid grid-cols-3 gap-4 mt-4">
           {headerStats.map((stat) => (
@@ -100,7 +91,7 @@ const TodoHeader: React.FC = () => {
           </div>
         )}
       </div>
-    </div>
+    </CardContainer>
   );
 };
 
