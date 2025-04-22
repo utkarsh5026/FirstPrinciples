@@ -1,7 +1,12 @@
-import { sectionWorkerManager } from "@/infrastructure/workers";
+import {
+  sectionWorkerManager,
+  analyticsWorkerManager,
+} from "@/infrastructure/workers";
 import { SectionReadingData } from "@/services/reading/section-reading-service";
 import { useCallback } from "react";
 import { withErrorHandling } from "@/utils/functions/error";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
+import type { FileMetadata } from "@/services/document";
 
 export const useCategoryMetrics = () => {
   const getCategoryWordsRead = useCallback(
@@ -56,5 +61,30 @@ export const useCategoryMetrics = () => {
     []
   );
 
-  return { getCategoryWordsRead, getCategoryTimeSpent, getCategoryMetrics };
+  const createCategoryBreakdown = useCallback(
+    async (
+      readingHistory: ReadingHistoryItem[],
+      availableDocuments: FileMetadata[]
+    ) => {
+      return withErrorHandling(
+        async () =>
+          analyticsWorkerManager.calculateCategoryBreakdown(
+            readingHistory,
+            availableDocuments
+          ),
+        [],
+        {
+          errorPrefix: "Failed to create category breakdown:",
+          logError: true,
+        }
+      )();
+    },
+    []
+  );
+  return {
+    getCategoryWordsRead,
+    getCategoryTimeSpent,
+    getCategoryMetrics,
+    createCategoryBreakdown,
+  };
 };

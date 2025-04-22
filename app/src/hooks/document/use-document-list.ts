@@ -1,5 +1,4 @@
-import { useReadingStore } from "@/stores";
-import { useMemo } from "react";
+import { useDocumentStore } from "@/stores";
 
 /**
  * 📚 A hook that organizes your reading list into neat categories!
@@ -8,27 +7,12 @@ import { useMemo } from "react";
  * reading journey. Perfect for bookworms and knowledge seekers! 🤓✨
  */
 const useDocumentList = () => {
-  const todoList = useReadingStore((state) => state.todoList);
-  const status = useReadingStore((state) => state.status);
-
-  /**
-   * 🎉 All the books you've conquered! Good job, reader!
-   */
-  const completed = useMemo(() => {
-    return todoList.filter((item) => item.completed);
-  }, [todoList]);
-
-  /**
-   * 📖 Books waiting for your attention - the adventure continues!
-   */
-  const pending = useMemo(() => {
-    return todoList.filter((item) => !item.completed);
-  }, [todoList]);
+  const documents = useDocumentStore((state) => state.availableDocuments);
+  const contentIndex = useDocumentStore((state) => state.contentIndex);
 
   return {
-    pending,
-    completed,
-    status,
+    documents,
+    contentIndex,
   };
 };
 
