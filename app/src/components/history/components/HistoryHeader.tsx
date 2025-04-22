@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import CardContainer from "@/components/container/CardContainer";
 
 interface HistoryHeaderProps {
   timeStats: {
@@ -45,7 +46,12 @@ const HistoryHeader: React.FC<HistoryHeaderProps> = ({
   ] as const;
 
   return (
-    <div className="flex flex-col md:flex-row justify-between gap-4">
+    <CardContainer
+      title="Reading History"
+      icon={CalendarDays}
+      description="The History that you can show proudly 🤗"
+      variant="subtle"
+    >
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         <StatCard
           label="Today"
@@ -97,7 +103,7 @@ const HistoryHeader: React.FC<HistoryHeaderProps> = ({
           ))}
         </div>
       </div>
-    </div>
+    </CardContainer>
   );
 };
 
