@@ -1,15 +1,11 @@
 import React from "react";
 import {
-  LayoutList,
-  Clock,
-  BarChart2,
   CalendarDays,
   CalendarRange,
   CalendarCheck,
   Award,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import CardContainer from "@/components/container/CardContainer";
 
 interface HistoryHeaderProps {
@@ -19,8 +15,6 @@ interface HistoryHeaderProps {
     thisMonth: number;
     total: number;
   };
-  viewMode: "list" | "timeline" | "trends";
-  setViewMode: (mode: "list" | "timeline" | "trends") => void;
 }
 
 /**
@@ -29,20 +23,10 @@ interface HistoryHeaderProps {
  * A visually appealing header for the history section that displays
  * time-based statistics and view mode selection options.
  */
-const HistoryHeader: React.FC<HistoryHeaderProps> = ({
-  timeStats,
-  viewMode,
-  setViewMode,
-}) => {
-  const viewModeOptions = [
-    { mode: "list", label: "List", icon: LayoutList },
-    { mode: "timeline", label: "Timeline", icon: Clock },
-    { mode: "trends", label: "Trends", icon: BarChart2 },
-  ] as const;
-
+const HistoryHeader: React.FC<HistoryHeaderProps> = ({ timeStats }) => {
   return (
     <CardContainer
-      title="Reading History"
+      title="History Overview"
       icon={CalendarDays}
       description="Track your reading journey and discover patterns"
       variant="subtle"
@@ -74,30 +58,6 @@ const HistoryHeader: React.FC<HistoryHeaderProps> = ({
           iconColor="text-amber-400"
         />
       </div>
-
-      <div className="flex items-center mt-4 md:mt-6">
-        <span className="text-xs md:text-sm text-muted-foreground mr-2">
-          View:
-        </span>
-        <div className="bg-secondary/20 rounded-lg p-1 flex flex-grow md:flex-grow-0">
-          {viewModeOptions.map(({ mode, label, icon: Icon }) => (
-            <Button
-              key={mode}
-              size="sm"
-              variant={viewMode === mode ? "default" : "ghost"}
-              className={`h-8 text-xs md:text-sm flex-1 md:flex-initial ${
-                viewMode !== mode
-                  ? "text-muted-foreground hover:text-foreground"
-                  : ""
-              }`}
-              onClick={() => setViewMode(mode)}
-            >
-              <Icon className="mr-1 h-3 w-3 md:h-4 md:w-4" />
-              <span className="md:inline">{label}</span>
-            </Button>
-          ))}
-        </div>
-      </div>
     </CardContainer>
   );
 };
@@ -121,7 +81,7 @@ const StatCard: React.FC<{
       }`}
     >
       <div className="flex flex-col">
-        <span className="text-lg md:text-xl font-bold">{value}</span>
+        <span className="text-base md:text-lg font-bold">{value}</span>
         <span className="text-xs text-muted-foreground">{label}</span>
       </div>
       {Icon && (

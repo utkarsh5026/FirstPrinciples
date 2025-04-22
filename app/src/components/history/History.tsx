@@ -1,44 +1,37 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import type { ReadingHistoryItem } from "@/services/history";
-import { useTheme } from "@/hooks/ui/use-theme";
-
-import HistoryHeader from "./components/HistoryHeader";
-import HistoryFilters from "./components/HistoryFilters";
-import HistoryList from "./components/HistoryList";
-import HistoryTimeline from "./components/HistoryTimeline";
-import HistoryTrends from "./components/HistoryTrends";
-import EmptyHistory from "./components/EmptyHistory";
-import EmptyFilteredResult from "./components/EmptyFilteredResult";
-
-import { formatDate } from "@/components/home/utils";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
+import CardContainer from "@/components/container/CardContainer";
+import { Calendar, Search, Filter, CalendarDays } from "lucide-react";
 import { useHistoryStore } from "@/stores";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import HistoryList from "./HistoryList";
+import HistoryTimeline from "./HistoryTimeline";
+import CategorySelect from "../utils/select/CategorySelect";
+import TimeRangeSelect from "../utils/select/TimeRangeSelect";
+import { TimeRange } from "@/utils/time";
+import HistoryHeader from "./HistoryHeader";
 
 interface HistoryProps {
   handleSelectDocument: (path: string, title: string) => void;
 }
 
 /**
- * Enhanced History Component
+ * Minimal History Component
  *
- * This component displays your reading history with a beautiful, modern design
- * that works well on both mobile and desktop devices. It includes animations,
- * improved spacing, and visual enhancements while maintaining all functionality.
+ * A beautifully designed, minimal interface for browsing reading history
+ * with intuitive filtering, clean visuals, and elegant animations.
  */
 const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
   const readingHistory = useHistoryStore((state) => state.readingHistory);
   const refreshReadingHistory = useHistoryStore(
     (state) => state.refreshReadingHistory
   );
-
-  const getHistoryStats = useHistoryStore((state) => state.getHistoryStats);
-  const { currentTheme } = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [selectedTimeframe, setSelectedTimeframe] = useState<string>("all");
-  const [viewMode, setViewMode] = useState<"list" | "timeline" | "trends">(
-    "list"
-  );
+  const [selectedTimeframe, setSelectedTimeframe] = useState<TimeRange>("all");
+  const [viewMode, setViewMode] = useState<"list" | "timeline">("list");
   const [filteredHistory, setFilteredHistory] =
     useState<ReadingHistoryItem[]>(readingHistory);
 
@@ -51,16 +44,10 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     return [
       "all",
       ...new Set(
-        readingHistory.map((item) => item.path.split("/")[0] || "uncategorized")
+        readingHistory.map((item) => item.path.split("/")[0] ?? "uncategorized")
       ),
     ];
   }, [readingHistory]);
-
-  // Calculate time statistics
-  const timeStats = useMemo(() => {
-    const stats = getHistoryStats(selectedCategory);
-    return stats;
-  }, [selectedCategory, getHistoryStats]);
 
   // Filter reading history based on search query, category, and timeframe
   useEffect(() => {
@@ -71,7 +58,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(
         (item) =>
-          item.title.toLowerCase().includes(query) ||
+          item.title.toLowerCase().includes(query) ??
           item.path.toLowerCase().includes(query)
       );
     }
@@ -104,109 +91,173 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
 
     // Sort by most recent
     filtered.sort((a, b) => b.lastReadAt - a.lastReadAt);
-
     setFilteredHistory(filtered);
   }, [readingHistory, searchQuery, selectedCategory, selectedTimeframe]);
 
-  if (readingHistory.length === 0) return <EmptyHistory />;
+  // Helper function to clear filters
+  const clearFilters = () => {
+    setSearchQuery("");
+    setSelectedCategory("all");
+    setSelectedTimeframe("all");
+  };
+
+  const timeStats = useMemo(() => {
+    const now = Date.now();
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    return {
+      today: filteredHistory.filter((item) => now - item.lastReadAt < oneDay)
+        .length,
+      thisWeek: filteredHistory.filter(
+        (item) => now - item.lastReadAt < 7 * oneDay
+      ).length,
+      thisMonth: filteredHistory.filter(
+        (item) => now - item.lastReadAt < 30 * oneDay
+      ).length,
+      total: filteredHistory.length,
+    };
+  }, [filteredHistory]);
+
+  if (readingHistory.length === 0) {
+    return (
+      <CardContainer
+        title="Reading History"
+        icon={Calendar}
+        description="Your reading journey hasn't begun yet"
+        variant="subtle"
+      >
+        <div className="py-12 flex flex-col items-center justify-center text-center">
+          <Calendar className="h-12 w-12 text-primary/30 mb-4" />
+          <h3 className="text-base md:text-lg font-medium mb-2">
+            No Reading History
+          </h3>
+          <p className="text-sm text-muted-foreground max-w-md mb-4">
+            Your reading history will appear here once you start reading
+            documents.
+          </p>
+          <Button className="bg-primary/90 hover:bg-primary text-primary-foreground rounded-full">
+            Start Reading
+          </Button>
+        </div>
+      </CardContainer>
+    );
+  }
 
   return (
-    <div className="space-y-6 px-1 md:px-4 pb-20 md:pb-6 max-w-5xl mx-auto">
-      {/* Glowing background effect */}
-      <div
-        className="absolute top-20 right-0 w-72 h-72 rounded-full opacity-10 blur-3xl -z-10"
-        style={{
-          background: `radial-gradient(circle, ${currentTheme.primary}, transparent)`,
-        }}
-      ></div>
-      <div
-        className="absolute bottom-20 left-0 w-64 h-64 rounded-full opacity-10 blur-3xl -z-10"
-        style={{
-          background: `radial-gradient(circle, ${currentTheme.primary}, transparent)`,
-        }}
-      ></div>
+    <div className="space-y-4 max-w-5xl mx-auto px-1 md:px-0">
+      <HistoryHeader timeStats={timeStats} />
 
-      {/* Header section with statistics */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-      >
-        <HistoryHeader
-          timeStats={timeStats}
-          viewMode={viewMode}
-          setViewMode={setViewMode}
-        />
-      </motion.div>
-
-      {/* Filters section */}
-      <motion.div
-        initial={{ opacity: 0, y: -5 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
-        className="bg-card/60 backdrop-blur-sm border border-primary/10 p-4 rounded-2xl shadow-sm"
-      >
-        <HistoryFilters
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          selectedTimeframe={selectedTimeframe}
-          setSelectedTimeframe={setSelectedTimeframe}
-          categories={categories}
-        />
-      </motion.div>
-
-      {/* Content section with animated transitions */}
-      <AnimatePresence mode="wait">
-        {filteredHistory.length === 0 ? (
-          <motion.div
-            key="empty-results"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+      <CardContainer
+        title="Reading History"
+        icon={CalendarDays}
+        description="Your reading journey and progress"
+        variant="subtle"
+        headerAction={
+          <Tabs
+            defaultValue={viewMode}
+            value={viewMode}
+            onValueChange={(value) => setViewMode(value as "list" | "timeline")}
+            className="w-full"
           >
-            <EmptyFilteredResult />
-          </motion.div>
-        ) : (
-          <motion.div
-            key={viewMode}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mt-4 bg-card/50 backdrop-blur-sm border border-primary/10 p-4 md:p-6 rounded-2xl shadow-sm"
-          >
-            {viewMode === "list" && (
-              <HistoryList
-                filteredHistory={filteredHistory}
-                handleSelectDocument={handleSelectDocument}
-                formatDate={formatDate}
-              />
-            )}
+            <TabsList className="bg-secondary/20 rounded-2xl h-8">
+              <TabsTrigger
+                value="list"
+                className="h-6 text-xs rounded-2xl data-[state=active]:bg-primary/10"
+              >
+                <span className="mx-2">List</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="timeline"
+                className="h-6 text-xs rounded-2xl data-[state=active]:bg-primary/10 mx-2 p-2"
+              >
+                <span className="mx-2">Timeline</span>
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        }
+      >
+        {/* Filters section */}
+        <div className="mb-4 flex flex-col sm:flex-row gap-2">
+          <div className="flex-1" />
+          <div className="flex gap-2">
+            <CategorySelect
+              categories={categories}
+              onCategoryChange={setSelectedCategory}
+              currentCategory={selectedCategory}
+            />
 
-            {viewMode === "timeline" && (
-              <HistoryTimeline
-                filteredHistory={filteredHistory}
-                handleSelectDocument={handleSelectDocument}
-                formatDate={formatDate}
-              />
-            )}
+            <TimeRangeSelect
+              onTimeRangeChange={setSelectedTimeframe}
+              currentTimeRange={selectedTimeframe}
+            />
+          </div>
+        </div>
 
-            {viewMode === "trends" && <HistoryTrends />}
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {searchQuery ||
+        selectedCategory !== "all" ||
+        selectedTimeframe !== "all" ? (
+          <div className="flex items-center justify-between mb-3 bg-primary/5 px-3 py-1.5 rounded-lg">
+            <div className="flex items-center text-xs text-muted-foreground">
+              <Filter className="h-3 w-3 mr-1" />
+              <span>Filtered results: {filteredHistory.length} documents</span>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-6 text-xs hover:bg-primary/10 px-2"
+              onClick={clearFilters}
+            >
+              Clear filters
+            </Button>
+          </div>
+        ) : null}
 
-      {/* Subtle mesh grid background pattern */}
-      <div
-        className="fixed inset-0 pointer-events-none opacity-5 -z-20"
-        style={{
-          backgroundImage: `radial-gradient(${currentTheme.primary}30 1px, transparent 1px)`,
-          backgroundSize: "20px 20px",
-        }}
-      ></div>
+        {/* Content based on view mode */}
+        <AnimatePresence mode="wait">
+          {filteredHistory.length === 0 ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="py-12 text-center"
+            >
+              <Search className="h-10 w-10 mx-auto mb-3 text-primary/30" />
+              <h3 className="text-base font-medium">No matching results</h3>
+              <p className="text-sm text-muted-foreground mt-1 mb-4">
+                Try adjusting your search criteria or filters
+              </p>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={clearFilters}
+                className="rounded-full border-primary/30 bg-primary/5"
+              >
+                Clear filters
+              </Button>
+            </motion.div>
+          ) : (
+            <motion.div
+              key={viewMode}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {viewMode === "list" ? (
+                <HistoryList
+                  filteredHistory={filteredHistory}
+                  handleSelectDocument={handleSelectDocument}
+                />
+              ) : (
+                <HistoryTimeline
+                  filteredHistory={filteredHistory}
+                  handleSelectDocument={handleSelectDocument}
+                />
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </CardContainer>
     </div>
   );
 };
