@@ -147,7 +147,11 @@ const CategoryDistributionPieChart: React.FC<CategoryPieChartProps> = memo(
       <ChartContainer left={left} right={right}>
         <ShadcnChartContainer className="w-full h-full" config={config}>
           <RechartsPieChart>
-            <ChartTooltip content={renderCategoryTooltip} cursor={false} />
+            <ChartTooltip
+              content={renderCategoryTooltip}
+              cursor={false}
+              trigger="click"
+            />
             <Pie
               data={categoryBreakdown}
               cx="50%"
