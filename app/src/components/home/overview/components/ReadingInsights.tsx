@@ -1,10 +1,10 @@
 import React from "react";
-import { Brain, Calendar } from "lucide-react";
-import CategoryPieChart from "@/components/insights/CategoryPieChart";
+import { Calendar } from "lucide-react";
 import ReadingByWeekDay from "@/components/insights/ReadingByWeekDay";
 import { useActivityStore } from "@/stores";
-import { useCategoryStore } from "@/stores/categoryStore";
+import { useReadingHistory } from "@/hooks";
 import CardContainer from "@/components/container/CardContainer";
+import CategoryDistribution from "@/components/visualizations/category-distribution/CategoryDistribution";
 
 /**
  * 📚 ReadingInsights Component
@@ -25,26 +25,11 @@ import CardContainer from "@/components/container/CardContainer";
  */
 const ReadingInsights: React.FC = () => {
   const weeklyActivity = useActivityStore((state) => state.totalWeeklyActivity);
-  const categoryBreakdown = useCategoryStore(
-    (state) => state.categoryBreakdown
-  );
+  const { history } = useReadingHistory();
 
   return (
     <div className="flex flex-col gap-4">
-      <CardContainer
-        title="Categories Breakdown"
-        icon={Brain}
-        insights={[]}
-        description="What do you read the most? 🤔"
-        variant="subtle"
-      >
-        <div className="h-56 w-full">
-          <CategoryPieChart
-            descriptive={false}
-            categoryBreakdown={categoryBreakdown}
-          />
-        </div>
-      </CardContainer>
+      <CategoryDistribution history={history} compact />
 
       {/* Weekly pattern */}
       <CardContainer

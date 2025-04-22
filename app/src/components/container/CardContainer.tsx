@@ -22,19 +22,21 @@ import {
 } from "./useContainer";
 import styles from "./container.module.css";
 
+export type CardContainerInsight = {
+  label: string;
+  value: string;
+  highlight?: boolean;
+  icon?: React.ElementType;
+  tooltip?: string;
+};
+
 export interface CardContainerProps {
   title: string;
   description?: string;
   icon: React.ElementType;
   infoTooltip?: string;
   children: React.ReactNode;
-  insights?: {
-    label: string;
-    value: string;
-    highlight?: boolean;
-    icon?: React.ElementType;
-    tooltip?: string;
-  }[];
+  insights?: CardContainerInsight[];
   className?: string;
   baseColor?: Color;
   variant?: Variant;
@@ -42,6 +44,7 @@ export interface CardContainerProps {
   footer?: React.ReactNode;
   headerAction?: React.ReactNode;
   onCardClick?: () => void;
+  compact?: boolean;
 }
 
 /**
@@ -74,6 +77,7 @@ const CardContainer: React.FC<CardContainerProps> = ({
   footer,
   headerAction,
   onCardClick,
+  compact = false,
 }) => {
   const {
     cardRef,
@@ -197,7 +201,7 @@ const CardContainer: React.FC<CardContainerProps> = ({
             )}
 
             {/* Insights badges with improved styling */}
-            {insights && insights.length > 0 && (
+            {!compact && insights && insights.length > 0 && (
               <div className="flex flex-wrap gap-2 mt-2">
                 {insights.map((insight, idx) => {
                   const InsightIcon = insight.icon;
