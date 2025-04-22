@@ -1,6 +1,5 @@
 import React, { memo } from "react";
 import { PieChart as RechartsPieChart, Pie, Cell } from "recharts";
-import useMobile from "@/hooks/device/use-mobile";
 import {
   BookText,
   TrendingUp,
@@ -10,7 +9,7 @@ import {
   Scale,
   Target,
 } from "lucide-react";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme, useMobile } from "@/hooks";
 import { motion } from "framer-motion";
 import type { CategoryBreakdown } from "@/stores/categoryStore";
 import {
