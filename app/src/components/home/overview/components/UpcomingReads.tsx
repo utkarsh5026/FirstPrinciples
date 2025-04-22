@@ -3,7 +3,7 @@ import { BookMarked, ListTodo, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTabContext } from "@/components/home/context/TabContext";
 import getIconForTech from "@/components/icons";
-import { useReadingStore } from "@/stores";
+import { useReadingList } from "@/hooks";
 import { formatDate } from "@/components/home/utils";
 import CardContainer from "@/components/container/CardContainer";
 
@@ -31,10 +31,7 @@ const UpcomingReads: React.FC<UpcomingReadsProps> = ({
   setShowAddTodoModal,
 }) => {
   const { setActiveTab } = useTabContext();
-  const todoList = useReadingStore((state) => state.todoList);
-  const toggleTodoCompletion = useReadingStore(
-    (state) => state.toggleTodoCompletion
-  );
+  const { todoList, toggleTodo } = useReadingList();
 
   return (
     <CardContainer
@@ -69,7 +66,7 @@ const UpcomingReads: React.FC<UpcomingReadsProps> = ({
                 >
                   <button
                     className="mt-1 flex-shrink-0 h-5 w-5 rounded-full border border-primary/30 hover:border-primary/50 transition-colors group-hover:bg-primary/10"
-                    onClick={() => toggleTodoCompletion(id)}
+                    onClick={() => toggleTodo(id)}
                     aria-label="Mark as read"
                   />
                   <div className="min-w-0 flex-1">

@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { useTheme } from "@/hooks/ui/use-theme";
 import { useEffect, useState } from "react";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
-import useTodoList from "@/hooks/document/use-document-list";
+import { useReadingList } from "@/hooks";
 
 /**
  * 🌟 Hero Component
@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
   const [time, setTime] = useState("");
 
   const { documents, streak } = useGlobalMetrics();
-  const { pending, completed } = useTodoList();
+  const { pending, completed } = useReadingList();
 
   /**
    * 🕰️ Time-based Greeting Generator

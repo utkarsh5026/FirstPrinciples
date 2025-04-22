@@ -7,7 +7,7 @@ import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
 import TodoHeader from "./TodoHeader";
 import EmptyList from "./EmptyList";
 import TodoItem from "./TodoItem";
-import { useReadingStore } from "@/stores";
+import { useReadingList } from "@/hooks";
 
 interface TodoListProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -35,19 +35,13 @@ const TodoList: React.FC<TodoListProps> = ({
   handleSelectDocument,
   setShowAddTodoModal,
 }) => {
-  const todoList = useReadingStore((state) => state.todoList);
-  const status = useReadingStore((state) => state.status);
-
-  const clearReadingList = useReadingStore((state) => state.clearReadingList);
-  const refreshReadingList = useReadingStore(
-    (state) => state.refreshReadingList
-  );
+  const { todoList, status, clearTodo, refreshTodo } = useReadingList();
 
   const { pendingCount, completedCount, totalCount } = status;
 
   useEffect(() => {
-    refreshReadingList();
-  }, [refreshReadingList]);
+    refreshTodo();
+  }, [refreshTodo]);
 
   /**
    * 🔍 Active Tab State
@@ -156,7 +150,7 @@ const TodoList: React.FC<TodoListProps> = ({
                 variant="ghost"
                 size="sm"
                 className="h-9 text-destructive hover:bg-destructive/10"
-                onClick={clearReadingList}
+                onClick={clearTodo}
               >
                 Clear list
               </Button>
