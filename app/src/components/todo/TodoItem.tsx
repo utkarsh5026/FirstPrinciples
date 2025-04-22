@@ -1,128 +1,111 @@
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { X, Calendar, Check } from "lucide-react";
+import { Calendar, Circle, CheckCheck, DeleteIcon } from "lucide-react";
 import getIconForTech from "@/components/icons/iconMap";
-import { formatDate } from "../home/utils";
 import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
-import { useReadingStore } from "@/stores";
+import { motion } from "framer-motion";
+import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface TodoItemProps {
-  category: string;
-  items: ReadingTodoItem[];
+  item: ReadingTodoItem;
   handleSelectDocument: (path: string, title: string) => void;
+  toggleCompletion: () => void;
+  removeItem: () => void;
 }
 
 /**
- * 🎉 TodoItem Component
+ * TodoItem Component
  *
- * This delightful component showcases a list of reading tasks organized by category!
- * It allows users to easily track their reading progress and manage their to-do items.
- * With a charming layout, users can mark items as completed, view details, and remove
- * tasks from their list. It's all about making your reading journey fun and organized! 📚✨
+ * A beautifully designed item in the reading list with subtle
+ * animations and intuitive controls.
  */
 const TodoItem: React.FC<TodoItemProps> = ({
-  category,
-  items,
+  item,
   handleSelectDocument,
+  toggleCompletion,
+  removeItem,
 }) => {
-  const toggleTodoCompletion = useReadingStore(
-    (state) => state.toggleTodoCompletion
-  );
-  const removeFromTodoList = useReadingStore(
-    (state) => state.removeFromReadingList
-  );
-  return (
-    <div className="space-y-3">
-      {/* Category header */}
-      <div className="flex items-center">
-        <Badge
-          variant="outline"
-          className="mr-2 px-2 py-0.5 border-primary/20 text-primary bg-primary/5 text-xs font-normal"
-        >
-          {category}
-        </Badge>
-        <div className="h-px flex-grow bg-border/50"></div>
-        <Badge className="ml-2 bg-primary/10 text-primary border-none">
-          {items.length}
-        </Badge>
-      </div>
+  const { path, title, completed, addedAt } = item;
+  const formattedDate = new Date(addedAt).toLocaleDateString(undefined, {
+    month: "short",
+    day: "numeric",
+  });
+  const fileCategory = path.split("/")[0] || "uncategorized";
+  const CategoryIcon = getIconForTech(fileCategory);
 
-      {/* Items in this category */}
-      <div className="space-y-3">
-        {items.map((item) => {
-          const CategoryIcon = getIconForTech(item.path.split("/")[0]);
-          return (
-            <Card
-              key={item.id}
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 5 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, x: -10 }}
+      className={cn(
+        "flex items-start gap-3 p-3 rounded-2xl border transition-all",
+        completed
+          ? "border-primary/20 bg-primary/5"
+          : "border-border hover:border-primary/20 hover:bg-secondary/5"
+      )}
+    >
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleCompletion();
+        }}
+        className={cn(
+          "mt-0.5 h-5 w-5 rounded-full flex-shrink-0 flex items-center justify-center transition-colors",
+          completed
+            ? "bg-primary/20 text-primary border-primary"
+            : "border border-primary/30 hover:bg-primary/10"
+        )}
+      >
+        {completed ? (
+          <CheckCheck className="h-3 w-3" />
+        ) : (
+          <Circle className="h-3 w-3" />
+        )}
+      </button>
+
+      <div
+        className="flex-1 min-w-0 cursor-pointer"
+        onClick={() => handleSelectDocument(path, title)}
+      >
+        <div className="flex flex-row sm:items-center sm:justify-between">
+          <div className="flex-1 min-w-0">
+            <h4
               className={cn(
-                "relative overflow-hidden transition-all duration-200 hover:shadow-md rounded-2xl",
-                item.completed
-                  ? "bg-primary/5 border-primary/10"
-                  : "hover:border-primary/20 hover:bg-secondary/5"
+                "text-sm font-medium truncate",
+                completed && "line-through text-muted-foreground"
               )}
             >
-              {/* Background decorative element */}
-              <div
-                className={cn(
-                  "absolute top-0 right-0 w-24 h-24 rounded-bl-full opacity-10",
-                  item.completed ? "bg-primary/20" : "bg-secondary/20"
-                )}
-              >
-                <CategoryIcon className="h-12 w-12" />
+              {title}
+            </h4>
+
+            <div className="flex items-center mt-1 text-xs text-muted-foreground gap-3">
+              <span className="flex items-center">
+                <Calendar className="h-3 w-3 mr-1" />
+                {formattedDate}
+              </span>
+
+              <div className="flex items-center">
+                <CategoryIcon className="h-3 w-3 mr-1 text-primary/70" />
+                {fromSnakeToTitleCase(fileCategory)}
               </div>
+            </div>
+          </div>
 
-              <div className="p-4 relative flex items-start gap-3">
-                {/* Checkbox */}
-                <button
-                  className={cn(
-                    "mt-1 flex-shrink-0 h-5 w-5 rounded-full transition-colors",
-                    item.completed
-                      ? "bg-primary/20 text-primary border border-primary/40 flex items-center justify-center"
-                      : "border border-primary/30 hover:border-primary/50 hover:bg-primary/5"
-                  )}
-                  onClick={() => toggleTodoCompletion(item.id)}
-                  aria-label={
-                    item.completed ? "Mark as unread" : "Mark as read"
-                  }
-                >
-                  {item.completed && <Check className="h-3 w-3" />}
-                </button>
-
-                {/* Content */}
-                <div className="flex-grow min-w-0">
-                  <button
-                    className={cn(
-                      "text-left text-sm font-medium w-full transition-colors hover:text-primary",
-                      item.completed && "line-through text-muted-foreground"
-                    )}
-                    onClick={() => handleSelectDocument(item.path, item.title)}
-                  >
-                    {item.title}
-                  </button>
-
-                  <div className="flex flex-wrap items-center gap-2 mt-1">
-                    <div className="text-xs text-muted-foreground flex items-center">
-                      <Calendar className="h-3 w-3 mr-1" />
-                      Added {formatDate(item.addedAt)}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Remove button */}
-                <button
-                  className="text-muted-foreground/40 hover:text-destructive transition-colors p-1"
-                  onClick={() => removeFromTodoList(item.id)}
-                  aria-label="Remove from reading list"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </div>
-            </Card>
-          );
-        })}
+          <div className="flex items-center mt-2 sm:mt-0 sm:ml-2">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                removeItem();
+              }}
+              className="text-muted-foreground/40 hover:text-destructive transition-colors p-1.5"
+              title="Remove"
+            >
+              <DeleteIcon className="h-3.5 w-3.5 text-primary/50" />
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

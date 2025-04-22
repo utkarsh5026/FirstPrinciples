@@ -1,4 +1,4 @@
-import { Plus, ListTodo } from "lucide-react";
+import { Plus, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface EmptyListProps {
@@ -8,36 +8,32 @@ interface EmptyListProps {
 /**
  * 🌟 EmptyList Component
  *
- * This delightful component serves as a friendly reminder for users when their reading list is empty. 
- * It creates a warm and inviting space that encourages users to add documents to their reading list, 
+ * This delightful component serves as a friendly reminder for users when their reading list is empty.
+ * It creates a warm and inviting space that encourages users to add documents to their reading list,
  * helping them keep track of their learning journey. 📚✨
  *
- * The component features a charming illustration and a motivational message, 
- * making it clear that users can easily start adding documents to their list. 
- * The button provided allows users to open a modal for adding new documents, 
+ * The component features a charming illustration and a motivational message,
+ * making it clear that users can easily start adding documents to their list.
+ * The button provided allows users to open a modal for adding new documents,
  * ensuring a smooth and engaging experience. 😊
  */
 const EmptyList: React.FC<EmptyListProps> = ({ handleAddDocumentsModal }) => {
   return (
-    <div className="flex flex-col items-center justify-center py-16 px-4 bg-card border border-border/40 rounded-2xl text-center">
-      <div className="relative h-20 w-20 mb-4">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50 rounded-full"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <ListTodo className="h-10 w-10 text-muted-foreground opacity-50" />
-        </div>
+    <div className="py-10 flex flex-col items-center justify-center">
+      <div className="relative mb-4">
+        <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl"></div>
+        <BookOpen className="h-12 w-12 text-primary/70 relative z-10" />
       </div>
-
-      <h3 className="text-lg font-medium">Your reading list is empty</h3>
-      <p className="text-sm text-muted-foreground mt-1 mb-6 max-w-md">
+      <h3 className="text-base font-medium mb-2">Your reading list is empty</h3>
+      <p className="text-sm text-muted-foreground mb-6 max-w-md text-center">
         Add documents you want to read later to keep track of your learning
         journey
       </p>
-
       <Button
-        className="bg-primary/80 hover:bg-primary text-primary-foreground rounded-2xl"
-        onClick={handleAddDocumentsModal}
+        onClick={() => handleAddDocumentsModal()}
+        className="bg-primary/90 hover:bg-primary rounded-full"
       >
-        <Plus className="h-4 w-4 mr-1.5" /> Add documents
+        <Plus className="mr-1.5 h-4 w-4" /> Add documents
       </Button>
     </div>
   );

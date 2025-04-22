@@ -18,7 +18,7 @@ import {
   FileText,
   Plus,
 } from "lucide-react";
-import { Category, FileMetadata } from "@/utils/MarkdownLoader";
+import type { FileMetadata, Category } from "@/services/document";
 import { cn } from "@/lib/utils";
 import getIconForTech from "@/components/icons/iconMap";
 import { useReadingStore } from "@/stores";
