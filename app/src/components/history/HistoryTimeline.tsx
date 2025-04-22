@@ -2,7 +2,7 @@ import useMobile from "@/hooks/device/use-mobile";
 import { useMemo } from "react";
 import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { Calendar } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+
 import { motion } from "framer-motion";
 import getIconForTech from "@/components/icons/iconMap";
 import { fromSnakeToTitleCase } from "@/utils/string";
@@ -72,7 +72,7 @@ const HistoryTimeline: React.FC<HistoryTimelineProps> = ({
       {groupedHistory.map((group, groupIndex) => (
         <div key={group.date} className="relative">
           <motion.div
-            className="flex items-center mb-2"
+            className="flex items-center mb-2 mt-8"
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: groupIndex * 0.05 }}
@@ -83,9 +83,6 @@ const HistoryTimeline: React.FC<HistoryTimelineProps> = ({
             <h3 className="text-base font-medium text-primary/90">
               {group.date}
             </h3>
-            <Badge variant="outline" className="ml-2 text-xs bg-primary/5">
-              {group.items.length}
-            </Badge>
           </motion.div>
 
           <div className="ml-10 space-y-2">
@@ -106,7 +103,7 @@ const HistoryTimeline: React.FC<HistoryTimelineProps> = ({
                   onClick={() => handleSelectDocument(item.path, item.title)}
                 >
                   <CategoryIcon className="h-4 w-4 text-primary mr-2" />
-                  <span className="text-sm truncate">{title}</span>
+                  <span className="text-xs truncate">{title}</span>
                   <span className="ml-auto text-xs text-muted-foreground">
                     {new Date(item.lastReadAt).toLocaleTimeString([], {
                       hour: "2-digit",
