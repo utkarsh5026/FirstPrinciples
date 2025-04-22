@@ -1,30 +1,39 @@
-import React, { memo, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { Flame, BookMarked } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useTheme } from "@/hooks/ui/use-theme";
 import Confetti from "react-confetti";
-import { useHistoryStore } from "@/stores";
-const DailyChallenge: React.FC = memo(() => {
+import { useReadingHistory } from "@/hooks";
+import CardContainer from "@/components/container/CardContainer";
+
+/**
+ * 🎯 DailyChallenge
+ *
+ * A fun component that tracks the user's daily reading progress and
+ * celebrates their achievement with confetti when they complete the challenge!
+ */
+const DailyChallenge: React.FC = () => {
+  const { history } = useReadingHistory();
   const { currentTheme } = useTheme();
-  const readingHistory = useHistoryStore((state) => state.readingHistory);
-  const todayReadsCount = readingHistory.filter((item) => {
+
+  /**
+   * 📊 Counts how many documents the user has read today
+   */
+  const todayReadsCount = history.filter((item) => {
     const today = new Date().setHours(0, 0, 0, 0);
     return new Date(item.lastReadAt).setHours(0, 0, 0, 0) === today;
   }).length;
 
   /**
-   * Calculates the progress percentage based on the number of documents read today.
-   *
-   * @returns {number} - The progress percentage.
+   * 📈 Calculates the progress percentage for the progress bar
    */
   const progressPercentage = Math.min((todayReadsCount / 3) * 100, 100);
   const [showConfetti, setShowConfetti] = useState(false);
 
   /**
-   * Handles the claim reward action by setting the confetti state to true for a short duration.
+   * 🎉 Triggers the celebration confetti when user claims their reward
    */
   const handleClaimReward = useCallback(() => {
     if (todayReadsCount >= 3) {
@@ -37,7 +46,7 @@ const DailyChallenge: React.FC = memo(() => {
 
   return (
     <>
-      {/* Confetti celebration */}
+      {/* ✨ Confetti celebration animation */}
       {showConfetti && (
         <div className="top-0 left-0 fixed z-[1000] pointer-events-none w-max h-max">
           <Confetti
@@ -49,24 +58,25 @@ const DailyChallenge: React.FC = memo(() => {
         </div>
       )}
 
-      <Card className="p-4 border-primary/10 hover:border-primary/30 transition-colors relative overflow-hidden rounded-3xl">
-        {/* Decorative background */}
+      <CardContainer
+        title="Daily Challenge"
+        icon={Flame}
+        description="Complete the daily challenge to earn 50 XP"
+        variant="emphasis"
+        baseColor="green"
+        headerAction={
+          <Badge
+            className="bg-primary/10 text-primary border-none rounded-full"
+            variant="default"
+          >
+            {`Complete to celebrate 🎊`}
+          </Badge>
+        }
+      >
+        {/* 🎨 Decorative background gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-30"></div>
 
         <div className="relative">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-sm font-medium flex items-center">
-              <Flame className="mr-2 h-4 w-4 text-primary" />
-              Daily Challenge
-            </h3>
-            <Badge
-              variant="secondary"
-              className="bg-primary/10 text-primary border-none"
-            >
-              +50 XP
-            </Badge>
-          </div>
-
           <div className="flex items-center justify-between p-3 rounded-2xl bg-primary/5 border border-primary/10 hover:bg-primary/10 hover:border-primary/20 transition-all">
             <div className="flex items-center gap-3">
               <div className="flex-shrink-0 h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
@@ -104,9 +114,9 @@ const DailyChallenge: React.FC = memo(() => {
             </Button>
           </div>
         </div>
-      </Card>
+      </CardContainer>
     </>
   );
-});
+};
 
 export default DailyChallenge;
