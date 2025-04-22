@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { PieChart as RechartsPieChart, Pie, Cell, Sector } from "recharts";
+import { PieChart as RechartsPieChart, Pie, Cell } from "recharts";
 import useMobile from "@/hooks/device/use-mobile";
 import {
   BookText,
@@ -18,13 +18,13 @@ import {
   ChartTooltip,
   ChartContainer as ShadcnChartContainer,
 } from "@/components/ui/chart";
-import { PieSectorDataItem } from "recharts/types/polar/Pie";
 import getIconForTech from "@/components/icons";
 import { generateThemeColors } from "@/utils/colors";
-import { fromSnakeToTitleCase, truncateText } from "@/utils/string";
+import { fromSnakeToTitleCase } from "@/utils/string";
 import ChartContainer from "@/components/chart/ChartContainer";
 import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
 import type { CategoryMetrics } from "@/hooks/analytics/use-category-metrics";
+import ActivePieShape from "./ActivePieShape";
 
 interface CategoryPieChartProps {
   descriptive?: boolean;
@@ -148,10 +148,7 @@ const CategoryDistributionPieChart: React.FC<CategoryPieChartProps> = memo(
       <ChartContainer left={left} right={right}>
         <ShadcnChartContainer className="w-full h-full" config={config}>
           <RechartsPieChart>
-            <ChartTooltip
-              content={renderCategoryTooltip}
-              cursor={false}
-            />
+            <ChartTooltip content={renderCategoryTooltip} cursor={false} />
             <Pie
               data={categoryBreakdown}
               cx="50%"
@@ -210,83 +207,6 @@ const NoCategoryData = () => {
         Read more documents to see insights
       </p>
     </motion.div>
-  );
-};
-
-const ActivePieShape = (props: PieSectorDataItem) => {
-  const { currentTheme } = useTheme();
-  const RADIAN = Math.PI / 180;
-  const {
-    cx = 0,
-    cy = 0,
-    midAngle,
-    innerRadius = 0,
-    outerRadius = 0,
-    startAngle,
-    endAngle,
-    fill,
-    payload,
-  } = props;
-
-  // Extract data from payload
-  const data = payload as CategoryBreakdown & { name: string };
-
-  const sin = Math.sin(-RADIAN * (midAngle ?? 0));
-  const cos = Math.cos(-RADIAN * (midAngle ?? 0));
-  const sx = cx + (outerRadius + 10) * cos;
-  const sy = cy + (outerRadius + 10) * sin;
-  const mx = cx + (outerRadius + 30) * cos;
-  const my = cy + (outerRadius + 30) * sin;
-  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-  const ey = my;
-  const textAnchor = cos >= 0 ? "start" : "end";
-
-  return (
-    <g>
-      {/* Inner sector */}
-      <Sector
-        cx={cx}
-        cy={cy}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        fill={fill}
-      />
-
-      {/* Outer highlight sector */}
-      <Sector
-        cx={cx}
-        cy={cy}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        innerRadius={outerRadius + 6}
-        outerRadius={outerRadius + 10}
-        fill={fill}
-      />
-
-      {/* Connecting line and dot */}
-      <path
-        d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
-        stroke={fill}
-        fill="none"
-      />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-
-      {/* Category name and count */}
-      <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
-        y={ey}
-        textAnchor={textAnchor}
-        fill={currentTheme.foreground}
-        fontSize={12}
-        fontWeight="bold"
-      >
-        {truncateText(fromSnakeToTitleCase(data.category), 15)}
-      </text>
-
-      {/* Percentage and count */}
-    </g>
   );
 };
 
