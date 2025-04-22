@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Zap, Activity } from "lucide-react";
 import { useTheme } from "@/hooks/ui/use-theme";
-import { FileMetadata } from "@/utils/MarkdownLoader";
+import type { FileMetadata } from "@/services/document";
 
 import StatsCards from "./components/StatsCards";
-import ReadingInsights from "./components/ReadingInsights";
 import RecentActivity from "./components/RecentActivity";
 import RecommendedReads from "./components/RecommendedReads";
 import UpcomingReads from "./components/UpcomingReads";
 import DailyChallenge from "./components/DailyChallenge";
 import { useDocumentStore, useHistoryStore } from "@/stores";
+import {
+  WeeklyReadingPattern,
+  CategoryDistribution,
+} from "@/components/visualizations";
 
 interface OverviewProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -124,7 +127,10 @@ const Overview: React.FC<OverviewProps> = ({
             Reading Insights
           </h3>
 
-          <ReadingInsights />
+          <div className="flex flex-col gap-4">
+            <CategoryDistribution history={readingHistory} compact />
+            <WeeklyReadingPattern history={readingHistory} compact />
+          </div>
 
           <RecentActivity handleSelectDocument={handleSelectDocument} />
         </div>
