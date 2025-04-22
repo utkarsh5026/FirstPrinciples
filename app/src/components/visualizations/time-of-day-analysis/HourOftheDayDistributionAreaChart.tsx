@@ -23,6 +23,7 @@ type RenderHourData = HourlyActivity & {
   icon: React.ElementType;
   textcolorClass: string;
   formmattedTime: string;
+  comparedToAverage: number;
 };
 
 interface TimeOfDayPreferenceProps {
@@ -68,7 +69,7 @@ const TimeOfDayPreference: React.FC<TimeOfDayPreferenceProps> = ({
   periodData,
   readingByHour,
 }) => {
-  const renderTooltip = useChartTooltip({
+  const renderTooltip = useChartTooltip<RenderHourData>({
     getTitle: (data) => {
       const period = periodData.find((p) => p.period === data.period);
       const periodColor = period?.render.textcolorClass;

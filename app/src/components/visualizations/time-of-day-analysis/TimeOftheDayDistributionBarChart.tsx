@@ -12,16 +12,17 @@ import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { cn } from "@/lib/utils";
 
+type TimeOfDayData = {
+  period: string;
+  count: number;
+  range: number[];
+  render: {
+    icon: React.ElementType;
+    textcolorClass: string;
+  };
+};
 interface TimeOfTheDayProps {
-  periodData: {
-    period: string;
-    count: number;
-    range: number[];
-    render: {
-      icon: React.ElementType;
-      textcolorClass: string;
-    };
-  }[];
+  periodData: TimeOfDayData[];
 }
 
 /**
@@ -66,7 +67,7 @@ const TimeOfTheDay: React.FC<TimeOfTheDayProps> = ({ periodData }) => {
         }, timeOfDayData[0])
       : null;
 
-  const renderTooltip = useChartTooltip({
+  const renderTooltip = useChartTooltip<TimeOfDayData>({
     getTitle: (data) => {
       const formattedRange = data.range.map((range: number) => {
         if (range <= 12) return `${range} AM`;

@@ -25,8 +25,9 @@ import { cn } from "@/lib/utils";
 import { generateThemeColors } from "@/utils/colors";
 import ChartContainer from "@/components/chart/ChartContainer";
 import { ChartContainer as ChartContainerUI } from "@/components/ui/chart";
-import { WeeklyActivity } from "@/services/analytics/activity-analyzer";
+import type { WeeklyActivity } from "@/services/analytics/activity-analyzer";
 import { useWeekilyActivityMetrcis } from "@/hooks";
+import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
 
 interface WeeklyReadingPatternBarChartProps {
   weeklyActivity: WeeklyActivity[];
@@ -51,81 +52,71 @@ const ReadingByWeekDay: React.FC<WeeklyReadingPatternBarChartProps> = ({
     return generateThemeColors(currentTheme.primary, chartData.dayData.length);
   }, [currentTheme, chartData]);
 
-  // Custom tooltip component with enhanced information
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const CustomTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      const data = payload[0].payload;
-      const dayType = data.isWeekend ? "Weekend" : "Weekday";
-
-      // Calculate percentage of week's reading
+  const renderTooltip = useChartTooltip({
+    icon: Calendar,
+    getTitle: (data) => {
+      return (
+        <div className="flex items-center">
+          <span>{data.day}</span>
+          <span className="mx-1 opacity-60">·</span>
+          <span
+            className={cn(
+              "text-xs px-1.5 py-0.5 rounded",
+              data.isWeekend
+                ? "bg-secondary/30 text-secondary-foreground"
+                : "bg-accent/30 text-accent-foreground"
+            )}
+          >
+            {data.isWeekend ? "Weekend" : "Weekday"}
+          </span>
+        </div>
+      );
+    },
+    getSections: (data) => {
       const percentOfTotal =
         chartData.totalCount > 0
           ? Math.round((data.count / chartData.totalCount) * 100)
           : 0;
 
-      return (
-        <div className="bg-popover/95 backdrop-blur-sm text-popover-foreground shadow-lg rounded-lg p-3 border border-border">
-          <div className="flex items-center gap-2 border-b border-border/50 pb-1.5 mb-1.5">
-            <Calendar className="h-3.5 w-3.5 text-primary" />
-            <p className="text-sm font-medium flex items-center">
-              <span>{data.day}</span>
-              <span className="mx-1 opacity-60">·</span>
-              <span
-                className={cn(
-                  "text-xs px-1.5 py-0.5 rounded",
-                  data.isWeekend
-                    ? "bg-secondary/30 text-secondary-foreground"
-                    : "bg-accent/30 text-accent-foreground"
-                )}
-              >
-                {dayType}
-              </span>
-            </p>
-          </div>
+      const sections = [
+        { label: "Documents read:", value: data.count, highlight: true },
+        { label: "% of week's reading:", value: `${percentOfTotal}%` },
+      ];
 
-          <div className="flex justify-between gap-4 text-xs items-center">
-            <span className="text-muted-foreground">Documents read:</span>
-            <span className="font-bold text-primary">{data.count}</span>
-          </div>
+      // Only add comparison if there is a difference
+      if (data.comparedToAvg !== 0) {
+        sections.push({
+          label: "Compared to average:",
+          value: (
+            <span
+              className={cn(
+                "font-medium flex items-center",
+                data.comparedToAvg > 0 ? "text-green-500" : "text-red-500"
+              )}
+            >
+              {data.comparedToAvg > 0 ? (
+                <ArrowUp className="h-3 w-3 mr-0.5" />
+              ) : (
+                <ArrowDown className="h-3 w-3 mr-0.5" />
+              )}
+              {Math.abs(data.comparedToAvg)}%
+            </span>
+          ),
+          highlight: false,
+        });
+      }
 
-          <div className="flex justify-between gap-4 text-xs mt-1 items-center">
-            <span className="text-muted-foreground">% of week's reading:</span>
-            <span className="font-medium">{percentOfTotal}%</span>
-          </div>
-
-          {data.comparedToAvg !== 0 && (
-            <div className="flex justify-between gap-4 text-xs mt-1 items-center">
-              <span className="text-muted-foreground">
-                Compared to average:
-              </span>
-              <span
-                className={cn(
-                  "font-medium flex items-center",
-                  data.comparedToAvg > 0 ? "text-green-500" : "text-red-500"
-                )}
-              >
-                {data.comparedToAvg > 0 ? (
-                  <ArrowUp className="h-3 w-3 mr-0.5" />
-                ) : (
-                  <ArrowDown className="h-3 w-3 mr-0.5" />
-                )}
-                {Math.abs(data.comparedToAvg)}%
-              </span>
-            </div>
-          )}
-
-          {data.isPeak && (
-            <div className="mt-2 pt-1.5 border-t border-border/50 text-xs text-green-400 flex items-center">
-              <TrendingUp className="h-3 w-3 mr-1" />
-              Your peak reading day
-            </div>
-          )}
-        </div>
-      );
-    }
-    return null;
-  };
+      return sections;
+    },
+    getFooter: (data) =>
+      data.isPeak
+        ? {
+            message: "Your peak reading day",
+            icon: TrendingUp,
+            className: "text-green-400",
+          }
+        : undefined,
+  });
 
   if (!chartData.totalCount) {
     return <EmptyState />;
@@ -195,7 +186,7 @@ const ReadingByWeekDay: React.FC<WeeklyReadingPatternBarChartProps> = ({
           />
 
           <RechartsTooltip
-            content={<CustomTooltip />}
+            content={renderTooltip}
             cursor={{
               fill: currentTheme.primary + "10",
               radius: 4,
