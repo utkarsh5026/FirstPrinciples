@@ -51,4 +51,13 @@ export class ReadingWorkerManager extends BaseWorkerManager<ReadingWorkerAPI> {
       proxy.calculateCategoryBreakdown(readingHistory, availableDocuments)
     );
   }
+
+  public async filterHistory(
+    readingHistory: ReadingHistoryItem[],
+    filter: HistoryFilterOptions
+  ): Promise<ReadingHistoryItem[]> {
+    return this.executeTask((proxy) =>
+      proxy.filterHistory(readingHistory, filter)
+    );
+  }
 }
