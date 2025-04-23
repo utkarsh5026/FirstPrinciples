@@ -48,6 +48,7 @@ const DocumentPreview: React.FC = () => {
 
   const startReading = () => {
     addToHistory(documentPath, documentTitle).then(() => {
+      console.log("Starting reading", documentPath, documentTitle);
       setIsFullscreen(true);
     });
   };

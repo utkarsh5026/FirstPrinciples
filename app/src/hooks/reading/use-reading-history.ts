@@ -14,6 +14,11 @@ const useReadingHistory = () => {
   >({});
 
   const history = useHistoryStore((state) => state.readingHistory);
+
+  useEffect(() => {
+    history.sort((a, b) => b.lastReadAt - a.lastReadAt);
+  }, [history]);
+
   const addToReadingHistory = useHistoryStore(
     (state) => state.addToReadingHistory
   );
