@@ -2,35 +2,18 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CardContainer from "@/components/container/CardContainer";
 import { useReadingList } from "@/hooks";
-import {
-  Circle,
-  BookOpen,
-  Plus,
-  X,
-  BookMarked,
-  Filter,
-  LayoutList,
-  CheckSquare,
-  ListFilter,
-} from "lucide-react";
+import { BookOpen, Plus, BookMarked, ListFilter } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
 import { fromSnakeToTitleCase } from "@/utils/string";
-import getIconForTech from "@/components/icons/iconMap";
 import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
 import TodoHeader from "./TodoHeader";
 import TodoItem from "./TodoItem";
 import EmptyList from "./EmptyList";
+import FilterPopover from "../utils/filter/FilterPopover";
 // Filter option types
 type StatusFilter = "all" | "pending" | "completed";
-type CategoryFilter = string;
 
 interface ReadingTodoProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -59,7 +42,7 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
   } = useReadingList();
 
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
-  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
 
   useEffect(() => {
     refreshTodo();
@@ -150,143 +133,43 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
         variant="subtle"
         headerAction={
           <div className="flex items-center gap-2">
-            {/* Filter button with popover */}
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className={cn(
-                    "h-8 text-xs border-primary/20 hover:bg-primary/10 rounded-lg relative flex items-center",
-                    ((statusFilter !== "all" || categoryFilter !== "all") &&
-                      "bg-primary/10") ||
-                      "bg-secondary/20"
-                  )}
-                >
-                  <ListFilter className="h-3.5 w-3.5 mr-1.5" />
-                  Filters
-                  {(statusFilter !== "all" || categoryFilter !== "all") && (
-                    <Badge
-                      className="h-5 absolute -top-2 -right-2 bg-primary text-xs font-normal px-1 min-w-[18px] flex items-center justify-center"
-                      variant="default"
-                    >
-                      {/* Count of active filters */}
-                      {(statusFilter !== "all" ? 1 : 0) +
-                        (categoryFilter !== "all" ? 1 : 0)}
-                    </Badge>
-                  )}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-[240px] p-3 rounded-xl" align="end">
-                <div className="flex flex-col gap-4 text-sm font-cascadia-code">
-                  <div>
-                    <div className="mb-2 text-xs text-muted-foreground flex items-center">
-                      <LayoutList className="h-3.5 w-3.5 mr-1.5 text-primary/70" />{" "}
-                      Status
-                    </div>
-                    <div className="grid grid-cols-1 gap-1.5">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className={cn(
-                          "justify-start text-xs rounded-lg h-8",
-                          statusFilter === "all" && "bg-primary/10 font-medium"
-                        )}
-                        onClick={() => setStatusFilter("all")}
-                      >
-                        <LayoutList className="h-3.5 w-3.5 mr-2" /> All (
-                        {todoList.length})
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className={cn(
-                          "justify-start text-xs rounded-lg h-8",
-                          statusFilter === "pending" &&
-                            "bg-primary/10 font-medium"
-                        )}
-                        onClick={() => setStatusFilter("pending")}
-                      >
-                        <Circle className="h-3.5 w-3.5 mr-2" /> To Read (
-                        {pending.length})
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className={cn(
-                          "justify-start text-xs rounded-lg h-8",
-                          statusFilter === "completed" &&
-                            "bg-primary/10 font-medium"
-                        )}
-                        onClick={() => setStatusFilter("completed")}
-                      >
-                        <CheckSquare className="h-3.5 w-3.5 mr-2" /> Completed (
-                        {completed.length})
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="border-t border-border/30 pt-3">
-                    <div className="mb-2 text-xs text-muted-foreground flex items-center">
-                      <Filter className="h-3.5 w-3.5 mr-1.5 text-primary/70" />{" "}
-                      Category
-                    </div>
-                    <div className="grid grid-cols-1 gap-1.5 max-h-[180px] overflow-y-auto pr-1">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className={cn(
-                          "justify-start text-xs rounded-lg h-8",
-                          categoryFilter === "all" &&
-                            "bg-primary/10 font-medium"
-                        )}
-                        onClick={() => setCategoryFilter("all")}
-                      >
-                        <LayoutList className="h-3.5 w-3.5 mr-2" /> All
-                        Categories
-                      </Button>
-                      {categories
-                        .filter((c) => c !== "all")
-                        .map((category) => {
-                          const CategoryIcon = getIconForTech(category);
-                          return (
-                            <Button
-                              key={category}
-                              variant="ghost"
-                              size="sm"
-                              className={cn(
-                                "justify-start text-xs rounded-lg h-8",
-                                categoryFilter === category &&
-                                  "bg-primary/10 font-medium"
-                              )}
-                              onClick={() => setCategoryFilter(category)}
-                            >
-                              <CategoryIcon className="h-3.5 w-3.5 mr-2" />
-                              {fromSnakeToTitleCase(category)}
-                            </Button>
-                          );
-                        })}
-                    </div>
-                  </div>
-
-                  {(statusFilter !== "all" || categoryFilter !== "all") && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 text-xs mt-1 rounded-lg border-primary/20"
-                      onClick={clearFilters}
-                    >
-                      <X className="h-3.5 w-3.5 mr-1.5" /> Clear all filters
-                    </Button>
-                  )}
-                </div>
-              </PopoverContent>
-            </Popover>
+            <FilterPopover
+              showCategoryFilter
+              showStatusFilter
+              categories={categories}
+              currentCategory={categoryFilter}
+              onCategoryChange={(category) => setCategoryFilter(category)}
+              statusOptions={[
+                {
+                  id: "all",
+                  label: "All",
+                  count: todoList.length,
+                  icon: ListFilter,
+                },
+                {
+                  id: "pending",
+                  label: "Pending",
+                  count: pending.length,
+                  icon: BookOpen,
+                },
+                {
+                  id: "completed",
+                  label: "Completed",
+                  count: completed.length,
+                  icon: BookMarked,
+                },
+              ]}
+              currentStatus={statusFilter}
+              onStatusChange={(status) =>
+                setStatusFilter(status as StatusFilter)
+              }
+              buttonVariant="ghost"
+              buttonSize="sm"
+            />
 
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
-              className="h-8 text-xs border-primary/20 bg-primary/5 hover:bg-primary/10 rounded-lg"
               onClick={() => setShowAddTodoModal(true)}
             >
               <Plus className="h-3.5 w-3.5 mr-1" /> Add
