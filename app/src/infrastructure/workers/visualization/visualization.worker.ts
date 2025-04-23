@@ -1,5 +1,5 @@
 import * as Comlink from "comlink";
-import type { ReadingHistoryItem } from "@/services/history";
+import { type ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import {
   MonthlyData,
   MonthlyDocumentCounts,

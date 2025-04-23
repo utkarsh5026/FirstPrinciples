@@ -1,12 +1,5 @@
-// src/utils/history/history-utils.ts
-
-import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
-import { formatDateKey } from "@/utils/time";
-
-/**
- * Time period options for filtering history
- */
-export type TimePeriod = "day" | "week" | "month" | "year" | "all";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
+import { formatDateKey, type TimeRange } from "@/utils/time";
 
 /**
  * Sorting options for history items
@@ -18,7 +11,7 @@ export type HistorySortOption = "recent" | "oldest" | "timeSpent" | "wordsRead";
  */
 export interface HistoryFilterOptions {
   category?: string;
-  timePeriod?: TimePeriod;
+  timePeriod?: TimeRange;
   sortBy?: HistorySortOption;
   limit?: number;
   searchTerm?: string;
@@ -38,9 +31,11 @@ export function getHistoryByCategory(
     return history;
   }
 
+  console.log(history);
+
   return history.filter((item) => {
     const itemCategory = item.path.split("/")[0] || "uncategorized";
-    return itemCategory === category;
+    return itemCategory.toLowerCase() === category.toLowerCase();
   });
 }
 
@@ -52,7 +47,7 @@ export function getHistoryByCategory(
  */
 export function getHistoryByTimePeriod(
   history: ReadingHistoryItem[],
-  period: TimePeriod
+  period: TimeRange
 ): ReadingHistoryItem[] {
   if (!period || period === "all") {
     return history;
@@ -62,7 +57,7 @@ export function getHistoryByTimePeriod(
   let cutoffTime: number;
 
   switch (period) {
-    case "day":
+    case "today":
       cutoffTime = now - 24 * 60 * 60 * 1000; // 1 day ago
       break;
     case "week":
@@ -141,12 +136,12 @@ export const filterHistory = (
 ): ReadingHistoryItem[] => {
   let filteredHistory = [...history];
 
-  // Apply category filter
   if (options.category) {
     filteredHistory = getHistoryByCategory(filteredHistory, options.category);
   }
 
-  // Apply time period filter
+  console.log(filteredHistory);
+
   if (options.timePeriod) {
     filteredHistory = getHistoryByTimePeriod(
       filteredHistory,
@@ -154,13 +149,10 @@ export const filterHistory = (
     );
   }
 
-  // Apply search filter
   if (options.searchTerm) {
     filteredHistory = searchHistory(filteredHistory, options.searchTerm);
   }
-
-  // Apply sorting
-  filteredHistory = sortHistory(filteredHistory, options.sortBy || "recent");
+  filteredHistory = sortHistory(filteredHistory, options.sortBy ?? "recent");
 
   // Apply limit
   if (options.limit && options.limit > 0) {
@@ -181,34 +173,6 @@ export function getLatestReadItems(
   limit: number = 5
 ): ReadingHistoryItem[] {
   return sortHistory(history, "recent").slice(0, limit);
-}
-
-/**
- * Get history items that have been read multiple times
- * @param history Full reading history
- * @param minReadCount Minimum read count to include
- * @returns Items read multiple times
- */
-export function getFrequentlyReadItems(
-  history: ReadingHistoryItem[],
-  minReadCount: number = 2
-): ReadingHistoryItem[] {
-  return history
-    .filter((item) => item.readCount >= minReadCount)
-    .sort((a, b) => b.readCount - a.readCount);
-}
-
-/**
- * Get most time-consuming items from history
- * @param history Full reading history
- * @param limit Maximum number of items to return
- * @returns Items with the most time spent
- */
-export function getMostTimeSpentItems(
-  history: ReadingHistoryItem[],
-  limit: number = 5
-): ReadingHistoryItem[] {
-  return sortHistory(history, "timeSpent").slice(0, limit);
 }
 
 /**
@@ -309,7 +273,7 @@ export function getHistoryByDateRange(
  */
 export function getReadingStatsForPeriod(
   history: ReadingHistoryItem[],
-  period: TimePeriod
+  period: TimeRange
 ): {
   totalItems: number;
   totalTimeSpent: number;

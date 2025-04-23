@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { type ReadingHistoryItem } from "@/services/history";
+import { type ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { sectionAnalyticsController } from "@/services/analytics/SectionAnalyticsController";
 import { parseError } from "@/utils/error";
 import * as readingHistoryService from "@/services/reading/reading-history-service";

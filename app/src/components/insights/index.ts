@@ -1,5 +1,4 @@
 import CategoriesExplored from "../analytics/deep/hierarchy/CategoriesExplored";
-import CategoryPieChart from "./CategoryPieChart";
-import DayOfMonth from "./DayofMonth";
+import DailyActivityInsight from "../visualizations/daily-activity/DailyActivity";
 
-export { CategoriesExplored, CategoryPieChart, DayOfMonth };
+export { CategoriesExplored, DailyActivityInsight };

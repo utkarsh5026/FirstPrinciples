@@ -36,6 +36,8 @@ export async function addToReadingHistory(
       ReadingHistoryItem & { id: IDBValidKey }
     >(STORE_NAME, "path", path);
 
+    console.log("existingEntries", existingEntries);
+
     const existingEntry =
       existingEntries.length > 0 ? existingEntries[0] : null;
 
