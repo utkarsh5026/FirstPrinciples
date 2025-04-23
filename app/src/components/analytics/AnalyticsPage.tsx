@@ -8,13 +8,7 @@ import {
 import AnalyticsHeader from "./header/AnalyticsHeader";
 import Insights from "./components/insights";
 import AnalyticsOverview from "./components/overview/AnnalyticsOverview";
-import { SiDeepl } from "react-icons/si";
 import ReadingTimeline from "./components/timeline/ReadingTimeline";
-import DeepInsights from "./components/deep/DeepInsights";
-
-interface AnalyticsPageProps {
-  onSelectDocument: (path: string, title: string) => void;
-}
 
 const tabs = [
   {
@@ -28,10 +22,6 @@ const tabs = [
   {
     title: "Activity",
     icon: <ActivityIcon className="h-3.5 w-3.5" />,
-  },
-  {
-    title: "Deep",
-    icon: <SiDeepl className="h-3.5 w-3.5" />,
   },
 ];
 
@@ -51,7 +41,7 @@ const tabs = [
  * @param {FileMetadata[]} availableDocuments - List of all available documents in the system
  * @param {Function} onSelectDocument - Callback function when a document is selected
  */
-const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onSelectDocument }) => {
+const AnalyticsPage: React.FC = () => {
   /**
   /**
    * Controls which analytics tab is currently active
@@ -86,10 +76,6 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onSelectDocument }) => {
 
         <TabsContent value="activity">
           <ReadingTimeline />
-        </TabsContent>
-
-        <TabsContent value="deep">
-          <DeepInsights onSelectDocument={onSelectDocument} />
         </TabsContent>
       </Tabs>
     </div>

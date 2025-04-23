@@ -1,6 +1,5 @@
 import React from "react";
 import ReadingProgress from "./ReadingProgress";
-import ReadingTrends from "./ReadingTrends";
 import Activity from "./Activity";
 import HeatMapView from "../timeline/HeatMapView";
 import CategoryCoverageMap from "@/components/visualizations/category-coverage/CategoryCoverage";
@@ -9,6 +8,7 @@ import {
   CategoryDistribution,
   TimeOfTheDayDistribution,
 } from "@/components/visualizations";
+import ContentRecencyTimeline from "./ContentRecencyTimeLine";
 
 const AnalyticsOverview: React.FC = () => {
   const { history } = useReadingHistory();
@@ -18,26 +18,23 @@ const AnalyticsOverview: React.FC = () => {
       {/* Progress Summary Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left column: Summary and stats */}
-        <div className="space-y-4 flex flex-col gap-4">
-          <ReadingProgress />
+        <div className="space-y-4 flex flex-col gap-4"></div>
 
-          <CategoryCoverageMap history={history} />
-        </div>
-
-        <div className="space-y-4 flex flex-col gap-4">
-          <HeatMapView
-            filteredHistory={history}
-            usePrevNextButtons={false}
-            compact={true}
-          />
-
-          <ReadingTrends />
-        </div>
+        <div className="space-y-4 flex flex-col gap-4"></div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <ReadingProgress />
+
+        <CategoryCoverageMap history={history} />
         <CategoryDistribution history={history} compact typeOfChart="bar" />
         <TimeOfTheDayDistribution history={history} typeOfChart="bar" />
+        <HeatMapView
+          filteredHistory={history}
+          usePrevNextButtons={false}
+          compact={true}
+        />
+        <ContentRecencyTimeline />
       </div>
 
       <Activity />
