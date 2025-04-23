@@ -7,8 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import HistoryList from "./HistoryList";
 import HistoryTimeline from "./HistoryTimeline";
-import CategorySelect from "../utils/select/CategorySelect";
-import TimeRangeSelect from "../utils/select/TimeRangeSelect";
+import FilterPopover from "@/components/utils/filter/FilterPopover";
 import { TimeRange } from "@/utils/time";
 import HistoryHeader from "./HistoryHeader";
 import { useReadingHistory } from "@/hooks";
@@ -139,18 +138,18 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
         }
       >
         {/* Filters section */}
-        <div className="mb-4 flex flex-col sm:flex-row gap-2">
+        <div className="mb-4 flex flex-row sm:flex-row">
           <div className="flex-1" />
-          <div className="flex gap-2">
-            <CategorySelect
+          <div>
+            <FilterPopover
+              showCategoryFilter
+              showTimeFilter
               categories={categories}
-              onCategoryChange={setSelectedCategory}
               currentCategory={selectedCategory}
-            />
-
-            <TimeRangeSelect
-              onTimeRangeChange={setSelectedTimeframe}
+              onCategoryChange={setSelectedCategory}
               currentTimeRange={selectedTimeframe}
+              onTimeRangeChange={setSelectedTimeframe}
+              buttonVariant="ghost"
             />
           </div>
         </div>
