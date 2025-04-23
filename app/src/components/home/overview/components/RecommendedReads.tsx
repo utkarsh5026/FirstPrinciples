@@ -1,6 +1,6 @@
 import React from "react";
 import { Star } from "lucide-react";
-import { FileMetadata } from "@/utils/MarkdownLoader";
+import type { FileMetadata } from "@/services/document";
 import getIconForTech from "@/components/icons";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import CardContainer from "@/components/container/CardContainer";
@@ -53,7 +53,7 @@ const RecommendedReads: React.FC<RecommendedReadsProps> = ({
         </p>
       }
     >
-      <div className="flex flex-col border-2 rounded-2xl">
+      <div className="flex flex-col rounded-2xl">
         {featuredDocs.length > 0 ? (
           <div className="grid grid-cols-2 gap-2">
             {featuredDocs.map(({ path, title }) => {

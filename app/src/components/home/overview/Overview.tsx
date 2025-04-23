@@ -83,7 +83,7 @@ const Overview: React.FC<OverviewProps> = ({
               doc.path.startsWith(topCategory) &&
               !readingHistory.some((item) => item.path === doc.path)
           )
-          .slice(0, 8);
+          .slice(0, 4);
       }
 
       // If not enough recommended docs, add some random ones
@@ -131,8 +131,6 @@ const Overview: React.FC<OverviewProps> = ({
             <CategoryDistribution history={readingHistory} compact />
             <WeeklyReadingPattern history={readingHistory} compact />
           </div>
-
-          <RecentActivity handleSelectDocument={handleSelectDocument} />
         </div>
         <div className="space-y-4 flex flex-col gap-4">
           <h3 className="text-sm font-medium flex items-center">
@@ -151,7 +149,7 @@ const Overview: React.FC<OverviewProps> = ({
             setShowAddTodoModal={setShowAddTodoModal}
           />
 
-          <div className="flex-grow border-2 rounded-2xl" />
+          <RecentActivity handleSelectDocument={handleSelectDocument} />
         </div>
       </div>
 

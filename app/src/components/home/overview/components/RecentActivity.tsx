@@ -1,12 +1,12 @@
 import React from "react";
 import { Clock, ArrowUpRight } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import getIconForTech from "@/components/icons";
 import { useTabContext } from "@/components/home/context/TabContext";
 import { useHistoryStore } from "@/stores";
 import { formatDate } from "@/components/home/utils";
+import CardContainer from "@/components/container/CardContainer";
 
 interface RecentActivityProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -34,7 +34,12 @@ const RecentActivity: React.FC<RecentActivityProps> = ({
   const { setActiveTab } = useTabContext();
 
   return (
-    <Card className="p-4 border-primary/10 bg-gradient-to-r from-secondary/5 to-transparent hover:border-primary/30 transition-colors rounded-3xl">
+    <CardContainer
+      title="Recent Activity"
+      icon={Clock}
+      description="Your recent reads will appear here"
+      variant="subtle"
+    >
       <div className="flex justify-between items-center mb-3">
         <h4 className="text-sm font-medium flex items-center">
           <Clock className="h-4 w-4 mr-2 text-primary/70" />
@@ -100,7 +105,7 @@ const RecentActivity: React.FC<RecentActivityProps> = ({
           </Button>
         </div>
       )}
-    </Card>
+    </CardContainer>
   );
 };
 
