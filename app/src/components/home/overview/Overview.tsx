@@ -26,7 +26,7 @@ const Overview: React.FC<OverviewProps> = ({
   setShowAddTodoModal,
 }) => {
   const { currentTheme } = useTheme();
-  const { history, filterHistory } = useReadingHistory();
+  const { history, filterHistory, categoryMap } = useReadingHistory();
   const { documents } = useDocumentList();
   const [featuredDocs, setFeaturedDocs] = useState<FileMetadata[]>([]);
   const [todayHistory, setTodayHistory] = useState<ReadingHistoryItem[]>([]);
@@ -34,43 +34,20 @@ const Overview: React.FC<OverviewProps> = ({
   const [mostReadCategory, setMostReadCategory] = useState<string>("None yet");
 
   useEffect(() => {
-    // Generate category data for pie chart
-    const categories: Record<string, number> = {};
-    history.forEach((item) => {
-      const category = item.path.split("/")[0] ?? "uncategorized";
-      categories[category] = (categories[category] || 0) + 1;
-    });
+    const categoriesArray = Object.entries(categoryMap).map(
+      ([name, value]) => ({
+        name,
+        value,
+      })
+    );
 
-    const categoriesArray = Object.entries(categories).map(([name, value]) => ({
-      name,
-      value,
-    }));
-
-    // Find most read category
     if (categoriesArray.length > 0) {
-      const sorted = [...categoriesArray].sort((a, b) => b.value - a.value);
+      const sorted = [...categoriesArray].sort(
+        (a, b) => b.value.length - a.value.length
+      );
       setMostReadCategory(sorted[0].name);
     }
 
-    // Generate weekday data
-    const weekdays = [
-      { name: "Mon", count: 0 },
-      { name: "Tue", count: 0 },
-      { name: "Wed", count: 0 },
-      { name: "Thu", count: 0 },
-      { name: "Fri", count: 0 },
-      { name: "Sat", count: 0 },
-      { name: "Sun", count: 0 },
-    ];
-
-    history.forEach((item) => {
-      const day = new Date(item.lastReadAt).getDay();
-      // Convert from 0-6 (Sunday-Saturday) to weekdays array index
-      const index = day === 0 ? 6 : day - 1;
-      weekdays[index].count++;
-    });
-
-    // Get featured/recommended documents
     if (documents.length > 0) {
       // Try to recommend based on most read category
       let recommended: FileMetadata[] = [];
@@ -104,7 +81,7 @@ const Overview: React.FC<OverviewProps> = ({
 
       setFeaturedDocs(recommended);
     }
-  }, [history, documents, currentTheme]);
+  }, [history, documents, currentTheme, categoryMap]);
 
   useEffect(() => {
     filterHistory({

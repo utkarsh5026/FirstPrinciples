@@ -60,4 +60,10 @@ export class ReadingWorkerManager extends BaseWorkerManager<ReadingWorkerAPI> {
       proxy.filterHistory(readingHistory, filter)
     );
   }
+
+  public async createCategoryMap(
+    readingHistory: ReadingHistoryItem[]
+  ): Promise<Record<string, ReadingHistoryItem[]>> {
+    return this.executeTask((proxy) => proxy.createCategoryMap(readingHistory));
+  }
 }

@@ -1,13 +1,18 @@
 import { useHistoryStore } from "@/stores";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { readingWorkerManager } from "@/infrastructure/workers";
 import { HistoryFilterOptions } from "@/services/reading/reading-history-filter";
+import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 
 /**
  * 📚✨ A hook that manages your reading history!
  * Keeps track of what you've read and lets you play with your history.
  */
 const useReadingHistory = () => {
+  const [categoryMap, setCategoryMap] = useState<
+    Record<string, ReadingHistoryItem[]>
+  >({});
+
   const history = useHistoryStore((state) => state.readingHistory);
   const addToReadingHistory = useHistoryStore(
     (state) => state.addToReadingHistory
@@ -59,7 +64,23 @@ const useReadingHistory = () => {
     [history]
   );
 
-  return { history, addToHistory, clearHistory, refreshHistory, filterHistory };
+  /**
+   * 📚 Creates a category map for your reading history
+   */
+  useEffect(() => {
+    readingWorkerManager.createCategoryMap(history).then((categoryMap) => {
+      setCategoryMap(categoryMap);
+    });
+  }, [history]);
+
+  return {
+    history,
+    addToHistory,
+    clearHistory,
+    refreshHistory,
+    filterHistory,
+    categoryMap,
+  };
 };
 
 export default useReadingHistory;
