@@ -15,15 +15,10 @@ import {
   ChartTooltip,
 } from "@/components/ui/chart";
 import ChartContainer from "@/components/chart/ChartContainer";
-import {
-  BarChart2,
-  FolderIcon,
-  ArrowRightCircle,
-  BookOpen,
-} from "lucide-react";
+import { BarChart2, BookOpen, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
-import { cn } from "@/lib/utils";
+import getIconForTech from "@/components/icons";
 
 type CategoryBarData = {
   name: string;
@@ -61,19 +56,16 @@ const CategoryHorizontalBarChart: React.FC<CategoryHorizontalBarChartProps> =
     const { isMobile } = useMobile();
     const { currentTheme } = useTheme();
 
-    // Generate colors based on theme for consistent styling
     const colors = useMemo(
       () => generateThemeColors(currentTheme.primary, Math.max(data.length, 1)),
       [data.length, currentTheme.primary]
     );
 
-    // Find the most read category for highlighting
     const topCategory = useMemo(() => {
       if (!data || data.length === 0) return null;
       return [...data].sort((a, b) => b.count - a.count)[0];
     }, [data]);
 
-    // Calculate completion percentage for all categories
     const totalCompletion = useMemo(() => {
       if (!data || data.length === 0) return 0;
       const totalRead = data.reduce((acc, cat) => acc + cat.count, 0);
@@ -88,17 +80,12 @@ const CategoryHorizontalBarChart: React.FC<CategoryHorizontalBarChartProps> =
 
     // Custom tooltip using consistent design pattern
     const renderTooltip = useChartTooltip({
-      icon: FolderIcon,
       getTitle: (data) => {
-        const isTopCategory = topCategory && topCategory.name === data.name;
+        const CategoryIcon = getIconForTech(data.name);
         return (
           <div className="flex items-center">
+            <CategoryIcon className="w-4 h-4 mr-2" />
             <span>{data.fullName ?? data.displayName}</span>
-            {isTopCategory && (
-              <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded bg-primary/20 text-primary">
-                Most Read
-              </span>
-            )}
           </div>
         );
       },
@@ -117,15 +104,15 @@ const CategoryHorizontalBarChart: React.FC<CategoryHorizontalBarChartProps> =
           value: `${Math.round((data.count / data.totalDocuments) * 100)}%`,
         },
       ],
-      getFooter: () => {
-        if (selectedSubcategory) {
-          return {
-            message: "Click to view this category",
-            icon: ArrowRightCircle,
-            className: "text-primary",
-          };
-        }
-        return undefined;
+      getFooter: (data) => {
+        const isTopCategory = topCategory && topCategory.name === data.name;
+        return isTopCategory
+          ? {
+              message: "Your most-read category",
+              icon: TrendingUp,
+              className: "text-green-400",
+            }
+          : undefined;
       },
       className: "bg-popover/95 backdrop-blur-sm",
     });
@@ -158,13 +145,6 @@ const CategoryHorizontalBarChart: React.FC<CategoryHorizontalBarChartProps> =
         right={{
           icon: BarChart2,
           value: `${totalCompletion}% Complete`,
-          className: cn(
-            totalCompletion > 70
-              ? "text-green-500"
-              : totalCompletion > 30
-              ? "text-amber-500"
-              : "text-muted-foreground"
-          ),
         }}
       >
         <ChartContainerUI config={{}} className="w-full h-full">
