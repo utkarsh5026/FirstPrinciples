@@ -1,128 +1,240 @@
-import { formatNumber } from "../../utils";
-import { User } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import React, { useMemo } from "react";
-import { useHistoryStore, useCategoryStore } from "@/stores";
+import { motion } from "framer-motion";
+import {
+  User,
+  BookOpen,
+  Clock,
+  BookText,
+  Award,
+  Flame,
+  BarChart2,
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+
+import { useHistoryStore } from "@/stores";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
 import { formatTimeInMs } from "@/utils/time";
+import { formatNumber, getStreakEmoji } from "@/components/analytics/utils";
 import CardContainer from "@/components/container/CardContainer";
 
 /**
- * 🚀 ReadingProgress Component
+ * 📊 Enhanced Reading Progress Component
  *
- * This component displays the user's reading progress, including their current level, XP progress, and various reading statistics.
- * It's designed to be a fun and engaging way to track your reading journey! 📚
+ * A visually appealing dashboard that displays key reading statistics with beautiful
+ * animations and a mobile-optimized layout.
  *
- * It fetches data from the history store, category store, and global metrics hook to display:
- * - The number of documents read in the current week 📆
- * - The number of categories explored 🌍
- * - The total time spent reading ⏰
- * - The average session time per document 🕒
- * - The total words read 📖
- *
- * The component also includes a progress bar to show the user's XP progress towards the next level. 🚀
- *
- * The intention behind this component is to provide a motivating and informative snapshot of the user's reading activity, encouraging them to keep reading and exploring! 📚💪
+ * This component displays reading progress stats including:
+ * - Documents read and completion percentage
+ * - Reading time statistics
+ * - User's current reading level and XP progress
+ * - Reading streak information
+ * - Word count statistics
  */
+
+// Create a reusable StatCard component
+interface StatCardProps {
+  icon: React.ElementType;
+  iconColor: string;
+  title: string;
+  value: React.ReactNode;
+  valueAddon?: React.ReactNode;
+  subtitle: string;
+  valueClassName?: string;
+}
+
+const StatCard: React.FC<StatCardProps> = ({
+  icon: Icon,
+  iconColor,
+  title,
+  value,
+  valueAddon,
+  subtitle,
+  valueClassName = "text-2xl font-bold",
+}) => (
+  <motion.div
+    className="bg-card rounded-2xl p-4 border border-primary/10 hover:border-primary/30 transition-colors"
+    whileHover={{ y: -2 }}
+    transition={{ duration: 0.2 }}
+  >
+    <div className="flex items-center mb-2">
+      <Icon className={`h-4 w-4 mr-2 ${iconColor}`} />
+      <span className="text-xs text-muted-foreground">{title}</span>
+    </div>
+    <div className="flex items-baseline gap-1">
+      <span className={valueClassName}>{value}</span>
+      {valueAddon}
+    </div>
+    <div className="text-xs text-muted-foreground mt-1">{subtitle}</div>
+  </motion.div>
+);
+
 const ReadingProgress: React.FC = () => {
   const readingHistory = useHistoryStore((state) => state.readingHistory);
-  const categoryBreakdown = useCategoryStore(
-    (state) => state.categoryBreakdown
+  const { currentStreak, longestStreak } = useHistoryStore(
+    (state) => state.streak
   );
-
   const { totalWordsRead, totalTimeSpent, documents } = useGlobalMetrics();
 
-  /**
-   * 🔄 currentWeekReadingCount Function
-   *
-   * This function calculates the number of documents read in the current week.
-   * It filters the reading history to include only documents read since the start of the week. 🔄
-   */
-  const currentWeekReadingCount = useMemo(() => {
-    const today = new Date();
-    const startOfWeek = new Date(today);
-    startOfWeek.setDate(today.getDate() - today.getDay());
-    startOfWeek.setHours(0, 0, 0, 0);
+  // Calculate reading level based on words read
+  const readingLevel = useMemo(() => {
+    if (totalWordsRead < 5000) return 1;
+    if (totalWordsRead < 15000) return 2;
+    if (totalWordsRead < 30000) return 3;
+    if (totalWordsRead < 50000) return 4;
+    if (totalWordsRead < 100000) return 5;
+    return Math.floor(1 + Math.log(totalWordsRead / 1000) / Math.log(2));
+  }, [totalWordsRead]);
 
-    return readingHistory.filter(
-      (item) => new Date(item.lastReadAt) >= startOfWeek
-    ).length;
+  // Calculate XP and progress to next level
+  const { xp, nextLevelXp, progressPercentage } = useMemo(() => {
+    const baseXp = totalWordsRead / 100;
+    const currentLevelXp = Math.pow(2, readingLevel - 1) * 1000;
+    const nextLevelXp = Math.pow(2, readingLevel) * 1000;
+    const progressPercentage = Math.min(
+      100,
+      ((baseXp - currentLevelXp) / (nextLevelXp - currentLevelXp)) * 100
+    );
+
+    return {
+      xp: Math.floor(baseXp),
+      nextLevelXp: Math.floor(nextLevelXp),
+      progressPercentage: Math.max(0, Math.floor(progressPercentage)),
+    };
+  }, [totalWordsRead, readingLevel]);
+
+  // Calculate average session time
+  const avgSessionTime = useMemo(() => {
+    if (documents.read === 0) return 0;
+    return Math.round(totalTimeSpent / documents.read);
+  }, [totalTimeSpent, documents.read]);
+
+  // Calculate reading frequency
+  const readingFrequency = useMemo(() => {
+    if (readingHistory.length === 0) return "New Reader";
+
+    const now = Date.now();
+    const ONE_WEEK = 7 * 24 * 60 * 60 * 1000;
+
+    const uniqueDaysRead = new Set(
+      readingHistory
+        .filter((item) => now - item.lastReadAt < ONE_WEEK)
+        .map((item) => new Date(item.lastReadAt).toDateString())
+    ).size;
+
+    if (uniqueDaysRead >= 5) return "Daily Reader";
+    if (uniqueDaysRead >= 3) return "Frequent Reader";
+    if (uniqueDaysRead >= 1) return "Casual Reader";
+    return "Occasional Reader";
   }, [readingHistory]);
-
-  const summary = [
-    {
-      heading: "This Week",
-      value: currentWeekReadingCount,
-      description: "Documents read",
-    },
-    {
-      heading: "Categories",
-      value: categoryBreakdown.length,
-      description: "Explored",
-    },
-    {
-      heading: "Reading Time",
-      value: formatTimeInMs(totalTimeSpent),
-      description: "Total time",
-    },
-    {
-      heading: "Avg. Session",
-      value:
-        documents.read > 0
-          ? formatTimeInMs(Math.round(totalTimeSpent / documents.read))
-          : "0 min",
-      description: "Per document",
-    },
-  ];
 
   return (
     <CardContainer
       title="Reading Progress"
       icon={User}
       variant="subtle"
-      description="Track your reading progress and achievements 🔥"
+      description="Track your reading progress and achievements"
       headerAction={
         <Badge
           variant="secondary"
           className="bg-primary/10 text-primary border-none rounded-2xl"
         >
-          Level 1
+          Level {readingLevel}
         </Badge>
       }
     >
-      <div className="space-y-4">
-        {/* XP Bar */}
-
-        {/* Reading Stats */}
-        <div className="grid grid-cols-2 gap-3">
-          {summary.map((item) => (
-            <div
-              key={item.heading}
-              className="rounded-2xl border border-primary/10 bg-card p-3"
-            >
-              <div className="text-xs text-muted-foreground">
-                {item.heading}
-              </div>
-              <div className="font-bold text-xl mt-1">{item.value}</div>
-              <div className="text-xs text-muted-foreground mt-1">
-                {item.description}
-              </div>
+      <div className="space-y-6">
+        {/* XP Progress Bar */}
+        <div className="bg-primary/5 rounded-2xl p-4 border border-primary/10">
+          <div className="flex justify-between items-center mb-2">
+            <div className="flex items-center">
+              <Award className="h-4 w-4 mr-2 text-primary" />
+              <span className="text-sm font-medium">Reader Progress</span>
             </div>
-          ))}
+            <span className="text-xs text-muted-foreground">
+              {formatNumber(xp)} / {formatNumber(nextLevelXp)} XP
+            </span>
+          </div>
+
+          <Progress value={progressPercentage} className="h-2 bg-primary/10" />
+
+          <div className="flex justify-between mt-2 text-xs text-muted-foreground">
+            <span>Level {readingLevel}</span>
+            <span>Level {readingLevel + 1}</span>
+          </div>
         </div>
 
-        {/* Words Read */}
-        <div className="bg-primary/5 rounded-2xl p-3 flex items-center justify-between">
+        {/* Main Stats Grid */}
+        <div className="grid grid-cols-2 gap-3">
+          {/* Reading Streak */}
+          <StatCard
+            icon={Flame}
+            iconColor="text-amber-500"
+            title="Current Streak"
+            value={currentStreak}
+            valueClassName="text-lg font-bold"
+            valueAddon={
+              <span className="text-sm">{getStreakEmoji(currentStreak)}</span>
+            }
+            subtitle={`Best: ${longestStreak} days`}
+          />
+
+          {/* Reading Frequency */}
+          <StatCard
+            icon={BarChart2}
+            iconColor="text-violet-500"
+            title="Reading Habit"
+            value={readingFrequency}
+            valueClassName="text-lg font-bold"
+            subtitle="Based on your weekly activity"
+          />
+
+          {/* Documents Read */}
+          <StatCard
+            icon={BookOpen}
+            iconColor="text-blue-500"
+            title="Documents"
+            value={documents.read}
+            valueAddon={
+              <span className="text-sm text-muted-foreground">
+                / {documents.available}
+              </span>
+            }
+            subtitle={`${Math.round(
+              (documents.read / documents.available) * 100
+            )}% completion`}
+          />
+
+          {/* Reading Time */}
+          <StatCard
+            icon={Clock}
+            iconColor="text-green-500"
+            title="Time Spent"
+            value={formatTimeInMs(totalTimeSpent)}
+            valueClassName="text-lg font-bold truncate"
+            subtitle={`Avg: ${formatTimeInMs(avgSessionTime)} per document`}
+          />
+        </div>
+
+        {/* Words Read - Highlight Box */}
+        <motion.div
+          className="bg-primary/5 rounded-2xl p-4 border border-primary/10 flex items-center justify-between"
+          whileHover={{ scale: 1.01 }}
+          transition={{ duration: 0.2 }}
+        >
           <div>
-            <div className="text-sm font-medium">Total Words Read</div>
-            <div className="text-xs text-muted-foreground mt-0.5">
-              Calculated based on sections read
+            <div className="flex items-center">
+              <BookText className="h-4 w-4 mr-2 text-primary" />
+              <span className="text-sm font-medium">Total Words Read</span>
+            </div>
+            <div className="text-xs text-muted-foreground mt-1">
+              Keep reading to increase your knowledge
             </div>
           </div>
-          <div className="text-xl font-bold">
+          <div className="text-2xl font-bold">
             {formatNumber(totalWordsRead)}
           </div>
-        </div>
+        </motion.div>
       </div>
     </CardContainer>
   );
