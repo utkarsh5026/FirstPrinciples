@@ -3,7 +3,7 @@ import {
   type ReadingSession,
   readingSessionTracker,
 } from "./ReadingSessionTracker";
-import { type ReadingHistoryItem } from "@/services/history";
+import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import * as readingListService from "@/services/reading/reading-list-service";
 import { readingStatsService } from "./ReadingStatsService";
 import type { FileMetadata } from "@/services/document/document-loader";

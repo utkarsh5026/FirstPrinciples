@@ -10,7 +10,7 @@ import {
   Filter,
   Loader2,
 } from "lucide-react";
-import { ReadingHistoryItem } from "@/services/history";
+import { type ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import {
   getCategories,
   type FileMetadata,

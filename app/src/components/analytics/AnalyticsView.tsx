@@ -50,8 +50,7 @@ const AnalyticsView: React.FC<AnalyticsViewProps> = ({
       )}
 
       {hasActivity ? (
-        // Main analytics content when there's data to show
-        <AnalyticsPage onSelectDocument={onSelectDocument} />
+        <AnalyticsPage />
       ) : (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center mb-4">

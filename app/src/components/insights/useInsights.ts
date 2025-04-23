@@ -1,5 +1,8 @@
 import { useMemo } from "react";
-import type { Category, FileMetadata } from "@/utils/MarkdownLoader";
+import type {
+  Category,
+  FileMetadata,
+} from "@/services/document/document-loader";
 import { type ReadingHistoryItem } from "@/services/reading/reading-history-service";
 
 export type CategoryNode = {

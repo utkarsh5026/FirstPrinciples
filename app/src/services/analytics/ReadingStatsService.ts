@@ -1,4 +1,4 @@
-import { type ReadingHistoryItem } from "@/services/history";
+import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { databaseService } from "@/infrastructure/storage";
 import * as readingHistoryService from "@/services/reading/reading-history-service";
 import { type FileMetadata } from "@/services/document/document-loader";
