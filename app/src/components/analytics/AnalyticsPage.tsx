@@ -9,8 +9,8 @@ import AnalyticsHeader from "./header/AnalyticsHeader";
 import Insights from "./components/insights";
 import AnalyticsOverview from "./components/overview/AnnalyticsOverview";
 import { SiDeepl } from "react-icons/si";
-import CategoryAnalytics from "./deep";
 import ReadingTimeline from "./components/timeline/ReadingTimeline";
+import DeepInsights from "./components/deep/DeepInsights";
 
 interface AnalyticsPageProps {
   onSelectDocument: (path: string, title: string) => void;
@@ -89,7 +89,7 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onSelectDocument }) => {
         </TabsContent>
 
         <TabsContent value="deep">
-          <CategoryAnalytics onSelectDocument={onSelectDocument} />
+          <DeepInsights onSelectDocument={onSelectDocument} />
         </TabsContent>
       </Tabs>
     </div>
