@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import CardContainer from "@/components/container/CardContainer";
 import { Calendar, Search, Filter, CalendarDays } from "lucide-react";
-import { useHistoryStore } from "@/stores";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import HistoryList from "./HistoryList";
@@ -12,6 +11,7 @@ import CategorySelect from "../utils/select/CategorySelect";
 import TimeRangeSelect from "../utils/select/TimeRangeSelect";
 import { TimeRange } from "@/utils/time";
 import HistoryHeader from "./HistoryHeader";
+import { useReadingHistory } from "@/hooks";
 
 interface HistoryProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -24,34 +24,33 @@ interface HistoryProps {
  * with intuitive filtering, clean visuals, and elegant animations.
  */
 const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
-  const readingHistory = useHistoryStore((state) => state.readingHistory);
-  const refreshReadingHistory = useHistoryStore(
-    (state) => state.refreshReadingHistory
-  );
+  const { history, refreshHistory } = useReadingHistory();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedTimeframe, setSelectedTimeframe] = useState<TimeRange>("all");
   const [viewMode, setViewMode] = useState<"list" | "timeline">("list");
   const [filteredHistory, setFilteredHistory] =
-    useState<ReadingHistoryItem[]>(readingHistory);
+    useState<ReadingHistoryItem[]>(history);
 
   useEffect(() => {
-    refreshReadingHistory();
-  }, [refreshReadingHistory]);
+    refreshHistory();
+  }, [refreshHistory]);
+
+  console.log(history);
 
   // Get unique categories from reading history
   const categories = useMemo(() => {
     return [
       "all",
       ...new Set(
-        readingHistory.map((item) => item.path.split("/")[0] ?? "uncategorized")
+        history.map((item) => item.path.split("/")[0] ?? "uncategorized")
       ),
     ];
-  }, [readingHistory]);
+  }, [history]);
 
   // Filter reading history based on search query, category, and timeframe
   useEffect(() => {
-    let filtered = [...readingHistory];
+    let filtered = [...history];
 
     // Apply search filter
     if (searchQuery) {
@@ -92,7 +91,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     // Sort by most recent
     filtered.sort((a, b) => b.lastReadAt - a.lastReadAt);
     setFilteredHistory(filtered);
-  }, [readingHistory, searchQuery, selectedCategory, selectedTimeframe]);
+  }, [history, searchQuery, selectedCategory, selectedTimeframe]);
 
   // Helper function to clear filters
   const clearFilters = () => {
@@ -118,7 +117,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     };
   }, [filteredHistory]);
 
-  if (readingHistory.length === 0) {
+  if (history.length === 0) {
     return (
       <CardContainer
         title="Reading History"
