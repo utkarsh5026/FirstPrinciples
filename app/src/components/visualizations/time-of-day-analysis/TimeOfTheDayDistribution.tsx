@@ -160,10 +160,17 @@ const TimeOfTheDayDistribution: React.FC<TimeOfTheDayDistributionProps> = ({
   const createPeriodData = () => {
     if (!timeMetrics) return [];
 
+    const rangeMap = {
+      morning: [5, 11],
+      afternoon: [12, 17],
+      evening: [17, 21],
+      night: [21, 5],
+    };
+
     return Object.entries(timeMetrics.periodTotals).map(([period, count]) => ({
       period,
       count,
-      range: [period === "morning" ? 5 : 12, period === "afternoon" ? 17 : 21],
+      range: rangeMap[period as keyof typeof rangeMap],
       render: {
         icon: getCss(period).icon,
         textcolorClass: getCss(period).color,
