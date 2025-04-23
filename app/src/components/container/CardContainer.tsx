@@ -99,7 +99,7 @@ const CardContainer: React.FC<CardContainerProps> = ({
       initial="hidden"
       animate={isVisible ? "visible" : "hidden"}
       variants={animationStates.card}
-      className="h-full w-full"
+      className="h-full w-full font-type-mono"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

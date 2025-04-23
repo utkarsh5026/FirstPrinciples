@@ -4,6 +4,7 @@ import WeeklyReadingPattern from "./weekly-reading-pattern/WeeklyReadingPattern"
 import ReadingProgress from "./reading-progress/ReadingProgress";
 import DailyActivityInsight from "./daily-activity/DailyActivity";
 import CategoryCoverage from "./category-coverage/CategoryCoverage";
+import ReadingJourneyMap from "./reading-journey/ReadingJourneyMap";
 
 export {
   CategoryDistribution,
@@ -12,4 +13,5 @@ export {
   ReadingProgress,
   DailyActivityInsight,
   CategoryCoverage,
+  ReadingJourneyMap,
 };
