@@ -25,9 +25,6 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
   const [completionPercentage, setCompletionPercentage] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  console.log("readSections", readSections);
-
-  // Get section store functions
   const loadReadSections = useSectionStore((state) => state.loadReadSections);
   const getReadSections = useSectionStore((state) => state.getReadSections);
   const getDocumentCompletionPercentage = useSectionStore(

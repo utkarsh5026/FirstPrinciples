@@ -78,6 +78,8 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     };
   }, [filteredHistory]);
 
+  console.log(filteredHistory);
+
   if (history.length === 0) {
     return (
       <CardContainer
