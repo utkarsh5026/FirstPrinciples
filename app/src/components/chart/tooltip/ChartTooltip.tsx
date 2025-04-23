@@ -68,7 +68,7 @@ const ChartTooltip: React.FC<ChartTooltipProps> = ({
   return (
     <div
       className={cn(
-        "bg-popover/95 backdrop-blur-sm text-popover-foreground shadow-lg rounded-lg p-3 border border-border",
+        "bg-popover/95 backdrop-blur-lg text-popover-foreground shadow-lg rounded-2xl p-3 border border-border",
         className
       )}
     >
@@ -90,12 +90,12 @@ const ChartTooltip: React.FC<ChartTooltipProps> = ({
 
       {/* Content Sections */}
       <div className="space-y-1">
-        {sections.map((section, idx) => {
+        {sections.map((section) => {
           const SectionIcon = section.icon;
 
           return (
             <div
-              key={`section-${idx}`}
+              key={`section-${section.label}`}
               className="flex justify-between gap-4 text-xs items-center"
             >
               <span className="text-muted-foreground flex items-center gap-1">
@@ -120,7 +120,7 @@ const ChartTooltip: React.FC<ChartTooltipProps> = ({
         <div
           className={cn(
             "mt-2 pt-1.5 border-t border-border/50 text-xs flex items-center",
-            footer.className || "text-green-400"
+            footer.className ?? "text-green-400"
           )}
         >
           {footer.icon && <footer.icon className="h-3 w-3 mr-1" />}

@@ -6,11 +6,6 @@ import ChartTooltip, {
   TooltipSectionData,
   TooltipFooterData,
 } from "@/components/chart/tooltip/ChartTooltip";
-import { TooltipProps } from "recharts";
-import {
-  ValueType,
-  NameType,
-} from "recharts/types/component/DefaultTooltipContent";
 
 // Type for the payload that comes from Recharts tooltip
 export type ChartTooltipPayload = {
@@ -70,13 +65,9 @@ export interface UseChartTooltipOptions<T = any> {
  */
 export function useChartTooltip<T = any>(options: UseChartTooltipOptions<T>) {
   // Return a function that can be used as the content prop for Recharts Tooltip
-  return function renderTooltip({
-    active,
-    payload,
-  }: {
-    active?: boolean;
-    payload?: TooltipProps<ValueType, NameType>[];
-  }) {
+  return function renderTooltip(props: any) {
+    const { active, payload } = props;
+
     if (!active || !payload || !payload.length) {
       return null;
     }
