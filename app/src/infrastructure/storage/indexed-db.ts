@@ -54,7 +54,7 @@ export class DatabaseService {
             keyPath: "id",
             autoIncrement: true,
           });
-          sessionsStore.createIndex("path", "path", { unique: false });
+          sessionsStore.createIndex("path", "path", { unique: true });
           sessionsStore.createIndex("startTime", "startTime", {
             unique: false,
           });
@@ -64,8 +64,9 @@ export class DatabaseService {
         if (!db.objectStoreNames.contains("readingLists")) {
           const todoStore = db.createObjectStore("readingLists", {
             keyPath: "id",
+            autoIncrement: true,
           });
-          todoStore.createIndex("path", "path", { unique: false });
+          todoStore.createIndex("path", "path", { unique: true });
           todoStore.createIndex("completed", "completed", { unique: false });
         }
 
