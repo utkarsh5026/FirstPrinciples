@@ -47,6 +47,7 @@ export class DatabaseService {
           historyStore.createIndex("lastReadAt", "lastReadAt", {
             unique: false,
           });
+          historyStore.createIndex("category", "category", { unique: false });
         }
 
         if (!db.objectStoreNames.contains("readingSessions")) {
