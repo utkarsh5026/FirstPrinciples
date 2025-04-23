@@ -1,12 +1,12 @@
-import { motion } from "framer-motion";
-import { useHistoryStore } from "@/stores";
-import CategoryCoverageMap from "@/components/analytics/components/insights/CategoryCoverage";
+import { useReadingHistory } from "@/hooks";
 import {
   TimeOfTheDayDistribution,
   WeeklyReadingPattern,
   ReadingProgress,
   DailyActivityInsight,
+  CategoryCoverage,
 } from "@/components/visualizations";
+import Recommendations from "./Recommendation";
 /**
  * EnhancedInsights - Main component that combines all insight cards
  *
@@ -14,27 +14,24 @@ import {
  * optimized for both mobile and desktop viewing.
  */
 const Insights = () => {
-  const history = useHistoryStore((state) => state.readingHistory);
+  const { history } = useReadingHistory();
 
   return (
-    <div className="space-y-6">
-      {/* Category filter component */}
-
-      {/* Filtered insights cards */}
-      <motion.div
-        className="space-y-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="grid grid-cols-1  gap-4 md:gap-6">
-          <CategoryCoverageMap compact={false} />
-          <WeeklyReadingPattern history={history} />
-          <TimeOfTheDayDistribution history={history} typeOfChart="area" />
-          <ReadingProgress history={history} />
-          <DailyActivityInsight history={history} />
-        </div>
-      </motion.div>
+    <div className="grid grid-cols-1  gap-4 md:gap-6">
+      <CategoryCoverage history={history} />
+      <WeeklyReadingPattern history={history} />
+      <TimeOfTheDayDistribution history={history} typeOfChart="area" />
+      <ReadingProgress history={history} />
+      <DailyActivityInsight history={history} />
+      <Recommendations
+        readingHistory={history}
+        radarData={[]}
+        balanceScore={0}
+        coverageScore={0}
+        exploredCategories={0}
+        totalCategories={0}
+        handleSelectItem={() => {}}
+      />
     </div>
   );
 };

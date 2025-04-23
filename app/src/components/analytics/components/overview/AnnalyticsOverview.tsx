@@ -3,7 +3,7 @@ import ReadingProgress from "./ReadingProgress";
 import ReadingTrends from "./ReadingTrends";
 import Activity from "./Activity";
 import HeatMapView from "../timeline/HeatMapView";
-import CategoryCoverageMap from "@/components/analytics/components/insights/CategoryCoverage";
+import CategoryCoverageMap from "@/components/visualizations/category-coverage/CategoryCoverage";
 import { useReadingHistory } from "@/hooks";
 import {
   CategoryDistribution,
@@ -21,7 +21,7 @@ const AnalyticsOverview: React.FC = () => {
         <div className="space-y-4 flex flex-col gap-4">
           <ReadingProgress />
 
-          <CategoryCoverageMap compact={true} />
+          <CategoryCoverageMap history={history} />
         </div>
 
         <div className="space-y-4 flex flex-col gap-4">
@@ -36,7 +36,7 @@ const AnalyticsOverview: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <CategoryDistribution history={history} compact />
+        <CategoryDistribution history={history} compact typeOfChart="bar" />
         <TimeOfTheDayDistribution history={history} typeOfChart="bar" />
       </div>
 
