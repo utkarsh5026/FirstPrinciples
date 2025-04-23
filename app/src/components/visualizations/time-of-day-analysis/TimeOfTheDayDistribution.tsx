@@ -14,6 +14,16 @@ interface TimeOfTheDayDistributionProps {
   compact?: boolean;
 }
 
+/**
+ * 🕰️ TimeOfTheDayDistribution
+ *
+ * A beautiful visualization that shows when you prefer to read during the day!
+ * Are you an early bird with your coffee ☕, a midday reader soaking up the sun ☀️,
+ * or a night owl reading under moonlight 🌙?
+ *
+ * This component analyzes your reading patterns throughout the day and
+ * presents them in either a bar chart or area chart format.
+ */
 const TimeOfTheDayDistribution: React.FC<TimeOfTheDayDistributionProps> = ({
   history,
   typeOfChart = "bar",
@@ -22,6 +32,9 @@ const TimeOfTheDayDistribution: React.FC<TimeOfTheDayDistributionProps> = ({
   const { calculateTotalReadingByHour } = useActivityMetrics();
   const [hourlyData, setHourlyData] = useState<HourlyActivity[]>([]);
 
+  /**
+   * 📊 Fetches your hourly reading data when history changes
+   */
   useEffect(() => {
     const fetchHourlyData = async () => {
       const data = await calculateTotalReadingByHour(history);
@@ -30,6 +43,9 @@ const TimeOfTheDayDistribution: React.FC<TimeOfTheDayDistributionProps> = ({
     fetchHourlyData();
   }, [history, calculateTotalReadingByHour]);
 
+  /**
+   * 🎨 Determines the visual style for each time of day
+   */
   const getCss = (timeOfDay: string) => {
     switch (timeOfDay.toLowerCase()) {
       case "morning":
@@ -52,6 +68,9 @@ const TimeOfTheDayDistribution: React.FC<TimeOfTheDayDistributionProps> = ({
     }
   };
 
+  /**
+   * 🕒 Transforms raw hourly data into user-friendly reading metrics
+   */
   const readingByHour = useMemo(() => {
     const totalReadings = hourlyData.reduce((sum, item) => sum + item.count, 0);
 
@@ -91,6 +110,10 @@ const TimeOfTheDayDistribution: React.FC<TimeOfTheDayDistributionProps> = ({
     });
   }, [hourlyData]);
 
+  /**
+   * 📈 Calculates insightful metrics about your reading habits
+   * Finds your peak reading hours, preferred time of day, and more!
+   */
   const timeMetrics = useMemo(() => {
     if (hourlyData.length === 0) return null;
 
@@ -130,6 +153,10 @@ const TimeOfTheDayDistribution: React.FC<TimeOfTheDayDistributionProps> = ({
     };
   }, [hourlyData, readingByHour]);
 
+  /**
+   * 🌓 Creates data for the time period visualization
+   * Groups your reading into morning, afternoon, evening and night
+   */
   const createPeriodData = () => {
     if (!timeMetrics) return [];
 
