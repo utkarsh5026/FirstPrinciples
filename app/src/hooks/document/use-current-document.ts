@@ -8,6 +8,9 @@ export const useCurrentDocument = () => {
   const documentPath = useCurrentDocumentStore((state) => state.docPath);
   const category = useCurrentDocumentStore((state) => state.category);
   const load = useCurrentDocumentStore((state) => state.load);
+  const loading = useCurrentDocumentStore((state) => state.loading);
+  const error = useCurrentDocumentStore((state) => state.error);
+  const metrics = useCurrentDocumentStore((state) => state.metrics);
 
   const documentTitle = useMemo(() => {
     return getFilenameFromPath(documentPath);
@@ -27,5 +30,8 @@ export const useCurrentDocument = () => {
     category,
     documentTitle,
     loadedDocumentForUrl,
+    loading,
+    error,
+    metrics,
   };
 };

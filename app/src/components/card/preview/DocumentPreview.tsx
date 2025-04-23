@@ -9,7 +9,7 @@ import getIconForTech from "@/components/icons";
 import Header from "@/components/card/preview/Header";
 import StartReadingButton from "@/components/card/preview/StartReadingButton";
 import { formatTimeInMs } from "@/utils/time";
-import { useCurrentDocumentStore } from "@/stores/document/current-document-store";
+import { useCurrentDocument, useReadingHistory } from "@/hooks";
 import { useParams } from "react-router-dom";
 
 /**
@@ -30,21 +30,27 @@ import { useParams } from "react-router-dom";
  */
 const DocumentPreview: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
-
   const { documentPath = "" } = useParams<{ documentPath: string }>();
 
-  const loading = useCurrentDocumentStore((state) => state.loading);
-  const error = useCurrentDocumentStore((state) => state.error);
-  const load = useCurrentDocumentStore((state) => state.load);
-  const metrics = useCurrentDocumentStore((state) => state.metrics);
-  const category = useCurrentDocumentStore((state) => state.category);
-  const title = useCurrentDocumentStore((state) => state.title);
+  const {
+    loadedDocumentForUrl,
+    loading,
+    error,
+    metrics,
+    category,
+    documentTitle,
+  } = useCurrentDocument();
+  const { addToHistory } = useReadingHistory();
 
   useEffect(() => {
-    load(documentPath);
-  }, [documentPath, load]);
+    loadedDocumentForUrl(documentPath);
+  }, [documentPath, loadedDocumentForUrl]);
 
-  const startReading = () => setIsFullscreen(true);
+  const startReading = () => {
+    addToHistory(documentPath, documentTitle).then(() => {
+      setIsFullscreen(true);
+    });
+  };
 
   const exitFullscreen = () => setIsFullscreen(false);
 
@@ -96,7 +102,7 @@ const DocumentPreview: React.FC = () => {
               category={category}
               estimatedReadTime={formattedReadTime}
               totalSections={totalSections}
-              documentTitle={title}
+              documentTitle={documentTitle}
             />
 
             {/* Main content area */}

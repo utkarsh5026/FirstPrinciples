@@ -16,7 +16,7 @@ import { useSectionStore } from "@/stores";
 import useMobile from "@/hooks/device/use-mobile";
 import Stats from "./stats/Stats";
 import { AnimatePresence } from "framer-motion";
-import { useCurrentDocument, useReadingHistory } from "@/hooks";
+import { useCurrentDocument } from "@/hooks";
 
 interface FullscreenCardViewProps {
   className?: string;
@@ -53,24 +53,16 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   const startTimeRef = useRef<number>(Date.now());
 
-  const { sections, documentPath, category, markdown, documentTitle } =
-    useCurrentDocument();
+  const { sections, documentPath, category, markdown } = useCurrentDocument();
 
   const startReading = useSectionStore((state) => state.startReading);
   const endReading = useSectionStore((state) => state.endReading);
   const loadReadSections = useSectionStore((state) => state.loadReadSections);
-  const { addToHistory } = useReadingHistory();
 
   const initializedRef = useRef(false);
 
   // Track read sections
   const [readSections, setReadSections] = useState<Set<string>>(new Set());
-
-  useEffect(() => {
-    if (initializedRef.current) {
-      addToHistory(documentPath, documentTitle);
-    }
-  }, [documentPath, documentTitle, addToHistory]);
 
   /**
    * 📚 Load read sections when document changes
