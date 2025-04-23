@@ -5,7 +5,7 @@ import {
   type DocumentStats,
 } from "./SectionReadingTracker";
 import { analyticsController } from "./AnalyticsController";
-import type { ReadingHistoryItem } from "@/services/history";
+import { type ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { estimateReadingTime, countWords } from "./word-count-estimation";
 
 /**
