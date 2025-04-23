@@ -3,6 +3,7 @@ import TimeOfTheDayDistribution from "./time-of-day-analysis/TimeOfTheDayDistrib
 import WeeklyReadingPattern from "./weekly-reading-pattern/WeeklyReadingPattern";
 import ReadingProgress from "./reading-progress/ReadingProgress";
 import DailyActivityInsight from "./daily-activity/DailyActivity";
+import CategoryCoverage from "./category-coverage/CategoryCoverage";
 
 export {
   CategoryDistribution,
@@ -10,4 +11,5 @@ export {
   WeeklyReadingPattern,
   ReadingProgress,
   DailyActivityInsight,
+  CategoryCoverage,
 };

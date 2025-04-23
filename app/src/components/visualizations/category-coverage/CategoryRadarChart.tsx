@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { memo, useState, useMemo } from "react";
 import {
   Radar,
   RadarChart as RechartRadarChart,
@@ -9,15 +9,15 @@ import {
 import { motion } from "framer-motion";
 import useMobile from "@/hooks/device/use-mobile";
 import { useTheme } from "@/hooks/ui/use-theme";
-import { ChartArea, PieChart, TrendingUp } from "lucide-react";
+import { ChartArea, Activity, TrendingUp } from "lucide-react";
 import ChartContainer from "@/components/chart/ChartContainer";
 import {
-  ChartTooltip,
-  ChartTooltipContent,
   ChartContainer as ChartContainerBase,
+  ChartTooltip,
 } from "@/components/ui/chart";
-import getIconForTech from "../icons";
+import getIconForTech from "@/components/icons";
 import { fromSnakeToTitleCase } from "@/utils/string";
+import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
 
 type RadarData = {
   value: number;
@@ -27,26 +27,37 @@ type RadarData = {
   fullName: string;
   totalValue: number;
   percentage: number;
-  category?: string; // Added for compatibility with getIconForTech
+  category?: string;
 };
 
 interface RadarChartProps {
   title?: string;
   subtitle?: string;
   radarData: RadarData[];
+  compact?: boolean;
 }
 
 /**
- * Enhanced RadarChart component for visualizing category completion
- * with improved aesthetics, animations, and mobile optimization.
+ * 📊 CategoryRadarChart
+ *
+ * A beautiful radar visualization that displays category completion metrics in a radial format.
+ * This chart helps visualize your reading coverage across different categories and quickly
+ * identify areas where you've made the most progress.
+ *
+ * Features:
+ * - Interactive radar with hover effects and tooltips
+ * - Responsive design for both mobile and desktop
+ * - Visual highlighting of top completion categories
+ * - Consistent styling with other application visualizations
+ * - Glowing effects for active data points
  */
-const CategoryRadarChart: React.FC<RadarChartProps> = ({ radarData }) => {
+const CategoryRadarChart: React.FC<RadarChartProps> = memo(({ radarData }) => {
   const { isMobile } = useMobile();
   const { currentTheme } = useTheme();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   // Process radar data to add category property if needed
-  const processedData = React.useMemo(() => {
+  const processedData = useMemo(() => {
     if (!radarData || radarData.length === 0) return [];
 
     return radarData.map((item) => ({
@@ -56,12 +67,19 @@ const CategoryRadarChart: React.FC<RadarChartProps> = ({ radarData }) => {
     }));
   }, [radarData]);
 
-  // Calculate metrics for the chart header
-  const metrics = React.useMemo(() => {
+  // Calculate metrics for insights and header
+  const metrics = useMemo(() => {
     if (!processedData || processedData.length === 0) return null;
 
     // Find the highest completion item
     const topItem = [...processedData].sort((a, b) => b.value - a.value)[0];
+
+    // Find the lowest completion item with some value
+    const activeItems = processedData.filter((item) => item.value > 0);
+    const lowestItem =
+      activeItems.length > 0
+        ? [...activeItems].sort((a, b) => a.value - b.value)[0]
+        : null;
 
     // Calculate average completion
     const avgCompletion = Math.round(
@@ -69,13 +87,77 @@ const CategoryRadarChart: React.FC<RadarChartProps> = ({ radarData }) => {
         processedData.length
     );
 
+    // Calculate coverage statistics
+    const categoriesWithSomeProgress = processedData.filter(
+      (item) => item.value > 0
+    ).length;
+    const coveragePercentage = Math.round(
+      (categoriesWithSomeProgress / processedData.length) * 100
+    );
+
+    // Determine reading pattern
+    let pattern = "Balanced";
+    if (topItem.value > 75 && avgCompletion < 40) {
+      pattern = "Focused";
+    } else if (coveragePercentage > 80 && avgCompletion > 30) {
+      pattern = "Explorer";
+    } else if (categoriesWithSomeProgress < processedData.length * 0.4) {
+      pattern = "Selective";
+    }
+
     return {
       topItem,
+      lowestItem,
       avgCompletion,
       categoriesCount: processedData.length,
+      coveragePercentage,
+      categoriesWithSomeProgress,
+      pattern,
     };
   }, [processedData]);
 
+  // Custom tooltip using consistent design pattern
+  const renderTooltip = useChartTooltip({
+    getTitle: (data) => {
+      const CategoryIcon = getIconForTech(data.category);
+      return (
+        <div className="flex items-center">
+          <CategoryIcon className="w-4 h-4 mr-2" />
+          <span>{data.displayName ?? fromSnakeToTitleCase(data.name)}</span>
+        </div>
+      );
+    },
+    getSections: (data) => [
+      {
+        label: "Completion:",
+        value: `${Math.round(data.value)}%`,
+        highlight: metrics?.topItem && metrics.topItem.name === data.name,
+      },
+      {
+        label: "Documents:",
+        value: `${Math.round((data.value * data.totalValue) / 100)} / ${
+          data.totalValue
+        }`,
+      },
+      {
+        label: "Of total reading:",
+        value: `${Math.round(data.percentage || 0)}%`,
+      },
+    ],
+    getFooter: (data) => {
+      if (metrics?.topItem && metrics.topItem.name === data.name) {
+        return {
+          message: "Your most completed category",
+          icon: TrendingUp,
+          className: "text-green-400",
+        };
+      }
+      return undefined;
+    },
+    className: "bg-popover/95 backdrop-blur-sm",
+  });
+
+  // Empty state when no data is available
   if (!processedData || processedData.length === 0) {
     return (
       <motion.div
@@ -98,9 +180,9 @@ const CategoryRadarChart: React.FC<RadarChartProps> = ({ radarData }) => {
       left={
         metrics
           ? {
-              icon: PieChart,
-              label: "Top: ",
-              value: metrics.topItem.displayName || metrics.topItem.name,
+              icon: Activity,
+              label: "Avg: ",
+              value: `${metrics.avgCompletion}%`,
             }
           : undefined
       }
@@ -108,8 +190,7 @@ const CategoryRadarChart: React.FC<RadarChartProps> = ({ radarData }) => {
         metrics
           ? {
               icon: TrendingUp,
-              value: `${metrics.avgCompletion}% avg`,
-              className: "bg-primary/20 text-primary",
+              value: `${metrics.pattern} Reader`,
             }
           : undefined
       }
@@ -120,29 +201,31 @@ const CategoryRadarChart: React.FC<RadarChartProps> = ({ radarData }) => {
           cy="50%"
           outerRadius={isMobile ? "70%" : "80%"}
           data={processedData}
+          margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
         >
           {/* Create a subtle grid with less visual noise */}
           <PolarGrid
             stroke={`${currentTheme.border}`}
             strokeDasharray="3 3"
-            strokeOpacity={0.5}
+            strokeOpacity={0.4}
             radialLines
           />
 
           {/* Category labels around the radar */}
           <PolarAngleAxis
-            dataKey="name"
+            dataKey={(data) => data.displayName || data.name}
             tick={{
-              fill: currentTheme.foreground,
-              fontSize: isMobile ? 10 : 12,
+              fill: currentTheme.foreground + "cc",
+              fontSize: isMobile ? 9 : 11,
               fontWeight: 500,
             }}
             stroke={currentTheme.border}
+            strokeOpacity={0.4}
             tickLine={false}
             // Formatter to truncate long names on mobile
             tickFormatter={(value) =>
-              isMobile && value.length > 10
-                ? `${value.substring(0, 8)}...`
+              isMobile && value.length > 8
+                ? `${value.substring(0, 6)}...`
                 : value
             }
           />
@@ -152,75 +235,18 @@ const CategoryRadarChart: React.FC<RadarChartProps> = ({ radarData }) => {
             angle={45}
             domain={[0, 100]}
             tick={{
-              fill: currentTheme.muted,
-              fontSize: isMobile ? 9 : 10,
+              fontSize: isMobile ? 8 : 10,
+              fill: currentTheme.foreground + "99",
             }}
             tickCount={isMobile ? 3 : 5}
             stroke={currentTheme.border}
+            strokeOpacity={0.4}
             axisLine={false}
             tickFormatter={(value) => (value === 0 ? "" : `${value}%`)}
           />
 
           {/* Use the ChartTooltip component for consistency */}
-          <ChartTooltip
-            content={
-              <ChartTooltipContent
-                hideLabel
-                formatter={(_value, _name, props) => {
-                  const payload = props?.payload;
-                  if (!payload) return null;
-
-                  // Get the appropriate icon
-                  const CategoryIcon = getIconForTech(payload.category);
-
-                  // Custom content similar to CategoryPieChart
-                  return (
-                    <div className="space-y-2">
-                      <div className="flex items-center text-sm font-medium gap-2 pb-1.5 border-b border-border/50">
-                        <CategoryIcon className="w-4 h-4 text-primary" />
-                        {payload.displayName ||
-                          fromSnakeToTitleCase(payload.name)}
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
-                        <span className="text-muted-foreground">
-                          Completion:
-                        </span>
-                        <span className="font-bold text-primary text-right">
-                          {payload.value.toFixed(0)}%
-                        </span>
-
-                        <span className="text-muted-foreground">
-                          Documents:
-                        </span>
-                        <span className="text-right">
-                          {payload.value} / {payload.totalValue}
-                        </span>
-
-                        {payload.percentage && (
-                          <>
-                            <span className="text-muted-foreground">
-                              Of total reading:
-                            </span>
-                            <span className="text-right">
-                              {payload.percentage.toFixed(0)}%
-                            </span>
-                          </>
-                        )}
-                      </div>
-
-                      {metrics?.topItem.name === payload.name && (
-                        <div className="mt-1 pt-1.5 border-t border-border/50 text-xs text-green-400 flex items-center">
-                          <TrendingUp className="h-3 w-3 mr-1" />
-                          Your most completed category
-                        </div>
-                      )}
-                    </div>
-                  );
-                }}
-              />
-            }
-          />
+          <ChartTooltip content={renderTooltip} />
 
           {/* The radar itself */}
           <Radar
@@ -233,23 +259,30 @@ const CategoryRadarChart: React.FC<RadarChartProps> = ({ radarData }) => {
             animationDuration={1000}
             animationBegin={300}
             isAnimationActive={true}
-            onMouseOver={(_, index) => setActiveIndex(index)}
-            onMouseOut={() => setActiveIndex(null)}
+            onMouseLeave={() => setActiveIndex(null)}
             // Enhanced dot styling with active states
             dot={(props) => {
-              const isActive = activeIndex === props.index;
+              const index = props.index as number;
+              const dataPoint = processedData[index];
+              const isTopCategory =
+                metrics?.topItem && metrics.topItem.name === dataPoint.name;
+              const isActive = activeIndex === index;
               const opacity = isActive ? 1 : 0.7;
+
               return (
                 <circle
                   {...props}
-                  r={isActive ? 5 : 3}
+                  r={isActive ? 5 : isTopCategory ? 4 : 3}
                   fill={
-                    isActive ? currentTheme.background : currentTheme.primary
+                    isActive || isTopCategory
+                      ? currentTheme.background
+                      : currentTheme.primary
                   }
                   stroke={currentTheme.primary}
-                  strokeWidth={2}
+                  strokeWidth={isTopCategory ? 2.5 : 2}
                   opacity={opacity}
-                  filter={isActive ? "url(#glow)" : undefined}
+                  filter={isActive || isTopCategory ? "url(#glow)" : undefined}
+                  className="transition-all duration-300"
                 />
               );
             }}
@@ -258,7 +291,7 @@ const CategoryRadarChart: React.FC<RadarChartProps> = ({ radarData }) => {
               r: 6,
               fill: currentTheme.background,
               stroke: currentTheme.primary,
-              strokeWidth: 2,
+              strokeWidth: 2.5,
               filter: "url(#glow)",
               cursor: "pointer",
             }}
@@ -286,6 +319,6 @@ const CategoryRadarChart: React.FC<RadarChartProps> = ({ radarData }) => {
       </ChartContainerBase>
     </ChartContainer>
   );
-};
+});
 
 export default CategoryRadarChart;
