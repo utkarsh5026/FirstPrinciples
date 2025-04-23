@@ -12,10 +12,11 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionsSheet from "./sidebar/SectionsSheet";
-import { useSectionStore, useCurrentDocumentStore } from "@/stores";
+import { useSectionStore } from "@/stores";
 import useMobile from "@/hooks/device/use-mobile";
 import Stats from "./stats/Stats";
 import { AnimatePresence } from "framer-motion";
+import { useCurrentDocument, useReadingHistory } from "@/hooks";
 
 interface FullscreenCardViewProps {
   className?: string;
@@ -52,17 +53,24 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   const startTimeRef = useRef<number>(Date.now());
 
-  const markdown = useCurrentDocumentStore((state) => state.markdown);
-  const sections = useCurrentDocumentStore((state) => state.sections);
-  const documentPath = useCurrentDocumentStore((state) => state.docPath);
-  const category = useCurrentDocumentStore((state) => state.category);
+  const { sections, documentPath, category, markdown, documentTitle } =
+    useCurrentDocument();
 
   const startReading = useSectionStore((state) => state.startReading);
   const endReading = useSectionStore((state) => state.endReading);
   const loadReadSections = useSectionStore((state) => state.loadReadSections);
+  const { addToHistory } = useReadingHistory();
+
+  const initializedRef = useRef(false);
 
   // Track read sections
   const [readSections, setReadSections] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    if (initializedRef.current) {
+      addToHistory(documentPath, documentTitle);
+    }
+  }, [documentPath, documentTitle, addToHistory]);
 
   /**
    * 📚 Load read sections when document changes
@@ -91,16 +99,20 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
    * 📚 Initializes the reading when the sections are loaded
    */
   useEffect(() => {
+    if (initializedRef.current) return;
+
     const initializeReading = async () => {
       if (sections.length === 0) return;
 
+      initializedRef.current = true;
       const currentSection = sections[currentIndex];
       await startReading(
         documentPath,
         currentSection.id,
         category,
         currentSection.wordCount,
-        currentSection.title
+        currentSection.title,
+        true
       );
       startTimeRef.current = Date.now();
     };
@@ -108,7 +120,10 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     initializeReading();
 
     return () => {
-      endReading();
+      if (initializedRef.current) {
+        endReading();
+        initializedRef.current = false;
+      }
     };
   }, [
     sections,
@@ -138,12 +153,12 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         newSection.id,
         category,
         newSection.wordCount,
-        newSection.title
+        newSection.title,
+        false
       );
 
       startTimeRef.current = Date.now();
 
-      // Update read sections
       setReadSections((prev) => {
         const updated = new Set(prev);
         updated.add(newSection.id);

@@ -8,6 +8,7 @@ import {
   useActivityMetrics,
   useWeekilyActivityMetrcis,
 } from "./analytics/use-activity-metrics";
+import { useCurrentDocument } from "./document/use-current-document";
 
 export {
   useCategoryMetrics,
@@ -18,4 +19,5 @@ export {
   useMobile,
   useActivityMetrics,
   useWeekilyActivityMetrcis,
+  useCurrentDocument,
 };

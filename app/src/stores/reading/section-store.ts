@@ -5,7 +5,6 @@ import {
 } from "@/services/reading/section-reading-service";
 import type { LoadingWithError } from "../base/base";
 import { parseError } from "@/utils/error";
-import { useHistoryStore } from "./history-store";
 import { sectionWorkerManager } from "@/infrastructure/workers";
 
 type ReadingState = {
@@ -44,7 +43,8 @@ interface StoreActions {
     sectionId: string,
     category: string,
     wordCount: number,
-    sectionTitle?: string
+    sectionTitle?: string,
+    addToHistoryEntry?: boolean
   ) => Promise<void>;
 
   endReading: () => Promise<void>;
@@ -138,7 +138,6 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
     ) => {
       try {
         const currentState = get().readingState;
-        const addToHistory = useHistoryStore.getState().addToReadingHistory;
 
         // End previous reading session if one exists
         if (currentState.currentSectionId && currentState.startTime) {
@@ -160,8 +159,6 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
               timeSpent,
               true
             );
-
-            await addToHistory(documentPath, sectionTitle);
           }
         }
 
