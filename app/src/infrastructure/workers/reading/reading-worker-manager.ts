@@ -37,7 +37,7 @@ export class ReadingWorkerManager extends BaseWorkerManager<ReadingWorkerAPI> {
   }
 
   protected createWorker(): Worker {
-    return new Worker(new URL("./analytics.worker.ts", import.meta.url), {
+    return new Worker(new URL("./reading.worker.ts", import.meta.url), {
       type: "module",
     });
   }

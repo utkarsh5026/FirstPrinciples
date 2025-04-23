@@ -1,5 +1,4 @@
 import { useHistoryStore } from "@/stores";
-import { withErrorHandling } from "@/utils/functions/error";
 import { useCallback } from "react";
 import { readingWorkerManager } from "@/infrastructure/workers";
 import { HistoryFilterOptions } from "@/services/reading/reading-history-filter";
@@ -27,9 +26,7 @@ const useReadingHistory = () => {
    */
   const addToHistory = useCallback(
     async (path: string, title: string) => {
-      withErrorHandling(async () => await addToReadingHistory(path, title), {
-        errorPrefix: "Failed to add to reading history",
-      });
+      return await addToReadingHistory(path, title);
     },
     [addToReadingHistory]
   );

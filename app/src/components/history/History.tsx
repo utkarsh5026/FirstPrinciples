@@ -24,8 +24,7 @@ interface HistoryProps {
  * with intuitive filtering, clean visuals, and elegant animations.
  */
 const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
-  const { history, refreshHistory } = useReadingHistory();
-  const [searchQuery, setSearchQuery] = useState("");
+  const { history, refreshHistory, filterHistory } = useReadingHistory();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedTimeframe, setSelectedTimeframe] = useState<TimeRange>("all");
   const [viewMode, setViewMode] = useState<"list" | "timeline">("list");
@@ -36,9 +35,6 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     refreshHistory();
   }, [refreshHistory]);
 
-  console.log(history);
-
-  // Get unique categories from reading history
   const categories = useMemo(() => {
     return [
       "all",
@@ -48,54 +44,19 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     ];
   }, [history]);
 
-  // Filter reading history based on search query, category, and timeframe
   useEffect(() => {
-    let filtered = [...history];
-
-    // Apply search filter
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        (item) =>
-          item.title.toLowerCase().includes(query) ??
-          item.path.toLowerCase().includes(query)
-      );
-    }
-
-    // Apply category filter
-    if (selectedCategory !== "all") {
-      filtered = filtered.filter((item) => {
-        const category = item.path.split("/")[0] || "uncategorized";
-        return category === selectedCategory;
+    const filter = async () => {
+      const filtered = await filterHistory({
+        category: selectedCategory,
+        timePeriod: selectedTimeframe,
       });
-    }
 
-    // Apply time filter
-    if (selectedTimeframe !== "all") {
-      const now = Date.now();
-      const oneDay = 24 * 60 * 60 * 1000;
+      setFilteredHistory(filtered);
+    };
+    filter();
+  }, [selectedCategory, selectedTimeframe, filterHistory]);
 
-      if (selectedTimeframe === "today") {
-        filtered = filtered.filter((item) => now - item.lastReadAt < oneDay);
-      } else if (selectedTimeframe === "week") {
-        filtered = filtered.filter(
-          (item) => now - item.lastReadAt < 7 * oneDay
-        );
-      } else if (selectedTimeframe === "month") {
-        filtered = filtered.filter(
-          (item) => now - item.lastReadAt < 30 * oneDay
-        );
-      }
-    }
-
-    // Sort by most recent
-    filtered.sort((a, b) => b.lastReadAt - a.lastReadAt);
-    setFilteredHistory(filtered);
-  }, [history, searchQuery, selectedCategory, selectedTimeframe]);
-
-  // Helper function to clear filters
   const clearFilters = () => {
-    setSearchQuery("");
     setSelectedCategory("all");
     setSelectedTimeframe("all");
   };
@@ -192,9 +153,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
           </div>
         </div>
 
-        {searchQuery ||
-        selectedCategory !== "all" ||
-        selectedTimeframe !== "all" ? (
+        {selectedCategory !== "all" || selectedTimeframe !== "all" ? (
           <div className="flex items-center justify-between mb-3 bg-primary/5 px-3 py-1.5 rounded-lg">
             <div className="flex items-center text-xs text-muted-foreground">
               <Filter className="h-3 w-3 mr-1" />
