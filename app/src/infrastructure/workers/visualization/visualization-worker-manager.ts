@@ -2,7 +2,7 @@ import {
   BaseWorkerManager,
   type WorkerManagerConfig,
 } from "@/infrastructure/workers/base/base-worker-manager";
-import type { ReadingHistoryItem } from "@/services/history";
+import { type ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import type {
   MonthlyData,
   MonthlyDocumentCounts,
