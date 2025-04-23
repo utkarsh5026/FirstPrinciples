@@ -7,14 +7,16 @@ import { useCategoryMetrics, useDocumentList } from "@/hooks";
 import { memo, useEffect, useMemo, useState } from "react";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import type { CategoryBreakdown } from "@/stores/categoryStore";
+import CategoryHorizontalBarChart from "./CategoryHorizontalBarChart";
 
 interface CategoryBreakDownProps {
   history: ReadingHistoryItem[];
   compact?: boolean;
+  typeOfChart?: "pie" | "bar";
 }
 
 const CategoryDistribution: React.FC<CategoryBreakDownProps> = memo(
-  ({ history, compact = false }) => {
+  ({ history, compact = false, typeOfChart = "pie" }) => {
     const [categoryBreakdown, setCategoryBreakdown] = useState<
       CategoryBreakdown[]
     >([]);
@@ -55,6 +57,30 @@ const CategoryDistribution: React.FC<CategoryBreakDownProps> = memo(
       },
     ];
 
+    const barChartData = useMemo(() => {
+      if (typeOfChart === "pie") return [];
+
+      const getDocumentCount = (category: string) => {
+        return documents.filter((document) =>
+          document.path.startsWith(category)
+        ).length;
+      };
+
+      return categoryBreakdown.map(({ category, count }) => {
+        const totalDocuments = getDocumentCount(category);
+        const percentage =
+          totalDocuments > 0 ? (count / totalDocuments) * 100 : 0;
+        return {
+          name: category,
+          displayName: category,
+          count,
+          totalDocuments,
+          path: category,
+          percentage,
+        };
+      });
+    }, [categoryBreakdown, typeOfChart, documents]);
+
     return (
       <CardContainer
         title="Categories Breakdown"
@@ -64,13 +90,19 @@ const CategoryDistribution: React.FC<CategoryBreakDownProps> = memo(
         variant="subtle"
         compact={compact}
       >
-        <div className="h-56 w-full">
+        {typeOfChart === "pie" ? (
           <CategoryDistributionPieChart
             descriptive={false}
             categoryBreakdown={categoryBreakdown}
             categoryMetrics={metrics}
           />
-        </div>
+        ) : (
+          <CategoryHorizontalBarChart
+            data={barChartData}
+            onSelectDocument={() => {}}
+            selectedSubcategory={null}
+          />
+        )}
       </CardContainer>
     );
   }
