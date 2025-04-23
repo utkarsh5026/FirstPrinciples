@@ -8,11 +8,13 @@ import RecentActivity from "./components/RecentActivity";
 import RecommendedReads from "./components/RecommendedReads";
 import UpcomingReads from "./components/UpcomingReads";
 import DailyChallenge from "./components/DailyChallenge";
-import { useDocumentStore, useHistoryStore } from "@/stores";
 import {
   WeeklyReadingPattern,
   CategoryDistribution,
+  TimeOfTheDayDistribution,
 } from "@/components/visualizations";
+import { useReadingHistory, useDocumentList } from "@/hooks";
+import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 
 interface OverviewProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -24,19 +26,18 @@ const Overview: React.FC<OverviewProps> = ({
   setShowAddTodoModal,
 }) => {
   const { currentTheme } = useTheme();
-  const readingHistory = useHistoryStore((state) => state.readingHistory);
-  const availableDocuments = useDocumentStore(
-    (state) => state.availableDocuments
-  );
+  const { history, filterHistory } = useReadingHistory();
+  const { documents } = useDocumentList();
   const [featuredDocs, setFeaturedDocs] = useState<FileMetadata[]>([]);
+  const [todayHistory, setTodayHistory] = useState<ReadingHistoryItem[]>([]);
 
   const [mostReadCategory, setMostReadCategory] = useState<string>("None yet");
 
   useEffect(() => {
     // Generate category data for pie chart
     const categories: Record<string, number> = {};
-    readingHistory.forEach((item) => {
-      const category = item.path.split("/")[0] || "uncategorized";
+    history.forEach((item) => {
+      const category = item.path.split("/")[0] ?? "uncategorized";
       categories[category] = (categories[category] || 0) + 1;
     });
 
@@ -62,7 +63,7 @@ const Overview: React.FC<OverviewProps> = ({
       { name: "Sun", count: 0 },
     ];
 
-    readingHistory.forEach((item) => {
+    history.forEach((item) => {
       const day = new Date(item.lastReadAt).getDay();
       // Convert from 0-6 (Sunday-Saturday) to weekdays array index
       const index = day === 0 ? 6 : day - 1;
@@ -70,18 +71,18 @@ const Overview: React.FC<OverviewProps> = ({
     });
 
     // Get featured/recommended documents
-    if (availableDocuments.length > 0) {
+    if (documents.length > 0) {
       // Try to recommend based on most read category
       let recommended: FileMetadata[] = [];
 
       if (categoriesArray.length > 0) {
         const topCategory = categoriesArray[0].name;
         // Find unread docs from top category
-        recommended = availableDocuments
+        recommended = documents
           .filter(
             (doc) =>
               doc.path.startsWith(topCategory) &&
-              !readingHistory.some((item) => item.path === doc.path)
+              !history.some((item) => item.path === doc.path)
           )
           .slice(0, 4);
       }
@@ -89,11 +90,11 @@ const Overview: React.FC<OverviewProps> = ({
       // If not enough recommended docs, add some random ones
       if (recommended.length < 4) {
         const remaining = 4 - recommended.length;
-        const otherDocs = availableDocuments
+        const otherDocs = documents
           .filter(
             (doc) =>
               !recommended.includes(doc) &&
-              !readingHistory.some((item) => item.path === doc.path)
+              !history.some((item) => item.path === doc.path)
           )
           .sort(() => 0.5 - Math.random())
           .slice(0, remaining);
@@ -103,10 +104,19 @@ const Overview: React.FC<OverviewProps> = ({
 
       setFeaturedDocs(recommended);
     }
-  }, [readingHistory, availableDocuments, currentTheme]);
+  }, [history, documents, currentTheme]);
+
+  useEffect(() => {
+    filterHistory({
+      category: "all",
+      timePeriod: "today",
+    }).then((history) => {
+      setTodayHistory(history);
+    });
+  }, [filterHistory]);
 
   const getNextMilestone = () => {
-    const completedCount = readingHistory.length;
+    const completedCount = history.length;
     if (completedCount < 5) return { target: 5, progress: completedCount };
     if (completedCount < 10) return { target: 10, progress: completedCount };
     if (completedCount < 20) return { target: 20, progress: completedCount };
@@ -115,6 +125,8 @@ const Overview: React.FC<OverviewProps> = ({
   };
 
   const nextMilestone = getNextMilestone();
+
+  console.dir(todayHistory, { depth: null });
 
   return (
     <div className="space-y-6">
@@ -128,8 +140,12 @@ const Overview: React.FC<OverviewProps> = ({
           </h3>
 
           <div className="flex flex-col gap-4">
-            <CategoryDistribution history={readingHistory} compact />
-            <WeeklyReadingPattern history={readingHistory} compact />
+            <CategoryDistribution history={history} compact />
+            <WeeklyReadingPattern history={history} compact />
+            <TimeOfTheDayDistribution
+              history={todayHistory}
+              typeOfChart="bar"
+            />
           </div>
         </div>
         <div className="space-y-4 flex flex-col gap-4">

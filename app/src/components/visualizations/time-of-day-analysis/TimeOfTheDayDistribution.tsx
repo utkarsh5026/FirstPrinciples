@@ -112,8 +112,8 @@ const TimeOfTheDayDistribution: React.FC<TimeOfTheDayDistributionProps> = ({
       night: 0, // 9pm-4am
     };
 
-    readingByHour.forEach(({ period }) => {
-      periodTotals[period as keyof typeof periodTotals] += 1;
+    readingByHour.forEach(({ period, count }) => {
+      periodTotals[period as keyof typeof periodTotals] += count;
     });
 
     const preferredPeriod = Object.entries(periodTotals).reduce(
