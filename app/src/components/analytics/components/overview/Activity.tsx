@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { LineChart } from "lucide-react";
 import { useHistoryStore } from "@/stores";
 import { getStreakEmoji } from "../../utils";
-import { DayOfMonth } from "@/components/insights";
+import { DailyActivityInsight } from "@/components/visualizations";
 import type { WeeklyActivity } from "@/services/analytics/activity-analyzer";
 import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";
 type Activity = {
@@ -155,7 +155,7 @@ const Activity: React.FC = () => {
               {`(${currentMonthHistory.length} documents read) 😎`}
             </span>
           </h5>
-          <DayOfMonth history={currentMonthHistory} />
+          <DailyActivityInsight history={currentMonthHistory} />
         </div>
       </Card>
     </div>

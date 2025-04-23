@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { WeekdayPattern } from "./WeeklyPattern";
-import TimeOfDayInsightCard from "./TimeoftheDayInsights";
-import { ProgressTrendInsightCard } from "./ProgressTrendInsights";
 import { useHistoryStore } from "@/stores";
-import DayOfMonthActivityInsight from "../../../insights/DayofMonth";
 import CategoryCoverageMap from "@/components/analytics/components/insights/CategoryCoverage";
-
+import {
+  TimeOfTheDayDistribution,
+  WeeklyReadingPattern,
+  ReadingProgress,
+  DailyActivityInsight,
+} from "@/components/visualizations";
 /**
  * EnhancedInsights - Main component that combines all insight cards
  *
@@ -28,10 +29,10 @@ const Insights = () => {
       >
         <div className="grid grid-cols-1  gap-4 md:gap-6">
           <CategoryCoverageMap compact={false} />
-          <WeekdayPattern history={history} />
-          <TimeOfDayInsightCard history={history} />
-          <ProgressTrendInsightCard />
-          <DayOfMonthActivityInsight history={history} />
+          <WeeklyReadingPattern history={history} />
+          <TimeOfTheDayDistribution history={history} typeOfChart="area" />
+          <ReadingProgress history={history} />
+          <DailyActivityInsight history={history} />
         </div>
       </motion.div>
     </div>

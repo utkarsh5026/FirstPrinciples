@@ -1,29 +1,17 @@
 import React from "react";
 import ReadingProgress from "./ReadingProgress";
-import CategoryBreakDown from "./CategoryBreakdown";
 import ReadingTrends from "./ReadingTrends";
-import { useActivityStore, useCategoryStore, useHistoryStore } from "@/stores";
 import Activity from "./Activity";
 import HeatMapView from "../timeline/HeatMapView";
 import CategoryCoverageMap from "@/components/analytics/components/insights/CategoryCoverage";
-
-export interface ReadingChallenge {
-  id: string;
-  title: string;
-  description: string;
-  goal: number;
-  progress: number;
-  reward: number;
-  expiresAt: number | null;
-  completed: boolean;
-}
+import { useReadingHistory } from "@/hooks";
+import {
+  CategoryDistribution,
+  TimeOfTheDayDistribution,
+} from "@/components/visualizations";
 
 const AnalyticsOverview: React.FC = () => {
-  const readingHistory = useHistoryStore((state) => state.readingHistory);
-  const categoryBreakdown = useCategoryStore(
-    (state) => state.categoryBreakdown
-  );
-  const readingByHour = useActivityStore((state) => state.totalReadingByHour);
+  const { history } = useReadingHistory();
 
   return (
     <div className="space-y-6">
@@ -38,7 +26,7 @@ const AnalyticsOverview: React.FC = () => {
 
         <div className="space-y-4 flex flex-col gap-4">
           <HeatMapView
-            filteredHistory={readingHistory}
+            filteredHistory={history}
             usePrevNextButtons={false}
             compact={true}
           />
@@ -47,10 +35,10 @@ const AnalyticsOverview: React.FC = () => {
         </div>
       </div>
 
-      <CategoryBreakDown
-        categoryBreakdown={categoryBreakdown}
-        readingByHour={readingByHour}
-      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <CategoryDistribution history={history} compact />
+        <TimeOfTheDayDistribution history={history} typeOfChart="bar" />
+      </div>
 
       <Activity />
     </div>
