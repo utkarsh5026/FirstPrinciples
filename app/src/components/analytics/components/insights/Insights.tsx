@@ -5,6 +5,8 @@ import {
   ReadingProgress,
   DailyActivityInsight,
   CategoryCoverage,
+  ReadingJourneyMap,
+  CategoryDistribution,
 } from "@/components/visualizations";
 import Recommendations from "./Recommendation";
 /**
@@ -17,12 +19,16 @@ const Insights = () => {
   const { history } = useReadingHistory();
 
   return (
-    <div className="grid grid-cols-1  gap-4 md:gap-6">
-      <CategoryCoverage history={history} />
-      <WeeklyReadingPattern history={history} />
-      <TimeOfTheDayDistribution history={history} typeOfChart="area" />
-      <ReadingProgress history={history} />
-      <DailyActivityInsight history={history} />
+    <div className="flex flex-col gap-4 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <CategoryCoverage history={history} />
+        <WeeklyReadingPattern history={history} />
+        <TimeOfTheDayDistribution history={history} typeOfChart="area" />
+        <ReadingProgress history={history} />
+        <DailyActivityInsight history={history} />
+        <CategoryDistribution history={history} typeOfChart="pie" />
+      </div>
+      <ReadingJourneyMap />
       <Recommendations
         readingHistory={history}
         radarData={[]}
