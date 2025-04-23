@@ -213,38 +213,6 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* 📱 Mobile tab heading with add button - visible only on mobile */}
-      <div className="md:hidden mb-4 flex items-center justify-between">
-        <h2 className="text-xl font-medium flex items-center">
-          {activeTab === "overview" && (
-            <LayoutDashboard className="h-5 w-5 mr-2 text-primary" />
-          )}
-          {activeTab === "history" && (
-            <Clock className="h-5 w-5 mr-2 text-primary" />
-          )}
-          {activeTab === "todo" && (
-            <ListTodo className="h-5 w-5 mr-2 text-primary" />
-          )}
-          {activeTab === "analytics" && (
-            <BarChart className="h-5 w-5 mr-2 text-primary" />
-          )}
-          {activeTab === "overview" && "Overview"}
-          {activeTab === "history" && "Reading History"}
-          {activeTab === "todo" && "Reading List"}
-          {activeTab === "analytics" && "Analytics"}
-        </h2>
-
-        {/* ➕ Add button for mobile */}
-        {activeTab === "todo" && (
-          <Button
-            className="h-9 w-9 p-0 rounded-full bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20"
-            onClick={() => setShowFileDialog(true)}
-          >
-            <Plus className="h-4 w-4" />
-          </Button>
-        )}
-      </div>
-
       {/* 📑 Tab Content with Suspense for lazy loading */}
       <div className="pt-2">
         <Tabs value={activeTab} className="w-full">

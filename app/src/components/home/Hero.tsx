@@ -1,18 +1,15 @@
+import React, { useEffect, useState } from "react";
 import { Sparkles, FileText, CheckCircle2, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useTheme } from "@/hooks/ui/use-theme";
-import { useEffect, useState } from "react";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
 import { useReadingList } from "@/hooks";
 
 /**
- * 🌟 Hero Component
+ * 🌟 Enhanced Hero Component
  *
- * A beautiful dashboard hero section that welcomes the user with a personalized
- * greeting based on time of day and displays their learning progress.
- *
- * Features a gradient background, completion stats, and activity badges to
- * encourage continued learning and engagement. ✨
+ * A beautifully redesigned hero section with improved visual design,
+ * better readability, and enhanced mobile optimization.
  */
 const Hero: React.FC = () => {
   const [greeting, setGreeting] = useState("Hello");
@@ -23,10 +20,6 @@ const Hero: React.FC = () => {
 
   /**
    * 🕰️ Time-based Greeting Generator
-   *
-   * Creates a friendly personalized greeting based on the time of day
-   * with a cute heart emoji to make the user feel special and loved.
-   * Updates in real-time with the current time in 12-hour format.
    */
   useEffect(() => {
     const createGreetingAccordingToTime = () => {
@@ -47,20 +40,39 @@ const Hero: React.FC = () => {
     };
 
     createGreetingAccordingToTime();
+    // Update time every minute
+    const interval = setInterval(createGreetingAccordingToTime, 60000);
+    return () => clearInterval(interval);
   }, []);
 
   const badges = [
-    { icon: <FileText />, label: "Documents read", value: documents.read },
-    { icon: <CheckCircle2 />, label: "Completed", value: completed.length },
-    { icon: <Clock />, label: "To read", value: pending.length },
-    { icon: <Sparkles />, label: "Day streak", value: streak.currentStreak },
+    {
+      icon: <FileText className="h-3.5 w-3.5" />,
+      label: "Documents read",
+      value: documents.read,
+    },
+    {
+      icon: <CheckCircle2 className="h-3.5 w-3.5" />,
+      label: "Completed",
+      value: completed.length,
+    },
+    {
+      icon: <Clock className="h-3.5 w-3.5" />,
+      label: "To read",
+      value: pending.length,
+    },
+    {
+      icon: <Sparkles className="h-3.5 w-3.5" />,
+      label: "Day streak",
+      value: streak.currentStreak,
+    },
   ];
 
   return (
-    <div className="relative overflow-hidden rounded-4xl md:rounded-8xl mb-6 md:mb-8 shadow-lg shadow-primary/30">
-      <GradientBackground />
+    <div className="relative overflow-hidden rounded-3xl md:rounded-4xl mb-6 md:mb-8 shadow-lg border border-primary/10">
+      {/* <GradientBackground /> */}
 
-      <div className="relative z-10 px-5 py-6 md:px-8 md:py-10">
+      <div className="relative z-10 px-5 py-6 md:px-8 md:py-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
           <Greeting greeting={greeting} time={time} />
 
@@ -76,10 +88,10 @@ const Hero: React.FC = () => {
             <Badge
               key={label}
               variant="outline"
-              className="px-3 py-1.5 flex items-center backdrop-blur-sm rounded-2xl border border-primary/10 bg-primary/10 text-primary"
+              className="px-3 py-1.5 flex items-center gap-2 backdrop-blur-sm rounded-2xl border border-primary/10 bg-primary/10 text-primary hover:bg-primary/20 transition-colors cursor-default"
             >
               {icon}
-              {value} {label}
+              <span className="font-medium">{value}</span> {label}
             </Badge>
           ))}
         </div>
@@ -95,10 +107,6 @@ interface GreetingProps {
 
 /**
  * 👋 Greeting Component
- *
- * Displays a warm welcome message with the current time and a sparkly icon.
- * Creates a personal connection with the user through friendly text and
- * an inviting dashboard title that encourages learning.
  */
 const Greeting: React.FC<GreetingProps> = ({ greeting, time }) => {
   return (
@@ -132,10 +140,6 @@ interface CompletionPercentageProps {
 
 /**
  * 📊 Completion Percentage Component
- *
- * Shows a beautiful circular progress indicator that visualizes how much
- * of the available content the user has completed. The progress circle
- * fills up as the user reads more documents, providing satisfying visual feedback.
  */
 const CompletionPercentage: React.FC<CompletionPercentageProps> = ({
   readDocuments,
@@ -145,23 +149,66 @@ const CompletionPercentage: React.FC<CompletionPercentageProps> = ({
   const completionPercentage =
     Math.round((readDocuments / availableDocuments) * 100) || 0;
 
+  // Create segments for the circle
+  const segments = [];
+  const segmentCount = 36; // For a smooth circle
+  for (let i = 0; i < segmentCount; i++) {
+    const segmentPercentage = (i / segmentCount) * 100;
+    segments.push({
+      filled: segmentPercentage < completionPercentage,
+      rotation: (i / segmentCount) * 360,
+    });
+  }
+
   return (
-    <div className="bg-card/30 backdrop-blur-md rounded-4xl border border-primary/10 p-3 md:p-4 w-full md:w-auto md:min-w-64 ">
+    <div className="bg-card/30 backdrop-blur-md rounded-2xl border border-primary/10 p-4 w-full md:w-auto md:min-w-56 transition-all hover:shadow-md hover:border-primary/20">
       <div className="flex items-center">
-        <div
-          className="w-12 h-12 rounded-full flex-shrink-0 border-4 bg-background flex items-center justify-center relative"
-          style={{ borderColor: `${currentTheme.primary}30` }}
-        >
-          <div
-            className="absolute inset-0 rounded-full"
-            style={{
-              background: `conic-gradient(${currentTheme.primary} ${completionPercentage}%, transparent 0)`,
-              opacity: 0.2,
-            }}
-          ></div>
-          <span className="text-sm font-medium">{completionPercentage}%</span>
+        <div className="relative w-14 h-14 rounded-full flex-shrink-0 flex items-center justify-center">
+          {/* Background circle */}
+          <div className="absolute inset-0 rounded-full border-4 border-primary/10"></div>
+
+          {/* Progress circle with gradient */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 36 36">
+            <defs>
+              <linearGradient
+                id="progressGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop
+                  offset="0%"
+                  stopColor={`${currentTheme.primary}`}
+                  stopOpacity="0.8"
+                />
+                <stop
+                  offset="100%"
+                  stopColor={`${currentTheme.primary}`}
+                  stopOpacity="0.4"
+                />
+              </linearGradient>
+            </defs>
+            <circle
+              cx="18"
+              cy="18"
+              r="15.5"
+              fill="none"
+              stroke="url(#progressGradient)"
+              strokeWidth="3"
+              strokeDasharray={`${completionPercentage * 0.9425} 100`}
+              strokeLinecap="round"
+              transform="rotate(-90 18 18)"
+            />
+          </svg>
+
+          {/* Percentage text */}
+          <span className="text-sm font-medium z-10">
+            {completionPercentage}%
+          </span>
         </div>
-        <div className="ml-3">
+
+        <div className="ml-4">
           <div className="text-sm font-medium">
             {readDocuments} of {availableDocuments}
           </div>
@@ -169,39 +216,6 @@ const CompletionPercentage: React.FC<CompletionPercentageProps> = ({
         </div>
       </div>
     </div>
-  );
-};
-
-/**
- * ✨ Gradient Background Component
- *
- * Creates a magical, animated gradient background with subtle patterns
- * and glowing orbs that bring the dashboard to life. The colors adapt
- * to the user's selected theme for a cohesive and delightful experience.
- */
-const GradientBackground: React.FC = () => {
-  const { currentTheme } = useTheme();
-  return (
-    <>
-      <div
-        className="absolute inset-0 bg-gradient-to-br opacity-90 animate-gradient-slow"
-        style={{
-          backgroundImage: `linear-gradient(120deg, ${currentTheme.primary}20, ${currentTheme.background}, ${currentTheme.primary}20)`,
-        }}
-      />
-
-      <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary opacity-10 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-16 h-16 md:w-24 md:h-24 rounded-full bg-primary opacity-5 blur-2xl"></div>
-
-      {/* Mesh grid pattern overlay (subtle) */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `radial-gradient(${currentTheme.primary}60 1px, transparent 1px)`,
-          backgroundSize: "20px 20px",
-        }}
-      ></div>
-    </>
   );
 };
 
