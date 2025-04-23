@@ -5,7 +5,7 @@ import {
   BarChart3,
   PieChart as PieChartIcon,
 } from "lucide-react";
-import AnalyticsHeader from "./header/AnalyticsHeader";
+
 import Insights from "./components/insights";
 import AnalyticsOverview from "./components/overview/AnnalyticsOverview";
 import ReadingTimeline from "./components/timeline/ReadingTimeline";
@@ -49,36 +49,31 @@ const AnalyticsPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("overview");
 
   return (
-    <div className="space-y-6">
-      <AnalyticsHeader />
+    <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+      <TabsList className="w-full justify-start mb-6 overflow-x-auto">
+        {tabs.map(({ title, icon }) => (
+          <TabsTrigger
+            key={title}
+            value={title.toLowerCase()}
+            className="flex items-center gap-1 text-xs sm:text-sm"
+          >
+            {icon} {title}
+          </TabsTrigger>
+        ))}
+      </TabsList>
 
-      {/* Tabs Navigation */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="w-full justify-start mb-6 overflow-x-auto">
-          {tabs.map(({ title, icon }) => (
-            <TabsTrigger
-              key={title}
-              value={title.toLowerCase()}
-              className="flex items-center gap-1 text-xs sm:text-sm"
-            >
-              {icon} {title}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+      <TabsContent value="overview">
+        <AnalyticsOverview />
+      </TabsContent>
 
-        <TabsContent value="overview">
-          <AnalyticsOverview />
-        </TabsContent>
+      <TabsContent value="insights">
+        <Insights />
+      </TabsContent>
 
-        <TabsContent value="insights">
-          <Insights />
-        </TabsContent>
-
-        <TabsContent value="activity">
-          <ReadingTimeline />
-        </TabsContent>
-      </Tabs>
-    </div>
+      <TabsContent value="activity">
+        <ReadingTimeline />
+      </TabsContent>
+    </Tabs>
   );
 };
 
