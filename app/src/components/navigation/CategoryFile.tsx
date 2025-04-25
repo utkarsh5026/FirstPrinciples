@@ -31,7 +31,7 @@ const CategoryFile = ({
     <button
       key={file.path}
       className={cn(
-        "flex items-center w-full rounded-md text-sm cursor-pointer transition-colors py-2 px-2 my-1",
+        "flex items-start w-full rounded-md text-sm cursor-pointer transition-colors py-2 px-2 my-1",
         "text-left focus:outline-none focus:ring-1 focus:ring-primary/30",
         isCurrentFile
           ? "bg-primary/15 text-primary font-medium"
@@ -43,21 +43,19 @@ const CategoryFile = ({
       style={{ paddingLeft: `${(depth + 1) * 16}px` }}
       onClick={() => handleSelectFile(file.path)}
     >
-      <div className="flex flex-col min-w-0">
-        <span className="truncate break-words">
+      <div className="flex flex-col min-w-0 flex-grow">
+        <span className="break-words">
           {fileNumber}. {file.title}
         </span>
 
         {/* Show description if enabled */}
         {showDescriptions && (
-          <span className="text-xs text-muted-foreground truncate">
-            {statusText}
-          </span>
+          <span className="text-xs text-muted-foreground">{statusText}</span>
         )}
       </div>
 
       {/* Status indicator */}
-      <div className="ml-auto">{fileStatusIcon}</div>
+      <div className="ml-auto flex-shrink-0 mt-0.5">{fileStatusIcon}</div>
     </button>
   );
 };

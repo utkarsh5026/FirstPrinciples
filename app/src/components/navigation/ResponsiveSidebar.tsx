@@ -29,7 +29,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   sidebarOpen,
   setSidebarOpen,
 }) => {
-  // State variables
   const [categories, setCategories] = useState<Category[]>([]);
   const [rootFiles, setRootFiles] = useState<FileMetadata[]>([]);
   const [loading, setLoading] = useState(true);
@@ -165,7 +164,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
       <SheetContent
         side="left"
-        className="p-0 h-full border-r-0 inset-0 max-w-none"
+        className="p-0 h-full border-r-0 inset-0 max-w-none w-screen"
       >
         <SheetHeader className="p-0">
           <Header

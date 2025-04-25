@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import ResponsiveSidebar from "@/components/navigation/CategoryNavigation";
+import ResponsiveSidebar from "@/components/navigation/ResponsiveSidebar";
 import LoadingAnimation from "@/components/init/LoadingAnimation";
 import AppHeader from "@/components/layout/AppHeader";
 import AppWrapper from "@/components/welcome/Wrapper";
