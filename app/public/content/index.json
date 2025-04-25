@@ -843,6 +843,574 @@
       "files": []
     },
     {
+      "id": "go",
+      "name": "Go",
+      "icon": "Folder",
+      "subcategories": [
+        {
+          "id": "advanced_concurrency_patterns",
+          "name": "Advanced Concurrency Patterns",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/advanced_concurrency_patterns/bounded_concurrency_patterns.md",
+              "title": "Bounded Concurrency Patterns",
+              "description": "Documentation for Bounded Concurrency Patterns"
+            },
+            {
+              "path": "go/advanced_concurrency_patterns/broadcast_and_subscription_models.md",
+              "title": "Broadcast And Subscription Models",
+              "description": "Documentation for Broadcast And Subscription Models"
+            },
+            {
+              "path": "go/advanced_concurrency_patterns/concurrent_map_implementations.md",
+              "title": "Concurrent Map Implementations",
+              "description": "Documentation for Concurrent Map Implementations"
+            },
+            {
+              "path": "go/advanced_concurrency_patterns/context_package_for_cancellation.md",
+              "title": "Context Package For Cancellation",
+              "description": "Documentation for Context Package For Cancellation"
+            },
+            {
+              "path": "go/advanced_concurrency_patterns/futures_and_promises_in_go.md",
+              "title": "Futures And Promises In Go",
+              "description": "Documentation for Futures And Promises In Go"
+            },
+            {
+              "path": "go/advanced_concurrency_patterns/pipeline_construction_for_data_processing.md",
+              "title": "Pipeline Construction For Data Processing",
+              "description": "Documentation for Pipeline Construction For Data Processing"
+            },
+            {
+              "path": "go/advanced_concurrency_patterns/rate_limiting_implementations.md",
+              "title": "Rate Limiting Implementations",
+              "description": "Documentation for Rate Limiting Implementations"
+            },
+            {
+              "path": "go/advanced_concurrency_patterns/resource_pooling_patterns.md",
+              "title": "Resource Pooling Patterns",
+              "description": "Documentation for Resource Pooling Patterns"
+            },
+            {
+              "path": "go/advanced_concurrency_patterns/timeout_and_deadline_management.md",
+              "title": "Timeout And Deadline Management",
+              "description": "Documentation for Timeout And Deadline Management"
+            },
+            {
+              "path": "go/advanced_concurrency_patterns/worker_pool_implementation_strategies.md",
+              "title": "Worker Pool Implementation Strategies",
+              "description": "Documentation for Worker Pool Implementation Strategies"
+            }
+          ]
+        },
+        {
+          "id": "channels",
+          "name": "Channels",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/channels/cancellation_propagation_via_channels.md",
+              "title": "Cancellation Propagation Via Channels",
+              "description": "Documentation for Cancellation Propagation Via Channels"
+            },
+            {
+              "path": "go/channels/channel_based_semaphores.md",
+              "title": "Channel Based Semaphores",
+              "description": "Documentation for Channel Based Semaphores"
+            },
+            {
+              "path": "go/channels/channel_closing_semantics.md",
+              "title": "Channel Closing Semantics",
+              "description": "Documentation for Channel Closing Semantics"
+            },
+            {
+              "path": "go/channels/channel_ownership_principles.md",
+              "title": "Channel Ownership Principles",
+              "description": "Documentation for Channel Ownership Principles"
+            },
+            {
+              "path": "go/channels/fan_out_fan_in_patterns.md",
+              "title": "Fan Out Fan In Patterns",
+              "description": "Documentation for Fan Out Fan In Patterns"
+            },
+            {
+              "path": "go/channels/go_channels.md",
+              "title": "Go Channels",
+              "description": "Documentation for Go Channels"
+            },
+            {
+              "path": "go/channels/go_directional_channels.md",
+              "title": "Go Directional Channels",
+              "description": "Documentation for Go Directional Channels"
+            },
+            {
+              "path": "go/channels/implementing_backpressure_with_channels.md",
+              "title": "Implementing Backpressure With Channels",
+              "description": "Documentation for Implementing Backpressure With Channels"
+            },
+            {
+              "path": "go/channels/implementing_timeouts_with_channels.md",
+              "title": "Implementing Timeouts With Channels",
+              "description": "Documentation for Implementing Timeouts With Channels"
+            },
+            {
+              "path": "go/channels/nil_channels_and_their_behavior.md",
+              "title": "Nil Channels And Their Behavior",
+              "description": "Documentation for Nil Channels And Their Behavior"
+            }
+          ]
+        },
+        {
+          "id": "concurrency_foundations",
+          "name": "Concurrency Foundations",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/concurrency_foundations/buffered_vs_unbuffered_channels.md",
+              "title": "Buffered Vs Unbuffered Channels",
+              "description": "Documentation for Buffered Vs Unbuffered Channels"
+            },
+            {
+              "path": "go/concurrency_foundations/concurrency_safety_fundamentals.md",
+              "title": "Concurrency Safety Fundamentals",
+              "description": "Documentation for Concurrency Safety Fundamentals"
+            },
+            {
+              "path": "go/concurrency_foundations/concurrency_vs_parallelism.md",
+              "title": "Concurrency Vs Parallelism",
+              "description": "Documentation for Concurrency Vs Parallelism"
+            },
+            {
+              "path": "go/concurrency_foundations/goroutine_creation_and_lifecycle.md",
+              "title": "Goroutine Creation And Lifecycle",
+              "description": "Documentation for Goroutine Creation And Lifecycle"
+            },
+            {
+              "path": "go/concurrency_foundations/goroutine_memory_consumption.md",
+              "title": "Goroutine Memory Consumption",
+              "description": "Documentation for Goroutine Memory Consumption"
+            },
+            {
+              "path": "go/concurrency_foundations/go_channels.md",
+              "title": "Go Channels",
+              "description": "Documentation for Go Channels"
+            },
+            {
+              "path": "go/concurrency_foundations/go_scheduler_and_work_stealing.md",
+              "title": "Go Scheduler And Work Stealing",
+              "description": "Documentation for Go Scheduler And Work Stealing"
+            },
+            {
+              "path": "go/concurrency_foundations/introduction_to_goroutines.md",
+              "title": "Introduction To Goroutines",
+              "description": "Documentation for Introduction To Goroutines"
+            },
+            {
+              "path": "go/concurrency_foundations/select_statement_for_channel_operations.md",
+              "title": "Select Statement For Channel Operations",
+              "description": "Documentation for Select Statement For Channel Operations"
+            }
+          ]
+        },
+        {
+          "id": "concurrency_safety",
+          "name": "Concurrency Safety",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/concurrency_safety/data_races_vs_race_conditions.md",
+              "title": "Data Races Vs Race Conditions",
+              "description": "Documentation for Data Races Vs Race Conditions"
+            },
+            {
+              "path": "go/concurrency_safety/deadlock_detection_and_prevention.md",
+              "title": "Deadlock Detection And Prevention",
+              "description": "Documentation for Deadlock Detection And Prevention"
+            },
+            {
+              "path": "go/concurrency_safety/immutability_as_a_concurrency_strategy.md",
+              "title": "Immutability As A Concurrency Strategy",
+              "description": "Documentation for Immutability As A Concurrency Strategy"
+            },
+            {
+              "path": "go/concurrency_safety/livelock_detection_and_prevention.md",
+              "title": "Livelock Detection And Prevention",
+              "description": "Documentation for Livelock Detection And Prevention"
+            },
+            {
+              "path": "go/concurrency_safety/race_conditions_and_detection.md",
+              "title": "Race Conditions And Detection",
+              "description": "Documentation for Race Conditions And Detection"
+            },
+            {
+              "path": "go/concurrency_safety/starvation_issues_in_concurrent_systems.md",
+              "title": "Starvation Issues In Concurrent Systems",
+              "description": "Documentation for Starvation Issues In Concurrent Systems"
+            },
+            {
+              "path": "go/concurrency_safety/synchronization_boundary_design.md",
+              "title": "Synchronization Boundary Design",
+              "description": "Documentation for Synchronization Boundary Design"
+            },
+            {
+              "path": "go/concurrency_safety/thread_safe_data_structure_design.md",
+              "title": "Thread Safe Data Structure Design",
+              "description": "Documentation for Thread Safe Data Structure Design"
+            },
+            {
+              "path": "go/concurrency_safety/using_the_race_detector_effectively.md",
+              "title": "Using The Race Detector Effectively",
+              "description": "Documentation for Using The Race Detector Effectively"
+            },
+            {
+              "path": "go/concurrency_safety/verification_approaches_for_concurrent_code.md",
+              "title": "Verification Approaches For Concurrent Code",
+              "description": "Documentation for Verification Approaches For Concurrent Code"
+            }
+          ]
+        },
+        {
+          "id": "core",
+          "name": "Core",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/core/arrays_slices_and_their_internal_structure.md",
+              "title": "Arrays Slices And Their Internal Structure",
+              "description": "Documentation for Arrays Slices And Their Internal Structure"
+            },
+            {
+              "path": "go/core/defer_panic_and_recover_mechanisms.md",
+              "title": "Defer Panic And Recover Mechanisms",
+              "description": "Documentation for Defer Panic And Recover Mechanisms"
+            },
+            {
+              "path": "go/core/garbage_collection_principles.md",
+              "title": "Garbage Collection Principles",
+              "description": "Documentation for Garbage Collection Principles"
+            },
+            {
+              "path": "go/core/interfaces_and_polymorphism.md",
+              "title": "Interfaces And Polymorphism",
+              "description": "Documentation for Interfaces And Polymorphism"
+            },
+            {
+              "path": "go/core/maps_implementation.md",
+              "title": "Maps Implementation",
+              "description": "Documentation for Maps Implementation"
+            },
+            {
+              "path": "go/core/methods_and_receiver_types.md",
+              "title": "Methods And Receiver Types",
+              "description": "Documentation for Methods And Receiver Types"
+            },
+            {
+              "path": "go/core/pointers_and_memory_management.md",
+              "title": "Pointers And Memory Management",
+              "description": "Documentation for Pointers And Memory Management"
+            },
+            {
+              "path": "go/core/structs_and_custom_types.md",
+              "title": "Structs And Custom Types",
+              "description": "Documentation for Structs And Custom Types"
+            },
+            {
+              "path": "go/core/type_assertions_and_type_switches.md",
+              "title": "Type Assertions And Type Switches",
+              "description": "Documentation for Type Assertions And Type Switches"
+            }
+          ]
+        },
+        {
+          "id": "fundamentals",
+          "name": "Fundamentals",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/fundamentals/basic_syntax_and_language_structure.md",
+              "title": "Basic Syntax And Language Structure",
+              "description": "Documentation for Basic Syntax And Language Structure"
+            },
+            {
+              "path": "go/fundamentals/control_structures.md",
+              "title": "Control Structures",
+              "description": "Documentation for Control Structures"
+            },
+            {
+              "path": "go/fundamentals/error_handling_fundamentals.md",
+              "title": "Error Handling Fundamentals",
+              "description": "Documentation for Error Handling Fundamentals"
+            },
+            {
+              "path": "go/fundamentals/go_compilation_and_execution_model.md",
+              "title": "Go Compilation And Execution Model",
+              "description": "Documentation for Go Compilation And Execution Model"
+            },
+            {
+              "path": "go/fundamentals/go_development_environment.md",
+              "title": "Go Development Environment",
+              "description": "Documentation for Go Development Environment"
+            },
+            {
+              "path": "go/fundamentals/packages_and_imports.md",
+              "title": "Packages And Imports",
+              "description": "Documentation for Packages And Imports"
+            },
+            {
+              "path": "go/fundamentals/philosophy_and_design_principles.md",
+              "title": "Philosophy And Design Principles",
+              "description": "Documentation for Philosophy And Design Principles"
+            },
+            {
+              "path": "go/fundamentals/variables_and_basic_data_types.md",
+              "title": "Variables And Basic Data Types",
+              "description": "Documentation for Variables And Basic Data Types"
+            }
+          ]
+        },
+        {
+          "id": "goroutine_patterns",
+          "name": "Goroutine Patterns",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/goroutine_patterns/avoiding_goroutine_leaks.md",
+              "title": "Avoiding Goroutine Leaks",
+              "description": "Documentation for Avoiding Goroutine Leaks"
+            },
+            {
+              "path": "go/goroutine_patterns/balancing_goroutine_workloads.md",
+              "title": "Balancing Goroutine Workloads",
+              "description": "Documentation for Balancing Goroutine Workloads"
+            },
+            {
+              "path": "go/goroutine_patterns/benchmarking_goroutine_performance.md",
+              "title": "Benchmarking Goroutine Performance",
+              "description": "Documentation for Benchmarking Goroutine Performance"
+            },
+            {
+              "path": "go/goroutine_patterns/capturing_variables_in_goroutines.md",
+              "title": "Capturing Variables In Goroutines",
+              "description": "Documentation for Capturing Variables In Goroutines"
+            },
+            {
+              "path": "go/goroutine_patterns/controlling_goroutine_execution_order.md",
+              "title": "Controlling Goroutine Execution Order",
+              "description": "Documentation for Controlling Goroutine Execution Order"
+            },
+            {
+              "path": "go/goroutine_patterns/debugging_goroutine_issues.md",
+              "title": "Debugging Goroutine Issues",
+              "description": "Documentation for Debugging Goroutine Issues"
+            },
+            {
+              "path": "go/goroutine_patterns/goroutine_creation_best_practices.md",
+              "title": "Goroutine Creation Best Practices",
+              "description": "Documentation for Goroutine Creation Best Practices"
+            },
+            {
+              "path": "go/goroutine_patterns/graceful_goroutine_termination.md",
+              "title": "Graceful Goroutine Termination",
+              "description": "Documentation for Graceful Goroutine Termination"
+            },
+            {
+              "path": "go/goroutine_patterns/parent_child_goroutine_relationships.md",
+              "title": "Parent Child Goroutine Relationships",
+              "description": "Documentation for Parent Child Goroutine Relationships"
+            },
+            {
+              "path": "go/goroutine_patterns/stack_traces_and_goroutine_forensics.md",
+              "title": "Stack Traces And Goroutine Forensics",
+              "description": "Documentation for Stack Traces And Goroutine Forensics"
+            }
+          ]
+        },
+        {
+          "id": "memory_model",
+          "name": "Memory Model",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/memory_model/atomicity_visibility_and_ordering_guarantees.md",
+              "title": "Atomicity Visibility And Ordering Guarantees",
+              "description": "Documentation for Atomicity Visibility And Ordering Guarantees"
+            },
+            {
+              "path": "go/memory_model/cache_coherence_implications.md",
+              "title": "Cache Coherence Implications",
+              "description": "Documentation for Cache Coherence Implications"
+            },
+            {
+              "path": "go/memory_model/go_memory_model_specification.md",
+              "title": "Go Memory Model Specification",
+              "description": "Documentation for Go Memory Model Specification"
+            },
+            {
+              "path": "go/memory_model/happens_before_relationships.md",
+              "title": "Happens Before Relationships",
+              "description": "Documentation for Happens Before Relationships"
+            },
+            {
+              "path": "go/memory_model/lock_free_programming_considerations.md",
+              "title": "Lock Free Programming Considerations",
+              "description": "Documentation for Lock Free Programming Considerations"
+            },
+            {
+              "path": "go/memory_model/memory_fences_and_barriers_in_go.md",
+              "title": "Memory Fences And Barriers In Go",
+              "description": "Documentation for Memory Fences And Barriers In Go"
+            },
+            {
+              "path": "go/memory_model/memory_model_edge_cases_and_pitfalls.md",
+              "title": "Memory Model Edge Cases And Pitfalls",
+              "description": "Documentation for Memory Model Edge Cases And Pitfalls"
+            },
+            {
+              "path": "go/memory_model/memory_reordering_effects.md",
+              "title": "Memory Reordering Effects",
+              "description": "Documentation for Memory Reordering Effects"
+            },
+            {
+              "path": "go/memory_model/synchronizing_access_to_shared_memory.md",
+              "title": "Synchronizing Access To Shared Memory",
+              "description": "Documentation for Synchronizing Access To Shared Memory"
+            },
+            {
+              "path": "go/memory_model/weak_vs_strong_memory_ordering.md",
+              "title": "Weak Vs Strong Memory Ordering",
+              "description": "Documentation for Weak Vs Strong Memory Ordering"
+            }
+          ]
+        },
+        {
+          "id": "select_statement_patterns",
+          "name": "Select Statement Patterns",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/select_statement_patterns/breaking_from_infinite_select_loops.md",
+              "title": "Breaking From Infinite Select Loops",
+              "description": "Documentation for Breaking From Infinite Select Loops"
+            },
+            {
+              "path": "go/select_statement_patterns/default_case_for_non_blocking_operations.md",
+              "title": "Default Case For Non Blocking Operations",
+              "description": "Documentation for Default Case For Non Blocking Operations"
+            },
+            {
+              "path": "go/select_statement_patterns/dynamic_channel_selection.md",
+              "title": "Dynamic Channel Selection",
+              "description": "Documentation for Dynamic Channel Selection"
+            },
+            {
+              "path": "go/select_statement_patterns/error_handling_in_select_statements.md",
+              "title": "Error Handling In Select Statements",
+              "description": "Documentation for Error Handling In Select Statements"
+            },
+            {
+              "path": "go/select_statement_patterns/multiplexing_multiple_channels.md",
+              "title": "Multiplexing Multiple Channels",
+              "description": "Documentation for Multiplexing Multiple Channels"
+            },
+            {
+              "path": "go/select_statement_patterns/multi_channel_coordination_with_select.md",
+              "title": "Multi Channel Coordination With Select",
+              "description": "Documentation for Multi Channel Coordination With Select"
+            },
+            {
+              "path": "go/select_statement_patterns/performance_considerations_in_select_usage.md",
+              "title": "Performance Considerations In Select Usage",
+              "description": "Documentation for Performance Considerations In Select Usage"
+            },
+            {
+              "path": "go/select_statement_patterns/prioritizing_channel_operations.md",
+              "title": "Prioritizing Channel Operations",
+              "description": "Documentation for Prioritizing Channel Operations"
+            },
+            {
+              "path": "go/select_statement_patterns/timeout_patterns_with_select.md",
+              "title": "Timeout Patterns With Select",
+              "description": "Documentation for Timeout Patterns With Select"
+            },
+            {
+              "path": "go/select_statement_patterns/using_reflect_select_for_dynamic_cases.md",
+              "title": "Using Reflect Select For Dynamic Cases",
+              "description": "Documentation for Using Reflect Select For Dynamic Cases"
+            }
+          ]
+        },
+        {
+          "id": "synchronization_primitives",
+          "name": "Synchronization Primitives",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/synchronization_primitives/atomic_operations_for_simple_synchronization.md",
+              "title": "Atomic Operations For Simple Synchronization",
+              "description": "Documentation for Atomic Operations For Simple Synchronization"
+            },
+            {
+              "path": "go/synchronization_primitives/cond_for_condition_variable_patterns.md",
+              "title": "Cond For Condition Variable Patterns",
+              "description": "Documentation for Cond For Condition Variable Patterns"
+            },
+            {
+              "path": "go/synchronization_primitives/efficient_concurrent_data_access_patterns.md",
+              "title": "Efficient Concurrent Data Access Patterns",
+              "description": "Documentation for Efficient Concurrent Data Access Patterns"
+            },
+            {
+              "path": "go/synchronization_primitives/measuring_and_reducing_lock_contention.md",
+              "title": "Measuring And Reducing Lock Contention",
+              "description": "Documentation for Measuring And Reducing Lock Contention"
+            },
+            {
+              "path": "go/synchronization_primitives/mutex_and_rw_mutex_for_exclusive_access.md",
+              "title": "Mutex And Rw Mutex For Exclusive Access",
+              "description": "Documentation for Mutex And Rw Mutex For Exclusive Access"
+            },
+            {
+              "path": "go/synchronization_primitives/once_for_one_time_initialization.md",
+              "title": "Once For One Time Initialization",
+              "description": "Documentation for Once For One Time Initialization"
+            },
+            {
+              "path": "go/synchronization_primitives/understanding_lock_contention_issues.md",
+              "title": "Understanding Lock Contention Issues",
+              "description": "Documentation for Understanding Lock Contention Issues"
+            },
+            {
+              "path": "go/synchronization_primitives/using_sync_pool_for_object_reuse.md",
+              "title": "Using Sync Pool For Object Reuse",
+              "description": "Documentation for Using Sync Pool For Object Reuse"
+            },
+            {
+              "path": "go/synchronization_primitives/wait_group_for_goroutine_coordination.md",
+              "title": "Wait Group For Goroutine Coordination",
+              "description": "Documentation for Wait Group For Goroutine Coordination"
+            },
+            {
+              "path": "go/synchronization_primitives/when_to_use_channels_vs_mutexes.md",
+              "title": "When To Use Channels Vs Mutexes",
+              "description": "Documentation for When To Use Channels Vs Mutexes"
+            }
+          ]
+        }
+      ],
+      "files": []
+    },
+    {
       "id": "javascript",
       "name": "Javascript",
       "icon": "Code",

@@ -53,7 +53,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [showLegend, setShowLegend] = useState(false);
   const [showDescriptions, setShowDescriptions] = useState(false);
-  const sidebarRef = useRef<HTMLDivElement>(null);
 
   // Store hooks for document, history, and todo list
   const contentIndex = useDocumentStore((state) => state.contentIndex);
@@ -383,7 +382,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
 
   // Sidebar inner content
   const SidebarContent = () => (
-    <div className="h-full flex flex-col overflow-hidden font-cascadia-code text-xs">
+    <div className="h-full flex flex-col overflow-auto font-cascadia-code text-xs">
       {/* Header with title and close button */}
       <div className="sticky top-0 z-20 bg-card border-b border-border flex-shrink-0">
         <div className="px-3 py-3 flex items-center justify-between">
@@ -594,46 +593,46 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   );
 
   // For mobile: render in a Sheet that takes the full screen
-  if (isMobile) {
-    return (
-      <div className={className}>
-        {/* Full screen sheet for mobile */}
-        <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-          <SheetContent
-            side="left"
-            className="p-0 w-full h-full border-r-0 inset-0 max-w-none"
-          >
-            <SidebarContent />
-          </SheetContent>
-        </Sheet>
-      </div>
-    );
-  }
+  // if (isMobile) {
+  return (
+    <div className={className}>
+      {/* Full screen sheet for mobile */}
+      <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+        <SheetContent
+          side="left"
+          className="p-0 w-full h-full border-r-0 inset-0 max-w-none"
+        >
+          <SidebarContent />
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
+  // }
 
   // For desktop: render as a normal sidebar
-  return (
-    <>
-      {/* Desktop sidebar */}
-      <div
-        ref={sidebarRef}
-        className={cn(
-          "h-full border-r border-border bg-card w-72 overflow-hidden fixed left-0 top-0 bottom-0 z-40 transition-transform duration-300",
-          sidebarOpen ? "translate-x-0" : "-translate-x-full",
-          className
-        )}
-      >
-        <SidebarContent />
-      </div>
+  // return (
+  //   <>
+  //     {/* Desktop sidebar */}
+  //     <div
+  //       ref={sidebarRef}
+  //       className={cn(
+  //         "h-full border-r border-border bg-card w-1/3 overflow-hidden fixed left-0 top-0 bottom-0 z-40 transition-transform duration-300",
+  //         sidebarOpen ? "translate-x-0" : "-translate-x-full",
+  //         className
+  //       )}
+  //     >
+  //       <SidebarContent />
+  //     </div>
 
-      {/* Backdrop overlay for desktop */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/30 z-30 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-    </>
-  );
+  //     {/* Backdrop overlay for desktop */}
+  //     {sidebarOpen && (
+  //       <div
+  //         className="fixed inset-0 bg-black/30 z-30 lg:hidden"
+  //         onClick={() => setSidebarOpen(false)}
+  //       />
+  //     )}
+  //   </>
+  // );
 };
 
 export default ResponsiveSidebar;
