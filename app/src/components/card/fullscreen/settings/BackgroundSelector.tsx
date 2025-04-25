@@ -1,21 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useReadingSettings } from "../context/ReadingContext";
-import {
-  Check,
-  Paintbrush,
-  RefreshCw,
-  ChevronDown,
-  ChevronUp,
-} from "lucide-react";
+import { Check, Paintbrush, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks";
 import type { ThemeOption } from "@/theme/themes";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 
 interface ColorOptionProps {
   option: { value: string | null; label: string; color: string };
@@ -76,7 +64,6 @@ const BackgroundSelector: React.FC = () => {
   const { settings, setCustomBackground } = useReadingSettings();
   const { customBackground } = settings;
   const { currentTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
 
   const backgroundOptions = useMemo(
     () => [
@@ -101,34 +88,14 @@ const BackgroundSelector: React.FC = () => {
   );
 
   return (
-    <Collapsible
-      open={isOpen}
-      onOpenChange={setIsOpen}
-      className="flex flex-col gap-4 p-4"
-    >
-      <CollapsibleTrigger asChild>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Paintbrush className="h-4 w-4" />
-            <h3 className="font-medium text-sm">Background</h3>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="h-7 text-xs hover:bg-secondary/20"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? (
-              <ChevronUp className="h-3 w-3" />
-            ) : (
-              <ChevronDown className="h-3 w-3" />
-            )}
-          </Button>
+    <div className="p-4">
+      <div className="flex items-center justify-between flex-col gap-4">
+        <div className="flex items-center justify-start space-x-2  w-full">
+          <Paintbrush className="h-4 w-4" />
+          <h3 className="font-medium text-sm">Background</h3>
         </div>
-      </CollapsibleTrigger>
 
-      <CollapsibleContent>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-2 w-full">
           {backgroundOptions.map((option) => (
             <ColorOption
               key={option.label}
@@ -139,8 +106,8 @@ const BackgroundSelector: React.FC = () => {
             />
           ))}
         </div>
-      </CollapsibleContent>
-    </Collapsible>
+      </div>
+    </div>
   );
 };
 

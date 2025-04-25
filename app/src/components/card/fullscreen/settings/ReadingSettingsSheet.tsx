@@ -8,7 +8,7 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { RotateCcw } from "lucide-react";
+import { Paintbrush, RotateCcw } from "lucide-react";
 import { useReadingSettings } from "../context/ReadingContext";
 import FontFamilySelector from "./FontFamilySelector";
 import BackgroundSelector from "./BackgroundSelector";
@@ -39,11 +39,14 @@ const ReadingSettingsSheet: React.FC<ReadingSettingsSheetProps> = ({
       >
         <SheetHeader className="mb-6">
           <div className="flex items-center justify-between">
-            <SheetTitle className="font-cascadia-code">
+            <SheetTitle className="font-cascadia-code flex items-center gap-2">
+              <Paintbrush className="h-4 w-4" />
               Reading Settings
             </SheetTitle>
           </div>
-          <SheetDescription>Customize your reading experience</SheetDescription>
+          <SheetDescription>
+            Customize your reading experience 🤗
+          </SheetDescription>
         </SheetHeader>
 
         <ScrollArea className="flex-1 overflow-auto">
@@ -55,15 +58,21 @@ const ReadingSettingsSheet: React.FC<ReadingSettingsSheetProps> = ({
               <TabsTrigger value="appearance" className="flex-1">
                 Appearance
               </TabsTrigger>
+              <TabsTrigger value="background" className="flex-1">
+                Background
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="text" className="flex flex-col gap-12 p-4">
               <FontFamilySelector />
             </TabsContent>
 
+            <TabsContent value="background" className="space-y-6">
+              <BackgroundSelector />
+            </TabsContent>
+
             <TabsContent value="appearance" className="space-y-6">
               <ThemeSelector />
-              <BackgroundSelector />
             </TabsContent>
           </Tabs>
         </ScrollArea>

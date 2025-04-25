@@ -12,6 +12,9 @@ interface FontOption {
   category: "serif" | "sans-serif";
 }
 
+const sampleText =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
 const fontOptions: FontOption[] = [
   {
     value: "cascadia-code",
@@ -137,7 +140,7 @@ const FontFamilySelector: React.FC = () => {
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 flex flex-col gap-4 max-h-full">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <Type className="h-4 w-4" />
@@ -150,7 +153,20 @@ const FontFamilySelector: React.FC = () => {
         </span>
       </div>
 
-      <ScrollArea className="h-96 scrollbar-hide">
+      {/* Sample text preview - made sticky */}
+      <div className="sticky top-0 z-10 p-6 border rounded-2xl mb-2 bg-background/50 backdrop-blur-3xl shadow-sm shadow-primary/10">
+        <p
+          className="text-sm text-card-foreground"
+          style={getFontCss(fontFamily)}
+        >
+          {sampleText}
+        </p>
+        <p className="text-xs text-muted-foreground mt-1">
+          Sample text preview
+        </p>
+      </div>
+
+      <ScrollArea className="h-80 scrollbar-hide flex-1">
         {/* Sans-serif fonts section */}
         <div className="mb-4">
           <h4 className="text-xs uppercase tracking-wider text-muted-foreground mb-2 px-1">
