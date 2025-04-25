@@ -848,6 +848,64 @@
       "icon": "Folder",
       "subcategories": [
         {
+          "id": "advanced_channel_patterns",
+          "name": "Advanced Channel Patterns",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/advanced_channel_patterns/advanced_error_handling_with_channels.md",
+              "title": "Advanced Error Handling With Channels",
+              "description": "Documentation for Advanced Error Handling With Channels"
+            },
+            {
+              "path": "go/advanced_channel_patterns/batching_strategies_with_channels.md",
+              "title": "Batching Strategies With Channels",
+              "description": "Documentation for Batching Strategies With Channels"
+            },
+            {
+              "path": "go/advanced_channel_patterns/composable_channel_operations.md",
+              "title": "Composable Channel Operations",
+              "description": "Documentation for Composable Channel Operations"
+            },
+            {
+              "path": "go/advanced_channel_patterns/implementing_complex_state_machines.md",
+              "title": "Implementing Complex State Machines",
+              "description": "Documentation for Implementing Complex State Machines"
+            },
+            {
+              "path": "go/advanced_channel_patterns/implementing_futures_with_channels.md",
+              "title": "Implementing Futures With Channels",
+              "description": "Documentation for Implementing Futures With Channels"
+            },
+            {
+              "path": "go/advanced_channel_patterns/implementing_priority_queues.md",
+              "title": "Implementing Priority Queues",
+              "description": "Documentation for Implementing Priority Queues"
+            },
+            {
+              "path": "go/advanced_channel_patterns/implementing_timeouts_and_deadlines.md",
+              "title": "Implementing Timeouts And Deadlines",
+              "description": "Documentation for Implementing Timeouts And Deadlines"
+            },
+            {
+              "path": "go/advanced_channel_patterns/recursive_channel_algorithms.md",
+              "title": "Recursive Channel Algorithms",
+              "description": "Documentation for Recursive Channel Algorithms"
+            },
+            {
+              "path": "go/advanced_channel_patterns/synchronous_vs_asynchronous_messaging.md",
+              "title": "Synchronous Vs Asynchronous Messaging",
+              "description": "Documentation for Synchronous Vs Asynchronous Messaging"
+            },
+            {
+              "path": "go/advanced_channel_patterns/throttling_patterns_with_channels.md",
+              "title": "Throttling Patterns With Channels",
+              "description": "Documentation for Throttling Patterns With Channels"
+            }
+          ]
+        },
+        {
           "id": "advanced_concurrency_patterns",
           "name": "Advanced Concurrency Patterns",
           "icon": "Folder",
@@ -1075,6 +1133,64 @@
           ]
         },
         {
+          "id": "context_package_deep_dive",
+          "name": "Context Package Deep Dive",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/context_package_deep_dive/best_practices_for_context_propagation.md",
+              "title": "Best Practices For Context Propagation",
+              "description": "Documentation for Best Practices For Context Propagation"
+            },
+            {
+              "path": "go/context_package_deep_dive/common_context_anti_patterns.md",
+              "title": "Common Context Anti Patterns",
+              "description": "Documentation for Common Context Anti Patterns"
+            },
+            {
+              "path": "go/context_package_deep_dive/context_design_principles_and_usage.md",
+              "title": "Context Design Principles And Usage",
+              "description": "Documentation for Context Design Principles And Usage"
+            },
+            {
+              "path": "go/context_package_deep_dive/context_integration_with_apis.md",
+              "title": "Context Integration With Apis",
+              "description": "Documentation for Context Integration With Apis"
+            },
+            {
+              "path": "go/context_package_deep_dive/context_performance_considerations.md",
+              "title": "Context Performance Considerations",
+              "description": "Documentation for Context Performance Considerations"
+            },
+            {
+              "path": "go/context_package_deep_dive/context_values_for_request_scoped_data.md",
+              "title": "Context Values For Request Scoped Data",
+              "description": "Documentation for Context Values For Request Scoped Data"
+            },
+            {
+              "path": "go/context_package_deep_dive/creating_and_cascading_cancellation.md",
+              "title": "Creating And Cascading Cancellation",
+              "description": "Documentation for Creating And Cascading Cancellation"
+            },
+            {
+              "path": "go/context_package_deep_dive/custom_context_implementations.md",
+              "title": "Custom Context Implementations",
+              "description": "Documentation for Custom Context Implementations"
+            },
+            {
+              "path": "go/context_package_deep_dive/deadline_and_timeout_propagation.md",
+              "title": "Deadline And Timeout Propagation",
+              "description": "Documentation for Deadline And Timeout Propagation"
+            },
+            {
+              "path": "go/context_package_deep_dive/testing_code_that_uses_context.md",
+              "title": "Testing Code That Uses Context",
+              "description": "Documentation for Testing Code That Uses Context"
+            }
+          ]
+        },
+        {
           "id": "core",
           "name": "Core",
           "icon": "Folder",
@@ -1234,6 +1350,64 @@
           ]
         },
         {
+          "id": "go_scheduler_internals",
+          "name": "Go Scheduler Internals",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/go_scheduler_internals/cooperative_scheduling_mechanisms.md",
+              "title": "Cooperative Scheduling Mechanisms",
+              "description": "Documentation for Cooperative Scheduling Mechanisms"
+            },
+            {
+              "path": "go/go_scheduler_internals/gomaxprocs_and_cpu_utilization.md",
+              "title": "Gomaxprocs And Cpu Utilization",
+              "description": "Documentation for Gomaxprocs And Cpu Utilization"
+            },
+            {
+              "path": "go/go_scheduler_internals/go_scheduler_design_and_implementation.md",
+              "title": "Go Scheduler Design And Implementation",
+              "description": "Documentation for Go Scheduler Design And Implementation"
+            },
+            {
+              "path": "go/go_scheduler_internals/performance_tuning_for_the_scheduler.md",
+              "title": "Performance Tuning For The Scheduler",
+              "description": "Documentation for Performance Tuning For The Scheduler"
+            },
+            {
+              "path": "go/go_scheduler_internals/preemption_in_the_go_scheduler.md",
+              "title": "Preemption In The Go Scheduler",
+              "description": "Documentation for Preemption In The Go Scheduler"
+            },
+            {
+              "path": "go/go_scheduler_internals/processor_machine_and_goroutine.md",
+              "title": "Processor Machine And Goroutine",
+              "description": "Documentation for Processor Machine And Goroutine"
+            },
+            {
+              "path": "go/go_scheduler_internals/scheduler_optimizations_over_go_versions.md",
+              "title": "Scheduler Optimizations Over Go Versions",
+              "description": "Documentation for Scheduler Optimizations Over Go Versions"
+            },
+            {
+              "path": "go/go_scheduler_internals/scheduler_tracing_and_visualization.md",
+              "title": "Scheduler Tracing And Visualization",
+              "description": "Documentation for Scheduler Tracing And Visualization"
+            },
+            {
+              "path": "go/go_scheduler_internals/system_call_handling_in_the_scheduler.md",
+              "title": "System Call Handling In The Scheduler",
+              "description": "Documentation for System Call Handling In The Scheduler"
+            },
+            {
+              "path": "go/go_scheduler_internals/work_stealing_algorithm_details.md",
+              "title": "Work Stealing Algorithm Details",
+              "description": "Documentation for Work Stealing Algorithm Details"
+            }
+          ]
+        },
+        {
           "id": "memory_model",
           "name": "Memory Model",
           "icon": "Folder",
@@ -1350,6 +1524,175 @@
           ]
         },
         {
+          "id": "standard_library",
+          "name": "Standard Library",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/standard_library/http_client_and_server_implementation.md",
+              "title": "Http Client And Server Implementation",
+              "description": "Documentation for Http Client And Server Implementation"
+            },
+            {
+              "path": "go/standard_library/json_xml_and_data_serialization.md",
+              "title": "Json Xml And Data Serialization",
+              "description": "Documentation for Json Xml And Data Serialization"
+            },
+            {
+              "path": "go/standard_library/regular_expressions.md",
+              "title": "Regular Expressions",
+              "description": "Documentation for Regular Expressions"
+            },
+            {
+              "path": "go/standard_library/Sort package and custom sorting.md",
+              "title": "Sort package and custom sorting",
+              "description": "Documentation for Sort package and custom sorting"
+            },
+            {
+              "path": "go/standard_library/string_manipulation_and_formatting.md",
+              "title": "String Manipulation And Formatting",
+              "description": "Documentation for String Manipulation And Formatting"
+            },
+            {
+              "path": "go/standard_library/template_parsing_and_execution.md",
+              "title": "Template Parsing And Execution",
+              "description": "Documentation for Template Parsing And Execution"
+            },
+            {
+              "path": "go/standard_library/Testing package fundamentals.md",
+              "title": "Testing package fundamentals",
+              "description": "Documentation for Testing package fundamentals"
+            },
+            {
+              "path": "go/standard_library/time_and_date_handling.md",
+              "title": "Time And Date Handling",
+              "description": "Documentation for Time And Date Handling"
+            },
+            {
+              "path": "go/standard_library/working_with_files_and_io.md",
+              "title": "Working With Files And Io",
+              "description": "Documentation for Working With Files And Io"
+            }
+          ]
+        },
+        {
+          "id": "structured_concurrency",
+          "name": "Structured Concurrency",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/structured_concurrency/cancellation_cascades_implementation.md",
+              "title": "Cancellation Cascades Implementation",
+              "description": "Documentation for Cancellation Cascades Implementation"
+            },
+            {
+              "path": "go/structured_concurrency/composing_concurrent_operations.md",
+              "title": "Composing Concurrent Operations",
+              "description": "Documentation for Composing Concurrent Operations"
+            },
+            {
+              "path": "go/structured_concurrency/error_propagation_in_structured_concurrency.md",
+              "title": "Error Propagation In Structured Concurrency",
+              "description": "Documentation for Error Propagation In Structured Concurrency"
+            },
+            {
+              "path": "go/structured_concurrency/implementing_task_groups.md",
+              "title": "Implementing Task Groups",
+              "description": "Documentation for Implementing Task Groups"
+            },
+            {
+              "path": "go/structured_concurrency/migration_strategies_toward_structured_concurrency.md",
+              "title": "Migration Strategies Toward Structured Concurrency",
+              "description": "Documentation for Migration Strategies Toward Structured Concurrency"
+            },
+            {
+              "path": "go/structured_concurrency/parent_child_relationships_in_concurrent_code.md",
+              "title": "Parent Child Relationships In Concurrent Code",
+              "description": "Documentation for Parent Child Relationships In Concurrent Code"
+            },
+            {
+              "path": "go/structured_concurrency/resource_cleanup_in_concurrent_hierarchies.md",
+              "title": "Resource Cleanup In Concurrent Hierarchies",
+              "description": "Documentation for Resource Cleanup In Concurrent Hierarchies"
+            },
+            {
+              "path": "go/structured_concurrency/structured_concurrency_principles.md",
+              "title": "Structured Concurrency Principles",
+              "description": "Documentation for Structured Concurrency Principles"
+            },
+            {
+              "path": "go/structured_concurrency/task_scoping_and_lifetime_management.md",
+              "title": "Task Scoping And Lifetime Management",
+              "description": "Documentation for Task Scoping And Lifetime Management"
+            },
+            {
+              "path": "go/structured_concurrency/testing_structured_concurrent_code.md",
+              "title": "Testing Structured Concurrent Code",
+              "description": "Documentation for Testing Structured Concurrent Code"
+            }
+          ]
+        },
+        {
+          "id": "synchronization_performance",
+          "name": "Synchronization Performance",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "go/synchronization_performance/atomic_operations_performance.md",
+              "title": "Atomic Operations Performance",
+              "description": "Documentation for Atomic Operations Performance"
+            },
+            {
+              "path": "go/synchronization_performance/benchmarking_synchronization_approaches.md",
+              "title": "Benchmarking Synchronization Approaches",
+              "description": "Documentation for Benchmarking Synchronization Approaches"
+            },
+            {
+              "path": "go/synchronization_performance/fine_grained_vs_coarse_grained_locking.md",
+              "title": "Fine Grained Vs Coarse Grained Locking",
+              "description": "Documentation for Fine Grained Vs Coarse Grained Locking"
+            },
+            {
+              "path": "go/synchronization_performance/hardware_considerations_for_synchronization.md",
+              "title": "Hardware Considerations For Synchronization",
+              "description": "Documentation for Hardware Considerations For Synchronization"
+            },
+            {
+              "path": "go/synchronization_performance/lock_contention_measurement.md",
+              "title": "Lock Contention Measurement",
+              "description": "Documentation for Lock Contention Measurement"
+            },
+            {
+              "path": "go/synchronization_performance/lock_free_data_structures.md",
+              "title": "Lock Free Data Structures",
+              "description": "Documentation for Lock Free Data Structures"
+            },
+            {
+              "path": "go/synchronization_performance/memory_access_patterns_and_cache_effects.md",
+              "title": "Memory Access Patterns And Cache Effects",
+              "description": "Documentation for Memory Access Patterns And Cache Effects"
+            },
+            {
+              "path": "go/synchronization_performance/read_heavy_vs_write_heavy_optimizations.md",
+              "title": "Read Heavy Vs Write Heavy Optimizations",
+              "description": "Documentation for Read Heavy Vs Write Heavy Optimizations"
+            },
+            {
+              "path": "go/synchronization_performance/scalability_limitations_in_synchronization.md",
+              "title": "Scalability Limitations In Synchronization",
+              "description": "Documentation for Scalability Limitations In Synchronization"
+            },
+            {
+              "path": "go/synchronization_performance/wait_free_algorithms_in_go.md",
+              "title": "Wait Free Algorithms In Go",
+              "description": "Documentation for Wait Free Algorithms In Go"
+            }
+          ]
+        },
+        {
           "id": "synchronization_primitives",
           "name": "Synchronization Primitives",
           "icon": "Folder",
@@ -1437,176 +1780,87 @@
       "icon": "FileCode",
       "subcategories": [
         {
-          "id": "advanced",
-          "name": "Advanced",
-          "icon": "Folder",
-          "subcategories": [
+          "id": "python_fundamentals",
+          "name": "Python Fundamentals",
+          "icon": "FileCode",
+          "subcategories": [],
+          "files": [
             {
-              "id": "asyncio",
-              "name": "Asyncio",
-              "icon": "Folder",
-              "subcategories": [
-                {
-                  "id": "advanced",
-                  "name": "Advanced",
-                  "icon": "Folder",
-                  "subcategories": [],
-                  "files": [
-                    {
-                      "path": "python/advanced/asyncio/advanced/design_patterns.md",
-                      "title": "Design Patterns",
-                      "description": "Documentation for Design Patterns"
-                    }
-                  ]
-                },
-                {
-                  "id": "beginner",
-                  "name": "Beginner",
-                  "icon": "Folder",
-                  "subcategories": [],
-                  "files": [
-                    {
-                      "path": "python/advanced/asyncio/beginner/awaitable_objects.md",
-                      "title": "Awaitable Objects",
-                      "description": "Documentation for Awaitable Objects"
-                    },
-                    {
-                      "path": "python/advanced/asyncio/beginner/basic_task_creation.md",
-                      "title": "Basic Task Creation",
-                      "description": "Documentation for Basic Task Creation"
-                    },
-                    {
-                      "path": "python/advanced/asyncio/beginner/concurrency_vs_parallelism.md",
-                      "title": "Concurrency Vs Parallelism",
-                      "description": "Documentation for Concurrency Vs Parallelism"
-                    },
-                    {
-                      "path": "python/advanced/asyncio/beginner/event_loops.md",
-                      "title": "Event Loops",
-                      "description": "Documentation for Event Loops"
-                    },
-                    {
-                      "path": "python/advanced/asyncio/beginner/python_coroutine.md",
-                      "title": "Python Coroutine",
-                      "description": "Documentation for Python Coroutine"
-                    },
-                    {
-                      "path": "python/advanced/asyncio/beginner/synchronous_vs_asynchronous.md",
-                      "title": "Synchronous Vs Asynchronous",
-                      "description": "Documentation for Synchronous Vs Asynchronous"
-                    },
-                    {
-                      "path": "python/advanced/asyncio/beginner/your_first_async_program.md",
-                      "title": "Your First Async Program",
-                      "description": "Documentation for Your First Async Program"
-                    }
-                  ]
-                },
-                {
-                  "id": "intermediate",
-                  "name": "Intermediate",
-                  "icon": "Folder",
-                  "subcategories": [],
-                  "files": [
-                    {
-                      "path": "python/advanced/asyncio/intermediate/exception_handling.md",
-                      "title": "Exception Handling",
-                      "description": "Documentation for Exception Handling"
-                    },
-                    {
-                      "path": "python/advanced/asyncio/intermediate/futures_and_tasks.md",
-                      "title": "Futures And Tasks",
-                      "description": "Documentation for Futures And Tasks"
-                    },
-                    {
-                      "path": "python/advanced/asyncio/intermediate/streams.md",
-                      "title": "Streams",
-                      "description": "Documentation for Streams"
-                    },
-                    {
-                      "path": "python/advanced/asyncio/intermediate/synchronization_primitives.md",
-                      "title": "Synchronization Primitives",
-                      "description": "Documentation for Synchronization Primitives"
-                    },
-                    {
-                      "path": "python/advanced/asyncio/intermediate/task_management.md",
-                      "title": "Task Management",
-                      "description": "Documentation for Task Management"
-                    },
-                    {
-                      "path": "python/advanced/asyncio/intermediate/timeouts_and_waiting.md",
-                      "title": "Timeouts And Waiting",
-                      "description": "Documentation for Timeouts And Waiting"
-                    }
-                  ]
-                }
-              ],
-              "files": []
+              "path": "python/python_fundamentals/basic_data_types.md",
+              "title": "Basic Data Types",
+              "description": "Documentation for Basic Data Types"
             },
             {
-              "id": "context_managers",
-              "name": "Context Managers",
-              "icon": "Folder",
-              "subcategories": [],
-              "files": [
-                {
-                  "path": "python/advanced/context_managers/examples_of_usage.md",
-                  "title": "Examples Of Usage",
-                  "description": "Documentation for Examples Of Usage"
-                },
-                {
-                  "path": "python/advanced/context_managers/introduction_to_context_manager.md",
-                  "title": "Introduction To Context Manager",
-                  "description": "Documentation for Introduction To Context Manager"
-                }
-              ]
+              "path": "python/python_fundamentals/basic_input_output_operations.md",
+              "title": "Basic Input Output Operations",
+              "description": "Documentation for Basic Input Output Operations"
             },
             {
-              "id": "parallelism",
-              "name": "Parallelism",
-              "icon": "Folder",
-              "subcategories": [],
-              "files": [
-                {
-                  "path": "python/advanced/parallelism/inter_process_parallelism.md",
-                  "title": "Inter Process Parallelism",
-                  "description": "Documentation for Inter Process Parallelism"
-                },
-                {
-                  "path": "python/advanced/parallelism/introduction_to_process_parallelism.md",
-                  "title": "Introduction To Process Parallelism",
-                  "description": "Documentation for Introduction To Process Parallelism"
-                }
-              ]
-            }
-          ],
-          "files": []
-        },
-        {
-          "id": "intermediate",
-          "name": "Intermediate",
-          "icon": "Folder",
-          "subcategories": [
+              "path": "python/python_fundamentals/basic_math_operations.md",
+              "title": "Basic Math Operations",
+              "description": "Documentation for Basic Math Operations"
+            },
             {
-              "id": "packages",
-              "name": "Packages",
-              "icon": "Folder",
-              "subcategories": [],
-              "files": [
-                {
-                  "path": "python/intermediate/packages/import_problems.md",
-                  "title": "Import Problems",
-                  "description": "Documentation for Import Problems"
-                },
-                {
-                  "path": "python/intermediate/packages/introduction_to_packages.md",
-                  "title": "Introduction To Packages",
-                  "description": "Documentation for Introduction To Packages"
-                }
-              ]
+              "path": "python/python_fundamentals/basic_string_manipulation_and_formatting.md",
+              "title": "Basic String Manipulation And Formatting",
+              "description": "Documentation for Basic String Manipulation And Formatting"
+            },
+            {
+              "path": "python/python_fundamentals/basic_syntax_and_language_structure.md",
+              "title": "Basic Syntax And Language Structure",
+              "description": "Documentation for Basic Syntax And Language Structure"
+            },
+            {
+              "path": "python/python_fundamentals/control_flow_statements.md",
+              "title": "Control Flow Statements",
+              "description": "Documentation for Control Flow Statements"
+            },
+            {
+              "path": "python/python_fundamentals/function_basics.md",
+              "title": "Function Basics",
+              "description": "Documentation for Function Basics"
+            },
+            {
+              "path": "python/python_fundamentals/introduction_to_python_memory_management.md",
+              "title": "Introduction To Python Memory Management",
+              "description": "Documentation for Introduction To Python Memory Management"
+            },
+            {
+              "path": "python/python_fundamentals/python_indentation_and_code_style.md",
+              "title": "Python Indentation And Code Style",
+              "description": "Documentation for Python Indentation And Code Style"
+            },
+            {
+              "path": "python/python_fundamentals/python_interpreter_and_execution_model.md",
+              "title": "Python Interpreter And Execution Model",
+              "description": "Documentation for Python Interpreter And Execution Model"
+            },
+            {
+              "path": "python/python_fundamentals/python_philosophy_and_design_principles.md",
+              "title": "Python Philosophy And Design Principles",
+              "description": "Documentation for Python Philosophy And Design Principles"
+            },
+            {
+              "path": "python/python_fundamentals/python_versions_differences_2_vs_3.md",
+              "title": "Python Versions Differences 2 Vs 3",
+              "description": "Documentation for Python Versions Differences 2 Vs 3"
+            },
+            {
+              "path": "python/python_fundamentals/setting_up_development_environment.md",
+              "title": "Setting Up Development Environment",
+              "description": "Documentation for Setting Up Development Environment"
+            },
+            {
+              "path": "python/python_fundamentals/type_conversion_and_type_checking.md",
+              "title": "Type Conversion And Type Checking",
+              "description": "Documentation for Type Conversion And Type Checking"
+            },
+            {
+              "path": "python/python_fundamentals/variables_naming_conventions_and_memory_model.md",
+              "title": "Variables Naming Conventions And Memory Model",
+              "description": "Documentation for Variables Naming Conventions And Memory Model"
             }
-          ],
-          "files": []
+          ]
         }
       ],
       "files": []

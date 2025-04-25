@@ -3,19 +3,11 @@ import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { useSwipeGesture } from "@/hooks/device/use-swipe-gesture";
 import CardProgress from "./CardProgress";
-import {
-  Menu,
-  ArrowLeft,
-  ChevronRight,
-  ChevronLeft,
-  BarChart2,
-} from "lucide-react";
+import { Menu, ArrowLeft, ChevronRight, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionsSheet from "./sidebar/SectionsSheet";
 import { useSectionStore } from "@/stores";
 import useMobile from "@/hooks/device/use-mobile";
-import Stats from "./stats/Stats";
-import { AnimatePresence } from "framer-motion";
 import { useCurrentDocument } from "@/hooks";
 
 interface FullscreenCardViewProps {
@@ -47,7 +39,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [statsOpen, setStatsOpen] = useState(false);
   const { isMobile } = useMobile();
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -215,14 +206,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     onExit();
   };
 
-  /**
-   * 📊 Toggle stats panel visibility
-   */
-  const toggleStats = () => {
-    setStatsOpen(!statsOpen);
-    if (menuOpen) setMenuOpen(false);
-  };
-
   if (sections.length === 0) {
     return (
       <div className="fixed inset-0 z-50 bg-background flex items-center justify-center text-muted-foreground">
@@ -256,16 +239,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         </Button>
 
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleStats}
-            className="h-8 w-8"
-            aria-label="View reading stats"
-          >
-            <BarChart2 className="h-4 w-4" />
-          </Button>
-
           <Button
             variant="ghost"
             size="icon"
@@ -358,18 +331,6 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
       />
 
       {/* Reading Stats Panel */}
-      <AnimatePresence>
-        {statsOpen && (
-          <Stats
-            toggleStats={toggleStats}
-            documentPath={documentPath}
-            category={category}
-            sections={sections}
-            currentIndex={currentIndex}
-            readSections={readSections}
-          />
-        )}
-      </AnimatePresence>
 
       {/* Touch swipe indicators (hidden visually but help with touch areas) */}
       <button
