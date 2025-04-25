@@ -36,7 +36,7 @@ const ThemeOption: React.FC<ThemeOptionProps> = ({
     <button
       key={theme.name}
       className={cn(
-        "flex items-center w-full rounded-md py-1.5 px-2 text-left",
+        "flex items-center w-full rounded-2xl py-1.5 px-2 text-left",
         "transition-colors duration-150",
         isActive ? "bg-primary/10" : "hover:bg-secondary/50"
       )}

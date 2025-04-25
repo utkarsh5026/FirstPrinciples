@@ -3,46 +3,42 @@ import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/markdown/MarkdownRenderer";
 import { useSwipeGesture } from "@/hooks/device/use-swipe-gesture";
 import CardProgress from "./CardProgress";
-import { Menu, ArrowLeft, ChevronRight, ChevronLeft } from "lucide-react";
+import {
+  Menu,
+  ArrowLeft,
+  ChevronRight,
+  ChevronLeft,
+  Settings,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionsSheet from "./sidebar/SectionsSheet";
 import { useSectionStore } from "@/stores";
 import useMobile from "@/hooks/device/use-mobile";
 import { useCurrentDocument } from "@/hooks";
+import ReadingSettingsSheet from "./settings/ReadingSettingsSheet";
+import { ReadingSettingsProvider } from "./context/ReadingSettingsProvider";
+import { useReadingSettings, fontFamilyMap } from "./context/ReadingContext";
 
-interface FullscreenCardViewProps {
-  className?: string;
-  onExit: () => void;
+interface FullscreenCardContentProps {
+  settingsOpen: boolean;
+  setSettingsOpen: (open: boolean) => void;
+  menuOpen: boolean;
+  setMenuOpen: (open: boolean) => void;
 }
 
-/**
- * ✨ FullscreenCardView ✨
- *
- * A beautiful immersive reading experience that transforms your content into a
- * distraction-free fullscreen mode! 📚✨
- *
- * 🧠 Smart reading tracking keeps tabs on your progress and reading habits
- * 🔄 Smooth transitions between sections with elegant fade effects
- * 📱 Responsive design that works beautifully on both desktop and mobile
- * 👆 Touch-friendly with intuitive swipe gestures for navigation
- * 📊 Reading analytics to help you understand your reading patterns
- * 🗂️ Easy section navigation with a handy sidebar menu
- *
- * This component creates a zen-like reading environment where you can focus
- * completely on the content without distractions. Perfect for deep reading
- * sessions or studying important material! 🧘‍♀️
- */
-const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
-  className,
-  onExit,
+const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
+  settingsOpen,
+  setSettingsOpen,
+  menuOpen,
+  setMenuOpen,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const { isMobile } = useMobile();
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const startTimeRef = useRef<number>(Date.now());
+  const { settings } = useReadingSettings();
 
   const { sections, documentPath, category, markdown } = useCurrentDocument();
 
@@ -198,80 +194,38 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
     if (index !== currentIndex) changeSection(index);
   };
 
-  /**
-   * 🚪 Safely exit fullscreen mode while saving reading progress
-   */
-  const handleExit = async () => {
-    await endReading();
-    onExit();
-  };
-
   if (sections.length === 0) {
     return (
-      <div className="fixed inset-0 z-50 bg-background flex items-center justify-center text-muted-foreground">
-        <div className="text-center">
-          <div className="animate-spin h-8 w-8 border-t-2 border-primary rounded-full mx-auto mb-4"></div>
-          <p>Loading content...</p>
-        </div>
+      <div className="flex items-center justify-center h-full text-muted-foreground">
+        <div className="animate-spin h-8 w-8 border-t-2 border-primary rounded-full mr-3"></div>
+        <span>Loading content...</span>
       </div>
     );
   }
 
   const currentSection = sections[currentIndex];
 
+  // Get the right font family from the settings
+  const fontFamily = fontFamilyMap[settings.fontFamily];
+
   return (
-    <div
-      className={cn(
-        "fixed inset-0 z-50 bg-background flex flex-col",
-        className
-      )}
-    >
-      {/* Header */}
-      <div className="sticky top-0 z-20 flex items-center justify-between p-4 border-b border-border bg-card/50 backdrop-blur-sm">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={handleExit}
-          className="h-8 w-8"
-          aria-label="Exit fullscreen"
-        >
-          <ArrowLeft className="h-4 w-4" />
-        </Button>
-
-        <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setMenuOpen(true)}
-            className="h-8 w-8"
-            aria-label="Open sections menu"
-          >
-            <Menu className="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
-
+    <>
       {/* Main content area */}
       <div
-        className="flex-1 relative overflow-hidden"
-        style={{ height: "calc(100vh - 8rem)" }}
+        ref={scrollRef}
+        className={cn(
+          "h-full overflow-y-auto pb-16",
+          isTransitioning ? "opacity-0" : "opacity-100",
+          "transition-opacity duration-200"
+        )}
       >
-        {/* Card content */}
-        <div
-          ref={scrollRef}
-          className={cn(
-            "h-full overflow-y-auto pb-16",
-            isTransitioning ? "opacity-0" : "opacity-100",
-            "transition-opacity duration-200"
-          )}
-        >
-          <div className="max-w-2xl mx-auto p-4">
-            <div className="prose prose-invert max-w-none w-full break-words">
-              <CustomMarkdownRenderer
-                markdown={currentSection.content}
-                className="fullscreen-card-content"
-              />
-            </div>
+        <div className="max-w-2xl mx-auto p-4">
+          <div className="prose prose-invert max-w-none w-full break-words">
+            <CustomMarkdownRenderer
+              markdown={currentSection.content}
+              className="fullscreen-card-content"
+              fontFamily={fontFamily}
+            />
           </div>
         </div>
       </div>
@@ -330,7 +284,11 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         }}
       />
 
-      {/* Reading Stats Panel */}
+      {/* Reading Settings Sheet */}
+      <ReadingSettingsSheet
+        open={settingsOpen}
+        onOpenChange={setSettingsOpen}
+      />
 
       {/* Touch swipe indicators (hidden visually but help with touch areas) */}
       <button
@@ -345,7 +303,96 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
         title="Next"
         disabled={currentIndex === sections.length - 1}
       />
-    </div>
+    </>
+  );
+};
+
+interface FullscreenCardViewProps {
+  className?: string;
+  onExit: () => void;
+}
+
+/**
+ * ✨ FullscreenCardView ✨
+ *
+ * A beautiful immersive reading experience that transforms your content into a
+ * distraction-free fullscreen mode with customizable reading settings!
+ *
+ * 🧠 Smart reading tracking keeps tabs on your progress and reading habits
+ * 🔄 Smooth transitions between sections with elegant fade effects
+ * 📱 Responsive design that works beautifully on both desktop and mobile
+ * 👆 Touch-friendly with intuitive swipe gestures for navigation
+ * 📊 Reading analytics to help you understand your reading patterns
+ * 🎨 Customizable text size, font family, line height, and colors
+ *
+ * This component creates a zen-like reading environment where you can focus
+ * completely on the content without distractions.
+ */
+const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
+  className,
+  onExit,
+}) => {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  /**
+   * 🚪 Safely exit fullscreen mode while saving reading progress
+   */
+  const handleExit = () => {
+    onExit();
+  };
+
+  return (
+    <ReadingSettingsProvider>
+      <div
+        className={cn(
+          "fixed inset-0 z-50 bg-background flex flex-col",
+          className
+        )}
+      >
+        {/* Header */}
+        <div className="sticky top-0 z-20 flex items-center justify-between p-4 border-b border-border bg-card/50 backdrop-blur-sm">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleExit}
+            className="h-8 w-8"
+            aria-label="Exit fullscreen"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </Button>
+
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setSettingsOpen(true)}
+              className="h-8 w-8"
+              aria-label="Open settings"
+            >
+              <Settings className="h-4 w-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMenuOpen(true)}
+              className="h-8 w-8"
+              aria-label="Open sections menu"
+            >
+              <Menu className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+
+        {/* Content Area */}
+        <FullscreenCardContent
+          settingsOpen={settingsOpen}
+          setSettingsOpen={setSettingsOpen}
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
+      </div>
+    </ReadingSettingsProvider>
   );
 };
 

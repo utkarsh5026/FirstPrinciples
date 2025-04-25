@@ -18,6 +18,10 @@ import ImageRender from "./components/ImageRender";
 interface CustomMarkdownRendererProps {
   markdown: string;
   className?: string;
+  fontFamily?: string;
+  fontSize?: number | string;
+  lineHeight?: number;
+  letterSpacing?: number | string;
 }
 
 /**
@@ -31,11 +35,25 @@ interface CustomMarkdownRendererProps {
  * 📊 Beautifully formats tables for data presentation
  * 📝 Displays code blocks with proper syntax
  * 🖼️ Renders images with optimized display
+ * 🔤 Supports custom font styling through props
  */
 const CustomMarkdownRenderer: React.FC<CustomMarkdownRendererProps> = ({
   markdown,
   className = "",
+  fontFamily,
+  fontSize,
+  lineHeight,
+  letterSpacing,
 }) => {
+  // Apply custom font styles to the container
+  const containerStyle: React.CSSProperties = {
+    fontFamily: fontFamily,
+    fontSize: fontSize !== undefined ? `${fontSize}` : undefined,
+    lineHeight: lineHeight !== undefined ? `${lineHeight}` : undefined,
+    letterSpacing:
+      letterSpacing !== undefined ? `${letterSpacing}px` : undefined,
+  };
+
   /**
    * 🧩 Custom component mapping for markdown elements
    * Each element gets its own specialized renderer for consistent styling
@@ -43,7 +61,7 @@ const CustomMarkdownRenderer: React.FC<CustomMarkdownRendererProps> = ({
   const components = {
     /* 
     📚 Headings with different levels
-     */
+    */
     h1: (props: React.ComponentPropsWithoutRef<"h1">) => (
       <HeadingRender level={1} {...props} />
     ),
@@ -56,41 +74,41 @@ const CustomMarkdownRenderer: React.FC<CustomMarkdownRendererProps> = ({
 
     /* 
     📄 Paragraphs for text content
-     */
+    */
     p: (props: React.ComponentPropsWithoutRef<"p">) => (
-      <ParagraphRender {...props} />
+      <ParagraphRender {...props} style={containerStyle} />
     ),
 
     /* 
     📋 Lists for organizing information
-     */
+    */
     ul: (props: React.ComponentPropsWithoutRef<"ul">) => (
-      <ListRender type="ul" props={props} />
+      <ListRender type="ul" props={{ ...props, style: containerStyle }} />
     ),
     ol: (props: React.ComponentPropsWithoutRef<"ol">) => (
-      <ListRender type="ol" props={props} />
+      <ListRender type="ol" props={{ ...props, style: containerStyle }} />
     ),
     li: (props: React.ComponentPropsWithoutRef<"li">) => (
-      <ListRender type="li" props={props} />
+      <ListRender type="li" props={{ ...props, style: containerStyle }} />
     ),
 
     /* 
     💬 Blockquotes for highlighting important text
-     */
+    */
     blockquote: (props: React.ComponentPropsWithoutRef<"blockquote">) => (
-      <BlockquoteRender {...props} />
+      <BlockquoteRender {...props} style={containerStyle} />
     ),
 
     /* 
     💻 Code blocks with syntax highlighting
-     */
+    */
     code: (
       props: React.ComponentPropsWithoutRef<"code"> & { inline?: boolean }
     ) => <CodeRender {...props} />,
 
     /* 
     📊 Tables for structured data
-     */
+    */
     table: (props: React.ComponentPropsWithoutRef<"table">) => (
       <TableRender type="table" props={props} />
     ),
@@ -112,28 +130,31 @@ const CustomMarkdownRenderer: React.FC<CustomMarkdownRendererProps> = ({
 
     /* 
     ➖ Horizontal rule for section dividers
-     */
+    */
     hr: (props: React.ComponentPropsWithoutRef<"hr">) => (
       <HorizontalRuleRender {...props} />
     ),
 
     /* 
     🔗 Links with special handling
-     */
+    */
     a: (props: React.ComponentPropsWithoutRef<"a">) => (
       <LinkRender {...props}>{props.children}</LinkRender>
     ),
 
     /* 
     🖼️ Images with optimized display
-     */
+    */
     img: (props: React.ComponentPropsWithoutRef<"img">) => (
       <ImageRender {...props} />
     ),
   };
 
   return (
-    <div className={cn("markdown-content font-type-mono", className)}>
+    <div
+      className={cn("markdown-content font-type-mono", className)}
+      style={containerStyle}
+    >
       <ReactMarkdown
         components={components}
         remarkPlugins={[remarkGfm]}
