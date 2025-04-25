@@ -1,15 +1,14 @@
 import { Category } from "@/services/document/document-loader";
 import getIconForTech from "@/components/icons/";
+import { ChevronRight, ChevronDown, BookMarked, Clock } from "lucide-react";
 import {
-  ChevronRight,
-  ChevronDown,
-  BookMarked,
-  Clock,
-  CheckCircle,
-  CircleDot,
-} from "lucide-react";
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import CategoryFile from "./CategoryFile";
 
 interface FileTreeProps {
   category: Category;
@@ -23,42 +22,6 @@ interface FileTreeProps {
   currentFilePath: string;
   showDescriptions: boolean;
 }
-
-const getFileStatusIcon = (
-  filePath: string,
-  todoFilePaths: Set<string>,
-  todoCompletedPaths: Set<string>,
-  readFilePaths: Set<string>
-) => {
-  if (todoFilePaths.has(filePath)) {
-    return <BookMarked size={12} className="text-primary flex-shrink-0" />;
-  } else if (todoCompletedPaths.has(filePath)) {
-    return <CheckCircle size={12} className="text-green-500 flex-shrink-0" />;
-  } else if (readFilePaths.has(filePath)) {
-    return <Clock size={12} className="text-blue-400 flex-shrink-0" />;
-  }
-
-  return (
-    <CircleDot size={12} className="text-muted-foreground/40 flex-shrink-0" />
-  );
-};
-
-// Get file status text
-const getFileStatusText = (
-  filePath: string,
-  todoFilePaths: Set<string>,
-  todoCompletedPaths: Set<string>,
-  readFilePaths: Set<string>
-) => {
-  if (todoFilePaths.has(filePath)) {
-    return "In reading list";
-  } else if (todoCompletedPaths.has(filePath)) {
-    return "Completed";
-  } else if (readFilePaths.has(filePath)) {
-    return "Previously read";
-  }
-  return "Unread";
-};
 
 const FileTree: React.FC<FileTreeProps> = ({
   category,
@@ -78,11 +41,8 @@ const FileTree: React.FC<FileTreeProps> = ({
     (category.subcategories && category.subcategories.length > 0);
 
   if (!hasContent) return null;
-
-  // Get the appropriate icon for the category based on its name/type
   const CategoryIcon = getIconForTech(category.name);
 
-  // Count read and todo files
   let totalFiles = 0;
   let readFiles = 0;
   let todoFiles = 0;
@@ -105,61 +65,67 @@ const FileTree: React.FC<FileTreeProps> = ({
   countFiles(category);
 
   return (
-    <div key={category.id} className="mb-1">
-      <button
-        onClick={() => handleToggleExpand(category.id, !isExpanded)}
-        className={cn(
-          "group flex items-center w-full rounded-md text-sm transition-colors py-2 px-2",
-          "hover:bg-primary/10 hover:text-foreground",
-          "focus:outline-none focus:ring-1 focus:ring-primary/30",
-          isExpanded ? "bg-primary/5" : ""
-        )}
-        style={{ paddingLeft: `${depth * 12 + 8}px` }}
-      >
-        <div className="mr-1.5 text-muted-foreground flex-shrink-0">
-          {isExpanded ? (
-            <ChevronDown size={16} className="text-primary" />
-          ) : (
-            <ChevronRight size={16} />
+    <Collapsible key={category.id} open={isExpanded}>
+      <CollapsibleTrigger asChild>
+        <button
+          onClick={() => handleToggleExpand(category.id, !isExpanded)}
+          className={cn(
+            "group flex items-center w-full rounded-md text-sm transition-colors py-2 px-2",
+            "hover:bg-primary/10 hover:text-foreground",
+            "focus:outline-none focus:ring-1 focus:ring-primary/30",
+            isExpanded ? "bg-primary/5" : ""
           )}
-        </div>
-
-        {depth === 0 && (
-          <div className="flex-shrink-0 mr-2 text-primary">
-            <CategoryIcon size={16} />
+          style={{ paddingLeft: `${depth * 12 + 8}px` }}
+        >
+          <div className="mr-1.5 text-muted-foreground flex-shrink-0">
+            {isExpanded ? (
+              <ChevronDown size={16} className="text-primary" />
+            ) : (
+              <ChevronRight size={16} />
+            )}
           </div>
-        )}
 
-        <span className="truncate">{category.name}</span>
-
-        {/* File stats badges */}
-        <div className="ml-auto flex items-center gap-1.5">
-          {readFiles > 0 && (
-            <div className="flex items-center">
-              <Clock size={12} className="text-blue-400 mr-1" />
-              <span className="text-xs text-muted-foreground">{readFiles}</span>
+          {depth === 0 && (
+            <div className="flex-shrink-0 mr-2 text-primary">
+              <CategoryIcon size={16} />
             </div>
           )}
 
-          {todoFiles > 0 && (
-            <div className="flex items-center">
-              <BookMarked size={12} className="text-primary mr-1" />
-              <span className="text-xs text-muted-foreground">{todoFiles}</span>
-            </div>
-          )}
+          <span className="truncate">{category.name}</span>
 
-          {/* Total files counter */}
-          <Badge
-            variant="secondary"
-            className="ml-auto text-xs bg-secondary/30"
-          >
-            {totalFiles}
-          </Badge>
-        </div>
-      </button>
+          {/* File stats badges */}
+          <div className="ml-auto flex items-center gap-1.5">
+            {readFiles > 0 && (
+              <div className="flex items-center">
+                <Clock size={12} className="text-blue-400 mr-1" />
+                <span className="text-xs text-muted-foreground">
+                  {readFiles}
+                </span>
+              </div>
+            )}
+
+            {todoFiles > 0 && (
+              <div className="flex items-center">
+                <BookMarked size={12} className="text-primary mr-1" />
+                <span className="text-xs text-muted-foreground">
+                  {todoFiles}
+                </span>
+              </div>
+            )}
+
+            {/* Total files counter */}
+            <Badge
+              variant="secondary"
+              className="ml-auto text-xs bg-secondary/30"
+            >
+              {totalFiles}
+            </Badge>
+          </div>
+        </button>
+      </CollapsibleTrigger>
 
       {/* Subcategories and files - only shown when expanded */}
-      {isExpanded && (
+      <CollapsibleContent>
         <div className="pl-4 overflow-hidden">
           {category.subcategories?.map((subcategory) => (
             <FileTree
@@ -179,62 +145,26 @@ const FileTree: React.FC<FileTreeProps> = ({
 
           {/* Render files with status indicators */}
           {category.files?.map((file, index) => {
-            const fileStatusIcon = getFileStatusIcon(
-              file.path,
-              todoFilePaths,
-              todoCompletedPaths,
-              readFilePaths
-            );
-            const statusText = getFileStatusText(
-              file.path,
-              todoFilePaths,
-              todoCompletedPaths,
-              readFilePaths
-            );
             const isCurrentFile = file.path === currentFilePath;
 
             return (
-              <button
+              <CategoryFile
                 key={file.path}
-                className={cn(
-                  "flex items-center w-full rounded-md text-sm cursor-pointer transition-colors py-2 px-2 my-1",
-                  "text-left focus:outline-none focus:ring-1 focus:ring-primary/30",
-                  isCurrentFile
-                    ? "bg-primary/15 text-primary font-medium"
-                    : "hover:bg-secondary/20 text-muted-foreground hover:text-foreground",
-                  todoFilePaths.has(file.path) &&
-                    "border-l-2 border-primary/30 pl-1.5",
-                  todoCompletedPaths.has(file.path) &&
-                    "border-l-2 border-green-500/30 pl-1.5",
-                  readFilePaths.has(file.path) &&
-                    !todoFilePaths.has(file.path) &&
-                    !todoCompletedPaths.has(file.path) &&
-                    "text-muted-foreground"
-                )}
-                style={{ paddingLeft: `${(depth + 1) * 16}px` }}
-                onClick={() => handleSelectFile(file.path)}
-              >
-                <div className="flex flex-col min-w-0">
-                  <span className="truncate break-words">
-                    {index + 1}. {file.title}
-                  </span>
-
-                  {/* Show description if enabled */}
-                  {showDescriptions && (
-                    <span className="text-xs text-muted-foreground truncate">
-                      {statusText}
-                    </span>
-                  )}
-                </div>
-
-                {/* Status indicator */}
-                <div className="ml-auto">{fileStatusIcon}</div>
-              </button>
+                file={file}
+                depth={depth + 1}
+                isCurrentFile={isCurrentFile}
+                isTodo={todoFilePaths.has(file.path)}
+                isCompleted={todoCompletedPaths.has(file.path)}
+                isRead={readFilePaths.has(file.path)}
+                fileNumber={index + 1}
+                handleSelectFile={handleSelectFile}
+                showDescriptions={showDescriptions}
+              />
             );
           })}
         </div>
-      )}
-    </div>
+      </CollapsibleContent>
+    </Collapsible>
   );
 };
 
