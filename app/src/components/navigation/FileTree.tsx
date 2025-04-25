@@ -215,7 +215,7 @@ const FileTree: React.FC<FileTreeProps> = ({
                 onClick={() => handleSelectFile(file.path)}
               >
                 <div className="flex flex-col min-w-0">
-                  <span className="truncate">
+                  <span className="truncate break-words">
                     {index + 1}. {file.title}
                   </span>
 

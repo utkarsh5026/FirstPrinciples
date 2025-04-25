@@ -9,9 +9,9 @@ import { type Category, type FileMetadata } from "@/services/document";
 import { useDocumentStore } from "@/stores/document/document-store";
 import { useHistoryStore } from "@/stores/reading/history-store";
 import { useReadingStore } from "@/stores/readingStore";
-import SidebarContent from "../SidebarContent";
+import SidebarContent from "./SidebarContent";
 import { BookOpen } from "lucide-react";
-import Header from "../Header";
+import Header from "./Header";
 
 // Types for our component props
 interface ResponsiveSidebarProps {
@@ -165,7 +165,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
       <SheetContent
         side="left"
-        className="p-0 w-full h-full border-r-0 inset-0 max-w-none"
+        className="p-0 h-full border-r-0 inset-0 max-w-none"
       >
         <SheetHeader className="p-0">
           <Header
