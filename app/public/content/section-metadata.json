@@ -7025,6 +7025,4176 @@
     "title": "basic_data_types",
     "frontmatter": {}
   },
+  "public\\content\\python\\object_oriented_python\\testing_and_debugging_oop_code.md": {
+    "path": "public\\content\\python\\object_oriented_python\\testing_and_debugging_oop_code.md",
+    "sections": [
+      {
+        "id": "testing-and-debugging-object-oriented-python-code",
+        "title": "Testing and Debugging Object-Oriented Python Code",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "i-understanding-the-foundations",
+        "title": "I. Understanding the Foundations",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "ii-unit-testing-oop-code",
+        "title": "II. Unit Testing OOP Code",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "iii-mock-objects-and-dependencies",
+        "title": "III. Mock Objects and Dependencies",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "iv-test-driven-development-for-oop",
+        "title": "IV. Test-Driven Development for OOP",
+        "level": 2,
+        "wordCount": 126
+      },
+      {
+        "id": "v-debugging-oop-code",
+        "title": "V. Debugging OOP Code",
+        "level": 2,
+        "wordCount": 201
+      },
+      {
+        "id": "vi-testing-strategies-for-complex-oop-systems",
+        "title": "VI. Testing Strategies for Complex OOP Systems",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "vii-advanced-testing-techniques",
+        "title": "VII. Advanced Testing Techniques",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "viii-debugging-complex-oop-systems",
+        "title": "VIII. Debugging Complex OOP Systems",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "ix-best-practices-for-oop-testing-and-debugging",
+        "title": "IX. Best Practices for OOP Testing and Debugging",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "x-practical-example-testing-a-banking-system",
+        "title": "X. Practical Example: Testing a Banking System",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 109
+      }
+    ],
+    "totalWordCount": 1210,
+    "estimatedReadingTime": 300000,
+    "title": "testing_and_debugging_oop_code",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\solid_principles_application.md": {
+    "path": "public\\content\\python\\object_oriented_python\\solid_principles_application.md",
+    "sections": [
+      {
+        "id": "solid-principles-in-python-a-first-principles-approach",
+        "title": "SOLID Principles in Python: A First Principles Approach",
+        "level": 1,
+        "wordCount": 44
+      },
+      {
+        "id": "what-are-solid-principles",
+        "title": "What Are SOLID Principles?",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "1-single-responsibility-principle-srp",
+        "title": "1. Single Responsibility Principle (SRP)",
+        "level": 2,
+        "wordCount": 221
+      },
+      {
+        "id": "2-openclosed-principle-ocp",
+        "title": "2. Open/Closed Principle (OCP)",
+        "level": 2,
+        "wordCount": 176
+      },
+      {
+        "id": "3-liskov-substitution-principle-lsp",
+        "title": "3. Liskov Substitution Principle (LSP)",
+        "level": 2,
+        "wordCount": 181
+      },
+      {
+        "id": "4-interface-segregation-principle-isp",
+        "title": "4. Interface Segregation Principle (ISP)",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "5-dependency-inversion-principle-dip",
+        "title": "5. Dependency Inversion Principle (DIP)",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "putting-it-all-together-a-comprehensive-example",
+        "title": "Putting It All Together: A Comprehensive Example",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "key-insights-and-benefits-of-solid-in-python",
+        "title": "Key Insights and Benefits of SOLID in Python",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "things-to-remember-about-solid-in-python",
+        "title": "Things to Remember About SOLID in Python",
+        "level": 2,
+        "wordCount": 116
+      }
+    ],
+    "totalWordCount": 1282,
+    "estimatedReadingTime": 360000,
+    "title": "solid_principles_application",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\slots_and_memory_optimization.md": {
+    "path": "public\\content\\python\\object_oriented_python\\slots_and_memory_optimization.md",
+    "sections": [
+      {
+        "id": "understanding-python-slots-from-first-principles",
+        "title": "Understanding Python Slots from First Principles",
+        "level": 1,
+        "wordCount": 44
+      },
+      {
+        "id": "1-how-regular-python-objects-store-attributes",
+        "title": "1. How Regular Python Objects Store Attributes",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "2-the-memory-cost-of-dictionaries",
+        "title": "2. The Memory Cost of Dictionaries",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "3-enter-__slots__-fixed-attribute-storage",
+        "title": "3. Enter `__slots__`: Fixed Attribute Storage",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "4-memory-comparison-slots-vs-regular-classes",
+        "title": "4. Memory Comparison: Slots vs. Regular Classes",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "5-how-slots-work-under-the-hood",
+        "title": "5. How Slots Work Under the Hood",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "6-demonstrating-direct-memory-access",
+        "title": "6. Demonstrating Direct Memory Access",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "7-limitations-of-slots",
+        "title": "7. Limitations of Slots",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "8-real-world-example-memory-optimization-for-data-classes",
+        "title": "8. Real-World Example: Memory Optimization for Data Classes",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "9-best-practices-for-using-slots",
+        "title": "9. Best Practices for Using Slots",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "10-when-to-use-slots-in-real-projects",
+        "title": "10. When to Use Slots in Real Projects",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 179
+      }
+    ],
+    "totalWordCount": 947,
+    "estimatedReadingTime": 240000,
+    "title": "slots_and_memory_optimization",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\properties_and_descriptors.md": {
+    "path": "public\\content\\python\\object_oriented_python\\properties_and_descriptors.md",
+    "sections": [
+      {
+        "id": "python-properties-and-descriptors-a-first-principles-exploration",
+        "title": "Python Properties and Descriptors: A First Principles Exploration",
+        "level": 1,
+        "wordCount": 30
+      },
+      {
+        "id": "part-1-the-problem-properties-solve",
+        "title": "Part 1: The Problem Properties Solve",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "part-2-getters-and-setters-a-first-approach",
+        "title": "Part 2: Getters and Setters - A First Approach",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "part-3-properties-the-pythonic-solution",
+        "title": "Part 3: Properties - The Pythonic Solution",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "part-4-property-use-cases",
+        "title": "Part 4: Property Use Cases",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "part-5-descriptors-going-deeper",
+        "title": "Part 5: Descriptors - Going Deeper",
+        "level": 2,
+        "wordCount": 208
+      },
+      {
+        "id": "part-6-advanced-property-and-descriptor-features",
+        "title": "Part 6: Advanced Property and Descriptor Features",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 98
+      }
+    ],
+    "totalWordCount": 785,
+    "estimatedReadingTime": 240000,
+    "title": "properties_and_descriptors",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\polymorphism_in_python.md": {
+    "path": "public\\content\\python\\object_oriented_python\\polymorphism_in_python.md",
+    "sections": [
+      {
+        "id": "polymorphism-in-python-a-first-principles-explanation",
+        "title": "Polymorphism in Python: A First-Principles Explanation",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "what-is-polymorphism-at-its-core",
+        "title": "What is Polymorphism at its Core?",
+        "level": 2,
+        "wordCount": 135
+      },
+      {
+        "id": "types-of-polymorphism-in-python",
+        "title": "Types of Polymorphism in Python",
+        "level": 2,
+        "wordCount": 282
+      },
+      {
+        "id": "why-is-polymorphism-useful",
+        "title": "Why is Polymorphism Useful?",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "advanced-polymorphism-abstract-base-classes",
+        "title": "Advanced Polymorphism: Abstract Base Classes",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "real-world-scenario-a-file-processing-system",
+        "title": "Real-World Scenario: A File Processing System",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "common-patterns-and-best-practices",
+        "title": "Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 149
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 111
+      }
+    ],
+    "totalWordCount": 1019,
+    "estimatedReadingTime": 300000,
+    "title": "polymorphism_in_python",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\object_serialization_techniques.md": {
+    "path": "public\\content\\python\\object_oriented_python\\object_serialization_techniques.md",
+    "sections": [
+      {
+        "id": "python-object-serialization-from-first-principles",
+        "title": "Python Object Serialization from First Principles",
+        "level": 1,
+        "wordCount": 44
+      },
+      {
+        "id": "what-is-serialization",
+        "title": "What is Serialization?",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "why-do-we-need-serialization",
+        "title": "Why Do We Need Serialization?",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "pythons-built-in-serialization-pickle",
+        "title": "Python's Built-in Serialization: pickle",
+        "level": 2,
+        "wordCount": 185
+      },
+      {
+        "id": "json-serialization-universal-text-based-approach",
+        "title": "JSON Serialization: Universal Text-Based Approach",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "messagepack-binary-alternative-to-json",
+        "title": "MessagePack: Binary Alternative to JSON",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "protocol-buffers-schema-based-serialization",
+        "title": "Protocol Buffers: Schema-Based Serialization",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "yaml-human-friendly-serialization",
+        "title": "YAML: Human-Friendly Serialization",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "serializing-custom-objects",
+        "title": "Serializing Custom Objects",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "security-considerations",
+        "title": "Security Considerations",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "advanced-serialization-topics",
+        "title": "Advanced Serialization Topics",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "real-world-use-cases",
+        "title": "Real-World Use Cases",
+        "level": 2,
+        "wordCount": 8
+      },
+      {
+        "id": "summary-choosing-the-right-serialization-method",
+        "title": "Summary: Choosing the Right Serialization Method",
+        "level": 2,
+        "wordCount": 196
+      }
+    ],
+    "totalWordCount": 1091,
+    "estimatedReadingTime": 300000,
+    "title": "object_serialization_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\multiple_inheritance_and_mixins.md": {
+    "path": "public\\content\\python\\object_oriented_python\\multiple_inheritance_and_mixins.md",
+    "sections": [
+      {
+        "id": "python-multiple-inheritance-and-mixins-from-first-principles",
+        "title": "Python Multiple Inheritance and Mixins: From First Principles",
+        "level": 1,
+        "wordCount": 37
+      },
+      {
+        "id": "1-understanding-inheritance-the-foundation",
+        "title": "1. Understanding Inheritance: The Foundation",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "2-multiple-inheritance-the-concept",
+        "title": "2. Multiple Inheritance: The Concept",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "3-method-resolution-order-mro-the-critical-mechanism",
+        "title": "3. Method Resolution Order (MRO): The Critical Mechanism",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "4-the-diamond-problem-and-how-python-solves-it",
+        "title": "4. The Diamond Problem and How Python Solves It",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "5-the-super-function-collaborative-inheritance",
+        "title": "5. The `super()` Function: Collaborative Inheritance",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "6-mixins-reusable-feature-sets",
+        "title": "6. Mixins: Reusable Feature Sets",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "7-mixin-design-patterns",
+        "title": "7. Mixin Design Patterns",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "8-real-world-examples-from-python-libraries",
+        "title": "8. Real-World Examples from Python Libraries",
+        "level": 2,
+        "wordCount": 21
+      },
+      {
+        "id": "9-best-practices-and-potential-pitfalls",
+        "title": "9. Best Practices and Potential Pitfalls",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "10-advanced-concepts",
+        "title": "10. Advanced Concepts",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 109
+      }
+    ],
+    "totalWordCount": 984,
+    "estimatedReadingTime": 240000,
+    "title": "multiple_inheritance_and_mixins",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\method_overriding_and_super.md": {
+    "path": "public\\content\\python\\object_oriented_python\\method_overriding_and_super.md",
+    "sections": [
+      {
+        "id": "python-method-overriding-and-super",
+        "title": "Python Method Overriding and super()",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "object-oriented-programming-foundations",
+        "title": "Object-Oriented Programming Foundations",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "method-overriding-modifying-inherited-behavior",
+        "title": "Method Overriding: Modifying Inherited Behavior",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "the-need-for-super",
+        "title": "The Need for super()",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "understanding-super-in-depth",
+        "title": "Understanding super() in Depth",
+        "level": 2,
+        "wordCount": 175
+      },
+      {
+        "id": "common-use-cases-for-super",
+        "title": "Common Use Cases for super()",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "common-pitfalls-and-best-practices",
+        "title": "Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "real-world-example-custom-exception-classes",
+        "title": "Real-World Example: Custom Exception Classes",
+        "level": 2,
+        "wordCount": 21
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 123
+      }
+    ],
+    "totalWordCount": 792,
+    "estimatedReadingTime": 240000,
+    "title": "method_overriding_and_super",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\metaclasses_and_class_creation.md": {
+    "path": "public\\content\\python\\object_oriented_python\\metaclasses_and_class_creation.md",
+    "sections": [
+      {
+        "id": "understanding-metaclasses-in-python-from-first-principles",
+        "title": "Understanding Metaclasses in Python: From First Principles",
+        "level": 1,
+        "wordCount": 33
+      },
+      {
+        "id": "1-everything-in-python-is-an-object",
+        "title": "1. Everything in Python is an Object",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "2-class-creation-process",
+        "title": "2. Class Creation Process",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "3-what-is-a-metaclass",
+        "title": "3. What is a Metaclass?",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "4-custom-metaclasses",
+        "title": "4. Custom Metaclasses",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "5-the-class-creation-process-in-detail",
+        "title": "5. The Class Creation Process in Detail",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "6-practical-use-cases-for-metaclasses",
+        "title": "6. Practical Use Cases for Metaclasses",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "7-metaclasses-vs-class-decorators",
+        "title": "7. Metaclasses vs. Class Decorators",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "8-the-__prepare__-method",
+        "title": "8. The `__prepare__` Method",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "9-multiple-inheritance-and-metaclass-conflicts",
+        "title": "9. Multiple Inheritance and Metaclass Conflicts",
+        "level": 2,
+        "wordCount": 35
+      },
+      {
+        "id": "10-built-in-metaclasses-in-python",
+        "title": "10. Built-in Metaclasses in Python",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 134
+      }
+    ],
+    "totalWordCount": 877,
+    "estimatedReadingTime": 240000,
+    "title": "metaclasses_and_class_creation",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\managing_object_lifecycle.md": {
+    "path": "public\\content\\python\\object_oriented_python\\managing_object_lifecycle.md",
+    "sections": [
+      {
+        "id": "python-object-lifecycle-from-first-principles",
+        "title": "Python Object Lifecycle: From First Principles",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "what-is-an-object",
+        "title": "What Is an Object?",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "object-creation",
+        "title": "Object Creation",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "reference-counting",
+        "title": "Reference Counting",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "object-lifecycle-phases",
+        "title": "Object Lifecycle Phases",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "garbage-collection",
+        "title": "Garbage Collection",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "context-managers-for-deterministic-cleanup",
+        "title": "Context Managers for Deterministic Cleanup",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "weak-references",
+        "title": "Weak References",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "memory-management-patterns",
+        "title": "Memory Management Patterns",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "special-methods-for-object-lifecycle",
+        "title": "Special Methods for Object Lifecycle",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "memory-leaks-in-python",
+        "title": "Memory Leaks in Python",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "best-practices-for-object-lifecycle-management",
+        "title": "Best Practices for Object Lifecycle Management",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 121
+      }
+    ],
+    "totalWordCount": 706,
+    "estimatedReadingTime": 180000,
+    "title": "managing_object_lifecycle",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\interfaces_and_protocols.md": {
+    "path": "public\\content\\python\\object_oriented_python\\interfaces_and_protocols.md",
+    "sections": [
+      {
+        "id": "interfaces-and-protocols-in-python-from-first-principles",
+        "title": "Interfaces and Protocols in Python: From First Principles",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "what-are-interfaces-the-fundamental-concept",
+        "title": "What Are Interfaces? The Fundamental Concept",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "pythons-duck-typing-philosophy",
+        "title": "Python's Duck Typing Philosophy",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "informal-interfaces-in-python",
+        "title": "Informal Interfaces in Python",
+        "level": 2,
+        "wordCount": 152
+      },
+      {
+        "id": "protocols-the-modern-python-interface",
+        "title": "Protocols: The Modern Python Interface",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "real-world-examples-understanding-context-managers",
+        "title": "Real-World Examples: Understanding Context Managers",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "structural-subtyping-vs-nominal-subtyping",
+        "title": "Structural Subtyping vs. Nominal Subtyping",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "runtime-protocol-checking",
+        "title": "Runtime Protocol Checking",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "protocol-composition",
+        "title": "Protocol Composition",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "practical-example-building-a-plugin-system",
+        "title": "Practical Example: Building a Plugin System",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "benefits-of-using-protocols-and-interfaces",
+        "title": "Benefits of Using Protocols and Interfaces",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "when-to-use-each-approach",
+        "title": "When to Use Each Approach",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 103
+      }
+    ],
+    "totalWordCount": 1265,
+    "estimatedReadingTime": 360000,
+    "title": "interfaces_and_protocols",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\instance_variables_vs_class_variables.md": {
+    "path": "public\\content\\python\\object_oriented_python\\instance_variables_vs_class_variables.md",
+    "sections": [
+      {
+        "id": "instance-variables-vs-class-variables-in-python-a-first-principles-approach",
+        "title": "Instance Variables vs. Class Variables in Python: A First Principles Approach",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "the-core-concept-objects-and-classes",
+        "title": "The Core Concept: Objects and Classes",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "memory-and-data-where-variables-live",
+        "title": "Memory and Data: Where Variables Live",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "instance-variables",
+        "title": "Instance Variables",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "class-variables",
+        "title": "Class Variables",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "the-confusion-point-accessing-class-variables",
+        "title": "The Confusion Point: Accessing Class Variables",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "a-tricky-example-modifying-class-variables",
+        "title": "A Tricky Example: Modifying Class Variables",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "use-cases-when-to-use-each",
+        "title": "Use Cases: When to Use Each",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "a-practical-example-default-values-with-class-variables",
+        "title": "A Practical Example: Default Values with Class Variables",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "visualizing-the-difference",
+        "title": "Visualizing the Difference",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "deep-dive-memory-model",
+        "title": "Deep Dive: Memory Model",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 164
+      }
+    ],
+    "totalWordCount": 1079,
+    "estimatedReadingTime": 300000,
+    "title": "instance_variables_vs_class_variables",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\instance_methods_vs_class_methods_vs_static_methods.md": {
+    "path": "public\\content\\python\\object_oriented_python\\instance_methods_vs_class_methods_vs_static_methods.md",
+    "sections": [
+      {
+        "id": "python-methods-instance-class-and-static-methods-from-first-principles",
+        "title": "Python Methods: Instance, Class, and Static Methods From First Principles",
+        "level": 1,
+        "wordCount": 52
+      },
+      {
+        "id": "foundation-what-is-a-method",
+        "title": "Foundation: What Is a Method?",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "instance-methods-the-default-behavior",
+        "title": "Instance Methods: The Default Behavior",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "class-methods-operating-on-the-class",
+        "title": "Class Methods: Operating on the Class",
+        "level": 2,
+        "wordCount": 179
+      },
+      {
+        "id": "static-methods-independent-functions-within-a-class",
+        "title": "Static Methods: Independent Functions Within a Class",
+        "level": 2,
+        "wordCount": 182
+      },
+      {
+        "id": "comparing-the-three-method-types",
+        "title": "Comparing the Three Method Types",
+        "level": 2,
+        "wordCount": 27
+      },
+      {
+        "id": "method-access-abilities-at-a-glance",
+        "title": "Method Access Abilities: At a Glance",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "when-to-use-each-method-type",
+        "title": "When to Use Each Method Type",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "practical-applications",
+        "title": "Practical Applications",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 104
+      }
+    ],
+    "totalWordCount": 918,
+    "estimatedReadingTime": 240000,
+    "title": "instance_methods_vs_class_methods_vs_static_methods",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\inheritance_and_method_resolution_order_mro.md": {
+    "path": "public\\content\\python\\object_oriented_python\\inheritance_and_method_resolution_order_mro.md",
+    "sections": [
+      {
+        "id": "python-inheritance-and-method-resolution-order-mro",
+        "title": "Python Inheritance and Method Resolution Order (MRO)",
+        "level": 1,
+        "wordCount": 28
+      },
+      {
+        "id": "inheritance-the-fundamental-concept",
+        "title": "Inheritance: The Fundamental Concept",
+        "level": 2,
+        "wordCount": 196
+      },
+      {
+        "id": "types-of-inheritance",
+        "title": "Types of Inheritance",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "the-super-function",
+        "title": "The `super()` Function",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "method-resolution-order-mro",
+        "title": "Method Resolution Order (MRO)",
+        "level": 2,
+        "wordCount": 273
+      },
+      {
+        "id": "practical-applications",
+        "title": "Practical Applications",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "common-pitfalls-and-best-practices",
+        "title": "Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "real-world-example-django-class-based-views",
+        "title": "Real-World Example: Django Class-Based Views",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "summary-and-key-takeaways",
+        "title": "Summary and Key Takeaways",
+        "level": 2,
+        "wordCount": 166
+      }
+    ],
+    "totalWordCount": 1041,
+    "estimatedReadingTime": 300000,
+    "title": "inheritance_and_method_resolution_order_mro",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\encapsulation_and_name_mangling.md": {
+    "path": "public\\content\\python\\object_oriented_python\\encapsulation_and_name_mangling.md",
+    "sections": [
+      {
+        "id": "python-encapsulation-and-name-mangling-a-first-principles-approach",
+        "title": "Python Encapsulation and Name Mangling: A First Principles Approach",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "the-foundation-why-we-need-encapsulation",
+        "title": "The Foundation: Why We Need Encapsulation",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "encapsulation-in-python",
+        "title": "Encapsulation in Python",
+        "level": 2,
+        "wordCount": 171
+      },
+      {
+        "id": "name-mangling-the-python-approach-to-privacy",
+        "title": "Name Mangling: The Python Approach to Privacy",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "practical-example-building-a-secure-user-profile-system",
+        "title": "Practical Example: Building a Secure User Profile System",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "benefits-and-limitations-of-pythons-approach",
+        "title": "Benefits and Limitations of Python's Approach",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "how-to-implement-proper-encapsulation-in-python",
+        "title": "How to Implement Proper Encapsulation in Python",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "practical-guidelines-for-using-encapsulation-in-python",
+        "title": "Practical Guidelines for Using Encapsulation in Python",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 113
+      }
+    ],
+    "totalWordCount": 875,
+    "estimatedReadingTime": 240000,
+    "title": "encapsulation_and_name_mangling",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\design_patterns_in_python.md": {
+    "path": "public\\content\\python\\object_oriented_python\\design_patterns_in_python.md",
+    "sections": [
+      {
+        "id": "design-patterns-in-python-a-first-principles-approach",
+        "title": "Design Patterns in Python: A First Principles Approach",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "what-are-design-patterns",
+        "title": "What Are Design Patterns?",
+        "level": 2,
+        "wordCount": 162
+      },
+      {
+        "id": "categories-of-design-patterns",
+        "title": "Categories of Design Patterns",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "creational-patterns",
+        "title": "Creational Patterns",
+        "level": 2,
+        "wordCount": 203
+      },
+      {
+        "id": "structural-patterns",
+        "title": "Structural Patterns",
+        "level": 2,
+        "wordCount": 183
+      },
+      {
+        "id": "behavioral-patterns",
+        "title": "Behavioral Patterns",
+        "level": 2,
+        "wordCount": 196
+      },
+      {
+        "id": "real-world-example-a-logger-system",
+        "title": "Real-World Example: A Logger System",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "python-specific-design-pattern-considerations",
+        "title": "Python-Specific Design Pattern Considerations",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "when-to-use-design-patterns",
+        "title": "When to Use Design Patterns",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "common-pitfalls-to-avoid",
+        "title": "Common Pitfalls to Avoid",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 108
+      }
+    ],
+    "totalWordCount": 1273,
+    "estimatedReadingTime": 360000,
+    "title": "design_patterns_in_python",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\customizing_class_behavior_with_special_methods.md": {
+    "path": "public\\content\\python\\object_oriented_python\\customizing_class_behavior_with_special_methods.md",
+    "sections": [
+      {
+        "id": "customizing-python-class-behavior-with-special-methods",
+        "title": "Customizing Python Class Behavior with Special Methods",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "what-are-special-methods",
+        "title": "What Are Special Methods?",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "starting-with-object-representation",
+        "title": "Starting with Object Representation",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "making-objects-behave-like-collections",
+        "title": "Making Objects Behave Like Collections",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "customizing-arithmetic-operations",
+        "title": "Customizing Arithmetic Operations",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "context-managers-with-__enter__-and-__exit__",
+        "title": "Context Managers with `__enter__` and `__exit__`",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "customizing-object-creation-and-initialization",
+        "title": "Customizing Object Creation and Initialization",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "attribute-access-and-descriptor-protocol",
+        "title": "Attribute Access and Descriptor Protocol",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "customizing-callable-objects",
+        "title": "Customizing Callable Objects",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "multiple-special-methods-working-together",
+        "title": "Multiple Special Methods Working Together",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "practical-example-a-temperature-class",
+        "title": "Practical Example: A Temperature Class",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "summary-of-common-special-methods",
+        "title": "Summary of Common Special Methods",
+        "level": 2,
+        "wordCount": 290
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 1038,
+    "estimatedReadingTime": 300000,
+    "title": "customizing_class_behavior_with_special_methods",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\clean_oop_architecture.md": {
+    "path": "public\\content\\python\\object_oriented_python\\clean_oop_architecture.md",
+    "sections": [
+      {
+        "id": "pythons-clean-oop-architecture-a-first-principles-approach",
+        "title": "Python's Clean OOP Architecture: A First Principles Approach",
+        "level": 1,
+        "wordCount": 50
+      },
+      {
+        "id": "1-what-is-oop-the-foundational-concept",
+        "title": "1. What is OOP? The Foundational Concept",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "2-the-four-pillars-of-oop",
+        "title": "2. The Four Pillars of OOP",
+        "level": 2,
+        "wordCount": 257
+      },
+      {
+        "id": "3-solid-principles-for-clean-oop-architecture",
+        "title": "3. SOLID Principles for Clean OOP Architecture",
+        "level": 2,
+        "wordCount": 234
+      },
+      {
+        "id": "4-design-patterns-for-clean-python-oop",
+        "title": "4. Design Patterns for Clean Python OOP",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "5-practical-project-structure-for-clean-python-oop",
+        "title": "5. Practical Project Structure for Clean Python OOP",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "6-testing-clean-oop-architecture",
+        "title": "6. Testing Clean OOP Architecture",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "7-common-pitfalls-and-best-practices",
+        "title": "7. Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "8-advanced-python-oop-features",
+        "title": "8. Advanced Python OOP Features",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "9-real-world-application-a-complete-banking-system",
+        "title": "9. Real-world Application: A Complete Banking System",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "10-best-practices-for-evolving-clean-python-oop-architecture",
+        "title": "10. Best Practices for Evolving Clean Python OOP Architecture",
+        "level": 2,
+        "wordCount": 149
+      },
+      {
+        "id": "11-performance-optimization-in-python-oop",
+        "title": "11. Performance Optimization in Python OOP",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "12-conclusion-the-power-of-clean-python-oop-architecture",
+        "title": "12. Conclusion: The Power of Clean Python OOP Architecture",
+        "level": 2,
+        "wordCount": 197
+      }
+    ],
+    "totalWordCount": 1482,
+    "estimatedReadingTime": 360000,
+    "title": "clean_oop_architecture",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\class_definition_and_instantiation.md": {
+    "path": "public\\content\\python\\object_oriented_python\\class_definition_and_instantiation.md",
+    "sections": [
+      {
+        "id": "python-classes-and-objects-from-first-principles",
+        "title": "Python Classes and Objects: From First Principles",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "what-is-a-class",
+        "title": "What is a Class?",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "defining-a-class-in-python",
+        "title": "Defining a Class in Python",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "class-instantiation-creating-objects",
+        "title": "Class Instantiation: Creating Objects",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "using-the-object",
+        "title": "Using the Object",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "self-parameter-understanding-its-role",
+        "title": "Self Parameter: Understanding Its Role",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "modifying-objects-after-creation",
+        "title": "Modifying Objects after Creation",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "a-more-complex-example-banking-account",
+        "title": "A More Complex Example: Banking Account",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "inheritance-building-on-existing-classes",
+        "title": "Inheritance: Building on Existing Classes",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "advanced-concepts-class-methods-and-static-methods",
+        "title": "Advanced Concepts: Class Methods and Static Methods",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "properties-controlled-access-to-attributes",
+        "title": "Properties: Controlled Access to Attributes",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 127
+      }
+    ],
+    "totalWordCount": 787,
+    "estimatedReadingTime": 240000,
+    "title": "class_definition_and_instantiation",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\object_oriented_python\\abstract_base_classes_and_interfaces.md": {
+    "path": "public\\content\\python\\object_oriented_python\\abstract_base_classes_and_interfaces.md",
+    "sections": [
+      {
+        "id": "python-abstract-base-classes-and-interfaces-first-principles",
+        "title": "Python Abstract Base Classes and Interfaces: First Principles",
+        "level": 1,
+        "wordCount": 30
+      },
+      {
+        "id": "the-fundamental-problem-type-checking-and-polymorphism",
+        "title": "The Fundamental Problem: Type Checking and Polymorphism",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "duck-typing-pythons-initial-approach",
+        "title": "Duck Typing: Python's Initial Approach",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "enter-abstract-base-classes-abcs",
+        "title": "Enter Abstract Base Classes (ABCs)",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "the-difference-between-abcs-and-interfaces",
+        "title": "The Difference Between ABCs and Interfaces",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "real-world-example-building-a-framework",
+        "title": "Real-World Example: Building a Framework",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "registering-non-subclasses-with-abcs",
+        "title": "Registering Non-Subclasses with ABCs",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "abstract-properties",
+        "title": "Abstract Properties",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "virtual-subclasses-with-__subclasshook__",
+        "title": "Virtual Subclasses with `__subclasshook__`",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "protocol-classes-python-38",
+        "title": "Protocol Classes (Python 3.8+)",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "practical-use-case-building-a-plugin-system",
+        "title": "Practical Use Case: Building a Plugin System",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "when-to-use-abcs-vs-protocols",
+        "title": "When to Use ABCs vs. Protocols",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "best-practices-for-abcs-and-interfaces",
+        "title": "Best Practices for ABCs and Interfaces",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 92
+      }
+    ],
+    "totalWordCount": 826,
+    "estimatedReadingTime": 240000,
+    "title": "abstract_base_classes_and_interfaces",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\tree_implementations.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\tree_implementations.md",
+    "sections": [
+      {
+        "id": "tree-implementations-in-python-from-first-principles",
+        "title": "Tree Implementations in Python: From First Principles",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "what-is-a-tree",
+        "title": "What is a Tree?",
+        "level": 2,
+        "wordCount": 141
+      },
+      {
+        "id": "binary-trees",
+        "title": "Binary Trees",
+        "level": 2,
+        "wordCount": 234
+      },
+      {
+        "id": "avl-trees",
+        "title": "AVL Trees",
+        "level": 2,
+        "wordCount": 185
+      },
+      {
+        "id": "red-black-trees",
+        "title": "Red-Black Trees",
+        "level": 2,
+        "wordCount": 198
+      },
+      {
+        "id": "comparing-the-tree-implementations",
+        "title": "Comparing the Tree Implementations",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "example-using-trees-for-real-problems",
+        "title": "Example: Using Trees for Real Problems",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 107
+      }
+    ],
+    "totalWordCount": 1057,
+    "estimatedReadingTime": 300000,
+    "title": "tree_implementations",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\stacks_queues_and_deques.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\stacks_queues_and_deques.md",
+    "sections": [
+      {
+        "id": "python-data-structures-stacks-queues-and-deques",
+        "title": "Python Data Structures: Stacks, Queues, and Deques",
+        "level": 1,
+        "wordCount": 27
+      },
+      {
+        "id": "1-stack-the-lifo-structure",
+        "title": "1. Stack - The LIFO Structure",
+        "level": 2,
+        "wordCount": 225
+      },
+      {
+        "id": "2-queue-the-fifo-structure",
+        "title": "2. Queue - The FIFO Structure",
+        "level": 2,
+        "wordCount": 244
+      },
+      {
+        "id": "3-deque-the-double-ended-queue",
+        "title": "3. Deque - The Double-Ended Queue",
+        "level": 2,
+        "wordCount": 200
+      },
+      {
+        "id": "comparison-of-stack-queue-and-deque",
+        "title": "Comparison of Stack, Queue, and Deque",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "built-in-python-implementations",
+        "title": "Built-in Python Implementations",
+        "level": 2,
+        "wordCount": 12
+      },
+      {
+        "id": "choosing-the-right-data-structure",
+        "title": "Choosing the Right Data Structure",
+        "level": 2,
+        "wordCount": 85
+      }
+    ],
+    "totalWordCount": 876,
+    "estimatedReadingTime": 240000,
+    "title": "stacks_queues_and_deques",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\sorting_algorithms_and_python_timsort.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\sorting_algorithms_and_python_timsort.md",
+    "sections": [
+      {
+        "id": "python-sorting-algorithms-timsort-a-first-principles-exploration",
+        "title": "Python Sorting Algorithms & Timsort: A First Principles Exploration",
+        "level": 1,
+        "wordCount": 28
+      },
+      {
+        "id": "what-is-sorting",
+        "title": "What is Sorting?",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "why-do-we-need-sorting",
+        "title": "Why Do We Need Sorting?",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "understanding-algorithm-complexity",
+        "title": "Understanding Algorithm Complexity",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "basic-sorting-algorithms-in-python",
+        "title": "Basic Sorting Algorithms in Python",
+        "level": 2,
+        "wordCount": 432
+      },
+      {
+        "id": "pythons-built-in-sorting",
+        "title": "Python's Built-in Sorting",
+        "level": 2,
+        "wordCount": 27
+      },
+      {
+        "id": "timsort-pythons-sorting-algorithm",
+        "title": "Timsort: Python's Sorting Algorithm",
+        "level": 2,
+        "wordCount": 377
+      },
+      {
+        "id": "practical-examples-of-when-each-algorithm-shines",
+        "title": "Practical Examples of When Each Algorithm Shines",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "when-to-use-what-in-python",
+        "title": "When to Use What in Python",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 116
+      }
+    ],
+    "totalWordCount": 1408,
+    "estimatedReadingTime": 360000,
+    "title": "sorting_algorithms_and_python_timsort",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\sets_and_frozen_sets.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\sets_and_frozen_sets.md",
+    "sections": [
+      {
+        "id": "understanding-python-sets-and-frozen-sets-from-first-principles",
+        "title": "Understanding Python Sets and Frozen Sets from First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "what-are-sets-the-foundation",
+        "title": "What Are Sets? The Foundation",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "creating-python-sets",
+        "title": "Creating Python Sets",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "set-operations-mathematical-roots",
+        "title": "Set Operations: Mathematical Roots",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "set-properties-and-behaviors",
+        "title": "Set Properties and Behaviors",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "frozen-sets-immutable-sets",
+        "title": "Frozen Sets: Immutable Sets",
+        "level": 2,
+        "wordCount": 190
+      },
+      {
+        "id": "real-world-applications-of-sets-and-frozen-sets",
+        "title": "Real-World Applications of Sets and Frozen Sets",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "performance-characteristics",
+        "title": "Performance Characteristics",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "limitations-and-considerations",
+        "title": "Limitations and Considerations",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "summary-key-differences-between-sets-and-frozen-sets",
+        "title": "Summary: Key Differences Between Sets and Frozen Sets",
+        "level": 2,
+        "wordCount": 159
+      }
+    ],
+    "totalWordCount": 964,
+    "estimatedReadingTime": 240000,
+    "title": "sets_and_frozen_sets",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\search_algorithms_and_their_implementations.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\search_algorithms_and_their_implementations.md",
+    "sections": [
+      {
+        "id": "search-algorithms-from-first-principles",
+        "title": "Search Algorithms: From First Principles",
+        "level": 1,
+        "wordCount": 41
+      },
+      {
+        "id": "what-is-searching",
+        "title": "What is Searching?",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "linear-search-the-most-intuitive-approach",
+        "title": "Linear Search: The Most Intuitive Approach",
+        "level": 2,
+        "wordCount": 214
+      },
+      {
+        "id": "binary-search-dividing-and-conquering",
+        "title": "Binary Search: Dividing and Conquering",
+        "level": 2,
+        "wordCount": 349
+      },
+      {
+        "id": "jump-search-a-middle-ground",
+        "title": "Jump Search: A Middle Ground",
+        "level": 2,
+        "wordCount": 184
+      },
+      {
+        "id": "interpolation-search-making-educated-guesses",
+        "title": "Interpolation Search: Making Educated Guesses",
+        "level": 2,
+        "wordCount": 171
+      },
+      {
+        "id": "exponential-search-unbounded-binary-search",
+        "title": "Exponential Search: Unbounded Binary Search",
+        "level": 2,
+        "wordCount": 207
+      },
+      {
+        "id": "tree-based-search-algorithms",
+        "title": "Tree-Based Search Algorithms",
+        "level": 2,
+        "wordCount": 366
+      },
+      {
+        "id": "a-search-algorithm-intelligent-pathfinding",
+        "title": "A* Search Algorithm: Intelligent Pathfinding",
+        "level": 2,
+        "wordCount": 249
+      },
+      {
+        "id": "practical-considerations-for-search-algorithms",
+        "title": "Practical Considerations for Search Algorithms",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 94
+      }
+    ],
+    "totalWordCount": 2052,
+    "estimatedReadingTime": 540000,
+    "title": "search_algorithms_and_their_implementations",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\recursion_techniques_and_optimization.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\recursion_techniques_and_optimization.md",
+    "sections": [
+      {
+        "id": "python-recursion-techniques-and-optimization",
+        "title": "Python Recursion Techniques and Optimization",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "first-principles-of-recursion",
+        "title": "First Principles of Recursion",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "the-call-stack",
+        "title": "The Call Stack",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "common-recursion-patterns",
+        "title": "Common Recursion Patterns",
+        "level": 2,
+        "wordCount": 180
+      },
+      {
+        "id": "recursive-data-structures-and-algorithms",
+        "title": "Recursive Data Structures and Algorithms",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "recursion-optimization-techniques",
+        "title": "Recursion Optimization Techniques",
+        "level": 2,
+        "wordCount": 181
+      },
+      {
+        "id": "complex-example-tower-of-hanoi",
+        "title": "Complex Example: Tower of Hanoi",
+        "level": 2,
+        "wordCount": 178
+      },
+      {
+        "id": "when-to-use-recursion",
+        "title": "When to Use Recursion",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "practice-problems",
+        "title": "Practice Problems",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 83
+      }
+    ],
+    "totalWordCount": 1097,
+    "estimatedReadingTime": 300000,
+    "title": "recursion_techniques_and_optimization",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\lists_tuples_and_their_internal_implementation.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\lists_tuples_and_their_internal_implementation.md",
+    "sections": [
+      {
+        "id": "python-lists-and-tuples-from-first-principles",
+        "title": "Python Lists and Tuples: From First Principles",
+        "level": 1,
+        "wordCount": 34
+      },
+      {
+        "id": "1-memory-and-data-storage-the-foundation",
+        "title": "1. Memory and Data Storage: The Foundation",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "2-the-need-for-collections",
+        "title": "2. The Need for Collections",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "3-python-lists-dynamic-arrays",
+        "title": "3. Python Lists: Dynamic Arrays",
+        "level": 2,
+        "wordCount": 262
+      },
+      {
+        "id": "4-python-tuples-immutable-sequences",
+        "title": "4. Python Tuples: Immutable Sequences",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "5-performance-characteristics",
+        "title": "5. Performance Characteristics",
+        "level": 2,
+        "wordCount": 129
+      },
+      {
+        "id": "6-practical-examples",
+        "title": "6. Practical Examples",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "7-when-to-use-lists-vs-tuples",
+        "title": "7. When to Use Lists vs Tuples",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "8-common-pitfalls-and-nuances",
+        "title": "8. Common Pitfalls and Nuances",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "9-advanced-topics",
+        "title": "9. Advanced Topics",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "10-memory-management",
+        "title": "10. Memory Management",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 104
+      }
+    ],
+    "totalWordCount": 1115,
+    "estimatedReadingTime": 300000,
+    "title": "lists_tuples_and_their_internal_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\hashing_and_hash_functions.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\hashing_and_hash_functions.md",
+    "sections": [
+      {
+        "id": "hashing-and-hash-functions-in-python-from-first-principles",
+        "title": "Hashing and Hash Functions in Python: From First Principles",
+        "level": 1,
+        "wordCount": 48
+      },
+      {
+        "id": "what-is-hashing",
+        "title": "What is Hashing?",
+        "level": 2,
+        "wordCount": 168
+      },
+      {
+        "id": "why-do-we-need-hashing",
+        "title": "Why Do We Need Hashing?",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "hash-functions-in-python",
+        "title": "Hash Functions in Python",
+        "level": 2,
+        "wordCount": 471
+      },
+      {
+        "id": "cryptographic-hash-functions",
+        "title": "Cryptographic Hash Functions",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "hash-functions-for-data-integrity",
+        "title": "Hash Functions for Data Integrity",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "creating-a-bloom-filter",
+        "title": "Creating a Bloom Filter",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "consistent-hashing",
+        "title": "Consistent Hashing",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 155
+      }
+    ],
+    "totalWordCount": 1241,
+    "estimatedReadingTime": 300000,
+    "title": "hashing_and_hash_functions",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\graph_representations_and_algorithms.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\graph_representations_and_algorithms.md",
+    "sections": [
+      {
+        "id": "graph-representations-and-algorithms-from-first-principles",
+        "title": "Graph Representations and Algorithms from First Principles",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "what-is-a-graph",
+        "title": "What Is a Graph?",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "types-of-graphs",
+        "title": "Types of Graphs",
+        "level": 2,
+        "wordCount": 144
+      },
+      {
+        "id": "graph-representations-in-python",
+        "title": "Graph Representations in Python",
+        "level": 2,
+        "wordCount": 301
+      },
+      {
+        "id": "graph-traversal-algorithms",
+        "title": "Graph Traversal Algorithms",
+        "level": 2,
+        "wordCount": 224
+      },
+      {
+        "id": "path-finding-algorithms",
+        "title": "Path Finding Algorithms",
+        "level": 2,
+        "wordCount": 204
+      },
+      {
+        "id": "graph-applications-and-advanced-algorithms",
+        "title": "Graph Applications and Advanced Algorithms",
+        "level": 2,
+        "wordCount": 165
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 103
+      }
+    ],
+    "totalWordCount": 1363,
+    "estimatedReadingTime": 360000,
+    "title": "graph_representations_and_algorithms",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\dictionaries_and_their_hash_based_implementation.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\dictionaries_and_their_hash_based_implementation.md",
+    "sections": [
+      {
+        "id": "python-dictionaries-and-their-hash-based-implementation",
+        "title": "Python Dictionaries and Their Hash-Based Implementation",
+        "level": 1,
+        "wordCount": 34
+      },
+      {
+        "id": "1-what-is-a-dictionary",
+        "title": "1. What is a Dictionary?",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "2-the-need-for-efficient-lookups",
+        "title": "2. The Need for Efficient Lookups",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "3-hash-functions-the-foundation",
+        "title": "3. Hash Functions: The Foundation",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "4-from-hash-to-index-the-modulo-operation",
+        "title": "4. From Hash to Index: The Modulo Operation",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "5-handling-collisions-when-different-keys-hash-to-the-same-index",
+        "title": "5. Handling Collisions: When Different Keys Hash to the Same Index",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "6-dictionary-implementation-in-python",
+        "title": "6. Dictionary Implementation in Python",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "7-dictionary-performance-characteristics",
+        "title": "7. Dictionary Performance Characteristics",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "8-dictionary-methods-and-operations",
+        "title": "8. Dictionary Methods and Operations",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "9-dictionary-comprehensions",
+        "title": "9. Dictionary Comprehensions",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "10-hash-table-resizing",
+        "title": "10. Hash Table Resizing",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "11-requirements-for-dictionary-keys",
+        "title": "11. Requirements for Dictionary Keys",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "12-under-the-hood-cpython-implementation",
+        "title": "12. Under the Hood: CPython Implementation",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "13-practical-examples",
+        "title": "13. Practical Examples",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "14-advanced-dictionary-features",
+        "title": "14. Advanced Dictionary Features",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "15-real-world-connections-hash-tables-beyond-python",
+        "title": "15. Real-world Connections: Hash Tables Beyond Python",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 84
+      }
+    ],
+    "totalWordCount": 1041,
+    "estimatedReadingTime": 300000,
+    "title": "dictionaries_and_their_hash_based_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\collections_module_deep_dive.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\collections_module_deep_dive.md",
+    "sections": [
+      {
+        "id": "python-collections-module-a-first-principles-deep-dive",
+        "title": "Python Collections Module: A First Principles Deep Dive",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "what-are-collections",
+        "title": "What Are Collections?",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "why-do-we-need-specialized-collections",
+        "title": "Why Do We Need Specialized Collections?",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "core-components-of-the-collections-module",
+        "title": "Core Components of the Collections Module",
+        "level": 2,
+        "wordCount": 570
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 179
+      },
+      {
+        "id": "practical-applications",
+        "title": "Practical Applications",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "going-beyond-the-collections-module",
+        "title": "Going Beyond the Collections Module",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 126
+      }
+    ],
+    "totalWordCount": 1206,
+    "estimatedReadingTime": 300000,
+    "title": "collections_module_deep_dive",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\data_structures_and_algorithms\\arrays_and_byte_arrays.md": {
+    "path": "public\\content\\python\\data_structures_and_algorithms\\arrays_and_byte_arrays.md",
+    "sections": [
+      {
+        "id": "understanding-python-arrays-and-byte-arrays-from-first-principles",
+        "title": "Understanding Python Arrays and Byte Arrays from First Principles",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "1-the-foundation-computer-memory",
+        "title": "1. The Foundation: Computer Memory",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "2-what-is-an-array",
+        "title": "2. What Is an Array?",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "3-python-lists-vs-arrays",
+        "title": "3. Python Lists vs. Arrays",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "4-true-arrays-in-python-with-the-array-module",
+        "title": "4. True Arrays in Python with the `array` Module",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "5-understanding-byte-arrays-bytearray",
+        "title": "5. Understanding Byte Arrays: `bytearray`",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "6-real-world-applications",
+        "title": "6. Real-World Applications",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "7-memory-representation-and-performance",
+        "title": "7. Memory Representation and Performance",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "8-working-with-byte-arrays-and-encoding",
+        "title": "8. Working with Byte Arrays and Encoding",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "9-array-slicing-and-operations",
+        "title": "9. Array Slicing and Operations",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "10-performance-considerations",
+        "title": "10. Performance Considerations",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 135
+      }
+    ],
+    "totalWordCount": 925,
+    "estimatedReadingTime": 240000,
+    "title": "arrays_and_byte_arrays",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\working_with_dates_and_times.md": {
+    "path": "public\\content\\python\\core_python_concepts\\working_with_dates_and_times.md",
+    "sections": [
+      {
+        "id": "understanding-dates-and-times-in-python-a-first-principles-approach",
+        "title": "Understanding Dates and Times in Python: A First Principles Approach",
+        "level": 1,
+        "wordCount": 45
+      },
+      {
+        "id": "the-fundamental-problem-of-time",
+        "title": "The Fundamental Problem of Time",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "the-key-python-datetime-libraries",
+        "title": "The Key Python DateTime Libraries",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "the-datetime-module-core-classes",
+        "title": "The `datetime` Module: Core Classes",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "creating-date-objects",
+        "title": "Creating Date Objects",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "creating-time-objects",
+        "title": "Creating Time Objects",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "creating-datetime-objects",
+        "title": "Creating DateTime Objects",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "understanding-time-deltas",
+        "title": "Understanding Time Deltas",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "formatting-and-parsing-dates-and-times",
+        "title": "Formatting and Parsing Dates and Times",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "working-with-time-zones",
+        "title": "Working with Time Zones",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "timestamps-and-unix-time",
+        "title": "Timestamps and Unix Time",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "common-challenges-and-best-practices",
+        "title": "Common Challenges and Best Practices",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 121
+      }
+    ],
+    "totalWordCount": 848,
+    "estimatedReadingTime": 240000,
+    "title": "working_with_dates_and_times",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\type_annotations_and_hints.md": {
+    "path": "public\\content\\python\\core_python_concepts\\type_annotations_and_hints.md",
+    "sections": [
+      {
+        "id": "python-type-annotations-and-hints-a-first-principles-approach",
+        "title": "Python Type Annotations and Hints: A First-Principles Approach",
+        "level": 1,
+        "wordCount": 51
+      },
+      {
+        "id": "the-foundations-static-vs-dynamic-typing",
+        "title": "The Foundations: Static vs. Dynamic Typing",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "the-birth-of-python-type-annotations",
+        "title": "The Birth of Python Type Annotations",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "the-basic-syntax",
+        "title": "The Basic Syntax",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "type-annotations-without-initial-values",
+        "title": "Type Annotations Without Initial Values",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "function-annotations",
+        "title": "Function Annotations",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "the-python-typing-module",
+        "title": "The Python `typing` Module",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "why-use-type-annotations-the-first-principles-benefits",
+        "title": "Why Use Type Annotations? The First-Principles Benefits",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "advanced-type-annotations",
+        "title": "Advanced Type Annotations",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "python-38-type-annotation-improvements",
+        "title": "Python 3.8+ Type Annotation Improvements",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "type-annotations-in-python-39-and-beyond",
+        "title": "Type Annotations in Python 3.9+ and Beyond",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "practical-example-a-type-annotated-user-management-system",
+        "title": "Practical Example: A Type-Annotated User Management System",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "common-misconceptions-and-limitations",
+        "title": "Common Misconceptions and Limitations",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "tools-and-ecosystem",
+        "title": "Tools and Ecosystem",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 102
+      }
+    ],
+    "totalWordCount": 1060,
+    "estimatedReadingTime": 300000,
+    "title": "type_annotations_and_hints",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\string_operations_and_advanced_formatting.md": {
+    "path": "public\\content\\python\\core_python_concepts\\string_operations_and_advanced_formatting.md",
+    "sections": [
+      {
+        "id": "python-string-operations-and-advanced-formatting-a-first-principles-approach",
+        "title": "Python String Operations and Advanced Formatting: A First Principles Approach",
+        "level": 1,
+        "wordCount": 33
+      },
+      {
+        "id": "what-is-a-string",
+        "title": "What Is a String?",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "string-immutability",
+        "title": "String Immutability",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "basic-string-operations",
+        "title": "Basic String Operations",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "string-methods",
+        "title": "String Methods",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "string-formatting",
+        "title": "String Formatting",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "advanced-string-formatting-techniques",
+        "title": "Advanced String Formatting Techniques",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "real-world-examples",
+        "title": "Real-World Examples",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "string-operations-performance-considerations",
+        "title": "String Operations Performance Considerations",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 130
+      }
+    ],
+    "totalWordCount": 918,
+    "estimatedReadingTime": 240000,
+    "title": "string_operations_and_advanced_formatting",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\scope_and_namespaces.md": {
+    "path": "public\\content\\python\\core_python_concepts\\scope_and_namespaces.md",
+    "sections": [
+      {
+        "id": "understanding-scope-and-namespaces-in-python-the-legb-rule",
+        "title": "Understanding Scope and Namespaces in Python: The LEGB Rule",
+        "level": 1,
+        "wordCount": 41
+      },
+      {
+        "id": "what-are-namespaces",
+        "title": "What Are Namespaces?",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "what-is-scope",
+        "title": "What Is Scope?",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "the-legb-rule",
+        "title": "The LEGB Rule",
+        "level": 2,
+        "wordCount": 210
+      },
+      {
+        "id": "practical-examples-of-legb-in-action",
+        "title": "Practical Examples of LEGB in Action",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "common-pitfalls-and-best-practices",
+        "title": "Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "advanced-concepts-closures",
+        "title": "Advanced Concepts: Closures",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "how-python-implements-namespaces-internally",
+        "title": "How Python Implements Namespaces Internally",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 115
+      }
+    ],
+    "totalWordCount": 825,
+    "estimatedReadingTime": 240000,
+    "title": "scope_and_namespaces",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\regular_expressions.md": {
+    "path": "public\\content\\python\\core_python_concepts\\regular_expressions.md",
+    "sections": [
+      {
+        "id": "python-regular-expressions-a-first-principles-approach",
+        "title": "Python Regular Expressions: A First Principles Approach",
+        "level": 1,
+        "wordCount": 31
+      },
+      {
+        "id": "the-fundamental-concept-pattern-matching",
+        "title": "The Fundamental Concept: Pattern Matching",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "the-building-blocks-of-regular-expressions",
+        "title": "The Building Blocks of Regular Expressions",
+        "level": 2,
+        "wordCount": 276
+      },
+      {
+        "id": "quantifiers-controlling-repetition",
+        "title": "Quantifiers: Controlling Repetition",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "anchors-specifying-position",
+        "title": "Anchors: Specifying Position",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "grouping-and-capturing",
+        "title": "Grouping and Capturing",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "non-capturing-groups",
+        "title": "Non-capturing Groups",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "alternation-matching-one-of-several-patterns",
+        "title": "Alternation: Matching One of Several Patterns",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "greedy-vs-non-greedy-matching",
+        "title": "Greedy vs. Non-Greedy Matching",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "look-ahead-and-look-behind-assertions",
+        "title": "Look-ahead and Look-behind Assertions",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "real-world-examples",
+        "title": "Real-World Examples",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "common-python-regex-functions",
+        "title": "Common Python Regex Functions",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "compiling-patterns-for-better-performance",
+        "title": "Compiling Patterns for Better Performance",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "tips-for-writing-effective-regular-expressions",
+        "title": "Tips for Writing Effective Regular Expressions",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 89
+      }
+    ],
+    "totalWordCount": 996,
+    "estimatedReadingTime": 240000,
+    "title": "regular_expressions",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\python_memory_model_and_garbage_collection.md": {
+    "path": "public\\content\\python\\core_python_concepts\\python_memory_model_and_garbage_collection.md",
+    "sections": [
+      {
+        "id": "python-memory-model-and-garbage-collection-first-principles",
+        "title": "Python Memory Model and Garbage Collection: First Principles",
+        "level": 1,
+        "wordCount": 31
+      },
+      {
+        "id": "1-what-is-computer-memory",
+        "title": "1. What is Computer Memory?",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "2-pythons-memory-architecture",
+        "title": "2. Python's Memory Architecture",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "3-everything-is-an-object",
+        "title": "3. Everything is an Object",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "4-value-vs-reference",
+        "title": "4. Value vs Reference",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "5-object-lifecycle",
+        "title": "5. Object Lifecycle",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "6-pythons-memory-manager",
+        "title": "6. Python's Memory Manager",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "7-reference-counting",
+        "title": "7. Reference Counting",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "8-limitations-of-reference-counting",
+        "title": "8. Limitations of Reference Counting",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "9-generational-garbage-collection",
+        "title": "9. Generational Garbage Collection",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "10-memory-optimizations",
+        "title": "10. Memory Optimizations",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "11-common-memory-issues-in-python",
+        "title": "11. Common Memory Issues in Python",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "12-practical-tools-for-memory-management",
+        "title": "12. Practical Tools for Memory Management",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "13-advanced-memory-management",
+        "title": "13. Advanced Memory Management",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "14-measuring-object-size",
+        "title": "14. Measuring Object Size",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "15-best-practices-for-memory-management",
+        "title": "15. Best Practices for Memory Management",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 115
+      }
+    ],
+    "totalWordCount": 1020,
+    "estimatedReadingTime": 300000,
+    "title": "python_memory_model_and_garbage_collection",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\path_handling_and_file_system_operations.md": {
+    "path": "public\\content\\python\\core_python_concepts\\path_handling_and_file_system_operations.md",
+    "sections": [
+      {
+        "id": "python-path-handling-and-file-system-operations-from-first-principles",
+        "title": "Python Path Handling and File System Operations: From First Principles",
+        "level": 1,
+        "wordCount": 43
+      },
+      {
+        "id": "1-what-is-a-path",
+        "title": "1. What Is a Path?",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "2-path-manipulation-with-ospath",
+        "title": "2. Path Manipulation with `os.path`",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "3-modern-path-handling-with-pathlib",
+        "title": "3. Modern Path Handling with `pathlib`",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "4-basic-file-operations",
+        "title": "4. Basic File Operations",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "5-directory-operations",
+        "title": "5. Directory Operations",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "6-file-metadata-and-properties",
+        "title": "6. File Metadata and Properties",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "7-moving-copying-and-deleting-files",
+        "title": "7. Moving, Copying, and Deleting Files",
+        "level": 2,
+        "wordCount": 6
+      },
+      {
+        "id": "8-working-with-temporary-files-and-directories",
+        "title": "8. Working with Temporary Files and Directories",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "9-file-paths-in-python-packages",
+        "title": "9. File Paths in Python Packages",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "10-real-world-example-processing-multiple-files",
+        "title": "10. Real-World Example: Processing Multiple Files",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "11-path-normalization-and-resolution",
+        "title": "11. Path Normalization and Resolution",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "12-working-with-file-encodings",
+        "title": "12. Working with File Encodings",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 116
+      }
+    ],
+    "totalWordCount": 650,
+    "estimatedReadingTime": 180000,
+    "title": "path_handling_and_file_system_operations",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\modules_and_import_system.md": {
+    "path": "public\\content\\python\\core_python_concepts\\modules_and_import_system.md",
+    "sections": [
+      {
+        "id": "python-modules-and-import-system-from-first-principles",
+        "title": "Python Modules and Import System: From First Principles",
+        "level": 1,
+        "wordCount": 54
+      },
+      {
+        "id": "what-is-a-module-the-fundamental-building-block",
+        "title": "What is a Module? The Fundamental Building Block",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "why-do-we-need-modules",
+        "title": "Why Do We Need Modules?",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "the-import-system-bringing-in-code",
+        "title": "The Import System: Bringing in Code",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "how-python-finds-modules-the-search-path",
+        "title": "How Python Finds Modules: The Search Path",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "different-ways-to-import",
+        "title": "Different Ways to Import",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "behind-the-scenes-what-happens-during-import",
+        "title": "Behind the Scenes: What Happens During Import",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "packages-organizing-modules",
+        "title": "Packages: Organizing Modules",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "the-__init__py-file-package-initialization",
+        "title": "The `__init__.py` File: Package Initialization",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "relative-imports-referencing-sibling-modules",
+        "title": "Relative Imports: Referencing Sibling Modules",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "practical-example-building-a-useful-package",
+        "title": "Practical Example: Building a Useful Package",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "module-search-path-in-depth",
+        "title": "Module Search Path In-Depth",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "import-hooks-and-custom-importers",
+        "title": "Import Hooks and Custom Importers",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "common-pitfalls-and-best-practices",
+        "title": "Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "pythons-module-reloading",
+        "title": "Python's Module Reloading",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "standard-library-modules-built-in-power",
+        "title": "Standard Library Modules: Built-in Power",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "third-party-packages-the-python-ecosystem",
+        "title": "Third-Party Packages: The Python Ecosystem",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "virtual-environments-isolated-dependencies",
+        "title": "Virtual Environments: Isolated Dependencies",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "the-__pycache__-directory-bytecode-optimization",
+        "title": "The `__pycache__` Directory: Bytecode Optimization",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "module-documentation-helping-users",
+        "title": "Module Documentation: Helping Users",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "the-__main__-block-dual-purpose-modules",
+        "title": "The `__main__` Block: Dual-Purpose Modules",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 94
+      }
+    ],
+    "totalWordCount": 1266,
+    "estimatedReadingTime": 360000,
+    "title": "modules_and_import_system",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\lambda_functions.md": {
+    "path": "public\\content\\python\\core_python_concepts\\lambda_functions.md",
+    "sections": [
+      {
+        "id": "python-lambda-functions-a-first-principles-explanation",
+        "title": "Python Lambda Functions: A First Principles Explanation",
+        "level": 1,
+        "wordCount": 40
+      },
+      {
+        "id": "what-is-a-function",
+        "title": "What is a Function?",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "the-concept-of-anonymous-functions",
+        "title": "The Concept of Anonymous Functions",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "enter-lambda-functions",
+        "title": "Enter Lambda Functions",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "a-simple-lambda-example",
+        "title": "A Simple Lambda Example",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "why-lambda-functions",
+        "title": "Why Lambda Functions?",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "lambda-functions-in-action",
+        "title": "Lambda Functions in Action",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "lambda-function-limitations",
+        "title": "Lambda Function Limitations",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "when-to-use-lambda-vs-regular-functions",
+        "title": "When to Use Lambda vs. Regular Functions",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "functional-programming-applications",
+        "title": "Functional Programming Applications",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "lambda-functions-in-real-world-scenarios",
+        "title": "Lambda Functions in Real-World Scenarios",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "lambda-functions-and-closures",
+        "title": "Lambda Functions and Closures",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "understanding-lambda-functions-at-a-deep-level",
+        "title": "Understanding Lambda Functions at a Deep Level",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 120
+      }
+    ],
+    "totalWordCount": 960,
+    "estimatedReadingTime": 240000,
+    "title": "lambda_functions",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\iterators_and_generators.md": {
+    "path": "public\\content\\python\\core_python_concepts\\iterators_and_generators.md",
+    "sections": [
+      {
+        "id": "python-iterators-and-generators-a-first-principles-exploration",
+        "title": "Python Iterators and Generators: A First Principles Exploration",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "part-1-what-is-iteration",
+        "title": "Part 1: What is Iteration?",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "part-2-iterators-the-underlying-mechanism",
+        "title": "Part 2: Iterators - The Underlying Mechanism",
+        "level": 2,
+        "wordCount": 167
+      },
+      {
+        "id": "part-3-generators-simplified-iterators",
+        "title": "Part 3: Generators - Simplified Iterators",
+        "level": 2,
+        "wordCount": 177
+      },
+      {
+        "id": "part-4-advanced-generator-features",
+        "title": "Part 4: Advanced Generator Features",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "part-5-practical-examples",
+        "title": "Part 5: Practical Examples",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "part-6-benefits-and-use-cases",
+        "title": "Part 6: Benefits and Use Cases",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "part-7-iterator-and-generator-best-practices",
+        "title": "Part 7: Iterator and Generator Best Practices",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 102
+      }
+    ],
+    "totalWordCount": 849,
+    "estimatedReadingTime": 240000,
+    "title": "iterators_and_generators",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\function_arguments.md": {
+    "path": "public\\content\\python\\core_python_concepts\\function_arguments.md",
+    "sections": [
+      {
+        "id": "understanding-function-arguments-in-python-from-first-principles",
+        "title": "Understanding Function Arguments in Python from First Principles",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "the-essence-of-functions",
+        "title": "The Essence of Functions",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "positional-arguments",
+        "title": "Positional Arguments",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "keyword-arguments",
+        "title": "Keyword Arguments",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "default-arguments",
+        "title": "Default Arguments",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "variable-length-arguments-args",
+        "title": "Variable-Length Arguments (*args)",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "variable-length-keyword-arguments-kwargs",
+        "title": "Variable-Length Keyword Arguments (**kwargs)",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "bringing-it-all-together",
+        "title": "Bringing It All Together",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "unpacking-arguments",
+        "title": "Unpacking Arguments",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "keyword-only-arguments",
+        "title": "Keyword-Only Arguments",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "positional-only-arguments-python-38",
+        "title": "Positional-Only Arguments (Python 3.8+)",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "real-world-application-example",
+        "title": "Real-World Application Example",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "common-pitfalls-and-best-practices",
+        "title": "Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 828,
+    "estimatedReadingTime": 240000,
+    "title": "function_arguments",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\first_class_functions.md": {
+    "path": "public\\content\\python\\core_python_concepts\\first_class_functions.md",
+    "sections": [
+      {
+        "id": "python-first-class-functions-a-comprehensive-explanation",
+        "title": "Python First-Class Functions: A Comprehensive Explanation",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "what-does-first-class-mean",
+        "title": "What Does \"First-Class\" Mean?",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "functions-as-values",
+        "title": "Functions as Values",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "functions-as-arguments",
+        "title": "Functions as Arguments",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "functions-returning-functions",
+        "title": "Functions Returning Functions",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "functions-in-data-structures",
+        "title": "Functions in Data Structures",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "lambda-functions-anonymous-first-class-functions",
+        "title": "Lambda Functions: Anonymous First-Class Functions",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "higher-order-functions",
+        "title": "Higher-Order Functions",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "decorators-a-practical-application-of-first-class-functions",
+        "title": "Decorators: A Practical Application of First-Class Functions",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "closures-functions-remembering-their-environment",
+        "title": "Closures: Functions Remembering Their Environment",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "partial-functions-creating-specialized-functions",
+        "title": "Partial Functions: Creating Specialized Functions",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "benefits-of-first-class-functions",
+        "title": "Benefits of First-Class Functions",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "common-pitfalls",
+        "title": "Common Pitfalls",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 97
+      }
+    ],
+    "totalWordCount": 986,
+    "estimatedReadingTime": 240000,
+    "title": "first_class_functions",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\file_operations.md": {
+    "path": "public\\content\\python\\core_python_concepts\\file_operations.md",
+    "sections": [
+      {
+        "id": "python-file-operations-from-first-principles",
+        "title": "Python File Operations: From First Principles",
+        "level": 1,
+        "wordCount": 57
+      },
+      {
+        "id": "understanding-files-the-foundation",
+        "title": "Understanding Files: The Foundation",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "opening-files-in-python",
+        "title": "Opening Files in Python",
+        "level": 2,
+        "wordCount": 123
+      },
+      {
+        "id": "file-modes-the-key-to-controlling-file-operations",
+        "title": "File Modes: The Key to Controlling File Operations",
+        "level": 2,
+        "wordCount": 204
+      },
+      {
+        "id": "binary-vs-text-mode",
+        "title": "Binary vs Text Mode",
+        "level": 2,
+        "wordCount": 155
+      },
+      {
+        "id": "the-with-statement-context-management",
+        "title": "The `with` Statement: Context Management",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "reading-from-files-multiple-methods",
+        "title": "Reading from Files: Multiple Methods",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "writing-to-files",
+        "title": "Writing to Files",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "working-with-file-positions",
+        "title": "Working with File Positions",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "real-world-examples",
+        "title": "Real-World Examples",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "error-handling-in-file-operations",
+        "title": "Error Handling in File Operations",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "advanced-file-operations",
+        "title": "Advanced File Operations",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "summary-and-best-practices",
+        "title": "Summary and Best Practices",
+        "level": 2,
+        "wordCount": 167
+      }
+    ],
+    "totalWordCount": 1255,
+    "estimatedReadingTime": 360000,
+    "title": "file_operations",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\extended_operators_and_their_behavior.md": {
+    "path": "public\\content\\python\\core_python_concepts\\extended_operators_and_their_behavior.md",
+    "sections": [
+      {
+        "id": "pythons-extended-operators-a-first-principles-explanation",
+        "title": "Python's Extended Operators: A First Principles Explanation",
+        "level": 1,
+        "wordCount": 40
+      },
+      {
+        "id": "what-are-operators",
+        "title": "What Are Operators?",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "basic-operators-in-python",
+        "title": "Basic Operators in Python",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "what-are-extended-operators",
+        "title": "What Are Extended Operators?",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "extended-operators-in-python",
+        "title": "Extended Operators in Python",
+        "level": 2,
+        "wordCount": 234
+      },
+      {
+        "id": "how-extended-operators-work-under-the-hood",
+        "title": "How Extended Operators Work Under the Hood",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "practical-applications",
+        "title": "Practical Applications",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "important-considerations",
+        "title": "Important Considerations",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "extended-operators-with-custom-classes",
+        "title": "Extended Operators with Custom Classes",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "common-pitfalls",
+        "title": "Common Pitfalls",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 110
+      }
+    ],
+    "totalWordCount": 790,
+    "estimatedReadingTime": 240000,
+    "title": "extended_operators_and_their_behavior",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\exception_hierarchy_and_custom_exceptions.md": {
+    "path": "public\\content\\python\\core_python_concepts\\exception_hierarchy_and_custom_exceptions.md",
+    "sections": [
+      {
+        "id": "python-exception-hierarchy-and-custom-exceptions",
+        "title": "Python Exception Hierarchy and Custom Exceptions",
+        "level": 1,
+        "wordCount": 27
+      },
+      {
+        "id": "what-are-exceptions",
+        "title": "What Are Exceptions?",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "exception-handling-try-except-blocks",
+        "title": "Exception Handling: Try-Except Blocks",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "the-exception-hierarchy",
+        "title": "The Exception Hierarchy",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "common-built-in-exceptions",
+        "title": "Common Built-in Exceptions",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "creating-custom-exceptions",
+        "title": "Creating Custom Exceptions",
+        "level": 2,
+        "wordCount": 259
+      },
+      {
+        "id": "best-practices-for-custom-exceptions",
+        "title": "Best Practices for Custom Exceptions",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "advanced-exception-handling",
+        "title": "Advanced Exception Handling",
+        "level": 2,
+        "wordCount": 140
+      },
+      {
+        "id": "a-real-world-example",
+        "title": "A Real-World Example",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 122
+      }
+    ],
+    "totalWordCount": 1186,
+    "estimatedReadingTime": 300000,
+    "title": "exception_hierarchy_and_custom_exceptions",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\deep_dive_into_python_data_types.md": {
+    "path": "public\\content\\python\\core_python_concepts\\deep_dive_into_python_data_types.md",
+    "sections": [
+      {
+        "id": "a-deep-dive-into-python-data-types-from-first-principles",
+        "title": "A Deep Dive into Python Data Types: From First Principles",
+        "level": 1,
+        "wordCount": 55
+      },
+      {
+        "id": "what-are-data-types",
+        "title": "What Are Data Types?",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "primitive-vs-non-primitive-types",
+        "title": "Primitive vs. Non-Primitive Types",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "the-foundation-numeric-types",
+        "title": "The Foundation: Numeric Types",
+        "level": 2,
+        "wordCount": 165
+      },
+      {
+        "id": "the-boolean-type-bool",
+        "title": "The Boolean Type (`bool`)",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "none-type-nonetype",
+        "title": "None Type (`NoneType`)",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "sequence-types",
+        "title": "Sequence Types",
+        "level": 2,
+        "wordCount": 179
+      },
+      {
+        "id": "set-types",
+        "title": "Set Types",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "mapping-types",
+        "title": "Mapping Types",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "binary-types",
+        "title": "Binary Types",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "special-collections",
+        "title": "Special Collections",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "type-checking-and-conversion",
+        "title": "Type Checking and Conversion",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "memory-considerations",
+        "title": "Memory Considerations",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "choosing-the-right-data-type",
+        "title": "Choosing the Right Data Type",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "special-methods-and-operator-overloading",
+        "title": "Special Methods and Operator Overloading",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "type-annotations-and-type-hints",
+        "title": "Type Annotations and Type Hints",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 120
+      }
+    ],
+    "totalWordCount": 1369,
+    "estimatedReadingTime": 360000,
+    "title": "deep_dive_into_python_data_types",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\context_managers_and_the_with_statement.md": {
+    "path": "public\\content\\python\\core_python_concepts\\context_managers_and_the_with_statement.md",
+    "sections": [
+      {
+        "id": "python-context-managers-and-the-with-statement-from-first-principles",
+        "title": "Python Context Managers and the `with` Statement: From First Principles",
+        "level": 1,
+        "wordCount": 54
+      },
+      {
+        "id": "understanding-resources-and-resource-management",
+        "title": "Understanding Resources and Resource Management",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "the-traditional-way-tryfinally",
+        "title": "The Traditional Way: Try/Finally",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "enter-context-managers-and-the-with-statement",
+        "title": "Enter Context Managers and the `with` Statement",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "how-context-managers-work-the-protocol",
+        "title": "How Context Managers Work: The Protocol",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "creating-your-own-context-manager-using-a-class",
+        "title": "Creating Your Own Context Manager Using a Class",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "the-contextlib-module-creating-context-managers-with-decorators",
+        "title": "The `contextlib` Module: Creating Context Managers with Decorators",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "yielding-values-with-contextmanager",
+        "title": "Yielding Values with `@contextmanager`",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "handling-exceptions-in-context-managers",
+        "title": "Handling Exceptions in Context Managers",
+        "level": 2,
+        "wordCount": 35
+      },
+      {
+        "id": "nested-context-managers",
+        "title": "Nested Context Managers",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "real-world-examples",
+        "title": "Real-World Examples",
+        "level": 2,
+        "wordCount": 21
+      },
+      {
+        "id": "benefits-of-using-context-managers",
+        "title": "Benefits of Using Context Managers",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "common-built-in-context-managers",
+        "title": "Common Built-in Context Managers",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "when-to-create-your-own-context-managers",
+        "title": "When to Create Your Own Context Managers",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "best-practices-for-context-managers",
+        "title": "Best Practices for Context Managers",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 82
+      }
+    ],
+    "totalWordCount": 930,
+    "estimatedReadingTime": 240000,
+    "title": "context_managers_and_the_with_statement",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\comprehensions.md": {
+    "path": "public\\content\\python\\core_python_concepts\\comprehensions.md",
+    "sections": [
+      {
+        "id": "python-comprehensions-understanding-from-first-principles",
+        "title": "Python Comprehensions: Understanding from First Principles",
+        "level": 1,
+        "wordCount": 52
+      },
+      {
+        "id": "the-foundation-understanding-iteration",
+        "title": "The Foundation: Understanding Iteration",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "list-comprehensions-the-core-concept",
+        "title": "List Comprehensions: The Core Concept",
+        "level": 2,
+        "wordCount": 201
+      },
+      {
+        "id": "dictionary-comprehensions-mapping-keys-to-values",
+        "title": "Dictionary Comprehensions: Mapping Keys to Values",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "set-comprehensions-creating-unique-collections",
+        "title": "Set Comprehensions: Creating Unique Collections",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "nested-comprehensions-comprehensions-inside-comprehensions",
+        "title": "Nested Comprehensions: Comprehensions Inside Comprehensions",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "when-to-use-comprehensions",
+        "title": "When to Use Comprehensions",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "common-pitfalls-and-best-practices",
+        "title": "Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "practical-applications",
+        "title": "Practical Applications",
+        "level": 2,
+        "wordCount": 12
+      },
+      {
+        "id": "comprehensions-in-functional-programming",
+        "title": "Comprehensions in Functional Programming",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 113
+      }
+    ],
+    "totalWordCount": 910,
+    "estimatedReadingTime": 240000,
+    "title": "comprehensions",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\command_line_arguments_parsing.md": {
+    "path": "public\\content\\python\\core_python_concepts\\command_line_arguments_parsing.md",
+    "sections": [
+      {
+        "id": "python-command-line-arguments-parsing-from-first-principles",
+        "title": "Python Command-line Arguments Parsing from First Principles",
+        "level": 1,
+        "wordCount": 41
+      },
+      {
+        "id": "what-are-command-line-arguments",
+        "title": "What Are Command-line Arguments?",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "how-python-accesses-command-line-arguments",
+        "title": "How Python Accesses Command-line Arguments",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "the-argparse-module-a-better-way",
+        "title": "The `argparse` Module: A Better Way",
+        "level": 2,
+        "wordCount": 176
+      },
+      {
+        "id": "subcommands-with-argparse",
+        "title": "Subcommands with `argparse`",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "beyond-argparse-other-parsing-libraries",
+        "title": "Beyond `argparse`: Other Parsing Libraries",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 12
+      },
+      {
+        "id": "best-practices-for-command-line-argument-parsing",
+        "title": "Best Practices for Command-line Argument Parsing",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 64
+      }
+    ],
+    "totalWordCount": 648,
+    "estimatedReadingTime": 180000,
+    "title": "command_line_arguments_parsing",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\core_python_concepts\\closures_and_nested_functions.md": {
+    "path": "public\\content\\python\\core_python_concepts\\closures_and_nested_functions.md",
+    "sections": [
+      {
+        "id": "python-closures-and-nested-functions-from-first-principles",
+        "title": "Python Closures and Nested Functions: From First Principles",
+        "level": 1,
+        "wordCount": 40
+      },
+      {
+        "id": "1-understanding-python-functions-as-objects",
+        "title": "1. Understanding Python Functions as Objects",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "2-nested-functions-functions-within-functions",
+        "title": "2. Nested Functions - Functions Within Functions",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "3-returning-nested-functions-the-basis-of-closures",
+        "title": "3. Returning Nested Functions - The Basis of Closures",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "4-understanding-closures",
+        "title": "4. Understanding Closures",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "5-why-closures-are-useful-practical-examples",
+        "title": "5. Why Closures are Useful - Practical Examples",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "6-the-nonlocal-keyword",
+        "title": "6. The nonlocal Keyword",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "7-understanding-variable-lookup-rules",
+        "title": "7. Understanding Variable Lookup Rules",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "8-practical-application-memoization-with-closures",
+        "title": "8. Practical Application: Memoization with Closures",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "9-limitations-and-considerations",
+        "title": "9. Limitations and Considerations",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "10-comparing-closures-with-other-approaches",
+        "title": "10. Comparing Closures with Other Approaches",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 135
+      }
+    ],
+    "totalWordCount": 999,
+    "estimatedReadingTime": 240000,
+    "title": "closures_and_nested_functions",
+    "frontmatter": {}
+  },
   "public\\content\\javascript\\closures\\introduction_to_closures.md": {
     "path": "public\\content\\javascript\\closures\\introduction_to_closures.md",
     "sections": [

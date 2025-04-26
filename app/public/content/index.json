@@ -1780,6 +1780,290 @@
       "icon": "FileCode",
       "subcategories": [
         {
+          "id": "core_python_concepts",
+          "name": "Core Python Concepts",
+          "icon": "FileCode",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "python/core_python_concepts/closures_and_nested_functions.md",
+              "title": "Closures And Nested Functions",
+              "description": "Documentation for Closures And Nested Functions"
+            },
+            {
+              "path": "python/core_python_concepts/command_line_arguments_parsing.md",
+              "title": "Command Line Arguments Parsing",
+              "description": "Documentation for Command Line Arguments Parsing"
+            },
+            {
+              "path": "python/core_python_concepts/comprehensions.md",
+              "title": "Comprehensions",
+              "description": "Documentation for Comprehensions"
+            },
+            {
+              "path": "python/core_python_concepts/context_managers_and_the_with_statement.md",
+              "title": "Context Managers And The With Statement",
+              "description": "Documentation for Context Managers And The With Statement"
+            },
+            {
+              "path": "python/core_python_concepts/deep_dive_into_python_data_types.md",
+              "title": "Deep Dive Into Python Data Types",
+              "description": "Documentation for Deep Dive Into Python Data Types"
+            },
+            {
+              "path": "python/core_python_concepts/exception_hierarchy_and_custom_exceptions.md",
+              "title": "Exception Hierarchy And Custom Exceptions",
+              "description": "Documentation for Exception Hierarchy And Custom Exceptions"
+            },
+            {
+              "path": "python/core_python_concepts/extended_operators_and_their_behavior.md",
+              "title": "Extended Operators And Their Behavior",
+              "description": "Documentation for Extended Operators And Their Behavior"
+            },
+            {
+              "path": "python/core_python_concepts/file_operations.md",
+              "title": "File Operations",
+              "description": "Documentation for File Operations"
+            },
+            {
+              "path": "python/core_python_concepts/first_class_functions.md",
+              "title": "First Class Functions",
+              "description": "Documentation for First Class Functions"
+            },
+            {
+              "path": "python/core_python_concepts/function_arguments.md",
+              "title": "Function Arguments",
+              "description": "Documentation for Function Arguments"
+            },
+            {
+              "path": "python/core_python_concepts/iterators_and_generators.md",
+              "title": "Iterators And Generators",
+              "description": "Documentation for Iterators And Generators"
+            },
+            {
+              "path": "python/core_python_concepts/lambda_functions.md",
+              "title": "Lambda Functions",
+              "description": "Documentation for Lambda Functions"
+            },
+            {
+              "path": "python/core_python_concepts/modules_and_import_system.md",
+              "title": "Modules And Import System",
+              "description": "Documentation for Modules And Import System"
+            },
+            {
+              "path": "python/core_python_concepts/path_handling_and_file_system_operations.md",
+              "title": "Path Handling And File System Operations",
+              "description": "Documentation for Path Handling And File System Operations"
+            },
+            {
+              "path": "python/core_python_concepts/python_memory_model_and_garbage_collection.md",
+              "title": "Python Memory Model And Garbage Collection",
+              "description": "Documentation for Python Memory Model And Garbage Collection"
+            },
+            {
+              "path": "python/core_python_concepts/regular_expressions.md",
+              "title": "Regular Expressions",
+              "description": "Documentation for Regular Expressions"
+            },
+            {
+              "path": "python/core_python_concepts/scope_and_namespaces.md",
+              "title": "Scope And Namespaces",
+              "description": "Documentation for Scope And Namespaces"
+            },
+            {
+              "path": "python/core_python_concepts/string_operations_and_advanced_formatting.md",
+              "title": "String Operations And Advanced Formatting",
+              "description": "Documentation for String Operations And Advanced Formatting"
+            },
+            {
+              "path": "python/core_python_concepts/type_annotations_and_hints.md",
+              "title": "Type Annotations And Hints",
+              "description": "Documentation for Type Annotations And Hints"
+            },
+            {
+              "path": "python/core_python_concepts/working_with_dates_and_times.md",
+              "title": "Working With Dates And Times",
+              "description": "Documentation for Working With Dates And Times"
+            }
+          ]
+        },
+        {
+          "id": "data_structures_and_algorithms",
+          "name": "Data Structures And Algorithms",
+          "icon": "Database",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "python/data_structures_and_algorithms/arrays_and_byte_arrays.md",
+              "title": "Arrays And Byte Arrays",
+              "description": "Documentation for Arrays And Byte Arrays"
+            },
+            {
+              "path": "python/data_structures_and_algorithms/collections_module_deep_dive.md",
+              "title": "Collections Module Deep Dive",
+              "description": "Documentation for Collections Module Deep Dive"
+            },
+            {
+              "path": "python/data_structures_and_algorithms/dictionaries_and_their_hash_based_implementation.md",
+              "title": "Dictionaries And Their Hash Based Implementation",
+              "description": "Documentation for Dictionaries And Their Hash Based Implementation"
+            },
+            {
+              "path": "python/data_structures_and_algorithms/graph_representations_and_algorithms.md",
+              "title": "Graph Representations And Algorithms",
+              "description": "Documentation for Graph Representations And Algorithms"
+            },
+            {
+              "path": "python/data_structures_and_algorithms/hashing_and_hash_functions.md",
+              "title": "Hashing And Hash Functions",
+              "description": "Documentation for Hashing And Hash Functions"
+            },
+            {
+              "path": "python/data_structures_and_algorithms/lists_tuples_and_their_internal_implementation.md",
+              "title": "Lists Tuples And Their Internal Implementation",
+              "description": "Documentation for Lists Tuples And Their Internal Implementation"
+            },
+            {
+              "path": "python/data_structures_and_algorithms/recursion_techniques_and_optimization.md",
+              "title": "Recursion Techniques And Optimization",
+              "description": "Documentation for Recursion Techniques And Optimization"
+            },
+            {
+              "path": "python/data_structures_and_algorithms/search_algorithms_and_their_implementations.md",
+              "title": "Search Algorithms And Their Implementations",
+              "description": "Documentation for Search Algorithms And Their Implementations"
+            },
+            {
+              "path": "python/data_structures_and_algorithms/sets_and_frozen_sets.md",
+              "title": "Sets And Frozen Sets",
+              "description": "Documentation for Sets And Frozen Sets"
+            },
+            {
+              "path": "python/data_structures_and_algorithms/sorting_algorithms_and_python_timsort.md",
+              "title": "Sorting Algorithms And Python Timsort",
+              "description": "Documentation for Sorting Algorithms And Python Timsort"
+            },
+            {
+              "path": "python/data_structures_and_algorithms/stacks_queues_and_deques.md",
+              "title": "Stacks Queues And Deques",
+              "description": "Documentation for Stacks Queues And Deques"
+            },
+            {
+              "path": "python/data_structures_and_algorithms/tree_implementations.md",
+              "title": "Tree Implementations",
+              "description": "Documentation for Tree Implementations"
+            }
+          ]
+        },
+        {
+          "id": "object_oriented_python",
+          "name": "Object Oriented Python",
+          "icon": "FileCode",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "python/object_oriented_python/abstract_base_classes_and_interfaces.md",
+              "title": "Abstract Base Classes And Interfaces",
+              "description": "Documentation for Abstract Base Classes And Interfaces"
+            },
+            {
+              "path": "python/object_oriented_python/class_definition_and_instantiation.md",
+              "title": "Class Definition And Instantiation",
+              "description": "Documentation for Class Definition And Instantiation"
+            },
+            {
+              "path": "python/object_oriented_python/clean_oop_architecture.md",
+              "title": "Clean Oop Architecture",
+              "description": "Documentation for Clean Oop Architecture"
+            },
+            {
+              "path": "python/object_oriented_python/customizing_class_behavior_with_special_methods.md",
+              "title": "Customizing Class Behavior With Special Methods",
+              "description": "Documentation for Customizing Class Behavior With Special Methods"
+            },
+            {
+              "path": "python/object_oriented_python/design_patterns_in_python.md",
+              "title": "Design Patterns In Python",
+              "description": "Documentation for Design Patterns In Python"
+            },
+            {
+              "path": "python/object_oriented_python/encapsulation_and_name_mangling.md",
+              "title": "Encapsulation And Name Mangling",
+              "description": "Documentation for Encapsulation And Name Mangling"
+            },
+            {
+              "path": "python/object_oriented_python/inheritance_and_method_resolution_order_mro.md",
+              "title": "Inheritance And Method Resolution Order Mro",
+              "description": "Documentation for Inheritance And Method Resolution Order Mro"
+            },
+            {
+              "path": "python/object_oriented_python/instance_methods_vs_class_methods_vs_static_methods.md",
+              "title": "Instance Methods Vs Class Methods Vs Static Methods",
+              "description": "Documentation for Instance Methods Vs Class Methods Vs Static Methods"
+            },
+            {
+              "path": "python/object_oriented_python/instance_variables_vs_class_variables.md",
+              "title": "Instance Variables Vs Class Variables",
+              "description": "Documentation for Instance Variables Vs Class Variables"
+            },
+            {
+              "path": "python/object_oriented_python/interfaces_and_protocols.md",
+              "title": "Interfaces And Protocols",
+              "description": "Documentation for Interfaces And Protocols"
+            },
+            {
+              "path": "python/object_oriented_python/managing_object_lifecycle.md",
+              "title": "Managing Object Lifecycle",
+              "description": "Documentation for Managing Object Lifecycle"
+            },
+            {
+              "path": "python/object_oriented_python/metaclasses_and_class_creation.md",
+              "title": "Metaclasses And Class Creation",
+              "description": "Documentation for Metaclasses And Class Creation"
+            },
+            {
+              "path": "python/object_oriented_python/method_overriding_and_super.md",
+              "title": "Method Overriding And Super",
+              "description": "Documentation for Method Overriding And Super"
+            },
+            {
+              "path": "python/object_oriented_python/multiple_inheritance_and_mixins.md",
+              "title": "Multiple Inheritance And Mixins",
+              "description": "Documentation for Multiple Inheritance And Mixins"
+            },
+            {
+              "path": "python/object_oriented_python/object_serialization_techniques.md",
+              "title": "Object Serialization Techniques",
+              "description": "Documentation for Object Serialization Techniques"
+            },
+            {
+              "path": "python/object_oriented_python/polymorphism_in_python.md",
+              "title": "Polymorphism In Python",
+              "description": "Documentation for Polymorphism In Python"
+            },
+            {
+              "path": "python/object_oriented_python/properties_and_descriptors.md",
+              "title": "Properties And Descriptors",
+              "description": "Documentation for Properties And Descriptors"
+            },
+            {
+              "path": "python/object_oriented_python/slots_and_memory_optimization.md",
+              "title": "Slots And Memory Optimization",
+              "description": "Documentation for Slots And Memory Optimization"
+            },
+            {
+              "path": "python/object_oriented_python/solid_principles_application.md",
+              "title": "Solid Principles Application",
+              "description": "Documentation for Solid Principles Application"
+            },
+            {
+              "path": "python/object_oriented_python/testing_and_debugging_oop_code.md",
+              "title": "Testing And Debugging Oop Code",
+              "description": "Documentation for Testing And Debugging Oop Code"
+            }
+          ]
+        },
+        {
           "id": "python_fundamentals",
           "name": "Python Fundamentals",
           "icon": "FileCode",
