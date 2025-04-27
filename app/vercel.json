@@ -8,7 +8,7 @@
       "headers": { "content-type": "text/markdown" }
     },
     { "src": "/content/(.*)", "dest": "/content/$1" },
-    { "src": "/documents/(.*)", "dest": "/index.html" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/documents/(.*)", "dest": "/index.html", "status": 200 },
+    { "src": "/(.*)", "dest": "/index.html", "status": 200 }
   ]
 }

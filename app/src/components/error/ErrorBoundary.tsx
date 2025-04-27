@@ -85,7 +85,7 @@ const ErrorBoundary: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
             <Button
               variant="outline"
-              className="flex items-center justify-center gap-2 border-primary/20 bg-primary/5 hover:bg-primary/10 text-primary rounded-xl"
+              className="flex items-center justify-center gap-2 border-primary/20 bg-primary/5 hover:bg-primary/10 text-primary rounded-2xl"
               onClick={() => window.location.reload()}
             >
               <RefreshCcw className="h-4 w-4" />
@@ -93,7 +93,7 @@ const ErrorBoundary: React.FC = () => {
             </Button>
 
             <Button
-              className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
+              className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-2xl"
               asChild
             >
               <Link to="/">
