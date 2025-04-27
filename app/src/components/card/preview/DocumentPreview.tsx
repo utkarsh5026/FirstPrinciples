@@ -43,7 +43,7 @@ const DocumentPreview: React.FC = () => {
   const { addToHistory } = useReadingHistory();
 
   useEffect(() => {
-    loadedDocumentForUrl(documentPath);
+    loadedDocumentForUrl(`${documentPath}.md`);
   }, [documentPath, loadedDocumentForUrl]);
 
   const startReading = () => {

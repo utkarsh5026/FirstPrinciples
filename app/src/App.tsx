@@ -36,7 +36,7 @@ export const App = () => {
   📝 Handle file selection
    */
   const handleSelectFile = (filepath: string) => {
-    const encodedPath = encodeURIComponent(filepath);
+    const encodedPath = encodeURIComponent(filepath.replace(".md", ""));
     navigate(`/documents/${encodedPath}`);
 
     if (mainContentRef.current) {

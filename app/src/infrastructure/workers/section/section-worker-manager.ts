@@ -53,7 +53,6 @@ export class SectionWorkerManager extends BaseWorkerManager<SectionWorkerAPI> {
    * 👷‍♀️ Hires a new markdown worker
    */
   protected createWorker(): Worker {
-    console.log("Creating worker");
     return new Worker(new URL("./section.worker.ts", import.meta.url), {
       type: "module",
     });
