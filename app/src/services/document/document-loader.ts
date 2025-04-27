@@ -109,14 +109,9 @@ const loadContentIndex = withCache(fetchContentIndex);
  * Works seamlessly in development and production environments. 🌐
  */
 const getBaseContentUrl = (): string => {
-  const isProduction = import.meta.env.PROD;
+  if (import.meta.env.PROD) return "/content/";
 
   const base = import.meta.env.BASE_URL || "";
-
-  if (isProduction) {
-    return "/content/";
-  }
-
   return `${base}content/`.replace(/\/\/+/g, "/");
 };
 

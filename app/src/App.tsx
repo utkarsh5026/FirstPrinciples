@@ -30,6 +30,8 @@ export const App = () => {
 
   const loading = useInit();
 
+  console.log("Welcome to the app ❤️");
+
   /* 
   📝 Handle file selection
    */
