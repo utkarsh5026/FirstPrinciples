@@ -2,6 +2,11 @@
   "version": 2,
   "routes": [
     { "handle": "filesystem" },
+    { 
+      "src": "/content/(.+\\.md)$", 
+      "dest": "/content/$1",
+      "headers": { "content-type": "text/markdown" }
+    },
     { "src": "/content/(.*)", "dest": "/content/$1" },
     { "src": "/documents/(.*)", "dest": "/index.html" },
     { "src": "/(.*)", "dest": "/index.html" }
