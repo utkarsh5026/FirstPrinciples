@@ -3314,166 +3314,3253 @@
     "title": "configuration",
     "frontmatter": {}
   },
-  "public\\content\\redis\\fundamentals\\naming_conventions.md": {
-    "path": "public\\content\\redis\\fundamentals\\naming_conventions.md",
+  "public\\content\\redis\\fundamentals\\value_size_limitations_and_considerations.md": {
+    "path": "public\\content\\redis\\fundamentals\\value_size_limitations_and_considerations.md",
     "sections": [
       {
-        "id": "redis-key-naming-conventions-and-best-practices-from-first-principles",
-        "title": "Redis Key Naming Conventions and Best Practices from First Principles",
+        "id": "redis-value-size-limitations-and-considerations",
+        "title": "Redis Value Size Limitations and Considerations",
         "level": 1,
-        "wordCount": 10
-      },
-      {
-        "id": "the-foundational-role-of-keys-in-redis",
-        "title": "The Foundational Role of Keys in Redis",
-        "level": 2,
-        "wordCount": 108
-      },
-      {
-        "id": "the-key-namespace-a-flat-structure",
-        "title": "The Key Namespace: A Flat Structure",
-        "level": 2,
-        "wordCount": 103
-      },
-      {
-        "id": "key-composition-fundamentals",
-        "title": "Key Composition Fundamentals",
-        "level": 2,
-        "wordCount": 131
-      },
-      {
-        "id": "the-colon-separator-convention",
-        "title": "The Colon Separator Convention",
-        "level": 2,
-        "wordCount": 108
-      },
-      {
-        "id": "application-specific-prefixes",
-        "title": "Application-Specific Prefixes",
-        "level": 2,
-        "wordCount": 43
-      },
-      {
-        "id": "case-sensitivity-and-consistency",
-        "title": "Case Sensitivity and Consistency",
-        "level": 2,
-        "wordCount": 48
-      },
-      {
-        "id": "data-type-indicators",
-        "title": "Data Type Indicators",
-        "level": 2,
-        "wordCount": 84
-      },
-      {
-        "id": "practical-example-systems",
-        "title": "Practical Example Systems",
-        "level": 2,
-        "wordCount": 21
-      },
-      {
-        "id": "common-anti-patterns-and-how-to-avoid-them",
-        "title": "Common Anti-Patterns and How to Avoid Them",
-        "level": 2,
-        "wordCount": 120
-      },
-      {
-        "id": "advanced-key-design-strategies",
-        "title": "Advanced Key Design Strategies",
-        "level": 2,
-        "wordCount": 98
-      },
-      {
-        "id": "key-naming-in-redis-data-modeling-patterns",
-        "title": "Key Naming in Redis Data Modeling Patterns",
-        "level": 2,
-        "wordCount": 14
-      },
-      {
-        "id": "memory-and-performance-considerations",
-        "title": "Memory and Performance Considerations",
-        "level": 2,
-        "wordCount": 77
-      },
-      {
-        "id": "tools-and-techniques-for-managing-keys",
-        "title": "Tools and Techniques for Managing Keys",
-        "level": 2,
-        "wordCount": 75
-      },
-      {
-        "id": "real-world-naming-convention-examples",
-        "title": "Real-World Naming Convention Examples",
-        "level": 2,
         "wordCount": 27
       },
       {
-        "id": "evolving-key-naming-strategies",
-        "title": "Evolving Key Naming Strategies",
+        "id": "what-is-redis",
+        "title": "What is Redis?",
         "level": 2,
-        "wordCount": 65
+        "wordCount": 52
       },
       {
-        "id": "context-specific-naming-best-practices",
-        "title": "Context-Specific Naming Best Practices",
+        "id": "memory-as-the-fundamental-constraint",
+        "title": "Memory as the Fundamental Constraint",
         "level": 2,
-        "wordCount": 39
+        "wordCount": 95
       },
       {
-        "id": "conclusion-principles-for-effective-key-naming",
-        "title": "Conclusion: Principles for Effective Key Naming",
+        "id": "redis-value-size-limit",
+        "title": "Redis Value Size Limit",
         "level": 2,
-        "wordCount": 199
-      }
-    ],
-    "totalWordCount": 1370,
-    "estimatedReadingTime": 360000,
-    "title": "naming_conventions",
-    "frontmatter": {}
-  },
-  "public\\content\\redis\\fundamentals\\introduction.md": {
-    "path": "public\\content\\redis\\fundamentals\\introduction.md",
-    "sections": [
-      {
-        "id": "understanding-redis-from-first-principles",
-        "title": "Understanding Redis from First Principles",
-        "level": 1,
-        "wordCount": 45
+        "wordCount": 106
       },
       {
-        "id": "what-is-redis-at-its-core",
-        "title": "What is Redis at its core?",
+        "id": "practical-considerations-beyond-the-theoretical-limit",
+        "title": "Practical Considerations Beyond the Theoretical Limit",
         "level": 2,
-        "wordCount": 584
+        "wordCount": 160
       },
       {
-        "id": "core-redis-concepts-beyond-the-basics",
-        "title": "Core Redis Concepts Beyond the Basics",
+        "id": "redis-data-type-specific-considerations",
+        "title": "Redis Data Type Specific Considerations",
         "level": 2,
-        "wordCount": 384
+        "wordCount": 125
       },
       {
-        "id": "redis-use-cases-and-patterns",
-        "title": "Redis Use Cases and Patterns",
+        "id": "practical-strategies-for-handling-large-values",
+        "title": "Practical Strategies for Handling Large Values",
         "level": 2,
-        "wordCount": 184
+        "wordCount": 147
       },
       {
-        "id": "redis-architecture-and-advanced-features",
-        "title": "Redis Architecture and Advanced Features",
+        "id": "redis-configuration-parameters-that-affect-value-size",
+        "title": "Redis Configuration Parameters That Affect Value Size",
         "level": 2,
-        "wordCount": 121
+        "wordCount": 114
+      },
+      {
+        "id": "real-world-considerations-and-best-practices",
+        "title": "Real-World Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 93
       },
       {
         "id": "conclusion",
         "title": "Conclusion",
         "level": 2,
-        "wordCount": 106
+        "wordCount": 112
       }
     ],
-    "totalWordCount": 1424,
+    "totalWordCount": 1031,
+    "estimatedReadingTime": 300000,
+    "title": "value_size_limitations_and_considerations",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\fundamentals\\understanding_redis_and_its_design_philosophy.md": {
+    "path": "public\\content\\redis\\fundamentals\\understanding_redis_and_its_design_philosophy.md",
+    "sections": [
+      {
+        "id": "understanding-redis-from-first-principles",
+        "title": "Understanding Redis from First Principles",
+        "level": 1,
+        "wordCount": 49
+      },
+      {
+        "id": "what-is-redis-at-its-core",
+        "title": "What is Redis at its core?",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "the-foundational-philosophy-of-redis",
+        "title": "The Foundational Philosophy of Redis",
+        "level": 2,
+        "wordCount": 275
+      },
+      {
+        "id": "redis-core-data-structures",
+        "title": "Redis Core Data Structures",
+        "level": 2,
+        "wordCount": 217
+      },
+      {
+        "id": "redis-persistence-balancing-speed-and-durability",
+        "title": "Redis Persistence: Balancing Speed and Durability",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "redis-as-a-distributed-system",
+        "title": "Redis as a Distributed System",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "redis-use-cases-explained",
+        "title": "Redis Use Cases Explained",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "redis-memory-management-and-optimization",
+        "title": "Redis Memory Management and Optimization",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "transactions-in-redis",
+        "title": "Transactions in Redis",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "redis-modules-extending-core-functionality",
+        "title": "Redis Modules: Extending Core Functionality",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 111
+      }
+    ],
+    "totalWordCount": 1342,
     "estimatedReadingTime": 360000,
-    "title": "introduction",
+    "title": "understanding_redis_and_its_design_philosophy",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\fundamentals\\ttl_and_key_expiration.md": {
+    "path": "public\\content\\redis\\fundamentals\\ttl_and_key_expiration.md",
+    "sections": [
+      {
+        "id": "understanding-ttl-and-key-expiration-in-redis-from-first-principles",
+        "title": "Understanding TTL and Key Expiration in Redis from First Principles",
+        "level": 1,
+        "wordCount": 44
+      },
+      {
+        "id": "what-is-redis",
+        "title": "What is Redis?",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "the-problem-of-memory-management",
+        "title": "The Problem of Memory Management",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "what-is-ttl-time-to-live",
+        "title": "What is TTL (Time To Live)?",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "key-expiration-fundamentals",
+        "title": "Key Expiration Fundamentals",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "how-to-set-ttl-in-redis",
+        "title": "How to Set TTL in Redis",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "checking-remaining-ttl",
+        "title": "Checking Remaining TTL",
+        "level": 2,
+        "wordCount": 21
+      },
+      {
+        "id": "removing-expiration",
+        "title": "Removing Expiration",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "how-expiration-works-internally",
+        "title": "How Expiration Works Internally",
+        "level": 2,
+        "wordCount": 135
+      },
+      {
+        "id": "practical-examples-of-ttl-usage",
+        "title": "Practical Examples of TTL Usage",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "ttl-memory-implications",
+        "title": "TTL Memory Implications",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "programming-with-redis-ttl-python-example",
+        "title": "Programming with Redis TTL - Python Example",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "advanced-ttl-patterns",
+        "title": "Advanced TTL Patterns",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "common-pitfalls-and-best-practices",
+        "title": "Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 107
+      }
+    ],
+    "totalWordCount": 1058,
+    "estimatedReadingTime": 300000,
+    "title": "ttl_and_key_expiration",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\fundamentals\\setting_up_redis_development_environment.md": {
+    "path": "public\\content\\redis\\fundamentals\\setting_up_redis_development_environment.md",
+    "sections": [
+      {
+        "id": "setting-up-a-redis-development-environment-from-first-principles",
+        "title": "Setting up a Redis Development Environment from First Principles",
+        "level": 1,
+        "wordCount": 53
+      },
+      {
+        "id": "what-is-redis",
+        "title": "What is Redis?",
+        "level": 2,
+        "wordCount": 201
+      },
+      {
+        "id": "why-use-redis",
+        "title": "Why Use Redis?",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "setting-up-your-redis-development-environment",
+        "title": "Setting Up Your Redis Development Environment",
+        "level": 2,
+        "wordCount": 224
+      },
+      {
+        "id": "basic-redis-configuration",
+        "title": "Basic Redis Configuration",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "connecting-to-redis",
+        "title": "Connecting to Redis",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "using-redis-cli-for-development",
+        "title": "Using Redis CLI for Development",
+        "level": 2,
+        "wordCount": 21
+      },
+      {
+        "id": "redis-data-types",
+        "title": "Redis Data Types",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "development-best-practices",
+        "title": "Development Best Practices",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "common-development-pitfalls",
+        "title": "Common Development Pitfalls",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "debugging-redis-in-development",
+        "title": "Debugging Redis in Development",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 125
+      }
+    ],
+    "totalWordCount": 1112,
+    "estimatedReadingTime": 300000,
+    "title": "setting_up_redis_development_environment",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\fundamentals\\redis_protocol_specification.md": {
+    "path": "public\\content\\redis\\fundamentals\\redis_protocol_specification.md",
+    "sections": [
+      {
+        "id": "understanding-the-redis-protocol-resp-specification-from-first-principles",
+        "title": "Understanding the Redis Protocol (RESP) Specification from First Principles",
+        "level": 1,
+        "wordCount": 9
+      },
+      {
+        "id": "what-is-a-protocol-and-why-does-redis-need-one",
+        "title": "What is a Protocol and Why Does Redis Need One?",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "resp-a-text-based-protocol-with-simple-types",
+        "title": "RESP: A Text-Based Protocol with Simple Types",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "the-basic-data-types-in-resp",
+        "title": "The Basic Data Types in RESP",
+        "level": 2,
+        "wordCount": 326
+      },
+      {
+        "id": "how-resp-is-used-in-practice",
+        "title": "How RESP is Used in Practice",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "implementing-resp-code-examples",
+        "title": "Implementing RESP: Code Examples",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "a-simple-redis-client-implementation",
+        "title": "A Simple Redis Client Implementation",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "resp2-vs-resp3-evolution-of-the-protocol",
+        "title": "RESP2 vs RESP3: Evolution of the Protocol",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "why-resps-design-makes-sense-first-principles-analysis",
+        "title": "Why RESP's Design Makes Sense: First Principles Analysis",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "practical-implications",
+        "title": "Practical Implications",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 68
+      }
+    ],
+    "totalWordCount": 1211,
+    "estimatedReadingTime": 300000,
+    "title": "redis_protocol_specification",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\fundamentals\\redis_persistence_options_rdb_and_aof.md": {
+    "path": "public\\content\\redis\\fundamentals\\redis_persistence_options_rdb_and_aof.md",
+    "sections": [
+      {
+        "id": "redis-persistence-rdb-and-aof-explained-from-first-principles",
+        "title": "Redis Persistence: RDB and AOF Explained From First Principles",
+        "level": 1,
+        "wordCount": 26
+      },
+      {
+        "id": "understanding-the-problem-why-persistence-matters",
+        "title": "Understanding the Problem: Why Persistence Matters",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "first-principles-of-data-persistence",
+        "title": "First Principles of Data Persistence",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "rdb-redis-database-point-in-time-snapshots",
+        "title": "RDB (Redis Database): Point-in-Time Snapshots",
+        "level": 2,
+        "wordCount": 296
+      },
+      {
+        "id": "aof-append-only-file-recording-operations",
+        "title": "AOF (Append-Only File): Recording Operations",
+        "level": 2,
+        "wordCount": 354
+      },
+      {
+        "id": "combining-rdb-and-aof-best-of-both-worlds",
+        "title": "Combining RDB and AOF: Best of Both Worlds",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "real-world-example-e-commerce-session-store",
+        "title": "Real-World Example: E-commerce Session Store",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "practical-implementation-examples",
+        "title": "Practical Implementation Examples",
+        "level": 2,
+        "wordCount": 27
+      },
+      {
+        "id": "monitoring-persistence",
+        "title": "Monitoring Persistence",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "understanding-tradeoffs-making-the-right-choice",
+        "title": "Understanding Tradeoffs: Making the Right Choice",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 69
+      }
+    ],
+    "totalWordCount": 1294,
+    "estimatedReadingTime": 360000,
+    "title": "redis_persistence_options_rdb_and_aof",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\fundamentals\\key_naming_conventions_and_best_practices.md": {
+    "path": "public\\content\\redis\\fundamentals\\key_naming_conventions_and_best_practices.md",
+    "sections": [
+      {
+        "id": "redis-key-naming-conventions-and-best-practices",
+        "title": "Redis Key Naming Conventions and Best Practices",
+        "level": 1,
+        "wordCount": 28
+      },
+      {
+        "id": "understanding-redis-keys-the-foundation",
+        "title": "Understanding Redis Keys: The Foundation",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "why-key-naming-matters",
+        "title": "Why Key Naming Matters",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "first-principles-of-redis-key-design",
+        "title": "First Principles of Redis Key Design",
+        "level": 2,
+        "wordCount": 157
+      },
+      {
+        "id": "best-practices-with-examples",
+        "title": "Best Practices with Examples",
+        "level": 2,
+        "wordCount": 177
+      },
+      {
+        "id": "practical-implementations",
+        "title": "Practical Implementations",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "tools-and-commands-for-working-with-keys",
+        "title": "Tools and Commands for Working with Keys",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "common-anti-patterns-to-avoid",
+        "title": "Common Anti-Patterns to Avoid",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "real-world-example-social-media-application",
+        "title": "Real-World Example: Social Media Application",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 97
+      }
+    ],
+    "totalWordCount": 826,
+    "estimatedReadingTime": 240000,
+    "title": "key_naming_conventions_and_best_practices",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\fundamentals\\basic_redis_cli_commands_and_interaction.md": {
+    "path": "public\\content\\redis\\fundamentals\\basic_redis_cli_commands_and_interaction.md",
+    "sections": [
+      {
+        "id": "redis-understanding-from-first-principles",
+        "title": "Redis: Understanding from First Principles",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "what-is-redis-fundamentally",
+        "title": "What is Redis, Fundamentally?",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "the-redis-cli-your-interface-to-redis",
+        "title": "The Redis CLI: Your Interface to Redis",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "basic-data-operations-the-crud-model",
+        "title": "Basic Data Operations: The CRUD Model",
+        "level": 2,
+        "wordCount": 268
+      },
+      {
+        "id": "data-types-in-redis",
+        "title": "Data Types in Redis",
+        "level": 2,
+        "wordCount": 225
+      },
+      {
+        "id": "key-management-and-database-operations",
+        "title": "Key Management and Database Operations",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "transactions-in-redis",
+        "title": "Transactions in Redis",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "pubsub-messaging",
+        "title": "Pub/Sub Messaging",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "understanding-rediss-performance-characteristics",
+        "title": "Understanding Redis's Performance Characteristics",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 82
+      }
+    ],
+    "totalWordCount": 1046,
+    "estimatedReadingTime": 300000,
+    "title": "basic_redis_cli_commands_and_interaction",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\fundamentals\\basic_configuration_parameters.md": {
+    "path": "public\\content\\redis\\fundamentals\\basic_configuration_parameters.md",
+    "sections": [
+      {
+        "id": "redis-basic-configuration-parameters-first-principles",
+        "title": "Redis Basic Configuration Parameters: First Principles",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "what-is-configuration",
+        "title": "What is Configuration?",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "the-redis-configuration-file",
+        "title": "The Redis Configuration File",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "essential-configuration-categories",
+        "title": "Essential Configuration Categories",
+        "level": 2,
+        "wordCount": 521
+      },
+      {
+        "id": "practical-configuration-examples",
+        "title": "Practical Configuration Examples",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "tuning-configuration-for-performance",
+        "title": "Tuning Configuration for Performance",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "monitoring-and-adjusting-configuration",
+        "title": "Monitoring and Adjusting Configuration",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "configuration-best-practices",
+        "title": "Configuration Best Practices",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 92
+      }
+    ],
+    "totalWordCount": 1046,
+    "estimatedReadingTime": 300000,
+    "title": "basic_configuration_parameters",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\data_structures\\strings_and_binary_data_handling.md": {
+    "path": "public\\content\\redis\\data_structures\\strings_and_binary_data_handling.md",
+    "sections": [
+      {
+        "id": "redis-strings-and-binary-data-handling-from-first-principles",
+        "title": "Redis Strings and Binary Data Handling: From First Principles",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "1-what-is-redis",
+        "title": "1. What is Redis?",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "2-redis-data-types-starting-with-strings",
+        "title": "2. Redis Data Types: Starting with Strings",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "3-redis-string-fundamentals",
+        "title": "3. Redis String Fundamentals",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "4-binary-data-in-redis-strings",
+        "title": "4. Binary Data in Redis Strings",
+        "level": 2,
+        "wordCount": 176
+      },
+      {
+        "id": "5-special-string-commands-for-binary-data",
+        "title": "5. Special String Commands for Binary Data",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "6-encoding-and-character-sets",
+        "title": "6. Encoding and Character Sets",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "7-performance-considerations",
+        "title": "7. Performance Considerations",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "8-common-use-cases-for-binary-data-in-redis",
+        "title": "8. Common Use Cases for Binary Data in Redis",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "9-common-patterns-and-best-practices",
+        "title": "9. Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "10-practical-example-building-a-complete-system",
+        "title": "10. Practical Example: Building a Complete System",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "11-limitations-and-alternatives",
+        "title": "11. Limitations and Alternatives",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 151
+      }
+    ],
+    "totalWordCount": 1088,
+    "estimatedReadingTime": 300000,
+    "title": "strings_and_binary_data_handling",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\data_structures\\streams_for_append_only_messaging.md": {
+    "path": "public\\content\\redis\\data_structures\\streams_for_append_only_messaging.md",
+    "sections": [
+      {
+        "id": "understanding-redis-streams-from-first-principles",
+        "title": "Understanding Redis Streams from First Principles",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "what-are-redis-streams",
+        "title": "What Are Redis Streams?",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "the-problem-streams-solve",
+        "title": "The Problem Streams Solve",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "the-stream-data-structure",
+        "title": "The Stream Data Structure",
+        "level": 2,
+        "wordCount": 142
+      },
+      {
+        "id": "reading-from-streams",
+        "title": "Reading from Streams",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "consumer-groups-the-power-of-streams",
+        "title": "Consumer Groups: The Power of Streams",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "a-complete-example-building-a-log-processing-system",
+        "title": "A Complete Example: Building a Log Processing System",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "stream-trimming-and-memory-management",
+        "title": "Stream Trimming and Memory Management",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "practical-example-building-a-real-time-analytics-pipeline",
+        "title": "Practical Example: Building a Real-time Analytics Pipeline",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "streams-vs-pubsub",
+        "title": "Streams vs. Pub/Sub",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "how-streams-are-implemented-internally",
+        "title": "How Streams are Implemented Internally",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "stream-memory-usage",
+        "title": "Stream Memory Usage",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 98
+      }
+    ],
+    "totalWordCount": 1157,
+    "estimatedReadingTime": 300000,
+    "title": "streams_for_append_only_messaging",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\data_structures\\sorted_sets_with_score_based_ordering.md": {
+    "path": "public\\content\\redis\\data_structures\\sorted_sets_with_score_based_ordering.md",
+    "sections": [
+      {
+        "id": "redis-sorted-sets-with-score-based-ordering",
+        "title": "Redis Sorted Sets with Score-Based Ordering",
+        "level": 1,
+        "wordCount": 24
+      },
+      {
+        "id": "what-is-redis",
+        "title": "What is Redis?",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "the-concept-of-sets",
+        "title": "The Concept of Sets",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "from-sets-to-sorted-sets",
+        "title": "From Sets to Sorted Sets",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "the-structure-of-sorted-sets",
+        "title": "The Structure of Sorted Sets",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "creating-and-manipulating-sorted-sets",
+        "title": "Creating and Manipulating Sorted Sets",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "retrieving-elements-from-sorted-sets",
+        "title": "Retrieving Elements from Sorted Sets",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "first-principles-of-sorted-sets-operations",
+        "title": "First Principles of Sorted Sets Operations",
+        "level": 2,
+        "wordCount": 145
+      },
+      {
+        "id": "real-world-applications-of-sorted-sets",
+        "title": "Real-World Applications of Sorted Sets",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "internal-implementation-and-performance-characteristics",
+        "title": "Internal Implementation and Performance Characteristics",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "memory-considerations",
+        "title": "Memory Considerations",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "example-building-a-simple-ranking-system",
+        "title": "Example: Building a Simple Ranking System",
+        "level": 2,
+        "wordCount": 21
+      },
+      {
+        "id": "advanced-features",
+        "title": "Advanced Features",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 118
+      }
+    ],
+    "totalWordCount": 1085,
+    "estimatedReadingTime": 300000,
+    "title": "sorted_sets_with_score_based_ordering",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\data_structures\\sets_for_unique_collections.md": {
+    "path": "public\\content\\redis\\data_structures\\sets_for_unique_collections.md",
+    "sections": [
+      {
+        "id": "redis-sets-a-first-principles-exploration",
+        "title": "Redis Sets: A First Principles Exploration",
+        "level": 1,
+        "wordCount": 25
+      },
+      {
+        "id": "what-are-sets-fundamentally",
+        "title": "What Are Sets, Fundamentally?",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "redis-sets-the-implementation",
+        "title": "Redis Sets: The Implementation",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "basic-operations-on-redis-sets",
+        "title": "Basic Operations on Redis Sets",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "set-operations-the-power-of-mathematical-set-theory",
+        "title": "Set Operations: The Power of Mathematical Set Theory",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "practical-applications-of-redis-sets",
+        "title": "Practical Applications of Redis Sets",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "performance-characteristics",
+        "title": "Performance Characteristics",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "how-redis-sets-are-stored-internally",
+        "title": "How Redis Sets Are Stored Internally",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "common-patterns-and-use-cases",
+        "title": "Common Patterns and Use Cases",
+        "level": 2,
+        "wordCount": 27
+      },
+      {
+        "id": "advanced-set-operations",
+        "title": "Advanced Set Operations",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "comparing-sets-to-other-redis-data-types",
+        "title": "Comparing Sets to Other Redis Data Types",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "common-pitfalls-and-best-practices",
+        "title": "Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 74
+      }
+    ],
+    "totalWordCount": 966,
+    "estimatedReadingTime": 240000,
+    "title": "sets_for_unique_collections",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\data_structures\\lists_and_their_queue_stack_operations.md": {
+    "path": "public\\content\\redis\\data_structures\\lists_and_their_queue_stack_operations.md",
+    "sections": [
+      {
+        "id": "redis-lists-a-first-principles-explanation",
+        "title": "Redis Lists: A First Principles Explanation",
+        "level": 1,
+        "wordCount": 27
+      },
+      {
+        "id": "what-is-redis",
+        "title": "What is Redis?",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "what-is-a-list",
+        "title": "What is a List?",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "redis-lists-first-principles",
+        "title": "Redis Lists: First Principles",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "redis-list-structure",
+        "title": "Redis List Structure",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "basic-redis-list-commands",
+        "title": "Basic Redis List Commands",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "queue-operations-with-redis-lists",
+        "title": "Queue Operations with Redis Lists",
+        "level": 2,
+        "wordCount": 144
+      },
+      {
+        "id": "stack-operations-with-redis-lists",
+        "title": "Stack Operations with Redis Lists",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "blocking-operations",
+        "title": "Blocking Operations",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "advanced-list-operations",
+        "title": "Advanced List Operations",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "real-world-example-message-queue-system",
+        "title": "Real-world Example: Message Queue System",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 149
+      }
+    ],
+    "totalWordCount": 1078,
+    "estimatedReadingTime": 300000,
+    "title": "lists_and_their_queue_stack_operations",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\data_structures\\hyperLogLog_for_cardinality_estimation.md": {
+    "path": "public\\content\\redis\\data_structures\\hyperLogLog_for_cardinality_estimation.md",
+    "sections": [
+      {
+        "id": "redis-hyperloglog-understanding-cardinality-estimation-from-first-principles",
+        "title": "Redis HyperLogLog: Understanding Cardinality Estimation from First Principles",
+        "level": 1,
+        "wordCount": 68
+      },
+      {
+        "id": "first-principles-the-counting-problem",
+        "title": "First Principles: The Counting Problem",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "the-probabilistic-solution-hyperloglog",
+        "title": "The Probabilistic Solution: HyperLogLog",
+        "level": 2,
+        "wordCount": 264
+      },
+      {
+        "id": "hyperloglog-multiple-estimators-for-greater-accuracy",
+        "title": "HyperLogLog: Multiple Estimators for Greater Accuracy",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "how-redis-implements-hyperloglog",
+        "title": "How Redis Implements HyperLogLog",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "the-math-behind-hyperloglog",
+        "title": "The Math Behind HyperLogLog",
+        "level": 2,
+        "wordCount": 152
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "redis-hyperloglog-implementation-details",
+        "title": "Redis HyperLogLog Implementation Details",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "limitations-and-considerations",
+        "title": "Limitations and Considerations",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 92
+      }
+    ],
+    "totalWordCount": 1215,
+    "estimatedReadingTime": 300000,
+    "title": "hyperLogLog_for_cardinality_estimation",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\data_structures\\hashes_for_field_value_pairs.md": {
+    "path": "public\\content\\redis\\data_structures\\hashes_for_field_value_pairs.md",
+    "sections": [
+      {
+        "id": "redis-hashes-field-value-pairs-from-first-principles",
+        "title": "Redis Hashes: Field-Value Pairs from First Principles",
+        "level": 1,
+        "wordCount": 28
+      },
+      {
+        "id": "what-is-redis",
+        "title": "What is Redis?",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "key-value-structure-the-foundation",
+        "title": "Key-Value Structure: The Foundation",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "what-are-redis-hashes",
+        "title": "What are Redis Hashes?",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "redis-hash-commands-the-building-blocks",
+        "title": "Redis Hash Commands: The Building Blocks",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "understanding-hashes-through-examples",
+        "title": "Understanding Hashes Through Examples",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "redis-hashes-in-real-programming-scenarios",
+        "title": "Redis Hashes in Real Programming Scenarios",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "design-patterns-and-use-cases-for-redis-hashes",
+        "title": "Design Patterns and Use Cases for Redis Hashes",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "understanding-hash-memory-efficiency",
+        "title": "Understanding Hash Memory Efficiency",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "limitations-and-considerations",
+        "title": "Limitations and Considerations",
+        "level": 2,
+        "wordCount": 135
+      },
+      {
+        "id": "practical-example-a-mini-user-management-system",
+        "title": "Practical Example: A Mini User Management System",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 102
+      }
+    ],
+    "totalWordCount": 1083,
+    "estimatedReadingTime": 300000,
+    "title": "hashes_for_field_value_pairs",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\data_structures\\geospatial_data_with_geo_commands.md": {
+    "path": "public\\content\\redis\\data_structures\\geospatial_data_with_geo_commands.md",
+    "sections": [
+      {
+        "id": "redis-geospatial-data-with-geo-commands-a-first-principles-approach",
+        "title": "Redis Geospatial Data with GEO Commands: A First Principles Approach",
+        "level": 1,
+        "wordCount": 28
+      },
+      {
+        "id": "understanding-geospatial-data-the-fundamentals",
+        "title": "Understanding Geospatial Data: The Fundamentals",
+        "level": 2,
+        "wordCount": 134
+      },
+      {
+        "id": "redis-geo-core-concepts",
+        "title": "Redis GEO: Core Concepts",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "example-1-adding-locations-with-geoadd",
+        "title": "Example 1: Adding Locations with GEOADD",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "example-2-finding-distances-with-geodist",
+        "title": "Example 2: Finding Distances with GEODIST",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "example-3-finding-locations-within-a-radius-with-georadius",
+        "title": "Example 3: Finding Locations within a Radius with GEORADIUS",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "example-4-finding-locations-by-member-with-georadiusbymember",
+        "title": "Example 4: Finding Locations by Member with GEORADIUSBYMEMBER",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "example-5-getting-coordinates-with-geopos",
+        "title": "Example 5: Getting Coordinates with GEOPOS",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "example-6-converting-to-geohash-with-geohash",
+        "title": "Example 6: Converting to Geohash with GEOHASH",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "example-7-finding-locations-within-a-rectangle-with-geosearch",
+        "title": "Example 7: Finding Locations within a Rectangle with GEOSEARCH",
+        "level": 2,
+        "wordCount": 35
+      },
+      {
+        "id": "example-8-storing-results-in-a-new-key-with-geosearchstore",
+        "title": "Example 8: Storing Results in a New Key with GEOSEARCHSTORE",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "example-9-using-geospatial-data-for-a-simple-location-based-app",
+        "title": "Example 9: Using Geospatial Data for a Simple Location-Based App",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "internal-implementation-details",
+        "title": "Internal Implementation Details",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "limitations-and-considerations",
+        "title": "Limitations and Considerations",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "practical-application-location-based-recommendations",
+        "title": "Practical Application: Location-Based Recommendations",
+        "level": 2,
+        "wordCount": 35
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 107
+      }
+    ],
+    "totalWordCount": 1054,
+    "estimatedReadingTime": 300000,
+    "title": "geospatial_data_with_geo_commands",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\data_structures\\choosing_the_right_data_structure_for_your_use_case.md": {
+    "path": "public\\content\\redis\\data_structures\\choosing_the_right_data_structure_for_your_use_case.md",
+    "sections": [
+      {
+        "id": "choosing-the-right-data-structure-for-your-use-case-in-redis",
+        "title": "Choosing the Right Data Structure for Your Use Case in Redis",
+        "level": 1,
+        "wordCount": 54
+      },
+      {
+        "id": "first-principles-what-is-redis",
+        "title": "First Principles: What is Redis?",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "understanding-redis-data-structures",
+        "title": "Understanding Redis Data Structures",
+        "level": 2,
+        "wordCount": 341
+      },
+      {
+        "id": "first-principles-of-data-structure-selection",
+        "title": "First Principles of Data Structure Selection",
+        "level": 2,
+        "wordCount": 160
+      },
+      {
+        "id": "use-case-examples",
+        "title": "Use Case Examples",
+        "level": 2,
+        "wordCount": 228
+      },
+      {
+        "id": "making-the-decision-a-framework",
+        "title": "Making the Decision: A Framework",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "advanced-considerations",
+        "title": "Advanced Considerations",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "common-mistakes-to-avoid",
+        "title": "Common Mistakes to Avoid",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 94
+      }
+    ],
+    "totalWordCount": 1186,
+    "estimatedReadingTime": 300000,
+    "title": "choosing_the_right_data_structure_for_your_use_case",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\data_structures\\bit_arrays_and_bitmap_operations.md": {
+    "path": "public\\content\\redis\\data_structures\\bit_arrays_and_bitmap_operations.md",
+    "sections": [
+      {
+        "id": "redis-bit-arrays-and-bitmap-operations-from-first-principles",
+        "title": "Redis Bit Arrays and Bitmap Operations: From First Principles",
+        "level": 1,
+        "wordCount": 27
+      },
+      {
+        "id": "what-are-bits-the-foundation",
+        "title": "What Are Bits? The Foundation",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "what-are-bit-arrays",
+        "title": "What Are Bit Arrays?",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "redis-bitmaps-bits-in-a-database",
+        "title": "Redis Bitmaps: Bits in a Database",
+        "level": 2,
+        "wordCount": 123
+      },
+      {
+        "id": "setbit-setting-individual-bits",
+        "title": "SETBIT: Setting Individual Bits",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "getbit-reading-individual-bits",
+        "title": "GETBIT: Reading Individual Bits",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "bitcount-counting-set-bits",
+        "title": "BITCOUNT: Counting Set Bits",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "advanced-bitmap-operations",
+        "title": "Advanced Bitmap Operations",
+        "level": 2,
+        "wordCount": 208
+      },
+      {
+        "id": "real-world-applications-of-redis-bitmaps",
+        "title": "Real-World Applications of Redis Bitmaps",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "the-math-behind-bitmap-efficiency",
+        "title": "The Math Behind Bitmap Efficiency",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "performance-characteristics",
+        "title": "Performance Characteristics",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "advanced-tip-handling-sparse-bitmaps",
+        "title": "Advanced Tip: Handling Sparse Bitmaps",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "implementation-example-last-7-days-activity-tracker",
+        "title": "Implementation Example: Last 7 Days Activity Tracker",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "memory-management-considerations",
+        "title": "Memory Management Considerations",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "conclusion-the-power-of-simplicity",
+        "title": "Conclusion: The Power of Simplicity",
+        "level": 2,
+        "wordCount": 129
+      }
+    ],
+    "totalWordCount": 1454,
+    "estimatedReadingTime": 360000,
+    "title": "bit_arrays_and_bitmap_operations",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\commands_deep_dive\\transaction_support_with_multi_exec.md": {
+    "path": "public\\content\\redis\\commands_deep_dive\\transaction_support_with_multi_exec.md",
+    "sections": [
+      {
+        "id": "redis-transaction-support-with-multiexec",
+        "title": "Redis Transaction Support with MULTI/EXEC",
+        "level": 1,
+        "wordCount": 20
+      },
+      {
+        "id": "what-is-a-transaction",
+        "title": "What is a Transaction?",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "the-need-for-transactions-in-redis",
+        "title": "The Need for Transactions in Redis",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "redis-transactions-the-basics",
+        "title": "Redis Transactions: The Basics",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "how-redis-transactions-work-under-the-hood",
+        "title": "How Redis Transactions Work Under the Hood",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "a-complete-transaction-example",
+        "title": "A Complete Transaction Example",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "command-responses-in-transactions",
+        "title": "Command Responses in Transactions",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "error-handling-in-redis-transactions",
+        "title": "Error Handling in Redis Transactions",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "optimistic-locking-with-watch",
+        "title": "Optimistic Locking with WATCH",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "discard-command",
+        "title": "DISCARD Command",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "understanding-what-redis-transactions-are-not",
+        "title": "Understanding What Redis Transactions Are NOT",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "practical-example-implementing-a-counter-with-safe-increment",
+        "title": "Practical Example: Implementing a Counter with Safe Increment",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "combining-transactions-with-lua-scripts",
+        "title": "Combining Transactions with Lua Scripts",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "best-practices-for-redis-transactions",
+        "title": "Best Practices for Redis Transactions",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 96
+      }
+    ],
+    "totalWordCount": 965,
+    "estimatedReadingTime": 240000,
+    "title": "transaction_support_with_multi_exec",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\commands_deep_dive\\string_manipulation_commands.md": {
+    "path": "public\\content\\redis\\commands_deep_dive\\string_manipulation_commands.md",
+    "sections": [
+      {
+        "id": "redis-string-manipulation-commands-from-first-principles",
+        "title": "Redis String Manipulation Commands: From First Principles",
+        "level": 1,
+        "wordCount": 30
+      },
+      {
+        "id": "what-is-redis",
+        "title": "What is Redis?",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "understanding-redis-data-types",
+        "title": "Understanding Redis Data Types",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "redis-strings-the-foundation",
+        "title": "Redis Strings: The Foundation",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "basic-string-commands",
+        "title": "Basic String Commands",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "advanced-string-manipulation",
+        "title": "Advanced String Manipulation",
+        "level": 2,
+        "wordCount": 162
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "common-patterns-and-best-practices",
+        "title": "Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "comparing-with-other-redis-data-types",
+        "title": "Comparing with Other Redis Data Types",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "string-command-summary",
+        "title": "String Command Summary",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 89
+      }
+    ],
+    "totalWordCount": 972,
+    "estimatedReadingTime": 240000,
+    "title": "string_manipulation_commands",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\commands_deep_dive\\stream_consumer_groups_and_message_processing.md": {
+    "path": "public\\content\\redis\\commands_deep_dive\\stream_consumer_groups_and_message_processing.md",
+    "sections": [
+      {
+        "id": "redis-streams-consumer-groups-and-message-processing-from-first-principles",
+        "title": "Redis Streams Consumer Groups and Message Processing: From First Principles",
+        "level": 1,
+        "wordCount": 31
+      },
+      {
+        "id": "1-understanding-redis-streams-the-foundation",
+        "title": "1. Understanding Redis Streams: The Foundation",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "2-the-problem-streams-solve",
+        "title": "2. The Problem Streams Solve",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "3-basic-consumption-the-starting-point",
+        "title": "3. Basic Consumption: The Starting Point",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "4-consumer-groups-the-collaborative-approach",
+        "title": "4. Consumer Groups: The Collaborative Approach",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "5-creating-and-using-consumer-groups",
+        "title": "5. Creating and Using Consumer Groups",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "6-reading-messages-with-consumer-groups",
+        "title": "6. Reading Messages with Consumer Groups",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "7-message-acknowledgment-confirming-processing",
+        "title": "7. Message Acknowledgment: Confirming Processing",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "8-pending-messages-handling-failures",
+        "title": "8. Pending Messages: Handling Failures",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "9-claiming-messages-recovery-mechanism",
+        "title": "9. Claiming Messages: Recovery Mechanism",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "10-practical-patterns-and-considerations",
+        "title": "10. Practical Patterns and Considerations",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "11-monitoring-and-management",
+        "title": "11. Monitoring and Management",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "12-scaling-considerations",
+        "title": "12. Scaling Considerations",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "real-world-example-event-processing-system",
+        "title": "Real-world Example: Event Processing System",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "advanced-concepts-going-beyond-the-basics",
+        "title": "Advanced Concepts: Going Beyond the Basics",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "summary-key-principles-of-redis-streams-consumer-groups",
+        "title": "Summary: Key Principles of Redis Streams Consumer Groups",
+        "level": 2,
+        "wordCount": 121
+      }
+    ],
+    "totalWordCount": 1129,
+    "estimatedReadingTime": 300000,
+    "title": "stream_consumer_groups_and_message_processing",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\commands_deep_dive\\sorted_set_range_and_aggregate_operations.md": {
+    "path": "public\\content\\redis\\commands_deep_dive\\sorted_set_range_and_aggregate_operations.md",
+    "sections": [
+      {
+        "id": "redis-sorted-sets-range-and-aggregate-operations-from-first-principles",
+        "title": "Redis Sorted Sets: Range and Aggregate Operations from First Principles",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "1-what-are-redis-sorted-sets",
+        "title": "1. What Are Redis Sorted Sets?",
+        "level": 2,
+        "wordCount": 140
+      },
+      {
+        "id": "2-basic-operations-with-sorted-sets",
+        "title": "2. Basic Operations with Sorted Sets",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "3-range-operations-on-sorted-sets",
+        "title": "3. Range Operations on Sorted Sets",
+        "level": 2,
+        "wordCount": 249
+      },
+      {
+        "id": "4-count-and-limit-operations",
+        "title": "4. Count and Limit Operations",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "5-aggregate-operations-on-sorted-sets",
+        "title": "5. Aggregate Operations on Sorted Sets",
+        "level": 2,
+        "wordCount": 403
+      },
+      {
+        "id": "6-practical-applications",
+        "title": "6. Practical Applications",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "7-performance-considerations",
+        "title": "7. Performance Considerations",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "8-code-example-building-a-tag-based-content-system",
+        "title": "8. Code Example: Building a Tag-based Content System",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "9-conclusion",
+        "title": "9. Conclusion",
+        "level": 2,
+        "wordCount": 130
+      }
+    ],
+    "totalWordCount": 1301,
+    "estimatedReadingTime": 360000,
+    "title": "sorted_set_range_and_aggregate_operations",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\commands_deep_dive\\set_operations.md": {
+    "path": "public\\content\\redis\\commands_deep_dive\\set_operations.md",
+    "sections": [
+      {
+        "id": "redis-set-operations-understanding-from-first-principles",
+        "title": "Redis Set Operations: Understanding from First Principles",
+        "level": 1,
+        "wordCount": 25
+      },
+      {
+        "id": "what-are-sets-in-general",
+        "title": "What Are Sets in General?",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "sets-in-redis",
+        "title": "Sets in Redis",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "basic-set-commands-in-redis",
+        "title": "Basic Set Commands in Redis",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "set-union-sunionsunionstore",
+        "title": "Set Union (SUNION/SUNIONSTORE)",
+        "level": 2,
+        "wordCount": 155
+      },
+      {
+        "id": "set-intersection-sintersinterstore",
+        "title": "Set Intersection (SINTER/SINTERSTORE)",
+        "level": 2,
+        "wordCount": 132
+      },
+      {
+        "id": "set-difference-sdiffsdiffstore",
+        "title": "Set Difference (SDIFF/SDIFFSTORE)",
+        "level": 2,
+        "wordCount": 142
+      },
+      {
+        "id": "working-with-multiple-sets",
+        "title": "Working with Multiple Sets",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "time-complexity-considerations",
+        "title": "Time Complexity Considerations",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "implementing-real-world-patterns",
+        "title": "Implementing Real-World Patterns",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "writing-a-simple-python-example",
+        "title": "Writing a Simple Python Example",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "performance-optimization-techniques",
+        "title": "Performance Optimization Techniques",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "understanding-internal-implementation",
+        "title": "Understanding Internal Implementation",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 81
+      }
+    ],
+    "totalWordCount": 983,
+    "estimatedReadingTime": 240000,
+    "title": "set_operations",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\commands_deep_dive\\list_traversal_and_manipulation.md": {
+    "path": "public\\content\\redis\\commands_deep_dive\\list_traversal_and_manipulation.md",
+    "sections": [
+      {
+        "id": "understanding-redis-list-traversal-and-manipulation-from-first-principles",
+        "title": "Understanding Redis List Traversal and Manipulation from First Principles",
+        "level": 1,
+        "wordCount": 31
+      },
+      {
+        "id": "1-what-is-redis",
+        "title": "1. What is Redis?",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "2-understanding-redis-lists-at-a-fundamental-level",
+        "title": "2. Understanding Redis Lists at a Fundamental Level",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "3-basic-redis-list-operations",
+        "title": "3. Basic Redis List Operations",
+        "level": 2,
+        "wordCount": 161
+      },
+      {
+        "id": "4-list-traversal-in-redis",
+        "title": "4. List Traversal in Redis",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "5-advanced-list-manipulation",
+        "title": "5. Advanced List Manipulation",
+        "level": 2,
+        "wordCount": 164
+      },
+      {
+        "id": "6-practical-examples",
+        "title": "6. Practical Examples",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "7-performance-considerations",
+        "title": "7. Performance Considerations",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "8-redis-list-traversal-in-code",
+        "title": "8. Redis List Traversal in Code",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "9-list-manipulation-patterns",
+        "title": "9. List Manipulation Patterns",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "10-real-world-applications",
+        "title": "10. Real-world Applications",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 119
+      }
+    ],
+    "totalWordCount": 1297,
+    "estimatedReadingTime": 360000,
+    "title": "list_traversal_and_manipulation",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\commands_deep_dive\\key_space_operations_and_pattern_matching.md": {
+    "path": "public\\content\\redis\\commands_deep_dive\\key_space_operations_and_pattern_matching.md",
+    "sections": [
+      {
+        "id": "redis-key-space-operations-and-pattern-matching-from-first-principles",
+        "title": "Redis Key Space Operations and Pattern Matching from First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "1-what-is-the-redis-key-space",
+        "title": "1. What is the Redis Key Space?",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "2-key-naming-conventions",
+        "title": "2. Key Naming Conventions",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "3-basic-key-space-operations",
+        "title": "3. Basic Key Space Operations",
+        "level": 2,
+        "wordCount": 207
+      },
+      {
+        "id": "4-pattern-matching-and-key-scanning",
+        "title": "4. Pattern Matching and Key Scanning",
+        "level": 2,
+        "wordCount": 276
+      },
+      {
+        "id": "5-practical-applications-of-pattern-matching",
+        "title": "5. Practical Applications of Pattern Matching",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "6-advanced-pattern-techniques",
+        "title": "6. Advanced Pattern Techniques",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "7-performance-considerations",
+        "title": "7. Performance Considerations",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "8-combining-with-other-redis-features",
+        "title": "8. Combining with Other Redis Features",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "9-practical-example-session-management-system",
+        "title": "9. Practical Example: Session Management System",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "10-conclusion",
+        "title": "10. Conclusion",
+        "level": 2,
+        "wordCount": 164
+      }
+    ],
+    "totalWordCount": 1178,
+    "estimatedReadingTime": 300000,
+    "title": "key_space_operations_and_pattern_matching",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\commands_deep_dive\\hash_field_operations_and_atomic_updates.md": {
+    "path": "public\\content\\redis\\commands_deep_dive\\hash_field_operations_and_atomic_updates.md",
+    "sections": [
+      {
+        "id": "redis-hash-field-operations-and-atomic-updates-a-first-principles-explanation",
+        "title": "Redis Hash Field Operations and Atomic Updates: A First Principles Explanation",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "1-what-is-redis-at-its-core",
+        "title": "1. What is Redis at its core?",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "2-redis-hashes-the-fundamental-concept",
+        "title": "2. Redis Hashes: The Fundamental Concept",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "3-basic-hash-operations",
+        "title": "3. Basic Hash Operations",
+        "level": 2,
+        "wordCount": 153
+      },
+      {
+        "id": "4-understanding-atomic-operations-in-redis",
+        "title": "4. Understanding Atomic Operations in Redis",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "5-atomic-hash-field-updates",
+        "title": "5. Atomic Hash Field Updates",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "6-conditional-updates-and-complex-atomic-operations",
+        "title": "6. Conditional Updates and Complex Atomic Operations",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "7-practical-use-case-inventory-management",
+        "title": "7. Practical Use Case: Inventory Management",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "8-advanced-pattern-optimistic-locking-with-hash-fields",
+        "title": "8. Advanced Pattern: Optimistic Locking with Hash Fields",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "9-performance-considerations-for-hash-operations",
+        "title": "9. Performance Considerations for Hash Operations",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "10-conclusion-and-best-practices",
+        "title": "10. Conclusion and Best Practices",
+        "level": 2,
+        "wordCount": 161
+      }
+    ],
+    "totalWordCount": 1139,
+    "estimatedReadingTime": 300000,
+    "title": "hash_field_operations_and_atomic_updates",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\commands_deep_dive\\geospatial_queries_and_radius_searches.md": {
+    "path": "public\\content\\redis\\commands_deep_dive\\geospatial_queries_and_radius_searches.md",
+    "sections": [
+      {
+        "id": "redis-geospatial-queries-and-radius-searches-from-first-principles",
+        "title": "Redis Geospatial Queries and Radius Searches: From First Principles",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "1-what-are-geospatial-concepts",
+        "title": "1. What Are Geospatial Concepts?",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "2-what-is-redis",
+        "title": "2. What is Redis?",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "3-how-redis-implements-geospatial-features",
+        "title": "3. How Redis Implements Geospatial Features",
+        "level": 2,
+        "wordCount": 162
+      },
+      {
+        "id": "4-core-redis-geospatial-commands",
+        "title": "4. Core Redis Geospatial Commands",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "5-radius-searches-the-core-of-geospatial-queries",
+        "title": "5. Radius Searches (The Core of Geospatial Queries)",
+        "level": 2,
+        "wordCount": 156
+      },
+      {
+        "id": "6-practical-example-building-a-nearby-restaurant-finder",
+        "title": "6. Practical Example: Building a Nearby Restaurant Finder",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "7-performance-considerations",
+        "title": "7. Performance Considerations",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "8-advanced-geospatial-features-in-redis",
+        "title": "8. Advanced Geospatial Features in Redis",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "9-real-world-applications",
+        "title": "9. Real-World Applications",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "10-practical-considerations-and-limitations",
+        "title": "10. Practical Considerations and Limitations",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "11-putting-it-all-together-building-a-complete-location-aware-system",
+        "title": "11. Putting It All Together: Building a Complete Location-Aware System",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 126
+      }
+    ],
+    "totalWordCount": 1259,
+    "estimatedReadingTime": 360000,
+    "title": "geospatial_queries_and_radius_searches",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\commands_deep_dive\\bitmap_operations_and_bit_manipulation.md": {
+    "path": "public\\content\\redis\\commands_deep_dive\\bitmap_operations_and_bit_manipulation.md",
+    "sections": [
+      {
+        "id": "redis-bitmap-operations-and-bit-manipulation-from-first-principles",
+        "title": "Redis Bitmap Operations and Bit Manipulation: From First Principles",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "1-understanding-bits-the-foundation",
+        "title": "1. Understanding Bits: The Foundation",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "2-from-bits-to-bytes-and-strings",
+        "title": "2. From Bits to Bytes and Strings",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "3-bitmap-concept-arrays-of-bits",
+        "title": "3. Bitmap Concept: Arrays of Bits",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "4-redis-bitmap-commands-the-practical-tools",
+        "title": "4. Redis Bitmap Commands: The Practical Tools",
+        "level": 2,
+        "wordCount": 289
+      },
+      {
+        "id": "5-real-world-applications-putting-it-all-together",
+        "title": "5. Real-World Applications: Putting It All Together",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "6-advanced-bitmap-operations",
+        "title": "6. Advanced Bitmap Operations",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "7-performance-considerations",
+        "title": "7. Performance Considerations",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "8-compression-and-sparse-bitmaps",
+        "title": "8. Compression and Sparse Bitmaps",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 113
+      }
+    ],
+    "totalWordCount": 1015,
+    "estimatedReadingTime": 300000,
+    "title": "bitmap_operations_and_bit_manipulation",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\architecture\\virtual_memory_and_swap_behavior.md": {
+    "path": "public\\content\\redis\\architecture\\virtual_memory_and_swap_behavior.md",
+    "sections": [
+      {
+        "id": "redis-virtual-memory-and-swap-behavior-a-first-principles-approach",
+        "title": "Redis Virtual Memory and Swap Behavior: A First Principles Approach",
+        "level": 1,
+        "wordCount": 33
+      },
+      {
+        "id": "what-is-memory-management",
+        "title": "What is Memory Management?",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "redis-and-memory",
+        "title": "Redis and Memory",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "redis-virtual-memory-the-problem-it-solves",
+        "title": "Redis Virtual Memory: The Problem It Solves",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "redis-virtual-memory-implementation",
+        "title": "Redis Virtual Memory Implementation",
+        "level": 2,
+        "wordCount": 263
+      },
+      {
+        "id": "redis-vm-configuration",
+        "title": "Redis VM Configuration",
+        "level": 2,
+        "wordCount": 225
+      },
+      {
+        "id": "code-example-basic-redis-vm-setup",
+        "title": "Code Example: Basic Redis VM Setup",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "redis-swap-algorithm",
+        "title": "Redis Swap Algorithm",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "redis-vm-performance-considerations",
+        "title": "Redis VM Performance Considerations",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "deprecated-status-and-modern-alternatives",
+        "title": "Deprecated Status and Modern Alternatives",
+        "level": 2,
+        "wordCount": 145
+      },
+      {
+        "id": "using-the-operating-systems-swap",
+        "title": "Using the Operating System's Swap",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "a-practical-example-redis-memory-management",
+        "title": "A Practical Example: Redis Memory Management",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 124
+      }
+    ],
+    "totalWordCount": 1477,
+    "estimatedReadingTime": 360000,
+    "title": "virtual_memory_and_swap_behavior",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\architecture\\single_threaded_event_loop_model.md": {
+    "path": "public\\content\\redis\\architecture\\single_threaded_event_loop_model.md",
+    "sections": [
+      {
+        "id": "redis-single-threaded-event-loop-model-a-first-principles-explanation",
+        "title": "Redis Single-threaded Event Loop Model: A First Principles Explanation",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "1-the-problem-fast-data-access",
+        "title": "1. The Problem: Fast Data Access",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "2-what-makes-things-fast-or-slow",
+        "title": "2. What Makes Things Fast or Slow?",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "3-the-emergence-of-in-memory-databases",
+        "title": "3. The Emergence of In-Memory Databases",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "4-understanding-threading-models",
+        "title": "4. Understanding Threading Models",
+        "level": 2,
+        "wordCount": 184
+      },
+      {
+        "id": "5-rediss-event-loop-in-detail",
+        "title": "5. Redis's Event Loop in Detail",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "6-why-is-this-model-fast",
+        "title": "6. Why is This Model Fast?",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "7-but-what-about-slow-operations",
+        "title": "7. But What About Slow Operations?",
+        "level": 2,
+        "wordCount": 123
+      },
+      {
+        "id": "8-processing-model-for-different-operations",
+        "title": "8. Processing Model for Different Operations",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "9-multiplexing-io-in-detail",
+        "title": "9. Multiplexing I/O in Detail",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "10-real-world-analogy-the-restaurant-host",
+        "title": "10. Real-World Analogy: The Restaurant Host",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "11-handling-persistence",
+        "title": "11. Handling Persistence",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "12-evolution-redis-beyond-the-single-thread",
+        "title": "12. Evolution: Redis Beyond the Single Thread",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "13-when-single-threaded-architecture-is-beneficial",
+        "title": "13. When Single-Threaded Architecture is Beneficial",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 111
+      }
+    ],
+    "totalWordCount": 1378,
+    "estimatedReadingTime": 360000,
+    "title": "single_threaded_event_loop_model",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\architecture\\response_handling_mechanisms.md": {
+    "path": "public\\content\\redis\\architecture\\response_handling_mechanisms.md",
+    "sections": [
+      {
+        "id": "redis-response-handling-mechanisms",
+        "title": "Redis Response Handling Mechanisms",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "the-foundation-client-server-communication",
+        "title": "The Foundation: Client-Server Communication",
+        "level": 2,
+        "wordCount": 205
+      },
+      {
+        "id": "connection-handling",
+        "title": "Connection Handling",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "synchronous-vs-pipelined-responses",
+        "title": "Synchronous vs. Pipelined Responses",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "transaction-handling",
+        "title": "Transaction Handling",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "pubsub-response-pattern",
+        "title": "Pub/Sub Response Pattern",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "lua-scripting-response-handling",
+        "title": "Lua Scripting Response Handling",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "error-handling",
+        "title": "Error Handling",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "response-types-and-transformations",
+        "title": "Response Types and Transformations",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "advanced-response-handling-scan-commands",
+        "title": "Advanced Response Handling: Scan Commands",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "network-level-response-handling",
+        "title": "Network-Level Response Handling",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "asynchronous-response-handling",
+        "title": "Asynchronous Response Handling",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "handling-large-responses",
+        "title": "Handling Large Responses",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "monitoring-and-debugging-response-handling",
+        "title": "Monitoring and Debugging Response Handling",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 103
+      }
+    ],
+    "totalWordCount": 1343,
+    "estimatedReadingTime": 360000,
+    "title": "response_handling_mechanisms",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\architecture\\redis_process_internals.md": {
+    "path": "public\\content\\redis\\architecture\\redis_process_internals.md",
+    "sections": [
+      {
+        "id": "redis-process-internals-a-first-principles-explanation",
+        "title": "Redis Process Internals: A First Principles Explanation",
+        "level": 1,
+        "wordCount": 33
+      },
+      {
+        "id": "1-what-is-redis-at-its-core",
+        "title": "1. What is Redis at its Core?",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "2-the-event-loop-rediss-heart",
+        "title": "2. The Event Loop: Redis's Heart",
+        "level": 2,
+        "wordCount": 170
+      },
+      {
+        "id": "3-memory-management",
+        "title": "3. Memory Management",
+        "level": 2,
+        "wordCount": 225
+      },
+      {
+        "id": "4-data-structures",
+        "title": "4. Data Structures",
+        "level": 2,
+        "wordCount": 309
+      },
+      {
+        "id": "5-persistence-mechanisms",
+        "title": "5. Persistence Mechanisms",
+        "level": 2,
+        "wordCount": 231
+      },
+      {
+        "id": "6-master-replica-replication",
+        "title": "6. Master-Replica Replication",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "7-the-command-execution-flow",
+        "title": "7. The Command Execution Flow",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "8-transactions-in-redis",
+        "title": "8. Transactions in Redis",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "9-redis-modules-system",
+        "title": "9. Redis Modules System",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "10-redis-cluster",
+        "title": "10. Redis Cluster",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 130
+      }
+    ],
+    "totalWordCount": 1631,
+    "estimatedReadingTime": 420000,
+    "title": "redis_process_internals",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\architecture\\redis_modules_system_architecture.md": {
+    "path": "public\\content\\redis\\architecture\\redis_modules_system_architecture.md",
+    "sections": [
+      {
+        "id": "redis-modules-system-architecture-from-first-principles",
+        "title": "Redis Modules System Architecture: From First Principles",
+        "level": 1,
+        "wordCount": 28
+      },
+      {
+        "id": "1-understanding-redis-the-foundation",
+        "title": "1. Understanding Redis: The Foundation",
+        "level": 2,
+        "wordCount": 171
+      },
+      {
+        "id": "2-the-need-for-extensibility",
+        "title": "2. The Need for Extensibility",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "3-the-redis-modules-api-core-concepts",
+        "title": "3. The Redis Modules API: Core Concepts",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "4-module-architecture-building-blocks",
+        "title": "4. Module Architecture: Building Blocks",
+        "level": 2,
+        "wordCount": 213
+      },
+      {
+        "id": "5-memory-management-in-modules",
+        "title": "5. Memory Management in Modules",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "6-data-persistence",
+        "title": "6. Data Persistence",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "7-multithreading-model",
+        "title": "7. Multithreading Model",
+        "level": 2,
+        "wordCount": 176
+      },
+      {
+        "id": "8-real-world-example-redis-modules-in-action",
+        "title": "8. Real-World Example: Redis Modules in Action",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "9-notable-redis-modules",
+        "title": "9. Notable Redis Modules",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "10-module-loading-and-configuration",
+        "title": "10. Module Loading and Configuration",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "11-security-considerations",
+        "title": "11. Security Considerations",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "12-integration-with-redis-enterprise",
+        "title": "12. Integration with Redis Enterprise",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "13-future-directions",
+        "title": "13. Future Directions",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 100
+      }
+    ],
+    "totalWordCount": 1487,
+    "estimatedReadingTime": 360000,
+    "title": "redis_modules_system_architecture",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\architecture\\memory_management_and_allocation.md": {
+    "path": "public\\content\\redis\\architecture\\memory_management_and_allocation.md",
+    "sections": [
+      {
+        "id": "redis-memory-management-and-allocation",
+        "title": "Redis Memory Management and Allocation",
+        "level": 1,
+        "wordCount": 24
+      },
+      {
+        "id": "understanding-memory-in-computing-systems",
+        "title": "Understanding Memory in Computing Systems",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "redis-as-an-in-memory-data-store",
+        "title": "Redis as an In-Memory Data Store",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "redis-memory-allocator",
+        "title": "Redis Memory Allocator",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "redis-data-structures-and-memory",
+        "title": "Redis Data Structures and Memory",
+        "level": 2,
+        "wordCount": 164
+      },
+      {
+        "id": "memory-optimization-techniques",
+        "title": "Memory Optimization Techniques",
+        "level": 2,
+        "wordCount": 192
+      },
+      {
+        "id": "memory-limits-and-policies",
+        "title": "Memory Limits and Policies",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "memory-fragmentation",
+        "title": "Memory Fragmentation",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "redis-memory-commands-and-tools",
+        "title": "Redis Memory Commands and Tools",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "redis-memory-lifecycle-example",
+        "title": "Redis Memory Lifecycle Example",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "advanced-memory-management-features",
+        "title": "Advanced Memory Management Features",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "best-practices-for-redis-memory-management",
+        "title": "Best Practices for Redis Memory Management",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 113
+      }
+    ],
+    "totalWordCount": 1493,
+    "estimatedReadingTime": 360000,
+    "title": "memory_management_and_allocation",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\architecture\\internal_data_structure_implementation.md": {
+    "path": "public\\content\\redis\\architecture\\internal_data_structure_implementation.md",
+    "sections": [
+      {
+        "id": "redis-internal-data-structure-implementation",
+        "title": "Redis Internal Data Structure Implementation",
+        "level": 1,
+        "wordCount": 46
+      },
+      {
+        "id": "foundation-dynamic-strings-sds",
+        "title": "Foundation: Dynamic Strings (SDS)",
+        "level": 2,
+        "wordCount": 233
+      },
+      {
+        "id": "dictionary-implementation-hash-tables",
+        "title": "Dictionary Implementation (Hash Tables)",
+        "level": 2,
+        "wordCount": 129
+      },
+      {
+        "id": "lists-from-linked-lists-to-quicklists",
+        "title": "Lists: From Linked Lists to QuickLists",
+        "level": 2,
+        "wordCount": 186
+      },
+      {
+        "id": "sets-hash-tables-vs-intsets",
+        "title": "Sets: Hash Tables vs. Intsets",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "sorted-sets-skip-lists-hash-tables",
+        "title": "Sorted Sets: Skip Lists + Hash Tables",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "hyperloglog-probabilistic-counting",
+        "title": "HyperLogLog: Probabilistic Counting",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "streams-radix-tree-listpacks",
+        "title": "Streams: Radix Tree + Listpacks",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "code-example-using-redis-data-structures",
+        "title": "Code Example: Using Redis Data Structures",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "redis-object-system",
+        "title": "Redis Object System",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 124
+      }
+    ],
+    "totalWordCount": 1143,
+    "estimatedReadingTime": 300000,
+    "title": "internal_data_structure_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\architecture\\command_processing_pipeline.md": {
+    "path": "public\\content\\redis\\architecture\\command_processing_pipeline.md",
+    "sections": [
+      {
+        "id": "redis-command-processing-pipeline-a-first-principles-explanation",
+        "title": "Redis Command Processing Pipeline: A First Principles Explanation",
+        "level": 1,
+        "wordCount": 45
+      },
+      {
+        "id": "1-what-is-redis-at-its-core",
+        "title": "1. What is Redis at its core?",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "2-the-basic-communication-model",
+        "title": "2. The Basic Communication Model",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "3-the-command-processing-pipeline",
+        "title": "3. The Command Processing Pipeline",
+        "level": 2,
+        "wordCount": 520
+      },
+      {
+        "id": "4-the-big-picture-how-it-all-fits-together",
+        "title": "4. The Big Picture: How It All Fits Together",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "5-important-optimizations-in-the-pipeline",
+        "title": "5. Important Optimizations in the Pipeline",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "6-understanding-through-a-concrete-example",
+        "title": "6. Understanding Through a Concrete Example",
+        "level": 2,
+        "wordCount": 175
+      },
+      {
+        "id": "7-advanced-topics-in-the-redis-command-pipeline",
+        "title": "7. Advanced Topics in the Redis Command Pipeline",
+        "level": 2,
+        "wordCount": 166
+      },
+      {
+        "id": "8-understanding-redis-command-pipeline-performance",
+        "title": "8. Understanding Redis Command Pipeline Performance",
+        "level": 2,
+        "wordCount": 150
+      },
+      {
+        "id": "9-putting-it-all-together",
+        "title": "9. Putting It All Together",
+        "level": 2,
+        "wordCount": 123
+      }
+    ],
+    "totalWordCount": 1593,
+    "estimatedReadingTime": 420000,
+    "title": "command_processing_pipeline",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\architecture\\client_connection_handling.md": {
+    "path": "public\\content\\redis\\architecture\\client_connection_handling.md",
+    "sections": [
+      {
+        "id": "redis-client-connection-handling-first-principles",
+        "title": "Redis Client Connection Handling: First Principles",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "1-what-is-a-connection",
+        "title": "1. What is a Connection?",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "2-basic-connection-lifecycle",
+        "title": "2. Basic Connection Lifecycle",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "3-connection-pooling",
+        "title": "3. Connection Pooling",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "4-connection-events-and-states",
+        "title": "4. Connection Events and States",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "5-reconnection-strategies",
+        "title": "5. Reconnection Strategies",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "6-connection-pipelining",
+        "title": "6. Connection Pipelining",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "7-pubsub-connections",
+        "title": "7. Pub/Sub Connections",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "8-sentinel-and-cluster-connection-handling",
+        "title": "8. Sentinel and Cluster Connection Handling",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "9-connection-security",
+        "title": "9. Connection Security",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "10-handling-connection-timeouts",
+        "title": "10. Handling Connection Timeouts",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "11-connection-context-and-state-sharing",
+        "title": "11. Connection Context and State Sharing",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "12-monitoring-connection-health",
+        "title": "12. Monitoring Connection Health",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 78
+      }
+    ],
+    "totalWordCount": 1032,
+    "estimatedReadingTime": 300000,
+    "title": "client_connection_handling",
+    "frontmatter": {}
+  },
+  "public\\content\\redis\\architecture\\background_task_processing.md": {
+    "path": "public\\content\\redis\\architecture\\background_task_processing.md",
+    "sections": [
+      {
+        "id": "redis-background-task-processing-from-first-principles",
+        "title": "Redis Background Task Processing: From First Principles",
+        "level": 1,
+        "wordCount": 26
+      },
+      {
+        "id": "1-understanding-the-problem-space",
+        "title": "1. Understanding the Problem Space",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "2-the-queue-pattern",
+        "title": "2. The Queue Pattern",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "3-enter-redis",
+        "title": "3. Enter Redis",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "4-redis-data-structures-for-task-queues",
+        "title": "4. Redis Data Structures for Task Queues",
+        "level": 2,
+        "wordCount": 169
+      },
+      {
+        "id": "5-task-queue-reliability-and-durability",
+        "title": "5. Task Queue Reliability and Durability",
+        "level": 2,
+        "wordCount": 129
+      },
+      {
+        "id": "6-practical-implementations-with-redis-libraries",
+        "title": "6. Practical Implementations with Redis Libraries",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "7-scaling-background-processing",
+        "title": "7. Scaling Background Processing",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "8-monitoring-and-observability",
+        "title": "8. Monitoring and Observability",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "9-common-patterns-and-best-practices",
+        "title": "9. Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "10-real-world-example-e-commerce-order-processing",
+        "title": "10. Real-World Example: E-commerce Order Processing",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "11-conclusion-and-advanced-topics",
+        "title": "11. Conclusion and Advanced Topics",
+        "level": 2,
+        "wordCount": 138
+      }
+    ],
+    "totalWordCount": 1035,
+    "estimatedReadingTime": 300000,
+    "title": "background_task_processing",
     "frontmatter": {}
   },
   "public\\content\\react\\intermediate\\strict_mode.md": {
@@ -5838,6 +8925,1389 @@
     "totalWordCount": 814,
     "estimatedReadingTime": 240000,
     "title": "component_communication",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\working_with_iterables.md": {
+    "path": "public\\content\\python\\standard_library\\working_with_iterables.md",
+    "sections": [
+      {
+        "id": "understanding-python-iterables-and-itertools-from-first-principles",
+        "title": "Understanding Python Iterables and itertools from First Principles",
+        "level": 1,
+        "wordCount": 25
+      },
+      {
+        "id": "what-is-iteration-the-core-concept",
+        "title": "What is Iteration? The Core Concept",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "what-makes-something-iterable",
+        "title": "What Makes Something Iterable?",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "iterators-vs-iterables-a-critical-distinction",
+        "title": "Iterators vs. Iterables: A Critical Distinction",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "why-are-iterables-important",
+        "title": "Why Are Iterables Important?",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "enter-itertools-pythons-iteration-laboratory",
+        "title": "Enter itertools: Python's Iteration Laboratory",
+        "level": 2,
+        "wordCount": 312
+      },
+      {
+        "id": "building-your-own-tools-with-itertools",
+        "title": "Building Your Own Tools with itertools",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "memory-efficiency-a-deeper-look",
+        "title": "Memory Efficiency: A Deeper Look",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "creating-your-own-iterables",
+        "title": "Creating Your Own Iterables",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "practical-applications-of-itertools",
+        "title": "Practical Applications of itertools",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 105
+      }
+    ],
+    "totalWordCount": 1099,
+    "estimatedReadingTime": 300000,
+    "title": "working_with_iterables",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\text_processing_services.md": {
+    "path": "public\\content\\python\\standard_library\\text_processing_services.md",
+    "sections": [
+      {
+        "id": "python-standard-library-text-processing-services-from-first-principles",
+        "title": "Python Standard Library Text Processing Services: From First Principles",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "the-nature-of-text-in-computing",
+        "title": "The Nature of Text in Computing",
+        "level": 2,
+        "wordCount": 141
+      },
+      {
+        "id": "core-text-processing-modules",
+        "title": "Core Text Processing Modules",
+        "level": 2,
+        "wordCount": 229
+      },
+      {
+        "id": "text-tokenization-and-parsing",
+        "title": "Text Tokenization and Parsing",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "advanced-text-processing",
+        "title": "Advanced Text Processing",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "text-encodings-and-internationalization",
+        "title": "Text Encodings and Internationalization",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 166
+      }
+    ],
+    "totalWordCount": 722,
+    "estimatedReadingTime": 180000,
+    "title": "text_processing_services",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\structured_markup_processing_tools.md": {
+    "path": "public\\content\\python\\standard_library\\structured_markup_processing_tools.md",
+    "sections": [
+      {
+        "id": "python-structured-markup-processing-tools-a-first-principles-approach",
+        "title": "Python Structured Markup Processing Tools: A First Principles Approach",
+        "level": 1,
+        "wordCount": 53
+      },
+      {
+        "id": "what-is-structured-markup",
+        "title": "What Is Structured Markup?",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "xml-processing-in-python",
+        "title": "XML Processing in Python",
+        "level": 2,
+        "wordCount": 208
+      },
+      {
+        "id": "html-processing-in-python",
+        "title": "HTML Processing in Python",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "json-processing-in-python",
+        "title": "JSON Processing in Python",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "yaml-processing-in-python",
+        "title": "YAML Processing in Python",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "real-world-example-processing-configuration-files",
+        "title": "Real-World Example: Processing Configuration Files",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "common-patterns-and-best-practices",
+        "title": "Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "from-theory-to-practice-a-complete-example",
+        "title": "From Theory to Practice: A Complete Example",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "conclusion-the-power-of-abstraction",
+        "title": "Conclusion: The Power of Abstraction",
+        "level": 2,
+        "wordCount": 148
+      }
+    ],
+    "totalWordCount": 886,
+    "estimatedReadingTime": 240000,
+    "title": "structured_markup_processing_tools",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\string_processing_capabilities.md": {
+    "path": "public\\content\\python\\standard_library\\string_processing_capabilities.md",
+    "sections": [
+      {
+        "id": "python-string-processing-a-first-principles-exploration",
+        "title": "Python String Processing: A First Principles Exploration",
+        "level": 1,
+        "wordCount": 33
+      },
+      {
+        "id": "understanding-strings-at-the-most-basic-level",
+        "title": "Understanding Strings at the Most Basic Level",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "string-methods-the-building-blocks",
+        "title": "String Methods: The Building Blocks",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "string-transformation",
+        "title": "String Transformation",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "advanced-string-operations",
+        "title": "Advanced String Operations",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "string-slicing",
+        "title": "String Slicing",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "practical-applications",
+        "title": "Practical Applications",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "special-string-operations-in-the-standard-library",
+        "title": "Special String Operations in the Standard Library",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "understanding-string-internals",
+        "title": "Understanding String Internals",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "string-performance-considerations",
+        "title": "String Performance Considerations",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 105
+      }
+    ],
+    "totalWordCount": 749,
+    "estimatedReadingTime": 180000,
+    "title": "string_processing_capabilities",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\mathematics_and_numeric_operations.md": {
+    "path": "public\\content\\python\\standard_library\\mathematics_and_numeric_operations.md",
+    "sections": [
+      {
+        "id": "mathematics-and-numeric-operations-in-pythons-standard-library",
+        "title": "Mathematics and Numeric Operations in Python's Standard Library",
+        "level": 1,
+        "wordCount": 34
+      },
+      {
+        "id": "fundamentals-of-numbers-in-python",
+        "title": "Fundamentals of Numbers in Python",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "basic-arithmetic-operations",
+        "title": "Basic Arithmetic Operations",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "the-math-module",
+        "title": "The `math` Module",
+        "level": 2,
+        "wordCount": 203
+      },
+      {
+        "id": "the-statistics-module",
+        "title": "The `statistics` Module",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "random-number-generation",
+        "title": "Random Number Generation",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "decimal-module-for-precision-arithmetic",
+        "title": "Decimal Module for Precision Arithmetic",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "fractions-module-for-rational-numbers",
+        "title": "Fractions Module for Rational Numbers",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "complex-numbers",
+        "title": "Complex Numbers",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "number-theory-functions",
+        "title": "Number Theory Functions",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "numerical-representation-and-conversion",
+        "title": "Numerical Representation and Conversion",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 198
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 129
+      }
+    ],
+    "totalWordCount": 995,
+    "estimatedReadingTime": 240000,
+    "title": "mathematics_and_numeric_operations",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\interprocess_communication.md": {
+    "path": "public\\content\\python\\standard_library\\interprocess_communication.md",
+    "sections": [
+      {
+        "id": "python-interprocess-communication-ipc-from-first-principles",
+        "title": "Python Interprocess Communication (IPC): From First Principles",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "what-is-a-process",
+        "title": "What is a Process?",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "why-interprocess-communication",
+        "title": "Why Interprocess Communication?",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "ipc-mechanisms-in-python",
+        "title": "IPC Mechanisms in Python",
+        "level": 2,
+        "wordCount": 344
+      },
+      {
+        "id": "advanced-concepts-and-best-practices",
+        "title": "Advanced Concepts and Best Practices",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "real-world-application-a-simple-task-distribution-system",
+        "title": "Real-World Application: A Simple Task Distribution System",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "choosing-the-right-ipc-mechanism",
+        "title": "Choosing the Right IPC Mechanism",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 118
+      }
+    ],
+    "totalWordCount": 896,
+    "estimatedReadingTime": 240000,
+    "title": "interprocess_communication",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\internet_protocols_and_support.md": {
+    "path": "public\\content\\python\\standard_library\\internet_protocols_and_support.md",
+    "sections": [
+      {
+        "id": "python-internet-protocols-and-support",
+        "title": "Python Internet Protocols and Support",
+        "level": 1,
+        "wordCount": 26
+      },
+      {
+        "id": "1-what-are-internet-protocols",
+        "title": "1. What are Internet Protocols?",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "2-socket-programming-the-foundation",
+        "title": "2. Socket Programming: The Foundation",
+        "level": 2,
+        "wordCount": 214
+      },
+      {
+        "id": "3-tcp-vs-udp-in-python",
+        "title": "3. TCP vs UDP in Python",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "4-higher-level-protocol-modules",
+        "title": "4. Higher-Level Protocol Modules",
+        "level": 2,
+        "wordCount": 186
+      },
+      {
+        "id": "5-working-with-ip-addresses",
+        "title": "5. Working with IP Addresses",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "6-asynchronous-network-programming",
+        "title": "6. Asynchronous Network Programming",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "7-web-scraping",
+        "title": "7. Web Scraping",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "8-working-with-apis",
+        "title": "8. Working with APIs",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "9-creating-a-rest-api-with-flask",
+        "title": "9. Creating a REST API with Flask",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "10-websockets-for-real-time-communication",
+        "title": "10. WebSockets for Real-Time Communication",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 126
+      }
+    ],
+    "totalWordCount": 1215,
+    "estimatedReadingTime": 300000,
+    "title": "internet_protocols_and_support",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\functional_programming_tools.md": {
+    "path": "public\\content\\python\\standard_library\\functional_programming_tools.md",
+    "sections": [
+      {
+        "id": "python-functional-programming-tools-functools-from-first-principles",
+        "title": "Python Functional Programming Tools: functools from First Principles",
+        "level": 1,
+        "wordCount": 53
+      },
+      {
+        "id": "1-what-is-functional-programming",
+        "title": "1. What is Functional Programming?",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "2-understanding-the-functools-module",
+        "title": "2. Understanding the functools Module",
+        "level": 2,
+        "wordCount": 707
+      },
+      {
+        "id": "3-advanced-applications",
+        "title": "3. Advanced Applications",
+        "level": 2,
+        "wordCount": 218
+      },
+      {
+        "id": "4-real-world-use-cases",
+        "title": "4. Real-World Use Cases",
+        "level": 2,
+        "wordCount": 177
+      },
+      {
+        "id": "5-conclusion",
+        "title": "5. Conclusion",
+        "level": 2,
+        "wordCount": 109
+      }
+    ],
+    "totalWordCount": 1348,
+    "estimatedReadingTime": 360000,
+    "title": "functional_programming_tools",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\file_and_directory_access.md": {
+    "path": "public\\content\\python\\standard_library\\file_and_directory_access.md",
+    "sections": [
+      {
+        "id": "file-and-directory-access-in-python-from-first-principles",
+        "title": "File and Directory Access in Python from First Principles",
+        "level": 1,
+        "wordCount": 41
+      },
+      {
+        "id": "what-is-a-file-system",
+        "title": "What is a File System?",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "files-as-streams-of-bytes",
+        "title": "Files as Streams of Bytes",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "pythons-file-and-directory-access-modules",
+        "title": "Python's File and Directory Access Modules",
+        "level": 2,
+        "wordCount": 189
+      },
+      {
+        "id": "file-operations-in-python",
+        "title": "File Operations in Python",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "advanced-directory-operations",
+        "title": "Advanced Directory Operations",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "working-with-file-paths-in-a-cross-platform-way",
+        "title": "Working with File Paths in a Cross-Platform Way",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "practical-example-a-file-search-utility",
+        "title": "Practical Example: A File Search Utility",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "examples-using-shutil-for-higher-level-operations",
+        "title": "Examples Using `shutil` for Higher-Level Operations",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "error-handling-in-file-operations",
+        "title": "Error Handling in File Operations",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 136
+      }
+    ],
+    "totalWordCount": 960,
+    "estimatedReadingTime": 240000,
+    "title": "file_and_directory_access",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\development_tools_in_the_standard_library.md": {
+    "path": "public\\content\\python\\standard_library\\development_tools_in_the_standard_library.md",
+    "sections": [
+      {
+        "id": "python-development-tools-in-the-standard-library-a-first-principles-approach",
+        "title": "Python Development Tools in the Standard Library: A First Principles Approach",
+        "level": 1,
+        "wordCount": 56
+      },
+      {
+        "id": "1-the-unittest-framework",
+        "title": "1. The `unittest` Framework",
+        "level": 2,
+        "wordCount": 155
+      },
+      {
+        "id": "2-the-doctest-module",
+        "title": "2. The `doctest` Module",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "3-the-pdb-module-python-debugger",
+        "title": "3. The `pdb` Module - Python Debugger",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "4-the-logging-module",
+        "title": "4. The `logging` Module",
+        "level": 2,
+        "wordCount": 189
+      },
+      {
+        "id": "5-the-profile-and-cprofile-modules",
+        "title": "5. The `profile` and `cProfile` Modules",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "6-the-timeit-module",
+        "title": "6. The `timeit` Module",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "7-the-trace-module",
+        "title": "7. The `trace` Module",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "8-the-venv-module",
+        "title": "8. The `venv` Module",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "9-argparse-command-line-argument-parsing",
+        "title": "9. `argparse` - Command Line Argument Parsing",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "10-the-configparser-module",
+        "title": "10. The `configparser` Module",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 125
+      }
+    ],
+    "totalWordCount": 1332,
+    "estimatedReadingTime": 360000,
+    "title": "development_tools_in_the_standard_library",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\deep_dive_into_built_in_functions.md": {
+    "path": "public\\content\\python\\standard_library\\deep_dive_into_built_in_functions.md",
+    "sections": [
+      {
+        "id": "python-deep-dive-built-in-functions-from-first-principles",
+        "title": "Python Deep Dive: Built-in Functions from First Principles",
+        "level": 1,
+        "wordCount": 44
+      },
+      {
+        "id": "the-concept-of-built-in-functions",
+        "title": "The Concept of Built-in Functions",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "why-built-in-functions-exist",
+        "title": "Why Built-in Functions Exist",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "key-categories-of-built-in-functions",
+        "title": "Key Categories of Built-in Functions",
+        "level": 2,
+        "wordCount": 796
+      },
+      {
+        "id": "creating-custom-objects-that-work-with-built-in-functions",
+        "title": "Creating Custom Objects That Work with Built-in Functions",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "when-to-use-built-in-functions-vs-standard-library",
+        "title": "When to Use Built-in Functions vs. Standard Library",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "the-evolution-of-built-in-functions",
+        "title": "The Evolution of Built-in Functions",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 114
+      }
+    ],
+    "totalWordCount": 1287,
+    "estimatedReadingTime": 360000,
+    "title": "deep_dive_into_built_in_functions",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\date_and_time_handling.md": {
+    "path": "public\\content\\python\\standard_library\\date_and_time_handling.md",
+    "sections": [
+      {
+        "id": "date-and-time-handling-in-python-from-first-principles",
+        "title": "Date and Time Handling in Python: From First Principles",
+        "level": 1,
+        "wordCount": 45
+      },
+      {
+        "id": "1-why-we-need-special-date-and-time-types",
+        "title": "1. Why We Need Special Date and Time Types",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "2-pythons-datetime-module",
+        "title": "2. Python's DateTime Module",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "3-the-date-class-working-with-calendar-dates",
+        "title": "3. The `date` Class: Working with Calendar Dates",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "4-the-time-class-working-with-clock-times",
+        "title": "4. The `time` Class: Working with Clock Times",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "5-the-datetime-class-combining-date-and-time",
+        "title": "5. The `datetime` Class: Combining Date and Time",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "6-the-timedelta-class-working-with-time-durations",
+        "title": "6. The `timedelta` Class: Working with Time Durations",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "7-parsing-dates-and-times-from-strings",
+        "title": "7. Parsing Dates and Times from Strings",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "8-common-format-codes-for-strftime-and-strptime",
+        "title": "8. Common Format Codes for `strftime()` and `strptime()`",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "9-working-with-time-zones",
+        "title": "9. Working with Time Zones",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "10-alternative-using-time-module-for-unix-timestamps",
+        "title": "10. Alternative: Using `time` Module for Unix Timestamps",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "11-calendar-module-working-with-whole-calendars",
+        "title": "11. Calendar Module: Working with Whole Calendars",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "12-working-with-iso-format-and-iso-8601",
+        "title": "12. Working with ISO format and ISO 8601",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "13-real-world-example-event-scheduler",
+        "title": "13. Real-World Example: Event Scheduler",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "14-summary-and-best-practices",
+        "title": "14. Summary and Best Practices",
+        "level": 2,
+        "wordCount": 162
+      }
+    ],
+    "totalWordCount": 1159,
+    "estimatedReadingTime": 300000,
+    "title": "date_and_time_handling",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\data_persistence_and_serialization.md": {
+    "path": "public\\content\\python\\standard_library\\data_persistence_and_serialization.md",
+    "sections": [
+      {
+        "id": "data-persistence-and-serialization-in-python-from-first-principles",
+        "title": "Data Persistence and Serialization in Python: From First Principles",
+        "level": 1,
+        "wordCount": 56
+      },
+      {
+        "id": "1-why-data-persistence-matters",
+        "title": "1. Why Data Persistence Matters",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "2-understanding-serialization",
+        "title": "2. Understanding Serialization",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "3-basic-serialization-methods-in-python",
+        "title": "3. Basic Serialization Methods in Python",
+        "level": 2,
+        "wordCount": 188
+      },
+      {
+        "id": "4-deep-dive-how-serialization-works",
+        "title": "4. Deep Dive: How Serialization Works",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "5-choosing-the-right-serialization-method",
+        "title": "5. Choosing the Right Serialization Method",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "6-advanced-serialization-techniques",
+        "title": "6. Advanced Serialization Techniques",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "7-object-relational-mapping-orm",
+        "title": "7. Object-Relational Mapping (ORM)",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "8-custom-serialization",
+        "title": "8. Custom Serialization",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "9-best-practices-for-data-persistence",
+        "title": "9. Best Practices for Data Persistence",
+        "level": 2,
+        "wordCount": 157
+      },
+      {
+        "id": "10-a-complete-example-persistent-task-manager",
+        "title": "10. A Complete Example: Persistent Task Manager",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 82
+      }
+    ],
+    "totalWordCount": 1151,
+    "estimatedReadingTime": 300000,
+    "title": "data_persistence_and_serialization",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\data_encoding_and_decoding.md": {
+    "path": "public\\content\\python\\standard_library\\data_encoding_and_decoding.md",
+    "sections": [
+      {
+        "id": "python-standard-library-data-encoding-and-decoding",
+        "title": "Python Standard Library: Data Encoding and Decoding",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "what-is-data-encoding-and-why-do-we-need-it",
+        "title": "What is Data Encoding and Why Do We Need It?",
+        "level": 2,
+        "wordCount": 168
+      },
+      {
+        "id": "pythons-base64-module",
+        "title": "Python's `base64` Module",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "the-codecs-module",
+        "title": "The `codecs` Module",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "the-binascii-module",
+        "title": "The `binascii` Module",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "the-json-module-encoding-and-decoding-json",
+        "title": "The `json` Module: Encoding and Decoding JSON",
+        "level": 2,
+        "wordCount": 123
+      },
+      {
+        "id": "the-pickle-module-python-specific-serialization",
+        "title": "The `pickle` Module: Python-specific Serialization",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "url-encoding-with-urllibparse",
+        "title": "URL Encoding with `urllib.parse`",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "html-encoding-with-html-module",
+        "title": "HTML Encoding with `html` Module",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "working-with-binary-data-struct-module",
+        "title": "Working with Binary Data: `struct` Module",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "compression-and-encoding-zlib-gzip-bz2-and-lzma",
+        "title": "Compression and Encoding: `zlib`, `gzip`, `bz2`, and `lzma`",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "base16-base32-and-base85-encoding",
+        "title": "Base16, Base32, and Base85 Encoding",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "character-encodingdecoding",
+        "title": "Character Encoding/Decoding",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "encoding-binary-data-for-output-quopri-module",
+        "title": "Encoding Binary Data for Output: `quopri` Module",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 143
+      }
+    ],
+    "totalWordCount": 1355,
+    "estimatedReadingTime": 360000,
+    "title": "data_encoding_and_decoding",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\data_compression_and_archiving.md": {
+    "path": "public\\content\\python\\standard_library\\data_compression_and_archiving.md",
+    "sections": [
+      {
+        "id": "data-compression-and-archiving-in-python-from-first-principles",
+        "title": "Data Compression and Archiving in Python: From First Principles",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "the-fundamental-principle-of-compression",
+        "title": "The Fundamental Principle of Compression",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "pythons-built-in-compression-tools",
+        "title": "Python's Built-in Compression Tools",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "basic-string-compression-with-zlib",
+        "title": "Basic String Compression with zlib",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "how-deflate-works-the-algorithm-behind-zlib",
+        "title": "How DEFLATE Works (The Algorithm Behind zlib)",
+        "level": 2,
+        "wordCount": 175
+      },
+      {
+        "id": "file-compression-with-gzip",
+        "title": "File Compression with gzip",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "different-compression-algorithms-a-comparison",
+        "title": "Different Compression Algorithms: A Comparison",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "working-with-zip-archives",
+        "title": "Working with ZIP Archives",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "working-with-tar-archives",
+        "title": "Working with TAR Archives",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "practical-application-compressing-log-files",
+        "title": "Practical Application: Compressing Log Files",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "lossy-compression-principles",
+        "title": "Lossy Compression Principles",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "memory-efficient-compression-with-streaming",
+        "title": "Memory-Efficient Compression with Streaming",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "compression-level-trade-offs",
+        "title": "Compression Level Trade-offs",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 137
+      }
+    ],
+    "totalWordCount": 1280,
+    "estimatedReadingTime": 360000,
+    "title": "data_compression_and_archiving",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\cryptographic_services.md": {
+    "path": "public\\content\\python\\standard_library\\cryptographic_services.md",
+    "sections": [
+      {
+        "id": "python-cryptographic-services-first-principles",
+        "title": "Python Cryptographic Services: First Principles",
+        "level": 1,
+        "wordCount": 26
+      },
+      {
+        "id": "what-is-cryptography",
+        "title": "What is Cryptography?",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "fundamental-principles-of-cryptography",
+        "title": "Fundamental Principles of Cryptography",
+        "level": 2,
+        "wordCount": 198
+      },
+      {
+        "id": "types-of-cryptographic-algorithms",
+        "title": "Types of Cryptographic Algorithms",
+        "level": 2,
+        "wordCount": 252
+      },
+      {
+        "id": "pythons-cryptographic-ecosystem",
+        "title": "Python's Cryptographic Ecosystem",
+        "level": 2,
+        "wordCount": 202
+      },
+      {
+        "id": "common-cryptographic-applications-in-python",
+        "title": "Common Cryptographic Applications in Python",
+        "level": 2,
+        "wordCount": 204
+      },
+      {
+        "id": "advanced-topics",
+        "title": "Advanced Topics",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "best-practices-for-cryptography-in-python",
+        "title": "Best Practices for Cryptography in Python",
+        "level": 2,
+        "wordCount": 164
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 103
+      }
+    ],
+    "totalWordCount": 1314,
+    "estimatedReadingTime": 360000,
+    "title": "cryptographic_services",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\concurrent_execution.md": {
+    "path": "public\\content\\python\\standard_library\\concurrent_execution.md",
+    "sections": [
+      {
+        "id": "python-concurrent-execution-from-first-principles",
+        "title": "Python Concurrent Execution: From First Principles",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "understanding-sequential-vs-concurrent-execution",
+        "title": "Understanding Sequential vs. Concurrent Execution",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "the-core-concepts-of-concurrency",
+        "title": "The Core Concepts of Concurrency",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "pythons-concurrency-models",
+        "title": "Python's Concurrency Models",
+        "level": 2,
+        "wordCount": 259
+      },
+      {
+        "id": "choosing-the-right-concurrency-model",
+        "title": "Choosing the Right Concurrency Model",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "concurrency-challenges-and-solutions",
+        "title": "Concurrency Challenges and Solutions",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "advanced-concurrency-patterns",
+        "title": "Advanced Concurrency Patterns",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 131
+      }
+    ],
+    "totalWordCount": 964,
+    "estimatedReadingTime": 240000,
+    "title": "concurrent_execution",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\binary_data_services.md": {
+    "path": "public\\content\\python\\standard_library\\binary_data_services.md",
+    "sections": [
+      {
+        "id": "binary-data-services-in-python-from-first-principles",
+        "title": "Binary Data Services in Python: From First Principles",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "what-is-binary-data",
+        "title": "What is Binary Data?",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "core-binary-data-types-in-python",
+        "title": "Core Binary Data Types in Python",
+        "level": 2,
+        "wordCount": 175
+      },
+      {
+        "id": "binary-data-operations",
+        "title": "Binary Data Operations",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "structured-binary-data",
+        "title": "Structured Binary Data",
+        "level": 2,
+        "wordCount": 180
+      },
+      {
+        "id": "binary-data-processing",
+        "title": "Binary Data Processing",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 141
+      },
+      {
+        "id": "advanced-binary-data-techniques",
+        "title": "Advanced Binary Data Techniques",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "binary-data-security-considerations",
+        "title": "Binary Data Security Considerations",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 134
+      }
+    ],
+    "totalWordCount": 1110,
+    "estimatedReadingTime": 300000,
+    "title": "binary_data_services",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\standard_library\\advanced_collections.md": {
+    "path": "public\\content\\python\\standard_library\\advanced_collections.md",
+    "sections": [
+      {
+        "id": "python-advanced-collections-understanding-from-first-principles",
+        "title": "Python Advanced Collections: Understanding from First Principles",
+        "level": 1,
+        "wordCount": 37
+      },
+      {
+        "id": "what-are-collections",
+        "title": "What Are Collections?",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "first-principles-what-makes-an-effective-collection",
+        "title": "First Principles: What Makes an Effective Collection?",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "key-collection-types",
+        "title": "Key Collection Types",
+        "level": 2,
+        "wordCount": 785
+      },
+      {
+        "id": "practical-applications-of-collections",
+        "title": "Practical Applications of Collections",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "when-to-use-each-collection-type",
+        "title": "When to Use Each Collection Type",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 108
+      }
+    ],
+    "totalWordCount": 1305,
+    "estimatedReadingTime": 360000,
+    "title": "advanced_collections",
     "frontmatter": {}
   },
   "public\\content\\python\\python_fundamentals\\variables_naming_conventions_and_memory_model.md": {
@@ -11193,6 +15663,1383 @@
     "totalWordCount": 999,
     "estimatedReadingTime": 240000,
     "title": "closures_and_nested_functions",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\work_distribution_strategies.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\work_distribution_strategies.md",
+    "sections": [
+      {
+        "id": "python-work-distribution-strategies-a-first-principles-approach",
+        "title": "Python Work Distribution Strategies: A First Principles Approach",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "1-why-distribute-work",
+        "title": "1. Why Distribute Work?",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "2-fundamental-resources-for-distribution",
+        "title": "2. Fundamental Resources for Distribution",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "3-basic-forms-of-work-distribution",
+        "title": "3. Basic Forms of Work Distribution",
+        "level": 2,
+        "wordCount": 165
+      },
+      {
+        "id": "4-higher-level-distribution-strategies",
+        "title": "4. Higher-Level Distribution Strategies",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "5-data-parallelism-vs-task-parallelism",
+        "title": "5. Data Parallelism vs. Task Parallelism",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "6-distribution-across-machines",
+        "title": "6. Distribution Across Machines",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "7-balancing-the-load",
+        "title": "7. Balancing the Load",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "8-communication-and-coordination",
+        "title": "8. Communication and Coordination",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "9-practical-advanced-examples",
+        "title": "9. Practical Advanced Examples",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "10-common-challenges-and-solutions",
+        "title": "10. Common Challenges and Solutions",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "11-choosing-the-right-strategy",
+        "title": "11. Choosing the Right Strategy",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "12-measuring-and-optimizing-performance",
+        "title": "12. Measuring and Optimizing Performance",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 69
+      }
+    ],
+    "totalWordCount": 1085,
+    "estimatedReadingTime": 300000,
+    "title": "work_distribution_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\understanding_cpu_bound_vs_io_bound_tasks.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\understanding_cpu_bound_vs_io_bound_tasks.md",
+    "sections": [
+      {
+        "id": "understanding-cpu-bound-vs-io-bound-tasks-in-python-from-first-principles",
+        "title": "Understanding CPU-bound vs. IO-bound Tasks in Python: From First Principles",
+        "level": 1,
+        "wordCount": 33
+      },
+      {
+        "id": "what-are-resources-in-computing",
+        "title": "What Are Resources in Computing?",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "the-nature-of-tasks-cpu-bound-vs-io-bound",
+        "title": "The Nature of Tasks: CPU-bound vs. IO-bound",
+        "level": 2,
+        "wordCount": 297
+      },
+      {
+        "id": "understanding-the-distinction-through-a-restaurant-analogy",
+        "title": "Understanding the Distinction Through a Restaurant Analogy",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "how-python-handles-these-tasks",
+        "title": "How Python Handles These Tasks",
+        "level": 2,
+        "wordCount": 390
+      },
+      {
+        "id": "determining-whether-a-task-is-cpu-bound-or-io-bound",
+        "title": "Determining Whether a Task is CPU-bound or IO-bound",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "optimizing-for-different-task-types",
+        "title": "Optimizing for Different Task Types",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "real-world-example-web-scraper",
+        "title": "Real-world Example: Web Scraper",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 164
+      }
+    ],
+    "totalWordCount": 1283,
+    "estimatedReadingTime": 360000,
+    "title": "understanding_cpu_bound_vs_io_bound_tasks",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\thread_synchronization_primitives.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\thread_synchronization_primitives.md",
+    "sections": [
+      {
+        "id": "python-thread-synchronization-primitives-from-first-principles",
+        "title": "Python Thread Synchronization Primitives from First Principles",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "what-is-a-thread",
+        "title": "What is a Thread?",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "the-need-for-synchronization",
+        "title": "The Need for Synchronization",
+        "level": 2,
+        "wordCount": 145
+      },
+      {
+        "id": "pythons-synchronization-primitives",
+        "title": "Python's Synchronization Primitives",
+        "level": 2,
+        "wordCount": 614
+      },
+      {
+        "id": "advanced-example-thread-safe-data-structure",
+        "title": "Advanced Example: Thread-Safe Data Structure",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "common-pitfalls-in-thread-synchronization",
+        "title": "Common Pitfalls in Thread Synchronization",
+        "level": 2,
+        "wordCount": 208
+      },
+      {
+        "id": "best-practices-for-thread-synchronization-in-python",
+        "title": "Best Practices for Thread Synchronization in Python",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 160
+      }
+    ],
+    "totalWordCount": 1464,
+    "estimatedReadingTime": 360000,
+    "title": "thread_synchronization_primitives",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\thread_and_process_safety.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\thread_and_process_safety.md",
+    "sections": [
+      {
+        "id": "thread-and-process-safety-in-python-from-first-principles",
+        "title": "Thread and Process Safety in Python: From First Principles",
+        "level": 1,
+        "wordCount": 31
+      },
+      {
+        "id": "1-what-are-threads-and-processes",
+        "title": "1. What Are Threads and Processes?",
+        "level": 2,
+        "wordCount": 160
+      },
+      {
+        "id": "2-concurrency-problems-why-safety-matters",
+        "title": "2. Concurrency Problems: Why Safety Matters",
+        "level": 2,
+        "wordCount": 184
+      },
+      {
+        "id": "3-the-global-interpreter-lock-gil",
+        "title": "3. The Global Interpreter Lock (GIL)",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "4-thread-safety",
+        "title": "4. Thread Safety",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "5-synchronization-mechanisms",
+        "title": "5. Synchronization Mechanisms",
+        "level": 2,
+        "wordCount": 184
+      },
+      {
+        "id": "6-thread-local-storage",
+        "title": "6. Thread-Local Storage",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "7-process-safety",
+        "title": "7. Process Safety",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "8-thread-vs-process-choosing-the-right-tool",
+        "title": "8. Thread vs Process: Choosing the Right Tool",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "9-common-pitfalls-and-best-practices",
+        "title": "9. Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "10-modern-alternatives-to-threads-and-processes",
+        "title": "10. Modern Alternatives to Threads and Processes",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 116
+      }
+    ],
+    "totalWordCount": 1408,
+    "estimatedReadingTime": 360000,
+    "title": "thread_and_process_safety",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\threading_and_the_global_interpreter_lock.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\threading_and_the_global_interpreter_lock.md",
+    "sections": [
+      {
+        "id": "python-threading-and-the-global-interpreter-lock-gil-a-first-principles-explanation",
+        "title": "Python Threading and the Global Interpreter Lock (GIL): A First Principles Explanation",
+        "level": 1,
+        "wordCount": 37
+      },
+      {
+        "id": "1-what-is-a-process",
+        "title": "1. What is a Process?",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "2-what-is-a-thread",
+        "title": "2. What is a Thread?",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "3-concurrency-vs-parallelism",
+        "title": "3. Concurrency vs. Parallelism",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "4-pythons-threading-module",
+        "title": "4. Python's Threading Module",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "5-enter-the-global-interpreter-lock-gil",
+        "title": "5. Enter the Global Interpreter Lock (GIL)",
+        "level": 2,
+        "wordCount": 250
+      },
+      {
+        "id": "6-when-threading-works-well-despite-the-gil",
+        "title": "6. When Threading Works Well Despite the GIL",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "7-alternatives-to-threading-multiprocessing",
+        "title": "7. Alternatives to Threading: Multiprocessing",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "8-thread-safety-and-common-pitfalls",
+        "title": "8. Thread Safety and Common Pitfalls",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "9-other-threading-features-in-python",
+        "title": "9. Other Threading Features in Python",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "10-the-future-of-the-gil",
+        "title": "10. The Future of the GIL",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 147
+      }
+    ],
+    "totalWordCount": 1313,
+    "estimatedReadingTime": 360000,
+    "title": "threading_and_the_global_interpreter_lock",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\task_scheduling_and_cancellation.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\task_scheduling_and_cancellation.md",
+    "sections": [
+      {
+        "id": "python-task-scheduling-and-cancellation-from-first-principles",
+        "title": "Python Task Scheduling and Cancellation: From First Principles",
+        "level": 1,
+        "wordCount": 44
+      },
+      {
+        "id": "1-what-is-a-task",
+        "title": "1. What is a Task?",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "2-why-schedule-tasks",
+        "title": "2. Why Schedule Tasks?",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "3-basic-task-scheduling-in-python",
+        "title": "3. Basic Task Scheduling in Python",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "4-asynchronous-task-scheduling-with-asyncio",
+        "title": "4. Asynchronous Task Scheduling with `asyncio`",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "5-task-cancellation",
+        "title": "5. Task Cancellation",
+        "level": 2,
+        "wordCount": 129
+      },
+      {
+        "id": "6-real-world-examples",
+        "title": "6. Real-world Examples",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "7-advanced-concepts",
+        "title": "7. Advanced Concepts",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "8-production-ready-task-management",
+        "title": "8. Production-Ready Task Management",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "9-handling-task-dependencies",
+        "title": "9. Handling Task Dependencies",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "10-best-practices-and-common-pitfalls",
+        "title": "10. Best Practices and Common Pitfalls",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 120
+      }
+    ],
+    "totalWordCount": 1057,
+    "estimatedReadingTime": 300000,
+    "title": "task_scheduling_and_cancellation",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\synchronization_in_async_code.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\synchronization_in_async_code.md",
+    "sections": [
+      {
+        "id": "python-synchronization-in-async-code-from-first-principles",
+        "title": "Python Synchronization in Async Code: From First Principles",
+        "level": 1,
+        "wordCount": 41
+      },
+      {
+        "id": "understanding-the-problem-why-synchronization-matters",
+        "title": "Understanding the Problem: Why Synchronization Matters",
+        "level": 2,
+        "wordCount": 167
+      },
+      {
+        "id": "synchronization-primitives-in-pythons-asyncio",
+        "title": "Synchronization Primitives in Python's Asyncio",
+        "level": 2,
+        "wordCount": 269
+      },
+      {
+        "id": "barriers-and-bounded-queues",
+        "title": "Barriers and Bounded Queues",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "real-world-patterns",
+        "title": "Real-World Patterns",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "advanced-concepts",
+        "title": "Advanced Concepts",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "common-pitfalls-and-solutions",
+        "title": "Common Pitfalls and Solutions",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 105
+      }
+    ],
+    "totalWordCount": 920,
+    "estimatedReadingTime": 240000,
+    "title": "synchronization_in_async_code",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\shared_memory_management.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\shared_memory_management.md",
+    "sections": [
+      {
+        "id": "python-shared-memory-management-understanding-from-first-principles",
+        "title": "Python Shared Memory Management: Understanding from First Principles",
+        "level": 1,
+        "wordCount": 51
+      },
+      {
+        "id": "what-is-memory-in-computing",
+        "title": "What Is Memory in Computing?",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "the-concept-of-shared-memory",
+        "title": "The Concept of Shared Memory",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "pythons-memory-model",
+        "title": "Python's Memory Model",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "1-the-multiprocessingshared_memory-module",
+        "title": "1. The `multiprocessing.shared_memory` Module",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "2-multiprocessingvalue-and-multiprocessingarray",
+        "title": "2. `multiprocessing.Value` and `multiprocessing.Array`",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "3-memory-mapped-files-mmap",
+        "title": "3. Memory-Mapped Files (`mmap`)",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "4-atomic-operations-and-synchronization",
+        "title": "4. Atomic Operations and Synchronization",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "5-practical-example-image-processing-with-shared-memory",
+        "title": "5. Practical Example: Image Processing with Shared Memory",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "6-common-challenges-and-solutions",
+        "title": "6. Common Challenges and Solutions",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "7-advanced-pattern-producer-consumer-with-shared-memory",
+        "title": "7. Advanced Pattern: Producer-Consumer with Shared Memory",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "8-performance-comparison",
+        "title": "8. Performance Comparison",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 130
+      }
+    ],
+    "totalWordCount": 1257,
+    "estimatedReadingTime": 360000,
+    "title": "shared_memory_management",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\race_conditions_and_deadlock_prevention.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\race_conditions_and_deadlock_prevention.md",
+    "sections": [
+      {
+        "id": "race-conditions-and-deadlock-prevention-in-python",
+        "title": "Race Conditions and Deadlock Prevention in Python",
+        "level": 1,
+        "wordCount": 30
+      },
+      {
+        "id": "understanding-race-conditions",
+        "title": "Understanding Race Conditions",
+        "level": 2,
+        "wordCount": 306
+      },
+      {
+        "id": "preventing-race-conditions-in-python",
+        "title": "Preventing Race Conditions in Python",
+        "level": 2,
+        "wordCount": 271
+      },
+      {
+        "id": "understanding-deadlocks",
+        "title": "Understanding Deadlocks",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "deadlock-prevention-techniques",
+        "title": "Deadlock Prevention Techniques",
+        "level": 2,
+        "wordCount": 242
+      },
+      {
+        "id": "best-practices-to-avoid-race-conditions-and-deadlocks",
+        "title": "Best Practices to Avoid Race Conditions and Deadlocks",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 130
+      }
+    ],
+    "totalWordCount": 1218,
+    "estimatedReadingTime": 300000,
+    "title": "race_conditions_and_deadlock_prevention",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\parallel_processing_libraries.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\parallel_processing_libraries.md",
+    "sections": [
+      {
+        "id": "python-parallel-processing-understanding-dask-and-joblib-from-first-principles",
+        "title": "Python Parallel Processing: Understanding Dask and Joblib From First Principles",
+        "level": 1,
+        "wordCount": 89
+      },
+      {
+        "id": "why-parallel-processing",
+        "title": "Why Parallel Processing?",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "fundamental-concepts",
+        "title": "Fundamental Concepts",
+        "level": 2,
+        "wordCount": 146
+      },
+      {
+        "id": "joblib",
+        "title": "Joblib",
+        "level": 2,
+        "wordCount": 182
+      },
+      {
+        "id": "dask",
+        "title": "Dask",
+        "level": 2,
+        "wordCount": 238
+      },
+      {
+        "id": "practical-comparison-joblib-vs-dask",
+        "title": "Practical Comparison: Joblib vs Dask",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "when-to-use-each-library",
+        "title": "When to Use Each Library",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "common-patterns-and-best-practices",
+        "title": "Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "from-first-principles-building-a-simple-parallel-framework",
+        "title": "From First Principles: Building a Simple Parallel Framework",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 10
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 136
+      }
+    ],
+    "totalWordCount": 1162,
+    "estimatedReadingTime": 300000,
+    "title": "parallel_processing_libraries",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\multiprocessing_and_process_pools.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\multiprocessing_and_process_pools.md",
+    "sections": [
+      {
+        "id": "python-multiprocessing-and-process-pools-a-first-principles-approach",
+        "title": "Python Multiprocessing and Process Pools: A First Principles Approach",
+        "level": 1,
+        "wordCount": 30
+      },
+      {
+        "id": "1-the-problem-sequential-processing-limitations",
+        "title": "1. The Problem: Sequential Processing Limitations",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "2-the-concept-parallel-processing",
+        "title": "2. The Concept: Parallel Processing",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "3-pythons-challenge-the-global-interpreter-lock-gil",
+        "title": "3. Python's Challenge: The Global Interpreter Lock (GIL)",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "4-enter-multiprocessing-bypassing-the-gil",
+        "title": "4. Enter Multiprocessing: Bypassing the GIL",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "5-understanding-process-creation",
+        "title": "5. Understanding Process Creation",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "6-introducing-process-pools",
+        "title": "6. Introducing Process Pools",
+        "level": 2,
+        "wordCount": 134
+      },
+      {
+        "id": "7-process-pool-methods-in-detail",
+        "title": "7. Process Pool Methods in Detail",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "8-understanding-process-communication",
+        "title": "8. Understanding Process Communication",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "9-process-pool-best-practices",
+        "title": "9. Process Pool Best Practices",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "10-a-complete-example-parallel-image-processing",
+        "title": "10. A Complete Example: Parallel Image Processing",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "11-common-challenges-and-solutions",
+        "title": "11. Common Challenges and Solutions",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "12-when-not-to-use-multiprocessing",
+        "title": "12. When Not to Use Multiprocessing",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 98
+      }
+    ],
+    "totalWordCount": 1267,
+    "estimatedReadingTime": 360000,
+    "title": "multiprocessing_and_process_pools",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\Inter-process communication.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\Inter-process communication.md",
+    "sections": [
+      {
+        "id": "python-inter-process-communication-ipc-from-first-principles",
+        "title": "Python Inter-process Communication (IPC): From First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "what-is-a-process",
+        "title": "What is a Process?",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "why-do-we-need-ipc",
+        "title": "Why Do We Need IPC?",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "core-ipc-mechanisms-in-python",
+        "title": "Core IPC Mechanisms in Python",
+        "level": 2,
+        "wordCount": 288
+      },
+      {
+        "id": "advanced-ipc-concepts",
+        "title": "Advanced IPC Concepts",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-world Applications",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 113
+      }
+    ],
+    "totalWordCount": 816,
+    "estimatedReadingTime": 240000,
+    "title": "Inter-process communication",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\concurrent_futures_framework.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\concurrent_futures_framework.md",
+    "sections": [
+      {
+        "id": "pythons-concurrentfutures-framework-building-from-first-principles",
+        "title": "Python's `concurrent.futures` Framework: Building from First Principles",
+        "level": 1,
+        "wordCount": 25
+      },
+      {
+        "id": "1-the-problem-sequential-processing",
+        "title": "1. The Problem: Sequential Processing",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "2-the-concept-concurrency-vs-parallelism",
+        "title": "2. The Concept: Concurrency vs. Parallelism",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "3-pythons-concurrency-challenges",
+        "title": "3. Python's Concurrency Challenges",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "4-enter-concurrentfutures",
+        "title": "4. Enter `concurrent.futures`",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "5-core-components-of-concurrentfutures",
+        "title": "5. Core Components of `concurrent.futures`",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "6-basic-usage-examples",
+        "title": "6. Basic Usage Examples",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "7-advanced-features-and-patterns",
+        "title": "7. Advanced Features and Patterns",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "8-context-managers-and-resource-management",
+        "title": "8. Context Managers and Resource Management",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "9-choosing-between-thread-and-process-executors",
+        "title": "9. Choosing Between Thread and Process Executors",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "10-real-world-example-web-scraping",
+        "title": "10. Real-world Example: Web Scraping",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "11-the-concurrentfutures-module-vs-other-concurrency-models",
+        "title": "11. The `concurrent.futures` Module vs. Other Concurrency Models",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "12-limitations-and-considerations",
+        "title": "12. Limitations and Considerations",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 121
+      }
+    ],
+    "totalWordCount": 1108,
+    "estimatedReadingTime": 300000,
+    "title": "concurrent_futures_framework",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\async_await_syntax_and_patterns.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\async_await_syntax_and_patterns.md",
+    "sections": [
+      {
+        "id": "understanding-pythons-asyncawait-from-first-principles",
+        "title": "Understanding Python's Async/Await from First Principles",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "1-the-synchronous-world-problem",
+        "title": "1. The Synchronous World Problem",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "2-concurrency-vs-parallelism",
+        "title": "2. Concurrency vs Parallelism",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "3-the-event-loop-the-heart-of-async",
+        "title": "3. The Event Loop: The Heart of Async",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "4-coroutines-the-building-blocks",
+        "title": "4. Coroutines: The Building Blocks",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "5-the-await-keyword-yielding-control",
+        "title": "5. The await Keyword: Yielding Control",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "6-awaitables-what-can-be-awaited",
+        "title": "6. Awaitables: What Can Be Awaited?",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "7-running-multiple-tasks-concurrently",
+        "title": "7. Running Multiple Tasks Concurrently",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "8-a-more-practical-example-fetching-multiple-urls",
+        "title": "8. A More Practical Example: Fetching Multiple URLs",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "9-error-handling-in-async-code",
+        "title": "9. Error Handling in Async Code",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "10-advanced-patterns-timeouts-and-cancellation",
+        "title": "10. Advanced Patterns: Timeouts and Cancellation",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "11-context-managers-with-async",
+        "title": "11. Context Managers with Async",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "12-iteration-with-async",
+        "title": "12. Iteration with Async",
+        "level": 2,
+        "wordCount": 10
+      },
+      {
+        "id": "13-common-async-patterns",
+        "title": "13. Common Async Patterns",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "14-best-practices-and-common-pitfalls",
+        "title": "14. Best Practices and Common Pitfalls",
+        "level": 2,
+        "wordCount": 173
+      },
+      {
+        "id": "15-practical-example-async-web-scraper",
+        "title": "15. Practical Example: Async Web Scraper",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 182
+      }
+    ],
+    "totalWordCount": 1089,
+    "estimatedReadingTime": 300000,
+    "title": "async_await_syntax_and_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\asyncio_framework_and_event_loops.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\asyncio_framework_and_event_loops.md",
+    "sections": [
+      {
+        "id": "understanding-asyncio-and-event-loops-in-python-from-first-principles",
+        "title": "Understanding Asyncio and Event Loops in Python from First Principles",
+        "level": 1,
+        "wordCount": 40
+      },
+      {
+        "id": "1-the-problem-blocking-operations",
+        "title": "1. The Problem: Blocking Operations",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "2-concurrency-vs-parallelism",
+        "title": "2. Concurrency vs. Parallelism",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "3-the-fundamental-concept-coroutines",
+        "title": "3. The Fundamental Concept: Coroutines",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "4-the-event-loop-the-conductor-of-asyncio",
+        "title": "4. The Event Loop: The Conductor of Asyncio",
+        "level": 2,
+        "wordCount": 150
+      },
+      {
+        "id": "5-understanding-await",
+        "title": "5. Understanding `await`",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "6-the-flow-of-control-in-asyncio-programs",
+        "title": "6. The Flow of Control in Asyncio Programs",
+        "level": 2,
+        "wordCount": 150
+      },
+      {
+        "id": "7-awaitable-objects",
+        "title": "7. Awaitable Objects",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "8-event-loop-in-depth",
+        "title": "8. Event Loop in Depth",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "9-asyncios-io-operations",
+        "title": "9. Asyncio's I/O Operations",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "10-practical-example-web-scraper",
+        "title": "10. Practical Example: Web Scraper",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "11-error-handling-in-asyncio",
+        "title": "11. Error Handling in Asyncio",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "12-advanced-patterns-cancellation-and-timeouts",
+        "title": "12. Advanced Patterns: Cancellation and Timeouts",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "13-context-variables-managing-context-in-asyncio",
+        "title": "13. Context Variables: Managing Context in Asyncio",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "14-building-an-event-loop-from-scratch-conceptual",
+        "title": "14. Building an Event Loop from Scratch (Conceptual)",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "15-real-world-asyncio-web-server-example",
+        "title": "15. Real-World Asyncio: Web Server Example",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "16-beyond-the-basics-asyncio-and-cpu-bound-tasks",
+        "title": "16. Beyond the Basics: Asyncio and CPU-Bound Tasks",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "summary-understanding-asyncio-from-first-principles",
+        "title": "Summary: Understanding Asyncio from First Principles",
+        "level": 2,
+        "wordCount": 196
+      }
+    ],
+    "totalWordCount": 1361,
+    "estimatedReadingTime": 360000,
+    "title": "asyncio_framework_and_event_loops",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\asyncio_event_loop.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\asyncio_event_loop.md",
+    "sections": [
+      {
+        "id": "python-asyncio-event-loop-understanding-the-internal-workings-from-first-principles",
+        "title": "Python Asyncio Event Loop: Understanding the Internal Workings from First Principles",
+        "level": 1,
+        "wordCount": 11
+      },
+      {
+        "id": "1-the-foundation-understanding-concurrency",
+        "title": "1. The Foundation: Understanding Concurrency",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "2-the-problem-asyncio-solves-blocking-operations",
+        "title": "2. The Problem Asyncio Solves: Blocking Operations",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "3-event-driven-programming-the-mental-model",
+        "title": "3. Event-Driven Programming: The Mental Model",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "4-asyncio-core-components",
+        "title": "4. Asyncio Core Components",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "5-event-loop-the-heart-of-asyncio",
+        "title": "5. Event Loop: The Heart of Asyncio",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "6-coroutines-functions-that-can-pause",
+        "title": "6. Coroutines: Functions That Can Pause",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "7-event-loop-implementation-the-selector",
+        "title": "7. Event Loop Implementation: The Selector",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "8-tasks-and-futures-managing-asynchronous-results",
+        "title": "8. Tasks and Futures: Managing Asynchronous Results",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "9-practical-example-understanding-the-flow",
+        "title": "9. Practical Example: Understanding the Flow",
+        "level": 2,
+        "wordCount": 180
+      },
+      {
+        "id": "10-the-event-loop-life-cycle",
+        "title": "10. The Event Loop Life Cycle",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "11-low-level-event-loop-implementation",
+        "title": "11. Low-Level Event Loop Implementation",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "12-thread-safety-and-concurrency-considerations",
+        "title": "12. Thread Safety and Concurrency Considerations",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "13-debugging-the-event-loop",
+        "title": "13. Debugging the Event Loop",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "14-event-loop-customization",
+        "title": "14. Event Loop Customization",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "15-conclusion-putting-it-all-together",
+        "title": "15. Conclusion: Putting It All Together",
+        "level": 2,
+        "wordCount": 165
+      }
+    ],
+    "totalWordCount": 1665,
+    "estimatedReadingTime": 420000,
+    "title": "asyncio_event_loop",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_and_parallel_programming\\asynchronous_context_managers_and_generators.md": {
+    "path": "public\\content\\python\\concurrent_and_parallel_programming\\asynchronous_context_managers_and_generators.md",
+    "sections": [
+      {
+        "id": "asynchronous-context-managers-and-generators-in-python-from-first-principles",
+        "title": "Asynchronous Context Managers and Generators in Python: From First Principles",
+        "level": 1,
+        "wordCount": 50
+      },
+      {
+        "id": "1-understanding-synchronous-context-managers",
+        "title": "1. Understanding Synchronous Context Managers",
+        "level": 2,
+        "wordCount": 177
+      },
+      {
+        "id": "2-understanding-synchronous-generators",
+        "title": "2. Understanding Synchronous Generators",
+        "level": 2,
+        "wordCount": 149
+      },
+      {
+        "id": "3-introduction-to-asynchronous-programming",
+        "title": "3. Introduction to Asynchronous Programming",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "4-asynchronous-context-managers",
+        "title": "4. Asynchronous Context Managers",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "5-asynchronous-generators",
+        "title": "5. Asynchronous Generators",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "6-asynchronous-context-manager-generators",
+        "title": "6. Asynchronous Context Manager Generators",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "7-advanced-features-and-patterns",
+        "title": "7. Advanced Features and Patterns",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "8-best-practices-and-common-pitfalls",
+        "title": "8. Best Practices and Common Pitfalls",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "9-real-world-application-web-scraper-with-rate-limiting",
+        "title": "9. Real-world Application: Web Scraper with Rate Limiting",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "10-conclusion",
+        "title": "10. Conclusion",
+        "level": 2,
+        "wordCount": 150
+      }
+    ],
+    "totalWordCount": 1369,
+    "estimatedReadingTime": 360000,
+    "title": "asynchronous_context_managers_and_generators",
     "frontmatter": {}
   },
   "public\\content\\javascript\\closures\\introduction_to_closures.md": {

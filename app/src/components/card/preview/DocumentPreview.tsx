@@ -42,12 +42,6 @@ const DocumentPreview: React.FC = () => {
   } = useCurrentDocument();
   const { addToHistory } = useReadingHistory();
 
-  console.log(
-    "DocumentPreview",
-    documentPath,
-    decodeURIComponent(documentPath)
-  );
-
   useEffect(() => {
     const fullPath = documentPath.endsWith(".md")
       ? documentPath

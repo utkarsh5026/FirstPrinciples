@@ -83,10 +83,6 @@ export class SectionReadingService {
     isComplete: boolean = false
   ): Promise<void> {
     try {
-      // Only record if time spent is significant (> 500ms)
-      if (timeSpent < 500) return;
-
-      // Add reading record
       await databaseService.add(SectionReadingService.SECTION_READINGS_STORE, {
         documentPath,
         sectionId,
@@ -95,6 +91,16 @@ export class SectionReadingService {
         wordCount,
         timeSpent,
         lastReadAt: Date.now(),
+        isComplete,
+      });
+
+      console.log("Recorded section reading:", {
+        documentPath,
+        sectionId,
+        sectionTitle,
+        category,
+        wordCount,
+        timeSpent,
         isComplete,
       });
 

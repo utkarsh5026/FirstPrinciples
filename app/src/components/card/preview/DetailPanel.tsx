@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import { useTheme } from "@/hooks/ui/use-theme";
 import { motion } from "framer-motion";
 import { LayoutList, Calendar, BookOpen, Clock } from "lucide-react";
-import { useCurrentDocumentStore, useSectionStore } from "@/stores";
 import { cn } from "@/lib/utils";
 import CardContainer from "@/components/container/CardContainer";
+import { useDocumentReading } from "@/hooks";
 
 interface DetailPanelProps {
   totalSections: number;
@@ -21,50 +21,11 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
   lastUpdatedFormatted,
   selectedFile,
 }) => {
-  const [readSections, setReadSections] = useState<string[]>([]);
-  const [completionPercentage, setCompletionPercentage] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const { readSections, sections, loading } = useDocumentReading();
 
-  const loadReadSections = useSectionStore((state) => state.loadReadSections);
-  const getReadSections = useSectionStore((state) => state.getReadSections);
-  const getDocumentCompletionPercentage = useSectionStore(
-    (state) => state.getDocumentCompletionPercentage
-  );
-  const sections = useCurrentDocumentStore((state) => state.sections);
-
-  // Load read sections when component mounts or selectedFile changes
-  useEffect(() => {
-    const fetchReadSections = async () => {
-      setLoading(true);
-      try {
-        // Load read sections for the current document
-        await loadReadSections(selectedFile);
-
-        // Get the list of read section IDs
-        const sections = getReadSections();
-        setReadSections(sections);
-
-        // Calculate the document completion percentage
-        const percentage = await getDocumentCompletionPercentage(
-          selectedFile,
-          totalSections
-        );
-        setCompletionPercentage(percentage);
-      } catch (error) {
-        console.error("Error loading read sections:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchReadSections();
-  }, [
-    selectedFile,
-    totalSections,
-    loadReadSections,
-    getReadSections,
-    getDocumentCompletionPercentage,
-  ]);
+  const completionPercentage = useMemo(() => {
+    return (readSections.size / totalSections || 1) * 100;
+  }, [readSections, totalSections]);
 
   // Calculate remaining reading time
   const remainingReadingTime = Math.ceil(
@@ -106,7 +67,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
             <div className="mb-3">
               <div className="flex justify-between text-xs text-muted-foreground mb-1.5">
                 <span>
-                  {readSections.length} of {totalSections} sections
+                  {readSections.size} of {totalSections} sections
                 </span>
                 <span className="font-medium">
                   {Math.round(completionPercentage)}%
@@ -140,9 +101,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
             <div className="mt-3 pt-3 border-t border-border/30">
               <div className="flex flex-wrap gap-1">
                 {Array.from({ length: totalSections }).map((_, i) => {
-                  const isRead = readSections.some(
-                    (id) => sections[i].id === id
-                  );
+                  const isRead = readSections.has(sections[i].id);
                   return (
                     <motion.div
                       key={sections[i].id}

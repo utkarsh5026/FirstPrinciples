@@ -9,6 +9,7 @@ import {
   useWeekilyActivityMetrcis,
 } from "./analytics/use-activity-metrics";
 import { useCurrentDocument } from "./document/use-current-document";
+import useDocumentReading from "./reading/use-document-reading";
 
 export {
   useCategoryMetrics,
@@ -20,4 +21,5 @@ export {
   useActivityMetrics,
   useWeekilyActivityMetrcis,
   useCurrentDocument,
+  useDocumentReading,
 };

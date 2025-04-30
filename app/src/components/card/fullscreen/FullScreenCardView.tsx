@@ -12,12 +12,12 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionsSheet from "./sidebar/SectionsSheet";
-import { useSectionStore } from "@/stores";
 import useMobile from "@/hooks/device/use-mobile";
 import { useCurrentDocument } from "@/hooks";
 import ReadingSettingsSheet from "./settings/ReadingSettingsSheet";
 import { ReadingSettingsProvider } from "./context/ReadingSettingsProvider";
 import { useReadingSettings, fontFamilyMap } from "./context/ReadingContext";
+import useDocumentReading from "@/hooks/reading/use-document-reading";
 
 interface FullscreenCardContentProps {
   settingsOpen: boolean;
@@ -39,32 +39,16 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   const startTimeRef = useRef<number>(Date.now());
   const { settings } = useReadingSettings();
-
-  const { sections, documentPath, category, markdown } = useCurrentDocument();
-
-  const startReading = useSectionStore((state) => state.startReading);
-  const endReading = useSectionStore((state) => state.endReading);
-  const loadReadSections = useSectionStore((state) => state.loadReadSections);
+  const { markdown } = useCurrentDocument();
+  const {
+    startSectionReading,
+    endReading,
+    getSection,
+    readSections,
+    sections,
+  } = useDocumentReading();
 
   const initializedRef = useRef(false);
-
-  // Track read sections
-  const [readSections, setReadSections] = useState<Set<string>>(new Set());
-
-  /**
-   * 📚 Load read sections when document changes
-   */
-  useEffect(() => {
-    const fetchReadSections = async () => {
-      if (documentPath) {
-        await loadReadSections(documentPath);
-        const readSectionsArray = useSectionStore.getState().getReadSections();
-        setReadSections(new Set(readSectionsArray));
-      }
-    };
-
-    fetchReadSections();
-  }, [documentPath, loadReadSections]);
 
   /**
    * 📚 Initializes the reading when the markdown is loaded
@@ -84,15 +68,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
       if (sections.length === 0) return;
 
       initializedRef.current = true;
-      const currentSection = sections[currentIndex];
-      await startReading(
-        documentPath,
-        currentSection.id,
-        category,
-        currentSection.wordCount,
-        currentSection.title,
-        true
-      );
+      await startSectionReading(currentIndex);
       startTimeRef.current = Date.now();
     };
 
@@ -104,14 +80,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
         initializedRef.current = false;
       }
     };
-  }, [
-    sections,
-    currentIndex,
-    documentPath,
-    category,
-    startReading,
-    endReading,
-  ]);
+  }, [sections, currentIndex, startSectionReading, endReading]);
 
   /**
    * 🔄 Smoothly transitions to a new section with a nice fade effect
@@ -125,24 +94,8 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
     setTimeout(async () => {
       setCurrentIndex(newIndex);
       setIsTransitioning(false);
-
-      const newSection = sections[newIndex];
-      await startReading(
-        documentPath,
-        newSection.id,
-        category,
-        newSection.wordCount,
-        newSection.title,
-        false
-      );
-
+      await startSectionReading(newIndex);
       startTimeRef.current = Date.now();
-
-      setReadSections((prev) => {
-        const updated = new Set(prev);
-        updated.add(newSection.id);
-        return updated;
-      });
     }, 200);
   };
 
@@ -193,8 +146,9 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   const handleSelectCard = (index: number) => {
     if (index !== currentIndex) changeSection(index);
   };
+  const currentSection = getSection(currentIndex);
 
-  if (sections.length === 0) {
+  if (sections.length === 0 || !currentSection) {
     return (
       <div className="flex items-center justify-center h-full text-muted-foreground">
         <div className="animate-spin h-8 w-8 border-t-2 border-primary rounded-full mr-3"></div>
@@ -203,9 +157,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
     );
   }
 
-  const currentSection = sections[currentIndex];
-
-  // Get the right font family from the settings
   const fontFamily = fontFamilyMap[settings.fontFamily];
 
   return (
@@ -276,12 +227,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
         setMenuOpen={setMenuOpen}
         sections={sections}
         readSections={readSections}
-        setReadSections={(newSections) => {
-          setReadSections(newSections);
-          if (newSections.size === 0) {
-            useSectionStore.getState().loadReadSections(documentPath);
-          }
-        }}
       />
 
       {/* Reading Settings Sheet */}
@@ -312,22 +257,6 @@ interface FullscreenCardViewProps {
   onExit: () => void;
 }
 
-/**
- * ✨ FullscreenCardView ✨
- *
- * A beautiful immersive reading experience that transforms your content into a
- * distraction-free fullscreen mode with customizable reading settings!
- *
- * 🧠 Smart reading tracking keeps tabs on your progress and reading habits
- * 🔄 Smooth transitions between sections with elegant fade effects
- * 📱 Responsive design that works beautifully on both desktop and mobile
- * 👆 Touch-friendly with intuitive swipe gestures for navigation
- * 📊 Reading analytics to help you understand your reading patterns
- * 🎨 Customizable text size, font family, line height, and colors
- *
- * This component creates a zen-like reading environment where you can focus
- * completely on the content without distractions.
- */
 const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
   className,
   onExit,

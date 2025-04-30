@@ -1780,6 +1780,99 @@
       "icon": "FileCode",
       "subcategories": [
         {
+          "id": "concurrent_and_parallel_programming",
+          "name": "Concurrent And Parallel Programming",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "python/concurrent_and_parallel_programming/asynchronous_context_managers_and_generators.md",
+              "title": "Asynchronous Context Managers And Generators",
+              "description": "Documentation for Asynchronous Context Managers And Generators"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/asyncio_event_loop.md",
+              "title": "Asyncio Event Loop",
+              "description": "Documentation for Asyncio Event Loop"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/asyncio_framework_and_event_loops.md",
+              "title": "Asyncio Framework And Event Loops",
+              "description": "Documentation for Asyncio Framework And Event Loops"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/async_await_syntax_and_patterns.md",
+              "title": "Async Await Syntax And Patterns",
+              "description": "Documentation for Async Await Syntax And Patterns"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/concurrent_futures_framework.md",
+              "title": "Concurrent Futures Framework",
+              "description": "Documentation for Concurrent Futures Framework"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/Inter-process communication.md",
+              "title": "Inter-process communication",
+              "description": "Documentation for Inter-process communication"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/multiprocessing_and_process_pools.md",
+              "title": "Multiprocessing And Process Pools",
+              "description": "Documentation for Multiprocessing And Process Pools"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/parallel_processing_libraries.md",
+              "title": "Parallel Processing Libraries",
+              "description": "Documentation for Parallel Processing Libraries"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/race_conditions_and_deadlock_prevention.md",
+              "title": "Race Conditions And Deadlock Prevention",
+              "description": "Documentation for Race Conditions And Deadlock Prevention"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/shared_memory_management.md",
+              "title": "Shared Memory Management",
+              "description": "Documentation for Shared Memory Management"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/synchronization_in_async_code.md",
+              "title": "Synchronization In Async Code",
+              "description": "Documentation for Synchronization In Async Code"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/task_scheduling_and_cancellation.md",
+              "title": "Task Scheduling And Cancellation",
+              "description": "Documentation for Task Scheduling And Cancellation"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/threading_and_the_global_interpreter_lock.md",
+              "title": "Threading And The Global Interpreter Lock",
+              "description": "Documentation for Threading And The Global Interpreter Lock"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/thread_and_process_safety.md",
+              "title": "Thread And Process Safety",
+              "description": "Documentation for Thread And Process Safety"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/thread_synchronization_primitives.md",
+              "title": "Thread Synchronization Primitives",
+              "description": "Documentation for Thread Synchronization Primitives"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/understanding_cpu_bound_vs_io_bound_tasks.md",
+              "title": "Understanding Cpu Bound Vs Io Bound Tasks",
+              "description": "Documentation for Understanding Cpu Bound Vs Io Bound Tasks"
+            },
+            {
+              "path": "python/concurrent_and_parallel_programming/work_distribution_strategies.md",
+              "title": "Work Distribution Strategies",
+              "description": "Documentation for Work Distribution Strategies"
+            }
+          ]
+        },
+        {
           "id": "core_python_concepts",
           "name": "Core Python Concepts",
           "icon": "FileCode",
@@ -2145,6 +2238,109 @@
               "description": "Documentation for Variables Naming Conventions And Memory Model"
             }
           ]
+        },
+        {
+          "id": "standard_library",
+          "name": "Standard Library",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "python/standard_library/advanced_collections.md",
+              "title": "Advanced Collections",
+              "description": "Documentation for Advanced Collections"
+            },
+            {
+              "path": "python/standard_library/binary_data_services.md",
+              "title": "Binary Data Services",
+              "description": "Documentation for Binary Data Services"
+            },
+            {
+              "path": "python/standard_library/concurrent_execution.md",
+              "title": "Concurrent Execution",
+              "description": "Documentation for Concurrent Execution"
+            },
+            {
+              "path": "python/standard_library/cryptographic_services.md",
+              "title": "Cryptographic Services",
+              "description": "Documentation for Cryptographic Services"
+            },
+            {
+              "path": "python/standard_library/data_compression_and_archiving.md",
+              "title": "Data Compression And Archiving",
+              "description": "Documentation for Data Compression And Archiving"
+            },
+            {
+              "path": "python/standard_library/data_encoding_and_decoding.md",
+              "title": "Data Encoding And Decoding",
+              "description": "Documentation for Data Encoding And Decoding"
+            },
+            {
+              "path": "python/standard_library/data_persistence_and_serialization.md",
+              "title": "Data Persistence And Serialization",
+              "description": "Documentation for Data Persistence And Serialization"
+            },
+            {
+              "path": "python/standard_library/date_and_time_handling.md",
+              "title": "Date And Time Handling",
+              "description": "Documentation for Date And Time Handling"
+            },
+            {
+              "path": "python/standard_library/deep_dive_into_built_in_functions.md",
+              "title": "Deep Dive Into Built In Functions",
+              "description": "Documentation for Deep Dive Into Built In Functions"
+            },
+            {
+              "path": "python/standard_library/development_tools_in_the_standard_library.md",
+              "title": "Development Tools In The Standard Library",
+              "description": "Documentation for Development Tools In The Standard Library"
+            },
+            {
+              "path": "python/standard_library/file_and_directory_access.md",
+              "title": "File And Directory Access",
+              "description": "Documentation for File And Directory Access"
+            },
+            {
+              "path": "python/standard_library/functional_programming_tools.md",
+              "title": "Functional Programming Tools",
+              "description": "Documentation for Functional Programming Tools"
+            },
+            {
+              "path": "python/standard_library/internet_protocols_and_support.md",
+              "title": "Internet Protocols And Support",
+              "description": "Documentation for Internet Protocols And Support"
+            },
+            {
+              "path": "python/standard_library/interprocess_communication.md",
+              "title": "Interprocess Communication",
+              "description": "Documentation for Interprocess Communication"
+            },
+            {
+              "path": "python/standard_library/mathematics_and_numeric_operations.md",
+              "title": "Mathematics And Numeric Operations",
+              "description": "Documentation for Mathematics And Numeric Operations"
+            },
+            {
+              "path": "python/standard_library/string_processing_capabilities.md",
+              "title": "String Processing Capabilities",
+              "description": "Documentation for String Processing Capabilities"
+            },
+            {
+              "path": "python/standard_library/structured_markup_processing_tools.md",
+              "title": "Structured Markup Processing Tools",
+              "description": "Documentation for Structured Markup Processing Tools"
+            },
+            {
+              "path": "python/standard_library/text_processing_services.md",
+              "title": "Text Processing Services",
+              "description": "Documentation for Text Processing Services"
+            },
+            {
+              "path": "python/standard_library/working_with_iterables.md",
+              "title": "Working With Iterables",
+              "description": "Documentation for Working With Iterables"
+            }
+          ]
         }
       ],
       "files": []
@@ -2307,20 +2503,229 @@
       "icon": "Folder",
       "subcategories": [
         {
+          "id": "architecture",
+          "name": "Architecture",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "redis/architecture/background_task_processing.md",
+              "title": "Background Task Processing",
+              "description": "Documentation for Background Task Processing"
+            },
+            {
+              "path": "redis/architecture/client_connection_handling.md",
+              "title": "Client Connection Handling",
+              "description": "Documentation for Client Connection Handling"
+            },
+            {
+              "path": "redis/architecture/command_processing_pipeline.md",
+              "title": "Command Processing Pipeline",
+              "description": "Documentation for Command Processing Pipeline"
+            },
+            {
+              "path": "redis/architecture/internal_data_structure_implementation.md",
+              "title": "Internal Data Structure Implementation",
+              "description": "Documentation for Internal Data Structure Implementation"
+            },
+            {
+              "path": "redis/architecture/memory_management_and_allocation.md",
+              "title": "Memory Management And Allocation",
+              "description": "Documentation for Memory Management And Allocation"
+            },
+            {
+              "path": "redis/architecture/redis_modules_system_architecture.md",
+              "title": "Redis Modules System Architecture",
+              "description": "Documentation for Redis Modules System Architecture"
+            },
+            {
+              "path": "redis/architecture/redis_process_internals.md",
+              "title": "Redis Process Internals",
+              "description": "Documentation for Redis Process Internals"
+            },
+            {
+              "path": "redis/architecture/response_handling_mechanisms.md",
+              "title": "Response Handling Mechanisms",
+              "description": "Documentation for Response Handling Mechanisms"
+            },
+            {
+              "path": "redis/architecture/single_threaded_event_loop_model.md",
+              "title": "Single Threaded Event Loop Model",
+              "description": "Documentation for Single Threaded Event Loop Model"
+            },
+            {
+              "path": "redis/architecture/virtual_memory_and_swap_behavior.md",
+              "title": "Virtual Memory And Swap Behavior",
+              "description": "Documentation for Virtual Memory And Swap Behavior"
+            }
+          ]
+        },
+        {
+          "id": "commands_deep_dive",
+          "name": "Commands Deep Dive",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "redis/commands_deep_dive/bitmap_operations_and_bit_manipulation.md",
+              "title": "Bitmap Operations And Bit Manipulation",
+              "description": "Documentation for Bitmap Operations And Bit Manipulation"
+            },
+            {
+              "path": "redis/commands_deep_dive/geospatial_queries_and_radius_searches.md",
+              "title": "Geospatial Queries And Radius Searches",
+              "description": "Documentation for Geospatial Queries And Radius Searches"
+            },
+            {
+              "path": "redis/commands_deep_dive/hash_field_operations_and_atomic_updates.md",
+              "title": "Hash Field Operations And Atomic Updates",
+              "description": "Documentation for Hash Field Operations And Atomic Updates"
+            },
+            {
+              "path": "redis/commands_deep_dive/key_space_operations_and_pattern_matching.md",
+              "title": "Key Space Operations And Pattern Matching",
+              "description": "Documentation for Key Space Operations And Pattern Matching"
+            },
+            {
+              "path": "redis/commands_deep_dive/list_traversal_and_manipulation.md",
+              "title": "List Traversal And Manipulation",
+              "description": "Documentation for List Traversal And Manipulation"
+            },
+            {
+              "path": "redis/commands_deep_dive/set_operations.md",
+              "title": "Set Operations",
+              "description": "Documentation for Set Operations"
+            },
+            {
+              "path": "redis/commands_deep_dive/sorted_set_range_and_aggregate_operations.md",
+              "title": "Sorted Set Range And Aggregate Operations",
+              "description": "Documentation for Sorted Set Range And Aggregate Operations"
+            },
+            {
+              "path": "redis/commands_deep_dive/stream_consumer_groups_and_message_processing.md",
+              "title": "Stream Consumer Groups And Message Processing",
+              "description": "Documentation for Stream Consumer Groups And Message Processing"
+            },
+            {
+              "path": "redis/commands_deep_dive/string_manipulation_commands.md",
+              "title": "String Manipulation Commands",
+              "description": "Documentation for String Manipulation Commands"
+            },
+            {
+              "path": "redis/commands_deep_dive/transaction_support_with_multi_exec.md",
+              "title": "Transaction Support With Multi Exec",
+              "description": "Documentation for Transaction Support With Multi Exec"
+            }
+          ]
+        },
+        {
+          "id": "data_structures",
+          "name": "Data Structures",
+          "icon": "Database",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "redis/data_structures/bit_arrays_and_bitmap_operations.md",
+              "title": "Bit Arrays And Bitmap Operations",
+              "description": "Documentation for Bit Arrays And Bitmap Operations"
+            },
+            {
+              "path": "redis/data_structures/choosing_the_right_data_structure_for_your_use_case.md",
+              "title": "Choosing The Right Data Structure For Your Use Case",
+              "description": "Documentation for Choosing The Right Data Structure For Your Use Case"
+            },
+            {
+              "path": "redis/data_structures/geospatial_data_with_geo_commands.md",
+              "title": "Geospatial Data With Geo Commands",
+              "description": "Documentation for Geospatial Data With Geo Commands"
+            },
+            {
+              "path": "redis/data_structures/hashes_for_field_value_pairs.md",
+              "title": "Hashes For Field Value Pairs",
+              "description": "Documentation for Hashes For Field Value Pairs"
+            },
+            {
+              "path": "redis/data_structures/hyperLogLog_for_cardinality_estimation.md",
+              "title": "HyperLogLog For Cardinality Estimation",
+              "description": "Documentation for HyperLogLog For Cardinality Estimation"
+            },
+            {
+              "path": "redis/data_structures/lists_and_their_queue_stack_operations.md",
+              "title": "Lists And Their Queue Stack Operations",
+              "description": "Documentation for Lists And Their Queue Stack Operations"
+            },
+            {
+              "path": "redis/data_structures/sets_for_unique_collections.md",
+              "title": "Sets For Unique Collections",
+              "description": "Documentation for Sets For Unique Collections"
+            },
+            {
+              "path": "redis/data_structures/sorted_sets_with_score_based_ordering.md",
+              "title": "Sorted Sets With Score Based Ordering",
+              "description": "Documentation for Sorted Sets With Score Based Ordering"
+            },
+            {
+              "path": "redis/data_structures/streams_for_append_only_messaging.md",
+              "title": "Streams For Append Only Messaging",
+              "description": "Documentation for Streams For Append Only Messaging"
+            },
+            {
+              "path": "redis/data_structures/strings_and_binary_data_handling.md",
+              "title": "Strings And Binary Data Handling",
+              "description": "Documentation for Strings And Binary Data Handling"
+            }
+          ]
+        },
+        {
           "id": "fundamentals",
           "name": "Fundamentals",
           "icon": "Folder",
           "subcategories": [],
           "files": [
             {
-              "path": "redis/fundamentals/introduction.md",
-              "title": "Introduction",
-              "description": "Documentation for Introduction"
+              "path": "redis/fundamentals/basic_configuration_parameters.md",
+              "title": "Basic Configuration Parameters",
+              "description": "Documentation for Basic Configuration Parameters"
             },
             {
-              "path": "redis/fundamentals/naming_conventions.md",
-              "title": "Naming Conventions",
-              "description": "Documentation for Naming Conventions"
+              "path": "redis/fundamentals/basic_redis_cli_commands_and_interaction.md",
+              "title": "Basic Redis Cli Commands And Interaction",
+              "description": "Documentation for Basic Redis Cli Commands And Interaction"
+            },
+            {
+              "path": "redis/fundamentals/key_naming_conventions_and_best_practices.md",
+              "title": "Key Naming Conventions And Best Practices",
+              "description": "Documentation for Key Naming Conventions And Best Practices"
+            },
+            {
+              "path": "redis/fundamentals/redis_persistence_options_rdb_and_aof.md",
+              "title": "Redis Persistence Options Rdb And Aof",
+              "description": "Documentation for Redis Persistence Options Rdb And Aof"
+            },
+            {
+              "path": "redis/fundamentals/redis_protocol_specification.md",
+              "title": "Redis Protocol Specification",
+              "description": "Documentation for Redis Protocol Specification"
+            },
+            {
+              "path": "redis/fundamentals/setting_up_redis_development_environment.md",
+              "title": "Setting Up Redis Development Environment",
+              "description": "Documentation for Setting Up Redis Development Environment"
+            },
+            {
+              "path": "redis/fundamentals/ttl_and_key_expiration.md",
+              "title": "Ttl And Key Expiration",
+              "description": "Documentation for Ttl And Key Expiration"
+            },
+            {
+              "path": "redis/fundamentals/understanding_redis_and_its_design_philosophy.md",
+              "title": "Understanding Redis And Its Design Philosophy",
+              "description": "Documentation for Understanding Redis And Its Design Philosophy"
+            },
+            {
+              "path": "redis/fundamentals/value_size_limitations_and_considerations.md",
+              "title": "Value Size Limitations And Considerations",
+              "description": "Documentation for Value Size Limitations And Considerations"
             }
           ]
         }

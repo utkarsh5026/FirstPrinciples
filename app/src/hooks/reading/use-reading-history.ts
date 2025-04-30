@@ -1,8 +1,8 @@
 import { useHistoryStore } from "@/stores";
 import { useCallback, useEffect, useState } from "react";
 import { readingWorkerManager } from "@/infrastructure/workers";
-import { HistoryFilterOptions } from "@/services/reading/reading-history-filter";
-import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
+import type { HistoryFilterOptions } from "@/services/reading/reading-history-filter";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 
 /**
  * 📚✨ A hook that manages your reading history!
