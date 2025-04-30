@@ -52,14 +52,13 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   );
 
   useEffect(() => {
-    // Create set of read file paths
     const readPaths = new Set<string>();
-    readingHistory.forEach((item) => {
-      readPaths.add(item.path);
+    readingHistory.forEach(({ path }) => {
+      const withMdPath = path.endsWith(".md") ? path : `${path}.md`;
+      readPaths.add(withMdPath);
     });
     setReadFilePaths(readPaths);
 
-    // Create sets for todo items (pending and completed)
     const todoPaths = new Set<string>();
     const completedPaths = new Set<string>();
 
