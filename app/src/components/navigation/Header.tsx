@@ -1,4 +1,4 @@
-import { BookOpen, X, Info } from "lucide-react";
+import { BookOpen, X, Info, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import Legend from "./Legend";
@@ -23,29 +23,35 @@ const Header = ({
       <div className="px-3 py-3 flex items-center justify-between">
         <h3 className="text-sm font-medium flex items-center text-foreground">
           <BookOpen size={16} className="mr-2 text-primary" />
-          Documents
+          <span className="hidden sm:inline">Documents</span>
+          <span className="inline sm:hidden">Docs</span>
         </h3>
 
         <div className="flex items-center gap-2">
-          {/* Description toggle switch */}
-          <div className="flex items-center mr-2">
-            <span className="text-xs mr-2 text-muted-foreground">
-              Show Details
+          {/* Description toggle with icon */}
+          <div className="flex items-center gap-1">
+            <span className="text-xs text-muted-foreground hidden xs:inline">
+              {showDescriptions ? "Hide" : "Show"} Details
             </span>
             <Switch
               checked={showDescriptions}
               onCheckedChange={setShowDescriptions}
               className="data-[state=checked]:bg-primary"
             />
+            {showDescriptions ? (
+              <Eye size={14} className="text-primary xs:hidden" />
+            ) : (
+              <EyeOff size={14} className="text-muted-foreground xs:hidden" />
+            )}
           </div>
 
           {/* Legend button */}
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 rounded-full text-muted-foreground"
+            className="h-8 w-8 rounded-full text-muted-foreground hover:text-foreground hover:bg-secondary/20"
             onClick={() => setShowLegend(!showLegend)}
-            title="Legend"
+            aria-label={showLegend ? "Hide legend" : "Show legend"}
           >
             <Info size={16} />
           </Button>
@@ -54,11 +60,11 @@ const Header = ({
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 rounded-full"
+            className="h-8 w-8 rounded-full hover:bg-secondary/20"
             onClick={() => setSidebarOpen(false)}
+            aria-label="Close sidebar"
           >
             <X size={16} />
-            <span className="sr-only">Close</span>
           </Button>
         </div>
       </div>

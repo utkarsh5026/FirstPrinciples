@@ -27,35 +27,62 @@ const CategoryFile = ({
 }: CategoryFileProps) => {
   const fileStatusIcon = getFileStatusIcon(isTodo, isCompleted, isRead);
   const statusText = getFileStatusText(isTodo, isCompleted, isRead);
+
+  // Determine color indicator class
+  const statusColorClass = cn(
+    "absolute left-0 top-0 bottom-0 w-1 rounded-l-sm",
+    isCompleted && "bg-green-500/70",
+    isTodo && !isCompleted && "bg-primary/70",
+    isRead && !isTodo && !isCompleted && "bg-green-400/70" // Changed to green for read documents
+  );
+
+  // Determine the text color for status
+  const statusTextClass = cn(
+    "text-xs",
+    isCompleted && "text-green-500",
+    isTodo && !isCompleted && "text-primary",
+    isRead && !isTodo && !isCompleted && "text-green-400",
+    !isRead && !isTodo && !isCompleted && "text-muted-foreground"
+  );
+
   return (
     <button
       key={file.path}
       className={cn(
-        "flex items-start w-full rounded-md text-sm cursor-pointer transition-colors py-2 px-2 my-1",
+        "flex flex-col w-full rounded-md text-sm cursor-pointer transition-colors py-2 px-2 my-1 relative",
         "text-left focus:outline-none focus:ring-1 focus:ring-primary/30",
         isCurrentFile
           ? "bg-primary/15 text-primary font-medium"
           : "hover:bg-secondary/20 text-muted-foreground hover:text-foreground",
-        isTodo && "border-l-2 border-primary/30 pl-1.5",
-        isCompleted && "border-l-2 border-green-500/30 pl-1.5",
-        isRead && "text-muted-foreground"
+        isRead && !isCurrentFile && "text-muted-foreground"
       )}
-      style={{ paddingLeft: `${(depth + 1) * 16}px` }}
+      style={{ paddingLeft: `${(depth + 1) * 16}px`, paddingRight: "8px" }}
       onClick={() => handleSelectFile(file.path)}
     >
-      <div className="flex flex-col min-w-0 flex-grow">
-        <span className="break-words">
+      {/* Color indicator bar */}
+      {(isTodo || isCompleted || isRead) && (
+        <span className={statusColorClass} />
+      )}
+
+      <div className="flex flex-col min-w-0 flex-grow pl-1">
+        {/* File name with number */}
+        <span className="truncate max-w-full">
           {fileNumber}. {file.title}
         </span>
 
-        {/* Show description if enabled */}
-        {showDescriptions && (
-          <span className="text-xs text-muted-foreground">{statusText}</span>
+        {/* Status info directly under filename */}
+        <div className="flex items-center mt-0.5 gap-1">
+          {fileStatusIcon}
+          <span className={statusTextClass}>{statusText}</span>
+        </div>
+
+        {/* Description if enabled and available */}
+        {showDescriptions && file.description && (
+          <span className="text-xs text-muted-foreground mt-1 truncate max-w-full">
+            {file.description}
+          </span>
         )}
       </div>
-
-      {/* Status indicator */}
-      <div className="ml-auto flex-shrink-0 mt-0.5">{fileStatusIcon}</div>
     </button>
   );
 };
@@ -71,7 +98,7 @@ const getFileStatusIcon = (
     case isCompleted:
       return <CheckCircle size={12} className="text-green-500 flex-shrink-0" />;
     case isRead:
-      return <Clock size={12} className="text-blue-400 flex-shrink-0" />;
+      return <Clock size={12} className="text-green-400 flex-shrink-0" />; // Changed to green
     default:
       return (
         <CircleDot
@@ -82,7 +109,6 @@ const getFileStatusIcon = (
   }
 };
 
-// Get file status text
 const getFileStatusText = (
   isTodo: boolean,
   isCompleted: boolean,

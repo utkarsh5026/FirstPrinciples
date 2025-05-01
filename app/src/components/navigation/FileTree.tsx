@@ -1,6 +1,12 @@
 import { Category } from "@/services/document/document-loader";
 import getIconForTech from "@/components/icons/";
-import { ChevronRight, ChevronDown, BookMarked, Clock } from "lucide-react";
+import {
+  ChevronRight,
+  ChevronDown,
+  BookMarked,
+  Clock,
+  CheckCircle,
+} from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -43,17 +49,19 @@ const FileTree: React.FC<FileTreeProps> = ({
   if (!hasContent) return null;
   const CategoryIcon = getIconForTech(category.name);
 
+  // Count files statistics
   let totalFiles = 0;
   let readFiles = 0;
   let todoFiles = 0;
+  let completedFiles = 0;
 
   const countFiles = (cat: Category) => {
     if (cat.files) {
       totalFiles += cat.files.length;
       cat.files.forEach((file) => {
         if (readFilePaths.has(file.path)) readFiles++;
-        if (todoFilePaths.has(file.path) || todoCompletedPaths.has(file.path))
-          todoFiles++;
+        if (todoFilePaths.has(file.path)) todoFiles++;
+        if (todoCompletedPaths.has(file.path)) completedFiles++;
       });
     }
 
@@ -77,6 +85,7 @@ const FileTree: React.FC<FileTreeProps> = ({
           )}
           style={{ paddingLeft: `${depth * 12 + 8}px` }}
         >
+          {/* Chevron icon */}
           <div className="mr-1.5 text-muted-foreground flex-shrink-0">
             {isExpanded ? (
               <ChevronDown size={16} className="text-primary" />
@@ -85,41 +94,56 @@ const FileTree: React.FC<FileTreeProps> = ({
             )}
           </div>
 
+          {/* Category icon for root level categories */}
           {depth === 0 && (
             <div className="flex-shrink-0 mr-2 text-primary">
               <CategoryIcon size={16} />
             </div>
           )}
 
-          <span className="truncate">{category.name}</span>
+          {/* Category name with truncation */}
+          <span className="truncate flex-grow text-left">{category.name}</span>
 
-          {/* File stats badges */}
-          <div className="ml-auto flex items-center gap-1.5">
-            {readFiles > 0 && (
-              <div className="flex items-center">
-                <Clock size={12} className="text-blue-400 mr-1" />
-                <span className="text-xs text-muted-foreground">
-                  {readFiles}
-                </span>
-              </div>
-            )}
+          {/* File stats badges with updated colors */}
+          <div className="ml-auto flex items-center gap-1.5 flex-shrink-0">
+            <div className="flex items-center gap-1.5">
+              {/* Only show badges with counts > 0 */}
+              {completedFiles > 0 && (
+                <div className="flex items-center">
+                  <CheckCircle size={12} className="text-green-500 mr-0.5" />
+                  <span className="text-xs text-green-500">
+                    {completedFiles}
+                  </span>
+                </div>
+              )}
 
-            {todoFiles > 0 && (
-              <div className="flex items-center">
-                <BookMarked size={12} className="text-primary mr-1" />
-                <span className="text-xs text-muted-foreground">
-                  {todoFiles}
-                </span>
-              </div>
-            )}
+              {todoFiles > 0 && (
+                <div className="flex items-center">
+                  <BookMarked size={12} className="text-primary mr-0.5" />
+                  <span className="text-xs text-primary">{todoFiles}</span>
+                </div>
+              )}
 
-            {/* Total files counter */}
-            <Badge
-              variant="secondary"
-              className="ml-auto text-xs bg-secondary/30"
-            >
-              {totalFiles}
-            </Badge>
+              {readFiles > 0 && readFiles !== completedFiles && (
+                <div className="flex items-center">
+                  <Clock size={12} className="text-green-400 mr-0.5" />{" "}
+                  {/* Changed to green */}
+                  <span className="text-xs text-green-400">
+                    {" "}
+                    {/* Changed to green */}
+                    {readFiles - completedFiles}
+                  </span>
+                </div>
+              )}
+
+              {/* Total files counter */}
+              <Badge
+                variant="secondary"
+                className="text-xs bg-secondary/30 ml-1 px-1.5 py-0 h-5"
+              >
+                {totalFiles}
+              </Badge>
+            </div>
           </div>
         </button>
       </CollapsibleTrigger>
