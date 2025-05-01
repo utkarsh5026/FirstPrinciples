@@ -65,20 +65,22 @@ const CategoryFile = ({
       )}
 
       <div className="flex flex-col min-w-0 flex-grow pl-1">
-        {/* File name with number */}
-        <span className="truncate max-w-full">
+        {/* File name with number - using break-words instead of truncate */}
+        <span className="break-words w-full">
           {fileNumber}. {file.title}
         </span>
 
         {/* Status info directly under filename */}
-        <div className="flex items-center mt-0.5 gap-1">
-          {fileStatusIcon}
-          <span className={statusTextClass}>{statusText}</span>
+        <div className="flex items-start mt-0.5 gap-1">
+          <div className="flex-shrink-0 mt-0.5">{fileStatusIcon}</div>
+          <span className={cn(statusTextClass, "break-words")}>
+            {statusText}
+          </span>
         </div>
 
-        {/* Description if enabled and available */}
+        {/* Description if enabled and available - using break-words */}
         {showDescriptions && file.description && (
-          <span className="text-xs text-muted-foreground mt-1 truncate max-w-full">
+          <span className="text-xs text-muted-foreground mt-1 break-words w-full">
             {file.description}
           </span>
         )}
@@ -109,6 +111,7 @@ const getFileStatusIcon = (
   }
 };
 
+// Get file status text
 const getFileStatusText = (
   isTodo: boolean,
   isCompleted: boolean,

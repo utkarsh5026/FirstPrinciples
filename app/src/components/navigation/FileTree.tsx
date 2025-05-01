@@ -78,7 +78,7 @@ const FileTree: React.FC<FileTreeProps> = ({
         <button
           onClick={() => handleToggleExpand(category.id, !isExpanded)}
           className={cn(
-            "group flex items-center w-full rounded-md text-sm transition-colors py-2 px-2",
+            "group flex items-start w-full rounded-md text-sm transition-colors py-2 px-2",
             "hover:bg-primary/10 hover:text-foreground",
             "focus:outline-none focus:ring-1 focus:ring-primary/30",
             isExpanded ? "bg-primary/5" : ""
@@ -86,7 +86,7 @@ const FileTree: React.FC<FileTreeProps> = ({
           style={{ paddingLeft: `${depth * 12 + 8}px` }}
         >
           {/* Chevron icon */}
-          <div className="mr-1.5 text-muted-foreground flex-shrink-0">
+          <div className="mr-1.5 text-muted-foreground flex-shrink-0 mt-0.5">
             {isExpanded ? (
               <ChevronDown size={16} className="text-primary" />
             ) : (
@@ -96,16 +96,18 @@ const FileTree: React.FC<FileTreeProps> = ({
 
           {/* Category icon for root level categories */}
           {depth === 0 && (
-            <div className="flex-shrink-0 mr-2 text-primary">
+            <div className="flex-shrink-0 mr-2 text-primary mt-0.5">
               <CategoryIcon size={16} />
             </div>
           )}
 
-          {/* Category name with truncation */}
-          <span className="truncate flex-grow text-left">{category.name}</span>
+          {/* Category name with wrapping instead of truncation */}
+          <div className="flex flex-col flex-grow min-w-0">
+            <span className="break-words text-left">{category.name}</span>
+          </div>
 
-          {/* File stats badges with updated colors */}
-          <div className="ml-auto flex items-center gap-1.5 flex-shrink-0">
+          {/* File stats badges with updated colors - kept as flex-shrink-0 */}
+          <div className="ml-auto flex-shrink-0 flex items-start gap-1.5 mt-0.5">
             <div className="flex items-center gap-1.5">
               {/* Only show badges with counts > 0 */}
               {completedFiles > 0 && (
@@ -126,11 +128,8 @@ const FileTree: React.FC<FileTreeProps> = ({
 
               {readFiles > 0 && readFiles !== completedFiles && (
                 <div className="flex items-center">
-                  <Clock size={12} className="text-green-400 mr-0.5" />{" "}
-                  {/* Changed to green */}
+                  <Clock size={12} className="text-green-400 mr-0.5" />
                   <span className="text-xs text-green-400">
-                    {" "}
-                    {/* Changed to green */}
                     {readFiles - completedFiles}
                   </span>
                 </div>
