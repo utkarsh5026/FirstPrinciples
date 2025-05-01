@@ -1,5 +1,3 @@
-I'll explain browser rendering coordination with JavaScript execution from first principles, providing detailed insights into how browsers manage the complex dance between rendering web pages and executing JavaScript code.
-
 # Understanding Browser Rendering and JavaScript Execution
 
 ## The Foundational Architecture

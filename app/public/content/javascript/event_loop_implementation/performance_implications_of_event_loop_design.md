@@ -1,4 +1,3 @@
-I'll explain the performance implications of event loop design in browsers, starting from first principles, with examples, and providing detailed depth throughout.
 
 # Understanding the Event Loop in Browsers: Performance Implications
 
