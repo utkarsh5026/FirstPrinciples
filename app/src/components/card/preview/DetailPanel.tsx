@@ -24,7 +24,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
   const { readSections, sections, loading } = useDocumentReading();
 
   const completionPercentage = useMemo(() => {
-    return (readSections.size / totalSections || 1) * 100;
+    return totalSections > 0 ? (readSections.size / totalSections) * 100 : 0;
   }, [readSections, totalSections]);
 
   // Calculate remaining reading time

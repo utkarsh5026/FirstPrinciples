@@ -28,12 +28,11 @@ const CategoryFile = ({
   const fileStatusIcon = getFileStatusIcon(isTodo, isCompleted, isRead);
   const statusText = getFileStatusText(isTodo, isCompleted, isRead);
 
-  // Determine color indicator class
   const statusColorClass = cn(
     "absolute left-0 top-0 bottom-0 w-1 rounded-l-sm",
     isCompleted && "bg-green-500/70",
     isTodo && !isCompleted && "bg-primary/70",
-    isRead && !isTodo && !isCompleted && "bg-green-400/70" // Changed to green for read documents
+    isRead && !isTodo && !isCompleted && "bg-green-400/70"
   );
 
   // Determine the text color for status

@@ -1759,15 +1759,1013 @@
       "icon": "Code",
       "subcategories": [
         {
-          "id": "closures",
-          "name": "Closures",
+          "id": "advanced_dom_patterns",
+          "name": "Advanced Dom Patterns",
           "icon": "Folder",
           "subcategories": [],
           "files": [
             {
-              "path": "javascript/closures/introduction_to_closures.md",
-              "title": "Introduction To Closures",
-              "description": "Documentation for Introduction To Closures"
+              "path": "javascript/advanced_dom_patterns/canvas_based_dom_optimization.md",
+              "title": "Canvas Based Dom Optimization",
+              "description": "Documentation for Canvas Based Dom Optimization"
+            },
+            {
+              "path": "javascript/advanced_dom_patterns/complex_table_implementations.md",
+              "title": "Complex Table Implementations",
+              "description": "Documentation for Complex Table Implementations"
+            },
+            {
+              "path": "javascript/advanced_dom_patterns/dom_virtualization_for_large_datasets.md",
+              "title": "Dom Virtualization For Large Datasets",
+              "description": "Documentation for Dom Virtualization For Large Datasets"
+            },
+            {
+              "path": "javascript/advanced_dom_patterns/drag_and_drop_systems.md",
+              "title": "Drag And Drop Systems",
+              "description": "Documentation for Drag And Drop Systems"
+            },
+            {
+              "path": "javascript/advanced_dom_patterns/form_validation_architectures.md",
+              "title": "Form Validation Architectures",
+              "description": "Documentation for Form Validation Architectures"
+            },
+            {
+              "path": "javascript/advanced_dom_patterns/infinite_scrolling_implementation.md",
+              "title": "Infinite Scrolling Implementation",
+              "description": "Documentation for Infinite Scrolling Implementation"
+            },
+            {
+              "path": "javascript/advanced_dom_patterns/resizable_and_sortable_interfaces.md",
+              "title": "Resizable And Sortable Interfaces",
+              "description": "Documentation for Resizable And Sortable Interfaces"
+            },
+            {
+              "path": "javascript/advanced_dom_patterns/tree_view_and_recursive_component_patterns.md",
+              "title": "Tree View And Recursive Component Patterns",
+              "description": "Documentation for Tree View And Recursive Component Patterns"
+            },
+            {
+              "path": "javascript/advanced_dom_patterns/virtual_scrolling_for_performance.md",
+              "title": "Virtual Scrolling For Performance",
+              "description": "Documentation for Virtual Scrolling For Performance"
+            }
+          ]
+        },
+        {
+          "id": "advanced_event_handling",
+          "name": "Advanced Event Handling",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/advanced_event_handling/complex_event_coordination_patterns.md",
+              "title": "Complex Event Coordination Patterns",
+              "description": "Documentation for Complex Event Coordination Patterns"
+            },
+            {
+              "path": "javascript/advanced_event_handling/custom_event_systems_implementation.md",
+              "title": "Custom Event Systems Implementation",
+              "description": "Documentation for Custom Event Systems Implementation"
+            },
+            {
+              "path": "javascript/advanced_event_handling/drag_and_drop_implementation.md",
+              "title": "Drag And Drop Implementation",
+              "description": "Documentation for Drag And Drop Implementation"
+            },
+            {
+              "path": "javascript/advanced_event_handling/event_sourcing_in_browser_applications.md",
+              "title": "Event Sourcing In Browser Applications",
+              "description": "Documentation for Event Sourcing In Browser Applications"
+            },
+            {
+              "path": "javascript/advanced_event_handling/focus_management_strategies.md",
+              "title": "Focus Management Strategies",
+              "description": "Documentation for Focus Management Strategies"
+            },
+            {
+              "path": "javascript/advanced_event_handling/gamepad_and_alternative_input_methods.md",
+              "title": "Gamepad And Alternative Input Methods",
+              "description": "Documentation for Gamepad And Alternative Input Methods"
+            },
+            {
+              "path": "javascript/advanced_event_handling/input_method_handling.md",
+              "title": "Input Method Handling",
+              "description": "Documentation for Input Method Handling"
+            },
+            {
+              "path": "javascript/advanced_event_handling/keyboard_accessibility_patterns.md",
+              "title": "Keyboard Accessibility Patterns",
+              "description": "Documentation for Keyboard Accessibility Patterns"
+            },
+            {
+              "path": "javascript/advanced_event_handling/multi_touch_and_gesture_recognition.md",
+              "title": "Multi Touch And Gesture Recognition",
+              "description": "Documentation for Multi Touch And Gesture Recognition"
+            },
+            {
+              "path": "javascript/advanced_event_handling/reactive_event_handling_patterns.md",
+              "title": "Reactive Event Handling Patterns",
+              "description": "Documentation for Reactive Event Handling Patterns"
+            }
+          ]
+        },
+        {
+          "id": "asynchronous_javascript_in_the_browser",
+          "name": "Asynchronous Javascript In The Browser",
+          "icon": "Code",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/asynchronous_javascript_in_the_browser/animation_frame_scheduling.md",
+              "title": "Animation Frame Scheduling",
+              "description": "Documentation for Animation Frame Scheduling"
+            },
+            {
+              "path": "javascript/asynchronous_javascript_in_the_browser/async_await_in_modern_browsers.md",
+              "title": "Async Await In Modern Browsers",
+              "description": "Documentation for Async Await In Modern Browsers"
+            },
+            {
+              "path": "javascript/asynchronous_javascript_in_the_browser/browser_event_loop_and_task_queues_in_detail.md",
+              "title": "Browser Event Loop And Task Queues In Detail",
+              "description": "Documentation for Browser Event Loop And Task Queues In Detail"
+            },
+            {
+              "path": "javascript/asynchronous_javascript_in_the_browser/browser_timer_functions.md",
+              "title": "Browser Timer Functions",
+              "description": "Documentation for Browser Timer Functions"
+            },
+            {
+              "path": "javascript/asynchronous_javascript_in_the_browser/callback_patterns_in_browser_contexts.md",
+              "title": "Callback Patterns In Browser Contexts",
+              "description": "Documentation for Callback Patterns In Browser Contexts"
+            },
+            {
+              "path": "javascript/asynchronous_javascript_in_the_browser/handling_browser_specific_async_behaviors.md",
+              "title": "Handling Browser Specific Async Behaviors",
+              "description": "Documentation for Handling Browser Specific Async Behaviors"
+            },
+            {
+              "path": "javascript/asynchronous_javascript_in_the_browser/microtasks_vs_macrotasks_in_the_browser.md",
+              "title": "Microtasks Vs Macrotasks In The Browser",
+              "description": "Documentation for Microtasks Vs Macrotasks In The Browser"
+            },
+            {
+              "path": "javascript/asynchronous_javascript_in_the_browser/promise_implementation_across_browsers.md",
+              "title": "Promise Implementation Across Browsers",
+              "description": "Documentation for Promise Implementation Across Browsers"
+            },
+            {
+              "path": "javascript/asynchronous_javascript_in_the_browser/understanding_asynchronous_execution_in_the_browser.md",
+              "title": "Understanding Asynchronous Execution In The Browser",
+              "description": "Documentation for Understanding Asynchronous Execution In The Browser"
+            },
+            {
+              "path": "javascript/asynchronous_javascript_in_the_browser/worker_threads_and_parallel_execution.md",
+              "title": "Worker Threads And Parallel Execution",
+              "description": "Documentation for Worker Threads And Parallel Execution"
+            }
+          ]
+        },
+        {
+          "id": "browser_apis_and_web_platform",
+          "name": "Browser Apis And Web Platform",
+          "icon": "ServerCrash",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/browser_apis_and_web_platform/clipboard_api_for_copy_paste_functionality.md",
+              "title": "Clipboard Api For Copy Paste Functionality",
+              "description": "Documentation for Clipboard Api For Copy Paste Functionality"
+            },
+            {
+              "path": "javascript/browser_apis_and_web_platform/fetch_api_for_modern_resource_requests.md",
+              "title": "Fetch Api For Modern Resource Requests",
+              "description": "Documentation for Fetch Api For Modern Resource Requests"
+            },
+            {
+              "path": "javascript/browser_apis_and_web_platform/geolocation_api_for_location_aware_applications.md",
+              "title": "Geolocation Api For Location Aware Applications",
+              "description": "Documentation for Geolocation Api For Location Aware Applications"
+            },
+            {
+              "path": "javascript/browser_apis_and_web_platform/history_api_for_client_side_routing.md",
+              "title": "History Api For Client Side Routing",
+              "description": "Documentation for History Api For Client Side Routing"
+            },
+            {
+              "path": "javascript/browser_apis_and_web_platform/intersection_observer_for_viewport_detection.md",
+              "title": "Intersection Observer For Viewport Detection",
+              "description": "Documentation for Intersection Observer For Viewport Detection"
+            },
+            {
+              "path": "javascript/browser_apis_and_web_platform/media_apis.md",
+              "title": "Media Apis",
+              "description": "Documentation for Media Apis"
+            },
+            {
+              "path": "javascript/browser_apis_and_web_platform/mutation_observer_for_dom_change_detection.md",
+              "title": "Mutation Observer For Dom Change Detection",
+              "description": "Documentation for Mutation Observer For Dom Change Detection"
+            },
+            {
+              "path": "javascript/browser_apis_and_web_platform/notifications_api_for_browser_notifications.md",
+              "title": "Notifications Api For Browser Notifications",
+              "description": "Documentation for Notifications Api For Browser Notifications"
+            },
+            {
+              "path": "javascript/browser_apis_and_web_platform/url_and_url_search_params_for_url_handling.md",
+              "title": "Url And Url Search Params For Url Handling",
+              "description": "Documentation for Url And Url Search Params For Url Handling"
+            },
+            {
+              "path": "javascript/browser_apis_and_web_platform/web_animations_api_for_programmatic_animations.md",
+              "title": "Web Animations Api For Programmatic Animations",
+              "description": "Documentation for Web Animations Api For Programmatic Animations"
+            },
+            {
+              "path": "javascript/browser_apis_and_web_platform/web_speech_api_for_voice_recognition_and_synthesis.md",
+              "title": "Web Speech Api For Voice Recognition And Synthesis",
+              "description": "Documentation for Web Speech Api For Voice Recognition And Synthesis"
+            },
+            {
+              "path": "javascript/browser_apis_and_web_platform/xml_http_request_for_data_fetching.md",
+              "title": "Xml Http Request For Data Fetching",
+              "description": "Documentation for Xml Http Request For Data Fetching"
+            }
+          ]
+        },
+        {
+          "id": "browser_compatibility",
+          "name": "Browser Compatibility",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/browser_compatibility/browser_compatibility_testing.md",
+              "title": "Browser Compatibility Testing",
+              "description": "Documentation for Browser Compatibility Testing"
+            },
+            {
+              "path": "javascript/browser_compatibility/cross_browser_debugging_techniques.md",
+              "title": "Cross Browser Debugging Techniques",
+              "description": "Documentation for Cross Browser Debugging Techniques"
+            },
+            {
+              "path": "javascript/browser_compatibility/feature_detection_vs_browser_detection.md",
+              "title": "Feature Detection Vs Browser Detection",
+              "description": "Documentation for Feature Detection Vs Browser Detection"
+            },
+            {
+              "path": "javascript/browser_compatibility/graceful_degradation_approaches.md",
+              "title": "Graceful Degradation Approaches",
+              "description": "Documentation for Graceful Degradation Approaches"
+            },
+            {
+              "path": "javascript/browser_compatibility/handling_browser_specific_bugs_and_quirks.md",
+              "title": "Handling Browser Specific Bugs And Quirks",
+              "description": "Documentation for Handling Browser Specific Bugs And Quirks"
+            },
+            {
+              "path": "javascript/browser_compatibility/mobile_browser_considerations.md",
+              "title": "Mobile Browser Considerations",
+              "description": "Documentation for Mobile Browser Considerations"
+            },
+            {
+              "path": "javascript/browser_compatibility/polyfill_implementation_strategies.md",
+              "title": "Polyfill Implementation Strategies",
+              "description": "Documentation for Polyfill Implementation Strategies"
+            },
+            {
+              "path": "javascript/browser_compatibility/progressive_enhancement_techniques.md",
+              "title": "Progressive Enhancement Techniques",
+              "description": "Documentation for Progressive Enhancement Techniques"
+            },
+            {
+              "path": "javascript/browser_compatibility/transpilation_for_browser_compatibility.md",
+              "title": "Transpilation For Browser Compatibility",
+              "description": "Documentation for Transpilation For Browser Compatibility"
+            },
+            {
+              "path": "javascript/browser_compatibility/vendor_prefix_handling.md",
+              "title": "Vendor Prefix Handling",
+              "description": "Documentation for Vendor Prefix Handling"
+            }
+          ]
+        },
+        {
+          "id": "browser_events",
+          "name": "Browser Events",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/browser_events/browser_event_model_and_bubbling_mechanics.md",
+              "title": "Browser Event Model And Bubbling Mechanics",
+              "description": "Documentation for Browser Event Model And Bubbling Mechanics"
+            },
+            {
+              "path": "javascript/browser_events/custom_events_and_the_event_constructor.md",
+              "title": "Custom Events And The Event Constructor",
+              "description": "Documentation for Custom Events And The Event Constructor"
+            },
+            {
+              "path": "javascript/browser_events/event_delegation_for_dynamic_elements.md",
+              "title": "Event Delegation For Dynamic Elements",
+              "description": "Documentation for Event Delegation For Dynamic Elements"
+            },
+            {
+              "path": "javascript/browser_events/event_driven_programming_in_the_browser.md",
+              "title": "Event Driven Programming In The Browser",
+              "description": "Documentation for Event Driven Programming In The Browser"
+            },
+            {
+              "path": "javascript/browser_events/event_listeners_vs_inline_event_handlers.md",
+              "title": "Event Listeners Vs Inline Event Handlers",
+              "description": "Documentation for Event Listeners Vs Inline Event Handlers"
+            },
+            {
+              "path": "javascript/browser_events/event_object_properties_and_methods.md",
+              "title": "Event Object Properties And Methods",
+              "description": "Documentation for Event Object Properties And Methods"
+            },
+            {
+              "path": "javascript/browser_events/event_propagation.md",
+              "title": "Event Propagation",
+              "description": "Documentation for Event Propagation"
+            },
+            {
+              "path": "javascript/browser_events/event_throttling_and_debouncing_techniques.md",
+              "title": "Event Throttling And Debouncing Techniques",
+              "description": "Documentation for Event Throttling And Debouncing Techniques"
+            },
+            {
+              "path": "javascript/browser_events/form_events_and_data_handling.md",
+              "title": "Form Events And Data Handling",
+              "description": "Documentation for Form Events And Data Handling"
+            },
+            {
+              "path": "javascript/browser_events/keyboard_event_handling_and_accessibility.md",
+              "title": "Keyboard Event Handling And Accessibility",
+              "description": "Documentation for Keyboard Event Handling And Accessibility"
+            },
+            {
+              "path": "javascript/browser_events/mouse_and_touch_event_handling.md",
+              "title": "Mouse And Touch Event Handling",
+              "description": "Documentation for Mouse And Touch Event Handling"
+            }
+          ]
+        },
+        {
+          "id": "browser_rendering_pipeline",
+          "name": "Browser Rendering Pipeline",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/browser_rendering_pipeline/browser_frame_rendering_lifecycle.md",
+              "title": "Browser Frame Rendering Lifecycle",
+              "description": "Documentation for Browser Frame Rendering Lifecycle"
+            },
+            {
+              "path": "javascript/browser_rendering_pipeline/browser_rendering_optimization_techniques.md",
+              "title": "Browser Rendering Optimization Techniques",
+              "description": "Documentation for Browser Rendering Optimization Techniques"
+            },
+            {
+              "path": "javascript/browser_rendering_pipeline/critical_rendering_path_in_browsers.md",
+              "title": "Critical Rendering Path In Browsers",
+              "description": "Documentation for Critical Rendering Path In Browsers"
+            },
+            {
+              "path": "javascript/browser_rendering_pipeline/hardware_acceleration_in_modern_browsers.md",
+              "title": "Hardware Acceleration In Modern Browsers",
+              "description": "Documentation for Hardware Acceleration In Modern Browsers"
+            },
+            {
+              "path": "javascript/browser_rendering_pipeline/layout_and_reflow_processes.md",
+              "title": "Layout And Reflow Processes",
+              "description": "Documentation for Layout And Reflow Processes"
+            },
+            {
+              "path": "javascript/browser_rendering_pipeline/layout_thrashing_prevention.md",
+              "title": "Layout Thrashing Prevention",
+              "description": "Documentation for Layout Thrashing Prevention"
+            },
+            {
+              "path": "javascript/browser_rendering_pipeline/paint_and_composite_operations.md",
+              "title": "Paint And Composite Operations",
+              "description": "Documentation for Paint And Composite Operations"
+            },
+            {
+              "path": "javascript/browser_rendering_pipeline/preventing_browser_jank_and_stuttering.md",
+              "title": "Preventing Browser Jank And Stuttering",
+              "description": "Documentation for Preventing Browser Jank And Stuttering"
+            },
+            {
+              "path": "javascript/browser_rendering_pipeline/rendering_performance_metrics.md",
+              "title": "Rendering Performance Metrics",
+              "description": "Documentation for Rendering Performance Metrics"
+            },
+            {
+              "path": "javascript/browser_rendering_pipeline/visual_feedback_and_perceived_performance.md",
+              "title": "Visual Feedback And Perceived Performance",
+              "description": "Documentation for Visual Feedback And Perceived Performance"
+            }
+          ]
+        },
+        {
+          "id": "browser_security",
+          "name": "Browser Security",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/browser_security/content_security_policy_implementation.md",
+              "title": "Content Security Policy Implementation",
+              "description": "Documentation for Content Security Policy Implementation"
+            },
+            {
+              "path": "javascript/browser_security/cross_site_request_forgery_protection.md",
+              "title": "Cross Site Request Forgery Protection",
+              "description": "Documentation for Cross Site Request Forgery Protection"
+            },
+            {
+              "path": "javascript/browser_security/cross_site_scripting_prevention.md",
+              "title": "Cross Site Scripting Prevention",
+              "description": "Documentation for Cross Site Scripting Prevention"
+            },
+            {
+              "path": "javascript/browser_security/feature_policy_implementation.md",
+              "title": "Feature Policy Implementation",
+              "description": "Documentation for Feature Policy Implementation"
+            },
+            {
+              "path": "javascript/browser_security/iframe_sandboxing_techniques.md",
+              "title": "Iframe Sandboxing Techniques",
+              "description": "Documentation for Iframe Sandboxing Techniques"
+            },
+            {
+              "path": "javascript/browser_security/same_origin_policy_and_its_implications.md",
+              "title": "Same Origin Policy And Its Implications",
+              "description": "Documentation for Same Origin Policy And Its Implications"
+            },
+            {
+              "path": "javascript/browser_security/secure_authentication_in_browser_applications.md",
+              "title": "Secure Authentication In Browser Applications",
+              "description": "Documentation for Secure Authentication In Browser Applications"
+            },
+            {
+              "path": "javascript/browser_security/secure_data_storage_in_the_browser.md",
+              "title": "Secure Data Storage In The Browser",
+              "description": "Documentation for Secure Data Storage In The Browser"
+            },
+            {
+              "path": "javascript/browser_security/security_headers_for_browser_applications.md",
+              "title": "Security Headers For Browser Applications",
+              "description": "Documentation for Security Headers For Browser Applications"
+            },
+            {
+              "path": "javascript/browser_security/subresource_integrity_checking.md",
+              "title": "Subresource Integrity Checking",
+              "description": "Documentation for Subresource Integrity Checking"
+            }
+          ]
+        },
+        {
+          "id": "browser_storage",
+          "name": "Browser Storage",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/browser_storage/cache_api_for_resource_caching.md",
+              "title": "Cache Api For Resource Caching",
+              "description": "Documentation for Cache Api For Resource Caching"
+            },
+            {
+              "path": "javascript/browser_storage/client_side_session_state_management.md",
+              "title": "Client Side Session State Management",
+              "description": "Documentation for Client Side Session State Management"
+            },
+            {
+              "path": "javascript/browser_storage/cookie_management_in_javascript.md",
+              "title": "Cookie Management In Javascript",
+              "description": "Documentation for Cookie Management In Javascript"
+            },
+            {
+              "path": "javascript/browser_storage/indexed_db_for_client_side_database_storage.md",
+              "title": "Indexed Db For Client Side Database Storage",
+              "description": "Documentation for Indexed Db For Client Side Database Storage"
+            },
+            {
+              "path": "javascript/browser_storage/offline_data_persistence_strategies.md",
+              "title": "Offline Data Persistence Strategies",
+              "description": "Documentation for Offline Data Persistence Strategies"
+            },
+            {
+              "path": "javascript/browser_storage/secure_storage_practices_in_browsers.md",
+              "title": "Secure Storage Practices In Browsers",
+              "description": "Documentation for Secure Storage Practices In Browsers"
+            },
+            {
+              "path": "javascript/browser_storage/storage_event_handling_for_cross_tab_communication.md",
+              "title": "Storage Event Handling For Cross Tab Communication",
+              "description": "Documentation for Storage Event Handling For Cross Tab Communication"
+            },
+            {
+              "path": "javascript/browser_storage/storage_quotas_and_limitations.md",
+              "title": "Storage Quotas And Limitations",
+              "description": "Documentation for Storage Quotas And Limitations"
+            },
+            {
+              "path": "javascript/browser_storage/storage_sync_with_browser_extensions.md",
+              "title": "Storage Sync With Browser Extensions",
+              "description": "Documentation for Storage Sync With Browser Extensions"
+            },
+            {
+              "path": "javascript/browser_storage/web_storage_api.md",
+              "title": "Web Storage Api",
+              "description": "Documentation for Web Storage Api"
+            }
+          ]
+        },
+        {
+          "id": "dom_fundamentals",
+          "name": "Dom Fundamentals",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/dom_fundamentals/creating_and_manipulating_dom_elements_dynamically.md",
+              "title": "Creating And Manipulating Dom Elements Dynamically",
+              "description": "Documentation for Creating And Manipulating Dom Elements Dynamically"
+            },
+            {
+              "path": "javascript/dom_fundamentals/dom_collections_vs_java_script_arrays.md",
+              "title": "Dom Collections Vs Java Script Arrays",
+              "description": "Documentation for Dom Collections Vs Java Script Arrays"
+            },
+            {
+              "path": "javascript/dom_fundamentals/dom_node_types_and_their_properties.md",
+              "title": "Dom Node Types And Their Properties",
+              "description": "Documentation for Dom Node Types And Their Properties"
+            },
+            {
+              "path": "javascript/dom_fundamentals/dom_traversal_techniques.md",
+              "title": "Dom Traversal Techniques",
+              "description": "Documentation for Dom Traversal Techniques"
+            },
+            {
+              "path": "javascript/dom_fundamentals/element_content_manipulation.md",
+              "title": "Element Content Manipulation",
+              "description": "Documentation for Element Content Manipulation"
+            },
+            {
+              "path": "javascript/dom_fundamentals/html_parsing_behavior_in_browsers.md",
+              "title": "Html Parsing Behavior In Browsers",
+              "description": "Documentation for Html Parsing Behavior In Browsers"
+            },
+            {
+              "path": "javascript/dom_fundamentals/selecting_dom_elements.md",
+              "title": "Selecting Dom Elements",
+              "description": "Documentation for Selecting Dom Elements"
+            },
+            {
+              "path": "javascript/dom_fundamentals/the_dom_structure_and_hierarchy.md",
+              "title": "The Dom Structure And Hierarchy",
+              "description": "Documentation for The Dom Structure And Hierarchy"
+            },
+            {
+              "path": "javascript/dom_fundamentals/understanding_the_dom_as_a_living_document.md",
+              "title": "Understanding The Dom As A Living Document",
+              "description": "Documentation for Understanding The Dom As A Living Document"
+            },
+            {
+              "path": "javascript/dom_fundamentals/working_with_dom_attributes_and_properties.md",
+              "title": "Working With Dom Attributes And Properties",
+              "description": "Documentation for Working With Dom Attributes And Properties"
+            }
+          ]
+        },
+        {
+          "id": "event_loop_implementation",
+          "name": "Event Loop Implementation",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/event_loop_implementation/browser_rendering_coordination_with_js_execution.md",
+              "title": "Browser Rendering Coordination With Js Execution",
+              "description": "Documentation for Browser Rendering Coordination With Js Execution"
+            },
+            {
+              "path": "javascript/event_loop_implementation/browser_specific_event_loop_behaviors.md",
+              "title": "Browser Specific Event Loop Behaviors",
+              "description": "Documentation for Browser Specific Event Loop Behaviors"
+            },
+            {
+              "path": "javascript/event_loop_implementation/event_loop_architecture_in_browsers.md",
+              "title": "Event Loop Architecture In Browsers",
+              "description": "Documentation for Event Loop Architecture In Browsers"
+            },
+            {
+              "path": "javascript/event_loop_implementation/event_loop_phases_and_internal_timing.md",
+              "title": "Event Loop Phases And Internal Timing",
+              "description": "Documentation for Event Loop Phases And Internal Timing"
+            },
+            {
+              "path": "javascript/event_loop_implementation/io_callback_processing.md",
+              "title": "Io Callback Processing",
+              "description": "Documentation for Io Callback Processing"
+            },
+            {
+              "path": "javascript/event_loop_implementation/microtask_queue_internals.md",
+              "title": "Microtask Queue Internals",
+              "description": "Documentation for Microtask Queue Internals"
+            },
+            {
+              "path": "javascript/event_loop_implementation/performance_implications_of_event_loop_design.md",
+              "title": "Performance Implications Of Event Loop Design",
+              "description": "Documentation for Performance Implications Of Event Loop Design"
+            },
+            {
+              "path": "javascript/event_loop_implementation/priority_handling_in_event_processing.md",
+              "title": "Priority Handling In Event Processing",
+              "description": "Documentation for Priority Handling In Event Processing"
+            },
+            {
+              "path": "javascript/event_loop_implementation/task_queue_implementation_details.md",
+              "title": "Task Queue Implementation Details",
+              "description": "Documentation for Task Queue Implementation Details"
+            },
+            {
+              "path": "javascript/event_loop_implementation/timer_implementation_details.md",
+              "title": "Timer Implementation Details",
+              "description": "Documentation for Timer Implementation Details"
+            }
+          ]
+        },
+        {
+          "id": "frontend_performance_optimization",
+          "name": "Frontend Performance Optimization",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/frontend_performance_optimization/browser_caching_strategies.md",
+              "title": "Browser Caching Strategies",
+              "description": "Documentation for Browser Caching Strategies"
+            },
+            {
+              "path": "javascript/frontend_performance_optimization/code_splitting_and_lazy_loading.md",
+              "title": "Code Splitting And Lazy Loading",
+              "description": "Documentation for Code Splitting And Lazy Loading"
+            },
+            {
+              "path": "javascript/frontend_performance_optimization/javascript_bundle_optimization_techniques.md",
+              "title": "Javascript Bundle Optimization Techniques",
+              "description": "Documentation for Javascript Bundle Optimization Techniques"
+            },
+            {
+              "path": "javascript/frontend_performance_optimization/javascript_execution_optimization.md",
+              "title": "Javascript Execution Optimization",
+              "description": "Documentation for Javascript Execution Optimization"
+            },
+            {
+              "path": "javascript/frontend_performance_optimization/memory_leak_prevention_in_browser_apps.md",
+              "title": "Memory Leak Prevention In Browser Apps",
+              "description": "Documentation for Memory Leak Prevention In Browser Apps"
+            },
+            {
+              "path": "javascript/frontend_performance_optimization/module_preloading_strategies.md",
+              "title": "Module Preloading Strategies",
+              "description": "Documentation for Module Preloading Strategies"
+            },
+            {
+              "path": "javascript/frontend_performance_optimization/performance_budgeting_and_monitoring.md",
+              "title": "Performance Budgeting And Monitoring",
+              "description": "Documentation for Performance Budgeting And Monitoring"
+            },
+            {
+              "path": "javascript/frontend_performance_optimization/resource_loading_prioritization.md",
+              "title": "Resource Loading Prioritization",
+              "description": "Documentation for Resource Loading Prioritization"
+            },
+            {
+              "path": "javascript/frontend_performance_optimization/runtime_performance_optimization.md",
+              "title": "Runtime Performance Optimization",
+              "description": "Documentation for Runtime Performance Optimization"
+            },
+            {
+              "path": "javascript/frontend_performance_optimization/tree_shaking_for_dead_code_elimination.md",
+              "title": "Tree Shaking For Dead Code Elimination",
+              "description": "Documentation for Tree Shaking For Dead Code Elimination"
+            }
+          ]
+        },
+        {
+          "id": "functions_and_scope",
+          "name": "Functions And Scope",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/functions_and_scope/arrow_functions_and_their_special_properties.md",
+              "title": "Arrow Functions And Their Special Properties",
+              "description": "Documentation for Arrow Functions And Their Special Properties"
+            },
+            {
+              "path": "javascript/functions_and_scope/block_scope_vs_function_scope.md",
+              "title": "Block Scope Vs Function Scope",
+              "description": "Documentation for Block Scope Vs Function Scope"
+            },
+            {
+              "path": "javascript/functions_and_scope/closures_and_their_practical_applications.md",
+              "title": "Closures And Their Practical Applications",
+              "description": "Documentation for Closures And Their Practical Applications"
+            },
+            {
+              "path": "javascript/functions_and_scope/function_currying_and_partial_application.md",
+              "title": "Function Currying And Partial Application",
+              "description": "Documentation for Function Currying And Partial Application"
+            },
+            {
+              "path": "javascript/functions_and_scope/function_declarations_vs_expressions.md",
+              "title": "Function Declarations Vs Expressions",
+              "description": "Documentation for Function Declarations Vs Expressions"
+            },
+            {
+              "path": "javascript/functions_and_scope/function_parameters.md",
+              "title": "Function Parameters",
+              "description": "Documentation for Function Parameters"
+            },
+            {
+              "path": "javascript/functions_and_scope/higher_order_functions.md",
+              "title": "Higher Order Functions",
+              "description": "Documentation for Higher Order Functions"
+            },
+            {
+              "path": "javascript/functions_and_scope/immediately_invoked_function_expressions.md",
+              "title": "Immediately Invoked Function Expressions",
+              "description": "Documentation for Immediately Invoked Function Expressions"
+            },
+            {
+              "path": "javascript/functions_and_scope/recursion_and_tail_call_optimization.md",
+              "title": "Recursion And Tail Call Optimization",
+              "description": "Documentation for Recursion And Tail Call Optimization"
+            }
+          ]
+        },
+        {
+          "id": "javascript_engine_architecture",
+          "name": "Javascript Engine Architecture",
+          "icon": "Code",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/javascript_engine_architecture/abstract_syntax_tree_generation_and_use.md",
+              "title": "Abstract Syntax Tree Generation And Use",
+              "description": "Documentation for Abstract Syntax Tree Generation And Use"
+            },
+            {
+              "path": "javascript/javascript_engine_architecture/bytecode_generation_and_execution.md",
+              "title": "Bytecode Generation And Execution",
+              "description": "Documentation for Bytecode Generation And Execution"
+            },
+            {
+              "path": "javascript/javascript_engine_architecture/engine_hooks_and_extension_points.md",
+              "title": "Engine Hooks And Extension Points",
+              "description": "Documentation for Engine Hooks And Extension Points"
+            },
+            {
+              "path": "javascript/javascript_engine_architecture/engine_optimizations_across_browser_implementations.md",
+              "title": "Engine Optimizations Across Browser Implementations",
+              "description": "Documentation for Engine Optimizations Across Browser Implementations"
+            },
+            {
+              "path": "javascript/javascript_engine_architecture/interpreter_vs_compiler_approaches.md",
+              "title": "Interpreter Vs Compiler Approaches",
+              "description": "Documentation for Interpreter Vs Compiler Approaches"
+            },
+            {
+              "path": "javascript/javascript_engine_architecture/javascript_engine_components.md",
+              "title": "Javascript Engine Components",
+              "description": "Documentation for Javascript Engine Components"
+            },
+            {
+              "path": "javascript/javascript_engine_architecture/just_in_time_compilation_process.md",
+              "title": "Just In Time Compilation Process",
+              "description": "Documentation for Just In Time Compilation Process"
+            },
+            {
+              "path": "javascript/javascript_engine_architecture/major_browser_engines_comparison.md",
+              "title": "Major Browser Engines Comparison",
+              "description": "Documentation for Major Browser Engines Comparison"
+            },
+            {
+              "path": "javascript/javascript_engine_architecture/source_map_implementation_and_debugging_support.md",
+              "title": "Source Map Implementation And Debugging Support",
+              "description": "Documentation for Source Map Implementation And Debugging Support"
+            },
+            {
+              "path": "javascript/javascript_engine_architecture/web_assembly_integration_with_java_script_engines.md",
+              "title": "Web Assembly Integration With Java Script Engines",
+              "description": "Documentation for Web Assembly Integration With Java Script Engines"
+            }
+          ]
+        },
+        {
+          "id": "modern_dom_manipulation",
+          "name": "Modern Dom Manipulation",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/modern_dom_manipulation/custom_elements_and_web_components.md",
+              "title": "Custom Elements And Web Components",
+              "description": "Documentation for Custom Elements And Web Components"
+            },
+            {
+              "path": "javascript/modern_dom_manipulation/declarative_rendering_patterns.md",
+              "title": "Declarative Rendering Patterns",
+              "description": "Documentation for Declarative Rendering Patterns"
+            },
+            {
+              "path": "javascript/modern_dom_manipulation/dom_diffing_algorithms.md",
+              "title": "Dom Diffing Algorithms",
+              "description": "Documentation for Dom Diffing Algorithms"
+            },
+            {
+              "path": "javascript/modern_dom_manipulation/fragment_based_batch_dom_updates.md",
+              "title": "Fragment Based Batch Dom Updates",
+              "description": "Documentation for Fragment Based Batch Dom Updates"
+            },
+            {
+              "path": "javascript/modern_dom_manipulation/performance_optimized_dom_operations.md",
+              "title": "Performance Optimized Dom Operations",
+              "description": "Documentation for Performance Optimized Dom Operations"
+            },
+            {
+              "path": "javascript/modern_dom_manipulation/progressive_enhancement_strategies.md",
+              "title": "Progressive Enhancement Strategies",
+              "description": "Documentation for Progressive Enhancement Strategies"
+            },
+            {
+              "path": "javascript/modern_dom_manipulation/shadow_dom_for_component_encapsulation.md",
+              "title": "Shadow Dom For Component Encapsulation",
+              "description": "Documentation for Shadow Dom For Component Encapsulation"
+            },
+            {
+              "path": "javascript/modern_dom_manipulation/slot_elements_for_content_distribution.md",
+              "title": "Slot Elements For Content Distribution",
+              "description": "Documentation for Slot Elements For Content Distribution"
+            },
+            {
+              "path": "javascript/modern_dom_manipulation/template_elements_for_markup_templates.md",
+              "title": "Template Elements For Markup Templates",
+              "description": "Documentation for Template Elements For Markup Templates"
+            },
+            {
+              "path": "javascript/modern_dom_manipulation/virtual_dom_concepts_and_implementations.md",
+              "title": "Virtual Dom Concepts And Implementations",
+              "description": "Documentation for Virtual Dom Concepts And Implementations"
+            }
+          ]
+        },
+        {
+          "id": "object_oriented_javascript",
+          "name": "Object Oriented Javascript",
+          "icon": "Code",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/object_oriented_javascript/class_inheritance_vs_prototypal_inheritance.md",
+              "title": "Class Inheritance Vs Prototypal Inheritance",
+              "description": "Documentation for Class Inheritance Vs Prototypal Inheritance"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/composition_vs_inheritance_in_javascript.md",
+              "title": "Composition Vs Inheritance In Javascript",
+              "description": "Documentation for Composition Vs Inheritance In Javascript"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/constructor_functions_and_the_new_operator.md",
+              "title": "Constructor Functions And The New Operator",
+              "description": "Documentation for Constructor Functions And The New Operator"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/es6_classes_and_their_internal_workings.md",
+              "title": "Es6 Classes And Their Internal Workings",
+              "description": "Documentation for Es6 Classes And Their Internal Workings"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/factory_functions_vs_constructor_patterns.md",
+              "title": "Factory Functions Vs Constructor Patterns",
+              "description": "Documentation for Factory Functions Vs Constructor Patterns"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/instance_methods_vs_prototype_methods.md",
+              "title": "Instance Methods Vs Prototype Methods",
+              "description": "Documentation for Instance Methods Vs Prototype Methods"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/mixins_and_multiple_inheritance_simulation.md",
+              "title": "Mixins And Multiple Inheritance Simulation",
+              "description": "Documentation for Mixins And Multiple Inheritance Simulation"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/objects_and_property_accessors.md",
+              "title": "Objects And Property Accessors",
+              "description": "Documentation for Objects And Property Accessors"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/objects_linked_to_other_objects_pattern.md",
+              "title": "Objects Linked To Other Objects Pattern",
+              "description": "Documentation for Objects Linked To Other Objects Pattern"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/property_descriptors_and_attributes.md",
+              "title": "Property Descriptors And Attributes",
+              "description": "Documentation for Property Descriptors And Attributes"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/prototypal_inheritance_model.md",
+              "title": "Prototypal Inheritance Model",
+              "description": "Documentation for Prototypal Inheritance Model"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/prototype_chain_lookup_mechanism.md",
+              "title": "Prototype Chain Lookup Mechanism",
+              "description": "Documentation for Prototype Chain Lookup Mechanism"
+            },
+            {
+              "path": "javascript/object_oriented_javascript/static_methods_and_properties.md",
+              "title": "Static Methods And Properties",
+              "description": "Documentation for Static Methods And Properties"
+            }
+          ]
+        },
+        {
+          "id": "the_this_keyword_deep_dive",
+          "name": "The This Keyword Deep Dive",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/the_this_keyword_deep_dive/common_this_pitfalls_and_solutions.md",
+              "title": "Common This Pitfalls And Solutions",
+              "description": "Documentation for Common This Pitfalls And Solutions"
+            },
+            {
+              "path": "javascript/the_this_keyword_deep_dive/default_binding_with_global_undefined.md",
+              "title": "Default Binding With Global Undefined",
+              "description": "Documentation for Default Binding With Global Undefined"
+            },
+            {
+              "path": "javascript/the_this_keyword_deep_dive/event_handler_this_binding_in_browsers.md",
+              "title": "Event Handler This Binding In Browsers",
+              "description": "Documentation for Event Handler This Binding In Browsers"
+            },
+            {
+              "path": "javascript/the_this_keyword_deep_dive/explicit_binding_with_call_apply_and_bind.md",
+              "title": "Explicit Binding With Call Apply And Bind",
+              "description": "Documentation for Explicit Binding With Call Apply And Bind"
+            },
+            {
+              "path": "javascript/the_this_keyword_deep_dive/implicit_binding_in_method_calls.md",
+              "title": "Implicit Binding In Method Calls",
+              "description": "Documentation for Implicit Binding In Method Calls"
+            },
+            {
+              "path": "javascript/the_this_keyword_deep_dive/lexical_this_in_arrow_functions.md",
+              "title": "Lexical This In Arrow Functions",
+              "description": "Documentation for Lexical This In Arrow Functions"
+            },
+            {
+              "path": "javascript/the_this_keyword_deep_dive/new_binding_with_constructor_functions.md",
+              "title": "New Binding With Constructor Functions",
+              "description": "Documentation for New Binding With Constructor Functions"
+            },
+            {
+              "path": "javascript/the_this_keyword_deep_dive/preserving_this_context_techniques.md",
+              "title": "Preserving This Context Techniques",
+              "description": "Documentation for Preserving This Context Techniques"
+            },
+            {
+              "path": "javascript/the_this_keyword_deep_dive/this_binding_rules_and_precedence.md",
+              "title": "This Binding Rules And Precedence",
+              "description": "Documentation for This Binding Rules And Precedence"
+            },
+            {
+              "path": "javascript/the_this_keyword_deep_dive/this_in_callbacks_and_nested_functions.md",
+              "title": "This In Callbacks And Nested Functions",
+              "description": "Documentation for This In Callbacks And Nested Functions"
+            },
+            {
+              "path": "javascript/the_this_keyword_deep_dive/this_in_strict_vs_non_strict_mode.md",
+              "title": "This In Strict Vs Non Strict Mode",
+              "description": "Documentation for This In Strict Vs Non Strict Mode"
             }
           ]
         }
@@ -2503,6 +3501,49 @@
       "icon": "Folder",
       "subcategories": [
         {
+          "id": "advanced_data_manipulation",
+          "name": "Advanced Data Manipulation",
+          "icon": "Database",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "redis/advanced_data_manipulation/atomicity_in_multi_key_operations.md",
+              "title": "Atomicity In Multi Key Operations",
+              "description": "Documentation for Atomicity In Multi Key Operations"
+            },
+            {
+              "path": "redis/advanced_data_manipulation/bit_level_operations_for_compact_data_storage.md",
+              "title": "Bit Level Operations For Compact Data Storage",
+              "description": "Documentation for Bit Level Operations For Compact Data Storage"
+            },
+            {
+              "path": "redis/advanced_data_manipulation/implementing_distributed_locks.md",
+              "title": "Implementing Distributed Locks",
+              "description": "Documentation for Implementing Distributed Locks"
+            },
+            {
+              "path": "redis/advanced_data_manipulation/implementing_rate_limiters.md",
+              "title": "Implementing Rate Limiters",
+              "description": "Documentation for Implementing Rate Limiters"
+            },
+            {
+              "path": "redis/advanced_data_manipulation/pipelining_commands_for_performance.md",
+              "title": "Pipelining Commands For Performance",
+              "description": "Documentation for Pipelining Commands For Performance"
+            },
+            {
+              "path": "redis/advanced_data_manipulation/probabilistic_data_structures.md",
+              "title": "Probabilistic Data Structures",
+              "description": "Documentation for Probabilistic Data Structures"
+            },
+            {
+              "path": "redis/advanced_data_manipulation/scan_based_iterations_for_large_datasets.md",
+              "title": "Scan Based Iterations For Large Datasets",
+              "description": "Documentation for Scan Based Iterations For Large Datasets"
+            }
+          ]
+        },
+        {
           "id": "architecture",
           "name": "Architecture",
           "icon": "Folder",
@@ -2726,6 +3767,180 @@
               "path": "redis/fundamentals/value_size_limitations_and_considerations.md",
               "title": "Value Size Limitations And Considerations",
               "description": "Documentation for Value Size Limitations And Considerations"
+            }
+          ]
+        },
+        {
+          "id": "persistance_and_durability",
+          "name": "Persistance And Durability",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "redis/persistance_and_durability/append_only_file_log_based_persistence.md",
+              "title": "Append Only File Log Based Persistence",
+              "description": "Documentation for Append Only File Log Based Persistence"
+            },
+            {
+              "path": "redis/persistance_and_durability/automatic_background_saving_configuration.md",
+              "title": "Automatic Background Saving Configuration",
+              "description": "Documentation for Automatic Background Saving Configuration"
+            },
+            {
+              "path": "redis/persistance_and_durability/backup_and_restore_procedures.md",
+              "title": "Backup And Restore Procedures",
+              "description": "Documentation for Backup And Restore Procedures"
+            },
+            {
+              "path": "redis/persistance_and_durability/data_corruption_recovery_techniques.md",
+              "title": "Data Corruption Recovery Techniques",
+              "description": "Documentation for Data Corruption Recovery Techniques"
+            },
+            {
+              "path": "redis/persistance_and_durability/disk_io_optimization_for_persistence.md",
+              "title": "Disk Io Optimization For Persistence",
+              "description": "Documentation for Disk Io Optimization For Persistence"
+            },
+            {
+              "path": "redis/persistance_and_durability/durability_vs_performance_tradeoffs.md",
+              "title": "Durability Vs Performance Tradeoffs",
+              "description": "Documentation for Durability Vs Performance Tradeoffs"
+            },
+            {
+              "path": "redis/persistance_and_durability/hybrid_persistence_configurations.md",
+              "title": "Hybrid Persistence Configurations",
+              "description": "Documentation for Hybrid Persistence Configurations"
+            },
+            {
+              "path": "redis/persistance_and_durability/persistence_performance_impacts.md",
+              "title": "Persistence Performance Impacts",
+              "description": "Documentation for Persistence Performance Impacts"
+            },
+            {
+              "path": "redis/persistance_and_durability/point_in_time_recovery_strategies.md",
+              "title": "Point In Time Recovery Strategies",
+              "description": "Documentation for Point In Time Recovery Strategies"
+            },
+            {
+              "path": "redis/persistance_and_durability/rdb_snapshot_mechanism.md",
+              "title": "Rdb Snapshot Mechanism",
+              "description": "Documentation for Rdb Snapshot Mechanism"
+            }
+          ]
+        },
+        {
+          "id": "redis_for_caching",
+          "name": "Redis For Caching",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "redis/redis_for_caching/analytics_and_reporting_caching.md",
+              "title": "Analytics And Reporting Caching",
+              "description": "Documentation for Analytics And Reporting Caching"
+            },
+            {
+              "path": "redis/redis_for_caching/cache_design_patterns_with_redis.md",
+              "title": "Cache Design Patterns With Redis",
+              "description": "Documentation for Cache Design Patterns With Redis"
+            },
+            {
+              "path": "redis/redis_for_caching/cache_hit_ratio_optimization.md",
+              "title": "Cache Hit Ratio Optimization",
+              "description": "Documentation for Cache Hit Ratio Optimization"
+            },
+            {
+              "path": "redis/redis_for_caching/cache_invalidation_strategies.md",
+              "title": "Cache Invalidation Strategies",
+              "description": "Documentation for Cache Invalidation Strategies"
+            },
+            {
+              "path": "redis/redis_for_caching/cache_stampede_prevention.md",
+              "title": "Cache Stampede Prevention",
+              "description": "Documentation for Cache Stampede Prevention"
+            },
+            {
+              "path": "redis/redis_for_caching/cache_warming_techniques.md",
+              "title": "Cache Warming Techniques",
+              "description": "Documentation for Cache Warming Techniques"
+            },
+            {
+              "path": "redis/redis_for_caching/implementing_lru_lfu_cache_policies.md",
+              "title": "Implementing Lru Lfu Cache Policies",
+              "description": "Documentation for Implementing Lru Lfu Cache Policies"
+            },
+            {
+              "path": "redis/redis_for_caching/multi_level_caching_architectures.md",
+              "title": "Multi Level Caching Architectures",
+              "description": "Documentation for Multi Level Caching Architectures"
+            },
+            {
+              "path": "redis/redis_for_caching/partial_caching_strategies.md",
+              "title": "Partial Caching Strategies",
+              "description": "Documentation for Partial Caching Strategies"
+            },
+            {
+              "path": "redis/redis_for_caching/write_through_and_write_behind_caching.md",
+              "title": "Write Through And Write Behind Caching",
+              "description": "Documentation for Write Through And Write Behind Caching"
+            }
+          ]
+        },
+        {
+          "id": "redis_pub_sub",
+          "name": "Redis Pub Sub",
+          "icon": "Folder",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "redis/redis_pub_sub/channel_based_messaging.md",
+              "title": "Channel Based Messaging",
+              "description": "Documentation for Channel Based Messaging"
+            },
+            {
+              "path": "redis/redis_pub_sub/combining_pub_sub_with_streams.md",
+              "title": "Combining Pub Sub With Streams",
+              "description": "Documentation for Combining Pub Sub With Streams"
+            },
+            {
+              "path": "redis/redis_pub_sub/fan_out_messaging_patterns.md",
+              "title": "Fan Out Messaging Patterns",
+              "description": "Documentation for Fan Out Messaging Patterns"
+            },
+            {
+              "path": "redis/redis_pub_sub/handling_high_volume_pub_sub.md",
+              "title": "Handling High Volume Pub Sub",
+              "description": "Documentation for Handling High Volume Pub Sub"
+            },
+            {
+              "path": "redis/redis_pub_sub/pattern_based_subscriptions.md",
+              "title": "Pattern Based Subscriptions",
+              "description": "Documentation for Pattern Based Subscriptions"
+            },
+            {
+              "path": "redis/redis_pub_sub/publish_subscribe_pattern_implementation.md",
+              "title": "Publish Subscribe Pattern Implementation",
+              "description": "Documentation for Publish Subscribe Pattern Implementation"
+            },
+            {
+              "path": "redis/redis_pub_sub/pub_sub_monitoring_and_debugging.md",
+              "title": "Pub Sub Monitoring And Debugging",
+              "description": "Documentation for Pub Sub Monitoring And Debugging"
+            },
+            {
+              "path": "redis/redis_pub_sub/pub_sub_use_cases_and_anti_patterns.md",
+              "title": "Pub Sub Use Cases And Anti Patterns",
+              "description": "Documentation for Pub Sub Use Cases And Anti Patterns"
+            },
+            {
+              "path": "redis/redis_pub_sub/reliable_delivery_patterns_with_pub_sub.md",
+              "title": "Reliable Delivery Patterns With Pub Sub",
+              "description": "Documentation for Reliable Delivery Patterns With Pub Sub"
+            },
+            {
+              "path": "redis/redis_pub_sub/scaling_pub_sub_workloads.md",
+              "title": "Scaling Pub Sub Workloads",
+              "description": "Documentation for Scaling Pub Sub Workloads"
             }
           ]
         }
