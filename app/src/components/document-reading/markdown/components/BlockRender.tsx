@@ -4,6 +4,7 @@ import React from "react";
  * BlockquoteRender Component
  *
  * Renders blockquote elements with styled left border and consistent formatting.
+ * Uses theme colors for a more cohesive and impactful visual appearance.
  */
 const BlockquoteRender: React.FC<
   React.ComponentPropsWithoutRef<"blockquote">
@@ -11,7 +12,7 @@ const BlockquoteRender: React.FC<
   return (
     <blockquote
       {...props}
-      className="border-l-2 border-gray-600 pl-4 my-6 py-1 text-gray-400 italic"
+      className="border-l-4 border-primary/20 pl-4 my-6 py-2 italic text-foreground rounded-2xl bg-card"
     />
   );
 };
