@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import HomePage from "@/components/home/HomePage";
 import DocumentPreview from "@/components/card/preview/DocumentPreview";
-import ErrorBoundary from "@/components/error/ErrorBoundary";
+import ErrorBoundary from "@/components/utils/error/ErrorBoundary";
 
 /**
  * Application Router Configuration
