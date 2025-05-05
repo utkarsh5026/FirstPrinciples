@@ -44,7 +44,7 @@ const FileTree: React.FC<FileTreeProps> = ({
   const isExpanded = expandedCategories.has(category.id);
   const hasContent =
     (category.files && category.files.length > 0) ||
-    (category.subcategories && category.subcategories.length > 0);
+    (category.categories && category.categories.length > 0);
 
   if (!hasContent) return null;
   const CategoryIcon = getIconForTech(category.name);
@@ -65,8 +65,8 @@ const FileTree: React.FC<FileTreeProps> = ({
       });
     }
 
-    if (cat.subcategories) {
-      cat.subcategories.forEach(countFiles);
+    if (cat.categories) {
+      cat.categories.forEach(countFiles);
     }
   };
 
@@ -150,7 +150,7 @@ const FileTree: React.FC<FileTreeProps> = ({
       {/* Subcategories and files - only shown when expanded */}
       <CollapsibleContent>
         <div className="pl-4 overflow-hidden">
-          {category.subcategories?.map((subcategory) => (
+          {category.categories?.map((subcategory) => (
             <FileTree
               key={subcategory.id}
               category={subcategory}

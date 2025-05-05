@@ -1,9 +1,21 @@
 import { withCache } from "@/utils/functions/cache";
 import matter from "gray-matter";
 import { Buffer } from "buffer";
+import { fromSnakeToTitleCase } from "@/utils/string";
 
-// Make Buffer globally available
 globalThis.Buffer = Buffer;
+
+/**
+ * 🔍 Convert File Path to File Name
+ *
+ * Converts a file path into a file name by removing the extension and
+ * converting the path to title case.
+ *
+ */
+export function fromFilePathToFileName(filePath: string): string {
+  const cleaned = filePath.replace(".md", "");
+  return fromSnakeToTitleCase(cleaned.split("/").pop() ?? "");
+}
 
 /**
  * 📄 Markdown Frontmatter
@@ -42,7 +54,7 @@ export type Category = {
   id: string;
   name: string;
   icon?: string;
-  subcategories?: Category[];
+  categories?: Category[];
   files?: FileMetadata[];
 };
 
@@ -77,6 +89,31 @@ export type FileMetadata = {
  */
 const fetchContentIndex = async (): Promise<ContentIndex> => {
   try {
+    /**
+     * 🔄 Add Title to Files
+     *
+     * Adds a title to each file in the content index.
+     */
+    const addTitleToFiles = (files: FileMetadata[]): FileMetadata[] => {
+      return files.map((file) => ({
+        ...file,
+        title: fromFilePathToFileName(file.path),
+      }));
+    };
+
+    /**
+     * 🔄 Traverse Categories
+     *
+     * Recursively traverses through all categories and adds titles to files.
+     */
+    const traverseCategories = (categories: Category[]): Category[] => {
+      return categories.map((category) => ({
+        ...category,
+        files: addTitleToFiles(category.files || []),
+        categories: traverseCategories(category.categories || []),
+      }));
+    };
+
     const baseUrl = getBaseContentUrl();
     const indexFileName = "index.json";
     const response = await fetch(`${baseUrl}${indexFileName}`);
@@ -86,8 +123,10 @@ const fetchContentIndex = async (): Promise<ContentIndex> => {
       throw new Error("Failed to load content index");
     }
 
-    const data = await response.json();
-    return data as ContentIndex;
+    const data = (await response.json()) as ContentIndex;
+    console.log("Content index loaded:", data);
+    data.categories = traverseCategories(data.categories);
+    return data;
   } catch (error) {
     console.error("Error loading content index:", error);
     return { categories: [], files: [] };
@@ -141,16 +180,12 @@ const loadMarkdownContent = async (
   filepath: string
 ): Promise<ParsedMarkdown | null> => {
   try {
-    // Get file metadata to enhance frontmatter if available
     const fileMetadata = await findFileMetadata(filepath);
     const baseUrl = getBaseContentUrl();
-
-    // Log the full URL being requested (helps with debugging)
     const fullUrl = `${baseUrl}${filepath}`;
 
     console.log("Loading markdown content from:", fullUrl);
 
-    // Fetch the markdown file
     const response = await fetch(fullUrl);
     if (!response.ok) {
       console.error(
@@ -190,21 +225,19 @@ const loadMarkdownContent = async (
 const findFileMetadata = async (path: string): Promise<FileMetadata | null> => {
   const index = await loadContentIndex();
 
-  // Check root files
   const rootFile = index.files.find((file) => file.path === path);
   if (rootFile) {
     return rootFile;
   }
 
-  // Search in categories recursively
   const searchInCategory = (category: Category): FileMetadata | null => {
     if (category.files) {
       const foundFile = category.files.find((file) => file.path === path);
       if (foundFile) return foundFile;
     }
 
-    if (category.subcategories) {
-      for (const subcategory of category.subcategories) {
+    if (category.categories) {
+      for (const subcategory of category.categories) {
         const result = searchInCategory(subcategory);
         if (result) {
           return result;
@@ -235,13 +268,11 @@ const getFileBreadcrumbs = async (
 ): Promise<{ id: string; name: string; icon?: string }[]> => {
   const breadcrumbs: { id: string; name: string; icon?: string }[] = [];
 
-  // Check if it's a root file
   const rootFile = contentIndex.files.find((file) => file.path === path);
   if (rootFile) {
-    return breadcrumbs; // Empty breadcrumbs for root files
+    return breadcrumbs;
   }
 
-  // Helper function to search categories recursively
   const searchInCategory = (
     category: Category,
     currentPath: { id: string; name: string; icon?: string }[] = []
@@ -255,15 +286,13 @@ const getFileBreadcrumbs = async (
       },
     ];
 
-    // Check if file is directly in this category
     if (category.files?.some((file) => file.path === path)) {
       breadcrumbs.push(...newPath);
       return true;
     }
 
-    // Search subcategories
-    if (category.subcategories) {
-      for (const subcategory of category.subcategories) {
+    if (category.categories) {
+      for (const subcategory of category.categories) {
         if (searchInCategory(subcategory, newPath)) {
           return true;
         }

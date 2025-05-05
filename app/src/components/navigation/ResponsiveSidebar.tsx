@@ -13,7 +13,6 @@ import SidebarContent from "./SidebarContent";
 import { BookOpen } from "lucide-react";
 import Header from "./Header";
 
-// Types for our component props
 interface ResponsiveSidebarProps {
   onSelectFile: (filepath: string) => void;
   currentFilePath?: string;
@@ -113,7 +112,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     loadCategories();
   }, [currentFilePath, contentIndex, getFileBreadcrumbs]);
 
-  // Toggle category expansion
   const handleToggleExpand = (categoryId: string, isExpanded: boolean) => {
     const newExpandedCategories = new Set(expandedCategories);
     if (isExpanded) {
@@ -124,24 +122,21 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     setExpandedCategories(newExpandedCategories);
   };
 
-  // Handle file selection
   const handleSelectFile = (filepath: string) => {
     onSelectFile(filepath);
     setSidebarOpen(false);
   };
 
-  // Handle Home navigation
   const handleHomeClick = () => {
     onNavigateHome();
     setSidebarOpen(false);
   };
 
-  // Get total count of files (including nested ones)
   const getTotalFiles = () => {
     const countFiles = (category: Category): number => {
       let count = category.files?.length ?? 0;
-      if (category.subcategories) {
-        category.subcategories.forEach((sub) => {
+      if (category.categories) {
+        category.categories.forEach((sub) => {
           count += countFiles(sub);
         });
       }
@@ -154,7 +149,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     );
   };
 
-  // Get read file count
+  console.log(readFilePaths, categories);
   const getReadFileCount = () => {
     return readFilePaths.size;
   };

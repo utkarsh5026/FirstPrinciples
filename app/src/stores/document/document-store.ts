@@ -195,8 +195,8 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
             allFiles.push(...category.files);
           }
 
-          if (category.subcategories) {
-            collectFilesFromCategories(category.subcategories);
+          if (category.categories) {
+            collectFilesFromCategories(category.categories);
           }
         });
       };
