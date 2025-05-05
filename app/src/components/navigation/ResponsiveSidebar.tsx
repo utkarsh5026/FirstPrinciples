@@ -5,7 +5,6 @@ import {
   SheetFooter,
   SheetHeader,
 } from "@/components/ui/sheet";
-import type { Category } from "@/services/document";
 import { useReadingHistory, useReadingList, useDocumentList } from "@/hooks";
 import SidebarContent from "./SidebarContent";
 import { BookOpen } from "lucide-react";
@@ -26,13 +25,11 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   sidebarOpen,
   setSidebarOpen,
 }) => {
-  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set()
   );
   const [showDescriptions, setShowDescriptions] = useState(false);
-  const [showLegend, setShowLegend] = useState(false);
 
   const { history } = useReadingHistory();
   const { todoList } = useReadingList();
@@ -72,7 +69,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     const loadCategories = async () => {
       try {
         setLoading(true);
-        setCategories(contentIndex.categories || []);
 
         if (currentFilePath) {
           const breadcrumbs = await getFileBreadcrumbs(currentFilePath);
@@ -133,8 +129,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
           <Header
             showDescriptions={showDescriptions}
             setShowDescriptions={setShowDescriptions}
-            showLegend={showLegend}
-            setShowLegend={setShowLegend}
             setSidebarOpen={setSidebarOpen}
           />
         </SheetHeader>
@@ -148,7 +142,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
           currentFilePath={currentFilePath}
           expandedCategories={expandedCategories}
           handleToggleExpand={handleToggleExpand}
-          categories={categories}
+          categories={contentIndex.categories}
           loading={loading}
           showDescriptions={showDescriptions}
           handleHomeClick={handleHomeClick}

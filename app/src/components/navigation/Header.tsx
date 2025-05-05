@@ -2,22 +2,20 @@ import { BookOpen, X, Info, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import Legend from "./Legend";
+import { useState } from "react";
 
 interface HeaderProps {
   showDescriptions: boolean;
   setShowDescriptions: (show: boolean) => void;
-  showLegend: boolean;
-  setShowLegend: (show: boolean) => void;
   setSidebarOpen: (open: boolean) => void;
 }
 
 const Header = ({
   showDescriptions,
   setShowDescriptions,
-  showLegend,
-  setShowLegend,
   setSidebarOpen,
 }: HeaderProps) => {
+  const [showLegend, setShowLegend] = useState(false);
   return (
     <div className="bg-card border-b border-border flex-shrink-0 font-cascadia-code z-10">
       <div className="px-3 py-3 flex items-center justify-between">
