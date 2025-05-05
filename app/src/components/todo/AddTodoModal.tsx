@@ -109,8 +109,8 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
     // Collect all files from this category and its subcategories
     const collectFiles = (cat: Category): FileMetadata[] => {
       const files = [...(cat.files || [])];
-      if (cat.subcategories) {
-        cat.subcategories.forEach((subcat) => {
+      if (cat.categories) {
+        cat.categories.forEach((subcat) => {
           files.push(...collectFiles(subcat));
         });
       }
@@ -147,8 +147,8 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
   const isCategorySelected = (category: Category): boolean | "partial" => {
     const collectFiles = (cat: Category): FileMetadata[] => {
       const files = [...(cat.files || [])];
-      if (cat.subcategories) {
-        cat.subcategories.forEach((subcat) => {
+      if (cat.categories) {
+        cat.categories.forEach((subcat) => {
           files.push(...collectFiles(subcat));
         });
       }
@@ -185,7 +185,7 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
     const selectionState = isCategorySelected(category);
     const hasContent =
       (category.files && category.files.length > 0) ||
-      (category.subcategories && category.subcategories.length > 0);
+      (category.categories && category.categories.length > 0);
 
     if (!hasContent) return null;
 
@@ -241,7 +241,7 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
         {isExpanded && (
           <div className="pl-4 overflow-hidden">
             {/* Render subcategories */}
-            {category.subcategories?.map((subcategory) =>
+            {category.categories?.map((subcategory) =>
               renderCategory(subcategory, depth + 1)
             )}
 
