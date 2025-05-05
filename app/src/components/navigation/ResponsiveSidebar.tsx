@@ -102,6 +102,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
             showDescriptions={showDescriptions}
             setShowDescriptions={setShowDescriptions}
             setSidebarOpen={setSidebarOpen}
+            handleHomeClick={handleHomeClick}
           />
         </SheetHeader>
         <SidebarContent
@@ -117,7 +118,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
           categories={contentIndex.categories}
           loading={loading}
           showDescriptions={showDescriptions}
-          handleHomeClick={handleHomeClick}
           currentCategory={currentOpen}
           currentCategoryExpanded={currentCategoryExpanded}
           setCurrentCategoryExpanded={setCurrentCategoryExpanded}

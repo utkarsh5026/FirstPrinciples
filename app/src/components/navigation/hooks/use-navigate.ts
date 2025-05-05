@@ -16,12 +16,21 @@ export type CurrentCategory = {
   files: NavigationFileItem[];
 };
 
+/**
+ * 🧭 Navigation Hook
+ *
+ * Helps you find your way around documents! Keeps track of what you've read,
+ * what's on your to-do list, and what you're currently looking at.
+ */
 const useNavigation = (currentFilePath?: string) => {
   const { history } = useReadingHistory();
   const { todoList } = useReadingList();
   const { fileMap, contentIndex } = useDocumentList();
   const [currentOpen, setCurrentOpen] = useState<CurrentCategory | null>(null);
 
+  /**
+   * 📚 Tracks documents you've already read
+   */
   const readFilePaths = useMemo(() => {
     const readPaths = new Set<string>();
     history.forEach(({ path }) => {
@@ -31,6 +40,9 @@ const useNavigation = (currentFilePath?: string) => {
     return readPaths;
   }, [history]);
 
+  /**
+   * 📋 Organizes your reading tasks
+   */
   const { todo, completed } = useMemo(() => {
     const todoPaths = new Set(
       todoList.filter(({ completed }) => !completed).map(({ path }) => path)
@@ -43,6 +55,9 @@ const useNavigation = (currentFilePath?: string) => {
     return { todo: todoPaths, completed: completedPaths };
   }, [todoList]);
 
+  /**
+   * 🔍 Finds and highlights your current location
+   */
   useEffect(() => {
     if (!currentFilePath || !contentIndex.categories) {
       return;

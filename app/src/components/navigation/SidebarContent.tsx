@@ -1,13 +1,10 @@
-import { LayoutDashboard } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { cn } from "@/lib/utils";
 import { Category } from "@/services/document/document-loader";
 import FileTree from "./FileTree";
-import CurrentlyReading from "./CurrentlyReading"; // Import the new component
+import CurrentlyReading from "./CurrentlyReading";
 import type { CurrentCategory } from "./hooks/use-navigate";
 
 interface SidebarContentProps {
-  handleHomeClick: () => void;
   categories: Category[];
   loading: boolean;
   onFileSelect: (filePath: string) => void;
@@ -26,7 +23,6 @@ interface SidebarContentProps {
 }
 
 const SidebarContent: React.FC<SidebarContentProps> = ({
-  handleHomeClick,
   categories,
   loading,
   onFileSelect,
@@ -45,21 +41,6 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
       {/* Main scrollable content */}
       <ScrollArea className="flex-1 px-2 overflow-auto text-xs">
         <div className="pb-4 pt-2">
-          {/* Home navigation button */}
-          <button
-            className={cn(
-              "flex items-center w-full rounded-md text-sm transition-colors py-2 px-2 mb-3",
-              "hover:bg-primary/10 hover:text-foreground",
-              "bg-primary/5 font-medium"
-            )}
-            onClick={handleHomeClick}
-          >
-            <div className="flex-shrink-0 mr-2 text-primary">
-              <LayoutDashboard size={16} />
-            </div>
-            <span>Home</span>
-          </button>
-
           {/* Currently Reading Section - Add this */}
           {!loading && currentCategory && (
             <CurrentlyReading
@@ -87,12 +68,6 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
               {/* Categories section */}
               {categories.length > 0 && (
                 <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <h3 className="text-xs uppercase tracking-wider text-muted-foreground px-2">
-                      Categories
-                    </h3>
-                  </div>
-
                   <div>
                     {categories.map((category) => (
                       <FileTree

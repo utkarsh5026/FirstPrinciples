@@ -1,29 +1,39 @@
-import { BookOpen, X, Info, Eye, EyeOff } from "lucide-react";
+import { X, Info, Eye, EyeOff, HomeIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import Legend from "./Legend";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface HeaderProps {
   showDescriptions: boolean;
   setShowDescriptions: (show: boolean) => void;
   setSidebarOpen: (open: boolean) => void;
+  handleHomeClick: () => void;
 }
 
 const Header = ({
   showDescriptions,
   setShowDescriptions,
   setSidebarOpen,
+  handleHomeClick,
 }: HeaderProps) => {
   const [showLegend, setShowLegend] = useState(false);
   return (
     <div className="bg-card border-b border-border flex-shrink-0 font-cascadia-code z-10">
       <div className="px-3 py-3 flex items-center justify-between">
-        <h3 className="text-sm font-medium flex items-center text-foreground">
-          <BookOpen size={16} className="mr-2 text-primary" />
-          <span className="hidden sm:inline">Documents</span>
-          <span className="inline sm:hidden">Docs</span>
-        </h3>
+        <button
+          className={cn(
+            "flex items-center rounded-md text-sm cursor-pointer",
+            "font-medium"
+          )}
+          onClick={handleHomeClick}
+        >
+          <div className="flex-shrink-0 mr-2 text-primary">
+            <HomeIcon size={16} />
+          </div>
+          <span>Home</span>
+        </button>
 
         <div className="flex items-center gap-2">
           {/* Description toggle with icon */}
