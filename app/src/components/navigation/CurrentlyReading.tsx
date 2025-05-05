@@ -35,20 +35,17 @@ const CurrentlyReading: React.FC<CurrentlyReadingProps> = ({
   const CategoryIcon = getIconForTech(root);
 
   return (
-    <div className="mb-4 mt-2">
-      <div className="text-xs uppercase tracking-wider text-muted-foreground px-2 mb-1">
-        Currently Reading
-      </div>
+    <div className="mb-6 mt-2 px-1">
       <Collapsible
         open={expanded}
         onOpenChange={setExpanded}
-        className="border border-border/60 rounded-md overflow-hidden bg-secondary/10"
+        className="border border-border/40 rounded-2xl overflow-hidden bg-card/50 shadow-md backdrop-blur-[2px]"
       >
         <CollapsibleTrigger className="w-full">
           <div
             className={cn(
-              "group flex items-center w-full rounded-t-md text-sm transition-colors py-2 px-3",
-              "bg-primary/10 text-primary font-medium"
+              "group flex items-center w-full rounded-t-xl text-sm transition-colors py-2.5 px-3",
+              "bg-primary/10 text-primary font-medium backdrop-blur-[2px]"
             )}
           >
             <div className="mr-1.5 text-primary flex-shrink-0">
@@ -60,13 +57,13 @@ const CurrentlyReading: React.FC<CurrentlyReadingProps> = ({
             </div>
             <CategoryIcon size={16} className="mr-2 text-primary" />
             <span className="truncate">{name}</span>
-            <span className="ml-auto text-xs text-muted-foreground">
+            <span className="ml-auto text-xs bg-primary/20 px-2 py-0.5 rounded-full">
               {files.length} {files.length === 1 ? "file" : "files"}
             </span>
           </div>
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <div className="p-1 max-h-64 overflow-y-auto scrollbar-hide">
+          <div className="p-2 max-h-72 overflow-y-auto scrollbar-hide">
             {files.map((file, index) => {
               const isCurrentFile = file.path === currentFilePath;
               const { isTodo, isCompleted, isRead, depth, path } = file;
