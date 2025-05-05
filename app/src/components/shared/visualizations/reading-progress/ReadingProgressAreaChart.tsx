@@ -24,8 +24,8 @@ import {
   ChartTooltip,
   ChartLegend,
 } from "@/components/ui/chart";
-import ChartContainer from "@/components/chart/ChartContainer";
-import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
+import ChartContainer from "@/components/shared/chart/ChartContainer";
+import useChartTooltip from "@/components/shared/chart/tooltip/use-chart-tooltip";
 
 interface ProgressOverTimeProps {
   monthlyData: MonthlyDocumentCounts["months"];

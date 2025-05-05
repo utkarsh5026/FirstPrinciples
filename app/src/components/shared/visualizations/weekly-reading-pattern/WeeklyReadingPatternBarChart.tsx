@@ -23,11 +23,11 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { generateThemeColors } from "@/utils/colors";
-import ChartContainer from "@/components/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/ChartContainer";
 import { ChartContainer as ChartContainerUI } from "@/components/ui/chart";
 import type { WeeklyActivity } from "@/services/analytics/activity-analyzer";
 import { useWeekilyActivityMetrcis } from "@/hooks";
-import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
+import useChartTooltip from "@/components/shared/chart/tooltip/use-chart-tooltip";
 
 interface WeeklyReadingPatternBarChartProps {
   weeklyActivity: WeeklyActivity[];

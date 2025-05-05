@@ -14,10 +14,10 @@ import {
   ChartContainer as ChartContainerUI,
   ChartTooltip,
 } from "@/components/ui/chart";
-import ChartContainer from "@/components/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/ChartContainer";
 import { BarChart2, BookOpen, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
-import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
+import useChartTooltip from "@/components/shared/chart/tooltip/use-chart-tooltip";
 import getIconForTech from "@/components/shared/icons";
 
 type CategoryBarData = {

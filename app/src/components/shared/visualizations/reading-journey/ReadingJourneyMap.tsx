@@ -24,12 +24,12 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { format } from "date-fns";
 import CardContainer from "@/components/shared/container/CardContainer";
-import ChartContainer from "@/components/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/ChartContainer";
 import {
   ChartContainer as ChartContainerUI,
   ChartTooltip,
 } from "@/components/ui/chart";
-import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
+import useChartTooltip from "@/components/shared/chart/tooltip/use-chart-tooltip";
 import { cn } from "@/lib/utils";
 import { useReadingHistory, useDocumentList } from "@/hooks";
 interface ReadingJourneyMapProps {

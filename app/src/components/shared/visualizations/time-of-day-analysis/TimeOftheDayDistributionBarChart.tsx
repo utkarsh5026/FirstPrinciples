@@ -1,6 +1,6 @@
 import { useTheme } from "@/hooks/ui/use-theme";
 import { Bar, BarChart, XAxis, YAxis, Cell } from "recharts";
-import ChartContainer from "@/components/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/ChartContainer";
 import {
   ChartContainer as ChartContainerUI,
   ChartTooltip,
@@ -8,7 +8,7 @@ import {
 import { useMemo } from "react";
 import { generateThemeColors } from "@/utils/colors";
 import { Book, TrendingUp } from "lucide-react";
-import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
+import useChartTooltip from "@/components/shared/chart/tooltip/use-chart-tooltip";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { cn } from "@/lib/utils";
 

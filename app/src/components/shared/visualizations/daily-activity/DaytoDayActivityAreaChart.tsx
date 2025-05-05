@@ -8,7 +8,7 @@ import {
   CartesianGrid,
   ReferenceLine,
 } from "recharts";
-import ChartContainer from "@/components/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/ChartContainer";
 import {
   ChartContainer as ChartContainerUI,
   ChartTooltip,
@@ -18,7 +18,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "@/hooks/ui/use-theme";
 import { cn } from "@/lib/utils";
 import useMobile from "@/hooks/device/use-mobile";
-import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
+import useChartTooltip from "@/components/shared/chart/tooltip/use-chart-tooltip";
 
 interface DaytoDayActivityAreaChartProps {
   data: {

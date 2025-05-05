@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// src/hooks/chart/use-chart-tooltip.ts
 import { ReactNode } from "react";
 import { LucideIcon } from "lucide-react";
 import ChartTooltip, {
   TooltipSectionData,
   TooltipFooterData,
-} from "@/components/chart/tooltip/ChartTooltip";
+} from "@/components/shared/chart/tooltip/ChartTooltip";
 
-// Type for the payload that comes from Recharts tooltip
 export type ChartTooltipPayload = {
   value?: any;
   name?: string;
@@ -68,7 +66,7 @@ export function useChartTooltip<T = any>(options: UseChartTooltipOptions<T>) {
   return function renderTooltip(props: any) {
     const { active, payload } = props;
 
-    if (!active || !payload || !payload.length) {
+    if (!active || !payload?.length) {
       return null;
     }
 

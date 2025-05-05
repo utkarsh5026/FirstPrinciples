@@ -11,12 +11,12 @@ import {
   ChartContainer as ChartContainerUI,
   ChartTooltip,
 } from "@/components/ui/chart";
-import ChartContainer from "@/components/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/ChartContainer";
 import { Clock, Clipboard, Book } from "lucide-react";
 import { motion } from "framer-motion";
 import type { HourlyActivity } from "@/services/analytics/activity-analyzer";
 import { fromSnakeToTitleCase } from "@/utils/string";
-import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
+import useChartTooltip from "@/components/shared/chart/tooltip/use-chart-tooltip";
 
 type RenderHourData = HourlyActivity & {
   period: string;

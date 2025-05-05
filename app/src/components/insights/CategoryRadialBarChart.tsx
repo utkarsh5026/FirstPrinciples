@@ -14,7 +14,7 @@ import {
   ChartTooltipContent,
   ChartContainer as ChartContainerBase,
 } from "@/components/ui/chart";
-import ChartContainer from "../chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/ChartContainer";
 
 /**
  * Enhanced Radial Bar Chart with improved visuals and theme integration
