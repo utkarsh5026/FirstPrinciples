@@ -3,12 +3,10 @@
     {
       "id": "css",
       "name": "Css",
-      "icon": "Folder",
       "subcategories": [
         {
           "id": "advanced_styling",
           "name": "Advanced Styling",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -56,7 +54,6 @@
         {
           "id": "css_architecture",
           "name": "Css Architecture",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -104,7 +101,6 @@
         {
           "id": "fundamental",
           "name": "Fundamental",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -157,7 +153,6 @@
         {
           "id": "layout",
           "name": "Layout",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -205,7 +200,6 @@
         {
           "id": "performance_optimization",
           "name": "Performance Optimization",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -223,7 +217,6 @@
         {
           "id": "visual_styles",
           "name": "Visual Styles",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -274,12 +267,10 @@
     {
       "id": "design_principles",
       "name": "Design Principles",
-      "icon": "Folder",
       "subcategories": [
         {
           "id": "advanced",
           "name": "Advanced",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -307,7 +298,6 @@
         {
           "id": "beginner",
           "name": "Beginner",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -350,7 +340,6 @@
         {
           "id": "intermediate",
           "name": "Intermediate",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -383,7 +372,6 @@
         {
           "id": "intro",
           "name": "Intro",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -399,17 +387,14 @@
     {
       "id": "docker",
       "name": "Docker",
-      "icon": "Folder",
       "subcategories": [
         {
           "id": "containers",
           "name": "Containers",
-          "icon": "Folder",
           "subcategories": [
             {
               "id": "basics",
               "name": "Basics",
-              "icon": "Folder",
               "subcategories": [],
               "files": [
                 {
@@ -427,7 +412,6 @@
             {
               "id": "internals",
               "name": "Internals",
-              "icon": "Folder",
               "subcategories": [],
               "files": [
                 {
@@ -440,7 +424,6 @@
             {
               "id": "logging",
               "name": "Logging",
-              "icon": "Folder",
               "subcategories": [],
               "files": [
                 {
@@ -453,7 +436,6 @@
             {
               "id": "monitor",
               "name": "Monitor",
-              "icon": "Folder",
               "subcategories": [],
               "files": [
                 {
@@ -474,12 +456,10 @@
         {
           "id": "images",
           "name": "Images",
-          "icon": "Folder",
           "subcategories": [
             {
               "id": "basics",
               "name": "Basics",
-              "icon": "Folder",
               "subcategories": [],
               "files": [
                 {
@@ -497,7 +477,6 @@
             {
               "id": "layers",
               "name": "Layers",
-              "icon": "Folder",
               "subcategories": [],
               "files": [
                 {
@@ -525,7 +504,6 @@
             {
               "id": "volumes",
               "name": "Volumes",
-              "icon": "Folder",
               "subcategories": [],
               "files": [
                 {
@@ -559,12 +537,10 @@
     {
       "id": "git",
       "name": "Git",
-      "icon": "Folder",
       "subcategories": [
         {
           "id": "basics",
           "name": "Basics",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -592,7 +568,6 @@
         {
           "id": "branch",
           "name": "Branch",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -675,7 +650,6 @@
         {
           "id": "internals",
           "name": "Internals",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -743,7 +717,6 @@
         {
           "id": "merge",
           "name": "Merge",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -766,7 +739,6 @@
         {
           "id": "objects",
           "name": "Objects",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -819,7 +791,6 @@
         {
           "id": "rebase",
           "name": "Rebase",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -845,12 +816,10 @@
     {
       "id": "go",
       "name": "Go",
-      "icon": "Folder",
       "subcategories": [
         {
           "id": "advanced_channel_patterns",
           "name": "Advanced Channel Patterns",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -908,7 +877,6 @@
         {
           "id": "advanced_concurrency_patterns",
           "name": "Advanced Concurrency Patterns",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -966,7 +934,6 @@
         {
           "id": "channels",
           "name": "Channels",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1024,7 +991,6 @@
         {
           "id": "concurrency_foundations",
           "name": "Concurrency Foundations",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1077,7 +1043,6 @@
         {
           "id": "concurrency_safety",
           "name": "Concurrency Safety",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1135,7 +1100,6 @@
         {
           "id": "context_package_deep_dive",
           "name": "Context Package Deep Dive",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1193,7 +1157,6 @@
         {
           "id": "core",
           "name": "Core",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1246,7 +1209,6 @@
         {
           "id": "fundamentals",
           "name": "Fundamentals",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1294,7 +1256,6 @@
         {
           "id": "goroutine_patterns",
           "name": "Goroutine Patterns",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1352,7 +1313,6 @@
         {
           "id": "go_scheduler_internals",
           "name": "Go Scheduler Internals",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1410,7 +1370,6 @@
         {
           "id": "memory_model",
           "name": "Memory Model",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1468,7 +1427,6 @@
         {
           "id": "select_statement_patterns",
           "name": "Select Statement Patterns",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1526,7 +1484,6 @@
         {
           "id": "standard_library",
           "name": "Standard Library",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1579,7 +1536,6 @@
         {
           "id": "structured_concurrency",
           "name": "Structured Concurrency",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1637,7 +1593,6 @@
         {
           "id": "synchronization_performance",
           "name": "Synchronization Performance",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1695,7 +1650,6 @@
         {
           "id": "synchronization_primitives",
           "name": "Synchronization Primitives",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1756,12 +1710,10 @@
     {
       "id": "javascript",
       "name": "Javascript",
-      "icon": "Code",
       "subcategories": [
         {
           "id": "advanced_dom_patterns",
           "name": "Advanced Dom Patterns",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1814,7 +1766,6 @@
         {
           "id": "advanced_event_handling",
           "name": "Advanced Event Handling",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -1870,9 +1821,70 @@
           ]
         },
         {
+          "id": "advanced_javascript_patterns",
+          "name": "Advanced Javascript Patterns",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "javascript/advanced_javascript_patterns/chain_of_responsibility_pattern.md",
+              "title": "Chain Of Responsibility Pattern",
+              "description": "Documentation for Chain Of Responsibility Pattern"
+            },
+            {
+              "path": "javascript/advanced_javascript_patterns/command_pattern_for_action_encapsulation.md",
+              "title": "Command Pattern For Action Encapsulation",
+              "description": "Documentation for Command Pattern For Action Encapsulation"
+            },
+            {
+              "path": "javascript/advanced_javascript_patterns/decorator_pattern_in_javascript.md",
+              "title": "Decorator Pattern In Javascript",
+              "description": "Documentation for Decorator Pattern In Javascript"
+            },
+            {
+              "path": "javascript/advanced_javascript_patterns/factory_pattern_for_object_creation.md",
+              "title": "Factory Pattern For Object Creation",
+              "description": "Documentation for Factory Pattern For Object Creation"
+            },
+            {
+              "path": "javascript/advanced_javascript_patterns/mediator_pattern_for_component_communication.md",
+              "title": "Mediator Pattern For Component Communication",
+              "description": "Documentation for Mediator Pattern For Component Communication"
+            },
+            {
+              "path": "javascript/advanced_javascript_patterns/module_patterns.md",
+              "title": "Module Patterns",
+              "description": "Documentation for Module Patterns"
+            },
+            {
+              "path": "javascript/advanced_javascript_patterns/observer_pattern_for_event_handling.md",
+              "title": "Observer Pattern For Event Handling",
+              "description": "Documentation for Observer Pattern For Event Handling"
+            },
+            {
+              "path": "javascript/advanced_javascript_patterns/proxy_pattern_and_es6_proxy_objects.md",
+              "title": "Proxy Pattern And Es6 Proxy Objects",
+              "description": "Documentation for Proxy Pattern And Es6 Proxy Objects"
+            },
+            {
+              "path": "javascript/advanced_javascript_patterns/revealing_module_pattern.md",
+              "title": "Revealing Module Pattern",
+              "description": "Documentation for Revealing Module Pattern"
+            },
+            {
+              "path": "javascript/advanced_javascript_patterns/singleton_pattern_implementation.md",
+              "title": "Singleton Pattern Implementation",
+              "description": "Documentation for Singleton Pattern Implementation"
+            },
+            {
+              "path": "javascript/advanced_javascript_patterns/strategy_pattern_for_algorithm_selection.md",
+              "title": "Strategy Pattern For Algorithm Selection",
+              "description": "Documentation for Strategy Pattern For Algorithm Selection"
+            }
+          ]
+        },
+        {
           "id": "asynchronous_javascript_in_the_browser",
           "name": "Asynchronous Javascript In The Browser",
-          "icon": "Code",
           "subcategories": [],
           "files": [
             {
@@ -1930,7 +1942,6 @@
         {
           "id": "browser_apis_and_web_platform",
           "name": "Browser Apis And Web Platform",
-          "icon": "ServerCrash",
           "subcategories": [],
           "files": [
             {
@@ -1998,7 +2009,6 @@
         {
           "id": "browser_compatibility",
           "name": "Browser Compatibility",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2056,7 +2066,6 @@
         {
           "id": "browser_events",
           "name": "Browser Events",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2119,7 +2128,6 @@
         {
           "id": "browser_rendering_pipeline",
           "name": "Browser Rendering Pipeline",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2177,7 +2185,6 @@
         {
           "id": "browser_security",
           "name": "Browser Security",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2235,7 +2242,6 @@
         {
           "id": "browser_storage",
           "name": "Browser Storage",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2293,7 +2299,6 @@
         {
           "id": "dom_fundamentals",
           "name": "Dom Fundamentals",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2351,7 +2356,6 @@
         {
           "id": "event_loop_implementation",
           "name": "Event Loop Implementation",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2409,7 +2413,6 @@
         {
           "id": "frontend_performance_optimization",
           "name": "Frontend Performance Optimization",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2467,7 +2470,6 @@
         {
           "id": "functions_and_scope",
           "name": "Functions And Scope",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2520,7 +2522,6 @@
         {
           "id": "javascript_engine_architecture",
           "name": "Javascript Engine Architecture",
-          "icon": "Code",
           "subcategories": [],
           "files": [
             {
@@ -2578,7 +2579,6 @@
         {
           "id": "modern_dom_manipulation",
           "name": "Modern Dom Manipulation",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2636,7 +2636,6 @@
         {
           "id": "object_oriented_javascript",
           "name": "Object Oriented Javascript",
-          "icon": "Code",
           "subcategories": [],
           "files": [
             {
@@ -2709,7 +2708,6 @@
         {
           "id": "the_this_keyword_deep_dive",
           "name": "The This Keyword Deep Dive",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2775,12 +2773,10 @@
     {
       "id": "python",
       "name": "Python",
-      "icon": "FileCode",
       "subcategories": [
         {
           "id": "concurrent_and_parallel_programming",
           "name": "Concurrent And Parallel Programming",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -2873,7 +2869,6 @@
         {
           "id": "core_python_concepts",
           "name": "Core Python Concepts",
-          "icon": "FileCode",
           "subcategories": [],
           "files": [
             {
@@ -2981,7 +2976,6 @@
         {
           "id": "data_structures_and_algorithms",
           "name": "Data Structures And Algorithms",
-          "icon": "Database",
           "subcategories": [],
           "files": [
             {
@@ -3049,7 +3043,6 @@
         {
           "id": "object_oriented_python",
           "name": "Object Oriented Python",
-          "icon": "FileCode",
           "subcategories": [],
           "files": [
             {
@@ -3157,7 +3150,6 @@
         {
           "id": "python_fundamentals",
           "name": "Python Fundamentals",
-          "icon": "FileCode",
           "subcategories": [],
           "files": [
             {
@@ -3240,7 +3232,6 @@
         {
           "id": "standard_library",
           "name": "Standard Library",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -3346,149 +3337,906 @@
     {
       "id": "react",
       "name": "React",
-      "icon": "Boxes",
       "subcategories": [
         {
-          "id": "beginner",
-          "name": "Beginner",
-          "icon": "Folder",
+          "id": "advanced_component_patterns",
+          "name": "Advanced Component Patterns",
           "subcategories": [],
           "files": [
             {
-              "path": "react/beginner/component_communication.md",
-              "title": "Component Communication",
-              "description": "Documentation for Component Communication"
+              "path": "react/advanced_component_patterns/component_inversion_control.md",
+              "title": "Component Inversion Control",
+              "description": "Documentation for Component Inversion Control"
             },
             {
-              "path": "react/beginner/component_lifecycle.md",
+              "path": "react/advanced_component_patterns/compound_components_pattern.md",
+              "title": "Compound Components Pattern",
+              "description": "Documentation for Compound Components Pattern"
+            },
+            {
+              "path": "react/advanced_component_patterns/controlled_vs_uncontrolled_component_patterns.md",
+              "title": "Controlled Vs Uncontrolled Component Patterns",
+              "description": "Documentation for Controlled Vs Uncontrolled Component Patterns"
+            },
+            {
+              "path": "react/advanced_component_patterns/higher_order_components.md",
+              "title": "Higher Order Components",
+              "description": "Documentation for Higher Order Components"
+            },
+            {
+              "path": "react/advanced_component_patterns/polymorphic_components_implementation.md",
+              "title": "Polymorphic Components Implementation",
+              "description": "Documentation for Polymorphic Components Implementation"
+            },
+            {
+              "path": "react/advanced_component_patterns/props_collection_pattern.md",
+              "title": "Props Collection Pattern",
+              "description": "Documentation for Props Collection Pattern"
+            },
+            {
+              "path": "react/advanced_component_patterns/prop_getters_pattern.md",
+              "title": "Prop Getters Pattern",
+              "description": "Documentation for Prop Getters Pattern"
+            },
+            {
+              "path": "react/advanced_component_patterns/render_props_pattern_implementation.md",
+              "title": "Render Props Pattern Implementation",
+              "description": "Documentation for Render Props Pattern Implementation"
+            },
+            {
+              "path": "react/advanced_component_patterns/state_machines_in_react_components.md",
+              "title": "State Machines In React Components",
+              "description": "Documentation for State Machines In React Components"
+            },
+            {
+              "path": "react/advanced_component_patterns/state_reducer_pattern.md",
+              "title": "State Reducer Pattern",
+              "description": "Documentation for State Reducer Pattern"
+            }
+          ]
+        },
+        {
+          "id": "advanced_hooks_and_patterns",
+          "name": "Advanced Hooks And Patterns",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/advanced_hooks_and_patterns/complex_custom_hooks_composition.md",
+              "title": "Complex Custom Hooks Composition",
+              "description": "Documentation for Complex Custom Hooks Composition"
+            },
+            {
+              "path": "react/advanced_hooks_and_patterns/context_selectors_pattern_implementation.md",
+              "title": "Context Selectors Pattern Implementation",
+              "description": "Documentation for Context Selectors Pattern Implementation"
+            },
+            {
+              "path": "react/advanced_hooks_and_patterns/hooks_dependency_management_strategies.md",
+              "title": "Hooks Dependency Management Strategies",
+              "description": "Documentation for Hooks Dependency Management Strategies"
+            },
+            {
+              "path": "react/advanced_hooks_and_patterns/reducer_patterns_with_use_reducer.md",
+              "title": "Reducer Patterns With Use Reducer",
+              "description": "Documentation for Reducer Patterns With Use Reducer"
+            },
+            {
+              "path": "react/advanced_hooks_and_patterns/use_debug_value_for_custom_hook_debugging.md",
+              "title": "Use Debug Value For Custom Hook Debugging",
+              "description": "Documentation for Use Debug Value For Custom Hook Debugging"
+            },
+            {
+              "path": "react/advanced_hooks_and_patterns/use_deferred_value_for_deferred_updates.md",
+              "title": "Use Deferred Value For Deferred Updates",
+              "description": "Documentation for Use Deferred Value For Deferred Updates"
+            },
+            {
+              "path": "react/advanced_hooks_and_patterns/use_id_for_stable_ids_in_ssr.md",
+              "title": "Use Id For Stable Ids In Ssr",
+              "description": "Documentation for Use Id For Stable Ids In Ssr"
+            },
+            {
+              "path": "react/advanced_hooks_and_patterns/use_imperative_handle_for_ref_customization.md",
+              "title": "Use Imperative Handle For Ref Customization",
+              "description": "Documentation for Use Imperative Handle For Ref Customization"
+            },
+            {
+              "path": "react/advanced_hooks_and_patterns/use_layout_effect_for_synchronous_effects.md",
+              "title": "Use Layout Effect For Synchronous Effects",
+              "description": "Documentation for Use Layout Effect For Synchronous Effects"
+            },
+            {
+              "path": "react/advanced_hooks_and_patterns/use_transition_for_non_urgent_updates.md",
+              "title": "Use Transition For Non Urgent Updates",
+              "description": "Documentation for Use Transition For Non Urgent Updates"
+            }
+          ]
+        },
+        {
+          "id": "advanced_rendering_optimization",
+          "name": "Advanced Rendering Optimization",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/advanced_rendering_optimization/component_composition_for_performance.md",
+              "title": "Component Composition For Performance",
+              "description": "Documentation for Component Composition For Performance"
+            },
+            {
+              "path": "react/advanced_rendering_optimization/frame_rate_optimization_techniques.md",
+              "title": "Frame Rate Optimization Techniques",
+              "description": "Documentation for Frame Rate Optimization Techniques"
+            },
+            {
+              "path": "react/advanced_rendering_optimization/memory_usage_optimization.md",
+              "title": "Memory Usage Optimization",
+              "description": "Documentation for Memory Usage Optimization"
+            },
+            {
+              "path": "react/advanced_rendering_optimization/react_profiler_api_usage.md",
+              "title": "React Profiler Api Usage",
+              "description": "Documentation for React Profiler Api Usage"
+            },
+            {
+              "path": "react/advanced_rendering_optimization/rendering_bottleneck_identification.md",
+              "title": "Rendering Bottleneck Identification",
+              "description": "Documentation for Rendering Bottleneck Identification"
+            },
+            {
+              "path": "react/advanced_rendering_optimization/scheduling_and_prioritization_techniques.md",
+              "title": "Scheduling And Prioritization Techniques",
+              "description": "Documentation for Scheduling And Prioritization Techniques"
+            },
+            {
+              "path": "react/advanced_rendering_optimization/selective_rendering_strategies.md",
+              "title": "Selective Rendering Strategies",
+              "description": "Documentation for Selective Rendering Strategies"
+            },
+            {
+              "path": "react/advanced_rendering_optimization/state_colocation_principles.md",
+              "title": "State Colocation Principles",
+              "description": "Documentation for State Colocation Principles"
+            },
+            {
+              "path": "react/advanced_rendering_optimization/virtualization_implementation_details.md",
+              "title": "Virtualization Implementation Details",
+              "description": "Documentation for Virtualization Implementation Details"
+            }
+          ]
+        },
+        {
+          "id": "build_and_deployment",
+          "name": "Build And Deployment",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/build_and_deployment/analytics_integration.md",
+              "title": "Analytics Integration",
+              "description": "Documentation for Analytics Integration"
+            },
+            {
+              "path": "react/build_and_deployment/ci_cd_pipelines_for_react_applications.md",
+              "title": "Ci Cd Pipelines For React Applications",
+              "description": "Documentation for Ci Cd Pipelines For React Applications"
+            },
+            {
+              "path": "react/build_and_deployment/code_splitting_strategies.md",
+              "title": "Code Splitting Strategies",
+              "description": "Documentation for Code Splitting Strategies"
+            },
+            {
+              "path": "react/build_and_deployment/containerization_with_docker.md",
+              "title": "Containerization With Docker",
+              "description": "Documentation for Containerization With Docker"
+            },
+            {
+              "path": "react/build_and_deployment/deployment_strategies.md",
+              "title": "Deployment Strategies",
+              "description": "Documentation for Deployment Strategies"
+            },
+            {
+              "path": "react/build_and_deployment/environment_configuration.md",
+              "title": "Environment Configuration",
+              "description": "Documentation for Environment Configuration"
+            },
+            {
+              "path": "react/build_and_deployment/error_tracking_solutions.md",
+              "title": "Error Tracking Solutions",
+              "description": "Documentation for Error Tracking Solutions"
+            },
+            {
+              "path": "react/build_and_deployment/modern_build_tooling.md",
+              "title": "Modern Build Tooling",
+              "description": "Documentation for Modern Build Tooling"
+            },
+            {
+              "path": "react/build_and_deployment/progressive_web_app_capabilities.md",
+              "title": "Progressive Web App Capabilities",
+              "description": "Documentation for Progressive Web App Capabilities"
+            },
+            {
+              "path": "react/build_and_deployment/seo_optimization_techniques.md",
+              "title": "Seo Optimization Techniques",
+              "description": "Documentation for Seo Optimization Techniques"
+            }
+          ]
+        },
+        {
+          "id": "component_fundamentals",
+          "name": "Component Fundamentals",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/component_fundamentals/component_composition_and_reusability.md",
+              "title": "Component Composition And Reusability",
+              "description": "Documentation for Component Composition And Reusability"
+            },
+            {
+              "path": "react/component_fundamentals/component_lifecycle.md",
               "title": "Component Lifecycle",
               "description": "Documentation for Component Lifecycle"
             },
             {
-              "path": "react/beginner/controlled_vs_uncontrolled.md",
-              "title": "Controlled Vs Uncontrolled",
-              "description": "Documentation for Controlled Vs Uncontrolled"
+              "path": "react/component_fundamentals/component_local_state_implementation.md",
+              "title": "Component Local State Implementation",
+              "description": "Documentation for Component Local State Implementation"
             },
             {
-              "path": "react/beginner/event_handling.md",
-              "title": "Event Handling",
-              "description": "Documentation for Event Handling"
+              "path": "react/component_fundamentals/component_memory_management.md",
+              "title": "Component Memory Management",
+              "description": "Documentation for Component Memory Management"
             },
             {
-              "path": "react/beginner/lists_and_keys.md",
-              "title": "Lists And Keys",
-              "description": "Documentation for Lists And Keys"
+              "path": "react/component_fundamentals/component_mounting_and_unmounting_process.md",
+              "title": "Component Mounting And Unmounting Process",
+              "description": "Documentation for Component Mounting And Unmounting Process"
             },
             {
-              "path": "react/beginner/state.md",
-              "title": "State",
-              "description": "Documentation for State"
+              "path": "react/component_fundamentals/component_state_with_use_state.md",
+              "title": "Component State With Use State",
+              "description": "Documentation for Component State With Use State"
             },
             {
-              "path": "react/beginner/virtual_dom.md",
-              "title": "Virtual Dom",
-              "description": "Documentation for Virtual Dom"
+              "path": "react/component_fundamentals/component_update_batching.md",
+              "title": "Component Update Batching",
+              "description": "Documentation for Component Update Batching"
+            },
+            {
+              "path": "react/component_fundamentals/conditional_rendering_techniques.md",
+              "title": "Conditional Rendering Techniques",
+              "description": "Documentation for Conditional Rendering Techniques"
+            },
+            {
+              "path": "react/component_fundamentals/controlled_vs_uncontrolled_components.md",
+              "title": "Controlled Vs Uncontrolled Components",
+              "description": "Documentation for Controlled Vs Uncontrolled Components"
+            },
+            {
+              "path": "react/component_fundamentals/event_handling_in_react_components.md",
+              "title": "Event Handling In React Components",
+              "description": "Documentation for Event Handling In React Components"
+            },
+            {
+              "path": "react/component_fundamentals/functional_components_vs_class_components.md",
+              "title": "Functional Components Vs Class Components",
+              "description": "Documentation for Functional Components Vs Class Components"
+            },
+            {
+              "path": "react/component_fundamentals/list_rendering_and_key_prop_importance.md",
+              "title": "List Rendering And Key Prop Importance",
+              "description": "Documentation for List Rendering And Key Prop Importance"
+            },
+            {
+              "path": "react/component_fundamentals/one_way_data_flow.md",
+              "title": "One Way Data Flow",
+              "description": "Documentation for One Way Data Flow"
+            },
+            {
+              "path": "react/component_fundamentals/props_passing_and_prop_types.md",
+              "title": "Props Passing And Prop Types",
+              "description": "Documentation for Props Passing And Prop Types"
+            },
+            {
+              "path": "react/component_fundamentals/synthetic_event_system_in_components.md",
+              "title": "Synthetic Event System In Components",
+              "description": "Documentation for Synthetic Event System In Components"
             }
           ]
         },
         {
-          "id": "hooks",
-          "name": "Hooks",
-          "icon": "Folder",
+          "id": "data_fetching_strategies",
+          "name": "Data Fetching Strategies",
           "subcategories": [],
           "files": [
             {
-              "path": "react/hooks/useCallback.md",
-              "title": "UseCallback",
-              "description": "Documentation for UseCallback"
+              "path": "react/data_fetching_strategies/custom_data_fetching_hooks.md",
+              "title": "Custom Data Fetching Hooks",
+              "description": "Documentation for Custom Data Fetching Hooks"
             },
             {
-              "path": "react/hooks/useEffect.md",
-              "title": "UseEffect",
-              "description": "Documentation for UseEffect"
+              "path": "react/data_fetching_strategies/error_boundary_usage_with_data_fetching.md",
+              "title": "Error Boundary Usage With Data Fetching",
+              "description": "Documentation for Error Boundary Usage With Data Fetching"
             },
             {
-              "path": "react/hooks/useImperativeHandle.md",
-              "title": "UseImperativeHandle",
-              "description": "Documentation for UseImperativeHandle"
+              "path": "react/data_fetching_strategies/graphql_with_apollo_client.md",
+              "title": "Graphql With Apollo Client",
+              "description": "Documentation for Graphql With Apollo Client"
             },
             {
-              "path": "react/hooks/useLayoutEffect.md",
-              "title": "UseLayoutEffect",
-              "description": "Documentation for UseLayoutEffect"
+              "path": "react/data_fetching_strategies/offline_first_strategies_in_react.md",
+              "title": "Offline First Strategies In React",
+              "description": "Documentation for Offline First Strategies In React"
             },
             {
-              "path": "react/hooks/useMemo.md",
-              "title": "UseMemo",
-              "description": "Documentation for UseMemo"
+              "path": "react/data_fetching_strategies/optimistic_ui_updates_implementation.md",
+              "title": "Optimistic Ui Updates Implementation",
+              "description": "Documentation for Optimistic Ui Updates Implementation"
             },
             {
-              "path": "react/hooks/useRef.md",
-              "title": "UseRef",
-              "description": "Documentation for UseRef"
+              "path": "react/data_fetching_strategies/react_query_for_data_management.md",
+              "title": "React Query For Data Management",
+              "description": "Documentation for React Query For Data Management"
             },
             {
-              "path": "react/hooks/useState.md",
-              "title": "UseState",
-              "description": "Documentation for UseState"
+              "path": "react/data_fetching_strategies/restful_api_integration_patterns.md",
+              "title": "Restful Api Integration Patterns",
+              "description": "Documentation for Restful Api Integration Patterns"
+            },
+            {
+              "path": "react/data_fetching_strategies/suspense_for_data_fetching.md",
+              "title": "Suspense For Data Fetching",
+              "description": "Documentation for Suspense For Data Fetching"
+            },
+            {
+              "path": "react/data_fetching_strategies/swr_for_stale_while_revalidate_pattern.md",
+              "title": "Swr For Stale While Revalidate Pattern",
+              "description": "Documentation for Swr For Stale While Revalidate Pattern"
+            },
+            {
+              "path": "react/data_fetching_strategies/use_effect_for_data_fetching.md",
+              "title": "Use Effect For Data Fetching",
+              "description": "Documentation for Use Effect For Data Fetching"
             }
           ]
         },
         {
-          "id": "intermediate",
-          "name": "Intermediate",
-          "icon": "Folder",
+          "id": "fiber_architecture_deep_dive",
+          "name": "Fiber Architecture Deep Dive",
           "subcategories": [],
           "files": [
             {
-              "path": "react/intermediate/code_splitting.md",
-              "title": "Code Splitting",
-              "description": "Documentation for Code Splitting"
+              "path": "react/fiber_architecture_deep_dive/double_buffering_implementation.md",
+              "title": "Double Buffering Implementation",
+              "description": "Documentation for Double Buffering Implementation"
             },
             {
-              "path": "react/intermediate/context.md",
-              "title": "Context",
-              "description": "Documentation for Context"
+              "path": "react/fiber_architecture_deep_dive/effect_list_creation_and_traversal.md",
+              "title": "Effect List Creation And Traversal",
+              "description": "Documentation for Effect List Creation And Traversal"
             },
             {
-              "path": "react/intermediate/error_boundaries.md",
-              "title": "Error Boundaries",
-              "description": "Documentation for Error Boundaries"
+              "path": "react/fiber_architecture_deep_dive/fiber_flags_and_side_effects_tracking.md",
+              "title": "Fiber Flags And Side Effects Tracking",
+              "description": "Documentation for Fiber Flags And Side Effects Tracking"
             },
             {
-              "path": "react/intermediate/fragments.md",
-              "title": "Fragments",
-              "description": "Documentation for Fragments"
+              "path": "react/fiber_architecture_deep_dive/fiber_lanes_and_priorities.md",
+              "title": "Fiber Lanes And Priorities",
+              "description": "Documentation for Fiber Lanes And Priorities"
             },
             {
-              "path": "react/intermediate/hoc.md",
-              "title": "Hoc",
-              "description": "Documentation for Hoc"
+              "path": "react/fiber_architecture_deep_dive/fiber_linked_list_structure_child_sibling_return.md",
+              "title": "Fiber Linked List Structure Child Sibling Return",
+              "description": "Documentation for Fiber Linked List Structure Child Sibling Return"
             },
             {
-              "path": "react/intermediate/memo.md",
-              "title": "Memo",
-              "description": "Documentation for Memo"
+              "path": "react/fiber_architecture_deep_dive/fiber_node_structure_and_properties.md",
+              "title": "Fiber Node Structure And Properties",
+              "description": "Documentation for Fiber Node Structure And Properties"
             },
             {
-              "path": "react/intermediate/portals.md",
-              "title": "Portals",
-              "description": "Documentation for Portals"
+              "path": "react/fiber_architecture_deep_dive/fiber_root_management.md",
+              "title": "Fiber Root Management",
+              "description": "Documentation for Fiber Root Management"
             },
             {
-              "path": "react/intermediate/refs.md",
-              "title": "Refs",
-              "description": "Documentation for Refs"
+              "path": "react/fiber_architecture_deep_dive/fiber_update_queue_management.md",
+              "title": "Fiber Update Queue Management",
+              "description": "Documentation for Fiber Update Queue Management"
             },
             {
-              "path": "react/intermediate/render_props.md",
-              "title": "Render Props",
-              "description": "Documentation for Render Props"
+              "path": "react/fiber_architecture_deep_dive/time_slicing_implementation.md",
+              "title": "Time Slicing Implementation",
+              "description": "Documentation for Time Slicing Implementation"
             },
             {
-              "path": "react/intermediate/strict_mode.md",
-              "title": "Strict Mode",
-              "description": "Documentation for Strict Mode"
+              "path": "react/fiber_architecture_deep_dive/work_in_progress_tree_construction.md",
+              "title": "Work In Progress Tree Construction",
+              "description": "Documentation for Work In Progress Tree Construction"
+            }
+          ]
+        },
+        {
+          "id": "hooks_system",
+          "name": "Hooks System",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/hooks_system/custom_hooks_creation_patterns.md",
+              "title": "Custom Hooks Creation Patterns",
+              "description": "Documentation for Custom Hooks Creation Patterns"
+            },
+            {
+              "path": "react/hooks_system/dependency_arrays_and_optimization.md",
+              "title": "Dependency Arrays And Optimization",
+              "description": "Documentation for Dependency Arrays And Optimization"
+            },
+            {
+              "path": "react/hooks_system/hooks_philosophy_and_rules.md",
+              "title": "Hooks Philosophy And Rules",
+              "description": "Documentation for Hooks Philosophy And Rules"
+            },
+            {
+              "path": "react/hooks_system/use_callback_for_stable_function_references.md",
+              "title": "Use Callback For Stable Function References",
+              "description": "Documentation for Use Callback For Stable Function References"
+            },
+            {
+              "path": "react/hooks_system/use_context_for_context_consumption.md",
+              "title": "Use Context For Context Consumption",
+              "description": "Documentation for Use Context For Context Consumption"
+            },
+            {
+              "path": "react/hooks_system/use_effect_for_side_effects_management.md",
+              "title": "Use Effect For Side Effects Management",
+              "description": "Documentation for Use Effect For Side Effects Management"
+            },
+            {
+              "path": "react/hooks_system/use_memo_for_expensive_calculations.md",
+              "title": "Use Memo For Expensive Calculations",
+              "description": "Documentation for Use Memo For Expensive Calculations"
+            },
+            {
+              "path": "react/hooks_system/use_reducer_for_complex_state_logic.md",
+              "title": "Use Reducer For Complex State Logic",
+              "description": "Documentation for Use Reducer For Complex State Logic"
+            },
+            {
+              "path": "react/hooks_system/use_ref_for_dom_references_and_persistent_values.md",
+              "title": "Use Ref For Dom References And Persistent Values",
+              "description": "Documentation for Use Ref For Dom References And Persistent Values"
+            },
+            {
+              "path": "react/hooks_system/use_state_for_local_component_state.md",
+              "title": "Use State For Local Component State",
+              "description": "Documentation for Use State For Local Component State"
+            }
+          ]
+        },
+        {
+          "id": "react_fundamentals",
+          "name": "React Fundamentals",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/react_fundamentals/build_tooling_and_compilation_process.md",
+              "title": "Build Tooling And Compilation Process",
+              "description": "Documentation for Build Tooling And Compilation Process"
+            },
+            {
+              "path": "react/react_fundamentals/development_environment_configuration.md",
+              "title": "Development Environment Configuration",
+              "description": "Documentation for Development Environment Configuration"
+            },
+            {
+              "path": "react/react_fundamentals/jsx_syntax_and_transformation_process.md",
+              "title": "Jsx Syntax And Transformation Process",
+              "description": "Documentation for Jsx Syntax And Transformation Process"
+            },
+            {
+              "path": "react/react_fundamentals/project_structure_best_practices.md",
+              "title": "Project Structure Best Practices",
+              "description": "Documentation for Project Structure Best Practices"
+            },
+            {
+              "path": "react/react_fundamentals/react_developer_tools_and_debugging_practices.md",
+              "title": "React Developer Tools And Debugging Practices",
+              "description": "Documentation for React Developer Tools And Debugging Practices"
+            },
+            {
+              "path": "react/react_fundamentals/react_element_structure_and_create_element_function.md",
+              "title": "React Element Structure And Create Element Function",
+              "description": "Documentation for React Element Structure And Create Element Function"
+            },
+            {
+              "path": "react/react_fundamentals/react_philosophy_and_declarative_ui_paradigm.md",
+              "title": "React Philosophy And Declarative Ui Paradigm",
+              "description": "Documentation for React Philosophy And Declarative Ui Paradigm"
+            },
+            {
+              "path": "react/react_fundamentals/virtual_dom_concept_and_advantages.md",
+              "title": "Virtual Dom Concept And Advantages",
+              "description": "Documentation for Virtual Dom Concept And Advantages"
+            }
+          ]
+        },
+        {
+          "id": "react_hooks_internals",
+          "name": "React Hooks Internals",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/react_hooks_internals/effect_scheduling_and_cleanup.md",
+              "title": "Effect Scheduling And Cleanup",
+              "description": "Documentation for Effect Scheduling And Cleanup"
+            },
+            {
+              "path": "react/react_hooks_internals/hooks_dependency_tracking_system.md",
+              "title": "Hooks Dependency Tracking System",
+              "description": "Documentation for Hooks Dependency Tracking System"
+            },
+            {
+              "path": "react/react_hooks_internals/hooks_dispatcher_switching_mechanism.md",
+              "title": "Hooks Dispatcher Switching Mechanism",
+              "description": "Documentation for Hooks Dispatcher Switching Mechanism"
+            },
+            {
+              "path": "react/react_hooks_internals/hooks_implementation_architecture.md",
+              "title": "Hooks Implementation Architecture",
+              "description": "Documentation for Hooks Implementation Architecture"
+            },
+            {
+              "path": "react/react_hooks_internals/hooks_interaction_with_concurrent_features.md",
+              "title": "Hooks Interaction With Concurrent Features",
+              "description": "Documentation for Hooks Interaction With Concurrent Features"
+            },
+            {
+              "path": "react/react_hooks_internals/hooks_rules_enforcement_implementation.md",
+              "title": "Hooks Rules Enforcement Implementation",
+              "description": "Documentation for Hooks Rules Enforcement Implementation"
+            },
+            {
+              "path": "react/react_hooks_internals/hook_creation_and_update_paths.md",
+              "title": "Hook Creation And Update Paths",
+              "description": "Documentation for Hook Creation And Update Paths"
+            },
+            {
+              "path": "react/react_hooks_internals/hook_memoization_strategies.md",
+              "title": "Hook Memoization Strategies",
+              "description": "Documentation for Hook Memoization Strategies"
+            },
+            {
+              "path": "react/react_hooks_internals/hook_storage_in_fiber_nodes.md",
+              "title": "Hook Storage In Fiber Nodes",
+              "description": "Documentation for Hook Storage In Fiber Nodes"
+            }
+          ]
+        },
+        {
+          "id": "react_performance_optimization",
+          "name": "React Performance Optimization",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/react_performance_optimization/bundle_size_optimization_strategies.md",
+              "title": "Bundle Size Optimization Strategies",
+              "description": "Documentation for Bundle Size Optimization Strategies"
+            },
+            {
+              "path": "react/react_performance_optimization/code_splitting_with_dynamic_imports.md",
+              "title": "Code Splitting With Dynamic Imports",
+              "description": "Documentation for Code Splitting With Dynamic Imports"
+            },
+            {
+              "path": "react/react_performance_optimization/component_re_render_behavior.md",
+              "title": "Component Re Render Behavior",
+              "description": "Documentation for Component Re Render Behavior"
+            },
+            {
+              "path": "react/react_performance_optimization/image_and_asset_optimization.md",
+              "title": "Image And Asset Optimization",
+              "description": "Documentation for Image And Asset Optimization"
+            },
+            {
+              "path": "react/react_performance_optimization/performance_measurement_tools.md",
+              "title": "Performance Measurement Tools",
+              "description": "Documentation for Performance Measurement Tools"
+            },
+            {
+              "path": "react/react_performance_optimization/performance_profiling_and_debugging.md",
+              "title": "Performance Profiling And Debugging",
+              "description": "Documentation for Performance Profiling And Debugging"
+            },
+            {
+              "path": "react/react_performance_optimization/react_memo_for_component_memoization.md",
+              "title": "React Memo For Component Memoization",
+              "description": "Documentation for React Memo For Component Memoization"
+            },
+            {
+              "path": "react/react_performance_optimization/react_rendering_process_understanding.md",
+              "title": "React Rendering Process Understanding",
+              "description": "Documentation for React Rendering Process Understanding"
+            },
+            {
+              "path": "react/react_performance_optimization/usememo_and_usecallback_usage_patterns.md",
+              "title": "Usememo And Usecallback Usage Patterns",
+              "description": "Documentation for Usememo And Usecallback Usage Patterns"
+            },
+            {
+              "path": "react/react_performance_optimization/virtualization_for_long_lists.md",
+              "title": "Virtualization For Long Lists",
+              "description": "Documentation for Virtualization For Long Lists"
+            }
+          ]
+        },
+        {
+          "id": "react_rendering_process",
+          "name": "React Rendering Process",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/react_rendering_process/bailout_conditions_for_rendering.md",
+              "title": "Bailout Conditions For Rendering",
+              "description": "Documentation for Bailout Conditions For Rendering"
+            },
+            {
+              "path": "react/react_rendering_process/batching_update_mechanism.md",
+              "title": "Batching Update Mechanism",
+              "description": "Documentation for Batching Update Mechanism"
+            },
+            {
+              "path": "react/react_rendering_process/component_re_render_behavior.md",
+              "title": "Component Re Render Behavior",
+              "description": "Documentation for Component Re Render Behavior"
+            },
+            {
+              "path": "react/react_rendering_process/initial_render_mounting_process_flow.md",
+              "title": "Initial Render Mounting Process Flow",
+              "description": "Documentation for Initial Render Mounting Process Flow"
+            },
+            {
+              "path": "react/react_rendering_process/pure_rendering_vs_side_effects.md",
+              "title": "Pure Rendering Vs Side Effects",
+              "description": "Documentation for Pure Rendering Vs Side Effects"
+            },
+            {
+              "path": "react/react_rendering_process/react_dom_render_and_create_root_internals.md",
+              "title": "React Dom Render And Create Root Internals",
+              "description": "Documentation for React Dom Render And Create Root Internals"
+            },
+            {
+              "path": "react/react_rendering_process/render_phases_render_reconciliation_and_commit.md",
+              "title": "Render Phases Render Reconciliation And Commit",
+              "description": "Documentation for Render Phases Render Reconciliation And Commit"
+            },
+            {
+              "path": "react/react_rendering_process/render_preparation_and_setup.md",
+              "title": "Render Preparation And Setup",
+              "description": "Documentation for Render Preparation And Setup"
+            },
+            {
+              "path": "react/react_rendering_process/render_priorities_and_scheduling.md",
+              "title": "Render Priorities And Scheduling",
+              "description": "Documentation for Render Priorities And Scheduling"
+            },
+            {
+              "path": "react/react_rendering_process/update_render_flow_and_optimizations.md",
+              "title": "Update Render Flow And Optimizations",
+              "description": "Documentation for Update Render Flow And Optimizations"
+            }
+          ]
+        },
+        {
+          "id": "reconciliation_algorithm",
+          "name": "Reconciliation Algorithm",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/reconciliation_algorithm/child_reconciliation_process.md",
+              "title": "Child Reconciliation Process",
+              "description": "Documentation for Child Reconciliation Process"
+            },
+            {
+              "path": "react/reconciliation_algorithm/element_creation_and_cloning.md",
+              "title": "Element Creation And Cloning",
+              "description": "Documentation for Element Creation And Cloning"
+            },
+            {
+              "path": "react/reconciliation_algorithm/key_prop_usage_in_reconciliation.md",
+              "title": "Key Prop Usage In Reconciliation",
+              "description": "Documentation for Key Prop Usage In Reconciliation"
+            },
+            {
+              "path": "react/reconciliation_algorithm/list_reconciliation_optimization.md",
+              "title": "List Reconciliation Optimization",
+              "description": "Documentation for List Reconciliation Optimization"
+            },
+            {
+              "path": "react/reconciliation_algorithm/props_comparison_strategies.md",
+              "title": "Props Comparison Strategies",
+              "description": "Documentation for Props Comparison Strategies"
+            },
+            {
+              "path": "react/reconciliation_algorithm/reconciliation_bailout_opportunities.md",
+              "title": "Reconciliation Bailout Opportunities",
+              "description": "Documentation for Reconciliation Bailout Opportunities"
+            },
+            {
+              "path": "react/reconciliation_algorithm/reconciliation_heuristics_and_assumptions.md",
+              "title": "Reconciliation Heuristics And Assumptions",
+              "description": "Documentation for Reconciliation Heuristics And Assumptions"
+            },
+            {
+              "path": "react/reconciliation_algorithm/tree_comparison_techniques.md",
+              "title": "Tree Comparison Techniques",
+              "description": "Documentation for Tree Comparison Techniques"
+            },
+            {
+              "path": "react/reconciliation_algorithm/virtual_dom_diffing_algorithm_implementation.md",
+              "title": "Virtual Dom Diffing Algorithm Implementation",
+              "description": "Documentation for Virtual Dom Diffing Algorithm Implementation"
+            }
+          ]
+        },
+        {
+          "id": "routing_in_react",
+          "name": "Routing In React",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/routing_in_react/client_side_routing_concept.md",
+              "title": "Client Side Routing Concept",
+              "description": "Documentation for Client Side Routing Concept"
+            },
+            {
+              "path": "react/routing_in_react/handling_404_pages_and_redirects.md",
+              "title": "Handling 404 Pages And Redirects",
+              "description": "Documentation for Handling 404 Pages And Redirects"
+            },
+            {
+              "path": "react/routing_in_react/history_api_and_navigation.md",
+              "title": "History Api And Navigation",
+              "description": "Documentation for History Api And Navigation"
+            },
+            {
+              "path": "react/routing_in_react/location_state_for_passing_data.md",
+              "title": "Location State For Passing Data",
+              "description": "Documentation for Location State For Passing Data"
+            },
+            {
+              "path": "react/routing_in_react/nested_routes_implementation.md",
+              "title": "Nested Routes Implementation",
+              "description": "Documentation for Nested Routes Implementation"
+            },
+            {
+              "path": "react/routing_in_react/protected_routes_for_authentication.md",
+              "title": "Protected Routes For Authentication",
+              "description": "Documentation for Protected Routes For Authentication"
+            },
+            {
+              "path": "react/routing_in_react/react_router_setup_and_configuration.md",
+              "title": "React Router Setup And Configuration",
+              "description": "Documentation for React Router Setup And Configuration"
+            },
+            {
+              "path": "react/routing_in_react/route_based_code_splitting.md",
+              "title": "Route Based Code Splitting",
+              "description": "Documentation for Route Based Code Splitting"
+            },
+            {
+              "path": "react/routing_in_react/route_parameters_and_query_strings.md",
+              "title": "Route Parameters And Query Strings",
+              "description": "Documentation for Route Parameters And Query Strings"
+            },
+            {
+              "path": "react/routing_in_react/route_transitions_and_animations.md",
+              "title": "Route Transitions And Animations",
+              "description": "Documentation for Route Transitions And Animations"
+            }
+          ]
+        },
+        {
+          "id": "state_management_solutions",
+          "name": "State Management Solutions",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/state_management_solutions/comparing_state_management_solutions.md",
+              "title": "Comparing State Management Solutions",
+              "description": "Documentation for Comparing State Management Solutions"
+            },
+            {
+              "path": "react/state_management_solutions/easy_peasy_for_redux_simplification.md",
+              "title": "Easy Peasy For Redux Simplification",
+              "description": "Documentation for Easy Peasy For Redux Simplification"
+            },
+            {
+              "path": "react/state_management_solutions/jotai_for_atomic_state_management.md",
+              "title": "Jotai For Atomic State Management",
+              "description": "Documentation for Jotai For Atomic State Management"
+            },
+            {
+              "path": "react/state_management_solutions/middleware_in_redux_ecosystem.md",
+              "title": "Middleware In Redux Ecosystem",
+              "description": "Documentation for Middleware In Redux Ecosystem"
+            },
+            {
+              "path": "react/state_management_solutions/mob_x_for_reactive_state_management.md",
+              "title": "Mob X For Reactive State Management",
+              "description": "Documentation for Mob X For Reactive State Management"
+            },
+            {
+              "path": "react/state_management_solutions/recoil_for_flexible_state_sharing.md",
+              "title": "Recoil For Flexible State Sharing",
+              "description": "Documentation for Recoil For Flexible State Sharing"
+            },
+            {
+              "path": "react/state_management_solutions/redux_architecture_and_principles.md",
+              "title": "Redux Architecture And Principles",
+              "description": "Documentation for Redux Architecture And Principles"
+            },
+            {
+              "path": "react/state_management_solutions/redux_toolkit_for_modern_redux.md",
+              "title": "Redux Toolkit For Modern Redux",
+              "description": "Documentation for Redux Toolkit For Modern Redux"
+            },
+            {
+              "path": "react/state_management_solutions/zustand_for_simplified_global_state.md",
+              "title": "Zustand For Simplified Global State",
+              "description": "Documentation for Zustand For Simplified Global State"
+            }
+          ]
+        },
+        {
+          "id": "styling_in_react",
+          "name": "Styling In React",
+          "subcategories": [],
+          "files": [
+            {
+              "path": "react/styling_in_react/css_modules_for_component_scoping.md",
+              "title": "Css Modules For Component Scoping",
+              "description": "Documentation for Css Modules For Component Scoping"
+            },
+            {
+              "path": "react/styling_in_react/css_stylesheets_with_react.md",
+              "title": "Css Stylesheets With React",
+              "description": "Documentation for Css Stylesheets With React"
+            },
+            {
+              "path": "react/styling_in_react/css_utility_libraries_with_react.md",
+              "title": "Css Utility Libraries With React",
+              "description": "Documentation for Css Utility Libraries With React"
+            },
+            {
+              "path": "react/styling_in_react/emotion_for_css_composition.md",
+              "title": "Emotion For Css Composition",
+              "description": "Documentation for Emotion For Css Composition"
+            },
+            {
+              "path": "react/styling_in_react/inline_styles_approach_and_limitations.md",
+              "title": "Inline Styles Approach And Limitations",
+              "description": "Documentation for Inline Styles Approach And Limitations"
+            },
+            {
+              "path": "react/styling_in_react/responsive_design_patterns_in_react.md",
+              "title": "Responsive Design Patterns In React",
+              "description": "Documentation for Responsive Design Patterns In React"
+            },
+            {
+              "path": "react/styling_in_react/styled_components_and_css_in_js.md",
+              "title": "Styled Components And Css In Js",
+              "description": "Documentation for Styled Components And Css In Js"
+            },
+            {
+              "path": "react/styling_in_react/tailwind_css_integration_with_react.md",
+              "title": "Tailwind Css Integration With React",
+              "description": "Documentation for Tailwind Css Integration With React"
+            },
+            {
+              "path": "react/styling_in_react/theme_implementation_strategies.md",
+              "title": "Theme Implementation Strategies",
+              "description": "Documentation for Theme Implementation Strategies"
             }
           ]
         }
@@ -3498,12 +4246,10 @@
     {
       "id": "redis",
       "name": "Redis",
-      "icon": "Folder",
       "subcategories": [
         {
           "id": "advanced_data_manipulation",
           "name": "Advanced Data Manipulation",
-          "icon": "Database",
           "subcategories": [],
           "files": [
             {
@@ -3546,7 +4292,6 @@
         {
           "id": "architecture",
           "name": "Architecture",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -3604,7 +4349,6 @@
         {
           "id": "commands_deep_dive",
           "name": "Commands Deep Dive",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -3662,7 +4406,6 @@
         {
           "id": "data_structures",
           "name": "Data Structures",
-          "icon": "Database",
           "subcategories": [],
           "files": [
             {
@@ -3720,7 +4463,6 @@
         {
           "id": "fundamentals",
           "name": "Fundamentals",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -3773,7 +4515,6 @@
         {
           "id": "persistance_and_durability",
           "name": "Persistance And Durability",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -3831,7 +4572,6 @@
         {
           "id": "redis_for_caching",
           "name": "Redis For Caching",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -3889,7 +4629,6 @@
         {
           "id": "redis_pub_sub",
           "name": "Redis Pub Sub",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -3950,12 +4689,10 @@
     {
       "id": "tailwind",
       "name": "Tailwind",
-      "icon": "Folder",
       "subcategories": [
         {
           "id": "fundamentals",
           "name": "Fundamentals",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -3978,7 +4715,6 @@
         {
           "id": "layout",
           "name": "Layout",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -4004,12 +4740,10 @@
     {
       "id": "typescript",
       "name": "Typescript",
-      "icon": "Folder",
       "subcategories": [
         {
           "id": "advanced_types",
           "name": "Advanced Types",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -4057,7 +4791,6 @@
         {
           "id": "foundations",
           "name": "Foundations",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -4090,7 +4823,6 @@
         {
           "id": "generics",
           "name": "Generics",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -4138,7 +4870,6 @@
         {
           "id": "object_oriented",
           "name": "Object Oriented",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
@@ -4161,7 +4892,6 @@
         {
           "id": "type_system",
           "name": "Type System",
-          "icon": "Folder",
           "subcategories": [],
           "files": [
             {
