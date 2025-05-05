@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
 import LoadingScreen from "@/components/document-reading/preview/LoadingScreen";
 import ErrorLoadingDocument from "@/components/document-reading/preview/ErrorLoadingDocument";
@@ -9,7 +9,11 @@ import getIconForTech from "@/components/shared/icons";
 import Header from "@/components/document-reading/preview/Header";
 import StartReadingButton from "@/components/document-reading/preview/StartReadingButton";
 import { formatTimeInMs } from "@/utils/time";
-import { useCurrentDocument, useReadingHistory } from "@/hooks";
+import {
+  useCurrentDocument,
+  useReadingHistory,
+  useDocumentReading,
+} from "@/hooks";
 import { useParams } from "react-router-dom";
 
 /**
@@ -42,6 +46,14 @@ const DocumentPreview: React.FC = () => {
   } = useCurrentDocument();
   const { addToHistory } = useReadingHistory();
 
+  const {
+    startSectionReading,
+    endReading,
+    getSection,
+    readSections,
+    sections,
+  } = useDocumentReading();
+
   useEffect(() => {
     const fullPath = documentPath.endsWith(".md")
       ? documentPath
@@ -49,17 +61,24 @@ const DocumentPreview: React.FC = () => {
     loadedDocumentForUrl(fullPath);
   }, [documentPath, loadedDocumentForUrl]);
 
-  const startReading = () => {
+  const startReading = useCallback(() => {
     addToHistory(documentPath, documentTitle).then(() => {
       console.log("Starting reading", documentPath, documentTitle);
       setIsFullscreen(true);
     });
-  };
-
-  const exitFullscreen = () => setIsFullscreen(false);
+  }, [addToHistory, documentPath, documentTitle, setIsFullscreen]);
 
   if (isFullscreen) {
-    return <FullScreenCardView onExit={exitFullscreen} />;
+    return (
+      <FullScreenCardView
+        onExit={endReading}
+        onChangeSection={startSectionReading}
+        sections={sections}
+        getSection={(index: number) => getSection(index) ?? null}
+        readSections={readSections}
+        exitFullScreen={() => setIsFullscreen(false)}
+      />
+    );
   }
 
   if (loading) return <LoadingScreen />;
@@ -74,13 +93,7 @@ const DocumentPreview: React.FC = () => {
   return (
     <AnimatePresence mode="wait">
       <div className="w-full mx-auto max-w-4xl mb-8 font-cascadia-code px-4 sm:px-6">
-        <div
-          className="bg-card/90 backdrop-blur-md rounded-3xl border border-border/30 overflow-hidden relative"
-          style={{
-            boxShadow:
-              "0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 0 20px -5px rgba(0, 0, 0, 0.1)",
-          }}
-        >
+        <div className="bg-card/90 backdrop-blur-md rounded-3xl border border-border/30 overflow-hidden relative shadow-lg">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-80" />
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-70" />
           <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-70" />
@@ -101,12 +114,14 @@ const DocumentPreview: React.FC = () => {
               <AnimatePresence mode="wait">
                 <div className="space-y-6 min-h-[200px]">
                   <DetailPanel
-                    totalSections={totalSections}
+                    totalSections={sections.length}
                     wordCount={totalWords}
                     estimatedReadTime={parseInt(
                       formattedReadTime.split(":")[0]
                     )}
                     lastUpdatedFormatted={new Date().toLocaleDateString()}
+                    readSections={readSections}
+                    loading={loading}
                   />
                 </div>
               </AnimatePresence>

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { LayoutList, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import CardContainer from "@/components/shared/container/CardContainer";
-import { useDocumentReading } from "@/hooks";
 import useMobile from "@/hooks/device/use-mobile";
 
 interface DetailPanelProps {
@@ -12,6 +11,8 @@ interface DetailPanelProps {
   wordCount: number;
   estimatedReadTime: number;
   lastUpdatedFormatted: string;
+  readSections: Set<string>;
+  loading: boolean;
 }
 
 const DetailPanel: React.FC<DetailPanelProps> = ({
@@ -19,8 +20,9 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
   wordCount,
   estimatedReadTime,
   lastUpdatedFormatted,
+  readSections,
+  loading,
 }) => {
-  const { readSections, loading } = useDocumentReading();
   const { isMobile } = useMobile();
 
   const completionPercentage = useMemo(() => {
