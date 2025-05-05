@@ -11,19 +11,15 @@ import {
   type ParsedMarkdown,
   DocumentCache,
 } from "@/services/document";
+import { LoadingWithError } from "@/stores/base/base";
 
-type State = {
-  availableDocuments: FileMetadata[];
-  filteredDocuments: FileMetadata[];
+type State = LoadingWithError & {
+  fileMap: Record<string, FileMetadata>;
   contentIndex: ContentIndex;
   selectedFile: string | null;
-  searchQuery: string;
-  isLoading: boolean;
-  error: string | null;
 };
 
 type Actions = {
-  setSearchQuery: (query: string) => void;
   selectFile: (path: string) => void;
   handleSelectDocument: (path: string, title: string) => Promise<void>;
   loadMarkdown: (path: string) => Promise<ParsedMarkdown | null>;
@@ -50,14 +46,9 @@ type Actions = {
  */
 export const useDocumentStore = create<State & Actions>((set, get) => ({
   /**
-   * 📋 All documents available in the system
+   * 📂 Map of all files in the system
    */
-  availableDocuments: [],
-
-  /**
-   * 🔎 Documents filtered by search query
-   */
-  filteredDocuments: [],
+  fileMap: {},
 
   /**
    * 📄 Currently selected document path
@@ -65,14 +56,9 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
   selectedFile: null,
 
   /**
-   * 🔍 Current search query for filtering documents
-   */
-  searchQuery: "",
-
-  /**
    * ⏳ Loading state indicator
    */
-  isLoading: true,
+  loading: true,
 
   /**
    * ❌ Error message if something goes wrong
@@ -85,29 +71,6 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
   contentIndex: {
     categories: [],
     files: [],
-  },
-
-  /**
-   * 🔍 Filter documents based on search query
-   * Makes finding the right document a breeze!
-   */
-  setSearchQuery: (query) => {
-    set({ searchQuery: query });
-
-    const { availableDocuments } = get();
-    if (!query) {
-      set({ filteredDocuments: availableDocuments });
-      return;
-    }
-
-    const normalizedQuery = query.toLowerCase();
-    const filtered = availableDocuments.filter(
-      (doc) =>
-        doc.title.toLowerCase().includes(normalizedQuery) ||
-        doc.path.toLowerCase().includes(normalizedQuery)
-    );
-
-    set({ filteredDocuments: filtered });
   },
 
   /**
@@ -129,7 +92,7 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
    */
   handleSelectDocument: async (path, title) => {
     try {
-      set({ isLoading: true });
+      set({ loading: true });
 
       const historyStore = useHistoryStore.getState();
       await historyStore.addToReadingHistory(path, title);
@@ -149,11 +112,11 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
       // Set the selected file
       get().selectFile(path);
 
-      set({ isLoading: false, error: null });
+      set({ loading: false, error: null });
     } catch (error) {
       console.error("Error selecting document:", error);
       set({
-        isLoading: false,
+        loading: false,
         error:
           error instanceof Error ? error.message : "Error selecting document",
       });
@@ -184,7 +147,7 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
    */
   initialize: async () => {
     try {
-      set({ isLoading: true });
+      set({ loading: true });
 
       const contentIndex = await loadContentIndex();
       const allFiles: FileMetadata[] = [...contentIndex.files];
@@ -203,12 +166,16 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
 
       collectFilesFromCategories(contentIndex.categories || []);
 
+      const fileMap = allFiles.reduce((acc, file) => {
+        acc[file.path] = file;
+        return acc;
+      }, {} as Record<string, FileMetadata>);
+
       set({
-        availableDocuments: allFiles,
-        filteredDocuments: allFiles,
-        isLoading: false,
+        loading: false,
         error: null,
         contentIndex,
+        fileMap,
       });
 
       // Set available documents in analytics controllers
@@ -235,7 +202,7 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
     } catch (error) {
       console.error("Error initializing document store:", error);
       set({
-        isLoading: false,
+        loading: false,
         error:
           error instanceof Error ? error.message : "Error loading documents",
       });

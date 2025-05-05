@@ -22,8 +22,6 @@ import { useTheme } from "@/hooks/ui/use-theme";
 import useMobile from "@/hooks/device/use-mobile";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useHistoryStore } from "@/stores/reading/history-store";
-import { useDocumentStore } from "@/stores/document/document-store";
 import { format } from "date-fns";
 import CardContainer from "@/components/container/CardContainer";
 import ChartContainer from "@/components/chart/ChartContainer";
@@ -33,7 +31,7 @@ import {
 } from "@/components/ui/chart";
 import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
 import { cn } from "@/lib/utils";
-
+import { useReadingHistory, useDocumentList } from "@/hooks";
 interface ReadingJourneyMapProps {
   category?: string;
   compact?: boolean;
@@ -94,10 +92,8 @@ const ReadingJourneyMap: React.FC<ReadingJourneyMapProps> = ({
 }) => {
   const { currentTheme } = useTheme();
   const { isMobile } = useMobile();
-  const readingHistory = useHistoryStore((state) => state.readingHistory);
-  const availableDocuments = useDocumentStore(
-    (state) => state.availableDocuments
-  );
+  const { history } = useReadingHistory();
+  const { fileMap } = useDocumentList();
 
   const [journeyData, setJourneyData] = useState<JourneyData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -109,15 +105,14 @@ const ReadingJourneyMap: React.FC<ReadingJourneyMapProps> = ({
       setLoading(true);
 
       // Check if we have reading history data
-      if (!readingHistory || readingHistory.length === 0) {
+      if (!history || history.length === 0) {
         setLoading(false);
         return;
       }
 
-      // Filter by category if specified
       const filteredHistory = category
-        ? readingHistory.filter((item) => item.path.split("/")[0] === category)
-        : readingHistory;
+        ? history.filter((item) => item.path.split("/")[0] === category)
+        : history;
 
       if (filteredHistory.length === 0) {
         setJourneyData(null);
@@ -155,7 +150,7 @@ const ReadingJourneyMap: React.FC<ReadingJourneyMapProps> = ({
         uniqueDocuments.add(item.path);
 
         // Get document title
-        const doc = availableDocuments.find((d) => d.path === item.path);
+        const doc = fileMap[item.path];
         const title = doc?.title || item.title || "Untitled Document";
 
         // Add data point
@@ -224,10 +219,9 @@ const ReadingJourneyMap: React.FC<ReadingJourneyMapProps> = ({
 
       // Get total documents in this category
       const totalDocuments = category
-        ? availableDocuments.filter(
-            (doc) => doc.path.split("/")[0] === category
-          ).length
-        : availableDocuments.length;
+        ? Object.keys(fileMap).filter((doc) => doc.split("/")[0] === category)
+            .length
+        : Object.keys(fileMap).length;
 
       // Create a recommended pathway based on total documents
       if (totalDocuments > 0) {
@@ -315,7 +309,7 @@ const ReadingJourneyMap: React.FC<ReadingJourneyMapProps> = ({
     };
 
     generateJourneyData();
-  }, [readingHistory, availableDocuments, category]);
+  }, [history, fileMap, category]);
 
   // Prepare card insights for display
   const insights = useMemo(() => {
@@ -386,7 +380,7 @@ const ReadingJourneyMap: React.FC<ReadingJourneyMapProps> = ({
   });
 
   // Loading state
-  if (loading && readingHistory.length > 0) {
+  if (loading && history.length > 0) {
     return (
       <div className="flex items-center justify-center h-full">
         <motion.div

@@ -1,15 +1,13 @@
-import { useSectionStore, useHistoryStore, useDocumentStore } from "@/stores";
+import { useSectionStore, useHistoryStore } from "@/stores";
 import { useState, useEffect } from "react";
+import useDocumentList from "@/hooks/document/use-document-list";
 
 const useGlobalMetrics = () => {
   const getTotalWordsRead = useSectionStore((state) => state.getTotalWordsRead);
   const getTotalTimeSpent = useSectionStore((state) => state.getTotalTimeSpent);
   const streak = useHistoryStore((state) => state.streak);
   const readingHistory = useHistoryStore((state) => state.readingHistory);
-  const availableDocuments = useDocumentStore(
-    (state) => state.availableDocuments
-  );
-
+  const { fileMap } = useDocumentList();
   const [totalWordsRead, setTotalWordsRead] = useState(0);
   const [totalTimeSpent, setTotalTimeSpent] = useState(0);
 
@@ -29,7 +27,7 @@ const useGlobalMetrics = () => {
     streak,
     documents: {
       read: readingHistory.length,
-      available: availableDocuments.length,
+      available: Object.keys(fileMap).length,
     },
   };
 };

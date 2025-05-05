@@ -6,8 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useCategoryStore } from "@/stores/categoryStore";
-import { useHistoryStore } from "@/stores/reading/history-store";
-import { useDocumentStore } from "@/stores/document/document-store";
+import { useReadingHistory, useDocumentList } from "@/hooks";
 import { formatRelativeTime } from "@/utils/time";
 import CardContainer from "@/components/container/CardContainer";
 import getIconForTech from "@/components/icons";
@@ -29,10 +28,8 @@ export const ContentRecencyTimeline: React.FC = () => {
   const categoryBreakdown = useCategoryStore(
     (state) => state.categoryBreakdown
   );
-  const readingHistory = useHistoryStore((state) => state.readingHistory);
-  const availableDocuments = useDocumentStore(
-    (state) => state.availableDocuments
-  );
+  const { history } = useReadingHistory();
+  const { fileMap } = useDocumentList();
 
   const recencyData = useMemo(() => {
     if (!categoryBreakdown || categoryBreakdown.length === 0) {
@@ -60,7 +57,7 @@ export const ContentRecencyTimeline: React.FC = () => {
     > = {};
 
     categoryBreakdown.forEach((cat) => {
-      const categoryHistory = readingHistory.filter(
+      const categoryHistory = history.filter(
         (item) => item.path.split("/")[0] === cat.category
       );
 
@@ -88,8 +85,8 @@ export const ContentRecencyTimeline: React.FC = () => {
       }
 
       // Count documents in this category
-      const documentsInCategory = availableDocuments.filter(
-        (doc) => doc.path.split("/")[0] === cat.category
+      const documentsInCategory = Object.keys(fileMap).filter(
+        (doc) => doc.split("/")[0] === cat.category
       ).length;
 
       // Count read documents in this category
@@ -156,7 +153,7 @@ export const ContentRecencyTimeline: React.FC = () => {
         overdueCategories,
       },
     };
-  }, [categoryBreakdown, readingHistory, availableDocuments]);
+  }, [categoryBreakdown, history, fileMap]);
 
   // Loading state
   if (!recencyData) {

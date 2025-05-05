@@ -21,7 +21,7 @@ import {
 import type { FileMetadata, Category } from "@/services/document";
 import { cn } from "@/lib/utils";
 import getIconForTech from "@/components/icons/iconMap";
-import { useReadingStore } from "@/stores";
+import { useReadingList } from "@/hooks";
 
 interface FileSelectionDialogProps {
   open: boolean;
@@ -48,12 +48,10 @@ const FileSelectionDialog: React.FC<FileSelectionDialogProps> = ({
   availableDocuments,
   categories,
 }) => {
-  const todoList = useReadingStore((state) => state.todoList);
-  const addToTodoList = useReadingStore((state) => state.addToReadingList);
-
+  const { addToTodo, todoList } = useReadingList();
   const handleAddMultipleToTodoList = (files: FileMetadata[]) => {
     files.forEach((file) => {
-      addToTodoList(file.path, file.title);
+      addToTodo(file.path, file.title);
     });
   };
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(

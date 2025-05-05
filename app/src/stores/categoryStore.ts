@@ -68,15 +68,15 @@ export const useCategoryStore = create<State & Actions>((set, get) => {
         0
       );
 
-      const availableDocuments = useDocumentStore.getState().availableDocuments;
+      const availableDocuments = useDocumentStore.getState().fileMap;
 
       const result = Object.entries(categoryMap);
       return result
         .map(([category, count]) => ({
           category,
           count,
-          categoryCount: availableDocuments.filter(
-            (doc) => doc.path.split("/")[0] === category
+          categoryCount: Object.keys(availableDocuments).filter(
+            (doc) => doc.split("/")[0] === category
           ).length,
           percentage: total > 0 ? Math.round((count / total) * 100) : 0,
         }))

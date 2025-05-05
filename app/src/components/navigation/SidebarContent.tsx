@@ -3,6 +3,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Category } from "@/services/document/document-loader";
 import FileTree from "./FileTree";
+import CurrentlyReading from "./CurrentlyReading"; // Import the new component
+import type { CurrentCategory } from "./hooks/use-navigate";
 
 interface SidebarContentProps {
   handleHomeClick: () => void;
@@ -18,6 +20,9 @@ interface SidebarContentProps {
   expandedCategories: Set<string>;
   handleToggleExpand: (categoryId: string, isExpanded: boolean) => void;
   showDescriptions: boolean;
+  currentCategory: CurrentCategory | null;
+  currentCategoryExpanded: boolean;
+  setCurrentCategoryExpanded: (expanded: boolean) => void;
 }
 
 const SidebarContent: React.FC<SidebarContentProps> = ({
@@ -30,6 +35,10 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
   expandedCategories,
   handleToggleExpand,
   showDescriptions,
+  // New props
+  currentCategory,
+  currentCategoryExpanded,
+  setCurrentCategoryExpanded,
 }) => {
   return (
     <div className="h-full flex flex-col overflow-auto font-cascadia-code text-xs">
@@ -50,6 +59,18 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
             </div>
             <span>Home</span>
           </button>
+
+          {/* Currently Reading Section - Add this */}
+          {!loading && currentCategory && (
+            <CurrentlyReading
+              currentCategory={currentCategory}
+              currentFilePath={currentFilePath ?? ""}
+              onSelectFile={onFileSelect}
+              showDescriptions={showDescriptions}
+              expanded={currentCategoryExpanded}
+              setExpanded={setCurrentCategoryExpanded}
+            />
+          )}
 
           {loading ? (
             // Loading skeleton

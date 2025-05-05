@@ -104,10 +104,9 @@ const useInsights = (
 
       // Process subcategories
       const children: CategoryNode[] = [];
-      if (category.subcategories && Array.isArray(category.subcategories)) {
-        category.subcategories.forEach((subcategory) => {
-          if (!subcategory) return; // Skip invalid subcategories
-
+      if (category.categories && Array.isArray(category.categories)) {
+        category.categories.forEach((subcategory) => {
+          if (!subcategory) return;
           const subcategoryNode = processCategory(subcategory);
           children.push(subcategoryNode);
           totalDocs += subcategoryNode.totalDocuments;

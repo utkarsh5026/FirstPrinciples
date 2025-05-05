@@ -24,6 +24,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { type Category, getCategories } from "@/services/document";
+import { useDocumentList } from "@/hooks";
 
 // Use React.lazy with error handling for each component
 const Overview = lazy(() =>
@@ -107,9 +108,7 @@ const FallbackComponent = ({ name }: { name: string }) => (
  */
 const HomePage: React.FC = () => {
   useInit();
-  const availableDocuments = useDocumentStore(
-    (state) => state.availableDocuments
-  );
+  const { documents } = useDocumentList();
   const handleSelectDocument = useDocumentStore(
     (state) => state.handleSelectDocument
   );
@@ -252,7 +251,7 @@ const HomePage: React.FC = () => {
             <Suspense fallback={<AnalyticsTabLoader />}>
               <ErrorBoundary onError={handleComponentError}>
                 <AnalyticsView
-                  availableDocuments={availableDocuments}
+                  availableDocuments={documents}
                   onSelectDocument={handleSelectFile}
                 />
               </ErrorBoundary>
@@ -284,7 +283,7 @@ const HomePage: React.FC = () => {
       <FileSelectionDialog
         open={showFileDialog}
         onOpenChange={setShowFileDialog}
-        availableDocuments={availableDocuments}
+        availableDocuments={documents}
         categories={categories}
       />
     </div>

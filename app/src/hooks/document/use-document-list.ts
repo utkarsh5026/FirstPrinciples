@@ -1,6 +1,6 @@
 import { Category } from "@/services/document";
 import { useDocumentStore } from "@/stores";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 /**
  * 📚 A hook that organizes your reading list into neat categories!
@@ -9,14 +9,15 @@ import { useCallback } from "react";
  * reading journey. Perfect for bookworms and knowledge seekers! 🤓✨
  */
 const useDocumentList = () => {
-  const documents = useDocumentStore((state) => state.availableDocuments);
+  const fileMap = useDocumentStore((state) => state.fileMap);
   const contentIndex = useDocumentStore((state) => state.contentIndex);
   const getFileBreadcrumbs = useDocumentStore(
     (state) => state.getFileBreadcrumbs
   );
-  const availableDocuments = useDocumentStore(
-    (state) => state.availableDocuments
-  );
+
+  const documents = useMemo(() => {
+    return Object.values(fileMap);
+  }, [fileMap]);
 
   /**
    * 📚 A hook that counts the total number of files in a category!
@@ -39,11 +40,11 @@ const useDocumentList = () => {
   }, []);
 
   return {
-    documents,
     contentIndex,
     getFileBreadcrumbs,
     countTotalFiles,
-    availableDocuments,
+    documents,
+    fileMap,
   };
 };
 

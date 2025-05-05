@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Sheet,
   SheetContent,
   SheetFooter,
   SheetHeader,
 } from "@/components/ui/sheet";
-import { useReadingHistory, useReadingList, useDocumentList } from "@/hooks";
+import { useDocumentList } from "@/hooks";
 import SidebarContent from "./SidebarContent";
 import { BookOpen } from "lucide-react";
 import Header from "./Header";
+import useNavigation from "./hooks/use-navigate";
 
 interface ResponsiveSidebarProps {
   onSelectFile: (filepath: string) => void;
@@ -30,40 +31,11 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     new Set()
   );
   const [showDescriptions, setShowDescriptions] = useState(false);
+  const [currentCategoryExpanded, setCurrentCategoryExpanded] = useState(true);
 
-  const { history } = useReadingHistory();
-  const { todoList } = useReadingList();
-  const { contentIndex, getFileBreadcrumbs, availableDocuments } =
-    useDocumentList();
-
-  /**
-   * 📚🔍 A hook that manages your reading history!
-   * Keeps track of what you've read and lets you play with your history.
-   */
-  const readFilePaths = useMemo(() => {
-    const readPaths = new Set<string>();
-    history.forEach(({ path }) => {
-      const withMdPath = path.endsWith(".md") ? path : `${path}.md`;
-      readPaths.add(withMdPath);
-    });
-    return readPaths;
-  }, [history]);
-
-  /**
-   * 📚🔍 A hook that manages your reading list!
-   * Keeps track of what you've read and lets you play with your list.
-   */
-  const { todo, completed } = useMemo(() => {
-    const todoPaths = new Set(
-      todoList.filter(({ completed }) => !completed).map(({ path }) => path)
-    );
-
-    const completedPaths = new Set(
-      todoList.filter(({ completed }) => completed).map(({ path }) => path)
-    );
-
-    return { todo: todoPaths, completed: completedPaths };
-  }, [todoList]);
+  const { contentIndex, getFileBreadcrumbs } = useDocumentList();
+  const { readFilePaths, todo, completed, documentsCount, currentOpen } =
+    useNavigation(currentFilePath);
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -123,7 +95,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
       <SheetContent
         side="left"
-        className="p-0 h-full border-r-0 inset-0 max-w-none w-screen"
+        className="p-0 h-full border-r-0 inset-0 max-w-none w-screen sm:max-w-md"
       >
         <SheetHeader className="p-0">
           <Header
@@ -146,13 +118,16 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
           loading={loading}
           showDescriptions={showDescriptions}
           handleHomeClick={handleHomeClick}
+          currentCategory={currentOpen}
+          currentCategoryExpanded={currentCategoryExpanded}
+          setCurrentCategoryExpanded={setCurrentCategoryExpanded}
         />
         <SheetFooter>
           <div className="border-border/50 bg-card/50 flex-shrink-0 font-cascadia-code px-3 py-2">
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span className="flex items-center">
                 <BookOpen size={14} className="mr-1.5" />
-                {readFilePaths.size}/{availableDocuments.length} read
+                {readFilePaths.size}/{documentsCount} read
               </span>
               <span className="text-primary text-xs">Documentation</span>
             </div>
