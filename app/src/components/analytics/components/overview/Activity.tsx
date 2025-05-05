@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { LineChart } from "lucide-react";
 import { useHistoryStore } from "@/stores";
 import { getStreakEmoji } from "../../utils";
-import { DailyActivityInsight } from "@/components/visualizations";
+import { DailyActivityInsight } from "@/components/shared/visualizations";
 import type { WeeklyActivity } from "@/services/analytics/activity-analyzer";
 import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";
 type Activity = {

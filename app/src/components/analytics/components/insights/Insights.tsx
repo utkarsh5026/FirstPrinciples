@@ -7,7 +7,7 @@ import {
   CategoryCoverage,
   ReadingJourneyMap,
   CategoryDistribution,
-} from "@/components/visualizations";
+} from "@/components/shared/visualizations";
 import Recommendations from "./Recommendation";
 /**
  * EnhancedInsights - Main component that combines all insight cards

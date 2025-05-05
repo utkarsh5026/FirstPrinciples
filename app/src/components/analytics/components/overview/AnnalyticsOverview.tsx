@@ -2,12 +2,12 @@ import React from "react";
 import ReadingProgress from "./ReadingProgress";
 import Activity from "./Activity";
 import HeatMapView from "../timeline/HeatMapView";
-import CategoryCoverageMap from "@/components/visualizations/category-coverage/CategoryCoverage";
+import CategoryCoverageMap from "@/components/shared/visualizations/category-coverage/CategoryCoverage";
 import { useReadingHistory } from "@/hooks";
 import {
   CategoryDistribution,
   TimeOfTheDayDistribution,
-} from "@/components/visualizations";
+} from "@/components/shared/visualizations";
 import ContentRecencyTimeline from "./ContentRecencyTimeLine";
 
 const AnalyticsOverview: React.FC = () => {

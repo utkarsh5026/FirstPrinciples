@@ -12,7 +12,7 @@ import {
   WeeklyReadingPattern,
   CategoryDistribution,
   TimeOfTheDayDistribution,
-} from "@/components/visualizations";
+} from "@/components/shared/visualizations";
 import { useReadingHistory, useDocumentList } from "@/hooks";
 import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 
