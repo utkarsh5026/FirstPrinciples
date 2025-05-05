@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import HomePage from "@/components/home/HomePage";
-import DocumentPreview from "@/components/card/preview/DocumentPreview";
+import DocumentPreview from "@/components/shared/card/preview/DocumentPreview";
 import ErrorBoundary from "@/components/utils/error/ErrorBoundary";
 
 /**
