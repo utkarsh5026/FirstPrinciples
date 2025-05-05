@@ -5,6 +5,8 @@ import { LayoutList, Calendar, BookOpen, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import CardContainer from "@/components/shared/container/CardContainer";
 import { useDocumentReading } from "@/hooks";
+import useMobile from "@/hooks/device/use-mobile";
+import type { MarkdownSection } from "@/services/section/parsing";
 
 interface DetailPanelProps {
   totalSections: number;
@@ -22,17 +24,16 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
   selectedFile,
 }) => {
   const { readSections, sections, loading } = useDocumentReading();
+  const { isMobile } = useMobile();
 
   const completionPercentage = useMemo(() => {
     return totalSections > 0 ? (readSections.size / totalSections) * 100 : 0;
   }, [readSections, totalSections]);
 
-  // Calculate remaining reading time
   const remainingReadingTime = Math.ceil(
     (estimatedReadTime * (100 - completionPercentage)) / 100
   );
 
-  // Get progress color based on completion percentage
   const getProgressColor = (percentage: number) => {
     if (percentage >= 75) return "bg-primary";
     if (percentage >= 50) return "bg-primary/80";
@@ -81,7 +82,10 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
                   )}
                   initial={{ width: "0%" }}
                   animate={{ width: `${completionPercentage}%` }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  transition={{
+                    duration: isMobile ? 0.3 : 0.5,
+                    ease: "easeOut",
+                  }}
                 />
               </div>
             </div>
@@ -97,28 +101,20 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
               </div>
             </div>
 
-            {/* Section Visualization - Mobile-friendly approach */}
             <div className="mt-3 pt-3 border-t border-border/30">
-              <div className="flex flex-wrap gap-1">
-                {Array.from({ length: totalSections }).map((_, i) => {
-                  const isRead = readSections.has(sections[i].id);
-                  return (
-                    <motion.div
-                      key={sections[i].id}
-                      className={cn(
-                        "w-4 h-4 rounded-2xl",
-                        isRead ? "bg-primary/80" : "bg-secondary/40"
-                      )}
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{
-                        delay: i * 0.01,
-                        duration: 0.2,
-                      }}
-                    />
-                  );
-                })}
-              </div>
+              {isMobile ? (
+                <MobileSectionVisualization
+                  totalSections={totalSections}
+                  readSections={readSections}
+                  sections={sections}
+                />
+              ) : (
+                <DesktopSectionVisualization
+                  totalSections={totalSections}
+                  readSections={readSections}
+                  sections={sections}
+                />
+              )}
             </div>
           </>
         )}
@@ -131,6 +127,92 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
         )}
       </div>
     </>
+  );
+};
+
+interface MobileSectionVisualizationProps {
+  totalSections: number;
+  readSections: Set<string>;
+  sections: MarkdownSection[];
+}
+
+const MobileSectionVisualization: React.FC<MobileSectionVisualizationProps> = ({
+  totalSections,
+  readSections,
+  sections,
+}) => {
+  // Skip animation on very large section counts
+  const shouldUseAnimation = totalSections <= 30;
+
+  return (
+    <div className="flex flex-wrap gap-1">
+      {Array.from({ length: totalSections }).map((_, i) => {
+        const isRead = sections[i] && readSections.has(sections[i].id);
+
+        // For mobile, use static divs without animation when there are many sections
+        if (!shouldUseAnimation) {
+          return (
+            <div
+              key={sections[i]?.id || i}
+              className={cn(
+                "w-3 h-3 rounded-full",
+                isRead ? "bg-primary/80" : "bg-secondary/40"
+              )}
+            />
+          );
+        }
+
+        // Use simplified animations for smaller section counts
+        return (
+          <motion.div
+            key={sections[i]?.id || i}
+            className={cn(
+              "w-3 h-3 rounded-full",
+              isRead ? "bg-primary/80" : "bg-secondary/40"
+            )}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              delay: i * 0.005, // Much faster staggered delay
+              duration: 0.1, // Shorter animation duration
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+interface DesktopSectionVisualizationProps {
+  totalSections: number;
+  readSections: Set<string>;
+  sections: MarkdownSection[];
+}
+
+const DesktopSectionVisualization: React.FC<
+  DesktopSectionVisualizationProps
+> = ({ totalSections, readSections, sections }) => {
+  return (
+    <div className="flex flex-wrap gap-1">
+      {Array.from({ length: totalSections }).map((_, i) => {
+        const isRead = sections[i] && readSections.has(sections[i].id);
+        return (
+          <motion.div
+            key={sections[i]?.id || i}
+            className={cn(
+              "w-4 h-4 rounded-2xl",
+              isRead ? "bg-primary/80" : "bg-secondary/40"
+            )}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{
+              delay: i * 0.01,
+              duration: 0.2,
+            }}
+          />
+        );
+      })}
+    </div>
   );
 };
 
@@ -148,42 +230,72 @@ const DocumentStructurePanel: React.FC<DocumentStructurePanelProps> = ({
   lastUpdatedFormatted,
 }) => {
   const { currentTheme } = useTheme();
+  const { isMobile } = useMobile();
+
+  // Limit the number of visual bars on mobile
+  const maxVisualSections = isMobile ? 5 : 10;
 
   return (
     <CardContainer
       title="Document Structure"
-      description="What can you expect in this document? 🙂"
+      description={
+        isMobile
+          ? "Document overview"
+          : "What can you expect in this document? 🙂"
+      }
       icon={LayoutList}
       variant="subtle"
     >
       <div className="flex items-center justify-between mb-3">
         <div className="text-sm">Sections</div>
         <div className="flex items-center">
-          {/* Visual section indicator */}
-          <div className="flex items-end h-6 mr-2">
-            {Array.from({
-              length: Math.min(totalSections, 10),
-            }).map((_, i) => (
-              <motion.div
-                key={i}
-                className="w-1 rounded-t-full mx-0.5"
-                style={{
-                  height: `${Math.max(8, 24 - i * 1.5)}px`,
-                  backgroundColor:
-                    i < 5
-                      ? `${currentTheme.primary}${90 - i * 15}`
-                      : `${currentTheme.primary}20`,
-                }}
-                initial={{ height: 0 }}
-                animate={{ height: `${Math.max(8, 24 - i * 1.5)}px` }}
-                transition={{
-                  delay: 0.1 + i * 0.05,
-                  duration: 0.4,
-                  ease: "easeOut",
-                }}
-              />
-            ))}
-          </div>
+          {/* Visual section indicator - optimized for mobile */}
+          {!isMobile ? (
+            // Desktop version with full animations
+            <div className="flex items-end h-6 mr-2">
+              {Array.from({
+                length: Math.min(totalSections, maxVisualSections),
+              }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="w-1 rounded-t-full mx-0.5"
+                  style={{
+                    height: `${Math.max(8, 24 - i * 1.5)}px`,
+                    backgroundColor:
+                      i < 5
+                        ? `${currentTheme.primary}${90 - i * 15}`
+                        : `${currentTheme.primary}20`,
+                  }}
+                  initial={{ height: 0 }}
+                  animate={{ height: `${Math.max(8, 24 - i * 1.5)}px` }}
+                  transition={{
+                    delay: 0.1 + i * 0.05,
+                    duration: 0.4,
+                    ease: "easeOut",
+                  }}
+                />
+              ))}
+            </div>
+          ) : (
+            // Mobile version with static or simplified visuals
+            <div className="flex items-end h-5 mr-2">
+              {Array.from({
+                length: Math.min(totalSections, maxVisualSections),
+              }).map((_, i) => (
+                <div
+                  key={i}
+                  className="w-0.5 rounded-t-full mx-0.5"
+                  style={{
+                    height: `${Math.max(5, 15 - i)}px`,
+                    backgroundColor:
+                      i < 3
+                        ? `${currentTheme.primary}${90 - i * 20}`
+                        : `${currentTheme.primary}20`,
+                  }}
+                />
+              ))}
+            </div>
+          )}
           <span className="text-sm font-medium">{totalSections}</span>
         </div>
       </div>
@@ -194,37 +306,55 @@ const DocumentStructurePanel: React.FC<DocumentStructurePanelProps> = ({
         <div className="text-sm font-medium">{wordCount.toLocaleString()}</div>
       </div>
 
-      {/* Enhanced reading time breakdown */}
+      {/* Enhanced reading time breakdown - optimized for mobile */}
       <div className="flex items-center justify-between mb-3">
-        <div className="text-sm">Estimated Reading Time</div>
+        <div className="text-sm">Reading Time</div>
         <div className="flex items-center">
-          <div className="flex items-center">
-            {Array.from({
-              length: Math.min(estimatedReadTime, 5),
-            }).map((_, i) => (
-              <motion.div
-                key={i}
-                className="w-1.5 h-1.5 rounded-full mx-0.5"
-                style={{
-                  backgroundColor: `${currentTheme.primary}${90 - i * 15}`,
-                }}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  delay: 0.2 + i * 0.1,
-                  duration: 0.3,
-                  ease: "backOut",
-                }}
-              />
-            ))}
-          </div>
+          {!isMobile ? (
+            // Desktop version with animations
+            <div className="flex items-center">
+              {Array.from({
+                length: Math.min(estimatedReadTime, 5),
+              }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="w-1.5 h-1.5 rounded-full mx-0.5"
+                  style={{
+                    backgroundColor: `${currentTheme.primary}${90 - i * 15}`,
+                  }}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{
+                    delay: 0.2 + i * 0.1,
+                    duration: 0.3,
+                    ease: "backOut",
+                  }}
+                />
+              ))}
+            </div>
+          ) : (
+            // Static version for mobile
+            <div className="flex items-center">
+              {Array.from({
+                length: Math.min(estimatedReadTime, 3),
+              }).map((_, i) => (
+                <div
+                  key={i}
+                  className="w-1 h-1 rounded-full mx-0.5"
+                  style={{
+                    backgroundColor: `${currentTheme.primary}${90 - i * 20}`,
+                  }}
+                />
+              ))}
+            </div>
+          )}
           <span className="ml-2 text-sm font-medium">
             {estimatedReadTime} min
           </span>
         </div>
       </div>
 
-      {/* Last updated with icon */}
+      {/* Last updated with icon - simplified for mobile */}
       <div className="flex items-center justify-between">
         <div className="text-sm">Last Updated</div>
         <div className="text-sm flex items-center">
