@@ -3,7 +3,7 @@ import { useTheme } from "@/hooks/ui/use-theme";
 import { motion } from "framer-motion";
 import { LayoutList, Calendar, BookOpen, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
-import CardContainer from "@/components/container/CardContainer";
+import CardContainer from "@/components/shared/container/CardContainer";
 import { useDocumentReading } from "@/hooks";
 
 interface DetailPanelProps {

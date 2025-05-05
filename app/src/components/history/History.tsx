@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
-import CardContainer from "@/components/container/CardContainer";
+import CardContainer from "@/components/shared/container/CardContainer";
 import { Calendar, Search, Filter, CalendarDays } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import CardContainer from "@/components/container/CardContainer";
+import CardContainer from "@/components/shared/container/CardContainer";
 import { useReadingList } from "@/hooks";
 import { BookOpen, Plus, BookMarked, ListFilter } from "lucide-react";
 import { Badge } from "@/components/ui/badge";

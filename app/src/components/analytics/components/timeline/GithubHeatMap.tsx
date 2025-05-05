@@ -11,7 +11,7 @@ import useMobile from "@/hooks/device/use-mobile";
 import { Calendar, BookOpen, AlertCircle } from "lucide-react";
 import { useHeatmapStore } from "@/stores";
 import { Button } from "@/components/ui/button";
-import CardContainer from "@/components/container/CardContainer";
+import CardContainer from "@/components/shared/container/CardContainer";
 
 interface GitHubStyleHeatmapProps {
   readingHistory: ReadingHistoryItem[];

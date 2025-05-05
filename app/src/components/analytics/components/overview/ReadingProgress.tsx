@@ -16,7 +16,7 @@ import { useHistoryStore } from "@/stores";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
 import { formatTimeInMs } from "@/utils/time";
 import { formatNumber, getStreakEmoji } from "@/components/analytics/utils";
-import CardContainer from "@/components/container/CardContainer";
+import CardContainer from "@/components/shared/container/CardContainer";
 
 /**
  * 📊 Enhanced Reading Progress Component

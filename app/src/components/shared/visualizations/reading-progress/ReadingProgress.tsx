@@ -1,4 +1,4 @@
-import CardContainer from "@/components/container/CardContainer";
+import CardContainer from "@/components/shared/container/CardContainer";
 import type { MonthlyDocumentCounts } from "@/services/analytics/heatmap-generator";
 import { useHeatmapStore } from "@/stores";
 import { TrendingUp } from "lucide-react";
@@ -6,7 +6,7 @@ import ReadingProgressAreaChart from "./ReadingProgressAreaChart";
 import { useState, useEffect, useMemo } from "react";
 import { formatRelativeTime } from "@/utils/time";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
-import type { Color } from "@/components/container/useContainer";
+import type { Color } from "@/components/shared/container/useContainer";
 
 interface ReadingProgressProps {
   history: ReadingHistoryItem[];

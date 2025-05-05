@@ -5,7 +5,7 @@ import { PieChart, Award, AlertCircle } from "lucide-react";
 import useMobile from "@/hooks/device/use-mobile";
 import getIconForTech from "@/components/shared/icons";
 import CategoryRadarChart from "./CategoryRadarChart";
-import CardContainer from "@/components/container/CardContainer";
+import CardContainer from "@/components/shared/container/CardContainer";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { useDocumentList } from "@/hooks";

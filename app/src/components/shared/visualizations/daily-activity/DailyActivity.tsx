@@ -6,7 +6,7 @@ import { useTheme } from "@/hooks/ui/use-theme";
 import { generateThemeColors } from "@/utils/colors";
 import type { DailyActivity } from "@/services/analytics/activity-analyzer";
 import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";
-import CardContainer from "@/components/container/CardContainer";
+import CardContainer from "@/components/shared/container/CardContainer";
 import DaytoDayActivityAreaChart from "./DaytoDayActivityAreaChart";
 
 interface DailyActivityInsightProps {

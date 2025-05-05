@@ -1,7 +1,7 @@
 import { PieChart, BookOpen } from "lucide-react";
 import CardContainer, {
   CardContainerInsight,
-} from "@/components/container/CardContainer";
+} from "@/components/shared/container/CardContainer";
 import CategoryDistributionPieChart from "./CategoryDistributionPieChart";
 import { useCategoryMetrics, useDocumentList } from "@/hooks";
 import { memo, useEffect, useMemo, useState } from "react";

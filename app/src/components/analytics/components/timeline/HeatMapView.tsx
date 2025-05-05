@@ -12,7 +12,7 @@ import {
 import useMobile from "@/hooks/device/use-mobile";
 import { getMonthName } from "@/utils/time";
 import { useHeatmapStore } from "@/stores";
-import CardContainer from "@/components/container/CardContainer";
+import CardContainer from "@/components/shared/container/CardContainer";
 
 interface HeatmapViewProps {
   filteredHistory: ReadingHistoryItem[];
