@@ -3,7 +3,7 @@ import { useTheme } from "@/hooks/ui/use-theme";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Menu, Home } from "lucide-react";
-import ThemeSelector from "@/components/theme/ThemeSelector";
+import ThemeSelector from "@/components/shared/theme/ThemeSelector";
 
 interface AppHeaderProps {
   toggleSidebar: () => void;

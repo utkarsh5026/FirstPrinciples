@@ -4,7 +4,7 @@ import { themes, ThemeOption as ThemeOptionType } from "@/theme/themes";
 import { Palette, ChevronDown, ChevronUp } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeOption from "@/components/theme/ThemeOption";
+import ThemeOption from "@/components/shared/theme/ThemeOption";
 
 const themeCategories = [
   { name: "Dark", themes: themes.slice(0, 7) },
