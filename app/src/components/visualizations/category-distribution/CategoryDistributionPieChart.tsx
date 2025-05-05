@@ -17,7 +17,7 @@ import {
   ChartTooltip,
   ChartContainer as ShadcnChartContainer,
 } from "@/components/ui/chart";
-import getIconForTech from "@/components/icons";
+import getIconForTech from "@/components/shared/icons";
 import { generateThemeColors } from "@/utils/colors";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import ChartContainer from "@/components/chart/ChartContainer";

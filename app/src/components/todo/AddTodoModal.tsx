@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import type { FileMetadata, Category } from "@/services/document";
 import { cn } from "@/lib/utils";
-import getIconForTech from "@/components/icons/iconMap";
+import getIconForTech from "@/components/shared/icons/iconMap";
 import { useReadingList } from "@/hooks";
 
 interface FileSelectionDialogProps {

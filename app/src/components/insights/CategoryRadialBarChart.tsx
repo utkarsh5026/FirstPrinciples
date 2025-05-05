@@ -8,7 +8,7 @@ import { fromSnakeToTitleCase } from "@/utils/string";
 import useMobile from "@/hooks/device/use-mobile";
 import { useCategoryStore } from "@/stores";
 import { useTheme } from "@/hooks/ui/use-theme";
-import getIconForTech from "../icons";
+import getIconForTech from "../shared/icons";
 import {
   ChartTooltip,
   ChartTooltipContent,

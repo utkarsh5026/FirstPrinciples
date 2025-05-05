@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CategoryNode } from "../../../insights/useInsights";
 import { useTheme } from "@/hooks/ui/use-theme";
-import getIconForTech from "@/components/icons";
+import getIconForTech from "@/components/shared/icons";
 
 interface HierarchyProps {
   selectedSubcategory: string | null;

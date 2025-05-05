@@ -9,7 +9,7 @@ import { useCategoryStore } from "@/stores/categoryStore";
 import { useReadingHistory, useDocumentList } from "@/hooks";
 import { formatRelativeTime } from "@/utils/time";
 import CardContainer from "@/components/container/CardContainer";
-import getIconForTech from "@/components/icons";
+import getIconForTech from "@/components/shared/icons";
 
 /**
  * ContentRecencyTimeline Component

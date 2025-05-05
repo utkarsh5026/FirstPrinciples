@@ -2,7 +2,7 @@ import React from "react";
 import { BookMarked, ListTodo, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTabContext } from "@/components/home/context/TabContext";
-import getIconForTech from "@/components/icons";
+import getIconForTech from "@/components/shared/icons";
 import { useReadingList } from "@/hooks";
 import { formatDate } from "@/components/home/utils";
 import CardContainer from "@/components/container/CardContainer";

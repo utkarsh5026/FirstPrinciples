@@ -1,4 +1,4 @@
-import getIconForTech from "@/components/icons";
+import getIconForTech from "@/components/shared/icons";
 import {
   Select,
   SelectTrigger,

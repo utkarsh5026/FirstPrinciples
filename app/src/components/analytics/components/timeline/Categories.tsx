@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Filter, BarChart3 } from "lucide-react";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { getRandomColors } from "@/lib/constants";
-import getIconForTech from "@/components/icons";
+import getIconForTech from "@/components/shared/icons";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import type { TimeRange } from "@/utils/time";
 import { useCategoryStore } from "@/stores";

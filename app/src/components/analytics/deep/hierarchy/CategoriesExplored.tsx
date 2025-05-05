@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { COLORS } from "@/lib/constants";
-import getIconForTech from "@/components/icons";
+import getIconForTech from "@/components/shared/icons";
 import useMobile from "@/hooks/device/use-mobile";
 import { formatRelativeTime } from "@/utils/time";
 import { Badge } from "@/components/ui/badge";

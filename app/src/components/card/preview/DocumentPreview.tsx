@@ -5,7 +5,7 @@ import ErrorLoadingDocument from "@/components/card/preview/ErrorLoadingDocument
 import FullScreenCardView from "@/components/card/fullscreen/FullScreenCardView";
 import NoFileSelectedYet from "@/components/card/preview/NoFileSelectedYet";
 import DetailPanel from "@/components/card/preview/DetailPanel";
-import getIconForTech from "@/components/icons";
+import getIconForTech from "@/components/shared/icons";
 import Header from "@/components/card/preview/Header";
 import StartReadingButton from "@/components/card/preview/StartReadingButton";
 import { formatTimeInMs } from "@/utils/time";

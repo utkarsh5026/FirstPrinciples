@@ -15,7 +15,7 @@ import {
   ChartContainer as ChartContainerBase,
   ChartTooltip,
 } from "@/components/ui/chart";
-import getIconForTech from "@/components/icons";
+import getIconForTech from "@/components/shared/icons";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import useChartTooltip from "@/components/chart/tooltip/use-chart-tooltip";
 

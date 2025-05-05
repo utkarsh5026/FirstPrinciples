@@ -4,7 +4,7 @@ import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { Calendar } from "lucide-react";
 
 import { motion } from "framer-motion";
-import getIconForTech from "@/components/icons/iconMap";
+import getIconForTech from "@/components/shared/icons/iconMap";
 import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface HistoryTimelineProps {

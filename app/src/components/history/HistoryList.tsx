@@ -2,7 +2,7 @@ import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import getIconForTech from "@/components/icons/iconMap";
+import getIconForTech from "@/components/shared/icons/iconMap";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { formatDate } from "@/components/home/utils";
 

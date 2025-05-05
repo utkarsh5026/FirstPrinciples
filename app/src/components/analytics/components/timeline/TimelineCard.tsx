@@ -11,7 +11,7 @@ import {
 import type { TimeRange } from "@/utils/time";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { fromSnakeToTitleCase } from "@/utils/string";
-import getIconForTech from "@/components/icons";
+import getIconForTech from "@/components/shared/icons";
 
 interface TimelineCardProps {
   readingHistory: ReadingHistoryItem[];

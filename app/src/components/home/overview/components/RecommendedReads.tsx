@@ -1,7 +1,7 @@
 import React from "react";
 import { Star } from "lucide-react";
 import type { FileMetadata } from "@/services/document";
-import getIconForTech from "@/components/icons";
+import getIconForTech from "@/components/shared/icons";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import CardContainer from "@/components/container/CardContainer";
 import { Badge } from "@/components/ui/badge";

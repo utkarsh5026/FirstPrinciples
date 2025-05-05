@@ -8,7 +8,7 @@ import {
 import { cn } from "@/lib/utils";
 import CategoryFile from "./CategoryFile";
 import type { CurrentCategory } from "./hooks/use-navigate";
-import getIconForTech from "@/components/icons/iconMap";
+import getIconForTech from "@/components/shared/icons/iconMap";
 
 interface CurrentlyReadingProps {
   currentCategory: CurrentCategory;
