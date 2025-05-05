@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import OnboardingPage from "./Onboarding";
 import { motion, AnimatePresence } from "framer-motion";
 import { useOnboarding } from "./useOnboarding";
-import LoadingAnimation from "../init/LoadingAnimation";
+import LoadingAnimation from "../utils/init/LoadingAnimation";
 
 // Props for the AppWrapper component
 interface AppWrapperProps {
