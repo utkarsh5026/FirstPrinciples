@@ -1,49 +1,66 @@
-import { useSectionStore } from "@/stores";
+import { useHistoryStore } from "@/stores";
 import { useCurrentDocument } from "@/hooks/document/use-current-document";
-import { useState } from "react";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { union } from "@/utils/array";
 
 const useDocumentReading = () => {
-  const { sections, documentPath, category } = useCurrentDocument();
-
-  const startReading = useSectionStore((state) => state.startReading);
-  const endReading = useSectionStore((state) => state.endReading);
-  const loadReadSections = useSectionStore((state) => state.loadReadSections);
-  const readingState = useSectionStore((state) => state.readingState);
+  const { sections, documentPath } = useCurrentDocument();
+  const [sectionsReadSoFar, setSectionsReadSoFar] = useState<number[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const getDocumentHistory = useHistoryStore(
+    (state) => state.getDocumentHistory
+  );
+  const markSectionsCompleted = useHistoryStore(
+    (state) => state.markSectionsCompleted
+  );
 
   /**
    * 📚 Load read sections when document changes
    */
   useEffect(() => {
+    setLoading(true);
     const fetchReadSections = async () => {
-      setLoading(true);
-      if (documentPath) await loadReadSections(documentPath);
-      setLoading(false);
+      try {
+        const documentHistory = await getDocumentHistory(documentPath);
+        console.log(documentHistory, "Document history changed", documentPath);
+        setLoading(false);
+        if (!documentHistory) return;
+
+        setSectionsReadSoFar(documentHistory.completedSectionIndices || []);
+      } catch (error) {
+        console.error("Error fetching read sections:", error);
+        setLoading(false);
+      }
     };
 
     fetchReadSections();
-  }, [documentPath, loadReadSections]);
+  }, [documentPath, getDocumentHistory]);
 
   /**
    * 📚 Start reading a section
    */
   const startSectionReading = useCallback(
     async (sectionIndex: number) => {
+      console.log(
+        documentPath,
+        sectionIndex,
+        sections,
+        "Start section reading"
+      );
       if (!documentPath) return false;
 
       if (sectionIndex < 0 || sectionIndex >= sections.length) return false;
 
-      const section = sections[sectionIndex];
-      const readSections = readingState.readSections;
-
-      if (readSections.has(section.id)) return false;
-
-      const { id, wordCount, title } = section;
-      await startReading(documentPath, id, category, wordCount, title, true);
+      await markSectionsCompleted(documentPath, [sectionIndex]);
+      console.log(sectionIndex);
+      setSectionsReadSoFar((prev) => {
+        console.log(prev);
+        return union(prev, [sectionIndex]);
+      });
       return true;
     },
-    [documentPath, category, readingState, startReading, sections]
+    [documentPath, markSectionsCompleted, sections]
   );
 
   /**
@@ -57,19 +74,53 @@ const useDocumentReading = () => {
     [sections]
   );
 
-  const { readSections } = useMemo(() => {
-    return {
-      readSections: readingState.readSections,
-    };
-  }, [readingState.readSections]);
+  // useEffect(() => {
+  //   const addCompletedSections = async () => {
+  //     if (!documentPath) return;
+  //     await markSectionsCompleted(documentPath, sectionsReadSoFar);
+  //   };
+
+  //   return () => {
+  //     addCompletedSections();
+  //   };
+  // }, [documentPath, sectionsReadSoFar, markSectionsCompleted]);
+
+  const endReading = useCallback(async () => {
+    if (!documentPath) return;
+    await markSectionsCompleted(documentPath, sectionsReadSoFar);
+  }, [documentPath, sectionsReadSoFar, markSectionsCompleted]);
+
+  useEffect(() => {
+    console.log(sectionsReadSoFar, "Sections read so far changed");
+  }, [sectionsReadSoFar]);
+
+  useEffect(() => {
+    console.log(sections, "Sections changed");
+  }, [sections]);
+
+  useEffect(() => {
+    console.log(documentPath, "Document path changed");
+  }, [documentPath]);
+
+  useEffect(() => {
+    console.log(sectionsReadSoFar, "Sections read so far changed");
+  }, [sectionsReadSoFar]);
+
+  const readSections = useMemo(() => {
+    return new Set(
+      sections
+        .filter((_section, index) => sectionsReadSoFar.includes(index))
+        .map(({ id }) => id)
+    );
+  }, [sections, sectionsReadSoFar]);
 
   return {
-    readSections,
     startSectionReading,
     endReading,
     getSection,
     sections,
     loading,
+    readSections,
   };
 };
 

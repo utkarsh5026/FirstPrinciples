@@ -15,8 +15,7 @@ interface SectionsSheetProps {
   menuOpen: boolean;
   setMenuOpen: (open: boolean) => void;
   sections: MarkdownSection[];
-  readSections: Set<string>; // Now passed directly from parent
-  setReadSections?: (sections: Set<string>) => void; // Optional callback for updating read sections
+  readSections: Set<string>;
 }
 
 /**
@@ -41,26 +40,17 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
   setMenuOpen,
   sections,
   readSections,
-  setReadSections,
 }) => {
-  // State for tracking whether to show progress (preference only)
   const [showProgress, setShowProgress] = useState<boolean>(() => {
-    // Initialize from localStorage or default to true for the preference only
     return localStorage.getItem("showCardProgress") !== "false";
   });
 
-  // Calculate progress percentage
   const progressPercentage = sections.length
     ? (readSections.size / sections.length) * 100
     : 0;
 
-  // Handle resetting progress (clearing read sections)
   const handleResetProgress = () => {
     if (confirm("Reset your reading progress?")) {
-      if (setReadSections) {
-        setReadSections(new Set());
-      }
-      // Still clear localStorage to be consistent
       localStorage.removeItem("readCardSections");
     }
   };

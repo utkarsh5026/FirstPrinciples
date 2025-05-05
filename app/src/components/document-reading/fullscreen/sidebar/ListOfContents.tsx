@@ -10,19 +10,6 @@ interface ListOfContentsProps {
   handleSelectCard: (index: number) => void;
 }
 
-/**
- * ListOfContents Component
- *
- * This component displays a list of sections with their titles, along with indicators for the current section and sections that have been read.
- * It allows users to select a section to view.
- *
- * @param {ListOfContentsProps} props - Component props
- * @param {Array} props.filteredSections - An array of section objects, each containing an id and title.
- * @param {number} props.currentIndex - The index of the currently selected section.
- * @param {Set<string>} props.readSections - A set of section ids that have been read.
- * @param {boolean} props.showProgress - A boolean indicating if the reading progress should be shown.
- * @param {(index: number) => void} props.handleSelectCard - A function to handle the selection of a section.
- */
 const ListOfContents: React.FC<ListOfContentsProps> = ({
   sections,
   currentIndex,

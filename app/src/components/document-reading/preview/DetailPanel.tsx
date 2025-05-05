@@ -1,19 +1,17 @@
 import { useMemo } from "react";
 import { useTheme } from "@/hooks/ui/use-theme";
 import { motion } from "framer-motion";
-import { LayoutList, Calendar, BookOpen, Clock } from "lucide-react";
+import { LayoutList, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import CardContainer from "@/components/shared/container/CardContainer";
 import { useDocumentReading } from "@/hooks";
 import useMobile from "@/hooks/device/use-mobile";
-import type { MarkdownSection } from "@/services/section/parsing";
 
 interface DetailPanelProps {
   totalSections: number;
   wordCount: number;
   estimatedReadTime: number;
   lastUpdatedFormatted: string;
-  selectedFile: string;
 }
 
 const DetailPanel: React.FC<DetailPanelProps> = ({
@@ -21,18 +19,13 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
   wordCount,
   estimatedReadTime,
   lastUpdatedFormatted,
-  selectedFile,
 }) => {
-  const { readSections, sections, loading } = useDocumentReading();
+  const { readSections, loading } = useDocumentReading();
   const { isMobile } = useMobile();
 
   const completionPercentage = useMemo(() => {
     return totalSections > 0 ? (readSections.size / totalSections) * 100 : 0;
   }, [readSections, totalSections]);
-
-  const remainingReadingTime = Math.ceil(
-    (estimatedReadTime * (100 - completionPercentage)) / 100
-  );
 
   const getProgressColor = (percentage: number) => {
     if (percentage >= 75) return "bg-primary";
@@ -43,7 +36,6 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
 
   return (
     <>
-      {/* Document Structure Panel */}
       <DocumentStructurePanel
         totalSections={totalSections}
         wordCount={wordCount}
@@ -51,8 +43,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
         lastUpdatedFormatted={lastUpdatedFormatted}
       />
 
-      {/* Reading Progress Panel (replacing file path) */}
-      <div className="bg-secondary/5 rounded-xl p-4 border border-border/30 shadow-sm">
+      <div className="bg-secondary/5 p-4 border border-border/30 shadow-sm rounded-2xl">
         <h3 className="text-sm font-medium mb-3 flex items-center">
           <BookOpen className="h-3.5 w-3.5 mr-1.5 text-primary/70" />
           Reading Progress
@@ -89,130 +80,10 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
                 />
               </div>
             </div>
-
-            {/* Remaining Time */}
-            <div className="flex items-center justify-between">
-              <div className="text-sm flex items-center">
-                <Clock className="h-3.5 w-3.5 mr-1.5 text-primary/70" />
-                Remaining Time
-              </div>
-              <div className="text-sm font-medium">
-                {remainingReadingTime} min
-              </div>
-            </div>
-
-            <div className="mt-3 pt-3 border-t border-border/30">
-              {isMobile ? (
-                <MobileSectionVisualization
-                  totalSections={totalSections}
-                  readSections={readSections}
-                  sections={sections}
-                />
-              ) : (
-                <DesktopSectionVisualization
-                  totalSections={totalSections}
-                  readSections={readSections}
-                  sections={sections}
-                />
-              )}
-            </div>
           </>
-        )}
-
-        {/* Hidden file path (only shown in debug mode) */}
-        {process.env.NODE_ENV === "development" && (
-          <div className="mt-3 pt-3 border-t border-border/30 text-xs text-muted-foreground/60 break-all">
-            {selectedFile}
-          </div>
         )}
       </div>
     </>
-  );
-};
-
-interface MobileSectionVisualizationProps {
-  totalSections: number;
-  readSections: Set<string>;
-  sections: MarkdownSection[];
-}
-
-const MobileSectionVisualization: React.FC<MobileSectionVisualizationProps> = ({
-  totalSections,
-  readSections,
-  sections,
-}) => {
-  // Skip animation on very large section counts
-  const shouldUseAnimation = totalSections <= 30;
-
-  return (
-    <div className="flex flex-wrap gap-1">
-      {Array.from({ length: totalSections }).map((_, i) => {
-        const isRead = sections[i] && readSections.has(sections[i].id);
-
-        // For mobile, use static divs without animation when there are many sections
-        if (!shouldUseAnimation) {
-          return (
-            <div
-              key={sections[i]?.id || i}
-              className={cn(
-                "w-3 h-3 rounded-full",
-                isRead ? "bg-primary/80" : "bg-secondary/40"
-              )}
-            />
-          );
-        }
-
-        // Use simplified animations for smaller section counts
-        return (
-          <motion.div
-            key={sections[i]?.id || i}
-            className={cn(
-              "w-3 h-3 rounded-full",
-              isRead ? "bg-primary/80" : "bg-secondary/40"
-            )}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              delay: i * 0.005, // Much faster staggered delay
-              duration: 0.1, // Shorter animation duration
-            }}
-          />
-        );
-      })}
-    </div>
-  );
-};
-
-interface DesktopSectionVisualizationProps {
-  totalSections: number;
-  readSections: Set<string>;
-  sections: MarkdownSection[];
-}
-
-const DesktopSectionVisualization: React.FC<
-  DesktopSectionVisualizationProps
-> = ({ totalSections, readSections, sections }) => {
-  return (
-    <div className="flex flex-wrap gap-1">
-      {Array.from({ length: totalSections }).map((_, i) => {
-        const isRead = sections[i] && readSections.has(sections[i].id);
-        return (
-          <motion.div
-            key={sections[i]?.id || i}
-            className={cn(
-              "w-4 h-4 rounded-2xl",
-              isRead ? "bg-primary/80" : "bg-secondary/40"
-            )}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              delay: i * 0.01,
-              duration: 0.2,
-            }}
-          />
-        );
-      })}
-    </div>
   );
 };
 
@@ -227,31 +98,22 @@ const DocumentStructurePanel: React.FC<DocumentStructurePanelProps> = ({
   totalSections,
   wordCount,
   estimatedReadTime,
-  lastUpdatedFormatted,
 }) => {
   const { currentTheme } = useTheme();
   const { isMobile } = useMobile();
-
-  // Limit the number of visual bars on mobile
   const maxVisualSections = isMobile ? 5 : 10;
 
   return (
     <CardContainer
       title="Document Structure"
-      description={
-        isMobile
-          ? "Document overview"
-          : "What can you expect in this document? 🙂"
-      }
+      description={"What can you expect in this document? 🙂"}
       icon={LayoutList}
       variant="subtle"
     >
       <div className="flex items-center justify-between mb-3">
         <div className="text-sm">Sections</div>
         <div className="flex items-center">
-          {/* Visual section indicator - optimized for mobile */}
           {!isMobile ? (
-            // Desktop version with full animations
             <div className="flex items-end h-6 mr-2">
               {Array.from({
                 length: Math.min(totalSections, maxVisualSections),
@@ -300,18 +162,15 @@ const DocumentStructurePanel: React.FC<DocumentStructurePanelProps> = ({
         </div>
       </div>
 
-      {/* Word count visualization */}
       <div className="flex items-center justify-between mb-3">
         <div className="text-sm">Word Count</div>
-        <div className="text-sm font-medium">{wordCount.toLocaleString()}</div>
+        <div className="text-sm font-medium">{`${wordCount.toLocaleString()} words`}</div>
       </div>
 
-      {/* Enhanced reading time breakdown - optimized for mobile */}
       <div className="flex items-center justify-between mb-3">
         <div className="text-sm">Reading Time</div>
         <div className="flex items-center">
           {!isMobile ? (
-            // Desktop version with animations
             <div className="flex items-center">
               {Array.from({
                 length: Math.min(estimatedReadTime, 5),
@@ -333,7 +192,6 @@ const DocumentStructurePanel: React.FC<DocumentStructurePanelProps> = ({
               ))}
             </div>
           ) : (
-            // Static version for mobile
             <div className="flex items-center">
               {Array.from({
                 length: Math.min(estimatedReadTime, 3),
@@ -351,15 +209,6 @@ const DocumentStructurePanel: React.FC<DocumentStructurePanelProps> = ({
           <span className="ml-2 text-sm font-medium">
             {estimatedReadTime} min
           </span>
-        </div>
-      </div>
-
-      {/* Last updated with icon - simplified for mobile */}
-      <div className="flex items-center justify-between">
-        <div className="text-sm">Last Updated</div>
-        <div className="text-sm flex items-center">
-          <Calendar className="h-3 w-3 mr-1.5 text-muted-foreground" />
-          {lastUpdatedFormatted}
         </div>
       </div>
     </CardContainer>

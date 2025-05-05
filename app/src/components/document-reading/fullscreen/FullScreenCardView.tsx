@@ -65,10 +65,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
     if (initializedRef.current) return;
 
     const initializeReading = async () => {
-      if (sections.length === 0) return;
-
       initializedRef.current = true;
-      await startSectionReading(currentIndex);
       startTimeRef.current = Date.now();
     };
 
@@ -76,11 +73,12 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
 
     return () => {
       if (initializedRef.current) {
+        console.info("Will unmount");
         endReading();
         initializedRef.current = false;
       }
     };
-  }, [sections, currentIndex, startSectionReading, endReading]);
+  }, [endReading]);
 
   /**
    * 🔄 Smoothly transitions to a new section with a nice fade effect
