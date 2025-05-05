@@ -19,6 +19,7 @@ export interface ReadingHistoryItem {
   readCount: number;
   timeSpent: number;
   wordsRead: number;
+  completedSectionIndices: number[]; // Array of section indices that have been completed
 }
 
 /**
@@ -29,7 +30,8 @@ export interface ReadingHistoryItem {
  */
 export async function addToReadingHistory(
   path: string,
-  title: string
+  title: string,
+  completedSectionIndices?: number[]
 ): Promise<ReadingHistoryItem> {
   try {
     const existingEntries = await databaseService.getByIndex<
@@ -49,13 +51,24 @@ export async function addToReadingHistory(
     const now = Date.now();
 
     if (existingEntry) {
+      const currentCompletedSectionIndices =
+        existingEntry.completedSectionIndices;
+      const updatedCompletedSectionIndices = new Set([
+        ...currentCompletedSectionIndices,
+        ...(completedSectionIndices ?? []),
+      ]);
+
       const updatedEntry: ReadingHistoryItem = {
         ...existingEntry,
         lastReadAt: now,
         readCount: existingEntry.readCount + 1,
         timeSpent: existingEntry.timeSpent + timeSpent,
         wordsRead: existingEntry.wordsRead + wordsRead,
+        completedSectionIndices: Array.from(updatedCompletedSectionIndices),
       };
+
+      console.log("existingEntry", existingEntry);
+      console.log("updatedEntry", updatedEntry);
 
       await databaseService.update(
         STORE_NAME,
@@ -72,6 +85,7 @@ export async function addToReadingHistory(
         readCount: 1,
         timeSpent: timeSpent,
         wordsRead: wordsRead,
+        completedSectionIndices: completedSectionIndices ?? [],
       };
 
       const id = await databaseService.add(STORE_NAME, newEntry);
@@ -140,5 +154,94 @@ export async function getDocumentHistory(
   } catch (error) {
     console.error("Error getting document history:", error);
     return null;
+  }
+}
+
+/**
+ * Mark a section as completed for a document
+ */
+export async function markSectionsCompleted(
+  path: string,
+  title: string,
+  sectionIndices: number[]
+): Promise<boolean> {
+  try {
+    const entry = await getDocumentHistory(path);
+
+    if (!entry) {
+      await addToReadingHistory(path, title, sectionIndices);
+      return true;
+    }
+
+    const { completedSectionIndices } = entry;
+
+    const updatedSectionIndices = new Set([
+      ...(completedSectionIndices || []),
+      ...sectionIndices,
+    ]);
+
+    const updatedEntry: ReadingHistoryItem = {
+      ...entry,
+      lastReadAt: Date.now(),
+      completedSectionIndices: Array.from(updatedSectionIndices),
+    };
+
+    await databaseService.update(
+      STORE_NAME,
+      updatedEntry as { id: IDBValidKey }
+    );
+    return true;
+  } catch (error) {
+    console.error("Error marking section as completed:", error);
+    return false;
+  }
+}
+
+/**
+ * Check if a section has been completed
+ */
+export async function isSectionCompleted(
+  path: string,
+  sectionIndex: number
+): Promise<boolean> {
+  try {
+    const documentHistory = await getDocumentHistory(path);
+    if (!documentHistory?.completedSectionIndices) return false;
+
+    return documentHistory.completedSectionIndices.includes(sectionIndex);
+  } catch (error) {
+    console.error("Error checking if section is completed:", error);
+    return false;
+  }
+}
+
+/**
+ * Get all completed sections for a document
+ */
+export async function getCompletedSections(path: string): Promise<number[]> {
+  try {
+    const documentHistory = await getDocumentHistory(path);
+    return documentHistory?.completedSectionIndices || [];
+  } catch (error) {
+    console.error("Error getting completed sections:", error);
+    return [];
+  }
+}
+
+/**
+ * Calculate document completion percentage
+ */
+export async function getDocumentCompletionPercentage(
+  path: string,
+  totalSections: number
+): Promise<number> {
+  try {
+    if (totalSections <= 0) return 0;
+
+    const completedSections = await getCompletedSections(path);
+    return Math.round((completedSections.length / totalSections) * 100);
+  } catch (error) {
+    console.error("Error calculating completion percentage:", error);
+    return 0;
   }
 }
