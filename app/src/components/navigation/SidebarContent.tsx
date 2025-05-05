@@ -9,9 +9,11 @@ interface SidebarContentProps {
   categories: Category[];
   loading: boolean;
   onFileSelect: (filePath: string) => void;
-  readFilePaths: Set<string>;
-  todoFilePaths: Set<string>;
-  todoCompletedPaths: Set<string>;
+  filePaths: {
+    read: Set<string>;
+    todo: Set<string>;
+    completed: Set<string>;
+  };
   currentFilePath?: string;
   expandedCategories: Set<string>;
   handleToggleExpand: (categoryId: string, isExpanded: boolean) => void;
@@ -23,9 +25,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
   categories,
   loading,
   onFileSelect,
-  readFilePaths,
-  todoFilePaths,
-  todoCompletedPaths,
+  filePaths,
   currentFilePath,
   expandedCategories,
   handleToggleExpand,
@@ -78,9 +78,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
                         key={category.id}
                         category={category}
                         handleSelectFile={onFileSelect}
-                        readFilePaths={readFilePaths}
-                        todoFilePaths={todoFilePaths}
-                        todoCompletedPaths={todoCompletedPaths}
+                        filePaths={filePaths}
                         currentFilePath={currentFilePath ?? ""}
                         showDescriptions={showDescriptions}
                         expandedCategories={expandedCategories}

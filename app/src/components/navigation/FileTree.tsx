@@ -15,6 +15,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import CategoryFile from "./CategoryFile";
+import { useMemo } from "react";
 
 interface FileTreeProps {
   category: Category;
@@ -22,9 +23,11 @@ interface FileTreeProps {
   expandedCategories: Set<string>;
   handleToggleExpand: (categoryId: string, isExpanded: boolean) => void;
   handleSelectFile: (filePath: string) => void;
-  readFilePaths: Set<string>;
-  todoFilePaths: Set<string>;
-  todoCompletedPaths: Set<string>;
+  filePaths: {
+    todo: Set<string>;
+    completed: Set<string>;
+    read: Set<string>;
+  };
   currentFilePath: string;
   showDescriptions: boolean;
 }
@@ -35,9 +38,7 @@ const FileTree: React.FC<FileTreeProps> = ({
   expandedCategories,
   handleToggleExpand,
   handleSelectFile,
-  readFilePaths,
-  todoFilePaths,
-  todoCompletedPaths,
+  filePaths,
   currentFilePath,
   showDescriptions,
 }) => {
@@ -46,31 +47,47 @@ const FileTree: React.FC<FileTreeProps> = ({
     (category.files && category.files.length > 0) ||
     (category.categories && category.categories.length > 0);
 
-  if (!hasContent) return null;
   const CategoryIcon = getIconForTech(category.name);
 
-  // Count files statistics
-  let totalFiles = 0;
-  let readFiles = 0;
-  let todoFiles = 0;
-  let completedFiles = 0;
+  const {
+    totalFilesCount,
+    readFilesCount,
+    todoFilesCount,
+    completedFilesCount,
+  } = useMemo(() => {
+    let totalFilesCount = 0;
+    let readFilesCount = 0;
+    let todoFilesCount = 0;
+    let completedFilesCount = 0;
 
-  const countFiles = (cat: Category) => {
-    if (cat.files) {
-      totalFiles += cat.files.length;
-      cat.files.forEach((file) => {
-        if (readFilePaths.has(file.path)) readFiles++;
-        if (todoFilePaths.has(file.path)) todoFiles++;
-        if (todoCompletedPaths.has(file.path)) completedFiles++;
-      });
-    }
+    const { todo, read, completed } = filePaths;
 
-    if (cat.categories) {
-      cat.categories.forEach(countFiles);
-    }
-  };
+    const countFiles = (cat: Category) => {
+      if (cat.files) {
+        totalFilesCount += cat.files.length;
+        cat.files.forEach(({ path }) => {
+          if (read.has(path)) readFilesCount++;
+          if (todo.has(path)) todoFilesCount++;
+          if (completed.has(path)) completedFilesCount++;
+        });
+      }
 
-  countFiles(category);
+      if (cat.categories) {
+        cat.categories.forEach(countFiles);
+      }
+    };
+
+    countFiles(category);
+
+    return {
+      totalFilesCount,
+      readFilesCount,
+      todoFilesCount,
+      completedFilesCount,
+    };
+  }, [category, filePaths]);
+
+  if (!hasContent) return null;
 
   return (
     <Collapsible key={category.id} open={isExpanded}>
@@ -110,27 +127,27 @@ const FileTree: React.FC<FileTreeProps> = ({
           <div className="ml-auto flex-shrink-0 flex items-start gap-1.5 mt-0.5">
             <div className="flex items-center gap-1.5">
               {/* Only show badges with counts > 0 */}
-              {completedFiles > 0 && (
+              {completedFilesCount > 0 && (
                 <div className="flex items-center">
                   <CheckCircle size={12} className="text-green-500 mr-0.5" />
                   <span className="text-xs text-green-500">
-                    {completedFiles}
+                    {completedFilesCount}
                   </span>
                 </div>
               )}
 
-              {todoFiles > 0 && (
+              {todoFilesCount > 0 && (
                 <div className="flex items-center">
                   <BookMarked size={12} className="text-primary mr-0.5" />
-                  <span className="text-xs text-primary">{todoFiles}</span>
+                  <span className="text-xs text-primary">{todoFilesCount}</span>
                 </div>
               )}
 
-              {readFiles > 0 && readFiles !== completedFiles && (
+              {readFilesCount > 0 && readFilesCount !== completedFilesCount && (
                 <div className="flex items-center">
                   <Clock size={12} className="text-green-400 mr-0.5" />
                   <span className="text-xs text-green-400">
-                    {readFiles - completedFiles}
+                    {readFilesCount - completedFilesCount}
                   </span>
                 </div>
               )}
@@ -140,7 +157,7 @@ const FileTree: React.FC<FileTreeProps> = ({
                 variant="secondary"
                 className="text-xs bg-secondary/30 ml-1 px-1.5 py-0 h-5"
               >
-                {totalFiles}
+                {totalFilesCount}
               </Badge>
             </div>
           </div>
@@ -158,9 +175,7 @@ const FileTree: React.FC<FileTreeProps> = ({
               expandedCategories={expandedCategories}
               handleToggleExpand={handleToggleExpand}
               handleSelectFile={handleSelectFile}
-              readFilePaths={readFilePaths}
-              todoFilePaths={todoFilePaths}
-              todoCompletedPaths={todoCompletedPaths}
+              filePaths={filePaths}
               currentFilePath={currentFilePath}
               showDescriptions={showDescriptions}
             />
@@ -176,9 +191,9 @@ const FileTree: React.FC<FileTreeProps> = ({
                 file={file}
                 depth={depth + 1}
                 isCurrentFile={isCurrentFile}
-                isTodo={todoFilePaths.has(file.path)}
-                isCompleted={todoCompletedPaths.has(file.path)}
-                isRead={readFilePaths.has(file.path)}
+                isTodo={filePaths.todo.has(file.path)}
+                isCompleted={filePaths.completed.has(file.path)}
+                isRead={filePaths.read.has(file.path)}
                 fileNumber={index + 1}
                 handleSelectFile={handleSelectFile}
                 showDescriptions={showDescriptions}
