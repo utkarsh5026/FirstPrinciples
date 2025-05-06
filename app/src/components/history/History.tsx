@@ -36,7 +36,6 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     useState<ReadingHistoryItem[]>(history);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Load history on component mount
   useEffect(() => {
     const loadHistory = async () => {
       setIsLoading(true);
@@ -56,7 +55,6 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     ];
   }, [history]);
 
-  // Apply filters when selection changes
   useEffect(() => {
     const applyFilters = async () => {
       setIsLoading(true);
@@ -76,13 +74,11 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     applyFilters();
   }, [selectedCategory, selectedTimeframe, filterHistory]);
 
-  // Clear all active filters
   const clearFilters = () => {
     setSelectedCategory("all");
     setSelectedTimeframe("all");
   };
 
-  // Calculate time-based statistics
   const timeStats = useMemo(() => {
     const now = Date.now();
     const oneDay = 24 * 60 * 60 * 1000;
@@ -185,7 +181,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
         )}
 
         {/* Virtualized content */}
-        <ScrollArea className="overflow-y-visible overflow-x-hidden">
+        <ScrollArea className="overflow-y-visible overflow-x-hidden max-h-[600px]">
           {isLoading && filteredHistory.length === 0 ? (
             <div className="h-64 flex items-center justify-center">
               <div className="flex flex-col items-center">

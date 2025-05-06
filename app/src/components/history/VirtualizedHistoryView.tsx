@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, BookOpen, Grid3X3, LayoutList, Search } from "lucide-react";
+import { Calendar, BookOpen, LayoutList, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -182,60 +182,6 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
     );
   };
 
-  const renderGridItem = (item: ReadingHistoryItem, animate = true) => {
-    const category = item.path.split("/")[0] || "uncategorized";
-    const CategoryIcon = getIconForTech(category);
-    const title = fromSnakeToTitleCase(
-      item.path.split("/").pop()?.replace(".md", "") ?? ""
-    );
-
-    const isRecent = Date.now() - item.lastReadAt < 24 * 60 * 60 * 1000;
-
-    const gridItemContent = (
-      <div
-        className="border border-primary/10 hover:border-primary/30 hover:bg-primary/5 
-                  rounded-2xl p-3 cursor-pointer transition-colors h-full flex flex-col"
-        onClick={() => handleSelectDocument(item.path, item.title)}
-      >
-        <div className="flex items-center justify-between mb-2">
-          <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
-            <CategoryIcon className="h-4 w-4 text-primary" />
-          </div>
-          {isRecent && <div className="w-2 h-2 rounded-full bg-green-500" />}
-        </div>
-
-        <h4 className="font-medium text-sm line-clamp-2 mb-auto">{title}</h4>
-
-        <div className="mt-2 flex justify-between items-center text-xs text-muted-foreground">
-          <Badge className="text-[10px] h-4 bg-primary/10 text-primary/80 hover:bg-primary/20 rounded-full">
-            {fromSnakeToTitleCase(category)}
-          </Badge>
-          <span className="flex items-center">
-            <Calendar className="h-3 w-3 mr-1" />
-            {formatDate(item.lastReadAt)}
-          </span>
-        </div>
-      </div>
-    );
-
-    if (!animate) return gridItemContent;
-
-    return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        whileHover={{
-          y: -2,
-          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-          transition: { duration: 0.2 },
-        }}
-        className="h-full"
-      >
-        {gridItemContent}
-      </motion.div>
-    );
-  };
-
   const renderTimelineItem = (item: ReadingHistoryItem, animate = true) => {
     const category = item.path.split("/")[0] || "uncategorized";
     const CategoryIcon = getIconForTech(category);
@@ -356,8 +302,6 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
       return renderDateHeader(item.displayDate!, false);
     } else if (item.type === "item") {
       switch (viewType) {
-        case "grid":
-          return renderGridItem(item.item!, false);
         case "timeline":
           return renderTimelineItem(item.item!, false);
         default:
@@ -386,13 +330,6 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
             >
               <LayoutList className="h-3.5 w-3.5 mr-1.5" />
               <span className={isMobile ? "hidden" : "inline"}>List</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="grid"
-              className="h-6 text-xs rounded-2xl data-[state=active]:bg-primary/10"
-            >
-              <Grid3X3 className="h-3.5 w-3.5 mr-1.5" />
-              <span className={isMobile ? "hidden" : "inline"}>Grid</span>
             </TabsTrigger>
             <TabsTrigger
               value="timeline"
@@ -484,41 +421,6 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
                             style={{ height: virtualRow.size }}
                           >
                             {renderDateHeader(item.displayDate!, false)}
-                          </div>
-                        );
-                      }
-
-                      // Find all items for the current render batch that should be in the grid
-                      const gridItems = rowVirtualizer
-                        .getVirtualItems()
-                        .filter((vr) => {
-                          const i = flattenedItems[vr.index];
-                          return (
-                            i.type === "item" &&
-                            Math.floor(vr.index / 6) ===
-                              Math.floor(virtualRow.index / 6)
-                          );
-                        })
-                        .map((vr) => flattenedItems[vr.index])
-                        .filter((i) => i.type === "item");
-
-                      // Only render grid container for the first item in each batch
-                      if (gridItems.length > 0 && gridItems[0] === item) {
-                        return (
-                          <div
-                            key={`grid-${virtualRow.index}`}
-                            className="mb-3"
-                          >
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                              {gridItems.map((gridItem, idx) => (
-                                <div
-                                  key={`grid-item-${idx}-${virtualRow.index}`}
-                                  className="h-full"
-                                >
-                                  {renderGridItem(gridItem.item!, false)}
-                                </div>
-                              ))}
-                            </div>
                           </div>
                         );
                       }
