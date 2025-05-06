@@ -1,7 +1,7 @@
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { databaseService } from "@/infrastructure/storage";
-import { readingSessionTracker } from "@/services/analytics/ReadingSessionTracker";
 import { estimateWordsRead } from "@/services/analytics/word-count-estimation";
+import { union } from "@/utils/array";
 
 const STORE_NAME = "readingHistory";
 
@@ -19,6 +19,7 @@ export interface ReadingHistoryItem {
   readCount: number;
   timeSpent: number;
   wordsRead: number;
+  completedSectionIndices: number[]; // Array of section indices that have been completed
 }
 
 /**
@@ -29,22 +30,21 @@ export interface ReadingHistoryItem {
  */
 export async function addToReadingHistory(
   path: string,
-  title: string
+  title: string,
+  completedSectionIndices?: number[]
 ): Promise<ReadingHistoryItem> {
   try {
+    const cleanedPath = _cleanPath(path);
     const existingEntries = await databaseService.getByIndex<
       ReadingHistoryItem & { id: IDBValidKey }
-    >(STORE_NAME, "path", path);
+    >(STORE_NAME, "path", cleanedPath);
 
     console.log("existingEntries", existingEntries);
 
     const existingEntry =
       existingEntries.length > 0 ? existingEntries[0] : null;
 
-    const timeSpent = await readingSessionTracker.getTimeSpentOnDocument(
-      path,
-      true
-    );
+    const timeSpent = 0;
     const wordsRead = estimateWordsRead(timeSpent);
     const now = Date.now();
 
@@ -55,7 +55,14 @@ export async function addToReadingHistory(
         readCount: existingEntry.readCount + 1,
         timeSpent: existingEntry.timeSpent + timeSpent,
         wordsRead: existingEntry.wordsRead + wordsRead,
+        completedSectionIndices: union(
+          existingEntry.completedSectionIndices,
+          completedSectionIndices ?? []
+        ),
       };
+
+      console.log("existingEntry", existingEntry);
+      console.log("updatedEntry", updatedEntry);
 
       await databaseService.update(
         STORE_NAME,
@@ -66,12 +73,13 @@ export async function addToReadingHistory(
       return updatedEntry;
     } else {
       const newEntry: ReadingHistoryItem = {
-        path,
+        path: cleanedPath,
         title,
         lastReadAt: now,
         readCount: 1,
         timeSpent: timeSpent,
         wordsRead: wordsRead,
+        completedSectionIndices: completedSectionIndices ?? [0],
       };
 
       const id = await databaseService.add(STORE_NAME, newEntry);
@@ -131,14 +139,116 @@ export async function getDocumentHistory(
   path: string
 ): Promise<ReadingHistoryItem | null> {
   try {
+    const cleanedPath = _cleanPath(path);
     const items = await databaseService.getByIndex<ReadingHistoryItem>(
       STORE_NAME,
       "path",
-      path
+      cleanedPath
     );
+
+    console.log(items, "Items");
+
+    if (!items) console.log("No items found");
     return items.length > 0 ? items[0] : null;
   } catch (error) {
     console.error("Error getting document history:", error);
     return null;
   }
 }
+
+/**
+ * Mark a section as completed for a document
+ */
+export async function markSectionsCompleted(
+  path: string,
+  sectionIndices: number[]
+): Promise<boolean> {
+  try {
+    console.error(path, sectionIndices, "Mark sections completed");
+    const entry = await getDocumentHistory(path);
+
+    if (!entry) {
+      return false;
+    }
+
+    const { completedSectionIndices } = entry;
+
+    const updatedEntry: ReadingHistoryItem = {
+      ...entry,
+      lastReadAt: Date.now(),
+      completedSectionIndices: union(completedSectionIndices, sectionIndices),
+    };
+
+    console.error(
+      updatedEntry,
+      completedSectionIndices,
+      sectionIndices,
+      "Updated entry"
+    );
+
+    await databaseService.update(
+      STORE_NAME,
+      updatedEntry as { id: IDBValidKey }
+    );
+    return true;
+  } catch (error) {
+    console.error("Error marking section as completed:", error);
+    return false;
+  }
+}
+
+/**
+ * Check if a section has been completed
+ */
+export async function isSectionCompleted(
+  path: string,
+  sectionIndex: number
+): Promise<boolean> {
+  try {
+    const documentHistory = await getDocumentHistory(path);
+    if (!documentHistory?.completedSectionIndices) return false;
+
+    return documentHistory.completedSectionIndices.includes(sectionIndex);
+  } catch (error) {
+    console.error("Error checking if section is completed:", error);
+    return false;
+  }
+}
+
+/**
+ * Get all completed sections for a document
+ */
+export async function getCompletedSections(path: string): Promise<number[]> {
+  try {
+    const documentHistory = await getDocumentHistory(path);
+    return documentHistory?.completedSectionIndices || [];
+  } catch (error) {
+    console.error("Error getting completed sections:", error);
+    return [];
+  }
+}
+
+/**
+ * Calculate document completion percentage
+ */
+export async function getDocumentCompletionPercentage(
+  path: string,
+  totalSections: number
+): Promise<number> {
+  try {
+    if (totalSections <= 0) return 0;
+
+    const completedSections = await getCompletedSections(path);
+    return Math.round((completedSections.length / totalSections) * 100);
+  } catch (error) {
+    console.error("Error calculating completion percentage:", error);
+    return 0;
+  }
+}
+
+/**
+ * Clean the path to ensure it doesnot ends with ".md"
+ */
+const _cleanPath = (path: string) => {
+  return path.toLowerCase().endsWith(".md") ? path.replace(".md", "") : path;
+};

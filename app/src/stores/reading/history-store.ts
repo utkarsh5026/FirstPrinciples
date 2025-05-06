@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { type ReadingHistoryItem } from "@/services/reading/reading-history-service";
-import { sectionAnalyticsController } from "@/services/analytics/SectionAnalyticsController";
 import { parseError } from "@/utils/error";
 import * as readingHistoryService from "@/services/reading/reading-history-service";
 
@@ -27,7 +26,8 @@ type State = {
 type Actions = {
   addToReadingHistory: (
     path: string,
-    title: string
+    title: string,
+    sectionIndices?: number[]
   ) => Promise<ReadingHistoryItem | null>;
   clearReadingHistory: () => Promise<void>;
   getDocumentHistory: (path: string) => Promise<ReadingHistoryItem | null>;
@@ -35,6 +35,10 @@ type Actions = {
   initialize: () => Promise<void>;
   calculateStreak: (readingHistory: ReadingHistoryItem[]) => Streak;
   getHistoryStats: (category: string) => HistoryStats;
+  markSectionsCompleted: (
+    path: string,
+    sectionIndices: number[]
+  ) => Promise<boolean>;
 };
 
 /**
@@ -64,11 +68,12 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
    * 📝 Add a document to reading history
    * Tracks what you've been reading!
    */
-  addToReadingHistory: async (path, title) => {
+  addToReadingHistory: async (path, title, sectionIndices) => {
     try {
       const updatedItem = await readingHistoryService.addToReadingHistory(
         path,
-        title
+        title,
+        sectionIndices
       );
 
       await get().refreshReadingHistory();
@@ -91,7 +96,6 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
     if (confirm("Are you sure you want to clear your reading history?")) {
       try {
         await readingHistoryService.clearHistory();
-        await sectionAnalyticsController.resetSectionAnalytics();
         set({ readingHistory: [], error: null });
       } catch (error) {
         console.error("Error clearing reading history:", error);
@@ -109,22 +113,6 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
   getDocumentHistory: async (path) => {
     try {
       const historyItem = await readingHistoryService.getDocumentHistory(path);
-
-      if (historyItem) {
-        const documentStats =
-          await sectionAnalyticsController.getDocumentStats();
-        const docStat = documentStats.find((stat) => stat.path === path);
-
-        if (docStat) {
-          return {
-            ...historyItem,
-            completionPercentage: docStat.completionPercentage,
-            // Use section analytics data for these metrics
-            timeSpent: docStat.timeSpent || historyItem.timeSpent,
-          };
-        }
-      }
-
       return historyItem;
     } catch (error) {
       console.error("Error getting document history:", error);
@@ -319,5 +307,12 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
 
     set({ statsCache: { ...get().statsCache, [category]: stats } });
     return stats;
+  },
+
+  markSectionsCompleted: async (path, sectionIndices) => {
+    return await readingHistoryService.markSectionsCompleted(
+      path,
+      sectionIndices
+    );
   },
 }));

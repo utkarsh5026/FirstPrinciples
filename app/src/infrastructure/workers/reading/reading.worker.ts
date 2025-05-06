@@ -1,6 +1,6 @@
 import * as Comlink from "comlink";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
-import type { CategoryBreakdown } from "@/stores/categoryStore";
+import type { CategoryBreakdown } from "@/stores/analytics/category-store";
 import {
   createCategoryBreakdown,
   createCategoryMap,

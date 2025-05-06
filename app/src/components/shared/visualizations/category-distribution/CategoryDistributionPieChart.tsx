@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { useTheme, useMobile } from "@/hooks";
 import { motion } from "framer-motion";
-import type { CategoryBreakdown } from "@/stores/categoryStore";
+import type { CategoryBreakdown } from "@/stores/analytics/category-store";
 import {
   ChartConfig,
   ChartTooltip,

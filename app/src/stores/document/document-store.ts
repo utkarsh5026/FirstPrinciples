@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { useHistoryStore } from "@/stores/reading/history-store";
-import { useReadingStore } from "@/stores/readingStore";
-import { analyticsController } from "@/services/analytics/AnalyticsController";
+import { useReadingStore } from "@/stores/reading/reading-store";
 import {
   loadContentIndex,
   getFileBreadcrumbs,
@@ -106,9 +105,6 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
         await readingStore.toggleTodoCompletion(todoItem.id);
       }
 
-      // Start a reading session
-      await analyticsController.startReading(path, title);
-
       // Set the selected file
       get().selectFile(path);
 
@@ -177,9 +173,6 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
         contentIndex,
         fileMap,
       });
-
-      // Set available documents in analytics controllers
-      analyticsController.setAvailableDocuments(allFiles);
 
       // Check URL hash for initial document selection
       if (typeof window !== "undefined") {

@@ -1,7 +1,7 @@
 import { type ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { create } from "zustand";
-import { useDocumentStore } from "./document/document-store";
-import { useHistoryStore } from "./reading/history-store";
+import { useDocumentStore } from "@/stores/document/document-store";
+import { useHistoryStore } from "@/stores/reading/history-store";
 import { parseError } from "@/utils/error";
 
 export type CategoryBreakdown = {

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { LoadingWithError } from "./base/base";
+import type { LoadingWithError } from "@/stores/base/base";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { visualizationWorkerManager } from "@/infrastructure/workers";
 import {

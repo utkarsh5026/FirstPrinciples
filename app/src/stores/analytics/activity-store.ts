@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { useHistoryStore } from "./reading/history-store";
+import { useHistoryStore } from "@/stores/reading/history-store";
 import { parseError } from "@/utils/functions/error";
 import type {
   DailyActivity,

@@ -1,9 +1,9 @@
-import { useReadingStore } from "./readingStore";
+import { useReadingStore } from "./reading/reading-store";
 import { useDocumentStore } from "./document/document-store";
 import { useHistoryStore } from "./reading/history-store";
-import { useCategoryStore } from "./categoryStore";
-import { useActivityStore } from "./activityStore";
-import { useHeatmapStore } from "./heatmapStore";
+import { useCategoryStore } from "./analytics/category-store";
+import { useActivityStore } from "./analytics/activity-store";
+import { useHeatmapStore } from "./analytics/heatmap-store";
 import { useEffect, useState } from "react";
 import { useSectionStore } from "./reading/section-store";
 import { useCurrentDocumentStore } from "./document/current-document-store";

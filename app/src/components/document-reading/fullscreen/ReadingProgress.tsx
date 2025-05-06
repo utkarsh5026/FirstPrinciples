@@ -28,10 +28,8 @@ const ReadingProgress: React.FC<ReadingProgressProps> = ({
   isRead,
   minutesLeft,
 }) => {
-  // Ensure the percentage is valid
   const validPercentage = Math.min(100, Math.max(0, percentage));
 
-  // Color styles based on progress
   const getProgressColor = (percent: number) => {
     if (percent >= 100 || isRead) return "bg-primary";
     if (percent >= 75) return "bg-primary/90";
@@ -42,7 +40,6 @@ const ReadingProgress: React.FC<ReadingProgressProps> = ({
 
   return (
     <div className="w-full py-0.5 bg-background/5 backdrop-blur-sm border-b border-border/50">
-      {/* Main progress bar */}
       <div className="relative h-1 w-full bg-secondary/30">
         <motion.div
           className={cn(

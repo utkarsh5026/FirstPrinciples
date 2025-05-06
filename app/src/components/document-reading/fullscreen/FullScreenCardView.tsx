@@ -17,9 +17,16 @@ import { useCurrentDocument } from "@/hooks";
 import ReadingSettingsSheet from "./settings/ReadingSettingsSheet";
 import { ReadingSettingsProvider } from "./context/ReadingSettingsProvider";
 import { useReadingSettings, fontFamilyMap } from "./context/ReadingContext";
-import useDocumentReading from "@/hooks/reading/use-document-reading";
+import { MarkdownSection } from "@/services/section/parsing";
 
-interface FullscreenCardContentProps {
+interface FullscreenCardViewProps {
+  onExit: () => Promise<void>;
+  onChangeSection: (index: number) => Promise<boolean>;
+  sections: MarkdownSection[];
+  getSection: (index: number) => MarkdownSection | null;
+  readSections: Set<string>;
+}
+interface FullscreenCardContentProps extends FullscreenCardViewProps {
   settingsOpen: boolean;
   setSettingsOpen: (open: boolean) => void;
   menuOpen: boolean;
@@ -31,6 +38,11 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   setSettingsOpen,
   menuOpen,
   setMenuOpen,
+  onExit,
+  onChangeSection,
+  sections,
+  getSection,
+  readSections,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -40,13 +52,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   const startTimeRef = useRef<number>(Date.now());
   const { settings } = useReadingSettings();
   const { markdown } = useCurrentDocument();
-  const {
-    startSectionReading,
-    endReading,
-    getSection,
-    readSections,
-    sections,
-  } = useDocumentReading();
 
   const initializedRef = useRef(false);
 
@@ -65,10 +70,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
     if (initializedRef.current) return;
 
     const initializeReading = async () => {
-      if (sections.length === 0) return;
-
       initializedRef.current = true;
-      await startSectionReading(currentIndex);
       startTimeRef.current = Date.now();
     };
 
@@ -76,25 +78,26 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
 
     return () => {
       if (initializedRef.current) {
-        endReading();
+        console.info("Will unmount");
+        onExit();
         initializedRef.current = false;
       }
     };
-  }, [sections, currentIndex, startSectionReading, endReading]);
+  }, [onExit]);
 
   /**
    * 🔄 Smoothly transitions to a new section with a nice fade effect
    * Tracks reading time and updates analytics too! 📊
    */
   const changeSection = async (newIndex: number) => {
-    await endReading();
+    await onExit();
 
     setIsTransitioning(true);
 
     setTimeout(async () => {
       setCurrentIndex(newIndex);
       setIsTransitioning(false);
-      await startSectionReading(newIndex);
+      await onChangeSection(newIndex);
       startTimeRef.current = Date.now();
     }, 200);
   };
@@ -252,39 +255,30 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   );
 };
 
-interface FullscreenCardViewProps {
-  className?: string;
-  onExit: () => void;
-}
-
-const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
-  className,
+const FullscreenCardView: React.FC<
+  FullscreenCardViewProps & {
+    exitFullScreen: () => void;
+  }
+> = ({
   onExit,
+  onChangeSection,
+  sections,
+  getSection,
+  readSections,
+  exitFullScreen,
 }) => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  /**
-   * 🚪 Safely exit fullscreen mode while saving reading progress
-   */
-  const handleExit = () => {
-    onExit();
-  };
-
   return (
     <ReadingSettingsProvider>
-      <div
-        className={cn(
-          "fixed inset-0 z-50 bg-background flex flex-col",
-          className
-        )}
-      >
+      <div className={cn("fixed inset-0 z-50 bg-background flex flex-col")}>
         {/* Header */}
         <div className="sticky top-0 z-20 flex items-center justify-between p-4 border-b border-border bg-card/50 backdrop-blur-sm">
           <Button
             variant="ghost"
             size="icon"
-            onClick={handleExit}
+            onClick={exitFullScreen}
             className="h-8 w-8"
             aria-label="Exit fullscreen"
           >
@@ -319,6 +313,11 @@ const FullscreenCardView: React.FC<FullscreenCardViewProps> = ({
           setSettingsOpen={setSettingsOpen}
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
+          onExit={onExit}
+          onChangeSection={onChangeSection}
+          sections={sections}
+          getSection={getSection}
+          readSections={readSections}
         />
       </div>
     </ReadingSettingsProvider>
