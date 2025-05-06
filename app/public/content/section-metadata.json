@@ -30555,6 +30555,3861 @@
     "title": "asynchronous_context_managers_and_generators",
     "frontmatter": {}
   },
+  "public\\content\\node_js\\node_js_internals\\v8_engine_internals_and_optimization_techniques.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\v8_engine_internals_and_optimization_techniques.md",
+    "sections": [
+      {
+        "id": "v8-engine-internals-and-optimization-techniques-in-nodejs",
+        "title": "V8 Engine Internals and Optimization Techniques in Node.js",
+        "level": 1,
+        "wordCount": 37
+      },
+      {
+        "id": "what-is-the-v8-engine",
+        "title": "What is the V8 Engine?",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "first-principles-how-programming-languages-work",
+        "title": "First Principles: How Programming Languages Work",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "v8-architecture-the-core-components",
+        "title": "V8 Architecture: The Core Components",
+        "level": 2,
+        "wordCount": 468
+      },
+      {
+        "id": "memory-management-the-garbage-collector",
+        "title": "Memory Management: The Garbage Collector",
+        "level": 2,
+        "wordCount": 233
+      },
+      {
+        "id": "v8-optimization-techniques",
+        "title": "V8 Optimization Techniques",
+        "level": 2,
+        "wordCount": 321
+      },
+      {
+        "id": "nodejs-specific-optimizations",
+        "title": "Node.js-Specific Optimizations",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "performance-optimization-best-practices",
+        "title": "Performance Optimization Best Practices",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "v8-flags-and-debugging",
+        "title": "V8 Flags and Debugging",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "real-world-example-optimizing-a-function",
+        "title": "Real-World Example: Optimizing a Function",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 112
+      }
+    ],
+    "totalWordCount": 1612,
+    "estimatedReadingTime": 420000,
+    "title": "v8_engine_internals_and_optimization_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_internals\\understanding_microtasks_and_macrotasks_queues.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\understanding_microtasks_and_macrotasks_queues.md",
+    "sections": [
+      {
+        "id": "understanding-event-loop-microtasks-and-macrotasks-in-nodejs",
+        "title": "Understanding Event Loop: Microtasks and Macrotasks in Node.js",
+        "level": 1,
+        "wordCount": 28
+      },
+      {
+        "id": "the-foundation-how-javascript-execution-works",
+        "title": "The Foundation: How JavaScript Execution Works",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "the-event-loop-the-central-coordinator",
+        "title": "The Event Loop: The Central Coordinator",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "defining-microtasks-and-macrotasks",
+        "title": "Defining Microtasks and Macrotasks",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "the-execution-order-why-it-matters",
+        "title": "The Execution Order: Why It Matters",
+        "level": 2,
+        "wordCount": 201
+      },
+      {
+        "id": "nodejs-specific-details",
+        "title": "Node.js Specific Details",
+        "level": 2,
+        "wordCount": 200
+      },
+      {
+        "id": "practical-implications",
+        "title": "Practical Implications",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "diving-deeper-the-internal-implementation",
+        "title": "Diving Deeper: The Internal Implementation",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "visualizing-the-event-loop",
+        "title": "Visualizing the Event Loop",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "common-pitfalls-and-gotchas",
+        "title": "Common Pitfalls and Gotchas",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "advanced-nodejs-event-loop-phases",
+        "title": "Advanced Node.js Event Loop Phases",
+        "level": 2,
+        "wordCount": 242
+      },
+      {
+        "id": "lets-code-a-practical-example",
+        "title": "Let's Code: A Practical Example",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "how-to-choose-between-microtasks-and-macrotasks",
+        "title": "How to Choose Between Microtasks and Macrotasks",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 111
+      }
+    ],
+    "totalWordCount": 1603,
+    "estimatedReadingTime": 420000,
+    "title": "understanding_microtasks_and_macrotasks_queues",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_internals\\the_role_of_cpp_addons_in_node_js.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\the_role_of_cpp_addons_in_node_js.md",
+    "sections": [
+      {
+        "id": "c-addons-in-nodejs-an-in-depth-exploration",
+        "title": "C++ Addons in Node.js: An In-Depth Exploration",
+        "level": 1,
+        "wordCount": 77
+      },
+      {
+        "id": "first-principles-understanding-the-foundation",
+        "title": "First Principles: Understanding the Foundation",
+        "level": 2,
+        "wordCount": 181
+      },
+      {
+        "id": "why-c-addons-the-motivation",
+        "title": "Why C++ Addons? The Motivation",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "the-mechanics-how-nodejs-and-c-interact",
+        "title": "The Mechanics: How Node.js and C++ Interact",
+        "level": 2,
+        "wordCount": 135
+      },
+      {
+        "id": "the-architecture-of-c-addons",
+        "title": "The Architecture of C++ Addons",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "building-blocks-the-essential-tools",
+        "title": "Building Blocks: The Essential Tools",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "creating-a-basic-c-addon-step-by-step",
+        "title": "Creating a Basic C++ Addon: Step-by-Step",
+        "level": 2,
+        "wordCount": 190
+      },
+      {
+        "id": "understanding-whats-happening",
+        "title": "Understanding What's Happening",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "a-more-complex-example-asynchronous-addons",
+        "title": "A More Complex Example: Asynchronous Addons",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "working-with-complex-data-types",
+        "title": "Working with Complex Data Types",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "best-practices-and-considerations",
+        "title": "Best Practices and Considerations",
+        "level": 2,
+        "wordCount": 191
+      },
+      {
+        "id": "alternatives-to-c-addons",
+        "title": "Alternatives to C++ Addons",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "real-world-example-image-processing",
+        "title": "Real-World Example: Image Processing",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "summary-the-power-and-complexity-of-c-addons",
+        "title": "Summary: The Power and Complexity of C++ Addons",
+        "level": 2,
+        "wordCount": 152
+      }
+    ],
+    "totalWordCount": 1663,
+    "estimatedReadingTime": 420000,
+    "title": "the_role_of_cpp_addons_in_node_js",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_internals\\the_node_js_startup_process.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\the_node_js_startup_process.md",
+    "sections": [
+      {
+        "id": "the-nodejs-startup-process-a-first-principles-exploration",
+        "title": "The Node.js Startup Process: A First Principles Exploration",
+        "level": 1,
+        "wordCount": 46
+      },
+      {
+        "id": "what-is-nodejs",
+        "title": "What is Node.js?",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "the-startup-process-overview",
+        "title": "The Startup Process: Overview",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "1-the-entry-point-executable-startup",
+        "title": "1. The Entry Point: Executable Startup",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "2-internal-binding-and-c-initialization",
+        "title": "2. Internal Binding and C++ Initialization",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "3-processing-environment-variables-and-flags",
+        "title": "3. Processing Environment Variables and Flags",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "4-bootstrap-process-creating-the-nodejs-environment",
+        "title": "4. Bootstrap Process: Creating the Node.js Environment",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "5-module-system-initialization",
+        "title": "5. Module System Initialization",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "6-loading-core-modules",
+        "title": "6. Loading Core Modules",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "7-loading-and-executing-user-code",
+        "title": "7. Loading and Executing User Code",
+        "level": 2,
+        "wordCount": 144
+      },
+      {
+        "id": "8-event-loop-initialization",
+        "title": "8. Event Loop Initialization",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "a-complete-example-what-happens-when-you-run-a-basic-nodejs-script",
+        "title": "A Complete Example: What Happens When You Run a Basic Node.js Script",
+        "level": 2,
+        "wordCount": 235
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 107
+      }
+    ],
+    "totalWordCount": 1187,
+    "estimatedReadingTime": 300000,
+    "title": "the_node_js_startup_process",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_internals\\stack_and_heap_concepts.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\stack_and_heap_concepts.md",
+    "sections": [
+      {
+        "id": "stack-and-heap-memory-management-in-nodejs",
+        "title": "Stack and Heap Memory Management in Node.js",
+        "level": 1,
+        "wordCount": 7
+      },
+      {
+        "id": "understanding-memory-management-from-first-principles",
+        "title": "Understanding Memory Management from First Principles",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "what-is-computer-memory",
+        "title": "What is Computer Memory?",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "the-stack-memory-a-first-principles-approach",
+        "title": "The Stack Memory: A First Principles Approach",
+        "level": 2,
+        "wordCount": 233
+      },
+      {
+        "id": "the-heap-memory-a-first-principles-approach",
+        "title": "The Heap Memory: A First Principles Approach",
+        "level": 2,
+        "wordCount": 190
+      },
+      {
+        "id": "how-nodejs-manages-memory",
+        "title": "How Node.js Manages Memory",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "memory-allocation-in-practice",
+        "title": "Memory Allocation in Practice",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "garbage-collection-in-nodejs",
+        "title": "Garbage Collection in Node.js",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "memory-leaks-when-garbage-collection-fails",
+        "title": "Memory Leaks: When Garbage Collection Fails",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "practical-memory-management-in-nodejs",
+        "title": "Practical Memory Management in Node.js",
+        "level": 2,
+        "wordCount": 155
+      },
+      {
+        "id": "stack-vs-heap-a-visual-comparison",
+        "title": "Stack vs Heap: A Visual Comparison",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "understanding-memory-allocation-patterns",
+        "title": "Understanding Memory Allocation Patterns",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "common-memory-issues-in-nodejs",
+        "title": "Common Memory Issues in Node.js",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "conclusion-balancing-stack-and-heap-usage",
+        "title": "Conclusion: Balancing Stack and Heap Usage",
+        "level": 2,
+        "wordCount": 145
+      }
+    ],
+    "totalWordCount": 1560,
+    "estimatedReadingTime": 420000,
+    "title": "stack_and_heap_concepts",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_internals\\phases_of_the_event_loop.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\phases_of_the_event_loop.md",
+    "sections": [
+      {
+        "id": "understanding-the-nodejs-event-loop-from-first-principles",
+        "title": "Understanding the Node.js Event Loop from First Principles",
+        "level": 1,
+        "wordCount": 75
+      },
+      {
+        "id": "what-is-the-event-loop",
+        "title": "What is the Event Loop?",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "the-phases-of-the-event-loop",
+        "title": "The Phases of the Event Loop",
+        "level": 2,
+        "wordCount": 717
+      },
+      {
+        "id": "special-cases-processnexttick-and-promises",
+        "title": "Special Cases: `process.nextTick()` and Promises",
+        "level": 2,
+        "wordCount": 168
+      },
+      {
+        "id": "visualizing-the-event-loop-with-a-practical-example",
+        "title": "Visualizing the Event Loop with a Practical Example",
+        "level": 2,
+        "wordCount": 223
+      },
+      {
+        "id": "deep-dive-the-event-loop-implementation",
+        "title": "Deep Dive: The Event Loop Implementation",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "common-pitfalls-and-best-practices",
+        "title": "Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 108
+      }
+    ],
+    "totalWordCount": 1700,
+    "estimatedReadingTime": 420000,
+    "title": "phases_of_the_event_loop",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_internals\\memory_management_in_node_js.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\memory_management_in_node_js.md",
+    "sections": [
+      {
+        "id": "memory-management-in-nodejs-a-first-principles-approach",
+        "title": "Memory Management in Node.js: A First Principles Approach",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "the-foundation-what-is-memory",
+        "title": "The Foundation: What is Memory?",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "nodejs-architecture-the-building-blocks",
+        "title": "Node.js Architecture: The Building Blocks",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "v8-memory-structure-the-memory-landscape",
+        "title": "V8 Memory Structure: The Memory Landscape",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "memory-allocation-in-nodejs-how-data-gets-stored",
+        "title": "Memory Allocation in Node.js: How Data Gets Stored",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "garbage-collection-the-memory-reclamation-process",
+        "title": "Garbage Collection: The Memory Reclamation Process",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "memory-leaks-the-silent-performance-killers",
+        "title": "Memory Leaks: The Silent Performance Killers",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "memory-limits-in-nodejs-understanding-the-boundaries",
+        "title": "Memory Limits in Node.js: Understanding the Boundaries",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "monitoring-memory-usage-keeping-an-eye-on-your-application",
+        "title": "Monitoring Memory Usage: Keeping an Eye on Your Application",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "memory-optimization-techniques-making-your-app-more-efficient",
+        "title": "Memory Optimization Techniques: Making Your App More Efficient",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "advanced-memory-management-topics",
+        "title": "Advanced Memory Management Topics",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "nodejs-memory-management-in-production",
+        "title": "Node.js Memory Management in Production",
+        "level": 2,
+        "wordCount": 27
+      },
+      {
+        "id": "the-event-loop-and-memory-a-deep-connection",
+        "title": "The Event Loop and Memory: A Deep Connection",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "comparative-analysis-nodejs-vs-other-environments",
+        "title": "Comparative Analysis: Node.js vs. Other Environments",
+        "level": 2,
+        "wordCount": 144
+      },
+      {
+        "id": "practical-memory-management-patterns",
+        "title": "Practical Memory Management Patterns",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "conclusion-mastering-nodejs-memory-management",
+        "title": "Conclusion: Mastering Node.js Memory Management",
+        "level": 2,
+        "wordCount": 114
+      }
+    ],
+    "totalWordCount": 1263,
+    "estimatedReadingTime": 360000,
+    "title": "memory_management_in_node_js",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_internals\\libuv_and_the_event_loop_architecture.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\libuv_and_the_event_loop_architecture.md",
+    "sections": [
+      {
+        "id": "libuv-and-the-event-loop-in-nodejs-a-first-principles-explanation",
+        "title": "LibUV and the Event Loop in Node.js: A First Principles Explanation",
+        "level": 1,
+        "wordCount": 11
+      },
+      {
+        "id": "introduction-to-inputoutput-operations",
+        "title": "Introduction to Input/Output Operations",
+        "level": 2,
+        "wordCount": 195
+      },
+      {
+        "id": "the-need-for-asynchronous-io",
+        "title": "The Need for Asynchronous I/O",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "event-driven-programming",
+        "title": "Event-Driven Programming",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "what-is-libuv",
+        "title": "What is LibUV?",
+        "level": 2,
+        "wordCount": 235
+      },
+      {
+        "id": "the-event-loop-the-heart-of-nodejs",
+        "title": "The Event Loop: The Heart of Node.js",
+        "level": 2,
+        "wordCount": 513
+      },
+      {
+        "id": "the-thread-pool-handling-cpu-intensive-tasks",
+        "title": "The Thread Pool: Handling CPU-Intensive Tasks",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "how-nodejs-uses-libuv",
+        "title": "How Node.js Uses LibUV",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "practical-examples-of-the-event-loop-in-action",
+        "title": "Practical Examples of the Event Loop in Action",
+        "level": 2,
+        "wordCount": 338
+      },
+      {
+        "id": "advanced-topics-in-the-event-loop",
+        "title": "Advanced Topics in the Event Loop",
+        "level": 2,
+        "wordCount": 418
+      },
+      {
+        "id": "real-world-application-a-simple-http-server",
+        "title": "Real-World Application: A Simple HTTP Server",
+        "level": 2,
+        "wordCount": 150
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 169
+      }
+    ],
+    "totalWordCount": 2494,
+    "estimatedReadingTime": 600000,
+    "title": "libuv_and_the_event_loop_architecture",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_internals\\just_in_time_jit_compilation_process.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\just_in_time_jit_compilation_process.md",
+    "sections": [
+      {
+        "id": "just-in-time-jit-compilation-in-nodejs-from-first-principles",
+        "title": "Just-in-Time (JIT) Compilation in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "understanding-execution-models-the-foundation",
+        "title": "Understanding Execution Models: The Foundation",
+        "level": 2,
+        "wordCount": 312
+      },
+      {
+        "id": "just-in-time-compilation-the-hybrid-approach",
+        "title": "Just-in-Time Compilation: The Hybrid Approach",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "v8-the-engine-behind-nodejs",
+        "title": "V8: The Engine Behind Node.js",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "the-jit-compilation-process-in-nodejs-v8",
+        "title": "The JIT Compilation Process in Node.js (V8)",
+        "level": 2,
+        "wordCount": 270
+      },
+      {
+        "id": "hidden-classes-how-v8-optimizes-objects",
+        "title": "Hidden Classes: How V8 Optimizes Objects",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "inline-caching-speeding-up-method-calls",
+        "title": "Inline Caching: Speeding Up Method Calls",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "type-specialization-optimizing-for-specific-types",
+        "title": "Type Specialization: Optimizing for Specific Types",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "performance-implications-of-jit",
+        "title": "Performance Implications of JIT",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "real-world-example-function-to-sum-an-array",
+        "title": "Real-World Example: Function to Sum an Array",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "practical-observations-of-jit-in-action",
+        "title": "Practical Observations of JIT in Action",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "advanced-topic-multi-tiered-compilation",
+        "title": "Advanced Topic: Multi-tiered Compilation",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "advanced-topic-shapes-and-inline-caches",
+        "title": "Advanced Topic: Shapes and Inline Caches",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 131
+      }
+    ],
+    "totalWordCount": 1449,
+    "estimatedReadingTime": 360000,
+    "title": "just_in_time_jit_compilation_process",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_internals\\internal_threading_model_of_node_js.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\internal_threading_model_of_node_js.md",
+    "sections": [
+      {
+        "id": "nodejs-internal-threading-model-a-first-principles-exploration",
+        "title": "Node.js Internal Threading Model: A First Principles Exploration",
+        "level": 1,
+        "wordCount": 71
+      },
+      {
+        "id": "1-what-are-threads",
+        "title": "1. What Are Threads?",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "2-the-single-threaded-nature-of-nodejs",
+        "title": "2. The Single-Threaded Nature of Node.js",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "3-the-event-loop-heart-of-nodejs",
+        "title": "3. The Event Loop: Heart of Node.js",
+        "level": 2,
+        "wordCount": 205
+      },
+      {
+        "id": "4-libuv-the-power-behind-asynchronous-io",
+        "title": "4. Libuv: The Power Behind Asynchronous I/O",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "5-the-thread-pool-behind-the-scenes",
+        "title": "5. The Thread Pool: Behind The Scenes",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "6-worker-threads-true-parallelism-in-nodejs",
+        "title": "6. Worker Threads: True Parallelism in Node.js",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "7-the-complete-picture-how-it-all-fits-together",
+        "title": "7. The Complete Picture: How It All Fits Together",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "8-practical-implications-and-best-practices",
+        "title": "8. Practical Implications and Best Practices",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "9-common-misconceptions-about-nodejs-threading",
+        "title": "9. Common Misconceptions About Node.js Threading",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "10-advanced-concepts",
+        "title": "10. Advanced Concepts",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "11-real-world-implications",
+        "title": "11. Real-World Implications",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 95
+      }
+    ],
+    "totalWordCount": 1597,
+    "estimatedReadingTime": 420000,
+    "title": "internal_threading_model_of_node_js",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_internals\\hidden_classes_and_inline_caching_in_v8.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\hidden_classes_and_inline_caching_in_v8.md",
+    "sections": [
+      {
+        "id": "hidden-classes-and-inline-caching-in-v8-a-first-principles-exploration",
+        "title": "Hidden Classes and Inline Caching in V8: A First Principles Exploration",
+        "level": 1,
+        "wordCount": 87
+      },
+      {
+        "id": "the-challenge-of-dynamic-languages",
+        "title": "The Challenge of Dynamic Languages",
+        "level": 2,
+        "wordCount": 135
+      },
+      {
+        "id": "hidden-classes-the-shape-of-objects",
+        "title": "Hidden Classes: The Shape of Objects",
+        "level": 2,
+        "wordCount": 334
+      },
+      {
+        "id": "inline-caching-speeding-up-property-access",
+        "title": "Inline Caching: Speeding Up Property Access",
+        "level": 2,
+        "wordCount": 327
+      },
+      {
+        "id": "hidden-classes-and-inline-caching-in-action",
+        "title": "Hidden Classes and Inline Caching in Action",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "practical-implications-for-developers",
+        "title": "Practical Implications for Developers",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "measuring-the-impact",
+        "title": "Measuring the Impact",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "under-the-hood-how-v8-implements-hidden-classes",
+        "title": "Under the Hood: How V8 Implements Hidden Classes",
+        "level": 2,
+        "wordCount": 165
+      },
+      {
+        "id": "the-evolution-of-hidden-classes",
+        "title": "The Evolution of Hidden Classes",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 113
+      }
+    ],
+    "totalWordCount": 1462,
+    "estimatedReadingTime": 360000,
+    "title": "hidden_classes_and_inline_caching_in_v8",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_internals\\garbage_collection_phases_and_algorithms.md": {
+    "path": "public\\content\\node_js\\node_js_internals\\garbage_collection_phases_and_algorithms.md",
+    "sections": [
+      {
+        "id": "understanding-garbage-collection-in-nodejs-from-first-principles",
+        "title": "Understanding Garbage Collection in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 65
+      },
+      {
+        "id": "the-foundations-memory-management-basics",
+        "title": "The Foundations: Memory Management Basics",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "memory-organization-in-nodejs",
+        "title": "Memory Organization in Node.js",
+        "level": 2,
+        "wordCount": 186
+      },
+      {
+        "id": "fundamental-concept-reachability",
+        "title": "Fundamental Concept: Reachability",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "garbage-collection-phases-in-nodejs-v8",
+        "title": "Garbage Collection Phases in Node.js (V8)",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "garbage-collection-algorithms-in-nodejs-v8",
+        "title": "Garbage Collection Algorithms in Node.js (V8)",
+        "level": 2,
+        "wordCount": 278
+      },
+      {
+        "id": "promotion-object-aging",
+        "title": "Promotion (Object Aging)",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "garbage-collection-triggers",
+        "title": "Garbage Collection Triggers",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "example-observing-garbage-collection-in-nodejs",
+        "title": "Example: Observing Garbage Collection in Node.js",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "memory-leaks-the-garbage-collection-blind-spot",
+        "title": "Memory Leaks: The Garbage Collection Blind Spot",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "advanced-garbage-collection-options-in-nodejs",
+        "title": "Advanced Garbage Collection Options in Node.js",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "practical-tips-for-optimizing-garbage-collection",
+        "title": "Practical Tips for Optimizing Garbage Collection",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "monitoring-garbage-collection-in-production",
+        "title": "Monitoring Garbage Collection in Production",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 113
+      }
+    ],
+    "totalWordCount": 1454,
+    "estimatedReadingTime": 360000,
+    "title": "garbage_collection_phases_and_algorithms",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_fundamentals\\v8_javascript_engine_and_its_role_in_node_js.md": {
+    "path": "public\\content\\node_js\\node_js_fundamentals\\v8_javascript_engine_and_its_role_in_node_js.md",
+    "sections": [
+      {
+        "id": "understanding-the-v8-javascript-engine-and-its-role-in-nodejs",
+        "title": "Understanding the V8 JavaScript Engine and Its Role in Node.js",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "what-is-the-v8-javascript-engine",
+        "title": "What Is the V8 JavaScript Engine?",
+        "level": 2,
+        "wordCount": 165
+      },
+      {
+        "id": "how-v8-works-the-inside-story",
+        "title": "How V8 Works: The Inside Story",
+        "level": 2,
+        "wordCount": 352
+      },
+      {
+        "id": "hidden-classes-v8s-secret-weapon",
+        "title": "Hidden Classes: V8's Secret Weapon",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "v8s-role-in-nodejs",
+        "title": "V8's Role in Node.js",
+        "level": 2,
+        "wordCount": 231
+      },
+      {
+        "id": "the-nodejs-event-loop-and-v8",
+        "title": "The Node.js Event Loop and V8",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "performance-optimizations-and-best-practices",
+        "title": "Performance Optimizations and Best Practices",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "v8-memory-management-in-nodejs",
+        "title": "V8 Memory Management in Node.js",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "nodejs-and-v8-versions",
+        "title": "Node.js and V8 Versions",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "extending-v8-in-nodejs",
+        "title": "Extending V8 in Node.js",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "practical-example-building-a-simple-server",
+        "title": "Practical Example: Building a Simple Server",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 112
+      }
+    ],
+    "totalWordCount": 1445,
+    "estimatedReadingTime": 360000,
+    "title": "v8_javascript_engine_and_its_role_in_node_js",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_fundamentals\\understanding_the_global_object_and_global_scope.md": {
+    "path": "public\\content\\node_js\\node_js_fundamentals\\understanding_the_global_object_and_global_scope.md",
+    "sections": [
+      {
+        "id": "understanding-the-global-object-and-global-scope-in-nodejs",
+        "title": "Understanding the Global Object and Global Scope in Node.js",
+        "level": 1,
+        "wordCount": 52
+      },
+      {
+        "id": "what-is-scope",
+        "title": "What is Scope?",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "what-is-an-execution-context",
+        "title": "What is an Execution Context?",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "what-is-the-global-object",
+        "title": "What is the Global Object?",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "the-global-object-in-nodejs",
+        "title": "The Global Object in Node.js",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "key-properties-of-the-nodejs-global-object",
+        "title": "Key Properties of the Node.js Global Object",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "global-variables-in-nodejs",
+        "title": "Global Variables in Node.js",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "module-system-and-its-impact-on-global-scope",
+        "title": "Module System and Its Impact on Global Scope",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "commonjs-vs-es-modules",
+        "title": "CommonJS vs ES Modules",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "the-globalthis-object",
+        "title": "The globalThis Object",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "common-pitfalls-with-the-global-scope",
+        "title": "Common Pitfalls with the Global Scope",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "best-practices-for-working-with-global-scope",
+        "title": "Best Practices for Working with Global Scope",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "advanced-global-scope-concepts",
+        "title": "Advanced Global Scope Concepts",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "real-world-examples",
+        "title": "Real-World Examples",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 150
+      }
+    ],
+    "totalWordCount": 1080,
+    "estimatedReadingTime": 300000,
+    "title": "understanding_the_global_object_and_global_scope",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_fundamentals\\understanding_the_event_driven_non_blocking_io_model.md": {
+    "path": "public\\content\\node_js\\node_js_fundamentals\\understanding_the_event_driven_non_blocking_io_model.md",
+    "sections": [
+      {
+        "id": "understanding-the-event-driven-non-blocking-io-model-in-nodejs",
+        "title": "Understanding the Event-Driven, Non-Blocking I/O Model in Node.js",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "the-foundation-what-makes-nodejs-different",
+        "title": "The Foundation: What Makes Node.js Different?",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "first-principles-understanding-events",
+        "title": "First Principles: Understanding Events",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "the-event-loop-nodes-central-nervous-system",
+        "title": "The Event Loop: Node's Central Nervous System",
+        "level": 2,
+        "wordCount": 170
+      },
+      {
+        "id": "non-blocking-io-the-key-to-nodes-performance",
+        "title": "Non-Blocking I/O: The Key to Node's Performance",
+        "level": 2,
+        "wordCount": 167
+      },
+      {
+        "id": "the-libuv-library-nodes-io-engine",
+        "title": "The Libuv Library: Node's I/O Engine",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "callbacks-the-traditional-way-to-handle-asynchronous-code",
+        "title": "Callbacks: The Traditional Way to Handle Asynchronous Code",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "promises-a-more-structured-approach",
+        "title": "Promises: A More Structured Approach",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "asyncawait-modern-asynchronous-javascript",
+        "title": "Async/Await: Modern Asynchronous JavaScript",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "real-world-example-a-simple-web-server",
+        "title": "Real-World Example: A Simple Web Server",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "the-nodejs-process-model",
+        "title": "The Node.js Process Model",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "the-cluster-module-multi-process-architecture",
+        "title": "The Cluster Module: Multi-Process Architecture",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "understanding-nodejs-concurrency-model-in-depth",
+        "title": "Understanding Node.js Concurrency Model in Depth",
+        "level": 2,
+        "wordCount": 183
+      },
+      {
+        "id": "common-pitfalls-and-best-practices",
+        "title": "Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "conclusion-the-philosophy-of-nodejs",
+        "title": "Conclusion: The Philosophy of Node.js",
+        "level": 2,
+        "wordCount": 137
+      }
+    ],
+    "totalWordCount": 1659,
+    "estimatedReadingTime": 420000,
+    "title": "understanding_the_event_driven_non_blocking_io_model",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_fundamentals\\setting_up_a_node_js_development_environment.md": {
+    "path": "public\\content\\node_js\\node_js_fundamentals\\setting_up_a_node_js_development_environment.md",
+    "sections": [
+      {
+        "id": "setting-up-a-nodejs-development-environment-from-first-principles",
+        "title": "Setting Up a Node.js Development Environment: From First Principles",
+        "level": 1,
+        "wordCount": 34
+      },
+      {
+        "id": "understanding-what-nodejs-actually-is",
+        "title": "Understanding What Node.js Actually Is",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "why-set-up-a-nodejs-environment",
+        "title": "Why Set Up a Node.js Environment?",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "core-components-of-a-nodejs-development-environment",
+        "title": "Core Components of a Node.js Development Environment",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "1-installing-nodejs-and-npm",
+        "title": "1. Installing Node.js and npm",
+        "level": 2,
+        "wordCount": 170
+      },
+      {
+        "id": "2-understanding-npm-node-package-manager",
+        "title": "2. Understanding npm (Node Package Manager)",
+        "level": 2,
+        "wordCount": 171
+      },
+      {
+        "id": "3-setting-up-a-code-editor",
+        "title": "3. Setting Up a Code Editor",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "4-setting-up-version-control-with-git",
+        "title": "4. Setting Up Version Control with Git",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "5-project-structure-best-practices",
+        "title": "5. Project Structure Best Practices",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "6-setting-up-eslint-and-prettier",
+        "title": "6. Setting Up ESLint and Prettier",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "7-creating-your-first-nodejs-application",
+        "title": "7. Creating Your First Node.js Application",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "8-setting-up-environment-variables",
+        "title": "8. Setting Up Environment Variables",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "9-setting-up-expressjs-popular-nodejs-framework",
+        "title": "9. Setting Up Express.js (Popular Node.js Framework)",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "10-setting-up-a-basic-testing-environment",
+        "title": "10. Setting Up a Basic Testing Environment",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "11-setting-up-debugging",
+        "title": "11. Setting Up Debugging",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "12-advanced-npm-features",
+        "title": "12. Advanced npm Features",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "13-continuous-integration-setup-optional",
+        "title": "13. Continuous Integration Setup (Optional)",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "putting-it-all-together-a-complete-development-workflow",
+        "title": "Putting It All Together: A Complete Development Workflow",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 120
+      }
+    ],
+    "totalWordCount": 1407,
+    "estimatedReadingTime": 360000,
+    "title": "setting_up_a_node_js_development_environment",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_fundamentals\\running_node_js_scripts.md": {
+    "path": "public\\content\\node_js\\node_js_fundamentals\\running_node_js_scripts.md",
+    "sections": [
+      {
+        "id": "running-nodejs-scripts-from-first-principles",
+        "title": "Running Node.js Scripts: From First Principles",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "what-is-nodejs",
+        "title": "What is Node.js?",
+        "level": 2,
+        "wordCount": 171
+      },
+      {
+        "id": "what-is-a-nodejs-script",
+        "title": "What is a Node.js Script?",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "running-your-first-nodejs-script",
+        "title": "Running Your First Node.js Script",
+        "level": 2,
+        "wordCount": 150
+      },
+      {
+        "id": "the-nodejs-execution-model",
+        "title": "The Node.js Execution Model",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "ways-to-run-nodejs-scripts",
+        "title": "Ways to Run Node.js Scripts",
+        "level": 2,
+        "wordCount": 178
+      },
+      {
+        "id": "command-line-arguments-in-nodejs-scripts",
+        "title": "Command Line Arguments in Node.js Scripts",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "environment-variables-in-nodejs",
+        "title": "Environment Variables in Node.js",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "handling-script-errors",
+        "title": "Handling Script Errors",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "running-scripts-with-debugging",
+        "title": "Running Scripts with Debugging",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "monitoring-script-execution",
+        "title": "Monitoring Script Execution",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "best-practices-for-nodejs-scripts",
+        "title": "Best Practices for Node.js Scripts",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 95
+      }
+    ],
+    "totalWordCount": 1135,
+    "estimatedReadingTime": 300000,
+    "title": "running_node_js_scripts",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_fundamentals\\process_object_and_command_line_arguments.md": {
+    "path": "public\\content\\node_js\\node_js_fundamentals\\process_object_and_command_line_arguments.md",
+    "sections": [
+      {
+        "id": "understanding-the-process-object-and-command-line-arguments-in-nodejs",
+        "title": "Understanding the Process Object and Command-Line Arguments in Node.js",
+        "level": 1,
+        "wordCount": 27
+      },
+      {
+        "id": "the-process-object-a-fundamental-concept",
+        "title": "The Process Object: A Fundamental Concept",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "key-properties-of-the-process-object",
+        "title": "Key Properties of the Process Object",
+        "level": 2,
+        "wordCount": 179
+      },
+      {
+        "id": "command-line-arguments-communicating-with-your-program",
+        "title": "Command-Line Arguments: Communicating with Your Program",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "argument-parsing-libraries",
+        "title": "Argument Parsing Libraries",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "environment-variables-vs-command-line-arguments",
+        "title": "Environment Variables vs. Command-Line Arguments",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "advanced-process-object-features",
+        "title": "Advanced Process Object Features",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 166
+      }
+    ],
+    "totalWordCount": 1095,
+    "estimatedReadingTime": 300000,
+    "title": "process_object_and_command_line_arguments",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_fundamentals\\node_js_repl.md": {
+    "path": "public\\content\\node_js\\node_js_fundamentals\\node_js_repl.md",
+    "sections": [
+      {
+        "id": "understanding-nodejs-repl-from-first-principles",
+        "title": "Understanding Node.js REPL from First Principles",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "what-is-a-repl",
+        "title": "What is a REPL?",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "the-origin-of-repls",
+        "title": "The Origin of REPLs",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "nodejs-a-brief-introduction",
+        "title": "Node.js: A Brief Introduction",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "nodejs-repl-the-interactive-environment",
+        "title": "Node.js REPL: The Interactive Environment",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "starting-the-nodejs-repl",
+        "title": "Starting the Node.js REPL",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "basic-repl-operations",
+        "title": "Basic REPL Operations",
+        "level": 2,
+        "wordCount": 141
+      },
+      {
+        "id": "special-repl-commands",
+        "title": "Special REPL Commands",
+        "level": 2,
+        "wordCount": 144
+      },
+      {
+        "id": "the-global-context-in-nodejs-repl",
+        "title": "The Global Context in Node.js REPL",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "using-modules-in-repl",
+        "title": "Using Modules in REPL",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "tab-completion-and-history",
+        "title": "Tab Completion and History",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "creating-a-custom-repl",
+        "title": "Creating a Custom REPL",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "practical-use-cases-for-nodejs-repl",
+        "title": "Practical Use Cases for Node.js REPL",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "advanced-repl-features",
+        "title": "Advanced REPL Features",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "common-patterns-and-best-practices",
+        "title": "Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "limitations-of-nodejs-repl",
+        "title": "Limitations of Node.js REPL",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "repl-vs-script-files-when-to-use-each",
+        "title": "REPL vs. Script Files: When to Use Each",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 103
+      }
+    ],
+    "totalWordCount": 1426,
+    "estimatedReadingTime": 360000,
+    "title": "node_js_repl",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_fundamentals\\node_js_philosophy_and_design_principles.md": {
+    "path": "public\\content\\node_js\\node_js_fundamentals\\node_js_philosophy_and_design_principles.md",
+    "sections": [
+      {
+        "id": "nodejs-philosophy-and-design-principles-a-first-principles-exploration",
+        "title": "Node.js Philosophy and Design Principles: A First Principles Exploration",
+        "level": 1,
+        "wordCount": 62
+      },
+      {
+        "id": "1-the-core-philosophy-of-nodejs",
+        "title": "1. The Core Philosophy of Node.js",
+        "level": 2,
+        "wordCount": 389
+      },
+      {
+        "id": "2-design-principles-of-nodejs",
+        "title": "2. Design Principles of Node.js",
+        "level": 2,
+        "wordCount": 255
+      },
+      {
+        "id": "3-the-event-loop-nodejss-heart",
+        "title": "3. The Event Loop: Node.js's Heart",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "4-concurrency-model-single-threaded-but-not-limited",
+        "title": "4. Concurrency Model: Single-Threaded But Not Limited",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "5-practical-application-of-nodejs-principles",
+        "title": "5. Practical Application of Node.js Principles",
+        "level": 2,
+        "wordCount": 153
+      },
+      {
+        "id": "6-the-nodejs-ecosystem",
+        "title": "6. The Node.js Ecosystem",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "7-nodejs-design-patterns",
+        "title": "7. Node.js Design Patterns",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "8-security-in-nodejs",
+        "title": "8. Security in Node.js",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "9-performance-optimization",
+        "title": "9. Performance Optimization",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "10-the-future-of-nodejs",
+        "title": "10. The Future of Node.js",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 134
+      }
+    ],
+    "totalWordCount": 1407,
+    "estimatedReadingTime": 360000,
+    "title": "node_js_philosophy_and_design_principles",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_fundamentals\\javascript_runtime_environment_concepts.md": {
+    "path": "public\\content\\node_js\\node_js_fundamentals\\javascript_runtime_environment_concepts.md",
+    "sections": [
+      {
+        "id": "javascript-runtime-environment-in-nodejs-from-first-principles",
+        "title": "JavaScript Runtime Environment in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 34
+      },
+      {
+        "id": "what-is-a-runtime-environment",
+        "title": "What is a Runtime Environment?",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "the-birth-of-nodejs",
+        "title": "The Birth of Node.js",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "core-components-of-the-nodejs-runtime-environment",
+        "title": "Core Components of the Node.js Runtime Environment",
+        "level": 2,
+        "wordCount": 509
+      },
+      {
+        "id": "nodejs-runtime-architecture-a-deeper-look",
+        "title": "Node.js Runtime Architecture: A Deeper Look",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "non-blocking-io-in-action",
+        "title": "Non-Blocking I/O in Action",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "the-process-object",
+        "title": "The Process Object",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "the-buffer-class",
+        "title": "The Buffer Class",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "streams",
+        "title": "Streams",
+        "level": 2,
+        "wordCount": 126
+      },
+      {
+        "id": "the-nodejs-thread-pool",
+        "title": "The Node.js Thread Pool",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "error-handling-in-nodejs",
+        "title": "Error Handling in Node.js",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "the-nodejs-event-emitter",
+        "title": "The Node.js Event Emitter",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "nodejs-cluster-module",
+        "title": "Node.js Cluster Module",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "nodejs-worker-threads",
+        "title": "Node.js Worker Threads",
+        "level": 2,
+        "wordCount": 11
+      },
+      {
+        "id": "the-nodejs-repl",
+        "title": "The Node.js REPL",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "command-line-interface-in-nodejs",
+        "title": "Command Line Interface in Node.js",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "performance-monitoring-in-nodejs",
+        "title": "Performance Monitoring in Node.js",
+        "level": 2,
+        "wordCount": 10
+      },
+      {
+        "id": "debugging-nodejs-applications",
+        "title": "Debugging Node.js Applications",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "memory-management-in-nodejs",
+        "title": "Memory Management in Node.js",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "security-in-nodejs",
+        "title": "Security in Node.js",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 142
+      }
+    ],
+    "totalWordCount": 1690,
+    "estimatedReadingTime": 420000,
+    "title": "javascript_runtime_environment_concepts",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_fundamentals\\exit_codes_and_process_signals.md": {
+    "path": "public\\content\\node_js\\node_js_fundamentals\\exit_codes_and_process_signals.md",
+    "sections": [
+      {
+        "id": "exit-codes-and-process-signals-in-nodejs-a-deep-dive",
+        "title": "Exit Codes and Process Signals in Node.js: A Deep Dive",
+        "level": 1,
+        "wordCount": 10
+      },
+      {
+        "id": "understanding-processes-the-foundation",
+        "title": "Understanding Processes: The Foundation",
+        "level": 2,
+        "wordCount": 123
+      },
+      {
+        "id": "exit-codes-the-language-of-process-termination",
+        "title": "Exit Codes: The Language of Process Termination",
+        "level": 2,
+        "wordCount": 330
+      },
+      {
+        "id": "process-signals-communication-with-running-processes",
+        "title": "Process Signals: Communication with Running Processes",
+        "level": 2,
+        "wordCount": 291
+      },
+      {
+        "id": "graceful-shutdown-patterns-in-nodejs",
+        "title": "Graceful Shutdown Patterns in Node.js",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "special-signals-in-nodejs",
+        "title": "Special Signals in Node.js",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "exit-codes-and-signals-in-practice-a-complete-example",
+        "title": "Exit Codes and Signals in Practice: A Complete Example",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "best-practices-for-exit-codes-and-signals",
+        "title": "Best Practices for Exit Codes and Signals",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "advanced-topics",
+        "title": "Advanced Topics",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 132
+      }
+    ],
+    "totalWordCount": 1298,
+    "estimatedReadingTime": 360000,
+    "title": "exit_codes_and_process_signals",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\worker_threads_for_cpu_intensive_tasks.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\worker_threads_for_cpu_intensive_tasks.md",
+    "sections": [
+      {
+        "id": "worker-threads-in-nodejs-for-cpu-intensive-tasks",
+        "title": "Worker Threads in Node.js for CPU-Intensive Tasks",
+        "level": 1,
+        "wordCount": 26
+      },
+      {
+        "id": "understanding-nodejss-single-threaded-nature",
+        "title": "Understanding Node.js's Single-Threaded Nature",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "the-problem-with-cpu-intensive-tasks",
+        "title": "The Problem with CPU-Intensive Tasks",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "enter-worker-threads",
+        "title": "Enter Worker Threads",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "core-concepts-of-worker-threads",
+        "title": "Core Concepts of Worker Threads",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "creating-a-basic-worker-thread",
+        "title": "Creating a Basic Worker Thread",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "solving-cpu-intensive-tasks-with-workers",
+        "title": "Solving CPU-Intensive Tasks with Workers",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "passing-data-between-threads",
+        "title": "Passing Data Between Threads",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "worker-pools-for-multiple-tasks",
+        "title": "Worker Pools for Multiple Tasks",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "best-practices-for-worker-threads",
+        "title": "Best Practices for Worker Threads",
+        "level": 2,
+        "wordCount": 129
+      },
+      {
+        "id": "real-world-example-image-processing",
+        "title": "Real-World Example: Image Processing",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "worker-threads-vs-child-process",
+        "title": "Worker Threads vs. Child Process",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "limitations-and-considerations",
+        "title": "Limitations and Considerations",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 111
+      }
+    ],
+    "totalWordCount": 1169,
+    "estimatedReadingTime": 300000,
+    "title": "worker_threads_for_cpu_intensive_tasks",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\url_and_querystring_modules.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\url_and_querystring_modules.md",
+    "sections": [
+      {
+        "id": "understanding-urls-and-query-strings-in-nodejs",
+        "title": "Understanding URLs and Query Strings in Node.js",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "what-is-a-url",
+        "title": "What is a URL?",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "the-url-module-in-nodejs",
+        "title": "The URL Module in Node.js",
+        "level": 2,
+        "wordCount": 198
+      },
+      {
+        "id": "the-querystring-module-in-nodejs",
+        "title": "The QueryString Module in Node.js",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "advanced-concepts",
+        "title": "Advanced Concepts",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "best-practices-and-common-pitfalls",
+        "title": "Best Practices and Common Pitfalls",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "url-and-querystring-in-modern-nodejs-applications",
+        "title": "URL and QueryString in Modern Node.js Applications",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 127
+      }
+    ],
+    "totalWordCount": 741,
+    "estimatedReadingTime": 180000,
+    "title": "url_and_querystring_modules",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\understanding_the_module_system_architecture.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\understanding_the_module_system_architecture.md",
+    "sections": [
+      {
+        "id": "understanding-the-nodejs-module-system-architecture-in-depth",
+        "title": "Understanding the Node.js Module System Architecture in Depth",
+        "level": 1,
+        "wordCount": 66
+      },
+      {
+        "id": "what-are-modules-and-why-do-they-matter",
+        "title": "What Are Modules and Why Do They Matter?",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "core-concepts-of-nodejs-module-systems",
+        "title": "Core Concepts of Node.js Module Systems",
+        "level": 2,
+        "wordCount": 35
+      },
+      {
+        "id": "commonjs-modules",
+        "title": "CommonJS Modules",
+        "level": 2,
+        "wordCount": 199
+      },
+      {
+        "id": "es-modules-in-nodejs",
+        "title": "ES Modules in Node.js",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "how-modules-are-loaded-and-resolved",
+        "title": "How Modules Are Loaded and Resolved",
+        "level": 2,
+        "wordCount": 206
+      },
+      {
+        "id": "module-caching",
+        "title": "Module Caching",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "the-module-wrapper-function",
+        "title": "The Module Wrapper Function",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "handling-circular-dependencies",
+        "title": "Handling Circular Dependencies",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "built-in-modules-vs-third-party-modules",
+        "title": "Built-in Modules vs Third-Party Modules",
+        "level": 2,
+        "wordCount": 21
+      },
+      {
+        "id": "creating-and-organizing-modules-in-a-project",
+        "title": "Creating and Organizing Modules in a Project",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "best-practices-for-nodejs-modules",
+        "title": "Best Practices for Node.js Modules",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "transitioning-between-commonjs-and-es-modules",
+        "title": "Transitioning Between CommonJS and ES Modules",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "the-future-of-nodejs-modules",
+        "title": "The Future of Node.js Modules",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 83
+      }
+    ],
+    "totalWordCount": 1309,
+    "estimatedReadingTime": 360000,
+    "title": "understanding_the_module_system_architecture",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\stream_module_and_streaming_interfaces.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\stream_module_and_streaming_interfaces.md",
+    "sections": [
+      {
+        "id": "understanding-nodejs-streams-from-first-principles",
+        "title": "Understanding Node.js Streams from First Principles",
+        "level": 1,
+        "wordCount": 61
+      },
+      {
+        "id": "1-what-are-streams-a-first-principles-approach",
+        "title": "1. What Are Streams? A First Principles Approach",
+        "level": 2,
+        "wordCount": 203
+      },
+      {
+        "id": "2-the-nodejs-stream-module-core-building-blocks",
+        "title": "2. The Node.js Stream Module: Core Building Blocks",
+        "level": 2,
+        "wordCount": 215
+      },
+      {
+        "id": "3-readable-streams-receiving-data",
+        "title": "3. Readable Streams: Receiving Data",
+        "level": 2,
+        "wordCount": 179
+      },
+      {
+        "id": "4-writable-streams-sending-data",
+        "title": "4. Writable Streams: Sending Data",
+        "level": 2,
+        "wordCount": 141
+      },
+      {
+        "id": "5-transform-streams-processing-data-in-transit",
+        "title": "5. Transform Streams: Processing Data in Transit",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "6-piping-streams-building-data-pipelines",
+        "title": "6. Piping Streams: Building Data Pipelines",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "7-object-mode-streams-beyond-binary-data",
+        "title": "7. Object Mode Streams: Beyond Binary Data",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "8-practical-examples-streams-in-action",
+        "title": "8. Practical Examples: Streams in Action",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "9-stream-events-and-error-handling",
+        "title": "9. Stream Events and Error Handling",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "10-advanced-stream-techniques",
+        "title": "10. Advanced Stream Techniques",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "11-stream-best-practices-and-patterns",
+        "title": "11. Stream Best Practices and Patterns",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 152
+      }
+    ],
+    "totalWordCount": 1647,
+    "estimatedReadingTime": 420000,
+    "title": "stream_module_and_streaming_interfaces",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\path_module_for_cross_platform_path_handling.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\path_module_for_cross_platform_path_handling.md",
+    "sections": [
+      {
+        "id": "understanding-the-path-module-for-cross-platform-path-handling",
+        "title": "Understanding the Path Module for Cross-Platform Path Handling",
+        "level": 1,
+        "wordCount": 41
+      },
+      {
+        "id": "first-principles-what-is-a-file-path",
+        "title": "First Principles: What is a File Path?",
+        "level": 2,
+        "wordCount": 186
+      },
+      {
+        "id": "the-cross-platform-problem",
+        "title": "The Cross-Platform Problem",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "enter-the-path-module",
+        "title": "Enter the Path Module",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "the-path-module-in-nodejs",
+        "title": "The Path Module in Node.js",
+        "level": 2,
+        "wordCount": 241
+      },
+      {
+        "id": "practical-examples-and-use-cases",
+        "title": "Practical Examples and Use Cases",
+        "level": 2,
+        "wordCount": 129
+      },
+      {
+        "id": "platform-specific-path-modules",
+        "title": "Platform-Specific Path Modules",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "advanced-techniques-and-best-practices",
+        "title": "Advanced Techniques and Best Practices",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "common-path-module-patterns-and-idioms",
+        "title": "Common Path Module Patterns and Idioms",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "path-module-in-different-environments",
+        "title": "Path Module in Different Environments",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "common-mistakes-and-debugging",
+        "title": "Common Mistakes and Debugging",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "debugging-path-issues",
+        "title": "Debugging Path Issues",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 117
+      }
+    ],
+    "totalWordCount": 1295,
+    "estimatedReadingTime": 360000,
+    "title": "path_module_for_cross_platform_path_handling",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\os_module_for_operating_system_interaction.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\os_module_for_operating_system_interaction.md",
+    "sections": [
+      {
+        "id": "the-nodejs-os-module-understanding-operating-system-interaction-from-first-principles",
+        "title": "The Node.js OS Module: Understanding Operating System Interaction from First Principles",
+        "level": 1,
+        "wordCount": 46
+      },
+      {
+        "id": "what-is-an-operating-system",
+        "title": "What is an Operating System?",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "the-need-for-os-interaction-in-applications",
+        "title": "The Need for OS Interaction in Applications",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "introduction-to-nodejs-os-module",
+        "title": "Introduction to Node.js OS Module",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "core-functionality-of-the-os-module",
+        "title": "Core Functionality of the OS Module",
+        "level": 2,
+        "wordCount": 541
+      },
+      {
+        "id": "practical-use-cases",
+        "title": "Practical Use Cases",
+        "level": 2,
+        "wordCount": 331
+      },
+      {
+        "id": "advanced-features-and-techniques",
+        "title": "Advanced Features and Techniques",
+        "level": 2,
+        "wordCount": 200
+      },
+      {
+        "id": "best-practices-when-using-the-os-module",
+        "title": "Best Practices When Using the OS Module",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 139
+      }
+    ],
+    "totalWordCount": 1553,
+    "estimatedReadingTime": 420000,
+    "title": "os_module_for_operating_system_interaction",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\http_https_module_basics.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\http_https_module_basics.md",
+    "sections": [
+      {
+        "id": "understanding-httphttps-modules-in-nodejs-from-first-principles",
+        "title": "Understanding HTTP/HTTPS Modules in Node.js from First Principles",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "the-foundation-what-is-http",
+        "title": "The Foundation: What is HTTP?",
+        "level": 2,
+        "wordCount": 145
+      },
+      {
+        "id": "what-about-https",
+        "title": "What about HTTPS?",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "nodejs-http-module-the-basics",
+        "title": "Node.js HTTP Module: The Basics",
+        "level": 2,
+        "wordCount": 135
+      },
+      {
+        "id": "http-request-object-in-depth",
+        "title": "HTTP Request Object in Depth",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "http-response-object-in-depth",
+        "title": "HTTP Response Object in Depth",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "routing-in-the-http-module",
+        "title": "Routing in the HTTP Module",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "making-http-requests-with-nodejs",
+        "title": "Making HTTP Requests with Node.js",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "the-https-module",
+        "title": "The HTTPS Module",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "advanced-concepts",
+        "title": "Advanced Concepts",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "common-patterns-and-best-practices",
+        "title": "Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "security-best-practices",
+        "title": "Security Best Practices",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 100
+      }
+    ],
+    "totalWordCount": 1084,
+    "estimatedReadingTime": 300000,
+    "title": "http_https_module_basics",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\file_system_fs_module_fundamentals.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\file_system_fs_module_fundamentals.md",
+    "sections": [
+      {
+        "id": "the-nodejs-file-system-fs-module-from-first-principles",
+        "title": "The Node.js File System (fs) Module: From First Principles",
+        "level": 1,
+        "wordCount": 55
+      },
+      {
+        "id": "what-is-a-file-system",
+        "title": "What is a File System?",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "the-nodejs-fs-module-core-concepts",
+        "title": "The Node.js fs Module: Core Concepts",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "core-file-operations",
+        "title": "Core File Operations",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "directory-operations",
+        "title": "Directory Operations",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "file-metadata-and-properties",
+        "title": "File Metadata and Properties",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "file-paths",
+        "title": "File Paths",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "file-system-watching",
+        "title": "File System Watching",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "file-descriptors",
+        "title": "File Descriptors",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "file-system-permissions",
+        "title": "File System Permissions",
+        "level": 2,
+        "wordCount": 11
+      },
+      {
+        "id": "symbolic-links",
+        "title": "Symbolic Links",
+        "level": 2,
+        "wordCount": 9
+      },
+      {
+        "id": "error-handling-best-practices",
+        "title": "Error Handling Best Practices",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "security-considerations",
+        "title": "Security Considerations",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-world Applications",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 155
+      }
+    ],
+    "totalWordCount": 1066,
+    "estimatedReadingTime": 300000,
+    "title": "file_system_fs_module_fundamentals",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\crypto_module_for_cryptography.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\crypto_module_for_cryptography.md",
+    "sections": [
+      {
+        "id": "nodejs-crypto-module-a-first-principles-deep-dive",
+        "title": "Node.js Crypto Module: A First Principles Deep Dive",
+        "level": 1,
+        "wordCount": 27
+      },
+      {
+        "id": "understanding-cryptography-the-foundation",
+        "title": "Understanding Cryptography: The Foundation",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "the-nodejs-crypto-module-architecture",
+        "title": "The Node.js Crypto Module Architecture",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "core-concepts-and-capabilities",
+        "title": "Core Concepts and Capabilities",
+        "level": 2,
+        "wordCount": 535
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "advanced-topics",
+        "title": "Advanced Topics",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "security-best-practices",
+        "title": "Security Best Practices",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 73
+      }
+    ],
+    "totalWordCount": 1092,
+    "estimatedReadingTime": 300000,
+    "title": "crypto_module_for_cryptography",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\cluster_module_for_multi_process_applications.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\cluster_module_for_multi_process_applications.md",
+    "sections": [
+      {
+        "id": "nodejs-cluster-module-a-first-principles-approach",
+        "title": "Node.js Cluster Module: A First Principles Approach",
+        "level": 1,
+        "wordCount": 26
+      },
+      {
+        "id": "understanding-the-foundation-single-threaded-nature-of-nodejs",
+        "title": "Understanding the Foundation: Single-Threaded Nature of Node.js",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "the-problem-cpu-utilization",
+        "title": "The Problem: CPU Utilization",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "enter-the-cluster-module-the-solution",
+        "title": "Enter the Cluster Module: The Solution",
+        "level": 2,
+        "wordCount": 201
+      },
+      {
+        "id": "understanding-the-magic-how-port-sharing-works",
+        "title": "Understanding the Magic: How Port Sharing Works",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "diving-deeper-inter-process-communication-ipc",
+        "title": "Diving Deeper: Inter-Process Communication (IPC)",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "load-balancing-strategies",
+        "title": "Load Balancing Strategies",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "worker-lifecycle-management",
+        "title": "Worker Lifecycle Management",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "zero-downtime-restarts",
+        "title": "Zero-Downtime Restarts",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "sharing-state-between-workers",
+        "title": "Sharing State Between Workers",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "sticky-load-balancing",
+        "title": "Sticky Load Balancing",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "practical-considerations-and-best-practices",
+        "title": "Practical Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "beyond-the-cluster-module-modern-alternatives",
+        "title": "Beyond the Cluster Module: Modern Alternatives",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 123
+      }
+    ],
+    "totalWordCount": 1483,
+    "estimatedReadingTime": 360000,
+    "title": "cluster_module_for_multi_process_applications",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\child_process_module_introduction.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\child_process_module_introduction.md",
+    "sections": [
+      {
+        "id": "understanding-nodejs-child-process-module-from-first-principles",
+        "title": "Understanding Node.js Child Process Module from First Principles",
+        "level": 1,
+        "wordCount": 31
+      },
+      {
+        "id": "the-fundamental-problem-single-threaded-execution",
+        "title": "The Fundamental Problem: Single-Threaded Execution",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "enter-child-processes-multiple-execution-contexts",
+        "title": "Enter Child Processes: Multiple Execution Contexts",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "the-four-methods-of-creating-child-processes",
+        "title": "The Four Methods of Creating Child Processes",
+        "level": 2,
+        "wordCount": 521
+      },
+      {
+        "id": "understanding-process-control",
+        "title": "Understanding Process Control",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "advanced-usage-detached-processes",
+        "title": "Advanced Usage: Detached Processes",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "real-world-examples",
+        "title": "Real-World Examples",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "security-considerations",
+        "title": "Security Considerations",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "error-handling",
+        "title": "Error Handling",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "putting-it-all-together",
+        "title": "Putting It All Together",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 127
+      }
+    ],
+    "totalWordCount": 1401,
+    "estimatedReadingTime": 360000,
+    "title": "child_process_module_introduction",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\node_js_core_modules\\buffer_module_for_binary_data.md": {
+    "path": "public\\content\\node_js\\node_js_core_modules\\buffer_module_for_binary_data.md",
+    "sections": [
+      {
+        "id": "understanding-nodejs-buffer-from-first-principles",
+        "title": "Understanding Node.js Buffer: From First Principles",
+        "level": 1,
+        "wordCount": 27
+      },
+      {
+        "id": "what-is-binary-data",
+        "title": "What is Binary Data?",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "why-nodejs-needs-buffer",
+        "title": "Why Node.js Needs Buffer",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "the-buffer-class",
+        "title": "The Buffer Class",
+        "level": 2,
+        "wordCount": 278
+      },
+      {
+        "id": "buffer-and-streams",
+        "title": "Buffer and Streams",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "common-buffer-operations",
+        "title": "Common Buffer Operations",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "memory-management-and-performance",
+        "title": "Memory Management and Performance",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "real-world-examples",
+        "title": "Real-world Examples",
+        "level": 2,
+        "wordCount": 135
+      },
+      {
+        "id": "buffer-security-considerations",
+        "title": "Buffer Security Considerations",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "buffer-in-modern-nodejs",
+        "title": "Buffer in Modern Node.js",
+        "level": 2,
+        "wordCount": 35
+      },
+      {
+        "id": "typedarray-relationship",
+        "title": "TypedArray Relationship",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "advanced-buffer-techniques",
+        "title": "Advanced Buffer Techniques",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 136
+      }
+    ],
+    "totalWordCount": 1170,
+    "estimatedReadingTime": 300000,
+    "title": "buffer_module_for_binary_data",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\asynchronous_programming_fundamentals\\understanding_synchronous_vs_asynchronous_code.md": {
+    "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\understanding_synchronous_vs_asynchronous_code.md",
+    "sections": [
+      {
+        "id": "understanding-synchronous-vs-asynchronous-code-in-nodejs",
+        "title": "Understanding Synchronous vs. Asynchronous Code in Node.js",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "the-foundations-what-is-code-execution",
+        "title": "The Foundations: What Is Code Execution?",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "synchronous-code-the-straight-path",
+        "title": "Synchronous Code: The Straight Path",
+        "level": 2,
+        "wordCount": 182
+      },
+      {
+        "id": "asynchronous-code-the-parallel-path",
+        "title": "Asynchronous Code: The Parallel Path",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "the-event-loop-nodejss-secret-sauce",
+        "title": "The Event Loop: Node.js's Secret Sauce",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "patterns-for-asynchronous-code-in-nodejs",
+        "title": "Patterns for Asynchronous Code in Node.js",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "real-world-example-building-a-simple-web-server",
+        "title": "Real-world Example: Building a Simple Web Server",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "modern-approach-using-asyncawait",
+        "title": "Modern Approach: Using Async/Await",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "common-asynchronous-operations-in-nodejs",
+        "title": "Common Asynchronous Operations in Node.js",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "best-practices-for-asynchronous-programming",
+        "title": "Best Practices for Asynchronous Programming",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "when-to-use-each-approach",
+        "title": "When to Use Each Approach",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "pitfalls-to-avoid",
+        "title": "Pitfalls to Avoid",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "testing-asynchronous-code",
+        "title": "Testing Asynchronous Code",
+        "level": 2,
+        "wordCount": 9
+      },
+      {
+        "id": "the-event-loop-in-depth",
+        "title": "The Event Loop in Depth",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 140
+      }
+    ],
+    "totalWordCount": 1144,
+    "estimatedReadingTime": 300000,
+    "title": "understanding_synchronous_vs_asynchronous_code",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\asynchronous_programming_fundamentals\\sequential_vs_parallel_execution_patterns.md": {
+    "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\sequential_vs_parallel_execution_patterns.md",
+    "sections": [
+      {
+        "id": "sequential-vs-parallel-execution-patterns-in-nodejs",
+        "title": "Sequential vs. Parallel Execution Patterns in Node.js",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "1-first-principles-what-is-program-execution",
+        "title": "1. First Principles: What is Program Execution?",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "2-understanding-nodejs-architecture",
+        "title": "2. Understanding Node.js Architecture",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "3-sequential-execution-in-nodejs",
+        "title": "3. Sequential Execution in Node.js",
+        "level": 2,
+        "wordCount": 177
+      },
+      {
+        "id": "4-asynchronous-execution-in-nodejs",
+        "title": "4. Asynchronous Execution in Node.js",
+        "level": 2,
+        "wordCount": 126
+      },
+      {
+        "id": "5-true-parallel-execution-in-nodejs",
+        "title": "5. True Parallel Execution in Node.js",
+        "level": 2,
+        "wordCount": 202
+      },
+      {
+        "id": "6-comparing-sequential-and-parallel-approaches",
+        "title": "6. Comparing Sequential and Parallel Approaches",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "7-practical-use-cases-and-decision-making",
+        "title": "7. Practical Use Cases and Decision Making",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "8-best-practices-and-patterns",
+        "title": "8. Best Practices and Patterns",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "9-performance-considerations",
+        "title": "9. Performance Considerations",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "10-conclusion-and-advanced-patterns",
+        "title": "10. Conclusion and Advanced Patterns",
+        "level": 2,
+        "wordCount": 120
+      }
+    ],
+    "totalWordCount": 1295,
+    "estimatedReadingTime": 360000,
+    "title": "sequential_vs_parallel_execution_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\asynchronous_programming_fundamentals\\promise_fundamentals_and_chaining.md": {
+    "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\promise_fundamentals_and_chaining.md",
+    "sections": [
+      {
+        "id": "understanding-promises-in-nodejs-from-first-principles",
+        "title": "Understanding Promises in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "what-is-a-promise-the-fundamental-concept",
+        "title": "What is a Promise? The Fundamental Concept",
+        "level": 2,
+        "wordCount": 141
+      },
+      {
+        "id": "promise-states-and-anatomy",
+        "title": "Promise States and Anatomy",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "promise-internals-how-they-work",
+        "title": "Promise Internals: How They Work",
+        "level": 2,
+        "wordCount": 161
+      },
+      {
+        "id": "promise-methods-then-catch-and-finally",
+        "title": "Promise Methods: then(), catch(), and finally()",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "promise-chaining-the-power-of-composition",
+        "title": "Promise Chaining: The Power of Composition",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "advanced-promise-patterns",
+        "title": "Advanced Promise Patterns",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "building-a-promise-from-scratch",
+        "title": "Building a Promise from Scratch",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "asyncawait-syntactic-sugar-for-promises",
+        "title": "Async/Await: Syntactic Sugar for Promises",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "common-promise-patterns-and-best-practices",
+        "title": "Common Promise Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 118
+      }
+    ],
+    "totalWordCount": 1038,
+    "estimatedReadingTime": 300000,
+    "title": "promise_fundamentals_and_chaining",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\asynchronous_programming_fundamentals\\promise_error_propagation.md": {
+    "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\promise_error_propagation.md",
+    "sections": [
+      {
+        "id": "promise-error-propagation-in-nodejs-from-first-principles",
+        "title": "Promise Error Propagation in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "1-promise-fundamentals-what-are-we-really-working-with",
+        "title": "1. Promise Fundamentals: What Are We Really Working With?",
+        "level": 2,
+        "wordCount": 160
+      },
+      {
+        "id": "2-error-creation-in-promises",
+        "title": "2. Error Creation in Promises",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "3-the-core-of-error-propagation",
+        "title": "3. The Core of Error Propagation",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "4-error-recovery-and-chain-continuation",
+        "title": "4. Error Recovery and Chain Continuation",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "5-errors-in-nested-promises",
+        "title": "5. Errors in Nested Promises",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "6-common-error-propagation-patterns",
+        "title": "6. Common Error Propagation Patterns",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "7-promiseall-error-propagation",
+        "title": "7. Promise.all Error Propagation",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "8-the-finally-method-and-error-propagation",
+        "title": "8. The finally() Method and Error Propagation",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "9-advanced-error-propagation-techniques",
+        "title": "9. Advanced Error Propagation Techniques",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "10-common-error-propagation-mistakes",
+        "title": "10. Common Error Propagation Mistakes",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "11-best-practices-for-promise-error-handling",
+        "title": "11. Best Practices for Promise Error Handling",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 78
+      }
+    ],
+    "totalWordCount": 936,
+    "estimatedReadingTime": 240000,
+    "title": "promise_error_propagation",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\asynchronous_programming_fundamentals\\managing_concurrency_with_async_operations.md": {
+    "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\managing_concurrency_with_async_operations.md",
+    "sections": [
+      {
+        "id": "managing-concurrency-with-async-operations-in-nodejs",
+        "title": "Managing Concurrency with Async Operations in Node.js",
+        "level": 1,
+        "wordCount": 41
+      },
+      {
+        "id": "understanding-concurrency-from-first-principles",
+        "title": "Understanding Concurrency from First Principles",
+        "level": 2,
+        "wordCount": 330
+      },
+      {
+        "id": "asynchronous-programming-patterns-in-nodejs",
+        "title": "Asynchronous Programming Patterns in Node.js",
+        "level": 2,
+        "wordCount": 377
+      },
+      {
+        "id": "common-concurrency-patterns-and-challenges",
+        "title": "Common Concurrency Patterns and Challenges",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "advanced-concurrency-management-techniques",
+        "title": "Advanced Concurrency Management Techniques",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "best-practices-and-common-pitfalls",
+        "title": "Best Practices and Common Pitfalls",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 138
+      }
+    ],
+    "totalWordCount": 1260,
+    "estimatedReadingTime": 360000,
+    "title": "managing_concurrency_with_async_operations",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\asynchronous_programming_fundamentals\\event_emitter_class_and_custom_events.md": {
+    "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\event_emitter_class_and_custom_events.md",
+    "sections": [
+      {
+        "id": "event-emitters-and-event-driven-architecture-in-nodejs",
+        "title": "Event Emitters and Event-Driven Architecture in Node.js",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "understanding-events-the-foundation",
+        "title": "Understanding Events: The Foundation",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "the-observer-pattern-a-conceptual-foundation",
+        "title": "The Observer Pattern: A Conceptual Foundation",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "event-emitters-in-nodejs",
+        "title": "Event Emitters in Node.js",
+        "level": 2,
+        "wordCount": 126
+      },
+      {
+        "id": "the-event-emitter-api-core-methods",
+        "title": "The Event Emitter API: Core Methods",
+        "level": 2,
+        "wordCount": 142
+      },
+      {
+        "id": "handling-errors-with-event-emitters",
+        "title": "Handling Errors with Event Emitters",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "creating-custom-event-emitters",
+        "title": "Creating Custom Event Emitters",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "event-driven-architecture-in-nodejs",
+        "title": "Event-Driven Architecture in Node.js",
+        "level": 2,
+        "wordCount": 255
+      },
+      {
+        "id": "advanced-event-emitter-patterns",
+        "title": "Advanced Event Emitter Patterns",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "best-practices-for-event-driven-architecture",
+        "title": "Best Practices for Event-Driven Architecture",
+        "level": 2,
+        "wordCount": 146
+      },
+      {
+        "id": "real-world-examples-of-event-driven-architecture",
+        "title": "Real-World Examples of Event-Driven Architecture",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 1346,
+    "estimatedReadingTime": 360000,
+    "title": "event_emitter_class_and_custom_events",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\asynchronous_programming_fundamentals\\event_emitters_and_event_driven_architecture.md": {
+    "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\event_emitters_and_event_driven_architecture.md",
+    "sections": [
+      {
+        "id": "understanding-eventemitter-and-custom-events-in-nodejs",
+        "title": "Understanding EventEmitter and Custom Events in Node.js",
+        "level": 1,
+        "wordCount": 83
+      },
+      {
+        "id": "first-principles-understanding-events",
+        "title": "First Principles: Understanding Events",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "the-observer-pattern",
+        "title": "The Observer Pattern",
+        "level": 2,
+        "wordCount": 134
+      },
+      {
+        "id": "enter-eventemitter-in-nodejs",
+        "title": "Enter EventEmitter in Node.js",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "creating-your-first-eventemitter",
+        "title": "Creating Your First EventEmitter",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "creating-custom-events",
+        "title": "Creating Custom Events",
+        "level": 2,
+        "wordCount": 126
+      },
+      {
+        "id": "event-listener-management",
+        "title": "Event Listener Management",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "error-handling-in-eventemitter",
+        "title": "Error Handling in EventEmitter",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "asynchronous-vs-synchronous-events",
+        "title": "Asynchronous vs. Synchronous Events",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "memory-management-and-potential-issues",
+        "title": "Memory Management and Potential Issues",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "practical-example-building-a-file-watcher",
+        "title": "Practical Example: Building a File Watcher",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "eventemitter-best-practices",
+        "title": "EventEmitter Best Practices",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "advanced-eventemitter-patterns",
+        "title": "Advanced EventEmitter Patterns",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "eventemitter-in-nodejs-core-modules",
+        "title": "EventEmitter in Node.js Core Modules",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 125
+      }
+    ],
+    "totalWordCount": 1264,
+    "estimatedReadingTime": 360000,
+    "title": "event_emitters_and_event_driven_architecture",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\asynchronous_programming_fundamentals\\error_handling_in_asynchronous_code.md": {
+    "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\error_handling_in_asynchronous_code.md",
+    "sections": [
+      {
+        "id": "error-handling-in-asynchronous-code-in-nodejs-from-first-principles",
+        "title": "Error Handling in Asynchronous Code in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 10
+      },
+      {
+        "id": "introduction-to-asynchronous-programming",
+        "title": "Introduction to Asynchronous Programming",
+        "level": 2,
+        "wordCount": 250
+      },
+      {
+        "id": "the-challenge-of-error-handling-in-asynchronous-code",
+        "title": "The Challenge of Error Handling in Asynchronous Code",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "first-principles-of-error-handling",
+        "title": "First Principles of Error Handling",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "asynchronous-patterns-in-nodejs-and-their-error-handling",
+        "title": "Asynchronous Patterns in Node.js and Their Error Handling",
+        "level": 2,
+        "wordCount": 543
+      },
+      {
+        "id": "advanced-error-handling-techniques",
+        "title": "Advanced Error Handling Techniques",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "putting-it-all-together-a-complete-example",
+        "title": "Putting It All Together: A Complete Example",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "best-practices-for-error-handling",
+        "title": "Best Practices for Error Handling",
+        "level": 2,
+        "wordCount": 146
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 97
+      }
+    ],
+    "totalWordCount": 1454,
+    "estimatedReadingTime": 360000,
+    "title": "error_handling_in_asynchronous_code",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\asynchronous_programming_fundamentals\\callback_vs_promise_vs_async_await_patterns.md": {
+    "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\callback_vs_promise_vs_async_await_patterns.md",
+    "sections": [
+      {
+        "id": "understanding-asynchronous-patterns-in-nodejs-callbacks-promises-and-asyncawait",
+        "title": "Understanding Asynchronous Patterns in Node.js: Callbacks, Promises, and Async/Await",
+        "level": 1,
+        "wordCount": 9
+      },
+      {
+        "id": "the-foundation-why-asynchronous-programming-matters",
+        "title": "The Foundation: Why Asynchronous Programming Matters",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "1-callbacks-the-original-pattern",
+        "title": "1. Callbacks: The Original Pattern",
+        "level": 2,
+        "wordCount": 220
+      },
+      {
+        "id": "2-promises-a-better-abstraction",
+        "title": "2. Promises: A Better Abstraction",
+        "level": 2,
+        "wordCount": 180
+      },
+      {
+        "id": "3-asyncawait-modern-asynchronous-javascript",
+        "title": "3. Async/Await: Modern Asynchronous JavaScript",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "practical-comparison-real-world-example",
+        "title": "Practical Comparison: Real-World Example",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "when-to-use-each-pattern",
+        "title": "When to Use Each Pattern",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "advanced-concepts",
+        "title": "Advanced Concepts",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "conclusion-the-evolution-of-asynchronous-patterns",
+        "title": "Conclusion: The Evolution of Asynchronous Patterns",
+        "level": 2,
+        "wordCount": 109
+      }
+    ],
+    "totalWordCount": 906,
+    "estimatedReadingTime": 240000,
+    "title": "callback_vs_promise_vs_async_await_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\asynchronous_programming_fundamentals\\callback_pattern_and_callback_hell.md": {
+    "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\callback_pattern_and_callback_hell.md",
+    "sections": [
+      {
+        "id": "understanding-callbacks-and-callback-hell-in-nodejs",
+        "title": "Understanding Callbacks and Callback Hell in Node.js",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "what-is-synchronous-vs-asynchronous-execution",
+        "title": "What is Synchronous vs. Asynchronous Execution?",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "first-principles-why-callbacks-exist",
+        "title": "First Principles: Why Callbacks Exist",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "the-callback-pattern-basic-structure",
+        "title": "The Callback Pattern: Basic Structure",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "error-handling-in-callbacks",
+        "title": "Error Handling in Callbacks",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "callback-hell-the-problem",
+        "title": "Callback Hell: The Problem",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "why-callback-hell-happens",
+        "title": "Why Callback Hell Happens",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "strategies-for-avoiding-callback-hell",
+        "title": "Strategies for Avoiding Callback Hell",
+        "level": 2,
+        "wordCount": 152
+      },
+      {
+        "id": "real-world-examples-of-callback-usage",
+        "title": "Real-world Examples of Callback Usage",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 156
+      }
+    ],
+    "totalWordCount": 1020,
+    "estimatedReadingTime": 300000,
+    "title": "callback_pattern_and_callback_hell",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\asynchronous_programming_fundamentals\\async_await_syntax_and_patterns.md": {
+    "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\async_await_syntax_and_patterns.md",
+    "sections": [
+      {
+        "id": "asyncawait-in-nodejs-understanding-from-first-principles",
+        "title": "Async/Await in Node.js: Understanding from First Principles",
+        "level": 1,
+        "wordCount": 34
+      },
+      {
+        "id": "the-foundation-understanding-synchronous-vs-asynchronous-execution",
+        "title": "The Foundation: Understanding Synchronous vs. Asynchronous Execution",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "the-evolution-of-asynchronous-patterns-in-javascript",
+        "title": "The Evolution of Asynchronous Patterns in JavaScript",
+        "level": 2,
+        "wordCount": 212
+      },
+      {
+        "id": "asyncawait-the-elegant-solution",
+        "title": "Async/Await: The Elegant Solution",
+        "level": 2,
+        "wordCount": 173
+      },
+      {
+        "id": "common-asyncawait-patterns",
+        "title": "Common Async/Await Patterns",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "advanced-asyncawait-concepts",
+        "title": "Advanced Async/Await Concepts",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "real-world-examples",
+        "title": "Real-World Examples",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "conclusion-the-philosophy-of-asyncawait",
+        "title": "Conclusion: The Philosophy of Async/Await",
+        "level": 2,
+        "wordCount": 160
+      }
+    ],
+    "totalWordCount": 1000,
+    "estimatedReadingTime": 240000,
+    "title": "async_await_syntax_and_patterns",
+    "frontmatter": {}
+  },
   "public\\content\\javascript\\the_this_keyword_deep_dive\\this_in_strict_vs_non_strict_mode.md": {
     "path": "public\\content\\javascript\\the_this_keyword_deep_dive\\this_in_strict_vs_non_strict_mode.md",
     "sections": [

@@ -273,11 +273,7 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
     );
   };
 
-  const renderDateHeader = (
-    dateKey: string,
-    displayDate: string,
-    animate = true
-  ) => {
+  const renderDateHeader = (displayDate: string, animate = true) => {
     const headerContent =
       viewType === "timeline" ? (
         <div className="flex items-center mb-2 mt-4 ml-2">
@@ -357,7 +353,7 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
     const item = flattenedItems[virtualRow.index];
 
     if (item.type === "header") {
-      return renderDateHeader(item.dateKey!, item.displayDate!, false);
+      return renderDateHeader(item.displayDate!, false);
     } else if (item.type === "item") {
       switch (viewType) {
         case "grid":
@@ -487,11 +483,7 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
                             key={`header-${virtualRow.index}`}
                             style={{ height: virtualRow.size }}
                           >
-                            {renderDateHeader(
-                              item.dateKey!,
-                              item.displayDate!,
-                              false
-                            )}
+                            {renderDateHeader(item.displayDate!, false)}
                           </div>
                         );
                       }
