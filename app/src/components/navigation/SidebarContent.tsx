@@ -41,17 +41,21 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
       {/* Main scrollable content */}
       <ScrollArea className="flex-1 px-2 overflow-auto text-xs">
         <div className="pb-4 pt-2">
-          {/* Currently Reading Section - Add this */}
-          {!loading && currentCategory && (
-            <CurrentlyReading
-              currentCategory={currentCategory}
-              currentFilePath={currentFilePath ?? ""}
-              onSelectFile={onFileSelect}
-              showDescriptions={showDescriptions}
-              expanded={currentCategoryExpanded}
-              setExpanded={setCurrentCategoryExpanded}
-            />
-          )}
+          <div className="flex flex-col justify-center">
+            <span className="text-xs font-medium ml-4 text-primary/80">
+              Currently Reading
+            </span>
+            {!loading && currentCategory && (
+              <CurrentlyReading
+                currentCategory={currentCategory}
+                currentFilePath={currentFilePath ?? ""}
+                onSelectFile={onFileSelect}
+                showDescriptions={showDescriptions}
+                expanded={currentCategoryExpanded}
+                setExpanded={setCurrentCategoryExpanded}
+              />
+            )}
+          </div>
 
           {loading ? (
             // Loading skeleton

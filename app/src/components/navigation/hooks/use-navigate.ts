@@ -26,7 +26,13 @@ const useNavigation = (currentFilePath?: string) => {
   const { history } = useReadingHistory();
   const { todoList } = useReadingList();
   const { fileMap, contentIndex } = useDocumentList();
-  const [currentOpen, setCurrentOpen] = useState<CurrentCategory | null>(null);
+  const [currentOpen, setCurrentOpen] = useState<CurrentCategory | null>(() => {
+    const fromStore = localStorage.getItem("currentOpen");
+    if (fromStore) {
+      return JSON.parse(fromStore);
+    }
+    return null;
+  });
 
   /**
    * 📚 Tracks documents you've already read
@@ -70,7 +76,7 @@ const useNavigation = (currentFilePath?: string) => {
         ({ id }) => id === immediate
       );
       if (immediateParent) {
-        setCurrentOpen({
+        const currentOpen = {
           name: immediateParent.name,
           root,
           files:
@@ -82,7 +88,9 @@ const useNavigation = (currentFilePath?: string) => {
               isCompleted: completed.has(file.path),
               isRead: readFilePaths.has(file.path),
             })) ?? [],
-        });
+        };
+        setCurrentOpen(currentOpen);
+        localStorage.setItem("currentOpen", JSON.stringify(currentOpen));
       }
     }
   }, [
