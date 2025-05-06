@@ -13,6 +13,7 @@ interface DetailPanelProps {
   lastUpdatedFormatted: string;
   readSections: Set<string>;
   loading: boolean;
+  lastReadingTime: string;
 }
 
 const DetailPanel: React.FC<DetailPanelProps> = ({
@@ -22,6 +23,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
   lastUpdatedFormatted,
   readSections,
   loading,
+  lastReadingTime,
 }) => {
   const { isMobile } = useMobile();
 
@@ -43,6 +45,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({
         wordCount={wordCount}
         estimatedReadTime={estimatedReadTime}
         lastUpdatedFormatted={lastUpdatedFormatted}
+        lastReadingTime={lastReadingTime}
       />
 
       <div className="bg-secondary/5 p-4 border border-border/30 shadow-sm rounded-2xl">
@@ -94,12 +97,14 @@ interface DocumentStructurePanelProps {
   wordCount: number;
   estimatedReadTime: number;
   lastUpdatedFormatted: string;
+  lastReadingTime: string;
 }
 
 const DocumentStructurePanel: React.FC<DocumentStructurePanelProps> = ({
   totalSections,
   wordCount,
   estimatedReadTime,
+  lastReadingTime,
 }) => {
   const { currentTheme } = useTheme();
   const { isMobile } = useMobile();
@@ -167,6 +172,11 @@ const DocumentStructurePanel: React.FC<DocumentStructurePanelProps> = ({
       <div className="flex items-center justify-between mb-3">
         <div className="text-sm">Word Count</div>
         <div className="text-sm font-medium">{`${wordCount.toLocaleString()} words`}</div>
+      </div>
+
+      <div className="flex items-center justify-between mb-3">
+        <div className="text-sm">Last Read</div>
+        <div className="text-sm font-medium">{lastReadingTime}</div>
       </div>
 
       <div className="flex items-center justify-between mb-3">

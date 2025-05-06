@@ -30555,6 +30555,849 @@
     "title": "asynchronous_context_managers_and_generators",
     "frontmatter": {}
   },
+  "public\\content\\node_js\\streams_and_buffer_management\\working_with_object_mode_streams.md": {
+    "path": "public\\content\\node_js\\streams_and_buffer_management\\working_with_object_mode_streams.md",
+    "sections": [
+      {
+        "id": "working-with-object-mode-streams-in-nodejs",
+        "title": "Working with Object Mode Streams in Node.js",
+        "level": 1,
+        "wordCount": 7
+      },
+      {
+        "id": "introduction-to-streams-the-foundation",
+        "title": "Introduction to Streams: The Foundation",
+        "level": 2,
+        "wordCount": 240
+      },
+      {
+        "id": "from-buffers-to-objects-the-need-for-object-mode",
+        "title": "From Buffers to Objects: The Need for Object Mode",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "creating-object-mode-streams",
+        "title": "Creating Object Mode Streams",
+        "level": 2,
+        "wordCount": 197
+      },
+      {
+        "id": "advanced-concepts-under-the-hood",
+        "title": "Advanced Concepts: Under the Hood",
+        "level": 2,
+        "wordCount": 188
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "best-practices-for-object-mode-streams",
+        "title": "Best Practices for Object Mode Streams",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "advanced-patterns-with-object-mode-streams",
+        "title": "Advanced Patterns with Object Mode Streams",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 135
+      }
+    ],
+    "totalWordCount": 1222,
+    "estimatedReadingTime": 300000,
+    "title": "working_with_object_mode_streams",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\streams_and_buffer_management\\stream_types.md": {
+    "path": "public\\content\\node_js\\streams_and_buffer_management\\stream_types.md",
+    "sections": [
+      {
+        "id": "understanding-nodejs-streams-from-first-principles",
+        "title": "Understanding Node.js Streams from First Principles",
+        "level": 1,
+        "wordCount": 52
+      },
+      {
+        "id": "what-are-streams-the-foundation",
+        "title": "What Are Streams? The Foundation",
+        "level": 2,
+        "wordCount": 197
+      },
+      {
+        "id": "streams-in-nodejs-the-core-concepts",
+        "title": "Streams in Node.js - The Core Concepts",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "1-readable-streams-the-data-source",
+        "title": "1. Readable Streams: The Data Source",
+        "level": 2,
+        "wordCount": 160
+      },
+      {
+        "id": "2-writable-streams-the-data-destination",
+        "title": "2. Writable Streams: The Data Destination",
+        "level": 2,
+        "wordCount": 187
+      },
+      {
+        "id": "3-duplex-streams-two-way-data-flow",
+        "title": "3. Duplex Streams: Two-Way Data Flow",
+        "level": 2,
+        "wordCount": 198
+      },
+      {
+        "id": "4-transform-streams-data-manipulation-pipeline",
+        "title": "4. Transform Streams: Data Manipulation Pipeline",
+        "level": 2,
+        "wordCount": 195
+      },
+      {
+        "id": "stream-piping-connecting-streams-together",
+        "title": "Stream Piping: Connecting Streams Together",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "stream-modes-and-options",
+        "title": "Stream Modes and Options",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "real-world-applications-of-streams",
+        "title": "Real-World Applications of Streams",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "summary-of-nodejs-stream-types",
+        "title": "Summary of Node.js Stream Types",
+        "level": 2,
+        "wordCount": 219
+      }
+    ],
+    "totalWordCount": 1622,
+    "estimatedReadingTime": 420000,
+    "title": "stream_types",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\streams_and_buffer_management\\stream_error_handling_and_recovery.md": {
+    "path": "public\\content\\node_js\\streams_and_buffer_management\\stream_error_handling_and_recovery.md",
+    "sections": [
+      {
+        "id": "stream-error-handling-and-recovery-in-nodejs",
+        "title": "Stream Error Handling and Recovery in Node.js",
+        "level": 1,
+        "wordCount": 60
+      },
+      {
+        "id": "first-principles-what-are-streams",
+        "title": "First Principles: What Are Streams?",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "types-of-streams",
+        "title": "Types of Streams",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "the-error-event-the-foundation-of-stream-error-handling",
+        "title": "The Error Event: The Foundation of Stream Error Handling",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "why-errors-need-special-handling-in-streams",
+        "title": "Why Errors Need Special Handling in Streams",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "common-stream-errors",
+        "title": "Common Stream Errors",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "error-handling-strategies",
+        "title": "Error Handling Strategies",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "stream-error-recovery-techniques",
+        "title": "Stream Error Recovery Techniques",
+        "level": 2,
+        "wordCount": 149
+      },
+      {
+        "id": "advanced-error-handling-patterns",
+        "title": "Advanced Error Handling Patterns",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "error-monitoring-and-debugging",
+        "title": "Error Monitoring and Debugging",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "real-world-examples",
+        "title": "Real-World Examples",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "best-practices-for-stream-error-handling",
+        "title": "Best Practices for Stream Error Handling",
+        "level": 2,
+        "wordCount": 180
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 95
+      }
+    ],
+    "totalWordCount": 1245,
+    "estimatedReadingTime": 300000,
+    "title": "stream_error_handling_and_recovery",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\streams_and_buffer_management\\streaming_protocol_implementations.md": {
+    "path": "public\\content\\node_js\\streams_and_buffer_management\\streaming_protocol_implementations.md",
+    "sections": [
+      {
+        "id": "streaming-protocol-implementations-in-nodejs-a-first-principles-approach",
+        "title": "Streaming Protocol Implementations in Node.js: A First Principles Approach",
+        "level": 1,
+        "wordCount": 9
+      },
+      {
+        "id": "understanding-streaming-from-first-principles",
+        "title": "Understanding Streaming from First Principles",
+        "level": 2,
+        "wordCount": 257
+      },
+      {
+        "id": "the-nodejs-stream-architecture",
+        "title": "The Node.js Stream Architecture",
+        "level": 2,
+        "wordCount": 326
+      },
+      {
+        "id": "common-streaming-protocols-in-nodejs",
+        "title": "Common Streaming Protocols in Node.js",
+        "level": 2,
+        "wordCount": 293
+      },
+      {
+        "id": "advanced-stream-concepts",
+        "title": "Advanced Stream Concepts",
+        "level": 2,
+        "wordCount": 234
+      },
+      {
+        "id": "real-world-applications-and-best-practices",
+        "title": "Real-world Applications and Best Practices",
+        "level": 2,
+        "wordCount": 176
+      },
+      {
+        "id": "conclusion-the-stream-abstraction",
+        "title": "Conclusion: The Stream Abstraction",
+        "level": 2,
+        "wordCount": 146
+      }
+    ],
+    "totalWordCount": 1441,
+    "estimatedReadingTime": 360000,
+    "title": "streaming_protocol_implementations",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\streams_and_buffer_management\\streaming_api_patterns_and_best_practices.md": {
+    "path": "public\\content\\node_js\\streams_and_buffer_management\\streaming_api_patterns_and_best_practices.md",
+    "sections": [
+      {
+        "id": "understanding-nodejs-streaming-api-from-first-principles",
+        "title": "Understanding Node.js Streaming API: From First Principles",
+        "level": 1,
+        "wordCount": 68
+      },
+      {
+        "id": "what-are-streams-the-fundamental-concept",
+        "title": "What Are Streams? The Fundamental Concept",
+        "level": 2,
+        "wordCount": 146
+      },
+      {
+        "id": "the-four-fundamental-stream-types",
+        "title": "The Four Fundamental Stream Types",
+        "level": 2,
+        "wordCount": 361
+      },
+      {
+        "id": "stream-modes-flowing-vs-paused",
+        "title": "Stream Modes: Flowing vs. Paused",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "the-concept-of-backpressure",
+        "title": "The Concept of Backpressure",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "key-stream-patterns",
+        "title": "Key Stream Patterns",
+        "level": 2,
+        "wordCount": 225
+      },
+      {
+        "id": "best-practices-for-nodejs-streams",
+        "title": "Best Practices for Node.js Streams",
+        "level": 2,
+        "wordCount": 205
+      },
+      {
+        "id": "advanced-stream-patterns",
+        "title": "Advanced Stream Patterns",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "stream-interoperability-with-modern-javascript",
+        "title": "Stream Interoperability with Modern JavaScript",
+        "level": 2,
+        "wordCount": 21
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 126
+      }
+    ],
+    "totalWordCount": 1502,
+    "estimatedReadingTime": 420000,
+    "title": "streaming_api_patterns_and_best_practices",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\streams_and_buffer_management\\piping_streams_for_efficient_data_flow.md": {
+    "path": "public\\content\\node_js\\streams_and_buffer_management\\piping_streams_for_efficient_data_flow.md",
+    "sections": [
+      {
+        "id": "understanding-piping-streams-for-efficient-data-flow-in-nodejs",
+        "title": "Understanding Piping Streams for Efficient Data Flow in Node.js",
+        "level": 1,
+        "wordCount": 9
+      },
+      {
+        "id": "introduction-from-first-principles",
+        "title": "Introduction: From First Principles",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "what-are-streams-the-fundamental-concept",
+        "title": "What Are Streams? The Fundamental Concept",
+        "level": 2,
+        "wordCount": 177
+      },
+      {
+        "id": "nodejs-streams-the-building-blocks",
+        "title": "Node.js Streams: The Building Blocks",
+        "level": 2,
+        "wordCount": 199
+      },
+      {
+        "id": "the-power-of-piping-connecting-streams",
+        "title": "The Power of Piping: Connecting Streams",
+        "level": 2,
+        "wordCount": 153
+      },
+      {
+        "id": "chaining-pipes-building-data-pipelines",
+        "title": "Chaining Pipes: Building Data Pipelines",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "understanding-backpressure-the-hidden-gem",
+        "title": "Understanding Backpressure: The Hidden Gem",
+        "level": 2,
+        "wordCount": 162
+      },
+      {
+        "id": "error-handling-in-pipes-the-critical-safety-net",
+        "title": "Error Handling in Pipes: The Critical Safety Net",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "custom-transform-streams-processing-data-in-transit",
+        "title": "Custom Transform Streams: Processing Data in Transit",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "object-mode-streams-beyond-binary-and-text",
+        "title": "Object Mode Streams: Beyond Binary and Text",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "real-world-example-building-a-data-processing-pipeline",
+        "title": "Real-World Example: Building a Data Processing Pipeline",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "performance-considerations-making-the-most-of-streams",
+        "title": "Performance Considerations: Making the Most of Streams",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "conclusion-the-stream-philosophy",
+        "title": "Conclusion: The Stream Philosophy",
+        "level": 2,
+        "wordCount": 137
+      }
+    ],
+    "totalWordCount": 1374,
+    "estimatedReadingTime": 360000,
+    "title": "piping_streams_for_efficient_data_flow",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\streams_and_buffer_management\\memory_efficient_stream_processing.md": {
+    "path": "public\\content\\node_js\\streams_and_buffer_management\\memory_efficient_stream_processing.md",
+    "sections": [
+      {
+        "id": "memory-efficient-stream-processing-in-nodejs-from-first-principles",
+        "title": "Memory-Efficient Stream Processing in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 8
+      },
+      {
+        "id": "understanding-memory-efficiency-from-the-ground-up",
+        "title": "Understanding Memory Efficiency From The Ground Up",
+        "level": 2,
+        "wordCount": 193
+      },
+      {
+        "id": "what-are-streams-a-first-principles-view",
+        "title": "What Are Streams? A First Principles View",
+        "level": 2,
+        "wordCount": 197
+      },
+      {
+        "id": "stream-basics-in-nodejs",
+        "title": "Stream Basics in Node.js",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "buffer-vs-stream-a-fundamental-difference",
+        "title": "Buffer vs. Stream: A Fundamental Difference",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "the-mechanics-of-memory-efficiency-in-streams",
+        "title": "The Mechanics of Memory Efficiency in Streams",
+        "level": 2,
+        "wordCount": 189
+      },
+      {
+        "id": "real-world-stream-processing-patterns",
+        "title": "Real-World Stream Processing Patterns",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "advanced-stream-techniques",
+        "title": "Advanced Stream Techniques",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "practical-use-cases-for-stream-processing",
+        "title": "Practical Use Cases for Stream Processing",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "stream-error-handling-and-best-practices",
+        "title": "Stream Error Handling and Best Practices",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "performance-comparison-streams-vs-buffered-approaches",
+        "title": "Performance Comparison: Streams vs. Buffered Approaches",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "conclusion-when-to-use-streams",
+        "title": "Conclusion: When to Use Streams",
+        "level": 2,
+        "wordCount": 144
+      }
+    ],
+    "totalWordCount": 1275,
+    "estimatedReadingTime": 360000,
+    "title": "memory_efficient_stream_processing",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\streams_and_buffer_management\\flow_control_with_backpressure_handling.md": {
+    "path": "public\\content\\node_js\\streams_and_buffer_management\\flow_control_with_backpressure_handling.md",
+    "sections": [
+      {
+        "id": "flow-control-with-backpressure-handling-in-nodejs-streams",
+        "title": "Flow Control with Backpressure Handling in Node.js Streams",
+        "level": 1,
+        "wordCount": 8
+      },
+      {
+        "id": "understanding-streams-from-first-principles",
+        "title": "Understanding Streams from First Principles",
+        "level": 2,
+        "wordCount": 170
+      },
+      {
+        "id": "the-four-types-of-streams",
+        "title": "The Four Types of Streams",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "the-problem-data-flow-imbalance",
+        "title": "The Problem: Data Flow Imbalance",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "what-is-backpressure",
+        "title": "What is Backpressure?",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "the-mechanism-how-backpressure-works-in-nodejs",
+        "title": "The Mechanism: How Backpressure Works in Node.js",
+        "level": 2,
+        "wordCount": 144
+      },
+      {
+        "id": "implementing-backpressure-handling",
+        "title": "Implementing Backpressure Handling",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "the-highwatermark-option",
+        "title": "The `highWaterMark` Option",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "implementing-a-transform-stream-with-backpressure",
+        "title": "Implementing a Transform Stream with Backpressure",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "object-mode-streams",
+        "title": "Object Mode Streams",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "async-iterators-with-streams-nodejs-10",
+        "title": "Async Iterators with Streams (Node.js 10+)",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "common-pitfalls-and-best-practices",
+        "title": "Common Pitfalls and Best Practices",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "real-world-example-http-server-with-backpressure",
+        "title": "Real-World Example: HTTP Server with Backpressure",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "custom-stream-implementation-with-backpressure",
+        "title": "Custom Stream Implementation with Backpressure",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "monitoring-and-debugging-backpressure",
+        "title": "Monitoring and Debugging Backpressure",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "summary-and-key-takeaways",
+        "title": "Summary and Key Takeaways",
+        "level": 2,
+        "wordCount": 210
+      }
+    ],
+    "totalWordCount": 1440,
+    "estimatedReadingTime": 360000,
+    "title": "flow_control_with_backpressure_handling",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\streams_and_buffer_management\\custom_transform_streams_implementation.md": {
+    "path": "public\\content\\node_js\\streams_and_buffer_management\\custom_transform_streams_implementation.md",
+    "sections": [
+      {
+        "id": "custom-transform-streams-in-nodejs-from-first-principles",
+        "title": "Custom Transform Streams in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 84
+      },
+      {
+        "id": "understanding-streams-the-foundation",
+        "title": "Understanding Streams: The Foundation",
+        "level": 2,
+        "wordCount": 202
+      },
+      {
+        "id": "the-transform-stream-a-special-duplex-stream",
+        "title": "The Transform Stream: A Special Duplex Stream",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "implementing-a-custom-transform-stream",
+        "title": "Implementing a Custom Transform Stream",
+        "level": 2,
+        "wordCount": 359
+      },
+      {
+        "id": "advanced-transform-stream-techniques",
+        "title": "Advanced Transform Stream Techniques",
+        "level": 2,
+        "wordCount": 378
+      },
+      {
+        "id": "best-practices-for-custom-transform-streams",
+        "title": "Best Practices for Custom Transform Streams",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "transform-streams-in-the-modern-nodejs-ecosystem",
+        "title": "Transform Streams in the Modern Node.js Ecosystem",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 114
+      }
+    ],
+    "totalWordCount": 1424,
+    "estimatedReadingTime": 360000,
+    "title": "custom_transform_streams_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\streams_and_buffer_management\\buffer_pooling_and_performance_optimization.md": {
+    "path": "public\\content\\node_js\\streams_and_buffer_management\\buffer_pooling_and_performance_optimization.md",
+    "sections": [
+      {
+        "id": "buffer-pooling-and-performance-optimization-in-nodejs-streams",
+        "title": "Buffer Pooling and Performance Optimization in Node.js Streams",
+        "level": 1,
+        "wordCount": 37
+      },
+      {
+        "id": "understanding-memory-and-data-processing-from-first-principles",
+        "title": "Understanding Memory and Data Processing from First Principles",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "what-is-a-buffer",
+        "title": "What is a Buffer?",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "memory-allocation-the-cost-problem",
+        "title": "Memory Allocation: The Cost Problem",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "what-is-buffer-pooling",
+        "title": "What is Buffer Pooling?",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "how-nodejs-buffer-pool-works",
+        "title": "How Node.js Buffer Pool Works",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "streams-processing-data-in-chunks",
+        "title": "Streams: Processing Data in Chunks",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "stream-performance-optimization-techniques",
+        "title": "Stream Performance Optimization Techniques",
+        "level": 2,
+        "wordCount": 259
+      },
+      {
+        "id": "advanced-performance-techniques",
+        "title": "Advanced Performance Techniques",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "real-world-example-building-an-optimized-file-processing-pipeline",
+        "title": "Real-World Example: Building an Optimized File Processing Pipeline",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "performance-monitoring-and-optimization-tips",
+        "title": "Performance Monitoring and Optimization Tips",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 121
+      }
+    ],
+    "totalWordCount": 1369,
+    "estimatedReadingTime": 360000,
+    "title": "buffer_pooling_and_performance_optimization",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\streams_and_buffer_management\\binary_data_manipulation_techniques.md": {
+    "path": "public\\content\\node_js\\streams_and_buffer_management\\binary_data_manipulation_techniques.md",
+    "sections": [
+      {
+        "id": "binary-data-manipulation-techniques-in-nodejs",
+        "title": "Binary Data Manipulation Techniques in Node.js",
+        "level": 1,
+        "wordCount": 6
+      },
+      {
+        "id": "understanding-binary-data-from-first-principles",
+        "title": "Understanding Binary Data from First Principles",
+        "level": 2,
+        "wordCount": 217
+      },
+      {
+        "id": "binary-data-in-nodejs-the-buffer",
+        "title": "Binary Data in Node.js: The Buffer",
+        "level": 2,
+        "wordCount": 229
+      },
+      {
+        "id": "buffer-methods-for-binary-manipulation",
+        "title": "Buffer Methods for Binary Manipulation",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "typedarrays-and-buffers",
+        "title": "TypedArrays and Buffers",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "streams-for-binary-data",
+        "title": "Streams for Binary Data",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "encoding-and-decoding-binary-data",
+        "title": "Encoding and Decoding Binary Data",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "file-system-operations-with-binary-data",
+        "title": "File System Operations with Binary Data",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "advanced-techniques",
+        "title": "Advanced Techniques",
+        "level": 2,
+        "wordCount": 169
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-world Applications",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "best-practices-and-performance-considerations",
+        "title": "Best Practices and Performance Considerations",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 131
+      }
+    ],
+    "totalWordCount": 1488,
+    "estimatedReadingTime": 360000,
+    "title": "binary_data_manipulation_techniques",
+    "frontmatter": {}
+  },
   "public\\content\\node_js\\node_js_internals\\v8_engine_internals_and_optimization_techniques.md": {
     "path": "public\\content\\node_js\\node_js_internals\\v8_engine_internals_and_optimization_techniques.md",
     "sections": [
@@ -33579,6 +34422,867 @@
     "title": "buffer_module_for_binary_data",
     "frontmatter": {}
   },
+  "public\\content\\node_js\\module_system_deep_dive\\transpilers_and_compilers_integration.md": {
+    "path": "public\\content\\node_js\\module_system_deep_dive\\transpilers_and_compilers_integration.md",
+    "sections": [
+      {
+        "id": "understanding-transpilers-and-compilers-in-nodejs",
+        "title": "Understanding Transpilers and Compilers in Node.js",
+        "level": 1,
+        "wordCount": 27
+      },
+      {
+        "id": "what-are-programming-languages",
+        "title": "What Are Programming Languages?",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "compilers-the-fundamental-translators",
+        "title": "Compilers: The Fundamental Translators",
+        "level": 2,
+        "wordCount": 184
+      },
+      {
+        "id": "transpilers-compilers-with-a-twist",
+        "title": "Transpilers: Compilers with a Twist",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "nodejs-a-runtime-environment",
+        "title": "Node.js: A Runtime Environment",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "integration-of-compilers-and-transpilers-in-nodejs",
+        "title": "Integration of Compilers and Transpilers in Node.js",
+        "level": 2,
+        "wordCount": 297
+      },
+      {
+        "id": "deep-dive-creating-a-simple-transpiler-for-nodejs",
+        "title": "Deep Dive: Creating a Simple Transpiler for Node.js",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "advanced-compiler-integration-patterns-in-nodejs",
+        "title": "Advanced Compiler Integration Patterns in Node.js",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "practical-applications-of-compilers-and-transpilers-in-nodejs",
+        "title": "Practical Applications of Compilers and Transpilers in Node.js",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "challenges-and-best-practices",
+        "title": "Challenges and Best Practices",
+        "level": 2,
+        "wordCount": 183
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 110
+      }
+    ],
+    "totalWordCount": 1384,
+    "estimatedReadingTime": 360000,
+    "title": "transpilers_and_compilers_integration",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\module_system_deep_dive\\semantic_versioning_and_dependency_management.md": {
+    "path": "public\\content\\node_js\\module_system_deep_dive\\semantic_versioning_and_dependency_management.md",
+    "sections": [
+      {
+        "id": "semantic-versioning-and-dependency-management-in-nodejs",
+        "title": "Semantic Versioning and Dependency Management in Node.js",
+        "level": 1,
+        "wordCount": 27
+      },
+      {
+        "id": "understanding-semantic-versioning-semver",
+        "title": "Understanding Semantic Versioning (SemVer)",
+        "level": 2,
+        "wordCount": 362
+      },
+      {
+        "id": "dependency-management-in-nodejs",
+        "title": "Dependency Management in Node.js",
+        "level": 2,
+        "wordCount": 1063
+      },
+      {
+        "id": "putting-it-all-together-a-complete-example",
+        "title": "Putting It All Together: A Complete Example",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "best-practices-for-dependency-management",
+        "title": "Best Practices for Dependency Management",
+        "level": 2,
+        "wordCount": 172
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 88
+      }
+    ],
+    "totalWordCount": 1786,
+    "estimatedReadingTime": 480000,
+    "title": "semantic_versioning_and_dependency_management",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\module_system_deep_dive\\package_lock_files_and_deterministic_builds.md": {
+    "path": "public\\content\\node_js\\module_system_deep_dive\\package_lock_files_and_deterministic_builds.md",
+    "sections": [
+      {
+        "id": "understanding-package-lock-files-and-deterministic-builds-in-nodejs",
+        "title": "Understanding Package Lock Files and Deterministic Builds in Node.js",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "the-fundamental-problem-dependency-management",
+        "title": "The Fundamental Problem: Dependency Management",
+        "level": 2,
+        "wordCount": 195
+      },
+      {
+        "id": "the-birth-of-lock-files",
+        "title": "The Birth of Lock Files",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "deterministic-builds-the-ultimate-goal",
+        "title": "Deterministic Builds: The Ultimate Goal",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "how-lock-files-enable-deterministic-builds",
+        "title": "How Lock Files Enable Deterministic Builds",
+        "level": 2,
+        "wordCount": 206
+      },
+      {
+        "id": "lock-file-evolution-npm-yarn-pnpm",
+        "title": "Lock File Evolution: npm, Yarn, pnpm",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "deep-dive-how-deterministic-are-these-builds-really",
+        "title": "Deep Dive: How Deterministic Are These Builds, Really?",
+        "level": 2,
+        "wordCount": 132
+      },
+      {
+        "id": "best-practices-for-truly-deterministic-builds",
+        "title": "Best Practices for Truly Deterministic Builds",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "common-problems-and-solutions",
+        "title": "Common Problems and Solutions",
+        "level": 2,
+        "wordCount": 126
+      },
+      {
+        "id": "advanced-topic-monorepos-and-workspaces",
+        "title": "Advanced Topic: Monorepos and Workspaces",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "real-world-impact-case-studies",
+        "title": "Real-World Impact: Case Studies",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 125
+      }
+    ],
+    "totalWordCount": 1455,
+    "estimatedReadingTime": 360000,
+    "title": "package_lock_files_and_deterministic_builds",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\module_system_deep_dive\\package_json_configuration_in_depth.md": {
+    "path": "public\\content\\node_js\\module_system_deep_dive\\package_json_configuration_in_depth.md",
+    "sections": [
+      {
+        "id": "understanding-packagejson-in-nodejs-from-first-principles",
+        "title": "Understanding package.json in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 33
+      },
+      {
+        "id": "what-is-packagejson",
+        "title": "What is package.json?",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "the-origins-and-purpose",
+        "title": "The Origins and Purpose",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "creating-a-packagejson-file",
+        "title": "Creating a package.json File",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "core-fields-of-packagejson",
+        "title": "Core Fields of package.json",
+        "level": 2,
+        "wordCount": 596
+      },
+      {
+        "id": "advanced-configuration",
+        "title": "Advanced Configuration",
+        "level": 2,
+        "wordCount": 277
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "dependency-management-in-practice",
+        "title": "Dependency Management in Practice",
+        "level": 2,
+        "wordCount": 140
+      },
+      {
+        "id": "common-patterns-and-best-practices",
+        "title": "Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 168
+      },
+      {
+        "id": "real-world-examples",
+        "title": "Real-World Examples",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "troubleshooting-common-issues",
+        "title": "Troubleshooting Common Issues",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 112
+      }
+    ],
+    "totalWordCount": 1767,
+    "estimatedReadingTime": 480000,
+    "title": "package_json_configuration_in_depth",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\module_system_deep_dive\\module_caching_mechanisms.md": {
+    "path": "public\\content\\node_js\\module_system_deep_dive\\module_caching_mechanisms.md",
+    "sections": [
+      {
+        "id": "nodejs-module-caching-understanding-from-first-principles",
+        "title": "Node.js Module Caching: Understanding from First Principles",
+        "level": 1,
+        "wordCount": 20
+      },
+      {
+        "id": "the-foundation-why-do-we-need-modules",
+        "title": "The Foundation: Why Do We Need Modules?",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "modules-in-nodejs-the-commonjs-approach",
+        "title": "Modules in Node.js: The CommonJS Approach",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "the-problem-module-loading-overhead",
+        "title": "The Problem: Module Loading Overhead",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "the-solution-module-caching",
+        "title": "The Solution: Module Caching",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "how-module-caching-works-behind-the-scenes",
+        "title": "How Module Caching Works: Behind the Scenes",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "module-identity-and-cache-keys",
+        "title": "Module Identity and Cache Keys",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "caching-and-module-state",
+        "title": "Caching and Module State",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "handling-circular-dependencies",
+        "title": "Handling Circular Dependencies",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "working-with-the-module-cache",
+        "title": "Working with the Module Cache",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "practical-implications-of-module-caching",
+        "title": "Practical Implications of Module Caching",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "es-modules-and-caching",
+        "title": "ES Modules and Caching",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "summary-the-power-and-pitfalls-of-module-caching",
+        "title": "Summary: The Power and Pitfalls of Module Caching",
+        "level": 2,
+        "wordCount": 119
+      }
+    ],
+    "totalWordCount": 1084,
+    "estimatedReadingTime": 300000,
+    "title": "module_caching_mechanisms",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\module_system_deep_dive\\module_bundling_tools_for_node_js.md": {
+    "path": "public\\content\\node_js\\module_system_deep_dive\\module_bundling_tools_for_node_js.md",
+    "sections": [
+      {
+        "id": "module-bundling-tools-for-nodejs-from-first-principles",
+        "title": "Module Bundling Tools for Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 46
+      },
+      {
+        "id": "what-is-module-bundling",
+        "title": "What is Module Bundling?",
+        "level": 2,
+        "wordCount": 198
+      },
+      {
+        "id": "how-module-bundling-works-core-principles",
+        "title": "How Module Bundling Works: Core Principles",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "common-module-bundlers-for-nodejs",
+        "title": "Common Module Bundlers for Node.js",
+        "level": 2,
+        "wordCount": 406
+      },
+      {
+        "id": "advanced-bundling-concepts",
+        "title": "Advanced Bundling Concepts",
+        "level": 2,
+        "wordCount": 172
+      },
+      {
+        "id": "choosing-the-right-bundler",
+        "title": "Choosing the Right Bundler",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "bundling-for-nodejs-backend",
+        "title": "Bundling for Node.js Backend",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "practical-example-building-a-complete-application",
+        "title": "Practical Example: Building a Complete Application",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "troubleshooting-common-bundling-issues",
+        "title": "Troubleshooting Common Bundling Issues",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 115
+      }
+    ],
+    "totalWordCount": 1386,
+    "estimatedReadingTime": 360000,
+    "title": "module_bundling_tools_for_node_js",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\module_system_deep_dive\\es_modules_in_node_js.md": {
+    "path": "public\\content\\node_js\\module_system_deep_dive\\es_modules_in_node_js.md",
+    "sections": [
+      {
+        "id": "es-modules-in-nodejs-from-first-principles",
+        "title": "ES Modules in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 24
+      },
+      {
+        "id": "understanding-modules-the-foundation",
+        "title": "Understanding Modules: The Foundation",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "the-evolution-of-modules-in-javascript",
+        "title": "The Evolution of Modules in JavaScript",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "enter-es-modules",
+        "title": "Enter ES Modules",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "es-modules-in-nodejs-implementation-and-evolution",
+        "title": "ES Modules in Node.js: Implementation and Evolution",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "syntax-and-features-of-es-modules",
+        "title": "Syntax and Features of ES Modules",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "dynamic-imports",
+        "title": "Dynamic Imports",
+        "level": 2,
+        "wordCount": 27
+      },
+      {
+        "id": "es-modules-vs-commonjs-key-differences",
+        "title": "ES Modules vs. CommonJS: Key Differences",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "handling-mixed-module-systems",
+        "title": "Handling Mixed Module Systems",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "module-resolution-in-nodejs",
+        "title": "Module Resolution in Node.js",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "es-modules-and-package-dependencies",
+        "title": "ES Modules and Package Dependencies",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "practical-es-modules-examples",
+        "title": "Practical ES Modules Examples",
+        "level": 2,
+        "wordCount": 27
+      },
+      {
+        "id": "advanced-es-modules-features",
+        "title": "Advanced ES Modules Features",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "common-pitfalls-and-issues",
+        "title": "Common Pitfalls and Issues",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "best-practices-for-es-modules-in-nodejs",
+        "title": "Best Practices for ES Modules in Node.js",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 104
+      }
+    ],
+    "totalWordCount": 1373,
+    "estimatedReadingTime": 360000,
+    "title": "es_modules_in_node_js",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\module_system_deep_dive\\dynamic_module_loading_techniques.md": {
+    "path": "public\\content\\node_js\\module_system_deep_dive\\dynamic_module_loading_techniques.md",
+    "sections": [
+      {
+        "id": "dynamic-module-loading-in-nodejs-a-first-principles-approach",
+        "title": "Dynamic Module Loading in Node.js: A First Principles Approach",
+        "level": 1,
+        "wordCount": 72
+      },
+      {
+        "id": "1-understanding-nodejs-modules-the-foundation",
+        "title": "1. Understanding Node.js Modules: The Foundation",
+        "level": 2,
+        "wordCount": 238
+      },
+      {
+        "id": "2-the-need-for-dynamic-module-loading",
+        "title": "2. The Need for Dynamic Module Loading",
+        "level": 2,
+        "wordCount": 168
+      },
+      {
+        "id": "3-core-dynamic-module-loading-techniques",
+        "title": "3. Core Dynamic Module Loading Techniques",
+        "level": 2,
+        "wordCount": 210
+      },
+      {
+        "id": "4-advanced-dynamic-loading-patterns",
+        "title": "4. Advanced Dynamic Loading Patterns",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "5-performance-considerations-and-best-practices",
+        "title": "5. Performance Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 209
+      },
+      {
+        "id": "6-real-world-examples",
+        "title": "6. Real-World Examples",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "7-beyond-basic-dynamic-loading-advanced-topics",
+        "title": "7. Beyond Basic Dynamic Loading: Advanced Topics",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 141
+      }
+    ],
+    "totalWordCount": 1222,
+    "estimatedReadingTime": 300000,
+    "title": "dynamic_module_loading_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\module_system_deep_dive\\creating_and_publishing_npm_packages.md": {
+    "path": "public\\content\\node_js\\module_system_deep_dive\\creating_and_publishing_npm_packages.md",
+    "sections": [
+      {
+        "id": "creating-and-publishing-npm-packages-a-first-principles-guide",
+        "title": "Creating and Publishing NPM Packages: A First Principles Guide",
+        "level": 1,
+        "wordCount": 9
+      },
+      {
+        "id": "introduction",
+        "title": "Introduction",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "what-is-npm-first-principles",
+        "title": "What Is NPM? First Principles",
+        "level": 2,
+        "wordCount": 171
+      },
+      {
+        "id": "the-development-environment",
+        "title": "The Development Environment",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "creating-your-first-package-step-by-step",
+        "title": "Creating Your First Package: Step by Step",
+        "level": 2,
+        "wordCount": 245
+      },
+      {
+        "id": "package-structure-best-practices",
+        "title": "Package Structure: Best Practices",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "adding-tests",
+        "title": "Adding Tests",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "preparing-for-publication",
+        "title": "Preparing for Publication",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "publishing-to-npm",
+        "title": "Publishing to NPM",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "understanding-package-versioning",
+        "title": "Understanding Package Versioning",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "advanced-package-features",
+        "title": "Advanced Package Features",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "package-consumption",
+        "title": "Package Consumption",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "best-practices-summary",
+        "title": "Best Practices Summary",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 80
+      }
+    ],
+    "totalWordCount": 1284,
+    "estimatedReadingTime": 360000,
+    "title": "creating_and_publishing_npm_packages",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\module_system_deep_dive\\common_js_module_resolution_algorithm.md": {
+    "path": "public\\content\\node_js\\module_system_deep_dive\\common_js_module_resolution_algorithm.md",
+    "sections": [
+      {
+        "id": "commonjs-module-resolution-algorithm-a-first-principles-explanation",
+        "title": "CommonJS Module Resolution Algorithm: A First Principles Explanation",
+        "level": 1,
+        "wordCount": 8
+      },
+      {
+        "id": "understanding-modules-from-first-principles",
+        "title": "Understanding Modules from First Principles",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "the-birth-and-purpose-of-commonjs",
+        "title": "The Birth and Purpose of CommonJS",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "core-principles-of-commonjs-modules",
+        "title": "Core Principles of CommonJS Modules",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "the-module-resolution-algorithm-in-detail",
+        "title": "The Module Resolution Algorithm in Detail",
+        "level": 2,
+        "wordCount": 597
+      },
+      {
+        "id": "practical-example-a-complete-module-resolution-scenario",
+        "title": "Practical Example: A Complete Module Resolution Scenario",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "edge-cases-and-common-gotchas",
+        "title": "Edge Cases and Common Gotchas",
+        "level": 2,
+        "wordCount": 146
+      },
+      {
+        "id": "the-module-wrapper-function",
+        "title": "The Module Wrapper Function",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "commonjs-vs-other-module-systems",
+        "title": "CommonJS vs. Other Module Systems",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "implementing-a-simple-module-resolver",
+        "title": "Implementing a Simple Module Resolver",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "summary-the-heart-of-commonjs-module-resolution",
+        "title": "Summary: The Heart of CommonJS Module Resolution",
+        "level": 2,
+        "wordCount": 205
+      }
+    ],
+    "totalWordCount": 1629,
+    "estimatedReadingTime": 420000,
+    "title": "common_js_module_resolution_algorithm",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\module_system_deep_dive\\circular_dependency_management.md": {
+    "path": "public\\content\\node_js\\module_system_deep_dive\\circular_dependency_management.md",
+    "sections": [
+      {
+        "id": "circular-dependency-management-in-nodejs",
+        "title": "Circular Dependency Management in Node.js",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "what-are-dependencies-in-programming",
+        "title": "What Are Dependencies in Programming?",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "what-is-a-circular-dependency",
+        "title": "What Is a Circular Dependency?",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "how-nodejs-module-system-works",
+        "title": "How Node.js Module System Works",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "how-nodejs-handles-circular-dependencies",
+        "title": "How Node.js Handles Circular Dependencies",
+        "level": 2,
+        "wordCount": 179
+      },
+      {
+        "id": "problems-with-circular-dependencies",
+        "title": "Problems with Circular Dependencies",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "detecting-circular-dependencies",
+        "title": "Detecting Circular Dependencies",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "strategies-to-resolve-circular-dependencies",
+        "title": "Strategies to Resolve Circular Dependencies",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "real-world-example-express-application",
+        "title": "Real-World Example: Express Application",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "best-practices-for-dependency-management",
+        "title": "Best Practices for Dependency Management",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 89
+      }
+    ],
+    "totalWordCount": 927,
+    "estimatedReadingTime": 240000,
+    "title": "circular_dependency_management",
+    "frontmatter": {}
+  },
   "public\\content\\node_js\\asynchronous_programming_fundamentals\\understanding_synchronous_vs_asynchronous_code.md": {
     "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\understanding_synchronous_vs_asynchronous_code.md",
     "sections": [
@@ -34408,6 +36112,855 @@
     "totalWordCount": 1000,
     "estimatedReadingTime": 240000,
     "title": "async_await_syntax_and_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\advanced_asynchronous_patterns\\understanding_process_nexttick_vs_set_immediate.md": {
+    "path": "public\\content\\node_js\\advanced_asynchronous_patterns\\understanding_process_nexttick_vs_set_immediate.md",
+    "sections": [
+      {
+        "id": "understanding-processnexttick-vs-setimmediate-in-nodejs-from-first-principles",
+        "title": "Understanding `process.nextTick()` vs. `setImmediate()` in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 74
+      },
+      {
+        "id": "first-principles-the-javascript-execution-model",
+        "title": "First Principles: The JavaScript Execution Model",
+        "level": 2,
+        "wordCount": 214
+      },
+      {
+        "id": "nodejs-event-loop-going-deeper",
+        "title": "Node.js Event Loop: Going Deeper",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "understanding-processnexttick",
+        "title": "Understanding `process.nextTick()`",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "understanding-setimmediate",
+        "title": "Understanding `setImmediate()`",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "key-differences-between-processnexttick-and-setimmediate",
+        "title": "Key Differences Between `process.nextTick()` and `setImmediate()`",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "the-mystery-of-settimeoutfn-0-vs-setimmediate",
+        "title": "The Mystery of `setTimeout(fn, 0)` vs `setImmediate()`",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "practical-applications-and-when-to-use-each",
+        "title": "Practical Applications and When to Use Each",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "common-pitfalls-and-gotchas",
+        "title": "Common Pitfalls and Gotchas",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "a-visual-model-of-the-execution-order",
+        "title": "A Visual Model of the Execution Order",
+        "level": 2,
+        "wordCount": 21
+      },
+      {
+        "id": "practical-example-api-request-handler",
+        "title": "Practical Example: API Request Handler",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "summary-making-the-right-choice",
+        "title": "Summary: Making the Right Choice",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 1220,
+    "estimatedReadingTime": 300000,
+    "title": "understanding_process_nexttick_vs_set_immediate",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\advanced_asynchronous_patterns\\timeout_patterns_for_async_operations.md": {
+    "path": "public\\content\\node_js\\advanced_asynchronous_patterns\\timeout_patterns_for_async_operations.md",
+    "sections": [
+      {
+        "id": "timeout-patterns-for-asynchronous-operations-in-nodejs",
+        "title": "Timeout Patterns for Asynchronous Operations in Node.js",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "understanding-asynchronous-operations-the-foundation",
+        "title": "Understanding Asynchronous Operations: The Foundation",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "the-problem-asynchronous-operations-that-never-complete",
+        "title": "The Problem: Asynchronous Operations That Never Complete",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "first-principles-of-timeout-patterns",
+        "title": "First Principles of Timeout Patterns",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "implementing-basic-timeout-patterns",
+        "title": "Implementing Basic Timeout Patterns",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "timeout-patterns-for-different-asynchronous-mechanisms",
+        "title": "Timeout Patterns for Different Asynchronous Mechanisms",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "advanced-timeout-patterns",
+        "title": "Advanced Timeout Patterns",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "real-world-implementation-http-client-with-timeouts",
+        "title": "Real-world Implementation: HTTP Client with Timeouts",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "common-timeout-related-pitfalls-and-solutions",
+        "title": "Common Timeout-Related Pitfalls and Solutions",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "best-practices-for-timeout-management",
+        "title": "Best Practices for Timeout Management",
+        "level": 2,
+        "wordCount": 150
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 122
+      }
+    ],
+    "totalWordCount": 1030,
+    "estimatedReadingTime": 300000,
+    "title": "timeout_patterns_for_async_operations",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\advanced_asynchronous_patterns\\retry_and_backoff_strategies.md": {
+    "path": "public\\content\\node_js\\advanced_asynchronous_patterns\\retry_and_backoff_strategies.md",
+    "sections": [
+      {
+        "id": "retry-and-backoff-strategies-in-nodejs",
+        "title": "Retry and Backoff Strategies in Node.js",
+        "level": 1,
+        "wordCount": 26
+      },
+      {
+        "id": "the-fundamental-problem-reliability-in-distributed-systems",
+        "title": "The Fundamental Problem: Reliability in Distributed Systems",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "first-principles-of-retry-strategies",
+        "title": "First Principles of Retry Strategies",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "backoff-strategies-the-art-of-waiting",
+        "title": "Backoff Strategies: The Art of Waiting",
+        "level": 2,
+        "wordCount": 188
+      },
+      {
+        "id": "real-world-implementation-the-axios-retry-plugin",
+        "title": "Real-World Implementation: The Axios Retry Plugin",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "beyond-basic-retries-advanced-considerations",
+        "title": "Beyond Basic Retries: Advanced Considerations",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "practical-implementations-with-popular-libraries",
+        "title": "Practical Implementations with Popular Libraries",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "building-a-complete-resilience-strategy",
+        "title": "Building a Complete Resilience Strategy",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "best-practices-for-retry-and-backoff-strategies",
+        "title": "Best Practices for Retry and Backoff Strategies",
+        "level": 2,
+        "wordCount": 141
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 90
+      }
+    ],
+    "totalWordCount": 929,
+    "estimatedReadingTime": 240000,
+    "title": "retry_and_backoff_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\advanced_asynchronous_patterns\\queuing_and_rate_limiting_patterns.md": {
+    "path": "public\\content\\node_js\\advanced_asynchronous_patterns\\queuing_and_rate_limiting_patterns.md",
+    "sections": [
+      {
+        "id": "queuing-and-rate-limiting-patterns-in-nodejs",
+        "title": "Queuing and Rate Limiting Patterns in Node.js",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "understanding-the-fundamentals",
+        "title": "Understanding the Fundamentals",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "queuing-in-nodejs",
+        "title": "Queuing in Node.js",
+        "level": 2,
+        "wordCount": 278
+      },
+      {
+        "id": "professional-queuing-solutions",
+        "title": "Professional Queuing Solutions",
+        "level": 2,
+        "wordCount": 126
+      },
+      {
+        "id": "rate-limiting-in-nodejs",
+        "title": "Rate Limiting in Node.js",
+        "level": 2,
+        "wordCount": 373
+      },
+      {
+        "id": "combining-queuing-and-rate-limiting",
+        "title": "Combining Queuing and Rate Limiting",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "real-world-examples-and-applications",
+        "title": "Real-World Examples and Applications",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "advanced-patterns-and-techniques",
+        "title": "Advanced Patterns and Techniques",
+        "level": 2,
+        "wordCount": 165
+      },
+      {
+        "id": "best-practices-and-recommendations",
+        "title": "Best Practices and Recommendations",
+        "level": 2,
+        "wordCount": 144
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 1522,
+    "estimatedReadingTime": 420000,
+    "title": "queuing_and_rate_limiting_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\advanced_asynchronous_patterns\\promise_combinators.md": {
+    "path": "public\\content\\node_js\\advanced_asynchronous_patterns\\promise_combinators.md",
+    "sections": [
+      {
+        "id": "understanding-promise-combinators-in-nodejs",
+        "title": "Understanding Promise Combinators in Node.js",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "the-foundation-what-are-promises",
+        "title": "The Foundation: What Are Promises?",
+        "level": 2,
+        "wordCount": 142
+      },
+      {
+        "id": "why-do-we-need-promise-combinators",
+        "title": "Why Do We Need Promise Combinators?",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "promiseall",
+        "title": "Promise.all()",
+        "level": 2,
+        "wordCount": 185
+      },
+      {
+        "id": "promiserace",
+        "title": "Promise.race()",
+        "level": 2,
+        "wordCount": 177
+      },
+      {
+        "id": "promiseallsettled",
+        "title": "Promise.allSettled()",
+        "level": 2,
+        "wordCount": 202
+      },
+      {
+        "id": "promiseany",
+        "title": "Promise.any()",
+        "level": 2,
+        "wordCount": 193
+      },
+      {
+        "id": "comparing-the-combinators",
+        "title": "Comparing the Combinators",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "practical-applications",
+        "title": "Practical Applications",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "creating-your-own-combinators",
+        "title": "Creating Your Own Combinators",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 131
+      }
+    ],
+    "totalWordCount": 1445,
+    "estimatedReadingTime": 360000,
+    "title": "promise_combinators",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\advanced_asynchronous_patterns\\implementing_cancellable_operations.md": {
+    "path": "public\\content\\node_js\\advanced_asynchronous_patterns\\implementing_cancellable_operations.md",
+    "sections": [
+      {
+        "id": "implementing-cancellable-operations-in-nodejs",
+        "title": "Implementing Cancellable Operations in Node.js",
+        "level": 1,
+        "wordCount": 27
+      },
+      {
+        "id": "understanding-asynchronous-operations",
+        "title": "Understanding Asynchronous Operations",
+        "level": 2,
+        "wordCount": 155
+      },
+      {
+        "id": "the-need-for-cancellation",
+        "title": "The Need for Cancellation",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "cancellation-approaches-in-nodejs",
+        "title": "Cancellation Approaches in Node.js",
+        "level": 2,
+        "wordCount": 207
+      },
+      {
+        "id": "cancellation-with-different-nodejs-apis",
+        "title": "Cancellation with Different Node.js APIs",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "advanced-patterns-for-cancellation",
+        "title": "Advanced Patterns for Cancellation",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "creating-a-reusable-cancellation-system",
+        "title": "Creating a Reusable Cancellation System",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "real-world-example-cancellable-rest-api-calls",
+        "title": "Real-World Example: Cancellable REST API Calls",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 122
+      }
+    ],
+    "totalWordCount": 793,
+    "estimatedReadingTime": 240000,
+    "title": "implementing_cancellable_operations",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\advanced_asynchronous_patterns\\generators_and_iterators_for_async_control_flow.md": {
+    "path": "public\\content\\node_js\\advanced_asynchronous_patterns\\generators_and_iterators_for_async_control_flow.md",
+    "sections": [
+      {
+        "id": "generators-and-iterators-for-async-control-flow-in-nodejs",
+        "title": "Generators and Iterators for Async Control Flow in Node.js",
+        "level": 1,
+        "wordCount": 37
+      },
+      {
+        "id": "1-understanding-iteration-the-foundation",
+        "title": "1. Understanding Iteration: The Foundation",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "2-iterators-a-protocol-for-iteration",
+        "title": "2. Iterators: A Protocol for Iteration",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "3-iterables-collections-that-can-be-iterated",
+        "title": "3. Iterables: Collections That Can Be Iterated",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "4-enter-generators-simplifying-iterators",
+        "title": "4. Enter Generators: Simplifying Iterators",
+        "level": 2,
+        "wordCount": 135
+      },
+      {
+        "id": "5-the-problem-with-asynchronous-code",
+        "title": "5. The Problem with Asynchronous Code",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "6-generators-for-async-control-flow",
+        "title": "6. Generators for Async Control Flow",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "7-async-iteration-a-modern-approach",
+        "title": "7. Async Iteration: A Modern Approach",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "8-practical-applications-real-world-examples",
+        "title": "8. Practical Applications: Real-World Examples",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "9-advanced-patterns-with-generators",
+        "title": "9. Advanced Patterns with Generators",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "10-comparison-with-asyncawait",
+        "title": "10. Comparison with Async/Await",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "11-practical-considerations-and-best-practices",
+        "title": "11. Practical Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 126
+      }
+    ],
+    "totalWordCount": 1187,
+    "estimatedReadingTime": 300000,
+    "title": "generators_and_iterators_for_async_control_flow",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\advanced_asynchronous_patterns\\custom_promise_implementations.md": {
+    "path": "public\\content\\node_js\\advanced_asynchronous_patterns\\custom_promise_implementations.md",
+    "sections": [
+      {
+        "id": "custom-promise-implementations-in-nodejs-from-first-principles",
+        "title": "Custom Promise Implementations in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 44
+      },
+      {
+        "id": "the-problem-asynchrony-in-javascript",
+        "title": "The Problem: Asynchrony in JavaScript",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "callback-pattern-the-original-solution",
+        "title": "Callback Pattern: The Original Solution",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "promises-a-better-solution",
+        "title": "Promises: A Better Solution",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "building-a-custom-promise-implementation",
+        "title": "Building a Custom Promise Implementation",
+        "level": 2,
+        "wordCount": 188
+      },
+      {
+        "id": "using-our-custom-promise-implementation",
+        "title": "Using Our Custom Promise Implementation",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "advanced-promise-patterns",
+        "title": "Advanced Promise Patterns",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "promise-extensions-adding-useful-methods",
+        "title": "Promise Extensions: Adding Useful Methods",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "real-world-example-implementing-a-retry-mechanism",
+        "title": "Real-World Example: Implementing a Retry Mechanism",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "debugging-promises",
+        "title": "Debugging Promises",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "compatibility-with-native-promises",
+        "title": "Compatibility with Native Promises",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 130
+      }
+    ],
+    "totalWordCount": 752,
+    "estimatedReadingTime": 240000,
+    "title": "custom_promise_implementations",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\advanced_asynchronous_patterns\\cooperative_scheduling_with_set_immediate.md": {
+    "path": "public\\content\\node_js\\advanced_asynchronous_patterns\\cooperative_scheduling_with_set_immediate.md",
+    "sections": [
+      {
+        "id": "cooperative-scheduling-with-setimmediate-in-nodejs",
+        "title": "Cooperative Scheduling with setImmediate in Node.js",
+        "level": 1,
+        "wordCount": 6
+      },
+      {
+        "id": "understanding-scheduling-from-first-principles",
+        "title": "Understanding Scheduling from First Principles",
+        "level": 2,
+        "wordCount": 280
+      },
+      {
+        "id": "cooperative-scheduling-in-nodejs",
+        "title": "Cooperative Scheduling in Node.js",
+        "level": 2,
+        "wordCount": 230
+      },
+      {
+        "id": "setimmediate-vs-other-timing-functions",
+        "title": "`setImmediate` vs. Other Timing Functions",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "understanding-event-loop-phases-in-depth",
+        "title": "Understanding Event Loop Phases in Depth",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "practical-use-cases-for-setimmediate",
+        "title": "Practical Use Cases for `setImmediate`",
+        "level": 2,
+        "wordCount": 153
+      },
+      {
+        "id": "advanced-patterns-with-setimmediate",
+        "title": "Advanced Patterns with `setImmediate`",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "common-patterns-and-best-practices",
+        "title": "Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "real-world-example-building-a-task-queue",
+        "title": "Real-World Example: Building a Task Queue",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "debugging-with-setimmediate",
+        "title": "Debugging with setImmediate",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 123
+      }
+    ],
+    "totalWordCount": 1284,
+    "estimatedReadingTime": 360000,
+    "title": "cooperative_scheduling_with_set_immediate",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\advanced_asynchronous_patterns\\async_hooks_for_tracking_async_resources.md": {
+    "path": "public\\content\\node_js\\advanced_asynchronous_patterns\\async_hooks_for_tracking_async_resources.md",
+    "sections": [
+      {
+        "id": "understanding-async-hooks-in-nodejs-from-first-principles",
+        "title": "Understanding Async Hooks in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 73
+      },
+      {
+        "id": "asynchronous-programming-the-foundation",
+        "title": "Asynchronous Programming: The Foundation",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "async-hooks-the-concept",
+        "title": "Async Hooks: The Concept",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "the-async_hooks-module",
+        "title": "The async_hooks Module",
+        "level": 2,
+        "wordCount": 230
+      },
+      {
+        "id": "a-simple-example-tracking-async-operations",
+        "title": "A Simple Example: Tracking Async Operations",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "understanding-asyncid-and-triggerasyncid",
+        "title": "Understanding asyncId and triggerAsyncId",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "asyncresource-and-asynclocalstorage",
+        "title": "AsyncResource and AsyncLocalStorage",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "practical-example-a-simple-logger-with-request-context",
+        "title": "Practical Example: A Simple Logger with Request Context",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "debugging-with-async-hooks-resource-tracking",
+        "title": "Debugging with Async Hooks: Resource Tracking",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "understanding-execution-context",
+        "title": "Understanding Execution Context",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 133
+      }
+    ],
+    "totalWordCount": 1156,
+    "estimatedReadingTime": 300000,
+    "title": "async_hooks_for_tracking_async_resources",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\advanced_asynchronous_patterns\\async_generators_and_for_await_of_loops.md": {
+    "path": "public\\content\\node_js\\advanced_asynchronous_patterns\\async_generators_and_for_await_of_loops.md",
+    "sections": [
+      {
+        "id": "understanding-async-generators-and-for-await-of-loops-in-nodejs",
+        "title": "Understanding Async Generators and For-Await-Of Loops in Node.js",
+        "level": 1,
+        "wordCount": 44
+      },
+      {
+        "id": "1-first-principles-the-building-blocks",
+        "title": "1. First Principles: The Building Blocks",
+        "level": 2,
+        "wordCount": 260
+      },
+      {
+        "id": "2-the-problem-asynchronous-iteration",
+        "title": "2. The Problem: Asynchronous Iteration",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "3-async-generators-the-solution",
+        "title": "3. Async Generators: The Solution",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "4-for-await-of-loops-iterating-async-generators",
+        "title": "4. For-Await-Of Loops: Iterating Async Generators",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "5-practical-examples",
+        "title": "5. Practical Examples",
+        "level": 2,
+        "wordCount": 196
+      },
+      {
+        "id": "6-advanced-topics-and-best-practices",
+        "title": "6. Advanced Topics and Best Practices",
+        "level": 2,
+        "wordCount": 140
+      },
+      {
+        "id": "7-when-to-use-async-generators",
+        "title": "7. When to Use Async Generators",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "8-performance-considerations",
+        "title": "8. Performance Considerations",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "9-compatibility-and-polyfills",
+        "title": "9. Compatibility and Polyfills",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "10-summary",
+        "title": "10. Summary",
+        "level": 2,
+        "wordCount": 115
+      }
+    ],
+    "totalWordCount": 1110,
+    "estimatedReadingTime": 300000,
+    "title": "async_generators_and_for_await_of_loops",
     "frontmatter": {}
   },
   "public\\content\\javascript\\the_this_keyword_deep_dive\\this_in_strict_vs_non_strict_mode.md": {

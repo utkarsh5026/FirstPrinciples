@@ -8,6 +8,7 @@ import DetailPanel from "@/components/document-reading/preview/DetailPanel";
 import getIconForTech from "@/components/shared/icons";
 import Header from "@/components/document-reading/preview/Header";
 import StartReadingButton from "@/components/document-reading/preview/StartReadingButton";
+import SilentReadingTimeIntegration from "@/components/document-reading/preview/ReadingTimeTracker";
 import { formatTimeInMs } from "@/utils/time";
 import {
   useCurrentDocument,
@@ -24,6 +25,7 @@ import { useParams } from "react-router-dom";
  *
  * 🎨 Features lovely glass morphism effects and smooth transitions to create a premium feel
  * 🔍 Shows document metadata like word count, reading time, and sections
+ * ⏱️ Silently tracks reading time without distracting the user
  * 📱 Fully responsive design that looks great on all devices
  * 🚀 Transitions seamlessly to fullscreen reading mode when ready
  *
@@ -31,9 +33,11 @@ import { useParams } from "react-router-dom";
  * - 🧩 Header: Displays the document title, category and quick stats at the top
  * - 📊 DetailPanel: Shows comprehensive document information in a structured format
  * - ▶️ StartReadingButton: Invites the user to begin their reading experience
+ * - ⏱️ SilentReadingTimeIntegration: Tracks reading time without visible UI
  */
 const DocumentPreview: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [lastReadingTime, setLastReadingTime] = useState<number | null>(null);
   const { documentPath = "" } = useParams<{ documentPath: string }>();
 
   const {
@@ -44,7 +48,8 @@ const DocumentPreview: React.FC = () => {
     category,
     documentTitle,
   } = useCurrentDocument();
-  const { addToHistory } = useReadingHistory();
+
+  const { addToHistory, getDocumentHistory } = useReadingHistory();
 
   const {
     startSectionReading,
@@ -54,6 +59,7 @@ const DocumentPreview: React.FC = () => {
     sections,
   } = useDocumentReading();
 
+  // Load document when path changes
   useEffect(() => {
     const fullPath = documentPath.endsWith(".md")
       ? documentPath
@@ -61,23 +67,63 @@ const DocumentPreview: React.FC = () => {
     loadedDocumentForUrl(fullPath);
   }, [documentPath, loadedDocumentForUrl]);
 
+  // Load previous reading time when document loads
+  useEffect(() => {
+    if (!documentPath) return;
+
+    const loadPreviousReadingTime = async () => {
+      try {
+        const docHistory = await getDocumentHistory(documentPath);
+        if (docHistory && docHistory.timeSpent > 0) {
+          setLastReadingTime(docHistory.timeSpent);
+        }
+      } catch (error) {
+        console.error("Failed to load previous reading time:", error);
+      }
+    };
+
+    loadPreviousReadingTime();
+  }, [documentPath, getDocumentHistory]);
+
+  // Called when reading session ends
+  const handleReadingSessionEnd = useCallback((timeSpent: number) => {
+    setLastReadingTime((prev) => (prev || 0) + timeSpent);
+    console.log(`Reading session ended: ${formatTimeInMs(timeSpent)}`);
+  }, []);
+
+  // Start reading in fullscreen mode
   const startReading = useCallback(() => {
     addToHistory(documentPath, documentTitle).then(() => {
-      console.log("Starting reading", documentPath, documentTitle);
+      console.log("Starting reading session:", documentPath, documentTitle);
       setIsFullscreen(true);
     });
   }, [addToHistory, documentPath, documentTitle, setIsFullscreen]);
 
+  // Handle exiting fullscreen mode
+  const handleExitFullscreen = useCallback(() => {
+    endReading().then(() => {
+      setIsFullscreen(false);
+    });
+  }, [endReading]);
+
   if (isFullscreen) {
     return (
-      <FullScreenCardView
-        onExit={endReading}
-        onChangeSection={startSectionReading}
-        sections={sections}
-        getSection={(index: number) => getSection(index) ?? null}
-        readSections={readSections}
-        exitFullScreen={() => setIsFullscreen(false)}
-      />
+      <>
+        <SilentReadingTimeIntegration
+          documentPath={documentPath}
+          documentTitle={documentTitle}
+          isFullscreen={isFullscreen}
+          onSessionComplete={handleReadingSessionEnd}
+        />
+        <FullScreenCardView
+          onExit={endReading}
+          onChangeSection={startSectionReading}
+          sections={sections}
+          getSection={(index: number) => getSection(index) ?? null}
+          readSections={readSections}
+          exitFullScreen={handleExitFullscreen}
+        />
+      </>
     );
   }
 
@@ -122,6 +168,11 @@ const DocumentPreview: React.FC = () => {
                     lastUpdatedFormatted={new Date().toLocaleDateString()}
                     readSections={readSections}
                     loading={loading}
+                    lastReadingTime={
+                      lastReadingTime
+                        ? new Date(lastReadingTime).toLocaleDateString()
+                        : "Not read"
+                    }
                   />
                 </div>
               </AnimatePresence>

@@ -25,15 +25,52 @@ export interface ReadingHistoryItem {
 type DbReadingHistoryItem = ReadingHistoryItem & { id: IDBValidKey };
 
 /**
- * 📝 Add a document to reading history
+ * Update an existing reading history item
  *
- * Records that you've read something! Updates existing entries
- * or creates new ones to track your reading progress.
+ * This function allows updating any properties of a reading history item,
+ * particularly useful for updating time spent and words read after a reading session.
+ */
+export async function updateHistoryItem(
+  item: ReadingHistoryItem
+): Promise<boolean> {
+  try {
+    const cleanedPath = _cleanPath(item.path);
+    const existingItems = await databaseService.getByIndex<
+      ReadingHistoryItem & { id: IDBValidKey }
+    >(STORE_NAME, "path", cleanedPath);
+
+    if (existingItems.length === 0) {
+      console.warn(`No history item found for path: ${cleanedPath}`);
+      return false;
+    }
+
+    const existingItem = existingItems[0];
+    const updatedItem = {
+      ...existingItem,
+      ...item,
+      path: cleanedPath,
+    };
+
+    await databaseService.update(STORE_NAME, updatedItem);
+    return true;
+  } catch (error) {
+    console.error("Error updating reading history item:", error);
+    return false;
+  }
+}
+
+/**
+ * Enhanced version of addToReadingHistory that accepts timeSpent and wordsRead parameters
+ *
+ * This overloaded function allows directly specifying the time spent and words read
+ * when adding or updating a reading history item.
  */
 export async function addToReadingHistory(
   path: string,
   title: string,
-  completedSectionIndices?: number[]
+  completedSectionIndices?: number[],
+  timeSpent?: number,
+  wordsRead?: number
 ): Promise<ReadingHistoryItem> {
   try {
     const cleanedPath = _cleanPath(path);
@@ -41,30 +78,25 @@ export async function addToReadingHistory(
       ReadingHistoryItem & { id: IDBValidKey }
     >(STORE_NAME, "path", cleanedPath);
 
-    console.log("existingEntries", existingEntries);
-
     const existingEntry =
       existingEntries.length > 0 ? existingEntries[0] : null;
 
-    const timeSpent = 0;
-    const wordsRead = estimateWordsRead(timeSpent);
     const now = Date.now();
+    const sessionTimeSpent = timeSpent ?? 0;
+    const sessionWordsRead = wordsRead ?? estimateWordsRead(sessionTimeSpent);
 
     if (existingEntry) {
       const updatedEntry: ReadingHistoryItem = {
         ...existingEntry,
         lastReadAt: now,
         readCount: existingEntry.readCount + 1,
-        timeSpent: existingEntry.timeSpent + timeSpent,
-        wordsRead: existingEntry.wordsRead + wordsRead,
+        timeSpent: existingEntry.timeSpent + sessionTimeSpent,
+        wordsRead: existingEntry.wordsRead + sessionWordsRead,
         completedSectionIndices: union(
           existingEntry.completedSectionIndices,
           completedSectionIndices ?? []
         ),
       };
-
-      console.log("existingEntry", existingEntry);
-      console.log("updatedEntry", updatedEntry);
 
       await databaseService.update(
         STORE_NAME,
@@ -79,9 +111,9 @@ export async function addToReadingHistory(
         title,
         lastReadAt: now,
         readCount: 1,
-        timeSpent: timeSpent,
-        wordsRead: wordsRead,
-        completedSectionIndices: completedSectionIndices ?? [0],
+        timeSpent: sessionTimeSpent,
+        wordsRead: sessionWordsRead,
+        completedSectionIndices: completedSectionIndices ?? [],
       };
 
       const id = await databaseService.add(STORE_NAME, newEntry);

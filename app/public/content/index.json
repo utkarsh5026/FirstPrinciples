@@ -1849,6 +1849,46 @@
       "name": "Node Js",
       "categories": [
         {
+          "id": "advanced_asynchronous_patterns",
+          "name": "Advanced Asynchronous Patterns",
+          "categories": [],
+          "files": [
+            {
+              "path": "node_js/advanced_asynchronous_patterns/async_generators_and_for_await_of_loops.md"
+            },
+            {
+              "path": "node_js/advanced_asynchronous_patterns/async_hooks_for_tracking_async_resources.md"
+            },
+            {
+              "path": "node_js/advanced_asynchronous_patterns/cooperative_scheduling_with_set_immediate.md"
+            },
+            {
+              "path": "node_js/advanced_asynchronous_patterns/custom_promise_implementations.md"
+            },
+            {
+              "path": "node_js/advanced_asynchronous_patterns/generators_and_iterators_for_async_control_flow.md"
+            },
+            {
+              "path": "node_js/advanced_asynchronous_patterns/implementing_cancellable_operations.md"
+            },
+            {
+              "path": "node_js/advanced_asynchronous_patterns/promise_combinators.md"
+            },
+            {
+              "path": "node_js/advanced_asynchronous_patterns/queuing_and_rate_limiting_patterns.md"
+            },
+            {
+              "path": "node_js/advanced_asynchronous_patterns/retry_and_backoff_strategies.md"
+            },
+            {
+              "path": "node_js/advanced_asynchronous_patterns/timeout_patterns_for_async_operations.md"
+            },
+            {
+              "path": "node_js/advanced_asynchronous_patterns/understanding_process_nexttick_vs_set_immediate.md"
+            }
+          ]
+        },
+        {
           "id": "asynchronous_programming_fundamentals",
           "name": "Asynchronous Programming Fundamentals",
           "categories": [],
@@ -1885,6 +1925,46 @@
             },
             {
               "path": "node_js/asynchronous_programming_fundamentals/understanding_synchronous_vs_asynchronous_code.md"
+            }
+          ]
+        },
+        {
+          "id": "module_system_deep_dive",
+          "name": "Module System Deep Dive",
+          "categories": [],
+          "files": [
+            {
+              "path": "node_js/module_system_deep_dive/circular_dependency_management.md"
+            },
+            {
+              "path": "node_js/module_system_deep_dive/common_js_module_resolution_algorithm.md"
+            },
+            {
+              "path": "node_js/module_system_deep_dive/creating_and_publishing_npm_packages.md"
+            },
+            {
+              "path": "node_js/module_system_deep_dive/dynamic_module_loading_techniques.md"
+            },
+            {
+              "path": "node_js/module_system_deep_dive/es_modules_in_node_js.md"
+            },
+            {
+              "path": "node_js/module_system_deep_dive/module_bundling_tools_for_node_js.md"
+            },
+            {
+              "path": "node_js/module_system_deep_dive/module_caching_mechanisms.md"
+            },
+            {
+              "path": "node_js/module_system_deep_dive/package_json_configuration_in_depth.md"
+            },
+            {
+              "path": "node_js/module_system_deep_dive/package_lock_files_and_deterministic_builds.md"
+            },
+            {
+              "path": "node_js/module_system_deep_dive/semantic_versioning_and_dependency_management.md"
+            },
+            {
+              "path": "node_js/module_system_deep_dive/transpilers_and_compilers_integration.md"
             }
           ]
         },
@@ -2008,6 +2088,46 @@
             },
             {
               "path": "node_js/node_js_internals/v8_engine_internals_and_optimization_techniques.md"
+            }
+          ]
+        },
+        {
+          "id": "streams_and_buffer_management",
+          "name": "Streams And Buffer Management",
+          "categories": [],
+          "files": [
+            {
+              "path": "node_js/streams_and_buffer_management/binary_data_manipulation_techniques.md"
+            },
+            {
+              "path": "node_js/streams_and_buffer_management/buffer_pooling_and_performance_optimization.md"
+            },
+            {
+              "path": "node_js/streams_and_buffer_management/custom_transform_streams_implementation.md"
+            },
+            {
+              "path": "node_js/streams_and_buffer_management/flow_control_with_backpressure_handling.md"
+            },
+            {
+              "path": "node_js/streams_and_buffer_management/memory_efficient_stream_processing.md"
+            },
+            {
+              "path": "node_js/streams_and_buffer_management/piping_streams_for_efficient_data_flow.md"
+            },
+            {
+              "path": "node_js/streams_and_buffer_management/streaming_api_patterns_and_best_practices.md"
+            },
+            {
+              "path": "node_js/streams_and_buffer_management/streaming_protocol_implementations.md"
+            },
+            {
+              "path": "node_js/streams_and_buffer_management/stream_error_handling_and_recovery.md"
+            },
+            {
+              "path": "node_js/streams_and_buffer_management/stream_types.md"
+            },
+            {
+              "path": "node_js/streams_and_buffer_management/working_with_object_mode_streams.md"
             }
           ]
         }
