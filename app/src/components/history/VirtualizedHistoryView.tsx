@@ -12,14 +12,13 @@ import { fromSnakeToTitleCase } from "@/utils/string";
 import { formatDate } from "@/components/home/utils";
 import useMobile from "@/hooks/device/use-mobile";
 
-// Component interfaces
 interface VirtualizedHistoryViewProps {
   filteredHistory: ReadingHistoryItem[];
   handleSelectDocument: (path: string, title: string) => void;
   isLoading?: boolean;
 }
 
-const formatDisplayDate = (date: Date, isMobile: boolean): string => {
+const formatDisplayDate = (date: Date): string => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -32,7 +31,7 @@ const formatDisplayDate = (date: Date, isMobile: boolean): string => {
     return "Yesterday";
   } else {
     return date.toLocaleDateString("en-US", {
-      weekday: isMobile ? "short" : "long",
+      weekday: "long",
       month: "short",
       day: "numeric",
     });
@@ -57,36 +56,20 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
   handleSelectDocument,
   isLoading = false,
 }) => {
-  // Viewport reference for virtualization
   const parentRef = React.useRef<HTMLDivElement>(null);
-
-  // Get mobile status
   const { isMobile } = useMobile();
-
-  // View state
   const [viewType, setViewType] = useState<HistoryViewType>("list");
 
-  // Group history items by date for better organization
   const groupedHistoryItems = useMemo(() => {
-    // Create an object to hold grouped items
     const grouped: Record<string, ReadingHistoryItem[]> = {};
 
-    // Process each history item
     filteredHistory.forEach((item) => {
-      // Create a date key for grouping (YYYY-MM-DD)
       const date = new Date(item.lastReadAt);
       const dateKey = date.toISOString().split("T")[0];
-
-      // Initialize group if it doesn't exist
-      if (!grouped[dateKey]) {
-        grouped[dateKey] = [];
-      }
-
-      // Add item to its date group
+      if (!grouped[dateKey]) grouped[dateKey] = [];
       grouped[dateKey].push(item);
     });
 
-    // Convert grouped object to array and sort by date (newest first)
     return Object.entries(grouped)
       .sort(
         ([dateA], [dateB]) =>
@@ -94,14 +77,11 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
       )
       .map(([dateKey, items]) => ({
         date: dateKey,
-        displayDate: formatDisplayDate(new Date(dateKey), isMobile),
+        displayDate: formatDisplayDate(new Date(dateKey)),
         items,
       }));
   }, [filteredHistory]);
 
-  // Format date for display
-
-  // Create a flattened array for virtualization
   const flattenedItems = useMemo(() => {
     const items: Array<{
       type: "header" | "item";
@@ -112,15 +92,12 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
     }> = [];
 
     groupedHistoryItems.forEach((group) => {
-      // Add date header
       items.push({
         type: "header",
         index: items.length,
         dateKey: group.date,
         displayDate: group.displayDate,
       });
-
-      // Add items for this date
       group.items.forEach((item) => {
         items.push({
           type: "item",
@@ -139,19 +116,17 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
     getScrollElement: () => parentRef.current,
     estimateSize: useCallback(
       (index) => {
-        // Estimate row heights based on content type
         const item = flattenedItems[index];
         if (item.type === "header") {
-          return 60; // Header height
+          return 60;
         }
-        return viewType === "grid" ? (isMobile ? 140 : 180) : 90; // Item height based on view
+        return viewType === "grid" ? (isMobile ? 140 : 180) : 90;
       },
       [flattenedItems, viewType, isMobile]
     ),
-    overscan: 10, // Render extra items for smoother scrolling
+    overscan: 10,
   });
 
-  // Render function for list view items
   const renderListItem = (item: ReadingHistoryItem, animate = true) => {
     const category = item.path.split("/")[0] || "uncategorized";
     const CategoryIcon = getIconForTech(category);
@@ -207,7 +182,6 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
     );
   };
 
-  // Render function for grid view items
   const renderGridItem = (item: ReadingHistoryItem, animate = true) => {
     const category = item.path.split("/")[0] || "uncategorized";
     const CategoryIcon = getIconForTech(category);
@@ -299,7 +273,6 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
     );
   };
 
-  // Render date header for groups
   const renderDateHeader = (
     dateKey: string,
     displayDate: string,
