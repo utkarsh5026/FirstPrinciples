@@ -61,7 +61,6 @@ export const App = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  // Check if we're on the home page
   const isHomePage = location.pathname === "/";
 
   return (
@@ -69,14 +68,11 @@ export const App = () => {
       <div className="min-h-screen flex flex-col bg-background text-foreground">
         {loading && <LoadingAnimation />}
 
-        {/* App Header */}
-        {!loading && (
-          <AppHeader
-            toggleSidebar={toggleSidebar}
-            onNavigateHome={navigateToHome}
-            className="transition-opacity duration-500"
-          />
-        )}
+        <AppHeader
+          toggleSidebar={toggleSidebar}
+          onNavigateHome={navigateToHome}
+          className="transition-opacity duration-500"
+        />
 
         {/* Main content with sidebar */}
         <div
