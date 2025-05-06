@@ -109,7 +109,7 @@ export const iconMap: Record<string, IconType> = {
   django: SiDjango,
   flask: SiFlask,
   node: SiNodedotjs,
-  nodejs: SiNodedotjs,
+  node_js: SiNodedotjs,
   express: SiExpress,
   spring: SiSpring,
   dotnet: SiDotnet,
