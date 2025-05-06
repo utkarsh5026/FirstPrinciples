@@ -28,8 +28,9 @@ const HistoryHeader: React.FC<HistoryHeaderProps> = ({ timeStats }) => {
     <CardContainer
       title="History Overview"
       icon={CalendarDays}
-      description="Track your reading journey and discover patterns"
+      description="Track your reading journey and discover patterns 🤗"
       variant="subtle"
+      className="shadow-sm shadow-primary"
     >
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         <StatCard

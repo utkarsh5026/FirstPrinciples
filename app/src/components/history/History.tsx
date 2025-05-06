@@ -45,7 +45,6 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     loadHistory();
   }, [refreshHistory]);
 
-  // Extract unique categories from history items
   const categories = useMemo(() => {
     return [
       "all",
@@ -93,7 +92,6 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
     };
   }, [history]);
 
-  // Empty state for when no history exists
   if (history.length === 0 && !isLoading) {
     return (
       <CardContainer
@@ -120,7 +118,7 @@ const History: React.FC<HistoryProps> = ({ handleSelectDocument }) => {
   }
 
   return (
-    <div className="space-y-4 max-w-5xl mx-auto px-1 md:px-0">
+    <div className="space-y-8 max-w-5xl mx-auto px-1 md:px-0">
       {/* Stats Summary */}
       <HistoryHeader timeStats={timeStats} />
 
