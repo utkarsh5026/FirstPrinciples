@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { type ReadingHistoryItem } from "@/services/reading/reading-history-service";
-import { sectionAnalyticsController } from "@/services/analytics/SectionAnalyticsController";
 import { parseError } from "@/utils/error";
 import * as readingHistoryService from "@/services/reading/reading-history-service";
 
@@ -97,7 +96,6 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
     if (confirm("Are you sure you want to clear your reading history?")) {
       try {
         await readingHistoryService.clearHistory();
-        await sectionAnalyticsController.resetSectionAnalytics();
         set({ readingHistory: [], error: null });
       } catch (error) {
         console.error("Error clearing reading history:", error);

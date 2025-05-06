@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { useReadingStore } from "@/stores";
-import { analyticsController } from "@/services/analytics/AnalyticsController";
 import { loadMarkdownContent, getFilenameFromPath } from "@/services/document";
 
 /**
@@ -87,12 +86,6 @@ export const useDocumentLoader = (selectedFile: string) => {
     if (selectedFile) {
       loadDocument();
     }
-
-    return () => {
-      if (selectedFile) {
-        analyticsController.endReading(selectedFile, documentTitle);
-      }
-    };
   }, [selectedFile, loadDocument, documentTitle]);
 
   return {
