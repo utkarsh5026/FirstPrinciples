@@ -22,6 +22,8 @@ export interface ReadingHistoryItem {
   completedSectionIndices: number[]; // Array of section indices that have been completed
 }
 
+type DbReadingHistoryItem = ReadingHistoryItem & { id: IDBValidKey };
+
 /**
  * 📝 Add a document to reading history
  *
@@ -252,3 +254,116 @@ export async function getDocumentCompletionPercentage(
 const _cleanPath = (path: string) => {
   return path.toLowerCase().endsWith(".md") ? path.replace(".md", "") : path;
 };
+
+/**
+ * Clean duplicate history items, keeping only the most recent for each path
+ *
+ * This function:
+ * 1. Loads all history items from IndexedDB
+ * 2. Groups them by path
+ * 3. For each path, keeps only the most recent item (based on lastReadAt)
+ * 4. Removes all duplicates from the database
+ * 5. Returns statistics about the operation
+ */
+export async function cleanDuplicateHistory(): Promise<{
+  removedCount: number;
+  totalCount: number;
+}> {
+  try {
+    const allItems = await databaseService.getAll<DbReadingHistoryItem>(
+      STORE_NAME
+    );
+
+    console.log(
+      `Processing ${allItems.length} history items for duplicate removal`
+    );
+
+    /**
+     * Group reading history items by their normalized path
+     */
+    function groupItemsByPath(): Map<string, DbReadingHistoryItem[]> {
+      const itemsByPath = new Map<string, DbReadingHistoryItem[]>();
+
+      allItems.forEach((item) => {
+        const normalizedPath = item.path.toLowerCase();
+        if (!itemsByPath.has(normalizedPath))
+          itemsByPath.set(normalizedPath, []);
+        itemsByPath.get(normalizedPath)?.push(item);
+      });
+
+      return itemsByPath;
+    }
+
+    /**
+     * Merge multiple history items for the same path into one
+     */
+    function mergeItemsIntoOne(
+      items: DbReadingHistoryItem[]
+    ): DbReadingHistoryItem {
+      items.sort((a, b) => b.lastReadAt - a.lastReadAt);
+      const mostRecent = { ...items[0] };
+
+      const allCompletedSections = new Set<number>();
+      items.forEach((item) => {
+        item.completedSectionIndices?.forEach((idx) =>
+          allCompletedSections.add(idx)
+        );
+      });
+
+      mostRecent.completedSectionIndices = [...allCompletedSections];
+      return mostRecent;
+    }
+
+    /**
+     * Select which items to keep, merging duplicate entries
+     */
+    function selectItemsToKeep(
+      itemsByPath: Map<string, DbReadingHistoryItem[]>
+    ): DbReadingHistoryItem[] {
+      const itemsToKeep: DbReadingHistoryItem[] = [];
+
+      for (const [, items] of itemsByPath.entries()) {
+        if (items.length <= 1) {
+          itemsToKeep.push(items[0]);
+        } else {
+          itemsToKeep.push(mergeItemsIntoOne(items));
+        }
+      }
+
+      return itemsToKeep;
+    }
+
+    /**
+     * Persist the cleaned items to the database
+     */
+    async function persistCleanedItems(
+      itemsToKeep: (ReadingHistoryItem & { id: IDBValidKey })[]
+    ): Promise<void> {
+      await databaseService.clearStore(STORE_NAME);
+
+      for (const item of itemsToKeep) {
+        const cleanItem = { ...item } as Partial<typeof item>;
+        delete cleanItem.id;
+        await databaseService.add(STORE_NAME, cleanItem);
+      }
+    }
+
+    const itemsByPath = groupItemsByPath();
+    const itemsToKeep = selectItemsToKeep(itemsByPath);
+
+    await persistCleanedItems(itemsToKeep);
+
+    const removedCount = allItems.length - itemsToKeep.length;
+    console.log(
+      `Successfully removed ${removedCount} duplicate history entries`
+    );
+
+    return {
+      removedCount,
+      totalCount: itemsToKeep.length,
+    };
+  } catch (error) {
+    console.error("Error cleaning reading history:", error);
+    throw error;
+  }
+}

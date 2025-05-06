@@ -7,9 +7,11 @@ import {
 } from "@/components/ui/sheet";
 import { useDocumentList } from "@/hooks";
 import SidebarContent from "./SidebarContent";
-import { BookOpen } from "lucide-react";
+import { BookOpen, Trash2 } from "lucide-react";
 import Header from "./Header";
 import useNavigation from "./hooks/use-navigate";
+import { databaseService } from "@/infrastructure/storage";
+import { Button } from "@/components/ui/button";
 
 interface ResponsiveSidebarProps {
   onSelectFile: (filepath: string) => void;
@@ -129,7 +131,25 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
                 <BookOpen size={14} className="mr-1.5" />
                 {readFilePaths.size}/{documentsCount} read
               </span>
-              <span className="text-primary text-xs">Documentation</span>
+              <div className="flex items-center">
+                <Button
+                  variant="ghost"
+                  onClick={async () => {
+                    if (
+                      window.confirm(
+                        "Are you sure you want to clear all reading data? This cannot be undone."
+                      )
+                    ) {
+                      await databaseService.deleteDatabase();
+                      window.location.reload();
+                    }
+                  }}
+                  className="text-xs text-red-600 hover:text-red-600 transition-colors flex items-center cursor-pointer"
+                >
+                  <Trash2 size={12} className="mr-1" />
+                  Clear data
+                </Button>
+              </div>
             </div>
           </div>
         </SheetFooter>

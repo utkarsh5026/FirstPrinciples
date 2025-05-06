@@ -21,6 +21,11 @@ export interface ReadingWorkerAPI {
     readingHistory: ReadingHistoryItem[],
     filter: HistoryFilterOptions
   ): Promise<ReadingHistoryItem[]>;
+
+  cleanDuplicateHistory(): Promise<{
+    removedCount: number;
+    totalCount: number;
+  }>;
 }
 
 /**
@@ -65,5 +70,12 @@ export class ReadingWorkerManager extends BaseWorkerManager<ReadingWorkerAPI> {
     readingHistory: ReadingHistoryItem[]
   ): Promise<Record<string, ReadingHistoryItem[]>> {
     return this.executeTask((proxy) => proxy.createCategoryMap(readingHistory));
+  }
+
+  public async cleanDuplicateHistory(): Promise<{
+    removedCount: number;
+    totalCount: number;
+  }> {
+    return this.executeTask((proxy) => proxy.cleanDuplicateHistory());
   }
 }

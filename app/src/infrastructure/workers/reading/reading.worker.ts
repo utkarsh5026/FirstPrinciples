@@ -10,6 +10,8 @@ import {
   filterHistory,
   type HistoryFilterOptions,
 } from "@/services/reading/reading-history-filter";
+import { cleanDuplicateHistory } from "@/services/reading/reading-history-service";
+import { databaseService } from "@/infrastructure/storage";
 
 class ReadingWorker {
   /**
@@ -36,6 +38,14 @@ class ReadingWorker {
     filter: HistoryFilterOptions
   ): ReadingHistoryItem[] {
     return filterHistory(readingHistory, filter);
+  }
+
+  async cleanDuplicateHistory(): Promise<{
+    removedCount: number;
+    totalCount: number;
+  }> {
+    await databaseService.initDatabase();
+    return cleanDuplicateHistory();
   }
 }
 

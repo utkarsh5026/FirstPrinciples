@@ -1,7 +1,8 @@
 import { create } from "zustand";
-import { type ReadingHistoryItem } from "@/services/reading/reading-history-service";
+import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { parseError } from "@/utils/error";
 import * as readingHistoryService from "@/services/reading/reading-history-service";
+import { readingWorkerManager } from "@/infrastructure/workers/";
 
 type Streak = {
   longestStreak: number;
@@ -39,6 +40,10 @@ type Actions = {
     path: string,
     sectionIndices: number[]
   ) => Promise<boolean>;
+  cleanDuplicateHistory: () => Promise<{
+    removedCount: number;
+    totalCount: number;
+  }>;
 };
 
 /**
@@ -76,7 +81,7 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
         sectionIndices
       );
 
-      await get().refreshReadingHistory();
+      get().refreshReadingHistory();
 
       return updatedItem;
     } catch (error) {
@@ -130,6 +135,7 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
   refreshReadingHistory: async () => {
     set({ isLoading: true });
     try {
+      await get().cleanDuplicateHistory();
       const history = await readingHistoryService.getAllHistory();
       set({ readingHistory: history, error: null, isLoading: false });
     } catch (error) {
@@ -261,6 +267,7 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
   initialize: async () => {
     set({ isLoading: true });
     try {
+      await get().cleanDuplicateHistory();
       const history = await readingHistoryService.getAllHistory();
       const streak = get().calculateStreak(history);
       set({ readingHistory: history, streak, error: null, isLoading: false });
@@ -314,5 +321,9 @@ export const useHistoryStore = create<State & Actions>((set, get) => ({
       path,
       sectionIndices
     );
+  },
+
+  cleanDuplicateHistory: async () => {
+    return await readingWorkerManager.cleanDuplicateHistory();
   },
 }));

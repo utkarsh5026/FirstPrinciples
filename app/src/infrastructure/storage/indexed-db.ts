@@ -13,6 +13,7 @@ export class DatabaseService {
   private readonly cache: Map<string, { data: unknown; timestamp: number }> =
     new Map();
   private readonly CACHE_TTL = 5 * 60 * 1000; // 5 minutes cache lifetime
+  private initialized: boolean = false;
 
   /**
    * 🚀 Sets up the database and creates all necessary storage containers
@@ -22,6 +23,11 @@ export class DatabaseService {
    */
   public async initDatabase(): Promise<void> {
     return new Promise((resolve, reject) => {
+      if (this.initialized) {
+        resolve();
+        return;
+      }
+
       const request = indexedDB.open(this.DB_NAME, this.DB_VERSION);
 
       request.onerror = (event) => {
@@ -32,6 +38,7 @@ export class DatabaseService {
       request.onsuccess = (event) => {
         this.db = (event.target as IDBOpenDBRequest).result;
         console.log("Database initialized successfully");
+        this.initialized = true;
         resolve();
       };
 
@@ -374,5 +381,20 @@ export class DatabaseService {
       return cached.data as T;
     }
     return undefined;
+  }
+
+  public async deleteDatabase(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (!this.db) {
+        reject(new Error("Database not initialized"));
+        return;
+      }
+
+      const stores = this.db.objectStoreNames;
+      for (const store of stores) {
+        this.clearStore(store);
+      }
+      resolve();
+    });
   }
 }
