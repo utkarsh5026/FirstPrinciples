@@ -1,7 +1,7 @@
 import { PieSectorDataItem } from "recharts/types/polar/Pie";
 import { useTheme } from "@/hooks/ui/use-theme";
 import { truncateText, fromSnakeToTitleCase } from "@/utils/string";
-import type { CategoryBreakdown } from "@/stores/categoryStore";
+import type { CategoryBreakdown } from "@/stores/analytics/category-store";
 import { Sector } from "recharts";
 
 const ActivePieShape = (props: PieSectorDataItem) => {

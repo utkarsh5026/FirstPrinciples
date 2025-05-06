@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useCategoryStore } from "@/stores/categoryStore";
+import { useCategoryStore } from "@/stores";
 import { useReadingHistory, useDocumentList } from "@/hooks";
 import { formatRelativeTime } from "@/utils/time";
 import CardContainer from "@/components/shared/container/CardContainer";

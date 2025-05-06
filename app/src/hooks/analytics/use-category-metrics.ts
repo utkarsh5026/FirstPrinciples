@@ -7,7 +7,7 @@ import { useCallback } from "react";
 import { withErrorHandling } from "@/utils/functions/error";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import type { FileMetadata } from "@/services/document";
-import type { CategoryBreakdown } from "@/stores/categoryStore";
+import type { CategoryBreakdown } from "@/stores/analytics/category-store";
 
 export type CategoryMetrics = {
   mostRead: CategoryBreakdown | null;
