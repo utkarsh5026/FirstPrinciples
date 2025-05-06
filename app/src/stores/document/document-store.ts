@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { useHistoryStore } from "@/stores/reading/history-store";
-import { useReadingStore } from "@/stores/readingStore";
+import { useReadingStore } from "@/stores/reading/reading-store";
 import {
   loadContentIndex,
   getFileBreadcrumbs,

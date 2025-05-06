@@ -1,4 +1,4 @@
-import { useReadingStore } from "./readingStore";
+import { useReadingStore } from "./reading/reading-store";
 import { useDocumentStore } from "./document/document-store";
 import { useHistoryStore } from "./reading/history-store";
 import { useCategoryStore } from "./categoryStore";
