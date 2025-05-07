@@ -24,16 +24,24 @@ import { useParams } from "react-router-dom";
  * A beautiful document preview component that displays information about the selected document
  * in an elegant card format with sophisticated animations and visual effects.
  */
+/**
+ * 📄✨ DocumentPreview
+ *
+ * A beautiful document preview component that displays information about the selected document
+ * in an elegant card format with sophisticated animations and visual effects.
+ *
+ * 🧠 Manages reading sessions, tracks progress, and provides a seamless reading experience
+ * 📊 Shows document metrics like word count, reading time, and completion status
+ * 🔄 Handles transitions between preview and fullscreen reading modes
+ * 📝 Saves reading progress and session data for future visits
+ */
 const DocumentPreview: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [lastReadingTime, setLastReadingTime] = useState<number | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [sessionTimeSpent, setSessionTimeSpent] = useState(0);
   const [sessionWordsRead, setSessionWordsRead] = useState(0);
-
   const readingStartTimeRef = useRef<number | null>(null);
-  const readSectionsBeforeRef = useRef<Set<string>>(new Set());
-  const readSectionsAfterRef = useRef<Set<string>>(new Set());
 
   const { documentPath = "" } = useParams<{ documentPath: string }>();
 
@@ -55,8 +63,13 @@ const DocumentPreview: React.FC = () => {
     getSection,
     readSections,
     sections,
+    newSectionRead,
+    alreadyReadSections,
   } = useDocumentReading();
 
+  /**
+   * 📂 Load document when path changes
+   */
   useEffect(() => {
     const fullPath = documentPath.endsWith(".md")
       ? documentPath
@@ -64,6 +77,9 @@ const DocumentPreview: React.FC = () => {
     loadedDocumentForUrl(fullPath);
   }, [documentPath, loadedDocumentForUrl]);
 
+  /**
+   * ⏱️ Load previous reading time from history
+   */
   useEffect(() => {
     if (!documentPath) return;
 
@@ -81,29 +97,32 @@ const DocumentPreview: React.FC = () => {
     loadPreviousReadingTime();
   }, [documentPath, getDocumentHistory]);
 
-  // Start tracking reading time and sections when entering fullscreen
+  /**
+   * 🚀 Start tracking reading time when entering fullscreen
+   */
   useEffect(() => {
     if (isFullscreen && !readingStartTimeRef.current) {
-      // Start the timer when entering fullscreen
       readingStartTimeRef.current = Date.now();
-
-      // Store current read sections for comparison later
-      readSectionsBeforeRef.current = new Set(readSections);
 
       console.log("📚 Reading session started:", {
         document: documentTitle,
         path: documentPath,
         startTime: new Date().toLocaleTimeString(),
-        sectionsBeforeSession: readSectionsBeforeRef.current.size,
       });
     }
   }, [isFullscreen, documentPath, documentTitle, readSections]);
 
+  /**
+   * 🏁 Handle end of reading session
+   */
   const handleReadingSessionEnd = useCallback((timeSpent: number) => {
     setLastReadingTime((prev) => (prev ?? 0) + timeSpent);
     console.log(`Reading session ended: ${formatTimeInMs(timeSpent)}`);
   }, []);
 
+  /**
+   * 📖 Begin reading session in fullscreen
+   */
   const startReading = useCallback(() => {
     addToHistory(documentPath, documentTitle).then(() => {
       console.log("Starting reading session:", documentPath, documentTitle);
@@ -111,10 +130,11 @@ const DocumentPreview: React.FC = () => {
     });
   }, [addToHistory, documentPath, documentTitle]);
 
+  /**
+   * 🔍 Exit fullscreen and show session summary
+   */
   const handleExitFullscreen = useCallback(async () => {
     if (readingStartTimeRef.current) {
-      readSectionsAfterRef.current = new Set(readSections);
-
       const timeSpent = Date.now() - readingStartTimeRef.current;
       const wordsRead = estimateWordsRead(timeSpent);
 
@@ -122,16 +142,16 @@ const DocumentPreview: React.FC = () => {
       setSessionWordsRead(wordsRead);
 
       await updateReadingTime(documentPath, documentTitle, timeSpent);
-
       handleReadingSessionEnd(timeSpent);
 
       readingStartTimeRef.current = null;
+
       await endReading();
       setIsFullscreen(false);
 
       setTimeout(() => {
         setDialogOpen(true);
-      }, 100);
+      }, 150);
     } else {
       await endReading();
       setIsFullscreen(false);
@@ -142,7 +162,6 @@ const DocumentPreview: React.FC = () => {
     endReading,
     handleReadingSessionEnd,
     updateReadingTime,
-    readSections,
   ]);
 
   if (isFullscreen) {
@@ -166,12 +185,8 @@ const DocumentPreview: React.FC = () => {
   const formattedReadTime = formatTimeInMs(totalTime);
 
   const CategoryIcon = getIconForTech(category);
-
-  // Calculate section completion percentage for dialog
-  const sectionsReadAfter =
-    readSectionsAfterRef.current.size || readSections.size;
   const sectionCompletionPercent =
-    (sectionsReadAfter / sections.length) * 100 || 0;
+    (newSectionRead.size / sections.length) * 100 || 0;
 
   return (
     <AnimatePresence mode="wait">
@@ -207,8 +222,8 @@ const DocumentPreview: React.FC = () => {
                     loading={loading}
                     lastReadingTime={
                       lastReadingTime
-                        ? new Date(lastReadingTime).toLocaleDateString()
-                        : "Not read"
+                        ? formatTimeInMs(lastReadingTime)
+                        : "Not read yet"
                     }
                   />
                 </div>
@@ -220,17 +235,17 @@ const DocumentPreview: React.FC = () => {
         </div>
       </div>
 
-      {/* Enhanced Reading Session Dialog */}
       <ReadingSessionDialog
-        category={category}
         open={dialogOpen}
         onOpenChange={setDialogOpen}
         documentTitle={documentTitle}
+        category={category}
         timeSpent={sessionTimeSpent}
         estimatedWordsRead={sessionWordsRead}
-        sectionsRead={sectionsReadAfter}
+        sectionsReadInSession={newSectionRead.size}
         totalSections={sections.length}
         sectionsCompletedPercent={sectionCompletionPercent}
+        sectionsBeforeSession={alreadyReadSections.size}
       />
     </AnimatePresence>
   );
