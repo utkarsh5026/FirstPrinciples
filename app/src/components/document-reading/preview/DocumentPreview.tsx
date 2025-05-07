@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
 import LoadingScreen from "@/components/document-reading/preview/LoadingScreen";
 import ErrorLoadingDocument from "@/components/document-reading/preview/ErrorLoadingDocument";
@@ -8,8 +8,9 @@ import DetailPanel from "@/components/document-reading/preview/DetailPanel";
 import getIconForTech from "@/components/shared/icons";
 import Header from "@/components/document-reading/preview/Header";
 import StartReadingButton from "@/components/document-reading/preview/StartReadingButton";
-import SilentReadingTimeIntegration from "@/components/document-reading/preview/ReadingTimeTracker";
+import ReadingSessionDialog from "@/components/document-reading/preview/ReadingSessionDialog";
 import { formatTimeInMs } from "@/utils/time";
+import { estimateWordsRead } from "@/services/analytics/word-count-estimation";
 import {
   useCurrentDocument,
   useReadingHistory,
@@ -22,22 +23,18 @@ import { useParams } from "react-router-dom";
  *
  * A beautiful document preview component that displays information about the selected document
  * in an elegant card format with sophisticated animations and visual effects.
- *
- * 🎨 Features lovely glass morphism effects and smooth transitions to create a premium feel
- * 🔍 Shows document metadata like word count, reading time, and sections
- * ⏱️ Silently tracks reading time without distracting the user
- * 📱 Fully responsive design that looks great on all devices
- * 🚀 Transitions seamlessly to fullscreen reading mode when ready
- *
- * Internal components:
- * - 🧩 Header: Displays the document title, category and quick stats at the top
- * - 📊 DetailPanel: Shows comprehensive document information in a structured format
- * - ▶️ StartReadingButton: Invites the user to begin their reading experience
- * - ⏱️ SilentReadingTimeIntegration: Tracks reading time without visible UI
  */
 const DocumentPreview: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [lastReadingTime, setLastReadingTime] = useState<number | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [sessionTimeSpent, setSessionTimeSpent] = useState(0);
+  const [sessionWordsRead, setSessionWordsRead] = useState(0);
+
+  const readingStartTimeRef = useRef<number | null>(null);
+  const readSectionsBeforeRef = useRef<Set<string>>(new Set());
+  const readSectionsAfterRef = useRef<Set<string>>(new Set());
+
   const { documentPath = "" } = useParams<{ documentPath: string }>();
 
   const {
@@ -49,7 +46,8 @@ const DocumentPreview: React.FC = () => {
     documentTitle,
   } = useCurrentDocument();
 
-  const { addToHistory, getDocumentHistory } = useReadingHistory();
+  const { addToHistory, getDocumentHistory, updateReadingTime } =
+    useReadingHistory();
 
   const {
     startSectionReading,
@@ -59,7 +57,6 @@ const DocumentPreview: React.FC = () => {
     sections,
   } = useDocumentReading();
 
-  // Load document when path changes
   useEffect(() => {
     const fullPath = documentPath.endsWith(".md")
       ? documentPath
@@ -67,7 +64,6 @@ const DocumentPreview: React.FC = () => {
     loadedDocumentForUrl(fullPath);
   }, [documentPath, loadedDocumentForUrl]);
 
-  // Load previous reading time when document loads
   useEffect(() => {
     if (!documentPath) return;
 
@@ -85,45 +81,80 @@ const DocumentPreview: React.FC = () => {
     loadPreviousReadingTime();
   }, [documentPath, getDocumentHistory]);
 
-  // Called when reading session ends
+  // Start tracking reading time and sections when entering fullscreen
+  useEffect(() => {
+    if (isFullscreen && !readingStartTimeRef.current) {
+      // Start the timer when entering fullscreen
+      readingStartTimeRef.current = Date.now();
+
+      // Store current read sections for comparison later
+      readSectionsBeforeRef.current = new Set(readSections);
+
+      console.log("📚 Reading session started:", {
+        document: documentTitle,
+        path: documentPath,
+        startTime: new Date().toLocaleTimeString(),
+        sectionsBeforeSession: readSectionsBeforeRef.current.size,
+      });
+    }
+  }, [isFullscreen, documentPath, documentTitle, readSections]);
+
   const handleReadingSessionEnd = useCallback((timeSpent: number) => {
-    setLastReadingTime((prev) => (prev || 0) + timeSpent);
+    setLastReadingTime((prev) => (prev ?? 0) + timeSpent);
     console.log(`Reading session ended: ${formatTimeInMs(timeSpent)}`);
   }, []);
 
-  // Start reading in fullscreen mode
   const startReading = useCallback(() => {
     addToHistory(documentPath, documentTitle).then(() => {
       console.log("Starting reading session:", documentPath, documentTitle);
       setIsFullscreen(true);
     });
-  }, [addToHistory, documentPath, documentTitle, setIsFullscreen]);
+  }, [addToHistory, documentPath, documentTitle]);
 
-  // Handle exiting fullscreen mode
-  const handleExitFullscreen = useCallback(() => {
-    endReading().then(() => {
+  const handleExitFullscreen = useCallback(async () => {
+    if (readingStartTimeRef.current) {
+      readSectionsAfterRef.current = new Set(readSections);
+
+      const timeSpent = Date.now() - readingStartTimeRef.current;
+      const wordsRead = estimateWordsRead(timeSpent);
+
+      setSessionTimeSpent(timeSpent);
+      setSessionWordsRead(wordsRead);
+
+      await updateReadingTime(documentPath, documentTitle, timeSpent);
+
+      handleReadingSessionEnd(timeSpent);
+
+      readingStartTimeRef.current = null;
+      await endReading();
       setIsFullscreen(false);
-    });
-  }, [endReading]);
+
+      setTimeout(() => {
+        setDialogOpen(true);
+      }, 100);
+    } else {
+      await endReading();
+      setIsFullscreen(false);
+    }
+  }, [
+    documentPath,
+    documentTitle,
+    endReading,
+    handleReadingSessionEnd,
+    updateReadingTime,
+    readSections,
+  ]);
 
   if (isFullscreen) {
     return (
-      <>
-        <SilentReadingTimeIntegration
-          documentPath={documentPath}
-          documentTitle={documentTitle}
-          isFullscreen={isFullscreen}
-          onSessionComplete={handleReadingSessionEnd}
-        />
-        <FullScreenCardView
-          onExit={endReading}
-          onChangeSection={startSectionReading}
-          sections={sections}
-          getSection={(index: number) => getSection(index) ?? null}
-          readSections={readSections}
-          exitFullScreen={handleExitFullscreen}
-        />
-      </>
+      <FullScreenCardView
+        onExit={endReading}
+        onChangeSection={startSectionReading}
+        sections={sections}
+        getSection={(index: number) => getSection(index) ?? null}
+        readSections={readSections}
+        exitFullScreen={handleExitFullscreen}
+      />
     );
   }
 
@@ -135,6 +166,12 @@ const DocumentPreview: React.FC = () => {
   const formattedReadTime = formatTimeInMs(totalTime);
 
   const CategoryIcon = getIconForTech(category);
+
+  // Calculate section completion percentage for dialog
+  const sectionsReadAfter =
+    readSectionsAfterRef.current.size || readSections.size;
+  const sectionCompletionPercent =
+    (sectionsReadAfter / sections.length) * 100 || 0;
 
   return (
     <AnimatePresence mode="wait">
@@ -182,6 +219,19 @@ const DocumentPreview: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Enhanced Reading Session Dialog */}
+      <ReadingSessionDialog
+        category={category}
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        documentTitle={documentTitle}
+        timeSpent={sessionTimeSpent}
+        estimatedWordsRead={sessionWordsRead}
+        sectionsRead={sectionsReadAfter}
+        totalSections={sections.length}
+        sectionsCompletedPercent={sectionCompletionPercent}
+      />
     </AnimatePresence>
   );
 };
