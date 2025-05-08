@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import CardContainer from "@/components/shared/container/CardContainer";
 import { useReadingList } from "@/hooks";
@@ -17,19 +17,6 @@ interface ReadingTodoProps {
   setShowAddTodoModal: (show: boolean) => void;
 }
 
-/**
- * Enhanced Reading To-do List with Tabs and Collapsible Groups
- *
- * A beautiful, minimal interface for managing your reading queue with
- * intuitive tabbed navigation and collapsible parent folders for better organization.
- *
- * Features:
- * - Tab-based navigation for pending and completed items
- * - Collapsible groups based on parent directories for better organization
- * - Mobile-optimized layout with responsive design
- * - Smooth animations for a polished user experience
- * - Clean, uncluttered interface that maximizes readability
- */
 const ReadingTodo: React.FC<ReadingTodoProps> = ({
   handleSelectDocument,
   setShowAddTodoModal,
@@ -45,7 +32,6 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
     refreshTodo,
   } = useReadingList();
 
-  // Keep track of expanded parent groups
   const [expandedParents, setExpandedParents] = useState<
     Record<string, boolean>
   >({});
@@ -54,7 +40,6 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
     refreshTodo();
   }, [refreshTodo]);
 
-  // Toggle the expansion state of a parent group
   const toggleExpandParent = (categoryParentKey: string) => {
     setExpandedParents((prev) => ({
       ...prev,
@@ -62,72 +47,21 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
     }));
   };
 
-  // Extract the immediate parent from a file path
-  const getImmediateParent = (path: string): string => {
-    const parts = path.split("/");
-
-    // If there's no parent directory or just a single level, use the top category
-    if (parts.length <= 2) {
-      return "root";
-    }
-
-    // Return the immediate parent (second-to-last path segment)
-    return parts[parts.length - 2];
-  };
-
-  // Group items by top-level category and then by immediate parent
-  const groupItemsByHierarchy = useCallback((items: ReadingTodoItem[]) => {
-    const grouped: Record<string, Record<string, ReadingTodoItem[]>> = {};
-
-    items.forEach((item) => {
-      const category = item.path.split("/")[0] || "Uncategorized";
-      const parent = getImmediateParent(item.path);
-
-      if (!grouped[category]) {
-        grouped[category] = {};
-      }
-
-      if (!grouped[category][parent]) {
-        grouped[category][parent] = [];
-      }
-
-      grouped[category][parent].push(item);
-    });
-
-    return Object.entries(grouped)
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([category, parentGroups]) => ({
-        category,
-        parentGroups: Object.fromEntries(
-          Object.entries(parentGroups)
-            .sort(([a], [b]) => a.localeCompare(b))
-            .map(([parent, items]) => [
-              parent,
-              [...items].sort((a, b) => b.addedAt - a.addedAt),
-            ])
-        ),
-      }));
-  }, []);
-
   const groupedPendingItems = useMemo(() => {
     return groupItemsByHierarchy(pending);
-  }, [pending, groupItemsByHierarchy]);
+  }, [pending]);
 
   const groupedCompletedItems = useMemo(() => {
     return groupItemsByHierarchy(completed);
-  }, [completed, groupItemsByHierarchy]);
+  }, [completed]);
 
-  // Initialize expanded states when items change
   useEffect(() => {
     const newExpandedStates: Record<string, boolean> = {};
-
-    // Default: expand if few items, collapse if many
     const shouldAutoExpand = todoList.length < 30;
 
     groupedPendingItems.forEach(({ category, parentGroups }) => {
       Object.keys(parentGroups).forEach((parent) => {
         const key = `${category}-${parent}-pending`;
-        // Only set if not already in state
         if (expandedParents[key] === undefined) {
           newExpandedStates[key] = shouldAutoExpand;
         }
@@ -137,7 +71,6 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
     groupedCompletedItems.forEach(({ category, parentGroups }) => {
       Object.keys(parentGroups).forEach((parent) => {
         const key = `${category}-${parent}-completed`;
-        // Only set if not already in state
         if (expandedParents[key] === undefined) {
           newExpandedStates[key] = shouldAutoExpand;
         }
@@ -304,6 +237,47 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
       </CardContainer>
     </div>
   );
+};
+
+const getImmediateParent = (path: string): string => {
+  const parts = path.split("/");
+
+  if (parts.length <= 2) return "root";
+
+  return parts[parts.length - 2];
+};
+
+const groupItemsByHierarchy = (items: ReadingTodoItem[]) => {
+  const grouped: Record<string, Record<string, ReadingTodoItem[]>> = {};
+
+  items.forEach((item) => {
+    const category = item.path.split("/")[0] || "Uncategorized";
+    const parent = getImmediateParent(item.path);
+
+    if (!grouped[category]) {
+      grouped[category] = {};
+    }
+
+    if (!grouped[category][parent]) {
+      grouped[category][parent] = [];
+    }
+
+    grouped[category][parent].push(item);
+  });
+
+  return Object.entries(grouped)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([category, parentGroups]) => ({
+      category,
+      parentGroups: Object.fromEntries(
+        Object.entries(parentGroups)
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([parent, items]) => [
+            parent,
+            [...items].sort((a, b) => b.addedAt - a.addedAt),
+          ])
+      ),
+    }));
 };
 
 export default ReadingTodo;
