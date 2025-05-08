@@ -5,6 +5,7 @@ import getIconForTech from "@/components/shared/icons/iconMap";
 import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import styles from "./css/TodoItem.module.css";
+import { generateArrayWithUniqueIds } from "@/utils/array";
 
 interface TodoItemProps {
   item: ReadingTodoItem;
@@ -13,12 +14,9 @@ interface TodoItemProps {
   removeItem: () => void;
 }
 
-/**
- * Enhanced TodoItem Component
- *
- * A beautifully designed item in the reading list with satisfying
- * completion animations and intuitive controls.
- */
+const sparkles = generateArrayWithUniqueIds(8);
+const confetti = generateArrayWithUniqueIds(10);
+
 const TodoItem: React.FC<TodoItemProps> = ({
   item,
   handleSelectDocument,
@@ -26,47 +24,37 @@ const TodoItem: React.FC<TodoItemProps> = ({
   removeItem,
 }) => {
   const { path, title, completed, addedAt } = item;
+
   const formattedDate = new Date(addedAt).toLocaleDateString(undefined, {
     month: "short",
     day: "numeric",
   });
+
   const fileCategory = path.split("/")[0] || "uncategorized";
   const CategoryIcon = getIconForTech(fileCategory);
 
-  // State to track animation
   const [isAnimating, setIsAnimating] = useState(false);
   const [wasCompleted, setWasCompleted] = useState(completed);
   const itemRef = useRef<HTMLDivElement>(null);
 
-  // Handle completion toggle with animation
   const handleToggleCompletion = (e: React.MouseEvent) => {
     e.stopPropagation();
 
-    // Only animate when marking as completed, not when uncompleting
     if (!completed) {
       setIsAnimating(true);
-
-      // Give time for animation to complete before updating state
       setTimeout(() => {
         toggleCompletion();
-      }, 300);
-    } else {
-      // Just toggle immediately if uncompleting
-      toggleCompletion();
-    }
+      }, 100);
+    } else toggleCompletion();
   };
 
-  // Reset animation state when completed changes
   useEffect(() => {
     if (completed !== wasCompleted) {
       setWasCompleted(completed);
-      if (!completed) {
-        setIsAnimating(false);
-      }
+      if (!completed) setIsAnimating(false);
     }
   }, [completed, wasCompleted]);
 
-  // Handle animation end
   const handleAnimationEnd = () => {
     setIsAnimating(false);
   };
@@ -76,42 +64,27 @@ const TodoItem: React.FC<TodoItemProps> = ({
       ref={itemRef}
       className={cn(
         styles.todoItem,
-        "flex items-start gap-3 p-3 rounded-2xl border transition-all",
+        "flex items-start gap-3 p-3 rounded-2xl border transition-all max-w-full",
         completed
           ? "border-primary/20 bg-primary/5"
           : "border-border hover:border-primary/20 hover:bg-secondary/5"
       )}
     >
-      {/* Shimmer effect container */}
       {isAnimating && <div className={styles.shimmerEffect} />}
 
-      {/* Confetti container that appears when completing */}
       {isAnimating && (
         <div className={styles.confettiContainer}>
-          <div className={styles.confetti}></div>
-          <div className={styles.confetti}></div>
-          <div className={styles.confetti}></div>
-          <div className={styles.confetti}></div>
-          <div className={styles.confetti}></div>
-          <div className={styles.confetti}></div>
-          <div className={styles.confetti}></div>
-          <div className={styles.confetti}></div>
-          <div className={styles.confetti}></div>
-          <div className={styles.confetti}></div>
+          {confetti.map((confetti) => (
+            <div key={confetti} className={styles.confetti}></div>
+          ))}
         </div>
       )}
 
-      {/* Sparkle container that appears when completing */}
       {isAnimating && (
         <div className={styles.sparkleContainer}>
-          <div className={styles.sparkle}></div>
-          <div className={styles.sparkle}></div>
-          <div className={styles.sparkle}></div>
-          <div className={styles.sparkle}></div>
-          <div className={styles.sparkle}></div>
-          <div className={styles.sparkle}></div>
-          <div className={styles.sparkle}></div>
-          <div className={styles.sparkle}></div>
+          {sparkles.map((sparkle) => (
+            <div key={sparkle} className={styles.sparkle}></div>
+          ))}
         </div>
       )}
 
@@ -136,15 +109,15 @@ const TodoItem: React.FC<TodoItemProps> = ({
       </button>
 
       <div
-        className="flex-1 min-w-0 cursor-pointer"
+        className="flex-1 min-w-0 cursor-pointer overflow-hidden"
         onClick={() => handleSelectDocument(path, title)}
       >
-        <div className="flex flex-row sm:items-center sm:justify-between">
-          <div className="flex-1 min-w-0">
+        <div className="flex flex-row sm:items-center sm:justify-between w-full">
+          <div className="flex-1 min-w-0 overflow-hidden">
             <h4
               className={cn(
                 styles.completedText,
-                "text-sm font-medium truncate",
+                "text-sm font-medium truncate max-w-full",
                 completed && styles.lineThrough,
                 completed && "text-muted-foreground"
               )}
