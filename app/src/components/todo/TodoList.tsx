@@ -1,29 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import CardContainer from "@/components/shared/container/CardContainer";
 import { useReadingList } from "@/hooks";
-import {
-  BookOpen,
-  Plus,
-  BookMarked,
-  CheckCheck,
-  ChevronDown,
-  ChevronRight,
-} from "lucide-react";
+import { BookOpen, Plus, BookMarked, CheckCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { fromSnakeToTitleCase } from "@/utils/string";
 import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
 import TodoHeader from "./TodoHeader";
-import TodoItem from "./TodoItem";
 import EmptyList from "./EmptyList";
+import CategoryGroup from "./CategoryGroup";
 
 interface ReadingTodoProps {
   handleSelectDocument: (path: string, title: string) => void;
@@ -177,6 +164,7 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
         icon={BookOpen}
         description="Manage what you want to read next"
         variant="subtle"
+        baseColor="indigo"
         headerAction={
           <Button
             variant="ghost"
@@ -187,6 +175,19 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
             <Plus className="h-3.5 w-3.5 mr-1" /> Add
           </Button>
         }
+        insights={[
+          {
+            label: "Pending",
+            value: pending.length.toString(),
+            icon: BookOpen,
+          },
+          {
+            label: "Completed",
+            value: completed.length.toString(),
+            icon: BookMarked,
+            highlight: true,
+          },
+        ]}
         footer={
           <div className="flex items-center justify-between w-full text-xs text-muted-foreground">
             <div>
@@ -195,7 +196,7 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
             <Button
               variant="ghost"
               size="sm"
-              className="h-7 text-xs text-muted-foreground hover:text-destructive"
+              className="h-7 text-xs text-red-500 hover:text-red-600 cursor-pointer"
               onClick={clearTodo}
             >
               Clear list
@@ -249,7 +250,7 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
                   </Button>
                 </div>
               ) : (
-                <ScrollArea className="h-[calc(100vh-380px)] md:h-[540px] pr-4 -mr-4">
+                <ScrollArea className="h-[calc(100vh-380px)] md:h-[440px] pr-4 -mr-4">
                   <AnimatePresence>
                     {groupedPendingItems.map(({ category, parentGroups }) => (
                       <CategoryGroup
@@ -269,7 +270,6 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
               )}
             </TabsContent>
 
-            {/* Completed Items Tab */}
             <TabsContent value="completed" className="space-y-4 mt-4">
               {completed.length === 0 ? (
                 <div className="py-8 text-center text-muted-foreground">
@@ -303,101 +303,6 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
         )}
       </CardContainer>
     </div>
-  );
-};
-
-// Helper component for category groups with collapsible parent sections
-interface CategoryGroupProps {
-  category: string;
-  parentGroups: Record<string, ReadingTodoItem[]>;
-  type: "pending" | "completed";
-  expandedParents: Record<string, boolean>;
-  toggleExpandParent: (key: string) => void;
-  handleSelectDocument: (path: string, title: string) => void;
-  toggleCompletion: (id: string) => void;
-  removeItem: (id: string) => void;
-}
-
-const CategoryGroup: React.FC<CategoryGroupProps> = ({
-  category,
-  parentGroups,
-  type,
-  expandedParents,
-  toggleExpandParent,
-  handleSelectDocument,
-  toggleCompletion,
-  removeItem,
-}) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className="mb-5"
-    >
-      <div className="flex items-center mb-2">
-        <Badge
-          variant="outline"
-          className="px-2 py-0.5 text-xs bg-primary/5 border-primary/20 font-normal rounded-full"
-        >
-          {fromSnakeToTitleCase(category)}
-        </Badge>
-        <div className="h-px flex-grow bg-border/50 ml-2"></div>
-      </div>
-
-      <div className="space-y-3">
-        {Object.entries(parentGroups).map(([parent, items]) => {
-          const categoryParentKey = `${category}-${parent}-${type}`;
-          const isExpanded = expandedParents[categoryParentKey] !== false; // Default to true if undefined
-
-          return (
-            <Collapsible
-              key={categoryParentKey}
-              open={isExpanded}
-              onOpenChange={() => toggleExpandParent(categoryParentKey)}
-              className="border border-border/50 rounded-xl overflow-hidden"
-            >
-              <CollapsibleTrigger className="flex items-center justify-between w-full p-2.5 text-sm font-medium bg-secondary/5 hover:bg-secondary/10 transition-colors">
-                <div className="flex items-center">
-                  {isExpanded ? (
-                    <ChevronDown className="h-4 w-4 mr-2 text-primary/70" />
-                  ) : (
-                    <ChevronRight className="h-4 w-4 mr-2 text-primary/70" />
-                  )}
-                  <span>{fromSnakeToTitleCase(parent)}</span>
-                </div>
-                <Badge variant="outline" className="rounded-full">
-                  {items.length}
-                </Badge>
-              </CollapsibleTrigger>
-
-              <CollapsibleContent className="bg-background/50">
-                <div className="p-2 space-y-2">
-                  <AnimatePresence>
-                    {items.map((item) => (
-                      <motion.div
-                        key={item.id}
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <TodoItem
-                          item={item}
-                          handleSelectDocument={handleSelectDocument}
-                          toggleCompletion={() => toggleCompletion(item.id)}
-                          removeItem={() => removeItem(item.id)}
-                        />
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
-          );
-        })}
-      </div>
-    </motion.div>
   );
 };
 
