@@ -1,12 +1,24 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CardContainer from "@/components/shared/container/CardContainer";
 import { useReadingList } from "@/hooks";
-import { BookOpen, Plus, BookMarked, CheckCheck } from "lucide-react";
+import {
+  BookOpen,
+  Plus,
+  BookMarked,
+  CheckCheck,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
 import TodoHeader from "./TodoHeader";
@@ -19,15 +31,15 @@ interface ReadingTodoProps {
 }
 
 /**
- * Enhanced Reading To-do List with Tabs
+ * Enhanced Reading To-do List with Tabs and Collapsible Groups
  *
  * A beautiful, minimal interface for managing your reading queue with
- * intuitive tabbed navigation for mobile and desktop users.
+ * intuitive tabbed navigation and collapsible parent folders for better organization.
  *
  * Features:
  * - Tab-based navigation for pending and completed items
+ * - Collapsible groups based on parent directories for better organization
  * - Mobile-optimized layout with responsive design
- * - Visual category grouping for better organization
  * - Smooth animations for a polished user experience
  * - Clean, uncluttered interface that maximizes readability
  */
@@ -46,36 +58,114 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
     refreshTodo,
   } = useReadingList();
 
+  // Keep track of expanded parent groups
+  const [expandedParents, setExpandedParents] = useState<
+    Record<string, boolean>
+  >({});
+
   useEffect(() => {
     refreshTodo();
   }, [refreshTodo]);
 
-  const groupItemsByCategory = useCallback((items: ReadingTodoItem[]) => {
-    const grouped: Record<string, ReadingTodoItem[]> = {};
+  // Toggle the expansion state of a parent group
+  const toggleExpandParent = (categoryParentKey: string) => {
+    setExpandedParents((prev) => ({
+      ...prev,
+      [categoryParentKey]: !prev[categoryParentKey],
+    }));
+  };
+
+  // Extract the immediate parent from a file path
+  const getImmediateParent = (path: string): string => {
+    const parts = path.split("/");
+
+    // If there's no parent directory or just a single level, use the top category
+    if (parts.length <= 2) {
+      return "root";
+    }
+
+    // Return the immediate parent (second-to-last path segment)
+    return parts[parts.length - 2];
+  };
+
+  // Group items by top-level category and then by immediate parent
+  const groupItemsByHierarchy = useCallback((items: ReadingTodoItem[]) => {
+    const grouped: Record<string, Record<string, ReadingTodoItem[]>> = {};
 
     items.forEach((item) => {
       const category = item.path.split("/")[0] || "Uncategorized";
+      const parent = getImmediateParent(item.path);
+
       if (!grouped[category]) {
-        grouped[category] = [];
+        grouped[category] = {};
       }
-      grouped[category].push(item);
+
+      if (!grouped[category][parent]) {
+        grouped[category][parent] = [];
+      }
+
+      grouped[category][parent].push(item);
     });
 
     return Object.entries(grouped)
       .sort(([a], [b]) => a.localeCompare(b))
-      .map(([category, items]) => ({
+      .map(([category, parentGroups]) => ({
         category,
-        items: [...items].sort((a, b) => b.addedAt - a.addedAt),
+        parentGroups: Object.fromEntries(
+          Object.entries(parentGroups)
+            .sort(([a], [b]) => a.localeCompare(b))
+            .map(([parent, items]) => [
+              parent,
+              [...items].sort((a, b) => b.addedAt - a.addedAt),
+            ])
+        ),
       }));
   }, []);
 
   const groupedPendingItems = useMemo(() => {
-    return groupItemsByCategory(pending);
-  }, [pending, groupItemsByCategory]);
+    return groupItemsByHierarchy(pending);
+  }, [pending, groupItemsByHierarchy]);
 
   const groupedCompletedItems = useMemo(() => {
-    return groupItemsByCategory(completed);
-  }, [completed, groupItemsByCategory]);
+    return groupItemsByHierarchy(completed);
+  }, [completed, groupItemsByHierarchy]);
+
+  // Initialize expanded states when items change
+  useEffect(() => {
+    const newExpandedStates: Record<string, boolean> = {};
+
+    // Default: expand if few items, collapse if many
+    const shouldAutoExpand = todoList.length < 30;
+
+    groupedPendingItems.forEach(({ category, parentGroups }) => {
+      Object.keys(parentGroups).forEach((parent) => {
+        const key = `${category}-${parent}-pending`;
+        // Only set if not already in state
+        if (expandedParents[key] === undefined) {
+          newExpandedStates[key] = shouldAutoExpand;
+        }
+      });
+    });
+
+    groupedCompletedItems.forEach(({ category, parentGroups }) => {
+      Object.keys(parentGroups).forEach((parent) => {
+        const key = `${category}-${parent}-completed`;
+        // Only set if not already in state
+        if (expandedParents[key] === undefined) {
+          newExpandedStates[key] = shouldAutoExpand;
+        }
+      });
+    });
+
+    if (Object.keys(newExpandedStates).length > 0) {
+      setExpandedParents((prev) => ({ ...prev, ...newExpandedStates }));
+    }
+  }, [
+    groupedPendingItems,
+    groupedCompletedItems,
+    todoList.length,
+    expandedParents,
+  ]);
 
   return (
     <div className="flex flex-col gap-4">
@@ -144,6 +234,7 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
               </TabsTrigger>
             </TabsList>
 
+            {/* Pending Items Tab */}
             <TabsContent value="pending" className="space-y-4 mt-4">
               {pending.length === 0 ? (
                 <div className="py-8 text-center text-muted-foreground">
@@ -160,11 +251,14 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
               ) : (
                 <ScrollArea className="h-[calc(100vh-380px)] md:h-[540px] pr-4 -mr-4">
                   <AnimatePresence>
-                    {groupedPendingItems.map(({ category, items }) => (
+                    {groupedPendingItems.map(({ category, parentGroups }) => (
                       <CategoryGroup
-                        key={category}
+                        key={`${category}-pending`}
                         category={category}
-                        items={items}
+                        parentGroups={parentGroups}
+                        type="pending"
+                        expandedParents={expandedParents}
+                        toggleExpandParent={toggleExpandParent}
                         handleSelectDocument={handleSelectDocument}
                         toggleCompletion={toggleTodo}
                         removeItem={removeFromTodo}
@@ -175,6 +269,7 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
               )}
             </TabsContent>
 
+            {/* Completed Items Tab */}
             <TabsContent value="completed" className="space-y-4 mt-4">
               {completed.length === 0 ? (
                 <div className="py-8 text-center text-muted-foreground">
@@ -187,11 +282,14 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
               ) : (
                 <ScrollArea className="h-[calc(100vh-380px)] md:h-[540px] pr-4 -mr-4">
                   <AnimatePresence>
-                    {groupedCompletedItems.map(({ category, items }) => (
+                    {groupedCompletedItems.map(({ category, parentGroups }) => (
                       <CategoryGroup
-                        key={category}
+                        key={`${category}-completed`}
                         category={category}
-                        items={items}
+                        parentGroups={parentGroups}
+                        type="completed"
+                        expandedParents={expandedParents}
+                        toggleExpandParent={toggleExpandParent}
                         handleSelectDocument={handleSelectDocument}
                         toggleCompletion={toggleTodo}
                         removeItem={removeFromTodo}
@@ -208,10 +306,13 @@ const ReadingTodo: React.FC<ReadingTodoProps> = ({
   );
 };
 
-// Helper component for category groups
+// Helper component for category groups with collapsible parent sections
 interface CategoryGroupProps {
   category: string;
-  items: ReadingTodoItem[];
+  parentGroups: Record<string, ReadingTodoItem[]>;
+  type: "pending" | "completed";
+  expandedParents: Record<string, boolean>;
+  toggleExpandParent: (key: string) => void;
   handleSelectDocument: (path: string, title: string) => void;
   toggleCompletion: (id: string) => void;
   removeItem: (id: string) => void;
@@ -219,7 +320,10 @@ interface CategoryGroupProps {
 
 const CategoryGroup: React.FC<CategoryGroupProps> = ({
   category,
-  items,
+  parentGroups,
+  type,
+  expandedParents,
+  toggleExpandParent,
   handleSelectDocument,
   toggleCompletion,
   removeItem,
@@ -242,17 +346,56 @@ const CategoryGroup: React.FC<CategoryGroupProps> = ({
       </div>
 
       <div className="space-y-3">
-        <AnimatePresence>
-          {items.map((item) => (
-            <TodoItem
-              key={item.id}
-              item={item}
-              handleSelectDocument={handleSelectDocument}
-              toggleCompletion={() => toggleCompletion(item.id)}
-              removeItem={() => removeItem(item.id)}
-            />
-          ))}
-        </AnimatePresence>
+        {Object.entries(parentGroups).map(([parent, items]) => {
+          const categoryParentKey = `${category}-${parent}-${type}`;
+          const isExpanded = expandedParents[categoryParentKey] !== false; // Default to true if undefined
+
+          return (
+            <Collapsible
+              key={categoryParentKey}
+              open={isExpanded}
+              onOpenChange={() => toggleExpandParent(categoryParentKey)}
+              className="border border-border/50 rounded-xl overflow-hidden"
+            >
+              <CollapsibleTrigger className="flex items-center justify-between w-full p-2.5 text-sm font-medium bg-secondary/5 hover:bg-secondary/10 transition-colors">
+                <div className="flex items-center">
+                  {isExpanded ? (
+                    <ChevronDown className="h-4 w-4 mr-2 text-primary/70" />
+                  ) : (
+                    <ChevronRight className="h-4 w-4 mr-2 text-primary/70" />
+                  )}
+                  <span>{fromSnakeToTitleCase(parent)}</span>
+                </div>
+                <Badge variant="outline" className="rounded-full">
+                  {items.length}
+                </Badge>
+              </CollapsibleTrigger>
+
+              <CollapsibleContent className="bg-background/50">
+                <div className="p-2 space-y-2">
+                  <AnimatePresence>
+                    {items.map((item) => (
+                      <motion.div
+                        key={item.id}
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <TodoItem
+                          item={item}
+                          handleSelectDocument={handleSelectDocument}
+                          toggleCompletion={() => toggleCompletion(item.id)}
+                          removeItem={() => removeItem(item.id)}
+                        />
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          );
+        })}
       </div>
     </motion.div>
   );
