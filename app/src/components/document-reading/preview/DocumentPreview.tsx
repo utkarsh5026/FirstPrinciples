@@ -8,7 +8,7 @@ import DetailPanel from "@/components/document-reading/preview/DetailPanel";
 import getIconForTech from "@/components/shared/icons";
 import Header from "@/components/document-reading/preview/Header";
 import StartReadingButton from "@/components/document-reading/preview/StartReadingButton";
-import ReadingSessionDialog from "@/components/document-reading/preview/ReadingSessionDialog";
+import ReadingSessionDialog from "@/components/document-reading/preview/dialog/ReadingSessionDialog";
 import { formatTimeInMs } from "@/utils/time";
 import { estimateWordsRead } from "@/services/analytics/word-count-estimation";
 import { useDocument, useReadingHistory } from "@/hooks";
@@ -161,10 +161,6 @@ const DocumentPreview: React.FC = () => {
   const formattedReadTime = formatTimeInMs(totalTime);
 
   const CategoryIcon = getIconForTech(category);
-  const sectionCompletionPercent =
-    (sectionData.completedSectionIds.size /
-      sectionData.sectionsContent.length) *
-      100 || 0;
 
   return (
     <AnimatePresence mode="wait">
@@ -220,10 +216,12 @@ const DocumentPreview: React.FC = () => {
         category={category}
         timeSpent={sessionTimeSpent}
         estimatedWordsRead={sessionWordsRead}
-        sectionsReadInSession={sectionData.newlyCompletedSections.size}
-        totalSections={sectionData.sectionsContent.length}
-        sectionsCompletedPercent={sectionCompletionPercent}
-        sectionsBeforeSession={sectionData.previouslyCompletedSections.size}
+        sectionData={{
+          total: sectionData.sectionsContent.length,
+          previouslyRead: sectionData.previouslyCompletedSections.size,
+          newlyRead: sectionData.newlyCompletedSections.size,
+          completed: sectionData.completedSectionIds.size,
+        }}
       />
     </AnimatePresence>
   );

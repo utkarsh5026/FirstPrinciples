@@ -6,7 +6,6 @@ import {
   TrendingUp,
   Layers,
   Check,
-  Brain,
   ArrowRight,
   Trophy,
 } from "lucide-react";
@@ -29,11 +28,13 @@ interface ReadingSessionDialogProps {
   documentTitle: string;
   timeSpent: number;
   estimatedWordsRead: number;
-  sectionsReadInSession: number;
-  totalSections: number;
-  sectionsCompletedPercent: number;
   category: string;
-  sectionsBeforeSession: number;
+  sectionData: {
+    total: number;
+    previouslyRead: number;
+    newlyRead: number;
+    completed: number;
+  };
 }
 
 /**
@@ -49,11 +50,8 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
   documentTitle,
   timeSpent,
   estimatedWordsRead,
-  sectionsReadInSession,
-  totalSections,
-  sectionsCompletedPercent,
   category,
-  sectionsBeforeSession,
+  sectionData,
 }) => {
   const formattedTime = formatTimeInMs(timeSpent);
   const minutesSpent = Math.round(timeSpent / (1000 * 60));
@@ -64,23 +62,15 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
       ? Math.round(estimatedWordsRead / (timeSpent / 1000 / 60))
       : 0;
 
-  const getEfficiencyLevel = () => {
-    if (readingSpeed >= 350) return "Excellent";
-    if (readingSpeed >= 250) return "Good";
-    if (readingSpeed >= 150) return "Average";
-    return "Relaxed";
-  };
+  const completedPercent = (sectionData.completed / sectionData.total) * 100;
 
   const getProgressBarColorClass = () => {
-    if (sectionsCompletedPercent >= 100) return "bg-primary";
-    if (sectionsCompletedPercent >= 75) return "bg-primary/90";
-    if (sectionsCompletedPercent >= 50) return "bg-primary/80";
-    if (sectionsCompletedPercent >= 25) return "bg-primary/70";
+    if (completedPercent >= 100) return "bg-primary";
+    if (completedPercent >= 75) return "bg-primary/90";
+    if (completedPercent >= 50) return "bg-primary/80";
+    if (completedPercent >= 25) return "bg-primary/70";
     return "bg-primary/60";
   };
-
-  // Calculate how many more sections were completed in this session
-  const newSectionsCompleted = sectionsReadInSession;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -98,8 +88,8 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
             {getSessionInsight(
-              sectionsReadInSession,
-              totalSections,
+              sectionData.newlyRead,
+              sectionData.total,
               minutesSpent,
               readingSpeed
             )}
@@ -127,10 +117,10 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
                 icon={Layers}
                 label="Sections"
                 value={
-                  sectionsReadInSession > 0 ? `+${sectionsReadInSession}` : "0"
+                  sectionData.newlyRead > 0 ? `+${sectionData.newlyRead}` : "0"
                 }
-                total={totalSections}
-                showCheck={sectionsReadInSession > 0}
+                total={sectionData.total}
+                showCheck={sectionData.newlyRead > 0}
               />
               <StatGridItem
                 icon={TrendingUp}
@@ -140,91 +130,75 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
             </div>
 
             {/* Progress Bar for this session */}
-            {sectionsBeforeSession < totalSections && (
+            {sectionData.previouslyRead < sectionData.total && (
               <div className="mt-2">
                 <div className="flex justify-between text-xs text-muted-foreground mb-1">
                   <span>Document Progress</span>
                   <div className="flex items-center">
-                    <span>{Math.round(sectionsCompletedPercent)}%</span>
-                    {newSectionsCompleted > 0 && (
+                    <span>{Math.round(completedPercent)}%</span>
+                    {sectionData.newlyRead > 0 && (
                       <span className="ml-1 text-primary flex items-center">
                         <ArrowRight className="h-3 w-3 mr-0.5" />+
-                        {newSectionsCompleted}
+                        {sectionData.newlyRead}
                       </span>
                     )}
                   </div>
                 </div>
                 <div className="h-2 w-full bg-secondary/20 rounded-full overflow-hidden">
                   {/* Show before session progress in lighter color */}
-                  {sectionsBeforeSession > 0 && (
+                  {sectionData.previouslyRead > 0 && (
                     <div
                       className="h-full bg-primary/30"
                       style={{
                         width: `${
-                          (sectionsBeforeSession / totalSections) * 100
+                          (sectionData.previouslyRead / sectionData.total) * 100
                         }%`,
                       }}
                     />
                   )}
 
                   {/* Show this session's progress in brighter color */}
-                  {newSectionsCompleted > 0 && (
+                  {sectionData.newlyRead > 0 && (
                     <motion.div
                       className={cn("h-full", getProgressBarColorClass())}
                       initial={{ width: "0%" }}
                       animate={{
                         width: `${
-                          (newSectionsCompleted / totalSections) * 100
+                          (sectionData.newlyRead / sectionData.total) * 100
                         }%`,
                       }}
                       transition={{ duration: 0.5, ease: "easeOut" }}
                       style={{
                         marginLeft: `${
-                          (sectionsBeforeSession / totalSections) * 100
+                          (sectionData.previouslyRead / sectionData.total) * 100
                         }%`,
                       }}
                     />
                   )}
                 </div>
 
-                {/* Show visual legend for the progress bar */}
-                {sectionsBeforeSession > 0 && newSectionsCompleted > 0 && (
-                  <div className="flex items-center justify-end mt-1 text-xs text-muted-foreground">
-                    <div className="flex items-center mr-3">
-                      <div className="w-2 h-2 rounded-full bg-primary/30 mr-1.5"></div>
-                      <span>Previous</span>
+                {sectionData.previouslyRead > 0 &&
+                  sectionData.newlyRead > 0 && (
+                    <div className="flex items-center justify-end mt-1 text-xs text-muted-foreground">
+                      <div className="flex items-center mr-3">
+                        <div className="w-2 h-2 rounded-full bg-primary/30 mr-1.5"></div>
+                        <span>Previous</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 rounded-full bg-primary mr-1.5"></div>
+                        <span>This session</span>
+                      </div>
                     </div>
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 rounded-full bg-primary mr-1.5"></div>
-                      <span>This session</span>
-                    </div>
-                  </div>
-                )}
+                  )}
               </div>
             )}
-          </div>
-
-          {/* Reading Insight */}
-          <div className="flex mt-3 p-3 bg-secondary/5 border border-border/30 items-center rounded-2xl">
-            <Brain className="h-5 w-5 text-primary/80 mr-3 flex-shrink-0" />
-            <div className="text-xs">
-              <span className="font-medium text-foreground/90">
-                Reading tip:
-              </span>{" "}
-              <span className="text-muted-foreground">
-                {readingSpeed > 0
-                  ? `Your reading speed (${readingSpeed} WPM) is at a ${getEfficiencyLevel().toLowerCase()} pace.`
-                  : "Try reading at a comfortable pace that allows for good comprehension."}
-              </span>
-            </div>
           </div>
         </div>
 
         <DialogFooter>
           <Button
             onClick={() => onOpenChange(false)}
-            variant="ghost"
-            className="w-full transition-colors text-primary hover:text-primary rounded-2xl hover:bg-transparent cursor-pointer"
+            className="w-full text-foreground bg-primary/80 text-bold hover:text-primary rounded-2xl hover:bg-transparent cursor-pointer transition-all duration-300"
           >
             Continue
           </Button>
