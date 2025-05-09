@@ -11,7 +11,7 @@ import StartReadingButton from "@/components/document-reading/preview/StartReadi
 import ReadingSessionDialog from "@/components/document-reading/preview/ReadingSessionDialog";
 import { formatTimeInMs } from "@/utils/time";
 import { estimateWordsRead } from "@/services/analytics/word-count-estimation";
-import { useDocument, useReadingHistory, useDocumentReading } from "@/hooks";
+import { useDocument, useReadingHistory } from "@/hooks";
 import { useParams } from "react-router-dom";
 
 /**
@@ -41,22 +41,21 @@ const DocumentPreview: React.FC = () => {
 
   const { documentPath = "" } = useParams<{ documentPath: string }>();
 
-  const { loading, error, metrics, category, documentTitle, markdown } =
-    useDocument(documentPath);
+  const {
+    loading,
+    error,
+    metrics,
+    category,
+    documentTitle,
+    markdown,
+    sectionData,
+    getSection,
+    markSectionAsCompleted,
+    saveCompletedSections,
+  } = useDocument(documentPath);
 
   const { addToHistory, getDocumentHistory, updateReadingTime } =
     useReadingHistory();
-
-  const {
-    startSectionReading,
-    endReading,
-    getSection,
-    readSections,
-    sections,
-    newSectionRead,
-    alreadyReadSections,
-  } = useDocumentReading();
-
   /**
    * ⏱️ Load previous reading time from history
    */
@@ -83,14 +82,8 @@ const DocumentPreview: React.FC = () => {
   useEffect(() => {
     if (isFullscreen && !readingStartTimeRef.current) {
       readingStartTimeRef.current = Date.now();
-
-      console.log("📚 Reading session started:", {
-        document: documentTitle,
-        path: documentPath,
-        startTime: new Date().toLocaleTimeString(),
-      });
     }
-  }, [isFullscreen, documentPath, documentTitle, readSections]);
+  }, [isFullscreen]);
 
   /**
    * 🏁 Handle end of reading session
@@ -126,32 +119,32 @@ const DocumentPreview: React.FC = () => {
 
       readingStartTimeRef.current = null;
 
-      await endReading();
+      await saveCompletedSections();
       setIsFullscreen(false);
 
       setTimeout(() => {
         setDialogOpen(true);
       }, 150);
     } else {
-      await endReading();
+      await saveCompletedSections();
       setIsFullscreen(false);
     }
   }, [
     documentPath,
     documentTitle,
-    endReading,
     handleReadingSessionEnd,
     updateReadingTime,
+    saveCompletedSections,
   ]);
 
   if (isFullscreen) {
     return (
       <FullScreenCardView
-        onExit={endReading}
-        onChangeSection={startSectionReading}
-        sections={sections}
+        onExit={saveCompletedSections}
+        onChangeSection={markSectionAsCompleted}
+        sections={sectionData.sectionsContent}
         getSection={(index: number) => getSection(index) ?? null}
-        readSections={readSections}
+        readSections={sectionData.completedSectionIds}
         exitFullScreen={handleExitFullscreen}
         markdown={markdown}
       />
@@ -167,7 +160,9 @@ const DocumentPreview: React.FC = () => {
 
   const CategoryIcon = getIconForTech(category);
   const sectionCompletionPercent =
-    (newSectionRead.size / sections.length) * 100 || 0;
+    (sectionData.completedSectionIds.size /
+      sectionData.sectionsContent.length) *
+      100 || 0;
 
   return (
     <AnimatePresence mode="wait">
@@ -193,13 +188,13 @@ const DocumentPreview: React.FC = () => {
               <AnimatePresence mode="wait">
                 <div className="space-y-6 min-h-[200px]">
                   <DetailPanel
-                    totalSections={sections.length}
+                    totalSections={sectionData.sectionsContent.length}
                     wordCount={totalWords}
                     estimatedReadTime={parseInt(
                       formattedReadTime.split(":")[0]
                     )}
                     lastUpdatedFormatted={new Date().toLocaleDateString()}
-                    readSections={readSections}
+                    readSections={sectionData.completedSectionIds}
                     loading={loading}
                     lastReadingTime={
                       lastReadingTime
@@ -223,10 +218,10 @@ const DocumentPreview: React.FC = () => {
         category={category}
         timeSpent={sessionTimeSpent}
         estimatedWordsRead={sessionWordsRead}
-        sectionsReadInSession={newSectionRead.size}
-        totalSections={sections.length}
+        sectionsReadInSession={sectionData.newlyCompletedSections.size}
+        totalSections={sectionData.sectionsContent.length}
         sectionsCompletedPercent={sectionCompletionPercent}
-        sectionsBeforeSession={alreadyReadSections.size}
+        sectionsBeforeSession={sectionData.previouslyCompletedSections.size}
       />
     </AnimatePresence>
   );
