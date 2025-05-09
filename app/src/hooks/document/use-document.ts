@@ -120,15 +120,24 @@ export const useDocument = (documentPath: string) => {
       documentPath,
       Array.from(completedSectionIndices)
     );
+  }, [documentPath, completedSectionIndices, markSectionsCompleted]);
+
+  /**
+   * 🔄 Reset session status
+   *
+   * Resets the session status to the previous completed sections
+   */
+  const resetSessionStatus = useCallback(() => {
     previouslyCompletedSections.current = new Set(completedSectionIndices);
     newlyCompletedSections.current.clear();
-  }, [documentPath, completedSectionIndices, markSectionsCompleted]);
+  }, [completedSectionIndices]);
 
   return {
     markSectionAsCompleted,
     saveCompletedSections,
     getSection,
     isLoadingSectionData,
+    resetSessionStatus,
     sectionData: {
       completedSectionIds: completedSectionIndices,
       newlyCompletedSections: newlyCompletedSections.current,

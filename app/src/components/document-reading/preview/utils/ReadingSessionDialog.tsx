@@ -24,7 +24,7 @@ import getIconForTech from "@/components/shared/icons";
 
 interface ReadingSessionDialogProps {
   open: boolean;
-  onOpenChange: (open: boolean) => void;
+  onClose: () => void;
   documentTitle: string;
   timeSpent: number;
   estimatedWordsRead: number;
@@ -46,7 +46,7 @@ interface ReadingSessionDialogProps {
  */
 const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
   open,
-  onOpenChange,
+  onClose,
   documentTitle,
   timeSpent,
   estimatedWordsRead,
@@ -73,7 +73,7 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md font-cascadia-code max-w-[95vw] mx-auto rounded-2xl">
         <DialogHeader>
           <DialogTitle className="text-xl flex items-center gap-2">
@@ -197,7 +197,7 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
 
         <DialogFooter>
           <Button
-            onClick={() => onOpenChange(false)}
+            onClick={onClose}
             className="w-full text-foreground bg-primary/80 text-bold hover:text-primary rounded-2xl hover:bg-transparent cursor-pointer transition-all duration-300"
           >
             Continue

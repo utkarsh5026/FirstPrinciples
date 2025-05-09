@@ -33,10 +33,15 @@ import { useParams } from "react-router-dom";
  */
 const DocumentPreview: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [lastReadingTime, setLastReadingTime] = useState<number | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [sessionTimeSpent, setSessionTimeSpent] = useState(0);
-  const [sessionWordsRead, setSessionWordsRead] = useState(0);
+  const [sessionData, setSessionData] = useState<{
+    totalWords: number;
+    totalTime: number;
+  }>({
+    totalWords: 0,
+    totalTime: 0,
+  });
+  const [lastReadingTime, setLastReadingTime] = useState<number | null>(null);
   const readingStartTimeRef = useRef<number | null>(null);
 
   const { documentPath = "" } = useParams<{ documentPath: string }>();
@@ -52,6 +57,7 @@ const DocumentPreview: React.FC = () => {
     getSection,
     markSectionAsCompleted,
     saveCompletedSections,
+    resetSessionStatus,
   } = useDocument(documentPath);
 
   console.log(sectionData, "Section data");
@@ -88,14 +94,6 @@ const DocumentPreview: React.FC = () => {
   }, [isFullscreen]);
 
   /**
-   * 🏁 Handle end of reading session
-   */
-  const handleReadingSessionEnd = useCallback((timeSpent: number) => {
-    setLastReadingTime((prev) => (prev ?? 0) + timeSpent);
-    console.log(`Reading session ended: ${formatTimeInMs(timeSpent)}`);
-  }, []);
-
-  /**
    * 📖 Begin reading session in fullscreen
    */
   const startReading = useCallback(() => {
@@ -109,35 +107,37 @@ const DocumentPreview: React.FC = () => {
    * 🔍 Exit fullscreen and show session summary
    */
   const handleExitFullscreen = useCallback(async () => {
-    if (readingStartTimeRef.current) {
-      const timeSpent = Date.now() - readingStartTimeRef.current;
-      const wordsRead = estimateWordsRead(timeSpent);
-
-      setSessionTimeSpent(timeSpent);
-      setSessionWordsRead(wordsRead);
-
-      await updateReadingTime(documentPath, documentTitle, timeSpent);
-      handleReadingSessionEnd(timeSpent);
-
-      readingStartTimeRef.current = null;
-
+    if (!readingStartTimeRef.current) {
       await saveCompletedSections();
       setIsFullscreen(false);
-
-      setTimeout(() => {
-        setDialogOpen(true);
-      }, 150);
-    } else {
-      await saveCompletedSections();
-      setIsFullscreen(false);
+      return;
     }
-  }, [
-    documentPath,
-    documentTitle,
-    handleReadingSessionEnd,
-    updateReadingTime,
-    saveCompletedSections,
-  ]);
+
+    const timeSpent = Date.now() - readingStartTimeRef.current;
+    const wordsRead = estimateWordsRead(timeSpent);
+
+    setSessionData({
+      totalWords: wordsRead,
+      totalTime: timeSpent,
+    });
+
+    await updateReadingTime(documentPath, documentTitle, timeSpent);
+    setLastReadingTime((prev) => (prev ?? 0) + timeSpent);
+
+    readingStartTimeRef.current = null;
+
+    await saveCompletedSections();
+    setIsFullscreen(false);
+
+    setTimeout(() => {
+      setDialogOpen(true);
+    }, 150);
+  }, [documentPath, documentTitle, updateReadingTime, saveCompletedSections]);
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+    resetSessionStatus();
+  };
 
   if (isFullscreen) {
     return (
@@ -211,11 +211,11 @@ const DocumentPreview: React.FC = () => {
 
       <ReadingSessionDialog
         open={dialogOpen}
-        onOpenChange={setDialogOpen}
+        onClose={handleDialogClose}
         documentTitle={documentTitle}
         category={category}
-        timeSpent={sessionTimeSpent}
-        estimatedWordsRead={sessionWordsRead}
+        timeSpent={sessionData.totalTime}
+        estimatedWordsRead={sessionData.totalWords}
         sectionData={{
           total: sectionData.sectionsContent.length,
           previouslyRead: sectionData.previouslyCompletedSections.size,
