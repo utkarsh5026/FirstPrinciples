@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
-import LoadingScreen from "@/components/document-reading/preview/utils/LoadingScreen";
-import ErrorLoadingDocument from "@/components/document-reading/preview/utils/ErrorLoadingDocument";
 import FullScreenCardView from "@/components/document-reading/fullscreen/FullScreenCardView";
-import NoFileSelectedYet from "@/components/document-reading/preview/utils/NoFileSelectedYet";
-import DetailPanel from "@/components/document-reading/preview/DetailPanel";
 import getIconForTech from "@/components/shared/icons";
-import Header from "@/components/document-reading/preview/Header";
-import StartReadingButton from "@/components/document-reading/preview/StartReadingButton";
 import ReadingSessionDialog from "@/components/document-reading/preview/dialog/ReadingSessionDialog";
+import { DetailPanel, Header, StartReadingButton } from "./layout";
+import {
+  LoadingScreen,
+  ErrorLoadingDocument,
+  NoFileSelectedYet,
+} from "./utils";
 import { formatTimeInMs } from "@/utils/time";
 import { estimateWordsRead } from "@/services/analytics/word-count-estimation";
 import { useDocument, useReadingHistory } from "@/hooks";

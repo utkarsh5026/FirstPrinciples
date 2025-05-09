@@ -20,9 +20,12 @@ interface SilentReadingTimeIntegrationProps {
  * This component prioritizes the reading experience by avoiding
  * any distractions during active reading.
  */
-const SilentReadingTimeIntegration: React.FC<
-  SilentReadingTimeIntegrationProps
-> = ({ documentPath, documentTitle, isFullscreen, onSessionComplete }) => {
+const ReadingTimeTracker: React.FC<SilentReadingTimeIntegrationProps> = ({
+  documentPath,
+  documentTitle,
+  isFullscreen,
+  onSessionComplete,
+}) => {
   const { updateReadingTime } = useReadingHistory();
   const startTimeRef = useRef<number | null>(null);
   const [sessionEnded, setSessionEnded] = useState<boolean>(false);
@@ -87,4 +90,4 @@ const SilentReadingTimeIntegration: React.FC<
   return null;
 };
 
-export default SilentReadingTimeIntegration;
+export default ReadingTimeTracker;
