@@ -198,7 +198,6 @@ export async function markSectionsCompleted(
   sectionIndices: number[]
 ): Promise<boolean> {
   try {
-    console.error(path, sectionIndices, "Mark sections completed");
     const entry = await getDocumentHistory(path);
 
     if (!entry) {
@@ -212,13 +211,6 @@ export async function markSectionsCompleted(
       lastReadAt: Date.now(),
       completedSectionIndices: union(completedSectionIndices, sectionIndices),
     };
-
-    console.error(
-      updatedEntry,
-      completedSectionIndices,
-      sectionIndices,
-      "Updated entry"
-    );
 
     await databaseService.update(
       STORE_NAME,
