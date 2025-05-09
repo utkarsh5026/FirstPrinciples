@@ -2,12 +2,12 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
 import FullScreenCardView from "@/components/document-reading/fullscreen/FullScreenCardView";
 import getIconForTech from "@/components/shared/icons";
-import ReadingSessionDialog from "@/components/document-reading/preview/dialog/ReadingSessionDialog";
 import { DetailPanel, Header, StartReadingButton } from "./layout";
 import {
   LoadingScreen,
   ErrorLoadingDocument,
   NoFileSelectedYet,
+  ReadingSessionDialog,
 } from "./utils";
 import { formatTimeInMs } from "@/utils/time";
 import { estimateWordsRead } from "@/services/analytics/word-count-estimation";
