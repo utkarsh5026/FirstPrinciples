@@ -11,11 +11,7 @@ import StartReadingButton from "@/components/document-reading/preview/StartReadi
 import ReadingSessionDialog from "@/components/document-reading/preview/ReadingSessionDialog";
 import { formatTimeInMs } from "@/utils/time";
 import { estimateWordsRead } from "@/services/analytics/word-count-estimation";
-import {
-  useCurrentDocument,
-  useReadingHistory,
-  useDocumentReading,
-} from "@/hooks";
+import { useDocument, useReadingHistory, useDocumentReading } from "@/hooks";
 import { useParams } from "react-router-dom";
 
 /**
@@ -45,14 +41,8 @@ const DocumentPreview: React.FC = () => {
 
   const { documentPath = "" } = useParams<{ documentPath: string }>();
 
-  const {
-    loadedDocumentForUrl,
-    loading,
-    error,
-    metrics,
-    category,
-    documentTitle,
-  } = useCurrentDocument();
+  const { loading, error, metrics, category, documentTitle, markdown } =
+    useDocument(documentPath);
 
   const { addToHistory, getDocumentHistory, updateReadingTime } =
     useReadingHistory();
@@ -66,16 +56,6 @@ const DocumentPreview: React.FC = () => {
     newSectionRead,
     alreadyReadSections,
   } = useDocumentReading();
-
-  /**
-   * 📂 Load document when path changes
-   */
-  useEffect(() => {
-    const fullPath = documentPath.endsWith(".md")
-      ? documentPath
-      : `${documentPath}.md`;
-    loadedDocumentForUrl(fullPath);
-  }, [documentPath, loadedDocumentForUrl]);
 
   /**
    * ⏱️ Load previous reading time from history
@@ -173,6 +153,7 @@ const DocumentPreview: React.FC = () => {
         getSection={(index: number) => getSection(index) ?? null}
         readSections={readSections}
         exitFullScreen={handleExitFullscreen}
+        markdown={markdown}
       />
     );
   }

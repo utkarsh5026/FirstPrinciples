@@ -13,7 +13,6 @@ import {
 import { Button } from "@/components/ui/button";
 import SectionsSheet from "./sidebar/SectionsSheet";
 import useMobile from "@/hooks/device/use-mobile";
-import { useCurrentDocument } from "@/hooks";
 import ReadingSettingsSheet from "./settings/ReadingSettingsSheet";
 import { ReadingSettingsProvider } from "./context/ReadingSettingsProvider";
 import { useReadingSettings, fontFamilyMap } from "./context/ReadingContext";
@@ -25,6 +24,7 @@ interface FullscreenCardViewProps {
   sections: MarkdownSection[];
   getSection: (index: number) => MarkdownSection | null;
   readSections: Set<string>;
+  markdown: string;
 }
 interface FullscreenCardContentProps extends FullscreenCardViewProps {
   settingsOpen: boolean;
@@ -43,6 +43,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   sections,
   getSection,
   readSections,
+  markdown,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -51,7 +52,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   const startTimeRef = useRef<number>(Date.now());
   const { settings } = useReadingSettings();
-  const { markdown } = useCurrentDocument();
 
   const initializedRef = useRef(false);
 
@@ -257,9 +257,11 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
 
 const FullscreenCardView: React.FC<
   FullscreenCardViewProps & {
+    markdown: string;
     exitFullScreen: () => void;
   }
 > = ({
+  markdown,
   onExit,
   onChangeSection,
   sections,
@@ -309,6 +311,7 @@ const FullscreenCardView: React.FC<
 
         {/* Content Area */}
         <FullscreenCardContent
+          markdown={markdown}
           settingsOpen={settingsOpen}
           setSettingsOpen={setSettingsOpen}
           menuOpen={menuOpen}
