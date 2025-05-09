@@ -198,7 +198,7 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
         <DialogFooter>
           <Button
             onClick={onClose}
-            className="w-full text-foreground bg-primary/80 text-bold hover:text-primary rounded-2xl hover:bg-transparent cursor-pointer transition-all duration-300"
+            className="w-full text-foreground bg-primary/80 text-bold hover:text-primary rounded-2xl hover:bg-transparent cursor-pointer transition-all duration-300 shadow-2xl shadow-primary"
           >
             Continue
           </Button>
