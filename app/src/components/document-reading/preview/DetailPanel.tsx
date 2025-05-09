@@ -11,7 +11,7 @@ interface DetailPanelProps {
   wordCount: number;
   estimatedReadTime: number;
   lastUpdatedFormatted: string;
-  readSections: Set<string>;
+  readSections: Set<number>;
   loading: boolean;
   lastReadingTime: string;
 }

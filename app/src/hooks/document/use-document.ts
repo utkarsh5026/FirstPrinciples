@@ -1,7 +1,7 @@
 import { useCurrentDocument } from "@/hooks";
 import { useHistoryStore } from "@/stores";
 import { union } from "@/utils/array";
-import { useEffect, useState, useRef, useMemo, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 const MARKDOWN_EXTENSION = ".md";
 
@@ -21,8 +21,8 @@ export const useDocument = (documentPath: string) => {
     useCurrentDocument();
 
   const [completedSectionIndices, setCompletedSectionIndices] = useState<
-    number[]
-  >([]);
+    Set<number>
+  >(new Set());
   const [isLoadingSectionData, setIsLoadingSectionData] = useState(false);
   const newlyCompletedSections = useRef<Set<number>>(new Set());
   const previouslyCompletedSections = useRef<Set<number>>(new Set());
@@ -61,7 +61,7 @@ export const useDocument = (documentPath: string) => {
         if (!documentHistory) return;
 
         setCompletedSectionIndices(
-          documentHistory.completedSectionIndices || []
+          new Set(documentHistory.completedSectionIndices || [])
         );
         previouslyCompletedSections.current = new Set(
           documentHistory.completedSectionIndices || []
@@ -87,7 +87,9 @@ export const useDocument = (documentPath: string) => {
       if (sectionIndex < 0 || sectionIndex >= sections.length) return false;
 
       await markSectionsCompleted(documentPath, [sectionIndex]);
-      setCompletedSectionIndices((prev) => union(prev, [sectionIndex]));
+      setCompletedSectionIndices(
+        (prev) => new Set(union(Array.from(prev), [sectionIndex]))
+      );
       newlyCompletedSections.current.add(sectionIndex);
       return true;
     },
@@ -114,23 +116,13 @@ export const useDocument = (documentPath: string) => {
    */
   const saveCompletedSections = useCallback(async () => {
     if (!documentPath) return;
-    await markSectionsCompleted(documentPath, completedSectionIndices);
+    await markSectionsCompleted(
+      documentPath,
+      Array.from(completedSectionIndices)
+    );
     previouslyCompletedSections.current = new Set(completedSectionIndices);
     newlyCompletedSections.current.clear();
   }, [documentPath, completedSectionIndices, markSectionsCompleted]);
-
-  /**
-   * 🏆 Track completed sections
-   *
-   * Maintains a list of section IDs you've already read
-   */
-  const completedSectionIds = useMemo(() => {
-    return new Set(
-      sections
-        .filter((_section, index) => completedSectionIndices.includes(index))
-        .map(({ id }) => id)
-    );
-  }, [sections, completedSectionIndices]);
 
   return {
     markSectionAsCompleted,
@@ -138,7 +130,7 @@ export const useDocument = (documentPath: string) => {
     getSection,
     isLoadingSectionData,
     sectionData: {
-      completedSectionIds,
+      completedSectionIds: completedSectionIndices,
       newlyCompletedSections: newlyCompletedSections.current,
       previouslyCompletedSections: previouslyCompletedSections.current,
       sectionsContent: sections,

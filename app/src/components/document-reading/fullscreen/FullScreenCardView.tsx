@@ -23,7 +23,7 @@ interface FullscreenCardViewProps {
   onChangeSection: (index: number) => Promise<boolean>;
   sections: MarkdownSection[];
   getSection: (index: number) => MarkdownSection | null;
-  readSections: Set<string>;
+  readSections: Set<number>;
   markdown: string;
 }
 interface FullscreenCardContentProps extends FullscreenCardViewProps {

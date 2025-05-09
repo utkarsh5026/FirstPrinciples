@@ -31398,6 +31398,921 @@
     "title": "binary_data_manipulation_techniques",
     "frontmatter": {}
   },
+  "public\\content\\node_js\\real_time_systems_with_node_js\\web_socket_implementation_deep_dive.md": {
+    "path": "public\\content\\node_js\\real_time_systems_with_node_js\\web_socket_implementation_deep_dive.md",
+    "sections": [
+      {
+        "id": "websockets-in-nodejs-a-deep-dive-from-first-principles",
+        "title": "WebSockets in Node.js: A Deep Dive From First Principles",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "understanding-network-communication-the-foundation",
+        "title": "Understanding Network Communication: The Foundation",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "the-need-for-persistent-connections",
+        "title": "The Need for Persistent Connections",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "what-are-websockets",
+        "title": "What Are WebSockets?",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "the-websocket-protocol-a-closer-look",
+        "title": "The WebSocket Protocol: A Closer Look",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "nodejs-and-websockets-the-architecture",
+        "title": "Node.js and WebSockets: The Architecture",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "implementing-websockets-in-nodejs-the-ws-library",
+        "title": "Implementing WebSockets in Node.js: The ws Library",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "building-a-client",
+        "title": "Building a Client",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "understanding-websocket-data-frames",
+        "title": "Understanding WebSocket Data Frames",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "building-a-more-complete-websocket-server",
+        "title": "Building a More Complete WebSocket Server",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "websocket-connection-lifecycle",
+        "title": "WebSocket Connection Lifecycle",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "connection-states",
+        "title": "Connection States",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "handling-websocket-timeouts-and-keepalives",
+        "title": "Handling WebSocket Timeouts and Keepalives",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "secure-websockets-wss",
+        "title": "Secure WebSockets (WSS)",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "scaling-websockets-with-nodejs",
+        "title": "Scaling WebSockets with Node.js",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "socketio-a-higher-level-alternative",
+        "title": "Socket.IO: A Higher-Level Alternative",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "websocket-security-best-practices",
+        "title": "WebSocket Security Best Practices",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "real-world-example-a-collaborative-drawing-app",
+        "title": "Real-World Example: A Collaborative Drawing App",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "beyond-basic-websockets-advanced-topics",
+        "title": "Beyond Basic WebSockets: Advanced Topics",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 141
+      }
+    ],
+    "totalWordCount": 1606,
+    "estimatedReadingTime": 420000,
+    "title": "web_socket_implementation_deep_dive",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\real_time_systems_with_node_js\\socket_io_and_its_internals.md": {
+    "path": "public\\content\\node_js\\real_time_systems_with_node_js\\socket_io_and_its_internals.md",
+    "sections": [
+      {
+        "id": "understanding-socketio-from-first-principles",
+        "title": "Understanding Socket.IO from First Principles",
+        "level": 1,
+        "wordCount": 28
+      },
+      {
+        "id": "what-is-socketio",
+        "title": "What is Socket.IO?",
+        "level": 2,
+        "wordCount": 220
+      },
+      {
+        "id": "socketio-the-solution",
+        "title": "Socket.IO: The Solution",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "socketio-architecture",
+        "title": "Socket.IO Architecture",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "socketio-internal-architecture",
+        "title": "Socket.IO Internal Architecture",
+        "level": 2,
+        "wordCount": 251
+      },
+      {
+        "id": "namespaces-and-rooms",
+        "title": "Namespaces and Rooms",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "middleware-and-authentication",
+        "title": "Middleware and Authentication",
+        "level": 2,
+        "wordCount": 27
+      },
+      {
+        "id": "socketio-internals-advanced-topics",
+        "title": "Socket.IO Internals: Advanced Topics",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "building-a-real-time-application-with-socketio",
+        "title": "Building a Real-Time Application with Socket.IO",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "debugging-socketio",
+        "title": "Debugging Socket.IO",
+        "level": 2,
+        "wordCount": 12
+      },
+      {
+        "id": "socketio-vs-raw-websockets",
+        "title": "Socket.IO vs. Raw WebSockets",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 158
+      }
+    ],
+    "totalWordCount": 1280,
+    "estimatedReadingTime": 360000,
+    "title": "socket_io_and_its_internals",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\real_time_systems_with_node_js\\scaling_web_socket_applications.md": {
+    "path": "public\\content\\node_js\\real_time_systems_with_node_js\\scaling_web_socket_applications.md",
+    "sections": [
+      {
+        "id": "scaling-websocket-applications-in-nodejs-from-first-principles",
+        "title": "Scaling WebSocket Applications in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 8
+      },
+      {
+        "id": "introduction-to-websockets",
+        "title": "Introduction to WebSockets",
+        "level": 2,
+        "wordCount": 222
+      },
+      {
+        "id": "the-challenges-of-scaling-websockets",
+        "title": "The Challenges of Scaling WebSockets",
+        "level": 2,
+        "wordCount": 179
+      },
+      {
+        "id": "scaling-strategies-vertical-vs-horizontal",
+        "title": "Scaling Strategies: Vertical vs. Horizontal",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "vertical-scaling-techniques",
+        "title": "Vertical Scaling Techniques",
+        "level": 2,
+        "wordCount": 164
+      },
+      {
+        "id": "horizontal-scaling-with-multiple-processes",
+        "title": "Horizontal Scaling with Multiple Processes",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "inter-process-communication-solutions",
+        "title": "Inter-Process Communication Solutions",
+        "level": 2,
+        "wordCount": 140
+      },
+      {
+        "id": "scaling-across-multiple-servers",
+        "title": "Scaling Across Multiple Servers",
+        "level": 2,
+        "wordCount": 260
+      },
+      {
+        "id": "scaling-socketio-applications",
+        "title": "Scaling Socket.IO Applications",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "advanced-scaling-techniques",
+        "title": "Advanced Scaling Techniques",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "monitoring-and-troubleshooting",
+        "title": "Monitoring and Troubleshooting",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "deployment-considerations",
+        "title": "Deployment Considerations",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 198
+      }
+    ],
+    "totalWordCount": 1959,
+    "estimatedReadingTime": 480000,
+    "title": "scaling_web_socket_applications",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\real_time_systems_with_node_js\\real_time_data_consistency_strategies.md": {
+    "path": "public\\content\\node_js\\real_time_systems_with_node_js\\real_time_data_consistency_strategies.md",
+    "sections": [
+      {
+        "id": "real-time-data-consistency-strategies-in-nodejs-systems-a-first-principles-approach",
+        "title": "Real-time Data Consistency Strategies in Node.js Systems: A First Principles Approach",
+        "level": 1,
+        "wordCount": 51
+      },
+      {
+        "id": "1-understanding-real-time-systems-the-foundation",
+        "title": "1. Understanding Real-time Systems: The Foundation",
+        "level": 2,
+        "wordCount": 150
+      },
+      {
+        "id": "2-the-cap-theorem-the-unavoidable-trade-off",
+        "title": "2. The CAP Theorem: The Unavoidable Trade-off",
+        "level": 2,
+        "wordCount": 167
+      },
+      {
+        "id": "3-consistency-models-choosing-your-guarantees",
+        "title": "3. Consistency Models: Choosing Your Guarantees",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "4-real-time-communication-protocols-in-nodejs",
+        "title": "4. Real-time Communication Protocols in Node.js",
+        "level": 2,
+        "wordCount": 140
+      },
+      {
+        "id": "5-event-driven-architecture-the-nodejs-advantage",
+        "title": "5. Event-Driven Architecture: The Node.js Advantage",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "6-distributed-consistency-scaling-beyond-a-single-server",
+        "title": "6. Distributed Consistency: Scaling Beyond a Single Server",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "7-optimistic-vs-pessimistic-updates-balancing-user-experience-and-consistency",
+        "title": "7. Optimistic vs. Pessimistic Updates: Balancing User Experience and Consistency",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "8-conflict-resolution-when-updates-collide",
+        "title": "8. Conflict Resolution: When Updates Collide",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "9-real-world-implementation-bringing-it-all-together",
+        "title": "9. Real-world Implementation: Bringing It All Together",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "10-best-practices-for-real-time-data-consistency",
+        "title": "10. Best Practices for Real-time Data Consistency",
+        "level": 2,
+        "wordCount": 176
+      }
+    ],
+    "totalWordCount": 1159,
+    "estimatedReadingTime": 300000,
+    "title": "real_time_data_consistency_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\real_time_systems_with_node_js\\real_time_architecture_patterns.md": {
+    "path": "public\\content\\node_js\\real_time_systems_with_node_js\\real_time_architecture_patterns.md",
+    "sections": [
+      {
+        "id": "real-time-architecture-patterns-in-nodejs-a-first-principles-approach",
+        "title": "Real-Time Architecture Patterns in Node.js: A First Principles Approach",
+        "level": 1,
+        "wordCount": 61
+      },
+      {
+        "id": "1-understanding-real-time-from-first-principles",
+        "title": "1. Understanding \"Real-Time\" from First Principles",
+        "level": 2,
+        "wordCount": 206
+      },
+      {
+        "id": "2-why-nodejs-for-real-time",
+        "title": "2. Why Node.js for Real-Time?",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "3-core-real-time-architecture-patterns-in-nodejs",
+        "title": "3. Core Real-Time Architecture Patterns in Node.js",
+        "level": 2,
+        "wordCount": 1339
+      },
+      {
+        "id": "4-scaling-real-time-systems-in-nodejs",
+        "title": "4. Scaling Real-Time Systems in Node.js",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "5-advanced-patterns-and-best-practices",
+        "title": "5. Advanced Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "6-security-considerations",
+        "title": "6. Security Considerations",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "7-testing-real-time-applications",
+        "title": "7. Testing Real-Time Applications",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 141
+      }
+    ],
+    "totalWordCount": 2097,
+    "estimatedReadingTime": 540000,
+    "title": "real_time_architecture_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\real_time_systems_with_node_js\\pub_sub_patterns_for_real_time_apps.md": {
+    "path": "public\\content\\node_js\\real_time_systems_with_node_js\\pub_sub_patterns_for_real_time_apps.md",
+    "sections": [
+      {
+        "id": "understanding-pubsub-patterns-for-real-time-applications",
+        "title": "Understanding Pub/Sub Patterns for Real-Time Applications",
+        "level": 1,
+        "wordCount": 52
+      },
+      {
+        "id": "first-principles-the-foundation-of-pubsub",
+        "title": "First Principles: The Foundation of Pub/Sub",
+        "level": 2,
+        "wordCount": 261
+      },
+      {
+        "id": "the-mechanics-how-pubsub-actually-works",
+        "title": "The Mechanics: How Pub/Sub Actually Works",
+        "level": 2,
+        "wordCount": 198
+      },
+      {
+        "id": "key-characteristics-of-pubsub",
+        "title": "Key Characteristics of Pub/Sub",
+        "level": 2,
+        "wordCount": 179
+      },
+      {
+        "id": "real-time-application-patterns-with-pubsub",
+        "title": "Real-Time Application Patterns with Pub/Sub",
+        "level": 2,
+        "wordCount": 155
+      },
+      {
+        "id": "implementation-technologies-for-pubsub",
+        "title": "Implementation Technologies for Pub/Sub",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "advanced-concepts-and-challenges",
+        "title": "Advanced Concepts and Challenges",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "real-world-examples",
+        "title": "Real-World Examples",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "best-practices-for-pubsub-systems",
+        "title": "Best Practices for Pub/Sub Systems",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "conclusion-when-to-use-pubsub",
+        "title": "Conclusion: When to Use Pub/Sub",
+        "level": 2,
+        "wordCount": 124
+      }
+    ],
+    "totalWordCount": 1383,
+    "estimatedReadingTime": 360000,
+    "title": "pub_sub_patterns_for_real_time_apps",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\real_time_systems_with_node_js\\presence_and_state_synchronization.md": {
+    "path": "public\\content\\node_js\\real_time_systems_with_node_js\\presence_and_state_synchronization.md",
+    "sections": [
+      {
+        "id": "presence-and-state-synchronization-for-real-time-systems-with-nodejs",
+        "title": "Presence and State Synchronization for Real-time Systems with Node.js",
+        "level": 1,
+        "wordCount": 9
+      },
+      {
+        "id": "first-principles-understanding-real-time-systems",
+        "title": "First Principles: Understanding Real-time Systems",
+        "level": 2,
+        "wordCount": 176
+      },
+      {
+        "id": "what-are-presence-and-state",
+        "title": "What are Presence and State?",
+        "level": 2,
+        "wordCount": 178
+      },
+      {
+        "id": "the-challenge-of-synchronization",
+        "title": "The Challenge of Synchronization",
+        "level": 2,
+        "wordCount": 167
+      },
+      {
+        "id": "why-nodejs-for-real-time-systems",
+        "title": "Why Node.js for Real-time Systems?",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "core-building-blocks-for-real-time-systems-in-nodejs",
+        "title": "Core Building Blocks for Real-time Systems in Node.js",
+        "level": 2,
+        "wordCount": 229
+      },
+      {
+        "id": "implementing-presence-management",
+        "title": "Implementing Presence Management",
+        "level": 2,
+        "wordCount": 176
+      },
+      {
+        "id": "state-synchronization-strategies",
+        "title": "State Synchronization Strategies",
+        "level": 2,
+        "wordCount": 265
+      },
+      {
+        "id": "scaling-real-time-systems",
+        "title": "Scaling Real-time Systems",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "state-persistence-and-recovery",
+        "title": "State Persistence and Recovery",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "handling-network-disruptions",
+        "title": "Handling Network Disruptions",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "real-world-example-a-collaborative-drawing-app",
+        "title": "Real-world Example: A Collaborative Drawing App",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "advanced-considerations",
+        "title": "Advanced Considerations",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 227
+      }
+    ],
+    "totalWordCount": 2072,
+    "estimatedReadingTime": 540000,
+    "title": "presence_and_state_synchronization",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\real_time_systems_with_node_js\\latency_optimization_techniques.md": {
+    "path": "public\\content\\node_js\\real_time_systems_with_node_js\\latency_optimization_techniques.md",
+    "sections": [
+      {
+        "id": "latency-optimization-techniques-in-real-time-systems-with-nodejs",
+        "title": "Latency Optimization Techniques in Real-time Systems with Node.js",
+        "level": 1,
+        "wordCount": 8
+      },
+      {
+        "id": "understanding-latency-from-first-principles",
+        "title": "Understanding Latency from First Principles",
+        "level": 2,
+        "wordCount": 199
+      },
+      {
+        "id": "nodejs-architecture-the-foundation",
+        "title": "Node.js Architecture: The Foundation",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "common-sources-of-latency-in-nodejs",
+        "title": "Common Sources of Latency in Node.js",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "1-event-loop-optimization-techniques",
+        "title": "1. Event Loop Optimization Techniques",
+        "level": 2,
+        "wordCount": 132
+      },
+      {
+        "id": "2-memory-optimization",
+        "title": "2. Memory Optimization",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "3-database-and-io-optimization",
+        "title": "3. Database and I/O Optimization",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "4-network-optimization",
+        "title": "4. Network Optimization",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "5-concurrency-strategies",
+        "title": "5. Concurrency Strategies",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "6-monitoring-and-profiling",
+        "title": "6. Monitoring and Profiling",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "7-advanced-techniques",
+        "title": "7. Advanced Techniques",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "practical-examples-putting-it-all-together",
+        "title": "Practical Examples: Putting It All Together",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 149
+      }
+    ],
+    "totalWordCount": 1179,
+    "estimatedReadingTime": 300000,
+    "title": "latency_optimization_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\real_time_systems_with_node_js\\fallback_mechanisms_for_real_time_communications.md": {
+    "path": "public\\content\\node_js\\real_time_systems_with_node_js\\fallback_mechanisms_for_real_time_communications.md",
+    "sections": [
+      {
+        "id": "fallback-mechanisms-for-real-time-communications-in-nodejs",
+        "title": "Fallback Mechanisms for Real-Time Communications in Node.js",
+        "level": 1,
+        "wordCount": 7
+      },
+      {
+        "id": "understanding-real-time-communication-from-first-principles",
+        "title": "Understanding Real-Time Communication From First Principles",
+        "level": 2,
+        "wordCount": 224
+      },
+      {
+        "id": "the-need-for-fallback-mechanisms",
+        "title": "The Need for Fallback Mechanisms",
+        "level": 2,
+        "wordCount": 392
+      },
+      {
+        "id": "implementing-fallback-mechanisms",
+        "title": "Implementing Fallback Mechanisms",
+        "level": 2,
+        "wordCount": 225
+      },
+      {
+        "id": "advanced-fallback-strategies",
+        "title": "Advanced Fallback Strategies",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "scaling-real-time-applications-in-nodejs",
+        "title": "Scaling Real-Time Applications in Node.js",
+        "level": 2,
+        "wordCount": 129
+      },
+      {
+        "id": "best-practices-for-real-time-communications-in-nodejs",
+        "title": "Best Practices for Real-Time Communications in Node.js",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "real-world-example-a-complete-fallback-system",
+        "title": "Real-World Example: A Complete Fallback System",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 162
+      }
+    ],
+    "totalWordCount": 1340,
+    "estimatedReadingTime": 360000,
+    "title": "fallback_mechanisms_for_real_time_communications",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\real_time_systems_with_node_js\\connection_state_recovery.md": {
+    "path": "public\\content\\node_js\\real_time_systems_with_node_js\\connection_state_recovery.md",
+    "sections": [
+      {
+        "id": "connection-state-recovery-in-real-time-systems-with-nodejs",
+        "title": "Connection State Recovery in Real-time Systems with Node.js",
+        "level": 1,
+        "wordCount": 8
+      },
+      {
+        "id": "introduction-to-connection-state-recovery",
+        "title": "Introduction to Connection State Recovery",
+        "level": 2,
+        "wordCount": 195
+      },
+      {
+        "id": "first-principles-of-real-time-systems",
+        "title": "First Principles of Real-time Systems",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "nodejs-and-real-time-processing",
+        "title": "Node.js and Real-time Processing",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "connection-management-in-nodejs",
+        "title": "Connection Management in Node.js",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "state-management-approaches",
+        "title": "State Management Approaches",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "connection-state-recovery-strategies",
+        "title": "Connection State Recovery Strategies",
+        "level": 2,
+        "wordCount": 146
+      },
+      {
+        "id": "implementing-a-complete-recovery-system-in-nodejs",
+        "title": "Implementing a Complete Recovery System in Node.js",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "advanced-recovery-patterns",
+        "title": "Advanced Recovery Patterns",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "testing-connection-recovery",
+        "title": "Testing Connection Recovery",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 137
+      }
+    ],
+    "totalWordCount": 1080,
+    "estimatedReadingTime": 300000,
+    "title": "connection_state_recovery",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\real_time_systems_with_node_js\\binary_protocols_for_real_time_data.md": {
+    "path": "public\\content\\node_js\\real_time_systems_with_node_js\\binary_protocols_for_real_time_data.md",
+    "sections": [
+      {
+        "id": "binary-protocols-for-real-time-data-in-nodejs",
+        "title": "Binary Protocols for Real-Time Data in Node.js",
+        "level": 1,
+        "wordCount": 7
+      },
+      {
+        "id": "introduction-to-binary-protocols",
+        "title": "Introduction to Binary Protocols",
+        "level": 2,
+        "wordCount": 171
+      },
+      {
+        "id": "binary-data-fundamentals-in-nodejs",
+        "title": "Binary Data Fundamentals in Node.js",
+        "level": 2,
+        "wordCount": 149
+      },
+      {
+        "id": "binary-protocol-concepts",
+        "title": "Binary Protocol Concepts",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "real-time-binary-protocols-in-nodejs",
+        "title": "Real-Time Binary Protocols in Node.js",
+        "level": 2,
+        "wordCount": 260
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "handling-binary-data-in-nodejs-streams",
+        "title": "Handling Binary Data in Node.js Streams",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "real-world-protocol-mqtt",
+        "title": "Real-World Protocol: MQTT",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "advanced-topics",
+        "title": "Advanced Topics",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "security-considerations",
+        "title": "Security Considerations",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 119
+      }
+    ],
+    "totalWordCount": 1113,
+    "estimatedReadingTime": 300000,
+    "title": "binary_protocols_for_real_time_data",
+    "frontmatter": {}
+  },
   "public\\content\\node_js\\node_js_internals\\v8_engine_internals_and_optimization_techniques.md": {
     "path": "public\\content\\node_js\\node_js_internals\\v8_engine_internals_and_optimization_techniques.md",
     "sections": [
@@ -35283,6 +36198,930 @@
     "title": "circular_dependency_management",
     "frontmatter": {}
   },
+  "public\\content\\node_js\\http_server_implementation\\web_socket_server_implementation.md": {
+    "path": "public\\content\\node_js\\http_server_implementation\\web_socket_server_implementation.md",
+    "sections": [
+      {
+        "id": "understanding-nodejs-websocket-server-implementation-from-first-principles",
+        "title": "Understanding Node.js WebSocket Server Implementation From First Principles",
+        "level": 1,
+        "wordCount": 8
+      },
+      {
+        "id": "introduction-to-websockets",
+        "title": "Introduction to WebSockets",
+        "level": 2,
+        "wordCount": 204
+      },
+      {
+        "id": "network-programming-foundations",
+        "title": "Network Programming Foundations",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "the-websocket-protocol",
+        "title": "The WebSocket Protocol",
+        "level": 2,
+        "wordCount": 181
+      },
+      {
+        "id": "nodejs-foundations-for-websockets",
+        "title": "Node.js Foundations for WebSockets",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "websocket-server-implementation-in-nodejs",
+        "title": "WebSocket Server Implementation in Node.js",
+        "level": 2,
+        "wordCount": 228
+      },
+      {
+        "id": "adding-websocket-authentication",
+        "title": "Adding WebSocket Authentication",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "broadcasting-messages-to-all-clients",
+        "title": "Broadcasting Messages to All Clients",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "handling-binary-data",
+        "title": "Handling Binary Data",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "building-a-simple-chat-application",
+        "title": "Building a Simple Chat Application",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "websocket-server-scaling-considerations",
+        "title": "WebSocket Server Scaling Considerations",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "performance-optimization",
+        "title": "Performance Optimization",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "security-considerations",
+        "title": "Security Considerations",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "testing-websocket-servers",
+        "title": "Testing WebSocket Servers",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 138
+      }
+    ],
+    "totalWordCount": 1490,
+    "estimatedReadingTime": 360000,
+    "title": "web_socket_server_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\http_server_implementation\\server_sent_events_implementation.md": {
+    "path": "public\\content\\node_js\\http_server_implementation\\server_sent_events_implementation.md",
+    "sections": [
+      {
+        "id": "server-sent-events-sse-in-nodejs-a-first-principles-exploration",
+        "title": "Server-Sent Events (SSE) in Node.js: A First Principles Exploration",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "what-are-server-sent-events",
+        "title": "What Are Server-Sent Events?",
+        "level": 2,
+        "wordCount": 205
+      },
+      {
+        "id": "sse-protocol-the-technical-details",
+        "title": "SSE Protocol: The Technical Details",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "implementing-sse-in-nodejs-the-basics",
+        "title": "Implementing SSE in Node.js: The Basics",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "building-a-more-realistic-example-real-time-dashboard",
+        "title": "Building a More Realistic Example: Real-time Dashboard",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "enhanced-sse-messages-types-and-ids",
+        "title": "Enhanced SSE Messages: Types and IDs",
+        "level": 2,
+        "wordCount": 27
+      },
+      {
+        "id": "handling-reconnection-last-event-id",
+        "title": "Handling Reconnection: Last-Event-ID",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "creating-a-complete-sse-library-for-nodejs",
+        "title": "Creating a Complete SSE Library for Node.js",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "sse-best-practices-and-considerations",
+        "title": "SSE Best Practices and Considerations",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "advanced-sse-patterns",
+        "title": "Advanced SSE Patterns",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "comparing-sse-with-websockets",
+        "title": "Comparing SSE with WebSockets",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 89
+      }
+    ],
+    "totalWordCount": 1107,
+    "estimatedReadingTime": 300000,
+    "title": "server_sent_events_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\http_server_implementation\\request_and_response_objects_in_depth.md": {
+    "path": "public\\content\\node_js\\http_server_implementation\\request_and_response_objects_in_depth.md",
+    "sections": [
+      {
+        "id": "request-and-response-objects-in-nodejs-from-first-principles",
+        "title": "Request and Response Objects in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 64
+      },
+      {
+        "id": "understanding-http-the-foundation",
+        "title": "Understanding HTTP: The Foundation",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "the-client-server-model",
+        "title": "The Client-Server Model",
+        "level": 2,
+        "wordCount": 35
+      },
+      {
+        "id": "nodejs-and-http-creating-a-server-from-scratch",
+        "title": "Node.js and HTTP: Creating a Server from Scratch",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "the-request-object-in-depth",
+        "title": "The Request Object: In-Depth",
+        "level": 2,
+        "wordCount": 345
+      },
+      {
+        "id": "the-response-object-in-depth",
+        "title": "The Response Object: In-Depth",
+        "level": 2,
+        "wordCount": 291
+      },
+      {
+        "id": "practical-examples-complete-request-response-cycles",
+        "title": "Practical Examples: Complete Request-Response Cycles",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "request-and-response-in-expressjs",
+        "title": "Request and Response in Express.js",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "advanced-patterns-and-best-practices",
+        "title": "Advanced Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 129
+      }
+    ],
+    "totalWordCount": 1375,
+    "estimatedReadingTime": 360000,
+    "title": "request_and_response_objects_in_depth",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\http_server_implementation\\http_server_core_concepts.md": {
+    "path": "public\\content\\node_js\\http_server_implementation\\http_server_core_concepts.md",
+    "sections": [
+      {
+        "id": "http-server-core-concepts-in-nodejs-from-first-principles",
+        "title": "HTTP Server Core Concepts in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 9
+      },
+      {
+        "id": "introduction-to-http-and-client-server-architecture",
+        "title": "Introduction to HTTP and Client-Server Architecture",
+        "level": 2,
+        "wordCount": 198
+      },
+      {
+        "id": "nodejs-the-foundation-for-http-servers",
+        "title": "Node.js: The Foundation for HTTP Servers",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "core-nodejs-modules-for-http-servers",
+        "title": "Core Node.js Modules for HTTP Servers",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "creating-a-basic-http-server",
+        "title": "Creating a Basic HTTP Server",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "understanding-the-request-object",
+        "title": "Understanding the Request Object",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "working-with-the-response-object",
+        "title": "Working with the Response Object",
+        "level": 2,
+        "wordCount": 169
+      },
+      {
+        "id": "routing-in-a-nodejs-http-server",
+        "title": "Routing in a Node.js HTTP Server",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "error-handling-in-nodejs-http-servers",
+        "title": "Error Handling in Node.js HTTP Servers",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "serving-different-content-types",
+        "title": "Serving Different Content Types",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "streaming-responses",
+        "title": "Streaming Responses",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "https-servers",
+        "title": "HTTPS Servers",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "introduction-to-expressjs",
+        "title": "Introduction to Express.js",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 104
+      }
+    ],
+    "totalWordCount": 1369,
+    "estimatedReadingTime": 360000,
+    "title": "http_server_core_concepts",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\http_server_implementation\\http_headers_management.md": {
+    "path": "public\\content\\node_js\\http_server_implementation\\http_headers_management.md",
+    "sections": [
+      {
+        "id": "http-headers-management-in-nodejs-a-first-principles-approach",
+        "title": "HTTP Headers Management in Node.js: A First Principles Approach",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "what-are-http-headers",
+        "title": "What Are HTTP Headers?",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "nodejs-http-module-the-foundation",
+        "title": "Node.js HTTP Module: The Foundation",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "setting-response-headers",
+        "title": "Setting Response Headers",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "practical-examples-of-header-management",
+        "title": "Practical Examples of Header Management",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "expressjs-simplified-header-management",
+        "title": "Express.js: Simplified Header Management",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "common-http-header-categories",
+        "title": "Common HTTP Header Categories",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "handling-header-limitations-and-edge-cases",
+        "title": "Handling Header Limitations and Edge Cases",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "advanced-header-manipulation",
+        "title": "Advanced Header Manipulation",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "http2-header-management",
+        "title": "HTTP/2 Header Management",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "common-headers-and-their-use-cases",
+        "title": "Common Headers and Their Use Cases",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "advanced-header-security-considerations",
+        "title": "Advanced Header Security Considerations",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "creating-header-utilities",
+        "title": "Creating Header Utilities",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "best-practices-for-http-header-management",
+        "title": "Best Practices for HTTP Header Management",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 114
+      }
+    ],
+    "totalWordCount": 1018,
+    "estimatedReadingTime": 300000,
+    "title": "http_headers_management",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\http_server_implementation\\http_2_support_and_implementation.md": {
+    "path": "public\\content\\node_js\\http_server_implementation\\http_2_support_and_implementation.md",
+    "sections": [
+      {
+        "id": "http2-support-and-implementation-in-nodejs",
+        "title": "HTTP/2 Support and Implementation in Node.js",
+        "level": 1,
+        "wordCount": 6
+      },
+      {
+        "id": "understanding-http2-from-first-principles",
+        "title": "Understanding HTTP/2 from First Principles",
+        "level": 2,
+        "wordCount": 243
+      },
+      {
+        "id": "key-features-of-http2",
+        "title": "Key Features of HTTP/2",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "nodejs-and-http2-fundamentals",
+        "title": "Node.js and HTTP/2: Fundamentals",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "implementing-http2-in-nodejs",
+        "title": "Implementing HTTP/2 in Node.js",
+        "level": 2,
+        "wordCount": 285
+      },
+      {
+        "id": "http2-client-in-nodejs",
+        "title": "HTTP/2 Client in Node.js",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "advanced-http2-topics-in-nodejs",
+        "title": "Advanced HTTP/2 Topics in Node.js",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "http2-security-in-nodejs",
+        "title": "HTTP/2 Security in Node.js",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "debugging-http2-in-nodejs",
+        "title": "Debugging HTTP/2 in Node.js",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "practical-http2-application-example",
+        "title": "Practical HTTP/2 Application Example",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "http2-vs-http11-real-world-performance",
+        "title": "HTTP/2 vs HTTP/1.1: Real-world Performance",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "migrating-from-http11-to-http2-in-nodejs",
+        "title": "Migrating from HTTP/1.1 to HTTP/2 in Node.js",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 131
+      }
+    ],
+    "totalWordCount": 1342,
+    "estimatedReadingTime": 360000,
+    "title": "http_2_support_and_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\http_server_implementation\\graphql_server_implementation.md": {
+    "path": "public\\content\\node_js\\http_server_implementation\\graphql_server_implementation.md",
+    "sections": [
+      {
+        "id": "understanding-graphql-server-implementation-in-nodejs",
+        "title": "Understanding GraphQL Server Implementation in Node.js",
+        "level": 1,
+        "wordCount": 6
+      },
+      {
+        "id": "introduction-to-graphql-first-principles",
+        "title": "Introduction to GraphQL: First Principles",
+        "level": 2,
+        "wordCount": 180
+      },
+      {
+        "id": "setting-up-a-graphql-server-in-nodejs",
+        "title": "Setting Up a GraphQL Server in Node.js",
+        "level": 2,
+        "wordCount": 162
+      },
+      {
+        "id": "graphql-schema-the-type-system",
+        "title": "GraphQL Schema: The Type System",
+        "level": 2,
+        "wordCount": 240
+      },
+      {
+        "id": "graphql-resolver-chain",
+        "title": "GraphQL Resolver Chain",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "mutations-modifying-data",
+        "title": "Mutations: Modifying Data",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "input-types-organizing-arguments",
+        "title": "Input Types: Organizing Arguments",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "context-sharing-data-between-resolvers",
+        "title": "Context: Sharing Data Between Resolvers",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "error-handling-in-graphql",
+        "title": "Error Handling in GraphQL",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "dataloaders-solving-the-n1-query-problem",
+        "title": "DataLoaders: Solving the N+1 Query Problem",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "subscriptions-real-time-updates",
+        "title": "Subscriptions: Real-time Updates",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "authentication-and-authorization",
+        "title": "Authentication and Authorization",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "schema-directives-custom-behavior-through-annotations",
+        "title": "Schema Directives: Custom Behavior Through Annotations",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "production-considerations",
+        "title": "Production Considerations",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "best-practices-for-graphql-server-design",
+        "title": "Best Practices for GraphQL Server Design",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 131
+      }
+    ],
+    "totalWordCount": 1775,
+    "estimatedReadingTime": 480000,
+    "title": "graphql_server_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\http_server_implementation\\cors_implementation_strategies.md": {
+    "path": "public\\content\\node_js\\http_server_implementation\\cors_implementation_strategies.md",
+    "sections": [
+      {
+        "id": "understanding-cors-in-nodejs-from-first-principles",
+        "title": "Understanding CORS in Node.js from First Principles",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "first-principles-what-is-same-origin-policy",
+        "title": "First Principles: What is Same-Origin Policy?",
+        "level": 2,
+        "wordCount": 176
+      },
+      {
+        "id": "what-is-cors",
+        "title": "What is CORS?",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "why-do-we-need-cors-in-nodejs",
+        "title": "Why Do We Need CORS in Node.js?",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "understanding-cors-headers",
+        "title": "Understanding CORS Headers",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "simple-vs-preflight-requests",
+        "title": "Simple vs. Preflight Requests",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "implementing-cors-in-nodejs",
+        "title": "Implementing CORS in Node.js",
+        "level": 2,
+        "wordCount": 254
+      },
+      {
+        "id": "handling-cors-errors",
+        "title": "Handling CORS Errors",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "cors-security-considerations",
+        "title": "CORS Security Considerations",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "advanced-cors-scenarios",
+        "title": "Advanced CORS Scenarios",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "testing-cors-implementation",
+        "title": "Testing CORS Implementation",
+        "level": 2,
+        "wordCount": 27
+      },
+      {
+        "id": "debugging-cors-issues",
+        "title": "Debugging CORS Issues",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "express-middleware-implementation-pattern",
+        "title": "Express Middleware Implementation Pattern",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 114
+      }
+    ],
+    "totalWordCount": 1092,
+    "estimatedReadingTime": 300000,
+    "title": "cors_implementation_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\http_server_implementation\\cookie_handling_and_sessions.md": {
+    "path": "public\\content\\node_js\\http_server_implementation\\cookie_handling_and_sessions.md",
+    "sections": [
+      {
+        "id": "cookie-handling-and-sessions-in-nodejs-from-first-principles",
+        "title": "Cookie Handling and Sessions in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 30
+      },
+      {
+        "id": "understanding-the-stateless-nature-of-http",
+        "title": "Understanding the Stateless Nature of HTTP",
+        "level": 2,
+        "wordCount": 145
+      },
+      {
+        "id": "enter-cookies-client-side-state-management",
+        "title": "Enter Cookies: Client-Side State Management",
+        "level": 2,
+        "wordCount": 167
+      },
+      {
+        "id": "implementing-cookies-in-nodejs",
+        "title": "Implementing Cookies in Node.js",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "sessions-building-stateful-applications",
+        "title": "Sessions: Building Stateful Applications",
+        "level": 2,
+        "wordCount": 212
+      },
+      {
+        "id": "implementing-sessions-in-express-with-express-session",
+        "title": "Implementing Sessions in Express with express-session",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "using-redis-for-session-storage",
+        "title": "Using Redis for Session Storage",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "session-based-authentication",
+        "title": "Session-Based Authentication",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "security-considerations-for-cookies-and-sessions",
+        "title": "Security Considerations for Cookies and Sessions",
+        "level": 2,
+        "wordCount": 123
+      },
+      {
+        "id": "advanced-session-patterns",
+        "title": "Advanced Session Patterns",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "real-world-example-complete-user-authentication-system",
+        "title": "Real-World Example: Complete User Authentication System",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 107
+      }
+    ],
+    "totalWordCount": 1328,
+    "estimatedReadingTime": 360000,
+    "title": "cookie_handling_and_sessions",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\http_server_implementation\\content_negotiation_techniques.md": {
+    "path": "public\\content\\node_js\\http_server_implementation\\content_negotiation_techniques.md",
+    "sections": [
+      {
+        "id": "content-negotiation-in-nodejs-from-first-principles",
+        "title": "Content Negotiation in Node.js: From First Principles",
+        "level": 1,
+        "wordCount": 71
+      },
+      {
+        "id": "1-understanding-http-communication-the-foundation",
+        "title": "1. Understanding HTTP Communication: The Foundation",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "2-what-is-content-negotiation",
+        "title": "2. What is Content Negotiation?",
+        "level": 2,
+        "wordCount": 145
+      },
+      {
+        "id": "3-types-of-content-negotiation",
+        "title": "3. Types of Content Negotiation",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "4-http-headers-in-content-negotiation",
+        "title": "4. HTTP Headers in Content Negotiation",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "5-implementing-content-negotiation-in-nodejs",
+        "title": "5. Implementing Content Negotiation in Node.js",
+        "level": 2,
+        "wordCount": 140
+      },
+      {
+        "id": "6-handling-quality-values-q-values",
+        "title": "6. Handling Quality Values (q-values)",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "7-language-negotiation",
+        "title": "7. Language Negotiation",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "8-advanced-techniques-content-negotiation-libraries",
+        "title": "8. Advanced Techniques: Content Negotiation Libraries",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "9-handling-multiple-dimensions-of-negotiation",
+        "title": "9. Handling Multiple Dimensions of Negotiation",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "10-best-practices-for-content-negotiation",
+        "title": "10. Best Practices for Content Negotiation",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "11-implementing-content-negotiation-for-response-compression",
+        "title": "11. Implementing Content Negotiation for Response Compression",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "12-character-set-negotiation",
+        "title": "12. Character Set Negotiation",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "13-putting-it-all-together-a-complete-example",
+        "title": "13. Putting It All Together: A Complete Example",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "14-beyond-basic-content-negotiation",
+        "title": "14. Beyond Basic Content Negotiation",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 1178,
+    "estimatedReadingTime": 300000,
+    "title": "content_negotiation_techniques",
+    "frontmatter": {}
+  },
   "public\\content\\node_js\\asynchronous_programming_fundamentals\\understanding_synchronous_vs_asynchronous_code.md": {
     "path": "public\\content\\node_js\\asynchronous_programming_fundamentals\\understanding_synchronous_vs_asynchronous_code.md",
     "sections": [
@@ -36112,6 +37951,813 @@
     "totalWordCount": 1000,
     "estimatedReadingTime": 240000,
     "title": "async_await_syntax_and_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\api_design_and_implementation\\rest_api_best_practices_and_conventions.md": {
+    "path": "public\\content\\node_js\\api_design_and_implementation\\rest_api_best_practices_and_conventions.md",
+    "sections": [
+      {
+        "id": "rest-api-best-practices-and-conventions-in-nodejs",
+        "title": "REST API Best Practices and Conventions in Node.js",
+        "level": 1,
+        "wordCount": 34
+      },
+      {
+        "id": "understanding-rest-from-first-principles",
+        "title": "Understanding REST from First Principles",
+        "level": 2,
+        "wordCount": 166
+      },
+      {
+        "id": "setting-up-a-basic-restful-api-in-nodejs",
+        "title": "Setting Up a Basic RESTful API in Node.js",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "rest-api-best-practices",
+        "title": "REST API Best Practices",
+        "level": 2,
+        "wordCount": 463
+      },
+      {
+        "id": "putting-it-all-together",
+        "title": "Putting It All Together",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 129
+      }
+    ],
+    "totalWordCount": 859,
+    "estimatedReadingTime": 240000,
+    "title": "rest_api_best_practices_and_conventions",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\api_design_and_implementation\\resource_naming_and_uri_structure_design.md": {
+    "path": "public\\content\\node_js\\api_design_and_implementation\\resource_naming_and_uri_structure_design.md",
+    "sections": [
+      {
+        "id": "resource-naming-and-uri-structure-design-in-nodejs-a-first-principles-approach",
+        "title": "Resource Naming and URI Structure Design in Node.js: A First Principles Approach",
+        "level": 1,
+        "wordCount": 59
+      },
+      {
+        "id": "understanding-resources-and-uris-from-first-principles",
+        "title": "Understanding Resources and URIs from First Principles",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "the-anatomy-of-a-uri",
+        "title": "The Anatomy of a URI",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "principles-of-good-resource-naming",
+        "title": "Principles of Good Resource Naming",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "implementing-resource-uris-in-nodejs",
+        "title": "Implementing Resource URIs in Node.js",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "versioning-your-api",
+        "title": "Versioning Your API",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "query-parameters-for-filtering-sorting-and-pagination",
+        "title": "Query Parameters for Filtering, Sorting, and Pagination",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "advanced-concepts-in-uri-design",
+        "title": "Advanced Concepts in URI Design",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "practical-example-building-a-restful-blog-api",
+        "title": "Practical Example: Building a RESTful Blog API",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "best-practices-for-uri-design",
+        "title": "Best Practices for URI Design",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "common-uri-design-patterns",
+        "title": "Common URI Design Patterns",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 102
+      }
+    ],
+    "totalWordCount": 1010,
+    "estimatedReadingTime": 300000,
+    "title": "resource_naming_and_uri_structure_design",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\api_design_and_implementation\\long_running_operations_and_status_reporting.md": {
+    "path": "public\\content\\node_js\\api_design_and_implementation\\long_running_operations_and_status_reporting.md",
+    "sections": [
+      {
+        "id": "long-running-operations-and-status-reporting-in-nodejs",
+        "title": "Long-Running Operations and Status Reporting in Node.js",
+        "level": 1,
+        "wordCount": 27
+      },
+      {
+        "id": "understanding-the-fundamentals",
+        "title": "Understanding the Fundamentals",
+        "level": 2,
+        "wordCount": 195
+      },
+      {
+        "id": "approaches-to-long-running-operations",
+        "title": "Approaches to Long-Running Operations",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "status-reporting-for-long-running-operations",
+        "title": "Status Reporting for Long-Running Operations",
+        "level": 2,
+        "wordCount": 165
+      },
+      {
+        "id": "advanced-patterns-for-long-running-operations",
+        "title": "Advanced Patterns for Long-Running Operations",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "best-practices-for-status-reporting",
+        "title": "Best Practices for Status Reporting",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "real-world-implementation-file-upload-with-progress",
+        "title": "Real-World Implementation: File Upload with Progress",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 134
+      }
+    ],
+    "totalWordCount": 929,
+    "estimatedReadingTime": 240000,
+    "title": "long_running_operations_and_status_reporting",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\api_design_and_implementation\\hateoas_and_hypermedia_controls.md": {
+    "path": "public\\content\\node_js\\api_design_and_implementation\\hateoas_and_hypermedia_controls.md",
+    "sections": [
+      {
+        "id": "hateoas-and-hypermedia-controls-in-nodejs",
+        "title": "HATEOAS and Hypermedia Controls in Node.js",
+        "level": 1,
+        "wordCount": 37
+      },
+      {
+        "id": "understanding-hateoas-from-first-principles",
+        "title": "Understanding HATEOAS from First Principles",
+        "level": 2,
+        "wordCount": 185
+      },
+      {
+        "id": "hypermedia-controls-explained",
+        "title": "Hypermedia Controls Explained",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "implementation-in-nodejs",
+        "title": "Implementation in Node.js",
+        "level": 2,
+        "wordCount": 217
+      },
+      {
+        "id": "implementing-a-more-complete-hateoas-api",
+        "title": "Implementing a More Complete HATEOAS API",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "media-types-and-content-negotiation",
+        "title": "Media Types and Content Negotiation",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "standardizing-with-hal",
+        "title": "Standardizing with HAL",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "advanced-example-forms-and-templates",
+        "title": "Advanced Example: Forms and Templates",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "real-world-example-bookstore-api-with-express",
+        "title": "Real-World Example: Bookstore API with Express",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "testing-hateoas-apis",
+        "title": "Testing HATEOAS APIs",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "benefits-of-hateoas-in-nodejs-apis",
+        "title": "Benefits of HATEOAS in Node.js APIs",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "common-media-types-for-hateoas",
+        "title": "Common Media Types for HATEOAS",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "practical-implementation-tips",
+        "title": "Practical Implementation Tips",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "common-challenges-and-solutions",
+        "title": "Common Challenges and Solutions",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 132
+      }
+    ],
+    "totalWordCount": 1183,
+    "estimatedReadingTime": 300000,
+    "title": "hateoas_and_hypermedia_controls",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\api_design_and_implementation\\filtering_sorting_and_searching_in_apis.md": {
+    "path": "public\\content\\node_js\\api_design_and_implementation\\filtering_sorting_and_searching_in_apis.md",
+    "sections": [
+      {
+        "id": "filtering-sorting-and-searching-in-nodejs-apis-a-first-principles-approach",
+        "title": "Filtering, Sorting, and Searching in Node.js APIs: A First Principles Approach",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "understanding-apis-from-first-principles",
+        "title": "Understanding APIs from First Principles",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "the-core-data-operations",
+        "title": "The Core Data Operations",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "setting-up-a-basic-nodejs-api",
+        "title": "Setting Up a Basic Node.js API",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "1-filtering-in-apis-first-principles",
+        "title": "1. Filtering in APIs: First Principles",
+        "level": 2,
+        "wordCount": 171
+      },
+      {
+        "id": "2-sorting-in-apis-first-principles",
+        "title": "2. Sorting in APIs: First Principles",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "3-searching-in-apis-first-principles",
+        "title": "3. Searching in APIs: First Principles",
+        "level": 2,
+        "wordCount": 157
+      },
+      {
+        "id": "advanced-implementation-combining-all-three-features",
+        "title": "Advanced Implementation: Combining All Three Features",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "best-practices-and-advanced-concepts",
+        "title": "Best Practices and Advanced Concepts",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "real-world-implementation-a-complete-api-with-express-and-mongodb",
+        "title": "Real-World Implementation: A Complete API with Express and MongoDB",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "query-string-examples-and-results",
+        "title": "Query String Examples and Results",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 121
+      }
+    ],
+    "totalWordCount": 1226,
+    "estimatedReadingTime": 300000,
+    "title": "filtering_sorting_and_searching_in_apis",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\api_design_and_implementation\\error_handling_and_response_standardization.md": {
+    "path": "public\\content\\node_js\\api_design_and_implementation\\error_handling_and_response_standardization.md",
+    "sections": [
+      {
+        "id": "error-handling-and-response-standardization-in-nodejs-apis",
+        "title": "Error Handling and Response Standardization in Node.js APIs",
+        "level": 1,
+        "wordCount": 33
+      },
+      {
+        "id": "understanding-the-foundation-why-we-need-error-handling",
+        "title": "Understanding the Foundation: Why We Need Error Handling",
+        "level": 2,
+        "wordCount": 224
+      },
+      {
+        "id": "error-handling-in-expressjs-applications",
+        "title": "Error Handling in Express.js Applications",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "custom-error-classes",
+        "title": "Custom Error Classes",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "response-standardization",
+        "title": "Response Standardization",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "advanced-error-handling-techniques",
+        "title": "Advanced Error Handling Techniques",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "practical-examples",
+        "title": "Practical Examples",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "best-practices-for-error-handling-and-response-standardization",
+        "title": "Best Practices for Error Handling and Response Standardization",
+        "level": 2,
+        "wordCount": 181
+      }
+    ],
+    "totalWordCount": 875,
+    "estimatedReadingTime": 240000,
+    "title": "error_handling_and_response_standardization",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\api_design_and_implementation\\batch_processing_api_patterns.md": {
+    "path": "public\\content\\node_js\\api_design_and_implementation\\batch_processing_api_patterns.md",
+    "sections": [
+      {
+        "id": "batch-processing-api-patterns-in-nodejs-a-first-principles-approach",
+        "title": "Batch Processing API Patterns in Node.js: A First Principles Approach",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "what-is-batch-processing",
+        "title": "What is Batch Processing?",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "batch-processing-in-api-design",
+        "title": "Batch Processing in API Design",
+        "level": 2,
+        "wordCount": 380
+      },
+      {
+        "id": "advanced-batch-processing-patterns",
+        "title": "Advanced Batch Processing Patterns",
+        "level": 2,
+        "wordCount": 179
+      },
+      {
+        "id": "real-world-implementation-batch-processing-with-redis-queue",
+        "title": "Real-World Implementation: Batch Processing with Redis Queue",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "best-practices-for-batch-processing-in-nodejs",
+        "title": "Best Practices for Batch Processing in Node.js",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 110
+      }
+    ],
+    "totalWordCount": 1164,
+    "estimatedReadingTime": 300000,
+    "title": "batch_processing_api_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\api_design_and_implementation\\api_versioning_strategies_and_implementation.md": {
+    "path": "public\\content\\node_js\\api_design_and_implementation\\api_versioning_strategies_and_implementation.md",
+    "sections": [
+      {
+        "id": "api-versioning-strategies-and-implementation-in-nodejs",
+        "title": "API Versioning Strategies and Implementation in Node.js",
+        "level": 1,
+        "wordCount": 41
+      },
+      {
+        "id": "understanding-the-need-for-api-versioning",
+        "title": "Understanding the Need for API Versioning",
+        "level": 2,
+        "wordCount": 129
+      },
+      {
+        "id": "first-principles-of-api-versioning",
+        "title": "First Principles of API Versioning",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "api-versioning-strategies",
+        "title": "API Versioning Strategies",
+        "level": 2,
+        "wordCount": 271
+      },
+      {
+        "id": "implementing-api-versioning-in-nodejs",
+        "title": "Implementing API Versioning in Node.js",
+        "level": 2,
+        "wordCount": 164
+      },
+      {
+        "id": "advanced-versioning-concepts",
+        "title": "Advanced Versioning Concepts",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "example-a-complete-expressjs-api-with-versioning",
+        "title": "Example: A Complete Express.js API with Versioning",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "best-practices-for-api-versioning",
+        "title": "Best Practices for API Versioning",
+        "level": 2,
+        "wordCount": 203
+      },
+      {
+        "id": "alternatives-to-traditional-versioning",
+        "title": "Alternatives to Traditional Versioning",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "real-world-implementation-strategies",
+        "title": "Real-World Implementation Strategies",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 87
+      }
+    ],
+    "totalWordCount": 1424,
+    "estimatedReadingTime": 360000,
+    "title": "api_versioning_strategies_and_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\api_design_and_implementation\\api_rate_limiting_and_throttling.md": {
+    "path": "public\\content\\node_js\\api_design_and_implementation\\api_rate_limiting_and_throttling.md",
+    "sections": [
+      {
+        "id": "api-rate-limiting-and-throttling-in-nodejs",
+        "title": "API Rate Limiting and Throttling in Node.js",
+        "level": 1,
+        "wordCount": 43
+      },
+      {
+        "id": "what-is-api-rate-limiting",
+        "title": "What is API Rate Limiting?",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "types-of-rate-limiting",
+        "title": "Types of Rate Limiting",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "rate-limiting-vs-throttling",
+        "title": "Rate Limiting vs. Throttling",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "implementing-rate-limiting-in-nodejs",
+        "title": "Implementing Rate Limiting in Node.js",
+        "level": 2,
+        "wordCount": 191
+      },
+      {
+        "id": "advanced-rate-limiting-techniques",
+        "title": "Advanced Rate Limiting Techniques",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "best-practices-for-rate-limiting",
+        "title": "Best Practices for Rate Limiting",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "advanced-implementation-token-bucket-algorithm",
+        "title": "Advanced Implementation: Token Bucket Algorithm",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "monitoring-and-analyzing-rate-limiting",
+        "title": "Monitoring and Analyzing Rate Limiting",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "real-world-considerations",
+        "title": "Real-World Considerations",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 112
+      }
+    ],
+    "totalWordCount": 913,
+    "estimatedReadingTime": 240000,
+    "title": "api_rate_limiting_and_throttling",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\api_design_and_implementation\\api_pagination_implementation_techniques.md": {
+    "path": "public\\content\\node_js\\api_design_and_implementation\\api_pagination_implementation_techniques.md",
+    "sections": [
+      {
+        "id": "api-pagination-in-nodejs-a-first-principles-guide",
+        "title": "API Pagination in Node.js: A First Principles Guide",
+        "level": 1,
+        "wordCount": 74
+      },
+      {
+        "id": "understanding-api-pagination-from-first-principles",
+        "title": "Understanding API Pagination From First Principles",
+        "level": 2,
+        "wordCount": 242
+      },
+      {
+        "id": "fundamental-pagination-techniques",
+        "title": "Fundamental Pagination Techniques",
+        "level": 2,
+        "wordCount": 511
+      },
+      {
+        "id": "practical-implementation-in-nodejs-with-popular-databases",
+        "title": "Practical Implementation in Node.js with Popular Databases",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "advanced-pagination-concepts",
+        "title": "Advanced Pagination Concepts",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "standardizing-pagination-response-format",
+        "title": "Standardizing Pagination Response Format",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "building-a-reusable-pagination-middleware",
+        "title": "Building a Reusable Pagination Middleware",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "real-time-pagination-with-websockets",
+        "title": "Real-Time Pagination with WebSockets",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "best-practices-for-api-pagination",
+        "title": "Best Practices for API Pagination",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "pagination-in-graphql-apis",
+        "title": "Pagination in GraphQL APIs",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "summary",
+        "title": "Summary",
+        "level": 2,
+        "wordCount": 153
+      }
+    ],
+    "totalWordCount": 1545,
+    "estimatedReadingTime": 420000,
+    "title": "api_pagination_implementation_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\node_js\\api_design_and_implementation\\api_documentation_automation.md": {
+    "path": "public\\content\\node_js\\api_design_and_implementation\\api_documentation_automation.md",
+    "sections": [
+      {
+        "id": "api-documentation-automation-in-nodejs",
+        "title": "API Documentation Automation in Node.js",
+        "level": 1,
+        "wordCount": 44
+      },
+      {
+        "id": "first-principles-what-is-api-documentation",
+        "title": "First Principles: What is API Documentation?",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "why-automate-documentation",
+        "title": "Why Automate Documentation?",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "nodejs-documentation-automation-core-concepts",
+        "title": "Node.js Documentation Automation: Core Concepts",
+        "level": 2,
+        "wordCount": 146
+      },
+      {
+        "id": "popular-documentation-automation-tools-in-nodejs",
+        "title": "Popular Documentation Automation Tools in Node.js",
+        "level": 2,
+        "wordCount": 188
+      },
+      {
+        "id": "advanced-technique-automated-testing-and-documentation",
+        "title": "Advanced Technique: Automated Testing and Documentation",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "building-a-complete-documentation-pipeline",
+        "title": "Building a Complete Documentation Pipeline",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "real-world-example-express-api-with-automated-documentation",
+        "title": "Real-World Example: Express API with Automated Documentation",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "best-practices-for-api-documentation-automation",
+        "title": "Best Practices for API Documentation Automation",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "continuous-integration-for-documentation",
+        "title": "Continuous Integration for Documentation",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "practical-example-building-a-documentation-first-api",
+        "title": "Practical Example: Building a Documentation-First API",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "leveraging-typescript-for-better-documentation",
+        "title": "Leveraging TypeScript for Better Documentation",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "interactive-documentation-features",
+        "title": "Interactive Documentation Features",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 126
+      }
+    ],
+    "totalWordCount": 1213,
+    "estimatedReadingTime": 300000,
+    "title": "api_documentation_automation",
     "frontmatter": {}
   },
   "public\\content\\node_js\\advanced_asynchronous_patterns\\understanding_process_nexttick_vs_set_immediate.md": {

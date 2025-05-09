@@ -1889,6 +1889,46 @@
           ]
         },
         {
+          "id": "api_design_and_implementation",
+          "name": "Api Design And Implementation",
+          "categories": [],
+          "files": [
+            {
+              "path": "node_js/api_design_and_implementation/api_documentation_automation.md"
+            },
+            {
+              "path": "node_js/api_design_and_implementation/api_pagination_implementation_techniques.md"
+            },
+            {
+              "path": "node_js/api_design_and_implementation/api_rate_limiting_and_throttling.md"
+            },
+            {
+              "path": "node_js/api_design_and_implementation/api_versioning_strategies_and_implementation.md"
+            },
+            {
+              "path": "node_js/api_design_and_implementation/batch_processing_api_patterns.md"
+            },
+            {
+              "path": "node_js/api_design_and_implementation/error_handling_and_response_standardization.md"
+            },
+            {
+              "path": "node_js/api_design_and_implementation/filtering_sorting_and_searching_in_apis.md"
+            },
+            {
+              "path": "node_js/api_design_and_implementation/hateoas_and_hypermedia_controls.md"
+            },
+            {
+              "path": "node_js/api_design_and_implementation/long_running_operations_and_status_reporting.md"
+            },
+            {
+              "path": "node_js/api_design_and_implementation/resource_naming_and_uri_structure_design.md"
+            },
+            {
+              "path": "node_js/api_design_and_implementation/rest_api_best_practices_and_conventions.md"
+            }
+          ]
+        },
+        {
           "id": "asynchronous_programming_fundamentals",
           "name": "Asynchronous Programming Fundamentals",
           "categories": [],
@@ -1925,6 +1965,43 @@
             },
             {
               "path": "node_js/asynchronous_programming_fundamentals/understanding_synchronous_vs_asynchronous_code.md"
+            }
+          ]
+        },
+        {
+          "id": "http_server_implementation",
+          "name": "Http Server Implementation",
+          "categories": [],
+          "files": [
+            {
+              "path": "node_js/http_server_implementation/content_negotiation_techniques.md"
+            },
+            {
+              "path": "node_js/http_server_implementation/cookie_handling_and_sessions.md"
+            },
+            {
+              "path": "node_js/http_server_implementation/cors_implementation_strategies.md"
+            },
+            {
+              "path": "node_js/http_server_implementation/graphql_server_implementation.md"
+            },
+            {
+              "path": "node_js/http_server_implementation/http_2_support_and_implementation.md"
+            },
+            {
+              "path": "node_js/http_server_implementation/http_headers_management.md"
+            },
+            {
+              "path": "node_js/http_server_implementation/http_server_core_concepts.md"
+            },
+            {
+              "path": "node_js/http_server_implementation/request_and_response_objects_in_depth.md"
+            },
+            {
+              "path": "node_js/http_server_implementation/server_sent_events_implementation.md"
+            },
+            {
+              "path": "node_js/http_server_implementation/web_socket_server_implementation.md"
             }
           ]
         },
@@ -2088,6 +2165,46 @@
             },
             {
               "path": "node_js/node_js_internals/v8_engine_internals_and_optimization_techniques.md"
+            }
+          ]
+        },
+        {
+          "id": "real_time_systems_with_node_js",
+          "name": "Real Time Systems With Node Js",
+          "categories": [],
+          "files": [
+            {
+              "path": "node_js/real_time_systems_with_node_js/binary_protocols_for_real_time_data.md"
+            },
+            {
+              "path": "node_js/real_time_systems_with_node_js/connection_state_recovery.md"
+            },
+            {
+              "path": "node_js/real_time_systems_with_node_js/fallback_mechanisms_for_real_time_communications.md"
+            },
+            {
+              "path": "node_js/real_time_systems_with_node_js/latency_optimization_techniques.md"
+            },
+            {
+              "path": "node_js/real_time_systems_with_node_js/presence_and_state_synchronization.md"
+            },
+            {
+              "path": "node_js/real_time_systems_with_node_js/pub_sub_patterns_for_real_time_apps.md"
+            },
+            {
+              "path": "node_js/real_time_systems_with_node_js/real_time_architecture_patterns.md"
+            },
+            {
+              "path": "node_js/real_time_systems_with_node_js/real_time_data_consistency_strategies.md"
+            },
+            {
+              "path": "node_js/real_time_systems_with_node_js/scaling_web_socket_applications.md"
+            },
+            {
+              "path": "node_js/real_time_systems_with_node_js/socket_io_and_its_internals.md"
+            },
+            {
+              "path": "node_js/real_time_systems_with_node_js/web_socket_implementation_deep_dive.md"
             }
           ]
         },

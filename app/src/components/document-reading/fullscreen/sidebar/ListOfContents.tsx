@@ -3,9 +3,9 @@ import { cn } from "@/lib/utils";
 import { useCallback } from "react";
 
 interface ListOfContentsProps {
-  sections: { id: string; title: string }[];
+  sections: { id: number; title: string }[];
   currentIndex: number;
-  readSections: Set<string>;
+  readSections: Set<number>;
   showProgress: boolean;
   handleSelectCard: (index: number) => void;
 }
@@ -17,28 +17,10 @@ const ListOfContents: React.FC<ListOfContentsProps> = ({
   showProgress,
   handleSelectCard,
 }) => {
-  /**
-   * normalizeTitle Hook
-   *
-   * This hook normalizes a section title by removing leading numbers and special characters.
-   *
-   * @param {string} title - The title of the section to normalize.
-   * @returns {string} - The normalized title.
-   */
   const normalizeTitle = useCallback((title: string) => {
     return title.replace(/^\d+(\.\d+)*\s*\.?\s*/, "").trim();
   }, []);
 
-  /**
-   * getButtonClass Hook
-   *
-   * This hook determines the class names for the section button based on its state (active, read, or default).
-   *
-   * @param {boolean} isActive - Indicates if the section is currently active.
-   * @param {boolean} isRead - Indicates if the section has been read.
-   * @param {boolean} showProgress - Indicates if the reading progress should be shown.
-   * @returns {string} - The class names for the section button.
-   */
   const getButtonClass = useCallback(
     (isActive: boolean, isRead: boolean, showProgress: boolean) => {
       if (isActive) return "bg-primary/10 text-primary font-medium";
@@ -48,16 +30,6 @@ const ListOfContents: React.FC<ListOfContentsProps> = ({
     []
   );
 
-  /**
-   * getCircleClass Hook
-   *
-   * This hook determines the class names for the section circle indicator based on its state (active, read, or default).
-   *
-   * @param {boolean} isActive - Indicates if the section is currently active.
-   * @param {boolean} isRead - Indicates if the section has been read.
-   * @param {boolean} showProgress - Indicates if the reading progress should be shown.
-   * @returns {string} - The class names for the section circle indicator.
-   */
   const getCircleClass = useCallback(
     (isActive: boolean, isRead: boolean, showProgress: boolean) => {
       if (isActive) return "bg-primary/20 text-primary";
@@ -67,16 +39,6 @@ const ListOfContents: React.FC<ListOfContentsProps> = ({
     []
   );
 
-  /**
-   * renderStatusIndicator Hook
-   *
-   * This hook renders the status indicator for a section based on its state (active or read).
-   *
-   * @param {boolean} isActive - Indicates if the section is currently active.
-   * @param {boolean} isRead - Indicates if the section has been read.
-   * @param {boolean} showProgress - Indicates if the reading progress should be shown.
-   * @returns {React.ReactNode} - The status indicator element.
-   */
   const renderStatusIndicator = useCallback(
     (isActive: boolean, isRead: boolean, showProgress: boolean) => {
       if (isActive) {

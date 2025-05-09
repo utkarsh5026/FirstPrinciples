@@ -11,6 +11,9 @@ import {
 import { useCurrentDocument } from "./document/use-current-document";
 import useDocumentReading from "./reading/use-document-reading";
 import { useDocument } from "./document/use-document";
+import { useToggle } from "./utils/use-toggle";
+import { useAsync } from "./utils/use-async";
+import { useLocalStorage } from "./utils/use-local-storage";
 
 export {
   useCategoryMetrics,
@@ -24,4 +27,7 @@ export {
   useCurrentDocument,
   useDocumentReading,
   useDocument,
+  useToggle,
+  useAsync,
+  useLocalStorage,
 };

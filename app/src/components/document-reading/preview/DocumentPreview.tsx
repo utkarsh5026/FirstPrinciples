@@ -54,6 +54,8 @@ const DocumentPreview: React.FC = () => {
     saveCompletedSections,
   } = useDocument(documentPath);
 
+  console.log(sectionData, "Section data");
+
   const { addToHistory, getDocumentHistory, updateReadingTime } =
     useReadingHistory();
   /**
