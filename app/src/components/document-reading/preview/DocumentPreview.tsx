@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
-import LoadingScreen from "@/components/document-reading/preview/LoadingScreen";
-import ErrorLoadingDocument from "@/components/document-reading/preview/ErrorLoadingDocument";
+import LoadingScreen from "@/components/document-reading/preview/utils/LoadingScreen";
+import ErrorLoadingDocument from "@/components/document-reading/preview/utils/ErrorLoadingDocument";
 import FullScreenCardView from "@/components/document-reading/fullscreen/FullScreenCardView";
-import NoFileSelectedYet from "@/components/document-reading/preview/NoFileSelectedYet";
+import NoFileSelectedYet from "@/components/document-reading/preview/utils/NoFileSelectedYet";
 import DetailPanel from "@/components/document-reading/preview/DetailPanel";
 import getIconForTech from "@/components/shared/icons";
 import Header from "@/components/document-reading/preview/Header";
