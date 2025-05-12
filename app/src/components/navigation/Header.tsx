@@ -4,6 +4,7 @@ import { Switch } from "@/components/ui/switch";
 import Legend from "./Legend";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface HeaderProps {
   showDescriptions: boolean;
@@ -19,25 +20,28 @@ const Header = ({
   handleHomeClick,
 }: HeaderProps) => {
   const [showLegend, setShowLegend] = useState(false);
+
   return (
-    <div className="bg-card border-b border-border flex-shrink-0 font-cascadia-code z-10">
-      <div className="px-3 py-3 flex items-center justify-between">
-        <button
+    <div className="bg-card/80 backdrop-blur-sm border-b border-border flex-shrink-0 font-cascadia-code z-10 sticky top-0">
+      <div className="px-4 py-3.5 flex items-center justify-between">
+        <motion.button
           className={cn(
-            "flex items-center rounded-md text-sm cursor-pointer",
-            "font-medium"
+            "flex items-center rounded-full text-sm cursor-pointer",
+            "font-medium bg-secondary/30 px-3 py-1.5 hover:bg-secondary/50 transition-all"
           )}
           onClick={handleHomeClick}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
           <div className="flex-shrink-0 mr-2 text-primary">
             <HomeIcon size={16} />
           </div>
           <span>Home</span>
-        </button>
+        </motion.button>
 
         <div className="flex items-center gap-2">
           {/* Description toggle with icon */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2 bg-secondary/20 px-2.5 py-1.5 rounded-full">
             <span className="text-xs text-muted-foreground hidden xs:inline">
               {showDescriptions ? "Hide" : "Show"} Details
             </span>
@@ -57,7 +61,7 @@ const Header = ({
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 rounded-full text-muted-foreground hover:text-foreground hover:bg-secondary/20"
+            className="h-9 w-9 rounded-full text-muted-foreground hover:text-foreground hover:bg-secondary/30 flex items-center justify-center"
             onClick={() => setShowLegend(!showLegend)}
             aria-label={showLegend ? "Hide legend" : "Show legend"}
           >
@@ -68,7 +72,7 @@ const Header = ({
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 rounded-full hover:bg-secondary/20"
+            className="h-9 w-9 rounded-full hover:bg-secondary/30 flex items-center justify-center"
             onClick={() => setSidebarOpen(false)}
             aria-label="Close sidebar"
           >
@@ -77,8 +81,17 @@ const Header = ({
         </div>
       </div>
 
-      {/* Legend section */}
-      {showLegend && <Legend />}
+      {/* Legend section with animation */}
+      {showLegend && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Legend />
+        </motion.div>
+      )}
     </div>
   );
 };

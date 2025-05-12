@@ -186,6 +186,7 @@ export const iconMap: Record<string, IconType> = {
   folder: FiFolder,
   folders: FiFolderPlus,
   design_principles: FiPackage,
+  design_patterns: FiPackage,
 };
 
 /**

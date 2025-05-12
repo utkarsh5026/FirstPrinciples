@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { CircleDot, BookMarked, Clock, CheckCircle } from "lucide-react";
 import type { FileMetadata } from "@/services/document";
+import { motion } from "framer-motion";
 
 interface CategoryFileProps {
   file: FileMetadata;
@@ -28,63 +29,64 @@ const CategoryFile = ({
   const fileStatusIcon = getFileStatusIcon(isTodo, isCompleted, isRead);
   const statusText = getFileStatusText(isTodo, isCompleted, isRead);
 
-  const statusColorClass = cn(
-    "absolute left-0 top-0 bottom-0 w-1 rounded-l-sm",
-    isCompleted && "bg-green-500/70",
-    isTodo && !isCompleted && "bg-primary/70",
-    isRead && !isTodo && !isCompleted && "bg-green-400/70"
-  );
-
-  // Determine the text color for status
-  const statusTextClass = cn(
-    "text-xs",
-    isCompleted && "text-green-500",
-    isTodo && !isCompleted && "text-primary",
-    isRead && !isTodo && !isCompleted && "text-green-400",
-    !isRead && !isTodo && !isCompleted && "text-muted-foreground"
-  );
+  const fileStatus = getFileStatus(isTodo, isCompleted, isRead);
 
   return (
-    <button
-      key={file.path}
-      className={cn(
-        "flex flex-col w-full rounded-md text-sm cursor-pointer transition-colors py-2 px-2 my-1 relative",
-        "text-left focus:outline-none focus:ring-1 focus:ring-primary/30",
-        isCurrentFile
-          ? "bg-primary/15 text-primary font-medium"
-          : "hover:bg-secondary/20 text-muted-foreground hover:text-foreground",
-        isRead && !isCurrentFile && "text-muted-foreground"
-      )}
-      style={{ paddingLeft: `${(depth + 1) * 16}px`, paddingRight: "8px" }}
-      onClick={() => handleSelectFile(file.path)}
-    >
-      {/* Color indicator bar */}
-      {(isTodo || isCompleted || isRead) && (
-        <span className={statusColorClass} />
-      )}
-
-      <div className="flex flex-col min-w-0 flex-grow pl-1">
-        {/* File name with number - using break-words instead of truncate */}
-        <span className="break-words w-full">
-          {fileNumber}. {file.title}
-        </span>
-
-        {/* Status info directly under filename */}
-        <div className="flex items-start mt-0.5 gap-1">
-          <div className="flex-shrink-0 mt-0.5">{fileStatusIcon}</div>
-          <span className={cn(statusTextClass, "break-words")}>
-            {statusText}
-          </span>
-        </div>
-
-        {/* Description if enabled and available - using break-words */}
-        {showDescriptions && file.description && (
-          <span className="text-xs text-muted-foreground mt-1 break-words w-full">
-            {file.description}
-          </span>
+    <motion.div whileTap={{ scale: 0.98 }} className="px-1 my-1">
+      <button
+        key={file.path}
+        className={cn(
+          "flex flex-col w-full rounded-xl text-sm cursor-pointer transition-all py-2 px-3 relative",
+          "text-left focus:outline-none focus:ring-1 focus:ring-primary/30 active:scale-98",
+          isCurrentFile
+            ? "bg-primary/15 text-primary font-medium shadow-sm"
+            : "hover:bg-secondary/30 hover:shadow-sm text-foreground hover:text-foreground",
+          isRead && !isCurrentFile && !isCompleted && "text-muted-foreground"
         )}
-      </div>
-    </button>
+        style={{ paddingLeft: `${(depth + 1) * 16}px` }}
+        onClick={() => handleSelectFile(file.path)}
+      >
+        {/* Color indicator dot instead of a bar */}
+        {(isTodo || isCompleted || isRead) && (
+          <span
+            className={cn(
+              "absolute left-[7px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full",
+              fileStatus.dotColor
+            )}
+          />
+        )}
+
+        <div className="flex flex-col min-w-0 flex-grow">
+          {/* File name with number */}
+          <div className="flex items-center">
+            <span className="font-medium mr-1">{fileNumber}.</span>
+            <span className="break-words w-full">{file.title}</span>
+          </div>
+
+          {/* Status info with badge */}
+          <div className="flex items-center mt-1.5 gap-1">
+            <div
+              className={cn(
+                "flex items-center px-1.5 py-0.5 rounded-full text-xs",
+                fileStatus.bgColor
+              )}
+            >
+              <div className="flex-shrink-0 mr-1">{fileStatusIcon}</div>
+              <span className={cn("break-words", fileStatus.textColor)}>
+                {statusText}
+              </span>
+            </div>
+          </div>
+
+          {/* Description if enabled and available */}
+          {showDescriptions && file.description && (
+            <span className="text-xs text-muted-foreground mt-2 break-words w-full leading-relaxed">
+              {file.description}
+            </span>
+          )}
+        </div>
+      </button>
+    </motion.div>
   );
 };
 
@@ -99,7 +101,7 @@ const getFileStatusIcon = (
     case isCompleted:
       return <CheckCircle size={12} className="text-green-500 flex-shrink-0" />;
     case isRead:
-      return <Clock size={12} className="text-green-400 flex-shrink-0" />; // Changed to green
+      return <Clock size={12} className="text-green-200 flex-shrink-0" />;
     default:
       return (
         <CircleDot
@@ -117,14 +119,47 @@ const getFileStatusText = (
   isRead: boolean
 ) => {
   switch (true) {
-    case isTodo:
-      return "In reading list";
     case isCompleted:
       return "Completed";
+    case isTodo:
+      return "Reading list";
     case isRead:
       return "Previously read";
     default:
       return "Unread";
+  }
+};
+
+const getFileStatus = (
+  isTodo: boolean,
+  isCompleted: boolean,
+  isRead: boolean
+) => {
+  switch (true) {
+    case isCompleted:
+      return {
+        dotColor: "bg-green-500",
+        bgColor: "bg-green-500/10",
+        textColor: "text-green-500",
+      };
+    case isTodo:
+      return {
+        dotColor: "bg-primary",
+        bgColor: "bg-primary/10",
+        textColor: "text-primary",
+      };
+    case isRead:
+      return {
+        dotColor: "bg-green-200",
+        bgColor: "bg-green-200/10",
+        textColor: "text-green-200",
+      };
+    default:
+      return {
+        dotColor: "bg-muted-foreground/40",
+        bgColor: "bg-secondary/20",
+        textColor: "text-muted-foreground",
+      };
   }
 };
 
