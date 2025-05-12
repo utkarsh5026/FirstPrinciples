@@ -34,6 +34,14 @@ export const useDocument = (documentPath: string) => {
     (state) => state.markSectionsCompleted
   );
 
+  useEffect(() => {
+    console.log(documentPath, "Document path changed");
+    setCompletedSectionIndices(new Set());
+    newlyCompletedSections.current.clear();
+    previouslyCompletedSections.current.clear();
+    setIsLoadingSectionData(true);
+  }, [documentPath]);
+
   /**
    * 📂 Load document when path changes
    *
