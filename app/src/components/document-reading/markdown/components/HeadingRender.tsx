@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "lucide-react";
 
 type HeadingProps = React.ComponentPropsWithoutRef<"h1" | "h2" | "h3">;
 
@@ -17,31 +16,18 @@ interface HeadingRenderProps extends HeadingProps {
  */
 const HeadingRender: React.FC<HeadingRenderProps> = ({ level, ...props }) => {
   const headingStyles = {
-    1: "text-4xl font-bold mt-10 mb-4 text-white group flex items-center",
-    2: "text-2xl font-semibold mt-8 mb-3 text-gray-100 group flex items-center",
-    3: "text-xl font-normal mt-6 mb-3 text-gray-200 group flex items-center",
+    1: "text-4xl font-bold mt-10 mb-4",
+    2: "text-2xl font-semibold mt-8 mb-3",
+    3: "text-xl font-normal mt-6 mb-3",
+    4: "text-lg font-normal mt-6 mb-3",
   };
 
-  const getLinkSize = () => {
-    if (level === 1) return 16;
-    if (level === 2) return 14;
-    return 12;
-  };
-
-  const className = headingStyles[level];
-  const linkSize = getLinkSize();
+  const className = `${headingStyles[level]} group flex items-center text-primary`;
   const HeadingTag = `h${level}` as React.ElementType;
 
   return (
     <HeadingTag {...props} className={className}>
       {props.children}
-      <a
-        href={`#${props.id}`}
-        className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity"
-        aria-label="Link to section"
-      >
-        <Link size={linkSize} className="text-gray-500 hover:text-primary" />
-      </a>
     </HeadingTag>
   );
 };

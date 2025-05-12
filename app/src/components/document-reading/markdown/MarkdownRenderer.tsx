@@ -1,8 +1,5 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
 import LinkRender from "./components/LinkRender";
@@ -155,15 +152,7 @@ const CustomMarkdownRenderer: React.FC<CustomMarkdownRendererProps> = ({
       className={cn("markdown-content font-type-mono", className)}
       style={containerStyle}
     >
-      <ReactMarkdown
-        components={components}
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[
-          rehypeRaw,
-          rehypeSlug,
-          [rehypeAutolinkHeadings, { behavior: "wrap" }],
-        ]}
-      >
+      <ReactMarkdown components={components} remarkPlugins={[remarkGfm]}>
         {markdown}
       </ReactMarkdown>
     </div>
