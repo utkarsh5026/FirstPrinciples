@@ -15,7 +15,7 @@ interface CategoryFileProps {
   showDescriptions: boolean;
 }
 
-const CategoryFile = ({
+const CategoryFile: React.FC<CategoryFileProps> = ({
   file,
   depth,
   isCurrentFile,
@@ -46,16 +46,6 @@ const CategoryFile = ({
         style={{ paddingLeft: `${(depth + 1) * 16}px` }}
         onClick={() => handleSelectFile(file.path)}
       >
-        {/* Color indicator dot instead of a bar */}
-        {(isTodo || isCompleted || isRead) && (
-          <span
-            className={cn(
-              "absolute left-[7px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full",
-              fileStatus.dotColor
-            )}
-          />
-        )}
-
         <div className="flex flex-col min-w-0 flex-grow">
           {/* File name with number */}
           <div className="flex items-center">
@@ -112,7 +102,6 @@ const getFileStatusIcon = (
   }
 };
 
-// Get file status text
 const getFileStatusText = (
   isTodo: boolean,
   isCompleted: boolean,
@@ -138,25 +127,21 @@ const getFileStatus = (
   switch (true) {
     case isCompleted:
       return {
-        dotColor: "bg-green-500",
         bgColor: "bg-green-500/10",
         textColor: "text-green-500",
       };
     case isTodo:
       return {
-        dotColor: "bg-primary",
         bgColor: "bg-primary/10",
         textColor: "text-primary",
       };
     case isRead:
       return {
-        dotColor: "bg-green-200",
         bgColor: "bg-green-200/10",
         textColor: "text-green-200",
       };
     default:
       return {
-        dotColor: "bg-muted-foreground/40",
         bgColor: "bg-secondary/20",
         textColor: "text-muted-foreground",
       };
