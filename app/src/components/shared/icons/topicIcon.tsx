@@ -134,6 +134,58 @@ const getTopicIcon = (topic: string, size: number = 16): React.ReactElement => {
   const reactIconStyle = { fontSize: size, color: "currentColor" };
 
   if (
+    normalizedTopic.includes("node") ||
+    normalizedTopic.includes("express") ||
+    normalizedTopic.includes("npm") ||
+    normalizedTopic.includes("server") ||
+    normalizedTopic.includes("api") ||
+    normalizedTopic.includes("middleware")
+  ) {
+    if (normalizedTopic.includes("sequelize"))
+      return <SiSequelize style={reactIconStyle} />;
+    if (normalizedTopic.includes("express"))
+      return <SiExpress style={reactIconStyle} />;
+    if (normalizedTopic.includes("stream"))
+      return <FaStream style={reactIconStyle} />;
+    if (normalizedTopic.includes("module")) return <Puzzle {...iconProps} />;
+    if (normalizedTopic.includes("http")) return <Network {...iconProps} />;
+    if (normalizedTopic.includes("api"))
+      return <TbApi style={reactIconStyle} />;
+    if (normalizedTopic.includes("auth")) return <Lock {...iconProps} />;
+    if (normalizedTopic.includes("passport"))
+      return <SiPassport style={reactIconStyle} />;
+    if (normalizedTopic.includes("worker"))
+      return <GrUserWorker style={reactIconStyle} />;
+    if (normalizedTopic.includes("middleware"))
+      return <Workflow {...iconProps} />;
+    if (
+      normalizedTopic.includes("websocket") ||
+      normalizedTopic.includes("socket")
+    )
+      return <Antenna {...iconProps} />;
+    if (
+      normalizedTopic.includes("message") ||
+      normalizedTopic.includes("queue")
+    )
+      return <MessageCircle {...iconProps} />;
+    if (normalizedTopic.includes("crypto")) return <Shield {...iconProps} />;
+    if (normalizedTopic.includes("serverless")) return <Cloud {...iconProps} />;
+    if (normalizedTopic.includes("mongoose"))
+      return <SiMongodb style={reactIconStyle} />;
+
+    if (normalizedTopic.includes("test"))
+      return <GrTest style={reactIconStyle} />;
+    if (normalizedTopic.includes("graph"))
+      return <SiGraphql style={reactIconStyle} />;
+    if (normalizedTopic.includes("deploy"))
+      return <MdRocket style={reactIconStyle} />;
+    if (normalizedTopic.includes("real time"))
+      return <Activity {...iconProps} />;
+
+    return <FaNodeJs style={reactIconStyle} />;
+  }
+
+  if (
     normalizedTopic.includes("react") ||
     normalizedTopic.includes("component") ||
     normalizedTopic.includes("hooks") ||
@@ -224,58 +276,6 @@ const getTopicIcon = (topic: string, size: number = 16): React.ReactElement => {
     return <SiTypescript style={reactIconStyle} />;
   }
 
-  if (
-    normalizedTopic.includes("node") ||
-    normalizedTopic.includes("express") ||
-    normalizedTopic.includes("npm") ||
-    normalizedTopic.includes("server") ||
-    normalizedTopic.includes("api") ||
-    normalizedTopic.includes("middleware")
-  ) {
-    if (normalizedTopic.includes("sequelize"))
-      return <SiSequelize style={reactIconStyle} />;
-    if (normalizedTopic.includes("express"))
-      return <SiExpress style={reactIconStyle} />;
-    if (normalizedTopic.includes("stream"))
-      return <FaStream style={reactIconStyle} />;
-    if (normalizedTopic.includes("module")) return <Puzzle {...iconProps} />;
-    if (normalizedTopic.includes("http")) return <Network {...iconProps} />;
-    if (normalizedTopic.includes("api"))
-      return <TbApi style={reactIconStyle} />;
-    if (normalizedTopic.includes("auth")) return <Lock {...iconProps} />;
-    if (normalizedTopic.includes("passport"))
-      return <SiPassport style={reactIconStyle} />;
-    if (normalizedTopic.includes("worker"))
-      return <GrUserWorker style={reactIconStyle} />;
-    if (normalizedTopic.includes("middleware"))
-      return <Workflow {...iconProps} />;
-    if (
-      normalizedTopic.includes("websocket") ||
-      normalizedTopic.includes("socket")
-    )
-      return <Antenna {...iconProps} />;
-    if (
-      normalizedTopic.includes("message") ||
-      normalizedTopic.includes("queue")
-    )
-      return <MessageCircle {...iconProps} />;
-    if (normalizedTopic.includes("crypto")) return <Shield {...iconProps} />;
-    if (normalizedTopic.includes("serverless")) return <Cloud {...iconProps} />;
-    if (normalizedTopic.includes("mongoose"))
-      return <SiMongodb style={reactIconStyle} />;
-
-    if (normalizedTopic.includes("test"))
-      return <GrTest style={reactIconStyle} />;
-    if (normalizedTopic.includes("graph"))
-      return <SiGraphql style={reactIconStyle} />;
-    if (normalizedTopic.includes("deploy"))
-      return <MdRocket style={reactIconStyle} />;
-    if (normalizedTopic.includes("real time"))
-      return <Activity {...iconProps} />;
-
-    return <FaNodeJs style={reactIconStyle} />;
-  }
-
   // Go-specific topics
   if (
     normalizedTopic.includes("go ") ||
@@ -283,7 +283,7 @@ const getTopicIcon = (topic: string, size: number = 16): React.ReactElement => {
     normalizedTopic.includes("goroutine") ||
     normalizedTopic.includes("concurrency")
   ) {
-    if (normalizedTopic.includes("channels"))
+    if (normalizedTopic.includes("channel"))
       return <ImConnection style={reactIconStyle} />;
     if (normalizedTopic.includes("concurrency"))
       return <FaInfinity style={reactIconStyle} />;

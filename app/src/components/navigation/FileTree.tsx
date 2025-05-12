@@ -1,5 +1,6 @@
 import { Category } from "@/services/document/document-loader";
 import getIconForTech from "@/components/shared/icons";
+import getTopicIcon from "@/components/shared/icons/topicIcon";
 import { ChevronRight, BookMarked, Clock, CheckCircle } from "lucide-react";
 import {
   Collapsible,
@@ -25,6 +26,7 @@ interface FileTreeProps {
   };
   currentFilePath: string;
   showDescriptions: boolean;
+  parentCategory?: string;
 }
 
 const FileTree: React.FC<FileTreeProps> = ({
@@ -36,13 +38,17 @@ const FileTree: React.FC<FileTreeProps> = ({
   filePaths,
   currentFilePath,
   showDescriptions,
+  parentCategory,
 }) => {
   const isExpanded = expandedCategories.has(category.id);
   const hasContent =
     (category.files && category.files.length > 0) ||
     (category.categories && category.categories.length > 0);
 
-  const CategoryIcon = getIconForTech(category.name);
+  const IconComponent =
+    depth === 0
+      ? getIconForTech(category.name)
+      : () => getTopicIcon(`${parentCategory ?? ""}_${category.name}`);
 
   const {
     totalFilesCount,
@@ -119,7 +125,6 @@ const FileTree: React.FC<FileTreeProps> = ({
             )}
             style={{ paddingLeft: `${depth * 12 + 12}px` }}
           >
-            {/* Animated chevron icon */}
             <div
               className={cn(
                 "mr-2 flex-shrink-0 transition-transform duration-200 mt-0.5",
@@ -129,14 +134,10 @@ const FileTree: React.FC<FileTreeProps> = ({
               <ChevronRight size={16} />
             </div>
 
-            {/* Category icon for root level categories */}
-            {depth === 0 && (
-              <div className="flex-shrink-0 mr-2 text-primary mt-0.5">
-                <CategoryIcon size={16} />
-              </div>
-            )}
+            <div className="flex-shrink-0 mr-2 text-primary mt-0.5">
+              <IconComponent size={16} />
+            </div>
 
-            {/* Category name with wrapping instead of truncation */}
             <div className="flex flex-col flex-grow min-w-0">
               <span
                 className={cn(
@@ -214,6 +215,7 @@ const FileTree: React.FC<FileTreeProps> = ({
                 filePaths={filePaths}
                 currentFilePath={currentFilePath}
                 showDescriptions={showDescriptions}
+                parentCategory={category.id}
               />
             ))}
 
