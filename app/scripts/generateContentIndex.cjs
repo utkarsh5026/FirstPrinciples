@@ -100,6 +100,25 @@ function scanDirectory(dir, basePath = "") {
   return result;
 }
 
+/**
+ * Extracts only the directory structure from the scan result
+ * @param {Object} result - The scan result object
+ * @returns {Object} The directory structure
+ */
+function extractDirectoryStructure(result) {
+  const structure = {
+    categories: result.categories.map((category) => ({
+      id: category.id,
+      name: category.name,
+      categories: category.categories.map((subCategory) => ({
+        id: subCategory.id,
+        name: subCategory.name,
+      })),
+    })),
+  };
+  return structure;
+}
+
 try {
   console.log("Generating content index...");
 
@@ -116,14 +135,23 @@ try {
     files: result.files,
   };
 
+  // Generate directory structure
+  const dirStructure = extractDirectoryStructure(result);
+  const dirStructureFile = path.join(contentDir, "directory-structure.json");
+
   const dir = path.dirname(outputFile);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
 
   fs.writeFileSync(outputFile, JSON.stringify(contentStructure, null, 2));
+  fs.writeFileSync(dirStructureFile, JSON.stringify(dirStructure, null, 2));
 
   console.log(`Successfully generated index.json at ${outputFile}`);
+  console.log(
+    `Successfully generated directory-structure.json at ${dirStructureFile}`
+  );
+
   console.log(
     `Found ${result.files.length} files in the root directory and ${result.categories.length} categories`
   );

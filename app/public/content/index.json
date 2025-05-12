@@ -186,88 +186,81 @@
       "totalFileSize": 0
     },
     {
-      "id": "design_principles",
-      "name": "Design Principles",
+      "id": "design_patterns",
+      "name": "Design Patterns",
       "categories": [
         {
-          "id": "advanced",
-          "name": "Advanced",
+          "id": "foundational_design_principles",
+          "name": "Foundational Design Principles",
           "categories": [],
           "files": [
             {
-              "path": "design_principles/advanced/interpreter.md"
+              "path": "design_patterns/foundational_design_principles/code_cohesion_and_coupling_concepts.md"
             },
             {
-              "path": "design_principles/advanced/iterator.md"
+              "path": "design_patterns/foundational_design_principles/composition_over_inheritance.md"
             },
             {
-              "path": "design_principles/advanced/memento.md"
+              "path": "design_patterns/foundational_design_principles/dry.md"
             },
             {
-              "path": "design_principles/advanced/visitor.md"
+              "path": "design_patterns/foundational_design_principles/encapsulation_and_information_hiding.md"
+            },
+            {
+              "path": "design_patterns/foundational_design_principles/kiss.md"
+            },
+            {
+              "path": "design_patterns/foundational_design_principles/law_of_demeter.md"
+            },
+            {
+              "path": "design_patterns/foundational_design_principles/programming_to_interfaces_not_implementations.md"
+            },
+            {
+              "path": "design_patterns/foundational_design_principles/separation_of_concerns.md"
+            },
+            {
+              "path": "design_patterns/foundational_design_principles/solid_principles_in_depth.md"
+            },
+            {
+              "path": "design_patterns/foundational_design_principles/yagni.md"
             }
           ],
           "totalFileSize": 0
         },
         {
-          "id": "beginner",
-          "name": "Beginner",
+          "id": "fundamentals",
+          "name": "Fundamentals",
           "categories": [],
           "files": [
             {
-              "path": "design_principles/beginner/adapter.md"
+              "path": "design_patterns/fundamentals/common_design_pattern_criticisms_and_limitations.md"
             },
             {
-              "path": "design_principles/beginner/command.md"
+              "path": "design_patterns/fundamentals/design_patterns_across_different_programming_paradigms.md"
             },
             {
-              "path": "design_principles/beginner/decorator.md"
+              "path": "design_patterns/fundamentals/design_pattern_structure_and_documentation.md"
             },
             {
-              "path": "design_principles/beginner/factory_method.md"
+              "path": "design_patterns/fundamentals/origins_and_history_of_design_patterns.md"
             },
             {
-              "path": "design_principles/beginner/observer.md"
+              "path": "design_patterns/fundamentals/pattern_classification_system_and_terminology.md"
             },
             {
-              "path": "design_principles/beginner/singleton.md"
+              "path": "design_patterns/fundamentals/pattern_language_concepts_from_christopher_alexander.md"
             },
             {
-              "path": "design_principles/beginner/strategy.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "intermediate",
-          "name": "Intermediate",
-          "categories": [],
-          "files": [
-            {
-              "path": "design_principles/intermediate/abstract_factory.md"
+              "path": "design_patterns/fundamentals/problem_solution_context_in_design_patterns.md"
             },
             {
-              "path": "design_principles/intermediate/builder.md"
+              "path": "design_patterns/fundamentals/relationship_between_patterns_and_principles.md"
             },
             {
-              "path": "design_principles/intermediate/composite.md"
+              "path": "design_patterns/fundamentals/understanding_the_purpose_and_benefits_of_design_patterns.md"
             },
             {
-              "path": "design_principles/intermediate/prototype.md"
-            },
-            {
-              "path": "design_principles/intermediate/template_method.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "intro",
-          "name": "Intro",
-          "categories": [],
-          "files": [
-            {
-              "path": "design_principles/intro/comparison.md"
+              "path": "design_patterns/fundamentals/when_to_use_and_not_use_design_patterns.md"
             }
           ],
           "totalFileSize": 0

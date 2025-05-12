@@ -87400,1939 +87400,1480 @@
     "title": "intoduction_to_containers",
     "frontmatter": {}
   },
-  "public\\content\\design_principles\\intro\\comparison.md": {
-    "path": "public\\content\\design_principles\\intro\\comparison.md",
+  "public\\content\\design_patterns\\fundamentals\\when_to_use_and_not_use_design_patterns.md": {
+    "path": "public\\content\\design_patterns\\fundamentals\\when_to_use_and_not_use_design_patterns.md",
     "sections": [
       {
-        "id": "design-patterns-in-python-a-first-principles-guide",
-        "title": "Design Patterns in Python: A First Principles Guide",
+        "id": "when-to-use-and-not-use-design-patterns-in-software",
+        "title": "When to Use (and Not Use) Design Patterns in Software",
         "level": 1,
-        "wordCount": 52
+        "wordCount": 56
       },
       {
-        "id": "what-are-design-patterns",
-        "title": "What Are Design Patterns?",
+        "id": "understanding-design-patterns-from-first-principles",
+        "title": "Understanding Design Patterns from First Principles",
         "level": 2,
-        "wordCount": 82
+        "wordCount": 107
       },
       {
-        "id": "creational-patterns",
-        "title": "Creational Patterns",
+        "id": "when-to-use-design-patterns",
+        "title": "When to Use Design Patterns",
         "level": 2,
-        "wordCount": 740
+        "wordCount": 320
       },
       {
-        "id": "structural-patterns",
-        "title": "Structural Patterns",
+        "id": "when-not-to-use-design-patterns",
+        "title": "When NOT to Use Design Patterns",
         "level": 2,
-        "wordCount": 1127
+        "wordCount": 232
       },
       {
-        "id": "behavioral-patterns",
-        "title": "Behavioral Patterns",
+        "id": "finding-balance-a-thoughtful-approach-to-design-patterns",
+        "title": "Finding Balance: A Thoughtful Approach to Design Patterns",
         "level": 2,
-        "wordCount": 1688
+        "wordCount": 175
       },
       {
-        "id": "comparative-analysis",
-        "title": "Comparative Analysis",
+        "id": "decision-framework-for-using-design-patterns",
+        "title": "Decision Framework for Using Design Patterns",
         "level": 2,
-        "wordCount": 719
+        "wordCount": 113
       },
       {
-        "id": "decision-guide-which-pattern-to-use",
-        "title": "Decision Guide: Which Pattern to Use?",
-        "level": 2,
-        "wordCount": 219
-      },
-      {
-        "id": "python-specific-considerations",
-        "title": "Python-Specific Considerations",
+        "id": "common-design-pattern-misuses",
+        "title": "Common Design Pattern Misuses",
         "level": 2,
         "wordCount": 90
+      },
+      {
+        "id": "learning-from-evolution",
+        "title": "Learning from Evolution",
+        "level": 2,
+        "wordCount": 58
       },
       {
         "id": "conclusion",
         "title": "Conclusion",
         "level": 2,
-        "wordCount": 82
+        "wordCount": 126
       }
     ],
-    "totalWordCount": 4799,
-    "estimatedReadingTime": 1200000,
-    "title": "comparison",
+    "totalWordCount": 1277,
+    "estimatedReadingTime": 360000,
+    "title": "when_to_use_and_not_use_design_patterns",
     "frontmatter": {}
   },
-  "public\\content\\design_principles\\intermediate\\template_method.md": {
-    "path": "public\\content\\design_principles\\intermediate\\template_method.md",
+  "public\\content\\design_patterns\\fundamentals\\understanding_the_purpose_and_benefits_of_design_patterns.md": {
+    "path": "public\\content\\design_patterns\\fundamentals\\understanding_the_purpose_and_benefits_of_design_patterns.md",
     "sections": [
       {
-        "id": "the-template-method-design-pattern-first-principles-explanation",
-        "title": "The Template Method Design Pattern: First Principles Explanation",
+        "id": "understanding-design-patterns-from-first-principles",
+        "title": "Understanding Design Patterns: From First Principles",
         "level": 1,
-        "wordCount": 54
+        "wordCount": 109
       },
       {
-        "id": "the-problem-template-method-pattern-solves",
-        "title": "The Problem Template Method Pattern Solves",
+        "id": "what-are-design-patterns-really",
+        "title": "What Are Design Patterns, Really?",
         "level": 2,
-        "wordCount": 115
+        "wordCount": 165
       },
       {
-        "id": "the-template-method-pattern-solution",
-        "title": "The Template Method Pattern Solution",
+        "id": "why-design-patterns-matter-the-first-principles",
+        "title": "Why Design Patterns Matter: The First Principles",
         "level": 2,
-        "wordCount": 70
+        "wordCount": 378
       },
       {
-        "id": "components-of-the-template-method-pattern",
-        "title": "Components of the Template Method Pattern",
+        "id": "the-three-categories-of-design-patterns",
+        "title": "The Three Categories of Design Patterns",
         "level": 2,
-        "wordCount": 70
+        "wordCount": 197
       },
       {
-        "id": "python-implementation",
-        "title": "Python Implementation",
+        "id": "when-to-use-design-patterns-and-when-not-to",
+        "title": "When to Use Design Patterns (And When Not To)",
         "level": 2,
-        "wordCount": 72
+        "wordCount": 208
       },
       {
-        "id": "abstract-methods-vs-hook-methods",
-        "title": "Abstract Methods vs. Hook Methods",
-        "level": 2,
-        "wordCount": 58
-      },
-      {
-        "id": "the-hollywood-principle",
-        "title": "The \"Hollywood Principle\"",
-        "level": 2,
-        "wordCount": 56
-      },
-      {
-        "id": "real-world-example-data-processing-framework",
-        "title": "Real-World Example: Data Processing Framework",
-        "level": 2,
-        "wordCount": 36
-      },
-      {
-        "id": "template-method-with-type-hints-and-python-310-features",
-        "title": "Template Method with Type Hints and Python 3.10+ Features",
-        "level": 2,
-        "wordCount": 21
-      },
-      {
-        "id": "benefits-of-the-template-method-pattern",
-        "title": "Benefits of the Template Method Pattern",
-        "level": 2,
-        "wordCount": 79
-      },
-      {
-        "id": "variations-and-extensions-of-the-template-method-pattern",
-        "title": "Variations and Extensions of the Template Method Pattern",
-        "level": 2,
-        "wordCount": 73
-      },
-      {
-        "id": "when-to-use-the-template-method-pattern",
-        "title": "When to Use the Template Method Pattern",
+        "id": "real-world-benefits-of-design-patterns",
+        "title": "Real-World Benefits of Design Patterns",
         "level": 2,
         "wordCount": 144
       },
       {
-        "id": "when-not-to-use-the-template-method-pattern",
-        "title": "When Not to Use the Template Method Pattern",
-        "level": 2,
-        "wordCount": 111
-      },
-      {
-        "id": "real-world-example-web-framework-request-handlers",
-        "title": "Real-World Example: Web Framework Request Handlers",
-        "level": 2,
-        "wordCount": 107
-      },
-      {
-        "id": "template-method-vs-strategy-pattern",
-        "title": "Template Method vs. Strategy Pattern",
-        "level": 2,
-        "wordCount": 129
-      },
-      {
-        "id": "template-method-and-the-openclosed-principle",
-        "title": "Template Method and the Open/Closed Principle",
-        "level": 2,
-        "wordCount": 87
-      },
-      {
-        "id": "template-method-in-python-standard-library",
-        "title": "Template Method in Python Standard Library",
-        "level": 2,
-        "wordCount": 85
-      },
-      {
-        "id": "handling-default-implementations",
-        "title": "Handling Default Implementations",
-        "level": 2,
-        "wordCount": 35
-      },
-      {
-        "id": "advanced-template-method-with-multiple-extension-points",
-        "title": "Advanced Template Method with Multiple Extension Points",
-        "level": 2,
-        "wordCount": 65
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 171
-      }
-    ],
-    "totalWordCount": 1638,
-    "estimatedReadingTime": 420000,
-    "title": "template_method",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\intermediate\\prototype.md": {
-    "path": "public\\content\\design_principles\\intermediate\\prototype.md",
-    "sections": [
-      {
-        "id": "the-prototype-design-pattern-first-principles-explanation",
-        "title": "The Prototype Design Pattern: First Principles Explanation",
-        "level": 1,
-        "wordCount": 46
-      },
-      {
-        "id": "the-problem-prototype-pattern-solves",
-        "title": "The Problem Prototype Pattern Solves",
-        "level": 2,
-        "wordCount": 133
-      },
-      {
-        "id": "the-prototype-pattern-solution",
-        "title": "The Prototype Pattern Solution",
-        "level": 2,
-        "wordCount": 59
-      },
-      {
-        "id": "components-of-the-prototype-pattern",
-        "title": "Components of the Prototype Pattern",
-        "level": 2,
-        "wordCount": 46
-      },
-      {
-        "id": "python-implementation",
-        "title": "Python Implementation",
-        "level": 2,
-        "wordCount": 54
-      },
-      {
-        "id": "deep-vs-shallow-cloning",
-        "title": "Deep vs. Shallow Cloning",
-        "level": 2,
-        "wordCount": 99
-      },
-      {
-        "id": "prototype-registry",
-        "title": "Prototype Registry",
-        "level": 2,
-        "wordCount": 20
-      },
-      {
-        "id": "real-world-example-document-templating-system",
-        "title": "Real-World Example: Document Templating System",
-        "level": 2,
-        "wordCount": 40
-      },
-      {
-        "id": "pythons-copy-module-and-__copy____deepcopy__-methods",
-        "title": "Python's `copy` Module and `__copy__`/`__deepcopy__` Methods",
-        "level": 2,
-        "wordCount": 24
-      },
-      {
-        "id": "benefits-of-the-prototype-pattern",
-        "title": "Benefits of the Prototype Pattern",
-        "level": 2,
-        "wordCount": 59
-      },
-      {
-        "id": "when-to-use-the-prototype-pattern",
-        "title": "When to Use the Prototype Pattern",
-        "level": 2,
-        "wordCount": 61
-      },
-      {
-        "id": "when-not-to-use-the-prototype-pattern",
-        "title": "When Not to Use the Prototype Pattern",
-        "level": 2,
-        "wordCount": 40
-      },
-      {
-        "id": "comparison-with-other-patterns",
-        "title": "Comparison with Other Patterns",
-        "level": 2,
-        "wordCount": 68
-      },
-      {
-        "id": "prototype-in-pythons-standard-library",
-        "title": "Prototype in Python's Standard Library",
-        "level": 2,
-        "wordCount": 60
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 136
-      }
-    ],
-    "totalWordCount": 945,
-    "estimatedReadingTime": 240000,
-    "title": "prototype",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\intermediate\\composite.md": {
-    "path": "public\\content\\design_principles\\intermediate\\composite.md",
-    "sections": [
-      {
-        "id": "the-composite-design-pattern-first-principles-explanation",
-        "title": "The Composite Design Pattern: First Principles Explanation",
-        "level": 1,
-        "wordCount": 53
-      },
-      {
-        "id": "the-problem-composite-pattern-solves",
-        "title": "The Problem Composite Pattern Solves",
-        "level": 2,
-        "wordCount": 133
-      },
-      {
-        "id": "the-composite-pattern-solution",
-        "title": "The Composite Pattern Solution",
-        "level": 2,
-        "wordCount": 53
-      },
-      {
-        "id": "components-of-the-composite-pattern",
-        "title": "Components of the Composite Pattern",
-        "level": 2,
-        "wordCount": 65
-      },
-      {
-        "id": "python-implementation",
-        "title": "Python Implementation",
-        "level": 2,
-        "wordCount": 64
-      },
-      {
-        "id": "implementing-safety-checks",
-        "title": "Implementing Safety Checks",
-        "level": 2,
-        "wordCount": 101
-      },
-      {
-        "id": "the-python-way-duck-typing",
-        "title": "The Python Way: Duck Typing",
-        "level": 2,
-        "wordCount": 34
-      },
-      {
-        "id": "real-world-example-gui-component-hierarchy",
-        "title": "Real-World Example: GUI Component Hierarchy",
-        "level": 2,
-        "wordCount": 67
-      },
-      {
-        "id": "implementing-composite-iterator",
-        "title": "Implementing Composite Iterator",
-        "level": 2,
-        "wordCount": 32
-      },
-      {
-        "id": "implementing-visitor-pattern-with-composite",
-        "title": "Implementing Visitor Pattern with Composite",
-        "level": 2,
-        "wordCount": 24
-      },
-      {
-        "id": "managing-parent-child-relationships",
-        "title": "Managing Parent-Child Relationships",
-        "level": 2,
-        "wordCount": 29
-      },
-      {
-        "id": "implementing-access-control-with-composite",
-        "title": "Implementing Access Control with Composite",
-        "level": 2,
-        "wordCount": 25
-      },
-      {
-        "id": "composite-pattern-variations",
-        "title": "Composite Pattern Variations",
-        "level": 2,
-        "wordCount": 56
-      },
-      {
-        "id": "implementing-a-file-system-explorer-with-composite",
-        "title": "Implementing a File System Explorer with Composite",
-        "level": 2,
-        "wordCount": 47
-      },
-      {
-        "id": "composite-pattern-in-djangos-template-system",
-        "title": "Composite Pattern in Django's Template System",
-        "level": 2,
-        "wordCount": 76
-      },
-      {
-        "id": "when-to-use-the-composite-pattern",
-        "title": "When to Use the Composite Pattern",
-        "level": 2,
-        "wordCount": 139
-      },
-      {
-        "id": "when-not-to-use-the-composite-pattern",
-        "title": "When Not to Use the Composite Pattern",
-        "level": 2,
-        "wordCount": 122
-      },
-      {
-        "id": "composite-pattern-in-pythons-standard-library",
-        "title": "Composite Pattern in Python's Standard Library",
-        "level": 2,
-        "wordCount": 57
-      },
-      {
-        "id": "comparison-with-other-patterns",
-        "title": "Comparison with Other Patterns",
-        "level": 2,
-        "wordCount": 140
-      },
-      {
-        "id": "implementing-composite-with-python-collections",
-        "title": "Implementing Composite with Python Collections",
-        "level": 2,
-        "wordCount": 40
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 190
-      }
-    ],
-    "totalWordCount": 1547,
-    "estimatedReadingTime": 420000,
-    "title": "composite",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\intermediate\\builder.md": {
-    "path": "public\\content\\design_principles\\intermediate\\builder.md",
-    "sections": [
-      {
-        "id": "the-builder-design-pattern-first-principles-explanation",
-        "title": "The Builder Design Pattern: First Principles Explanation",
-        "level": 1,
-        "wordCount": 47
-      },
-      {
-        "id": "the-problem-builder-pattern-solves",
-        "title": "The Problem Builder Pattern Solves",
-        "level": 2,
-        "wordCount": 109
-      },
-      {
-        "id": "the-builder-pattern-solution",
-        "title": "The Builder Pattern Solution",
-        "level": 2,
-        "wordCount": 55
-      },
-      {
-        "id": "components-of-the-builder-pattern",
-        "title": "Components of the Builder Pattern",
-        "level": 2,
-        "wordCount": 42
-      },
-      {
-        "id": "python-implementation",
-        "title": "Python Implementation",
-        "level": 2,
-        "wordCount": 62
-      },
-      {
-        "id": "adding-a-director",
-        "title": "Adding a Director",
-        "level": 2,
-        "wordCount": 24
-      },
-      {
-        "id": "builder-pattern-variations",
-        "title": "Builder Pattern Variations",
-        "level": 2,
-        "wordCount": 29
-      },
-      {
-        "id": "real-world-example-building-complex-api-requests",
-        "title": "Real-World Example: Building Complex API Requests",
-        "level": 2,
-        "wordCount": 19
-      },
-      {
-        "id": "benefits-of-the-builder-pattern",
-        "title": "Benefits of the Builder Pattern",
-        "level": 2,
-        "wordCount": 54
-      },
-      {
-        "id": "when-to-use-the-builder-pattern",
-        "title": "When to Use the Builder Pattern",
-        "level": 2,
-        "wordCount": 50
-      },
-      {
-        "id": "when-not-to-use-the-builder-pattern",
-        "title": "When Not to Use the Builder Pattern",
-        "level": 2,
-        "wordCount": 37
-      },
-      {
-        "id": "comparison-with-other-patterns",
-        "title": "Comparison with Other Patterns",
-        "level": 2,
-        "wordCount": 56
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 64
-      }
-    ],
-    "totalWordCount": 648,
-    "estimatedReadingTime": 180000,
-    "title": "builder",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\intermediate\\abstract_factory.md": {
-    "path": "public\\content\\design_principles\\intermediate\\abstract_factory.md",
-    "sections": [
-      {
-        "id": "the-abstract-factory-design-pattern-first-principles-explanation",
-        "title": "The Abstract Factory Design Pattern: First Principles Explanation",
-        "level": 1,
-        "wordCount": 47
-      },
-      {
-        "id": "the-problem-abstract-factory-pattern-solves",
-        "title": "The Problem Abstract Factory Pattern Solves",
-        "level": 2,
-        "wordCount": 152
-      },
-      {
-        "id": "the-abstract-factory-pattern-solution",
-        "title": "The Abstract Factory Pattern Solution",
-        "level": 2,
-        "wordCount": 53
-      },
-      {
-        "id": "components-of-the-abstract-factory-pattern",
-        "title": "Components of the Abstract Factory Pattern",
-        "level": 2,
-        "wordCount": 71
-      },
-      {
-        "id": "python-implementation",
-        "title": "Python Implementation",
-        "level": 2,
-        "wordCount": 87
-      },
-      {
-        "id": "factory-selection-and-configuration",
-        "title": "Factory Selection and Configuration",
-        "level": 2,
-        "wordCount": 31
-      },
-      {
-        "id": "adding-a-new-product-family",
-        "title": "Adding a New Product Family",
-        "level": 2,
-        "wordCount": 75
-      },
-      {
-        "id": "adding-a-new-product-to-the-family",
-        "title": "Adding a New Product to the Family",
+        "id": "learning-design-patterns-effectively",
+        "title": "Learning Design Patterns Effectively",
         "level": 2,
         "wordCount": 93
       },
       {
-        "id": "real-world-example-database-connectivity",
-        "title": "Real-World Example: Database Connectivity",
+        "id": "common-design-patterns-in-practice",
+        "title": "Common Design Patterns in Practice",
         "level": 2,
-        "wordCount": 84
+        "wordCount": 109
       },
       {
-        "id": "pythonic-abstract-factory-implementation",
-        "title": "Pythonic Abstract Factory Implementation",
+        "id": "conclusion-design-patterns-as-mental-models",
+        "title": "Conclusion: Design Patterns as Mental Models",
         "level": 2,
-        "wordCount": 48
+        "wordCount": 173
+      }
+    ],
+    "totalWordCount": 1576,
+    "estimatedReadingTime": 420000,
+    "title": "understanding_the_purpose_and_benefits_of_design_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\fundamentals\\relationship_between_patterns_and_principles.md": {
+    "path": "public\\content\\design_patterns\\fundamentals\\relationship_between_patterns_and_principles.md",
+    "sections": [
+      {
+        "id": "design-patterns-and-principles-in-software-the-fundamental-connection",
+        "title": "Design Patterns and Principles in Software: The Fundamental Connection",
+        "level": 1,
+        "wordCount": 59
       },
       {
-        "id": "abstract-factory-with-class-registration",
-        "title": "Abstract Factory with Class Registration",
-        "level": 2,
-        "wordCount": 38
-      },
-      {
-        "id": "using-abstract-factory-with-factory-method",
-        "title": "Using Abstract Factory with Factory Method",
-        "level": 2,
-        "wordCount": 42
-      },
-      {
-        "id": "benefits-of-the-abstract-factory-pattern",
-        "title": "Benefits of the Abstract Factory Pattern",
-        "level": 2,
-        "wordCount": 73
-      },
-      {
-        "id": "drawbacks-of-the-abstract-factory-pattern",
-        "title": "Drawbacks of the Abstract Factory Pattern",
-        "level": 2,
-        "wordCount": 56
-      },
-      {
-        "id": "when-to-use-the-abstract-factory-pattern",
-        "title": "When to Use the Abstract Factory Pattern",
-        "level": 2,
-        "wordCount": 74
-      },
-      {
-        "id": "when-not-to-use-the-abstract-factory-pattern",
-        "title": "When Not to Use the Abstract Factory Pattern",
-        "level": 2,
-        "wordCount": 54
-      },
-      {
-        "id": "real-world-scenarios-for-abstract-factory",
-        "title": "Real-world Scenarios for Abstract Factory",
-        "level": 2,
-        "wordCount": 58
-      },
-      {
-        "id": "abstract-factory-in-pythons-standard-library",
-        "title": "Abstract Factory in Python's Standard Library",
-        "level": 2,
-        "wordCount": 51
-      },
-      {
-        "id": "comparison-with-other-patterns",
-        "title": "Comparison with Other Patterns",
-        "level": 2,
-        "wordCount": 104
-      },
-      {
-        "id": "advanced-example-game-character-creation-system",
-        "title": "Advanced Example: Game Character Creation System",
-        "level": 2,
-        "wordCount": 73
-      },
-      {
-        "id": "extending-the-game-character-system-with-new-families",
-        "title": "Extending the Game Character System with New Families",
-        "level": 2,
-        "wordCount": 35
-      },
-      {
-        "id": "adding-a-new-product-to-all-factories",
-        "title": "Adding a New Product to All Factories",
+        "id": "understanding-first-principles-in-software-design",
+        "title": "Understanding First Principles in Software Design",
         "level": 2,
         "wordCount": 75
       },
       {
-        "id": "abstract-factory-with-function-based-products",
-        "title": "Abstract Factory with Function-Based Products",
+        "id": "software-design-principles",
+        "title": "Software Design Principles",
         "level": 2,
-        "wordCount": 22
+        "wordCount": 360
       },
       {
-        "id": "abstract-factory-with-configuration-driven-approach",
-        "title": "Abstract Factory with Configuration-Driven Approach",
+        "id": "design-patterns",
+        "title": "Design Patterns",
         "level": 2,
-        "wordCount": 38
+        "wordCount": 235
       },
       {
-        "id": "implementing-abstract-factory-with-pythons-dynamic-features",
-        "title": "Implementing Abstract Factory with Python's Dynamic Features",
+        "id": "the-symbiotic-relationship-how-patterns-and-principles-work-together",
+        "title": "The Symbiotic Relationship: How Patterns and Principles Work Together",
         "level": 2,
-        "wordCount": 19
+        "wordCount": 228
       },
       {
-        "id": "using-dependency-injection-with-abstract-factory",
-        "title": "Using Dependency Injection with Abstract Factory",
-        "level": 2,
-        "wordCount": 20
-      },
-      {
-        "id": "abstract-factory-implementation-with-modern-python-features",
-        "title": "Abstract Factory Implementation with Modern Python Features",
-        "level": 2,
-        "wordCount": 30
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 251
-      }
-    ],
-    "totalWordCount": 1854,
-    "estimatedReadingTime": 480000,
-    "title": "abstract_factory",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\beginner\\strategy.md": {
-    "path": "public\\content\\design_principles\\beginner\\strategy.md",
-    "sections": [
-      {
-        "id": "the-strategy-pattern-in-python-a-first-principles-exploration",
-        "title": "The Strategy Pattern in Python: A First Principles Exploration",
-        "level": 1,
-        "wordCount": 46
-      },
-      {
-        "id": "the-core-problem-algorithm-flexibility",
-        "title": "The Core Problem: Algorithm Flexibility",
-        "level": 2,
-        "wordCount": 148
-      },
-      {
-        "id": "the-strategy-pattern-first-principles",
-        "title": "The Strategy Pattern: First Principles",
-        "level": 2,
-        "wordCount": 108
-      },
-      {
-        "id": "basic-implementation-in-python",
-        "title": "Basic Implementation in Python",
-        "level": 2,
-        "wordCount": 29
-      },
-      {
-        "id": "understanding-the-implementation",
-        "title": "Understanding the Implementation",
-        "level": 2,
-        "wordCount": 130
-      },
-      {
-        "id": "practical-example-payment-processing",
-        "title": "Practical Example: Payment Processing",
-        "level": 2,
-        "wordCount": 74
-      },
-      {
-        "id": "strategy-pattern-with-function-based-strategies",
-        "title": "Strategy Pattern with Function-Based Strategies",
-        "level": 2,
-        "wordCount": 62
-      },
-      {
-        "id": "using-pythons-built-in-functions-as-strategies",
-        "title": "Using Python's Built-in Functions as Strategies",
-        "level": 2,
-        "wordCount": 40
-      },
-      {
-        "id": "strategy-with-configuration-parameters",
-        "title": "Strategy with Configuration Parameters",
-        "level": 2,
-        "wordCount": 50
-      },
-      {
-        "id": "advanced-example-text-processing-strategies",
-        "title": "Advanced Example: Text Processing Strategies",
-        "level": 2,
-        "wordCount": 66
-      },
-      {
-        "id": "using-decorators-to-apply-strategies",
-        "title": "Using Decorators to Apply Strategies",
-        "level": 2,
-        "wordCount": 32
-      },
-      {
-        "id": "strategy-pattern-with-context-managers",
-        "title": "Strategy Pattern with Context Managers",
-        "level": 2,
-        "wordCount": 39
-      },
-      {
-        "id": "strategies-with-state",
-        "title": "Strategies with State",
-        "level": 2,
-        "wordCount": 44
-      },
-      {
-        "id": "when-to-use-the-strategy-pattern",
-        "title": "When to Use the Strategy Pattern",
-        "level": 2,
-        "wordCount": 90
-      },
-      {
-        "id": "comparison-with-other-behavioral-patterns",
-        "title": "Comparison with Other Behavioral Patterns",
-        "level": 2,
-        "wordCount": 132
-      },
-      {
-        "id": "python-specific-considerations",
-        "title": "Python-Specific Considerations",
-        "level": 2,
-        "wordCount": 105
-      },
-      {
-        "id": "strategy-pattern-with-dictionary-mapping",
-        "title": "Strategy Pattern with Dictionary Mapping",
-        "level": 2,
-        "wordCount": 52
-      },
-      {
-        "id": "combining-strategy-with-factory-pattern",
-        "title": "Combining Strategy with Factory Pattern",
-        "level": 2,
-        "wordCount": 39
-      },
-      {
-        "id": "strategies-with-composite-pattern",
-        "title": "Strategies with Composite Pattern",
-        "level": 2,
-        "wordCount": 37
-      },
-      {
-        "id": "real-world-example-machine-learning-model-selection",
-        "title": "Real-World Example: Machine Learning Model Selection",
-        "level": 2,
-        "wordCount": 67
-      },
-      {
-        "id": "configuring-strategies-with-yaml",
-        "title": "Configuring Strategies with YAML",
-        "level": 2,
-        "wordCount": 49
-      },
-      {
-        "id": "applying-strategy-pattern-to-gui-event-handling",
-        "title": "Applying Strategy Pattern to GUI Event Handling",
-        "level": 2,
-        "wordCount": 53
-      },
-      {
-        "id": "common-pitfalls-and-best-practices",
-        "title": "Common Pitfalls and Best Practices",
-        "level": 2,
-        "wordCount": 247
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 145
-      }
-    ],
-    "totalWordCount": 1884,
-    "estimatedReadingTime": 480000,
-    "title": "strategy",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\beginner\\singleton.md": {
-    "path": "public\\content\\design_principles\\beginner\\singleton.md",
-    "sections": [
-      {
-        "id": "the-singleton-design-pattern-in-python-a-first-principles-exploration",
-        "title": "The Singleton Design Pattern in Python: A First Principles Exploration",
-        "level": 1,
-        "wordCount": 47
-      },
-      {
-        "id": "what-is-a-design-pattern",
-        "title": "What is a Design Pattern?",
-        "level": 2,
-        "wordCount": 75
-      },
-      {
-        "id": "the-core-problem-single-instance-control",
-        "title": "The Core Problem: Single Instance Control",
-        "level": 2,
-        "wordCount": 119
-      },
-      {
-        "id": "the-singleton-pattern-first-principles",
-        "title": "The Singleton Pattern: First Principles",
-        "level": 2,
-        "wordCount": 58
-      },
-      {
-        "id": "basic-singleton-implementation-in-python",
-        "title": "Basic Singleton Implementation in Python",
-        "level": 2,
-        "wordCount": 33
-      },
-      {
-        "id": "understanding-the-implementation",
-        "title": "Understanding the Implementation",
-        "level": 2,
-        "wordCount": 100
-      },
-      {
-        "id": "thread-safety-concerns",
-        "title": "Thread Safety Concerns",
-        "level": 2,
-        "wordCount": 46
-      },
-      {
-        "id": "lazy-initialization",
-        "title": "Lazy Initialization",
-        "level": 2,
-        "wordCount": 29
-      },
-      {
-        "id": "a-practical-example-configuration-manager",
-        "title": "A Practical Example: Configuration Manager",
-        "level": 2,
-        "wordCount": 40
-      },
-      {
-        "id": "metaclass-implementation",
-        "title": "Metaclass Implementation",
-        "level": 2,
-        "wordCount": 44
-      },
-      {
-        "id": "module-level-singleton",
-        "title": "Module-Level Singleton",
-        "level": 2,
-        "wordCount": 52
-      },
-      {
-        "id": "borg-pattern-an-alternative-approach",
-        "title": "Borg Pattern: An Alternative Approach",
-        "level": 2,
-        "wordCount": 73
-      },
-      {
-        "id": "when-to-use-singleton",
-        "title": "When to Use Singleton",
-        "level": 2,
-        "wordCount": 72
-      },
-      {
-        "id": "alternatives-to-consider",
-        "title": "Alternatives to Consider",
-        "level": 2,
-        "wordCount": 50
-      },
-      {
-        "id": "common-pitfalls",
-        "title": "Common Pitfalls",
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
         "level": 2,
         "wordCount": 59
       },
       {
-        "id": "conclusion",
-        "title": "Conclusion",
+        "id": "when-to-use-patterns-vs-applying-principles-directly",
+        "title": "When to Use Patterns vs. Applying Principles Directly",
         "level": 2,
-        "wordCount": 109
-      }
-    ],
-    "totalWordCount": 1006,
-    "estimatedReadingTime": 300000,
-    "title": "singleton",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\beginner\\observer.md": {
-    "path": "public\\content\\design_principles\\beginner\\observer.md",
-    "sections": [
-      {
-        "id": "the-observer-pattern-in-python-a-first-principles-exploration",
-        "title": "The Observer Pattern in Python: A First Principles Exploration",
-        "level": 1,
-        "wordCount": 47
+        "wordCount": 140
       },
       {
-        "id": "the-core-problem-managing-object-dependencies",
-        "title": "The Core Problem: Managing Object Dependencies",
+        "id": "the-evolution-from-principles-to-patterns",
+        "title": "The Evolution from Principles to Patterns",
         "level": 2,
-        "wordCount": 154
+        "wordCount": 58
       },
       {
-        "id": "the-observer-pattern-first-principles",
-        "title": "The Observer Pattern: First Principles",
-        "level": 2,
-        "wordCount": 113
-      },
-      {
-        "id": "basic-implementation-in-python",
-        "title": "Basic Implementation in Python",
-        "level": 2,
-        "wordCount": 36
-      },
-      {
-        "id": "understanding-the-implementation",
-        "title": "Understanding the Implementation",
-        "level": 2,
-        "wordCount": 154
-      },
-      {
-        "id": "push-vs-pull-communication-models",
-        "title": "Push vs. Pull Communication Models",
-        "level": 2,
-        "wordCount": 139
-      },
-      {
-        "id": "event-based-implementation",
-        "title": "Event-Based Implementation",
-        "level": 2,
-        "wordCount": 82
-      },
-      {
-        "id": "using-pythons-built-in-observer-pattern",
-        "title": "Using Python's Built-in Observer Pattern",
-        "level": 2,
-        "wordCount": 50
-      },
-      {
-        "id": "practical-example-a-stock-market-monitoring-system",
-        "title": "Practical Example: A Stock Market Monitoring System",
-        "level": 2,
-        "wordCount": 80
-      },
-      {
-        "id": "using-the-observer-pattern-with-context-managers",
-        "title": "Using the Observer Pattern with Context Managers",
-        "level": 2,
-        "wordCount": 43
-      },
-      {
-        "id": "combining-with-other-design-patterns",
-        "title": "Combining with Other Design Patterns",
-        "level": 2,
-        "wordCount": 82
-      },
-      {
-        "id": "when-to-use-the-observer-pattern",
-        "title": "When to Use the Observer Pattern",
-        "level": 2,
-        "wordCount": 81
-      },
-      {
-        "id": "common-pitfalls-and-best-practices",
-        "title": "Common Pitfalls and Best Practices",
-        "level": 2,
-        "wordCount": 146
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 156
-      }
-    ],
-    "totalWordCount": 1363,
-    "estimatedReadingTime": 360000,
-    "title": "observer",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\beginner\\factory_method.md": {
-    "path": "public\\content\\design_principles\\beginner\\factory_method.md",
-    "sections": [
-      {
-        "id": "the-factory-method-pattern-in-python-a-first-principles-exploration",
-        "title": "The Factory Method Pattern in Python: A First Principles Exploration",
-        "level": 1,
-        "wordCount": 45
-      },
-      {
-        "id": "understanding-the-core-problem",
-        "title": "Understanding the Core Problem",
-        "level": 2,
-        "wordCount": 101
-      },
-      {
-        "id": "the-factory-method-first-principles",
-        "title": "The Factory Method: First Principles",
-        "level": 2,
-        "wordCount": 68
-      },
-      {
-        "id": "basic-structure-of-the-factory-method",
-        "title": "Basic Structure of the Factory Method",
-        "level": 2,
-        "wordCount": 66
-      },
-      {
-        "id": "understanding-the-implementation",
-        "title": "Understanding the Implementation",
-        "level": 2,
-        "wordCount": 156
-      },
-      {
-        "id": "factory-method-with-parameters",
-        "title": "Factory Method with Parameters",
-        "level": 2,
-        "wordCount": 46
-      },
-      {
-        "id": "conditional-factory-method",
-        "title": "Conditional Factory Method",
-        "level": 2,
-        "wordCount": 54
-      },
-      {
-        "id": "registration-based-factory",
-        "title": "Registration-Based Factory",
-        "level": 2,
-        "wordCount": 35
-      },
-      {
-        "id": "decorator-based-factory-registration",
-        "title": "Decorator-Based Factory Registration",
-        "level": 2,
-        "wordCount": 35
-      },
-      {
-        "id": "a-practical-example-ui-component-factory",
-        "title": "A Practical Example: UI Component Factory",
+        "id": "practical-tips-for-applying-this-knowledge",
+        "title": "Practical Tips for Applying This Knowledge",
         "level": 2,
         "wordCount": 63
       },
       {
-        "id": "when-to-use-the-factory-method-pattern",
-        "title": "When to Use the Factory Method Pattern",
+        "id": "conclusion",
+        "title": "Conclusion",
         "level": 2,
-        "wordCount": 76
+        "wordCount": 98
+      }
+    ],
+    "totalWordCount": 1375,
+    "estimatedReadingTime": 360000,
+    "title": "relationship_between_patterns_and_principles",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\fundamentals\\problem_solution_context_in_design_patterns.md": {
+    "path": "public\\content\\design_patterns\\fundamentals\\problem_solution_context_in_design_patterns.md",
+    "sections": [
+      {
+        "id": "problem-solution-context-in-design-patterns",
+        "title": "Problem-Solution Context in Design Patterns",
+        "level": 1,
+        "wordCount": 75
       },
       {
-        "id": "comparison-with-other-creational-patterns",
-        "title": "Comparison with Other Creational Patterns",
+        "id": "the-genesis-of-design-patterns",
+        "title": "The Genesis of Design Patterns",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "what-is-problem-solution-context",
+        "title": "What Is Problem-Solution Context?",
+        "level": 2,
+        "wordCount": 504
+      },
+      {
+        "id": "the-interplay-between-problem-solution-and-context",
+        "title": "The Interplay Between Problem, Solution, and Context",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "real-world-examples-of-problem-solution-context",
+        "title": "Real-World Examples of Problem-Solution Context",
+        "level": 2,
+        "wordCount": 227
+      },
+      {
+        "id": "common-problem-solution-contexts-in-design-patterns",
+        "title": "Common Problem-Solution Contexts in Design Patterns",
+        "level": 2,
+        "wordCount": 232
+      },
+      {
+        "id": "applying-problem-solution-context-in-practice",
+        "title": "Applying Problem-Solution Context in Practice",
+        "level": 2,
+        "wordCount": 183
+      },
+      {
+        "id": "common-misconceptions-about-design-patterns",
+        "title": "Common Misconceptions About Design Patterns",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "evolution-of-problem-solution-context",
+        "title": "Evolution of Problem-Solution Context",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 163
+      }
+    ],
+    "totalWordCount": 1830,
+    "estimatedReadingTime": 480000,
+    "title": "problem_solution_context_in_design_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\fundamentals\\pattern_language_concepts_from_christopher_alexander.md": {
+    "path": "public\\content\\design_patterns\\fundamentals\\pattern_language_concepts_from_christopher_alexander.md",
+    "sections": [
+      {
+        "id": "pattern-language-in-software-christopher-alexanders-legacy",
+        "title": "Pattern Language in Software: Christopher Alexander's Legacy",
+        "level": 1,
+        "wordCount": 45
+      },
+      {
+        "id": "what-is-a-pattern-language",
+        "title": "What is a Pattern Language?",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "patterns-identify-recurring-problems-and-solutions",
+        "title": "Patterns Identify Recurring Problems and Solutions",
+        "level": 2,
+        "wordCount": 201
+      },
+      {
+        "id": "patterns-exist-at-different-levels-and-scales",
+        "title": "Patterns Exist at Different Levels and Scales",
+        "level": 2,
+        "wordCount": 134
+      },
+      {
+        "id": "patterns-connect-to-form-a-cohesive-language",
+        "title": "Patterns Connect to Form a Cohesive \"Language\"",
+        "level": 2,
+        "wordCount": 167
+      },
+      {
+        "id": "patterns-aim-to-create-living-evolving-systems",
+        "title": "Patterns Aim to Create Living, Evolving Systems",
+        "level": 2,
+        "wordCount": 135
+      },
+      {
+        "id": "each-pattern-resolves-forces-or-tensions",
+        "title": "Each Pattern Resolves Forces or Tensions",
+        "level": 2,
+        "wordCount": 144
+      },
+      {
+        "id": "the-influence-on-software-design-patterns",
+        "title": "The Influence on Software Design Patterns",
+        "level": 2,
+        "wordCount": 200
+      },
+      {
+        "id": "pattern-languages-in-modern-software-development",
+        "title": "Pattern Languages in Modern Software Development",
+        "level": 2,
+        "wordCount": 155
+      },
+      {
+        "id": "applying-pattern-language-thinking-to-your-projects",
+        "title": "Applying Pattern Language Thinking to Your Projects",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 109
+      }
+    ],
+    "totalWordCount": 1534,
+    "estimatedReadingTime": 420000,
+    "title": "pattern_language_concepts_from_christopher_alexander",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\fundamentals\\pattern_classification_system_and_terminology.md": {
+    "path": "public\\content\\design_patterns\\fundamentals\\pattern_classification_system_and_terminology.md",
+    "sections": [
+      {
+        "id": "design-pattern-classification-system-and-terminology-in-software",
+        "title": "Design Pattern Classification System and Terminology in Software",
+        "level": 1,
+        "wordCount": 46
+      },
+      {
+        "id": "the-foundation-what-are-design-patterns",
+        "title": "The Foundation: What Are Design Patterns?",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "the-classification-system",
+        "title": "The Classification System",
+        "level": 2,
+        "wordCount": 553
+      },
+      {
+        "id": "additional-classification-architectural-patterns",
+        "title": "Additional Classification: Architectural Patterns",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "design-pattern-terminology",
+        "title": "Design Pattern Terminology",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "anti-patterns-what-not-to-do",
+        "title": "Anti-Patterns: What Not to Do",
+        "level": 2,
+        "wordCount": 161
+      },
+      {
+        "id": "benefits-of-using-design-patterns",
+        "title": "Benefits of Using Design Patterns",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "criticisms-and-limitations",
+        "title": "Criticisms and Limitations",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 112
+      }
+    ],
+    "totalWordCount": 1432,
+    "estimatedReadingTime": 360000,
+    "title": "pattern_classification_system_and_terminology",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\fundamentals\\origins_and_history_of_design_patterns.md": {
+    "path": "public\\content\\design_patterns\\fundamentals\\origins_and_history_of_design_patterns.md",
+    "sections": [
+      {
+        "id": "the-origins-and-history-of-design-patterns-the-gang-of-four",
+        "title": "The Origins and History of Design Patterns: The Gang of Four",
+        "level": 1,
+        "wordCount": 52
+      },
+      {
+        "id": "the-foundations-christopher-alexanders-architectural-patterns",
+        "title": "The Foundations: Christopher Alexander's Architectural Patterns",
+        "level": 2,
+        "wordCount": 170
+      },
+      {
+        "id": "from-buildings-to-software",
+        "title": "From Buildings to Software",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "the-gang-of-four-emerges",
+        "title": "The Gang of Four Emerges",
+        "level": 2,
+        "wordCount": 142
+      },
+      {
+        "id": "the-birth-of-the-gof-book",
+        "title": "The Birth of the GoF Book",
+        "level": 2,
+        "wordCount": 164
+      },
+      {
+        "id": "the-gof-patterns-a-structured-approach",
+        "title": "The GoF Patterns: A Structured Approach",
+        "level": 2,
+        "wordCount": 431
+      },
+      {
+        "id": "the-structure-of-a-design-pattern",
+        "title": "The Structure of a Design Pattern",
+        "level": 2,
+        "wordCount": 185
+      },
+      {
+        "id": "historical-context-software-engineering-in-the-early-1990s",
+        "title": "Historical Context: Software Engineering in the Early 1990s",
+        "level": 2,
+        "wordCount": 157
+      },
+      {
+        "id": "reception-and-impact",
+        "title": "Reception and Impact",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "beyond-the-gof-the-evolution-of-design-patterns",
+        "title": "Beyond the GoF: The Evolution of Design Patterns",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "criticisms-and-controversies",
+        "title": "Criticisms and Controversies",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "the-legacy-of-the-gang-of-four",
+        "title": "The Legacy of the Gang of Four",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "the-gang-of-four-members-individual-contributions",
+        "title": "The Gang of Four Members: Individual Contributions",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "design-patterns-in-modern-software-development",
+        "title": "Design Patterns in Modern Software Development",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "conclusion-the-enduring-impact",
+        "title": "Conclusion: The Enduring Impact",
+        "level": 2,
+        "wordCount": 167
+      }
+    ],
+    "totalWordCount": 2319,
+    "estimatedReadingTime": 600000,
+    "title": "origins_and_history_of_design_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\fundamentals\\design_pattern_structure_and_documentation.md": {
+    "path": "public\\content\\design_patterns\\fundamentals\\design_pattern_structure_and_documentation.md",
+    "sections": [
+      {
+        "id": "design-patterns-structure-and-documentation-in-software",
+        "title": "Design Patterns: Structure and Documentation in Software",
+        "level": 1,
+        "wordCount": 51
+      },
+      {
+        "id": "understanding-design-patterns-from-first-principles",
+        "title": "Understanding Design Patterns from First Principles",
+        "level": 2,
+        "wordCount": 214
+      },
+      {
+        "id": "the-structure-of-a-design-pattern",
+        "title": "The Structure of a Design Pattern",
+        "level": 2,
+        "wordCount": 194
+      },
+      {
+        "id": "example-singleton-pattern-structure",
+        "title": "Example: Singleton Pattern Structure",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "categories-of-design-patterns",
+        "title": "Categories of Design Patterns",
+        "level": 2,
+        "wordCount": 378
+      },
+      {
+        "id": "lets-explore-a-few-more-pattern-examples",
+        "title": "Let's Explore a Few More Pattern Examples",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "proper-documentation-of-design-patterns",
+        "title": "Proper Documentation of Design Patterns",
+        "level": 2,
+        "wordCount": 156
+      },
+      {
+        "id": "example-documenting-the-strategy-pattern",
+        "title": "Example: Documenting the Strategy Pattern",
+        "level": 2,
+        "wordCount": 240
+      },
+      {
+        "id": "applying-design-patterns-in-real-projects",
+        "title": "Applying Design Patterns in Real Projects",
+        "level": 2,
+        "wordCount": 183
+      },
+      {
+        "id": "anti-patterns-what-to-avoid",
+        "title": "Anti-Patterns: What to Avoid",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
         "level": 2,
         "wordCount": 116
+      }
+    ],
+    "totalWordCount": 1924,
+    "estimatedReadingTime": 480000,
+    "title": "design_pattern_structure_and_documentation",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\fundamentals\\design_patterns_across_different_programming_paradigms.md": {
+    "path": "public\\content\\design_patterns\\fundamentals\\design_patterns_across_different_programming_paradigms.md",
+    "sections": [
+      {
+        "id": "design-patterns-across-different-programming-paradigms",
+        "title": "Design Patterns Across Different Programming Paradigms",
+        "level": 1,
+        "wordCount": 6
+      },
+      {
+        "id": "introduction-to-design-patterns",
+        "title": "Introduction to Design Patterns",
+        "level": 2,
+        "wordCount": 218
+      },
+      {
+        "id": "understanding-programming-paradigms",
+        "title": "Understanding Programming Paradigms",
+        "level": 2,
+        "wordCount": 167
+      },
+      {
+        "id": "object-oriented-design-patterns",
+        "title": "Object-Oriented Design Patterns",
+        "level": 2,
+        "wordCount": 384
+      },
+      {
+        "id": "functional-programming-patterns",
+        "title": "Functional Programming Patterns",
+        "level": 2,
+        "wordCount": 294
+      },
+      {
+        "id": "procedural-programming-patterns",
+        "title": "Procedural Programming Patterns",
+        "level": 2,
+        "wordCount": 171
+      },
+      {
+        "id": "reactive-programming-patterns",
+        "title": "Reactive Programming Patterns",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "concurrent-programming-patterns",
+        "title": "Concurrent Programming Patterns",
+        "level": 2,
+        "wordCount": 214
+      },
+      {
+        "id": "cross-paradigm-design-patterns",
+        "title": "Cross-Paradigm Design Patterns",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "comparing-design-patterns-across-paradigms",
+        "title": "Comparing Design Patterns Across Paradigms",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 179
+      }
+    ],
+    "totalWordCount": 2038,
+    "estimatedReadingTime": 540000,
+    "title": "design_patterns_across_different_programming_paradigms",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\fundamentals\\common_design_pattern_criticisms_and_limitations.md": {
+    "path": "public\\content\\design_patterns\\fundamentals\\common_design_pattern_criticisms_and_limitations.md",
+    "sections": [
+      {
+        "id": "common-design-pattern-criticisms-and-limitations-in-software",
+        "title": "Common Design Pattern Criticisms and Limitations in Software",
+        "level": 1,
+        "wordCount": 77
+      },
+      {
+        "id": "first-principles-what-are-design-patterns",
+        "title": "First Principles: What Are Design Patterns?",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "fundamental-criticisms-of-design-patterns",
+        "title": "Fundamental Criticisms of Design Patterns",
+        "level": 2,
+        "wordCount": 757
+      },
+      {
+        "id": "modern-context-and-evolving-perspectives",
+        "title": "Modern Context and Evolving Perspectives",
+        "level": 2,
+        "wordCount": 145
+      },
+      {
+        "id": "finding-balance-when-to-use-design-patterns",
+        "title": "Finding Balance: When to Use Design Patterns",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 98
+      }
+    ],
+    "totalWordCount": 1266,
+    "estimatedReadingTime": 360000,
+    "title": "common_design_pattern_criticisms_and_limitations",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\foundational_design_principles\\yagni.md": {
+    "path": "public\\content\\design_patterns\\foundational_design_principles\\yagni.md",
+    "sections": [
+      {
+        "id": "yagni-you-arent-gonna-need-it",
+        "title": "YAGNI: You Aren't Gonna Need It",
+        "level": 1,
+        "wordCount": 24
+      },
+      {
+        "id": "understanding-yagni-from-first-principles",
+        "title": "Understanding YAGNI From First Principles",
+        "level": 2,
+        "wordCount": 271
+      },
+      {
+        "id": "the-origins-of-yagni",
+        "title": "The Origins of YAGNI",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "how-yagni-works-in-practice",
+        "title": "How YAGNI Works in Practice",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "real-world-examples-of-yagni",
+        "title": "Real-World Examples of YAGNI",
+        "level": 2,
+        "wordCount": 229
+      },
+      {
+        "id": "code-examples-demonstrating-yagni",
+        "title": "Code Examples Demonstrating YAGNI",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "the-benefits-of-yagni",
+        "title": "The Benefits of YAGNI",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "challenges-in-applying-yagni",
+        "title": "Challenges in Applying YAGNI",
+        "level": 2,
+        "wordCount": 160
+      },
+      {
+        "id": "related-principles-and-methodologies",
+        "title": "Related Principles and Methodologies",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "practical-application",
+        "title": "Practical Application",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 102
+      }
+    ],
+    "totalWordCount": 1432,
+    "estimatedReadingTime": 360000,
+    "title": "yagni",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\foundational_design_principles\\solid_principles_in_depth.md": {
+    "path": "public\\content\\design_patterns\\foundational_design_principles\\solid_principles_in_depth.md",
+    "sections": [
+      {
+        "id": "solid-principles-in-design-patterns-a-first-principles-approach",
+        "title": "SOLID Principles in Design Patterns: A First Principles Approach",
+        "level": 1,
+        "wordCount": 75
+      },
+      {
+        "id": "the-origins-and-purpose-of-solid",
+        "title": "The Origins and Purpose of SOLID",
+        "level": 2,
+        "wordCount": 144
+      },
+      {
+        "id": "s-single-responsibility-principle-srp",
+        "title": "S: Single Responsibility Principle (SRP)",
+        "level": 2,
+        "wordCount": 378
+      },
+      {
+        "id": "o-openclosed-principle-ocp",
+        "title": "O: Open/Closed Principle (OCP)",
+        "level": 2,
+        "wordCount": 299
+      },
+      {
+        "id": "l-liskov-substitution-principle-lsp",
+        "title": "L: Liskov Substitution Principle (LSP)",
+        "level": 2,
+        "wordCount": 298
+      },
+      {
+        "id": "i-interface-segregation-principle-isp",
+        "title": "I: Interface Segregation Principle (ISP)",
+        "level": 2,
+        "wordCount": 280
+      },
+      {
+        "id": "d-dependency-inversion-principle-dip",
+        "title": "D: Dependency Inversion Principle (DIP)",
+        "level": 2,
+        "wordCount": 332
+      },
+      {
+        "id": "how-solid-principles-work-together",
+        "title": "How SOLID Principles Work Together",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "practical-application-of-solid-principles",
+        "title": "Practical Application of SOLID Principles",
+        "level": 2,
+        "wordCount": 196
+      },
+      {
+        "id": "common-pitfalls-and-misconceptions",
+        "title": "Common Pitfalls and Misconceptions",
+        "level": 2,
+        "wordCount": 167
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 124
+      }
+    ],
+    "totalWordCount": 2408,
+    "estimatedReadingTime": 600000,
+    "title": "solid_principles_in_depth",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\foundational_design_principles\\separation_of_concerns.md": {
+    "path": "public\\content\\design_patterns\\foundational_design_principles\\separation_of_concerns.md",
+    "sections": [
+      {
+        "id": "the-separation-of-concerns-pattern-in-software",
+        "title": "The Separation of Concerns Pattern in Software",
+        "level": 1,
+        "wordCount": 60
+      },
+      {
+        "id": "first-principles-what-is-a-concern",
+        "title": "First Principles: What is a \"Concern\"?",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "the-core-principle",
+        "title": "The Core Principle",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "why-separation-of-concerns-matters",
+        "title": "Why Separation of Concerns Matters",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "practical-examples-of-separation-of-concerns",
+        "title": "Practical Examples of Separation of Concerns",
+        "level": 2,
+        "wordCount": 276
+      },
+      {
+        "id": "common-techniques-for-achieving-separation-of-concerns",
+        "title": "Common Techniques for Achieving Separation of Concerns",
+        "level": 2,
+        "wordCount": 165
+      },
+      {
+        "id": "real-world-applications-of-separation-of-concerns",
+        "title": "Real-World Applications of Separation of Concerns",
+        "level": 2,
+        "wordCount": 152
+      },
+      {
+        "id": "common-challenges-and-pitfalls",
+        "title": "Common Challenges and Pitfalls",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "finding-the-right-balance",
+        "title": "Finding the Right Balance",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 121
+      }
+    ],
+    "totalWordCount": 1331,
+    "estimatedReadingTime": 360000,
+    "title": "separation_of_concerns",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\foundational_design_principles\\programming_to_interfaces_not_implementations.md": {
+    "path": "public\\content\\design_patterns\\foundational_design_principles\\programming_to_interfaces_not_implementations.md",
+    "sections": [
+      {
+        "id": "programming-to-interfaces-not-implementations",
+        "title": "Programming to Interfaces, Not Implementations",
+        "level": 1,
+        "wordCount": 45
+      },
+      {
+        "id": "the-fundamental-concept",
+        "title": "The Fundamental Concept",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "why-program-to-interfaces",
+        "title": "Why Program to Interfaces?",
+        "level": 2,
+        "wordCount": 154
+      },
+      {
+        "id": "concrete-example-in-java",
+        "title": "Concrete Example in Java",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "a-more-complex-example",
+        "title": "A More Complex Example",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "dependency-injection-a-related-concept",
+        "title": "Dependency Injection - A Related Concept",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "python-example",
+        "title": "Python Example",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "common-pitfalls-to-avoid",
+        "title": "Common Pitfalls to Avoid",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "real-world-impact",
+        "title": "Real-World Impact",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "advanced-concepts",
+        "title": "Advanced Concepts",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "applying-these-concepts-in-different-programming-languages",
+        "title": "Applying These Concepts in Different Programming Languages",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "real-world-benefits",
+        "title": "Real-World Benefits",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 162
+      }
+    ],
+    "totalWordCount": 1145,
+    "estimatedReadingTime": 300000,
+    "title": "programming_to_interfaces_not_implementations",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\foundational_design_principles\\law_of_demeter.md": {
+    "path": "public\\content\\design_patterns\\foundational_design_principles\\law_of_demeter.md",
+    "sections": [
+      {
+        "id": "the-law-of-demeter-a-first-principles-approach",
+        "title": "The Law of Demeter: A First Principles Approach",
+        "level": 1,
+        "wordCount": 54
+      },
+      {
+        "id": "what-is-the-law-of-demeter",
+        "title": "What Is the Law of Demeter?",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "understanding-from-first-principles",
+        "title": "Understanding from First Principles",
+        "level": 2,
+        "wordCount": 171
+      },
+      {
+        "id": "visualizing-the-law-of-demeter",
+        "title": "Visualizing the Law of Demeter",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "code-examples",
+        "title": "Code Examples",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "benefits-of-following-the-law-of-demeter",
+        "title": "Benefits of Following the Law of Demeter",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "practical-examples-in-different-contexts",
+        "title": "Practical Examples in Different Contexts",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "common-misunderstandings",
+        "title": "Common Misunderstandings",
+        "level": 2,
+        "wordCount": 145
+      },
+      {
+        "id": "implementing-the-law-of-demeter-in-different-languages",
+        "title": "Implementing the Law of Demeter in Different Languages",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "when-to-be-careful-with-the-law-of-demeter",
+        "title": "When to Be Careful with the Law of Demeter",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "detecting-violations-with-static-analysis",
+        "title": "Detecting Violations with Static Analysis",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "refactoring-code-to-follow-the-law-of-demeter",
+        "title": "Refactoring Code to Follow the Law of Demeter",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "the-law-of-demeter-in-system-design",
+        "title": "The Law of Demeter in System Design",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "practical-example-a-weather-application",
+        "title": "Practical Example: A Weather Application",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 133
+      }
+    ],
+    "totalWordCount": 1317,
+    "estimatedReadingTime": 360000,
+    "title": "law_of_demeter",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\foundational_design_principles\\kiss.md": {
+    "path": "public\\content\\design_patterns\\foundational_design_principles\\kiss.md",
+    "sections": [
+      {
+        "id": "the-kiss-principle-in-software-a-first-principles-exploration",
+        "title": "The KISS Principle in Software: A First Principles Exploration",
+        "level": 1,
+        "wordCount": 50
+      },
+      {
+        "id": "what-is-kiss",
+        "title": "What is KISS?",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "the-first-principles-of-simplicity",
+        "title": "The First Principles of Simplicity",
+        "level": 2,
+        "wordCount": 221
+      },
+      {
+        "id": "why-simplicity-matters-the-cost-of-complexity",
+        "title": "Why Simplicity Matters: The Cost of Complexity",
+        "level": 2,
+        "wordCount": 187
+      },
+      {
+        "id": "practical-applications-of-kiss-in-software",
+        "title": "Practical Applications of KISS in Software",
+        "level": 2,
+        "wordCount": 173
+      },
+      {
+        "id": "common-mistakes-when-kiss-goes-wrong",
+        "title": "Common Mistakes: When KISS Goes Wrong",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "practical-guidelines-for-applying-kiss",
+        "title": "Practical Guidelines for Applying KISS",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "kiss-and-other-software-principles",
+        "title": "KISS and Other Software Principles",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "a-visual-framework-for-kiss-decision-making",
+        "title": "A Visual Framework for KISS Decision-Making",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 1152,
+    "estimatedReadingTime": 300000,
+    "title": "kiss",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\foundational_design_principles\\encapsulation_and_information_hiding.md": {
+    "path": "public\\content\\design_patterns\\foundational_design_principles\\encapsulation_and_information_hiding.md",
+    "sections": [
+      {
+        "id": "encapsulation-and-information-hiding-in-software-design",
+        "title": "Encapsulation and Information Hiding in Software Design",
+        "level": 1,
+        "wordCount": 60
+      },
+      {
+        "id": "what-is-encapsulation",
+        "title": "What is Encapsulation?",
+        "level": 2,
+        "wordCount": 190
+      },
+      {
+        "id": "what-is-information-hiding",
+        "title": "What is Information Hiding?",
+        "level": 2,
+        "wordCount": 161
+      },
+      {
+        "id": "the-critical-difference-between-encapsulation-and-information-hiding",
+        "title": "The Critical Difference Between Encapsulation and Information Hiding",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "benefits-with-real-world-examples",
+        "title": "Benefits with Real-World Examples",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "implementation-in-different-programming-languages",
+        "title": "Implementation in Different Programming Languages",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "design-patterns-that-leverage-encapsulation-and-information-hiding",
+        "title": "Design Patterns That Leverage Encapsulation and Information Hiding",
+        "level": 2,
+        "wordCount": 43
       },
       {
         "id": "common-pitfalls-and-best-practices",
         "title": "Common Pitfalls and Best Practices",
         "level": 2,
-        "wordCount": 118
+        "wordCount": 80
       },
       {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 111
-      }
-    ],
-    "totalWordCount": 1090,
-    "estimatedReadingTime": 300000,
-    "title": "factory_method",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\beginner\\decorator.md": {
-    "path": "public\\content\\design_principles\\beginner\\decorator.md",
-    "sections": [
-      {
-        "id": "the-decorator-pattern-in-python-a-first-principles-exploration",
-        "title": "The Decorator Pattern in Python: A First Principles Exploration",
-        "level": 1,
-        "wordCount": 46
-      },
-      {
-        "id": "the-core-problem-extending-functionality-dynamically",
-        "title": "The Core Problem: Extending Functionality Dynamically",
-        "level": 2,
-        "wordCount": 152
-      },
-      {
-        "id": "the-decorator-pattern-first-principles",
-        "title": "The Decorator Pattern: First Principles",
-        "level": 2,
-        "wordCount": 140
-      },
-      {
-        "id": "basic-implementation-in-python",
-        "title": "Basic Implementation in Python",
-        "level": 2,
-        "wordCount": 31
-      },
-      {
-        "id": "understanding-the-implementation",
-        "title": "Understanding the Implementation",
-        "level": 2,
-        "wordCount": 146
-      },
-      {
-        "id": "practical-example-coffee-shop-order-system",
-        "title": "Practical Example: Coffee Shop Order System",
-        "level": 2,
-        "wordCount": 66
-      },
-      {
-        "id": "decorators-with-state",
-        "title": "Decorators with State",
-        "level": 2,
-        "wordCount": 53
-      },
-      {
-        "id": "functional-decorators-in-python",
-        "title": "Functional Decorators in Python",
-        "level": 2,
-        "wordCount": 62
-      },
-      {
-        "id": "class-decorators-in-python",
-        "title": "Class Decorators in Python",
-        "level": 2,
-        "wordCount": 39
-      },
-      {
-        "id": "practical-example-file-io-with-decorators",
-        "title": "Practical Example: File I/O with Decorators",
-        "level": 2,
-        "wordCount": 61
-      },
-      {
-        "id": "dynamic-decorators-at-runtime",
-        "title": "Dynamic Decorators at Runtime",
-        "level": 2,
-        "wordCount": 59
-      },
-      {
-        "id": "complex-example-web-service-middleware",
-        "title": "Complex Example: Web Service Middleware",
-        "level": 2,
-        "wordCount": 73
-      },
-      {
-        "id": "using-pythons-standard-library-decorators",
-        "title": "Using Python's Standard Library Decorators",
-        "level": 2,
-        "wordCount": 86
-      },
-      {
-        "id": "decorator-pattern-in-context-extending-a-web-framework",
-        "title": "Decorator Pattern in Context: Extending a Web Framework",
-        "level": 2,
-        "wordCount": 71
-      },
-      {
-        "id": "combining-decorators-with-other-patterns",
-        "title": "Combining Decorators with Other Patterns",
-        "level": 2,
-        "wordCount": 124
-      },
-      {
-        "id": "practical-considerations-and-best-practices",
-        "title": "Practical Considerations and Best Practices",
-        "level": 2,
-        "wordCount": 281
-      },
-      {
-        "id": "when-to-use-the-decorator-pattern",
-        "title": "When to Use the Decorator Pattern",
-        "level": 2,
-        "wordCount": 76
-      },
-      {
-        "id": "when-not-to-use-the-decorator-pattern",
-        "title": "When Not to Use the Decorator Pattern",
-        "level": 2,
-        "wordCount": 84
-      },
-      {
-        "id": "real-world-applications-of-the-decorator-pattern",
-        "title": "Real-World Applications of the Decorator Pattern",
-        "level": 2,
-        "wordCount": 122
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 148
-      }
-    ],
-    "totalWordCount": 1920,
-    "estimatedReadingTime": 480000,
-    "title": "decorator",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\beginner\\command.md": {
-    "path": "public\\content\\design_principles\\beginner\\command.md",
-    "sections": [
-      {
-        "id": "the-command-pattern-in-python-a-first-principles-exploration",
-        "title": "The Command Pattern in Python: A First Principles Exploration",
-        "level": 1,
-        "wordCount": 44
-      },
-      {
-        "id": "the-core-problem-action-encapsulation-and-decoupling",
-        "title": "The Core Problem: Action Encapsulation and Decoupling",
-        "level": 2,
-        "wordCount": 140
-      },
-      {
-        "id": "the-command-pattern-first-principles",
-        "title": "The Command Pattern: First Principles",
-        "level": 2,
-        "wordCount": 154
-      },
-      {
-        "id": "basic-implementation-in-python",
-        "title": "Basic Implementation in Python",
-        "level": 2,
-        "wordCount": 30
-      },
-      {
-        "id": "understanding-the-implementation",
-        "title": "Understanding the Implementation",
-        "level": 2,
-        "wordCount": 173
-      },
-      {
-        "id": "adding-undo-functionality",
-        "title": "Adding Undo Functionality",
-        "level": 2,
-        "wordCount": 53
-      },
-      {
-        "id": "command-with-state-management",
-        "title": "Command with State Management",
-        "level": 2,
-        "wordCount": 44
-      },
-      {
-        "id": "composite-commands",
-        "title": "Composite Commands",
-        "level": 2,
-        "wordCount": 49
-      },
-      {
-        "id": "command-queue-and-log",
-        "title": "Command Queue and Log",
-        "level": 2,
-        "wordCount": 46
-      },
-      {
-        "id": "commands-with-return-values",
-        "title": "Commands with Return Values",
-        "level": 2,
-        "wordCount": 42
-      },
-      {
-        "id": "practical-example-text-editor",
-        "title": "Practical Example: Text Editor",
-        "level": 2,
-        "wordCount": 40
-      },
-      {
-        "id": "command-pattern-with-lambda-functions",
-        "title": "Command Pattern with Lambda Functions",
-        "level": 2,
-        "wordCount": 43
-      },
-      {
-        "id": "command-pattern-with-decorators",
-        "title": "Command Pattern with Decorators",
-        "level": 2,
-        "wordCount": 35
-      },
-      {
-        "id": "transaction-management-with-commands",
-        "title": "Transaction Management with Commands",
-        "level": 2,
-        "wordCount": 48
-      },
-      {
-        "id": "command-pattern-for-asynchronous-execution",
-        "title": "Command Pattern for Asynchronous Execution",
-        "level": 2,
-        "wordCount": 45
-      },
-      {
-        "id": "real-world-example-api-request-commands",
-        "title": "Real-World Example: API Request Commands",
-        "level": 2,
-        "wordCount": 56
-      },
-      {
-        "id": "command-pattern-for-task-scheduling",
-        "title": "Command Pattern for Task Scheduling",
-        "level": 2,
-        "wordCount": 52
-      },
-      {
-        "id": "command-pattern-for-dependency-injection",
-        "title": "Command Pattern for Dependency Injection",
-        "level": 2,
-        "wordCount": 60
-      },
-      {
-        "id": "when-to-use-the-command-pattern",
-        "title": "When to Use the Command Pattern",
+        "id": "real-world-impact",
+        "title": "Real-World Impact",
         "level": 2,
         "wordCount": 95
       },
       {
-        "id": "command-vs-strategy-pattern",
-        "title": "Command vs. Strategy Pattern",
+        "id": "summary",
+        "title": "Summary",
         "level": 2,
-        "wordCount": 94
-      },
-      {
-        "id": "command-vs-observer-pattern",
-        "title": "Command vs. Observer Pattern",
-        "level": 2,
-        "wordCount": 72
-      },
-      {
-        "id": "best-practices-for-implementing-commands",
-        "title": "Best Practices for Implementing Commands",
-        "level": 2,
-        "wordCount": 184
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 210
+        "wordCount": 125
       }
     ],
-    "totalWordCount": 1809,
-    "estimatedReadingTime": 480000,
-    "title": "command",
+    "totalWordCount": 971,
+    "estimatedReadingTime": 240000,
+    "title": "encapsulation_and_information_hiding",
     "frontmatter": {}
   },
-  "public\\content\\design_principles\\beginner\\adapter.md": {
-    "path": "public\\content\\design_principles\\beginner\\adapter.md",
+  "public\\content\\design_patterns\\foundational_design_principles\\dry.md": {
+    "path": "public\\content\\design_patterns\\foundational_design_principles\\dry.md",
     "sections": [
       {
-        "id": "the-adapter-pattern-in-python-a-first-principles-exploration",
-        "title": "The Adapter Pattern in Python: A First Principles Exploration",
+        "id": "dont-repeat-yourself-dry-a-first-principles-approach",
+        "title": "Don't Repeat Yourself (DRY): A First Principles Approach",
         "level": 1,
-        "wordCount": 47
+        "wordCount": 8
       },
       {
-        "id": "the-core-problem-incompatible-interfaces",
-        "title": "The Core Problem: Incompatible Interfaces",
-        "level": 2,
-        "wordCount": 120
-      },
-      {
-        "id": "the-adapter-pattern-first-principles",
-        "title": "The Adapter Pattern: First Principles",
-        "level": 2,
-        "wordCount": 128
-      },
-      {
-        "id": "basic-implementation-in-python",
-        "title": "Basic Implementation in Python",
-        "level": 2,
-        "wordCount": 28
-      },
-      {
-        "id": "understanding-the-implementation",
-        "title": "Understanding the Implementation",
-        "level": 2,
-        "wordCount": 123
-      },
-      {
-        "id": "two-variants-of-the-adapter-pattern",
-        "title": "Two Variants of the Adapter Pattern",
-        "level": 2,
-        "wordCount": 165
-      },
-      {
-        "id": "practical-example-database-connection-adapter",
-        "title": "Practical Example: Database Connection Adapter",
-        "level": 2,
-        "wordCount": 51
-      },
-      {
-        "id": "using-the-adapter-pattern-with-existing-libraries",
-        "title": "Using the Adapter Pattern with Existing Libraries",
-        "level": 2,
-        "wordCount": 67
-      },
-      {
-        "id": "two-way-adapters",
-        "title": "Two-Way Adapters",
-        "level": 2,
-        "wordCount": 39
-      },
-      {
-        "id": "adapter-vs-similar-patterns",
-        "title": "Adapter vs. Similar Patterns",
-        "level": 2,
-        "wordCount": 163
-      },
-      {
-        "id": "implementing-adapters-using-pythons-dynamic-features",
-        "title": "Implementing Adapters Using Python's Dynamic Features",
-        "level": 2,
-        "wordCount": 116
-      },
-      {
-        "id": "practical-example-adapting-different-payment-gateways",
-        "title": "Practical Example: Adapting Different Payment Gateways",
-        "level": 2,
-        "wordCount": 59
-      },
-      {
-        "id": "object-adapters-with-composition-vs-inheritance",
-        "title": "Object Adapters with Composition vs Inheritance",
-        "level": 2,
-        "wordCount": 151
-      },
-      {
-        "id": "dynamic-adapter-selection",
-        "title": "Dynamic Adapter Selection",
-        "level": 2,
-        "wordCount": 61
-      },
-      {
-        "id": "bidirectional-adapters",
-        "title": "Bidirectional Adapters",
-        "level": 2,
-        "wordCount": 45
-      },
-      {
-        "id": "adapter-with-caching",
-        "title": "Adapter with Caching",
-        "level": 2,
-        "wordCount": 36
-      },
-      {
-        "id": "adapter-for-asynchronous-apis",
-        "title": "Adapter for Asynchronous APIs",
-        "level": 2,
-        "wordCount": 40
-      },
-      {
-        "id": "real-world-example-database-driver-adapter",
-        "title": "Real-World Example: Database Driver Adapter",
-        "level": 2,
-        "wordCount": 60
-      },
-      {
-        "id": "when-to-use-the-adapter-pattern",
-        "title": "When to Use the Adapter Pattern",
-        "level": 2,
-        "wordCount": 91
-      },
-      {
-        "id": "best-practices-for-implementing-adapters",
-        "title": "Best Practices for Implementing Adapters",
-        "level": 2,
-        "wordCount": 154
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 209
-      }
-    ],
-    "totalWordCount": 1953,
-    "estimatedReadingTime": 480000,
-    "title": "adapter",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\advanced\\visitor.md": {
-    "path": "public\\content\\design_principles\\advanced\\visitor.md",
-    "sections": [
-      {
-        "id": "the-visitor-design-pattern-in-python",
-        "title": "The Visitor Design Pattern in Python",
-        "level": 1,
-        "wordCount": 46
-      },
-      {
-        "id": "first-principles-understanding-separation-of-concerns",
-        "title": "First Principles: Understanding Separation of Concerns",
-        "level": 2,
-        "wordCount": 97
-      },
-      {
-        "id": "the-problem-the-visitor-pattern-solves",
-        "title": "The Problem the Visitor Pattern Solves",
-        "level": 2,
-        "wordCount": 145
-      },
-      {
-        "id": "core-components-of-the-visitor-pattern",
-        "title": "Core Components of the Visitor Pattern",
-        "level": 2,
-        "wordCount": 94
-      },
-      {
-        "id": "a-simple-example-document-processing",
-        "title": "A Simple Example: Document Processing",
-        "level": 2,
-        "wordCount": 165
-      },
-      {
-        "id": "a-more-complex-example-abstract-syntax-tree-evaluation",
-        "title": "A More Complex Example: Abstract Syntax Tree Evaluation",
-        "level": 2,
-        "wordCount": 145
-      },
-      {
-        "id": "adding-new-elements-vs-adding-new-operations",
-        "title": "Adding New Elements vs. Adding New Operations",
-        "level": 2,
-        "wordCount": 157
-      },
-      {
-        "id": "advanced-use-cases-and-variations",
-        "title": "Advanced Use Cases and Variations",
-        "level": 2,
-        "wordCount": 107
-      },
-      {
-        "id": "real-world-example-file-system-traversal",
-        "title": "Real-World Example: File System Traversal",
-        "level": 2,
-        "wordCount": 87
-      },
-      {
-        "id": "benefits-of-the-visitor-pattern",
-        "title": "Benefits of the Visitor Pattern",
-        "level": 2,
-        "wordCount": 92
-      },
-      {
-        "id": "limitations-and-considerations",
-        "title": "Limitations and Considerations",
-        "level": 2,
-        "wordCount": 67
-      },
-      {
-        "id": "when-to-use-the-visitor-pattern",
-        "title": "When to Use the Visitor Pattern",
-        "level": 2,
-        "wordCount": 99
-      },
-      {
-        "id": "alternative-approaches",
-        "title": "Alternative Approaches",
-        "level": 2,
-        "wordCount": 88
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 116
-      }
-    ],
-    "totalWordCount": 1505,
-    "estimatedReadingTime": 420000,
-    "title": "visitor",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\advanced\\memento.md": {
-    "path": "public\\content\\design_principles\\advanced\\memento.md",
-    "sections": [
-      {
-        "id": "the-memento-design-pattern-in-python",
-        "title": "The Memento Design Pattern in Python",
-        "level": 1,
-        "wordCount": 46
-      },
-      {
-        "id": "first-principles-understanding-state-and-history",
-        "title": "First Principles: Understanding State and History",
+        "id": "introduction",
+        "title": "Introduction",
         "level": 2,
         "wordCount": 77
       },
       {
-        "id": "the-problem-the-memento-pattern-solves",
-        "title": "The Problem the Memento Pattern Solves",
+        "id": "origins-and-definition",
+        "title": "Origins and Definition",
         "level": 2,
-        "wordCount": 119
+        "wordCount": 81
       },
       {
-        "id": "core-components-of-the-memento-pattern",
-        "title": "Core Components of the Memento Pattern",
+        "id": "first-principles-why-repetition-is-problematic",
+        "title": "First Principles: Why Repetition Is Problematic",
         "level": 2,
-        "wordCount": 133
+        "wordCount": 155
       },
       {
-        "id": "a-simple-example-text-editor",
-        "title": "A Simple Example: Text Editor",
+        "id": "core-concepts-of-dry-implementation",
+        "title": "Core Concepts of DRY Implementation",
         "level": 2,
-        "wordCount": 103
+        "wordCount": 85
       },
       {
-        "id": "deep-dive-understanding-encapsulation-in-the-memento-pattern",
-        "title": "Deep Dive: Understanding Encapsulation in the Memento Pattern",
+        "id": "examples-of-code-that-violates-dry",
+        "title": "Examples of Code That Violates DRY",
         "level": 2,
-        "wordCount": 118
+        "wordCount": 99
       },
       {
-        "id": "a-more-complex-example-document-with-multiple-properties",
-        "title": "A More Complex Example: Document with Multiple Properties",
-        "level": 2,
-        "wordCount": 113
-      },
-      {
-        "id": "implementation-variations-and-considerations",
-        "title": "Implementation Variations and Considerations",
-        "level": 2,
-        "wordCount": 145
-      },
-      {
-        "id": "real-world-example-drawing-application",
-        "title": "Real-World Example: Drawing Application",
-        "level": 2,
-        "wordCount": 67
-      },
-      {
-        "id": "performance-considerations",
-        "title": "Performance Considerations",
-        "level": 2,
-        "wordCount": 114
-      },
-      {
-        "id": "combining-with-other-patterns",
-        "title": "Combining with Other Patterns",
-        "level": 2,
-        "wordCount": 40
-      },
-      {
-        "id": "advanced-implementation-snapshot-points",
-        "title": "Advanced Implementation: Snapshot Points",
-        "level": 2,
-        "wordCount": 35
-      },
-      {
-        "id": "when-to-use-the-memento-pattern",
-        "title": "When to Use the Memento Pattern",
-        "level": 2,
-        "wordCount": 98
-      },
-      {
-        "id": "alternative-approaches",
-        "title": "Alternative Approaches",
-        "level": 2,
-        "wordCount": 78
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 139
-      }
-    ],
-    "totalWordCount": 1425,
-    "estimatedReadingTime": 360000,
-    "title": "memento",
-    "frontmatter": {}
-  },
-  "public\\content\\design_principles\\advanced\\iterator.md": {
-    "path": "public\\content\\design_principles\\advanced\\iterator.md",
-    "sections": [
-      {
-        "id": "the-iterator-design-pattern-in-python",
-        "title": "The Iterator Design Pattern in Python",
-        "level": 1,
-        "wordCount": 50
-      },
-      {
-        "id": "first-principles-sequential-access-to-collections",
-        "title": "First Principles: Sequential Access to Collections",
-        "level": 2,
-        "wordCount": 118
-      },
-      {
-        "id": "the-problem-the-iterator-pattern-solves",
-        "title": "The Problem the Iterator Pattern Solves",
-        "level": 2,
-        "wordCount": 130
-      },
-      {
-        "id": "core-components-of-the-iterator-pattern",
-        "title": "Core Components of the Iterator Pattern",
-        "level": 2,
-        "wordCount": 55
-      },
-      {
-        "id": "pythons-built-in-iterator-protocol",
-        "title": "Python's Built-in Iterator Protocol",
-        "level": 2,
-        "wordCount": 133
-      },
-      {
-        "id": "a-simplified-approach-iterator-in-the-same-class",
-        "title": "A Simplified Approach: Iterator in the Same Class",
-        "level": 2,
-        "wordCount": 56
-      },
-      {
-        "id": "a-more-complete-example-custom-collection-with-multiple-iterators",
-        "title": "A More Complete Example: Custom Collection with Multiple Iterators",
+        "id": "dry-solutions-to-the-above-examples",
+        "title": "DRY Solutions to the Above Examples",
         "level": 2,
         "wordCount": 95
       },
       {
-        "id": "pythons-generator-functions-a-simplified-iterator",
-        "title": "Python's Generator Functions: A Simplified Iterator",
+        "id": "benefits-of-following-dry",
+        "title": "Benefits of Following DRY",
         "level": 2,
-        "wordCount": 68
+        "wordCount": 103
       },
       {
-        "id": "advanced-iterator-pattern-features",
-        "title": "Advanced Iterator Pattern Features",
+        "id": "common-misconceptions-about-dry",
+        "title": "Common Misconceptions About DRY",
         "level": 2,
-        "wordCount": 150
+        "wordCount": 124
       },
       {
-        "id": "real-world-example-file-processing",
-        "title": "Real-World Example: File Processing",
+        "id": "advanced-example-dry-in-a-real-project",
+        "title": "Advanced Example: DRY in a Real Project",
         "level": 2,
-        "wordCount": 43
+        "wordCount": 70
       },
       {
-        "id": "implementing-a-tree-iterator",
-        "title": "Implementing a Tree Iterator",
+        "id": "dry-in-relation-to-other-principles",
+        "title": "DRY in Relation to Other Principles",
         "level": 2,
-        "wordCount": 52
+        "wordCount": 113
       },
       {
-        "id": "iterator-pattern-in-python-collections",
-        "title": "Iterator Pattern in Python Collections",
+        "id": "practical-strategies-for-applying-dry",
+        "title": "Practical Strategies for Applying DRY",
         "level": 2,
-        "wordCount": 66
+        "wordCount": 67
       },
       {
-        "id": "python-iterator-tools",
-        "title": "Python Iterator Tools",
+        "id": "when-not-to-apply-dry",
+        "title": "When Not to Apply DRY",
         "level": 2,
-        "wordCount": 28
+        "wordCount": 83
       },
       {
-        "id": "benefits-of-the-iterator-pattern",
-        "title": "Benefits of the Iterator Pattern",
+        "id": "summary",
+        "title": "Summary",
         "level": 2,
-        "wordCount": 108
-      },
-      {
-        "id": "limitations-and-considerations",
-        "title": "Limitations and Considerations",
-        "level": 2,
-        "wordCount": 68
-      },
-      {
-        "id": "when-to-use-the-iterator-pattern",
-        "title": "When to Use the Iterator Pattern",
-        "level": 2,
-        "wordCount": 97
-      },
-      {
-        "id": "conclusion",
-        "title": "Conclusion",
-        "level": 2,
-        "wordCount": 187
+        "wordCount": 123
       }
     ],
-    "totalWordCount": 1504,
-    "estimatedReadingTime": 420000,
-    "title": "iterator",
+    "totalWordCount": 1283,
+    "estimatedReadingTime": 360000,
+    "title": "dry",
     "frontmatter": {}
   },
-  "public\\content\\design_principles\\advanced\\interpreter.md": {
-    "path": "public\\content\\design_principles\\advanced\\interpreter.md",
+  "public\\content\\design_patterns\\foundational_design_principles\\composition_over_inheritance.md": {
+    "path": "public\\content\\design_patterns\\foundational_design_principles\\composition_over_inheritance.md",
     "sections": [
       {
-        "id": "the-interpreter-design-pattern-in-python",
-        "title": "The Interpreter Design Pattern in Python",
+        "id": "composition-over-inheritance-understanding-from-first-principles",
+        "title": "Composition Over Inheritance: Understanding from First Principles",
         "level": 1,
-        "wordCount": 40
+        "wordCount": 29
       },
       {
-        "id": "first-principles-what-is-an-interpreter",
-        "title": "First Principles: What Is an Interpreter?",
+        "id": "1-understanding-objects-and-relationships",
+        "title": "1. Understanding Objects and Relationships",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "2-inheritance-the-is-a-relationship",
+        "title": "2. Inheritance: The \"Is-A\" Relationship",
         "level": 2,
         "wordCount": 85
       },
       {
-        "id": "the-problem-the-interpreter-pattern-solves",
-        "title": "The Problem the Interpreter Pattern Solves",
+        "id": "3-composition-the-has-a-relationship",
+        "title": "3. Composition: The \"Has-A\" Relationship",
         "level": 2,
-        "wordCount": 92
+        "wordCount": 74
       },
       {
-        "id": "core-components-of-the-interpreter-pattern",
-        "title": "Core Components of the Interpreter Pattern",
+        "id": "4-the-problem-with-inheritance",
+        "title": "4. The Problem with Inheritance",
         "level": 2,
-        "wordCount": 78
+        "wordCount": 158
       },
       {
-        "id": "a-simple-example-mathematical-expression-evaluator",
-        "title": "A Simple Example: Mathematical Expression Evaluator",
+        "id": "5-benefits-of-composition",
+        "title": "5. Benefits of Composition",
         "level": 2,
-        "wordCount": 216
+        "wordCount": 114
       },
       {
-        "id": "a-more-complete-example-variables-and-operations",
-        "title": "A More Complete Example: Variables and Operations",
-        "level": 2,
-        "wordCount": 109
-      },
-      {
-        "id": "adding-a-parser",
-        "title": "Adding a Parser",
-        "level": 2,
-        "wordCount": 85
-      },
-      {
-        "id": "real-world-example-a-simple-query-language",
-        "title": "Real-World Example: A Simple Query Language",
-        "level": 2,
-        "wordCount": 112
-      },
-      {
-        "id": "benefits-of-the-interpreter-pattern",
-        "title": "Benefits of the Interpreter Pattern",
+        "id": "6-practical-example-comparing-approaches",
+        "title": "6. Practical Example: Comparing Approaches",
         "level": 2,
         "wordCount": 76
       },
       {
-        "id": "limitations-and-considerations",
-        "title": "Limitations and Considerations",
+        "id": "7-design-principles-supporting-composition-over-inheritance",
+        "title": "7. Design Principles Supporting Composition over Inheritance",
         "level": 2,
-        "wordCount": 49
+        "wordCount": 127
       },
       {
-        "id": "when-to-use-the-interpreter-pattern",
-        "title": "When to Use the Interpreter Pattern",
+        "id": "8-when-to-use-each-approach",
+        "title": "8. When to Use Each Approach",
         "level": 2,
-        "wordCount": 66
+        "wordCount": 118
       },
       {
-        "id": "alternative-approaches",
-        "title": "Alternative Approaches",
+        "id": "9-implementing-composition-in-different-languages",
+        "title": "9. Implementing Composition in Different Languages",
         "level": 2,
-        "wordCount": 54
+        "wordCount": 22
+      },
+      {
+        "id": "10-advanced-composition-patterns",
+        "title": "10. Advanced Composition Patterns",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "11-practical-tips-for-transitioning-to-composition",
+        "title": "11. Practical Tips for Transitioning to Composition",
+        "level": 2,
+        "wordCount": 65
       },
       {
         "id": "conclusion",
         "title": "Conclusion",
         "level": 2,
-        "wordCount": 101
+        "wordCount": 88
       }
     ],
-    "totalWordCount": 1163,
+    "totalWordCount": 1124,
     "estimatedReadingTime": 300000,
-    "title": "interpreter",
+    "title": "composition_over_inheritance",
+    "frontmatter": {}
+  },
+  "public\\content\\design_patterns\\foundational_design_principles\\code_cohesion_and_coupling_concepts.md": {
+    "path": "public\\content\\design_patterns\\foundational_design_principles\\code_cohesion_and_coupling_concepts.md",
+    "sections": [
+      {
+        "id": "code-cohesion-and-coupling-building-better-software-from-first-principles",
+        "title": "Code Cohesion and Coupling: Building Better Software from First Principles",
+        "level": 1,
+        "wordCount": 43
+      },
+      {
+        "id": "cohesion-the-art-of-purpose",
+        "title": "Cohesion: The Art of Purpose",
+        "level": 2,
+        "wordCount": 360
+      },
+      {
+        "id": "coupling-the-art-of-independence",
+        "title": "Coupling: The Art of Independence",
+        "level": 2,
+        "wordCount": 276
+      },
+      {
+        "id": "the-relationship-between-cohesion-and-coupling",
+        "title": "The Relationship Between Cohesion and Coupling",
+        "level": 2,
+        "wordCount": 197
+      },
+      {
+        "id": "practical-application-in-software-design",
+        "title": "Practical Application in Software Design",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "measuring-cohesion-and-coupling",
+        "title": "Measuring Cohesion and Coupling",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "practical-tips-for-improving-cohesion-and-reducing-coupling",
+        "title": "Practical Tips for Improving Cohesion and Reducing Coupling",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 123
+      }
+    ],
+    "totalWordCount": 1373,
+    "estimatedReadingTime": 360000,
+    "title": "code_cohesion_and_coupling_concepts",
     "frontmatter": {}
   },
   "public\\content\\css\\visual_styles\\transitions.md": {
