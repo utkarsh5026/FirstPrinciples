@@ -29,6 +29,7 @@ function scanDirectory(dir, basePath = "") {
   const result = {
     categories: [],
     files: [],
+    totalFileSize: 0,
   };
 
   if (!fs.existsSync(dir)) {
@@ -50,6 +51,7 @@ function scanDirectory(dir, basePath = "") {
       name: snakeToTitle(dirName),
       categories: [],
       files: [],
+      totalFileSize: 0,
     };
 
     const subResult = scanDirectory(itemPath, relativePath);
@@ -61,6 +63,8 @@ function scanDirectory(dir, basePath = "") {
 
     if (category.categories.length > 0 || category.files.length > 0)
       result.categories.push(category);
+
+    result.totalFileSize += subResult.totalFileSize;
   };
 
   /**
@@ -87,8 +91,10 @@ function scanDirectory(dir, basePath = "") {
     const stat = fs.statSync(itemPath);
 
     if (stat.isDirectory()) handleDir(item, itemPath, relativePath);
-    else if (stat.isFile() && item.endsWith(".md"))
+    else if (stat.isFile() && item.endsWith(".md")) {
       handleMarkdownFile(itemPath, relativePath);
+      result.totalFileSize += stat.size;
+    }
   }
 
   return result;
@@ -125,6 +131,7 @@ try {
   console.log("\nCategories and categories:");
   console.log("============================");
 
+  let totalFiles = 0;
   for (const category of result.categories) {
     console.log(`• ${category.name} (${category.id})`);
 
@@ -134,12 +141,27 @@ try {
 
         const fileCount = subCategory.files ? subCategory.files.length : 0;
         console.log(`     ${fileCount} files\n`);
+        totalFiles += fileCount;
       }
     } else {
       console.log(`  No categories`);
     }
     console.log("");
   }
+
+  console.log(
+    `Total file size: ${(result.totalFileSize / Math.pow(1024, 2)).toFixed(
+      2
+    )} MB`
+  );
+
+  console.log(`Total files: ${totalFiles}`);
+
+  console.log(
+    `Average file size: ${(result.totalFileSize / (totalFiles * 1024)).toFixed(
+      2
+    )} KB`
+  );
 } catch (error) {
   console.error("Error generating index.json:", error);
   process.exit(1);
