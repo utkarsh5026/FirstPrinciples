@@ -4078,6 +4078,41 @@
             }
           ],
           "totalFileSize": 0
+        },
+        {
+          "id": "tan_stack_library_ecosystem",
+          "name": "Tan Stack Library Ecosystem",
+          "categories": [],
+          "files": [
+            {
+              "path": "react/tan_stack_library_ecosystem/form_state_management_with_tan_stack_form.md"
+            },
+            {
+              "path": "react/tan_stack_library_ecosystem/managing_server_and_client_state_separation.md"
+            },
+            {
+              "path": "react/tan_stack_library_ecosystem/performance_patterns_across_tan_stack_libraries.md"
+            },
+            {
+              "path": "react/tan_stack_library_ecosystem/query_invalidation_strategies.md"
+            },
+            {
+              "path": "react/tan_stack_library_ecosystem/router_implementation_with_tan_stack_router.md"
+            },
+            {
+              "path": "react/tan_stack_library_ecosystem/table_for_data_grid_implementation.md"
+            },
+            {
+              "path": "react/tan_stack_library_ecosystem/testing_tan_stack_powered_components.md"
+            },
+            {
+              "path": "react/tan_stack_library_ecosystem/type_script_integration_for_type_safety.md"
+            },
+            {
+              "path": "react/tan_stack_library_ecosystem/virtual_rendering_with_tan_stack_virtual.md"
+            }
+          ],
+          "totalFileSize": 0
         }
       ],
       "files": [],

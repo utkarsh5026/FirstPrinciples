@@ -24,7 +24,6 @@ import {
   Gauge,
   Repeat,
   TimerReset,
-  Router,
   Filter,
   Globe,
   Cloud,
@@ -49,7 +48,6 @@ import {
 } from "lucide-react";
 
 import {
-  FaReact,
   FaNodeJs,
   FaNetworkWired,
   FaRegObjectGroup,
@@ -86,6 +84,8 @@ import {
   MdWebhook,
   MdMemory,
   MdHttp,
+  MdLocalLibrary,
+  MdAltRoute,
 } from "react-icons/md";
 
 import {
@@ -142,11 +142,9 @@ const reactMappings: IconMapping[] = [
   { keywords: ["reconciliation"], icon: (props) => <RefreshCw {...props} /> },
   { keywords: ["render"], icon: (props) => <Repeat {...props} /> },
   { keywords: ["state"], icon: (props) => <FolderKanban {...props} /> },
-  { keywords: ["route"], icon: (props) => <Router {...props} /> },
   {
-    keywords: ["react"],
-    icon: (props) => <FaReact {...props} />,
-    isReactIcon: true,
+    keywords: ["route", "routing"],
+    icon: (props) => <MdAltRoute {...props} />,
   },
 ];
 
@@ -161,7 +159,7 @@ const cssMappings: IconMapping[] = [
   { keywords: ["visual"], icon: (props) => <Palette {...props} /> },
   { keywords: ["advanced"], icon: (props) => <Pipette {...props} /> },
   {
-    keywords: ["css", "style"],
+    keywords: ["css", "style", "styling"],
     icon: (props) => <TbBrandCss3 {...props} />,
     isReactIcon: true,
   },
@@ -449,6 +447,11 @@ const tailwindMappings: IconMapping[] = [
 
 const generalConceptMappings: IconMapping[] = [
   {
+    keywords: ["library", "libraries"],
+    icon: (props) => <MdLocalLibrary {...props} />,
+    isReactIcon: true,
+  },
+  {
     keywords: ["structure", "struct"],
     icon: (props) => <SiInstructure {...props} />,
     isReactIcon: true,
@@ -551,28 +554,31 @@ const fallbackMappings: IconMapping[] = [
 
 const allMappings = [
   {
-    keywords: ["node", "express", "npm", "server", "api", "middleware"],
+    keywords: ["node", "npm"],
     mappings: nodejsMappings,
   },
   {
-    keywords: ["react", "component", "hooks", "jsx", "rendering", "fiber"],
+    keywords: ["react", "jsx"],
     mappings: reactMappings,
   },
-  { keywords: ["css", "style", "layout", "visual"], mappings: cssMappings },
+  {
+    keywords: ["css", "style", "layout", "visual", "styling"],
+    mappings: cssMappings,
+  },
   {
     keywords: ["javascript", "js ", "dom", "event", "browser"],
     mappings: javascriptMappings,
   },
   {
-    keywords: ["typescript", "ts ", "type", "interface"],
+    keywords: ["typescript", "ts "],
     mappings: typescriptMappings,
   },
 
   {
-    keywords: ["go ", "golang", "goroutine", "concurrency"],
+    keywords: ["go ", "golang", "goroutine"],
     mappings: goMappings,
   },
-  { keywords: ["python", "django", "flask"], mappings: pythonMappings },
+  { keywords: ["python"], mappings: pythonMappings },
   { keywords: ["docker", "container", "image"], mappings: dockerMappings },
   {
     keywords: ["git", "branch", "merge", "rebase", "commit"],

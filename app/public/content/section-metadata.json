@@ -9458,6 +9458,753 @@
     "title": "atomicity_in_multi_key_operations",
     "frontmatter": {}
   },
+  "public\\content\\react\\tan_stack_library_ecosystem\\virtual_rendering_with_tan_stack_virtual.md": {
+    "path": "public\\content\\react\\tan_stack_library_ecosystem\\virtual_rendering_with_tan_stack_virtual.md",
+    "sections": [
+      {
+        "id": "virtual-rendering-with-tanstack-virtual-an-in-depth-explanation",
+        "title": "Virtual Rendering with TanStack Virtual: An In-Depth Explanation",
+        "level": 1,
+        "wordCount": 50
+      },
+      {
+        "id": "understanding-rendering-from-first-principles",
+        "title": "Understanding Rendering From First Principles",
+        "level": 2,
+        "wordCount": 201
+      },
+      {
+        "id": "virtual-rendering-the-conceptual-solution",
+        "title": "Virtual Rendering: The Conceptual Solution",
+        "level": 2,
+        "wordCount": 184
+      },
+      {
+        "id": "introduction-to-tanstack-virtual",
+        "title": "Introduction to TanStack Virtual",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "implementing-basic-virtual-lists",
+        "title": "Implementing Basic Virtual Lists",
+        "level": 2,
+        "wordCount": 145
+      },
+      {
+        "id": "understanding-how-tanstack-virtual-measures-items",
+        "title": "Understanding How TanStack Virtual Measures Items",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "handling-variable-sized-content",
+        "title": "Handling Variable-Sized Content",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "virtual-grids-with-tanstack-virtual",
+        "title": "Virtual Grids with TanStack Virtual",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "advanced-features",
+        "title": "Advanced Features",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "real-world-applications-of-virtual-rendering",
+        "title": "Real-World Applications of Virtual Rendering",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 151
+      }
+    ],
+    "totalWordCount": 1363,
+    "estimatedReadingTime": 360000,
+    "title": "virtual_rendering_with_tan_stack_virtual",
+    "frontmatter": {}
+  },
+  "public\\content\\react\\tan_stack_library_ecosystem\\type_script_integration_for_type_safety.md": {
+    "path": "public\\content\\react\\tan_stack_library_ecosystem\\type_script_integration_for_type_safety.md",
+    "sections": [
+      {
+        "id": "typescript-integration-for-type-safety-a-first-principles-approach",
+        "title": "TypeScript Integration for Type Safety: A First Principles Approach",
+        "level": 1,
+        "wordCount": 45
+      },
+      {
+        "id": "what-is-type-safety",
+        "title": "What is Type Safety?",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "typescript-javascript-with-types",
+        "title": "TypeScript: JavaScript with Types",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "setting-up-typescript-in-a-project",
+        "title": "Setting Up TypeScript in a Project",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "typescripts-type-system-fundamentals",
+        "title": "TypeScript's Type System Fundamentals",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "integrating-typescript-with-existing-javascript",
+        "title": "Integrating TypeScript with Existing JavaScript",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "advanced-type-safety-features",
+        "title": "Advanced Type Safety Features",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "real-world-applications-of-typescript",
+        "title": "Real-World Applications of TypeScript",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "type-driven-development",
+        "title": "Type-Driven Development",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "typescript-configuration-for-maximum-safety",
+        "title": "TypeScript Configuration for Maximum Safety",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "practical-integration-examples",
+        "title": "Practical Integration Examples",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "common-typescript-patterns",
+        "title": "Common TypeScript Patterns",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "handling-edge-cases",
+        "title": "Handling Edge Cases",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "testing-with-typescript",
+        "title": "Testing with TypeScript",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 147
+      }
+    ],
+    "totalWordCount": 937,
+    "estimatedReadingTime": 240000,
+    "title": "type_script_integration_for_type_safety",
+    "frontmatter": {}
+  },
+  "public\\content\\react\\tan_stack_library_ecosystem\\testing_tan_stack_powered_components.md": {
+    "path": "public\\content\\react\\tan_stack_library_ecosystem\\testing_tan_stack_powered_components.md",
+    "sections": [
+      {
+        "id": "testing-tanstack-powered-components-a-comprehensive-guide",
+        "title": "Testing TanStack-Powered Components: A Comprehensive Guide",
+        "level": 1,
+        "wordCount": 57
+      },
+      {
+        "id": "understanding-tanstack-from-first-principles",
+        "title": "Understanding TanStack from First Principles",
+        "level": 2,
+        "wordCount": 134
+      },
+      {
+        "id": "testing-fundamentals-first-principles",
+        "title": "Testing Fundamentals: First Principles",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "setting-up-a-testing-environment-for-tanstack-components",
+        "title": "Setting Up A Testing Environment for TanStack Components",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "testing-tanstack-query-components-first-principles",
+        "title": "Testing TanStack Query Components: First Principles",
+        "level": 2,
+        "wordCount": 310
+      },
+      {
+        "id": "testing-tanstack-table-components",
+        "title": "Testing TanStack Table Components",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "advanced-testing-techniques",
+        "title": "Advanced Testing Techniques",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "best-practices-for-testing-tanstack-components",
+        "title": "Best Practices for Testing TanStack Components",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 93
+      }
+    ],
+    "totalWordCount": 1198,
+    "estimatedReadingTime": 300000,
+    "title": "testing_tan_stack_powered_components",
+    "frontmatter": {}
+  },
+  "public\\content\\react\\tan_stack_library_ecosystem\\table_for_data_grid_implementation.md": {
+    "path": "public\\content\\react\\tan_stack_library_ecosystem\\table_for_data_grid_implementation.md",
+    "sections": [
+      {
+        "id": "understanding-tanstack-table-from-first-principles",
+        "title": "Understanding TanStack Table from First Principles",
+        "level": 1,
+        "wordCount": 57
+      },
+      {
+        "id": "what-is-tanstack-table",
+        "title": "What is TanStack Table?",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "the-first-principles-of-tanstack-table",
+        "title": "The First Principles of TanStack Table",
+        "level": 2,
+        "wordCount": 250
+      },
+      {
+        "id": "core-concepts-in-practice",
+        "title": "Core Concepts in Practice",
+        "level": 2,
+        "wordCount": 294
+      },
+      {
+        "id": "adding-features-to-your-table",
+        "title": "Adding Features to Your Table",
+        "level": 2,
+        "wordCount": 214
+      },
+      {
+        "id": "a-complete-example",
+        "title": "A Complete Example",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "advanced-concepts",
+        "title": "Advanced Concepts",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "the-data-flow-architecture",
+        "title": "The Data Flow Architecture",
+        "level": 2,
+        "wordCount": 129
+      },
+      {
+        "id": "understanding-tanstack-tables-plugin-system",
+        "title": "Understanding TanStack Table's Plugin System",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "practical-implementation-patterns",
+        "title": "Practical Implementation Patterns",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "final-thoughts",
+        "title": "Final Thoughts",
+        "level": 2,
+        "wordCount": 151
+      }
+    ],
+    "totalWordCount": 1563,
+    "estimatedReadingTime": 420000,
+    "title": "table_for_data_grid_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\react\\tan_stack_library_ecosystem\\router_implementation_with_tan_stack_router.md": {
+    "path": "public\\content\\react\\tan_stack_library_ecosystem\\router_implementation_with_tan_stack_router.md",
+    "sections": [
+      {
+        "id": "understanding-tanstack-router-from-first-principles",
+        "title": "Understanding TanStack Router from First Principles",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "what-is-routing-first-principles",
+        "title": "What is Routing? First Principles",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "tanstack-router-core-concepts",
+        "title": "TanStack Router: Core Concepts",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "setting-up-tanstack-router-a-step-by-step-implementation",
+        "title": "Setting Up TanStack Router: A Step-by-Step Implementation",
+        "level": 2,
+        "wordCount": 317
+      },
+      {
+        "id": "advanced-tanstack-router-features",
+        "title": "Advanced TanStack Router Features",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "practical-example-file-structure-for-a-real-app",
+        "title": "Practical Example: File Structure for a Real App",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "common-patterns-with-tanstack-router",
+        "title": "Common Patterns with TanStack Router",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "tanstack-router-vs-other-routers",
+        "title": "TanStack Router vs Other Routers",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "common-questions-and-troubleshooting",
+        "title": "Common Questions and Troubleshooting",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 127
+      }
+    ],
+    "totalWordCount": 883,
+    "estimatedReadingTime": 240000,
+    "title": "router_implementation_with_tan_stack_router",
+    "frontmatter": {}
+  },
+  "public\\content\\react\\tan_stack_library_ecosystem\\query_invalidation_strategies.md": {
+    "path": "public\\content\\react\\tan_stack_library_ecosystem\\query_invalidation_strategies.md",
+    "sections": [
+      {
+        "id": "query-invalidation-strategies-in-tanstack-query",
+        "title": "Query Invalidation Strategies in TanStack Query",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "the-foundation-understanding-the-problem",
+        "title": "The Foundation: Understanding the Problem",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "what-is-tanstack-query",
+        "title": "What is TanStack Query?",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "core-concepts-of-the-query-cache",
+        "title": "Core Concepts of the Query Cache",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "what-is-query-invalidation",
+        "title": "What is Query Invalidation?",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "query-invalidation-strategies",
+        "title": "Query Invalidation Strategies",
+        "level": 2,
+        "wordCount": 228
+      },
+      {
+        "id": "advanced-query-invalidation-patterns",
+        "title": "Advanced Query Invalidation Patterns",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "practical-implementation-example",
+        "title": "Practical Implementation Example",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "common-pitfalls-and-solutions",
+        "title": "Common Pitfalls and Solutions",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "real-world-considerations",
+        "title": "Real-World Considerations",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "summary-and-best-practices",
+        "title": "Summary and Best Practices",
+        "level": 2,
+        "wordCount": 125
+      }
+    ],
+    "totalWordCount": 1017,
+    "estimatedReadingTime": 300000,
+    "title": "query_invalidation_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\react\\tan_stack_library_ecosystem\\performance_patterns_across_tan_stack_libraries.md": {
+    "path": "public\\content\\react\\tan_stack_library_ecosystem\\performance_patterns_across_tan_stack_libraries.md",
+    "sections": [
+      {
+        "id": "performance-patterns-across-tanstack-libraries-a-first-principles-approach",
+        "title": "Performance Patterns Across TanStack Libraries: A First Principles Approach",
+        "level": 1,
+        "wordCount": 40
+      },
+      {
+        "id": "what-is-tanstack",
+        "title": "What is TanStack?",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "first-principle-separation-of-concerns",
+        "title": "First Principle: Separation of Concerns",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "second-principle-derivation-over-mutation",
+        "title": "Second Principle: Derivation Over Mutation",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "third-principle-memoization",
+        "title": "Third Principle: Memoization",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "fourth-principle-virtualization",
+        "title": "Fourth Principle: Virtualization",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "fifth-principle-declarative-apis",
+        "title": "Fifth Principle: Declarative APIs",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "sixth-principle-stale-while-revalidate-pattern",
+        "title": "Sixth Principle: Stale-While-Revalidate Pattern",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "seventh-principle-deferred-execution",
+        "title": "Seventh Principle: Deferred Execution",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "eighth-principle-structural-sharing",
+        "title": "Eighth Principle: Structural Sharing",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "ninth-principle-framework-agnosticism",
+        "title": "Ninth Principle: Framework Agnosticism",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "tenth-principle-progressive-enhancement",
+        "title": "Tenth Principle: Progressive Enhancement",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "putting-it-all-together-real-world-example",
+        "title": "Putting It All Together: Real-World Example",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "performance-optimization-techniques",
+        "title": "Performance Optimization Techniques",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 137
+      }
+    ],
+    "totalWordCount": 1360,
+    "estimatedReadingTime": 360000,
+    "title": "performance_patterns_across_tan_stack_libraries",
+    "frontmatter": {}
+  },
+  "public\\content\\react\\tan_stack_library_ecosystem\\managing_server_and_client_state_separation.md": {
+    "path": "public\\content\\react\\tan_stack_library_ecosystem\\managing_server_and_client_state_separation.md",
+    "sections": [
+      {
+        "id": "managing-server-and-client-state-separation-in-tanstack",
+        "title": "Managing Server and Client State Separation in TanStack",
+        "level": 1,
+        "wordCount": 46
+      },
+      {
+        "id": "first-principles-what-is-state",
+        "title": "First Principles: What Is State?",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "why-separate-server-and-client-state",
+        "title": "Why Separate Server and Client State?",
+        "level": 2,
+        "wordCount": 129
+      },
+      {
+        "id": "tanstack-query-for-server-state",
+        "title": "TanStack Query for Server State",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "client-state-management",
+        "title": "Client State Management",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "mutating-server-state",
+        "title": "Mutating Server State",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "optimistic-updates-bridging-client-and-server-state",
+        "title": "Optimistic Updates: Bridging Client and Server State",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "advanced-patterns-for-state-separation",
+        "title": "Advanced Patterns for State Separation",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "handling-complex-client-state",
+        "title": "Handling Complex Client State",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "common-patterns-and-best-practices",
+        "title": "Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "why-this-separation-matters-real-benefits",
+        "title": "Why This Separation Matters: Real Benefits",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "common-pitfalls-to-avoid",
+        "title": "Common Pitfalls to Avoid",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 132
+      }
+    ],
+    "totalWordCount": 871,
+    "estimatedReadingTime": 240000,
+    "title": "managing_server_and_client_state_separation",
+    "frontmatter": {}
+  },
+  "public\\content\\react\\tan_stack_library_ecosystem\\form_state_management_with_tan_stack_form.md": {
+    "path": "public\\content\\react\\tan_stack_library_ecosystem\\form_state_management_with_tan_stack_form.md",
+    "sections": [
+      {
+        "id": "tanstack-form-state-management-from-first-principles",
+        "title": "TanStack Form: State Management from First Principles",
+        "level": 1,
+        "wordCount": 64
+      },
+      {
+        "id": "1-understanding-form-state-the-foundation",
+        "title": "1. Understanding Form State: The Foundation",
+        "level": 2,
+        "wordCount": 171
+      },
+      {
+        "id": "2-enter-tanstack-form",
+        "title": "2. Enter TanStack Form",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "3-the-mental-model",
+        "title": "3. The Mental Model",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "4-building-blocks-of-tanstack-form",
+        "title": "4. Building Blocks of TanStack Form",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "5-state-management-in-detail",
+        "title": "5. State Management in Detail",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "6-practical-example-building-a-registration-form",
+        "title": "6. Practical Example: Building a Registration Form",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "7-advanced-concepts",
+        "title": "7. Advanced Concepts",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "8-performance-optimization",
+        "title": "8. Performance Optimization",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "9-integration-with-react-ecosystem",
+        "title": "9. Integration with React Ecosystem",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "10-real-world-application",
+        "title": "10. Real-World Application",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "11-comparisons-to-other-solutions",
+        "title": "11. Comparisons to Other Solutions",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "12-when-to-use-tanstack-form",
+        "title": "12. When to Use TanStack Form",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 132
+      }
+    ],
+    "totalWordCount": 1260,
+    "estimatedReadingTime": 360000,
+    "title": "form_state_management_with_tan_stack_form",
+    "frontmatter": {}
+  },
   "public\\content\\react\\styling_in_react\\theme_implementation_strategies.md": {
     "path": "public\\content\\react\\styling_in_react\\theme_implementation_strategies.md",
     "sections": [
