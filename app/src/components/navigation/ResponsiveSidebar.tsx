@@ -35,7 +35,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     new Set()
   );
   const [showDescriptions, setShowDescriptions] = useState(false);
-  const [currentCategoryExpanded, setCurrentCategoryExpanded] = useState(true);
 
   const { contentIndex, getFileBreadcrumbs } = useDocumentList();
   const { readFilePaths, todo, completed, documentsCount, currentOpen } =
@@ -127,14 +126,14 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
                   completed: completed,
                 }}
                 currentFilePath={currentFilePath}
-                expandedCategories={expandedCategories}
                 handleToggleExpand={handleToggleExpand}
-                categories={contentIndex.categories}
                 loading={loading}
                 showDescriptions={showDescriptions}
-                currentCategory={currentOpen}
-                currentCategoryExpanded={currentCategoryExpanded}
-                setCurrentCategoryExpanded={setCurrentCategoryExpanded}
+                categoryData={{
+                  tree: contentIndex.categories,
+                  expanded: expandedCategories,
+                  current: currentOpen,
+                }}
               />
             </motion.div>
           </ScrollArea>
