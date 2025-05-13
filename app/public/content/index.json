@@ -190,6 +190,44 @@
       "name": "Design Patterns",
       "categories": [
         {
+          "id": "creational_design_patterns",
+          "name": "Creational Design Patterns",
+          "categories": [],
+          "files": [
+            {
+              "path": "design_patterns/creational_design_patterns/abstract_factory_for_families_of_objects.md"
+            },
+            {
+              "path": "design_patterns/creational_design_patterns/builder_pattern_and_fluent_interfaces.md"
+            },
+            {
+              "path": "design_patterns/creational_design_patterns/dependency_injection_as_a_creation_pattern.md"
+            },
+            {
+              "path": "design_patterns/creational_design_patterns/factory_comparison.md"
+            },
+            {
+              "path": "design_patterns/creational_design_patterns/factory_method_pattern_for_object_creation.md"
+            },
+            {
+              "path": "design_patterns/creational_design_patterns/lazy_initialization_strategies.md"
+            },
+            {
+              "path": "design_patterns/creational_design_patterns/multiton_pattern.md"
+            },
+            {
+              "path": "design_patterns/creational_design_patterns/object_pool_for_resource_management.md"
+            },
+            {
+              "path": "design_patterns/creational_design_patterns/prototype_pattern_for_object_cloning.md"
+            },
+            {
+              "path": "design_patterns/creational_design_patterns/singleton_pattern_and_lifecycle_management.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
           "id": "foundational_design_principles",
           "name": "Foundational Design Principles",
           "categories": [],
@@ -261,6 +299,44 @@
             },
             {
               "path": "design_patterns/fundamentals/when_to_use_and_not_use_design_patterns.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "structural_design_patterns",
+          "name": "Structural Design Patterns",
+          "categories": [],
+          "files": [
+            {
+              "path": "design_patterns/structural_design_patterns/adapter_pattern_for_interface_compatibility.md"
+            },
+            {
+              "path": "design_patterns/structural_design_patterns/bridge_pattern_for_separation_of_abstraction_and_implementation.md"
+            },
+            {
+              "path": "design_patterns/structural_design_patterns/composite_pattern_for_tree_structures.md"
+            },
+            {
+              "path": "design_patterns/structural_design_patterns/decorator_pattern_for_extending_functionality.md"
+            },
+            {
+              "path": "design_patterns/structural_design_patterns/extension_object_for_modular_capabilities.md"
+            },
+            {
+              "path": "design_patterns/structural_design_patterns/façade_pattern_for_simplified_interfaces.md"
+            },
+            {
+              "path": "design_patterns/structural_design_patterns/flyweight_pattern_for_memory_optimization.md"
+            },
+            {
+              "path": "design_patterns/structural_design_patterns/module_pattern_in_javascript.md"
+            },
+            {
+              "path": "design_patterns/structural_design_patterns/private_class_data_for_encapsulation.md"
+            },
+            {
+              "path": "design_patterns/structural_design_patterns/proxy_pattern_and_its_variations.md"
             }
           ],
           "totalFileSize": 0

@@ -35,12 +35,20 @@
       "name": "Design Patterns",
       "categories": [
         {
+          "id": "creational_design_patterns",
+          "name": "Creational Design Patterns"
+        },
+        {
           "id": "foundational_design_principles",
           "name": "Foundational Design Principles"
         },
         {
           "id": "fundamentals",
           "name": "Fundamentals"
+        },
+        {
+          "id": "structural_design_patterns",
+          "name": "Structural Design Patterns"
         }
       ]
     },

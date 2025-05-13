@@ -25,7 +25,6 @@ import {
   Repeat,
   TimerReset,
   Router,
-  Network,
   Filter,
   Globe,
   Cloud,
@@ -70,6 +69,8 @@ import {
   SiGraphql,
   SiPassport,
   SiSequelize,
+  SiInstructure,
+  SiSocketdotio,
 } from "react-icons/si";
 import { PiFunctionFill } from "react-icons/pi";
 
@@ -84,6 +85,7 @@ import {
   MdSync,
   MdWebhook,
   MdMemory,
+  MdHttp,
 } from "react-icons/md";
 
 import {
@@ -223,6 +225,11 @@ const typescriptMappings: IconMapping[] = [
 
 const nodejsMappings: IconMapping[] = [
   {
+    keywords: ["graph"],
+    icon: (props) => <SiGraphql {...props} />,
+    isReactIcon: true,
+  },
+  {
     keywords: ["sequelize"],
     icon: (props) => <SiSequelize {...props} />,
     isReactIcon: true,
@@ -233,12 +240,16 @@ const nodejsMappings: IconMapping[] = [
     isReactIcon: true,
   },
   {
-    keywords: ["stream"],
+    keywords: ["stream", "event"],
     icon: (props) => <FaStream {...props} />,
     isReactIcon: true,
   },
   { keywords: ["module"], icon: (props) => <Puzzle {...props} /> },
-  { keywords: ["http"], icon: (props) => <Network {...props} /> },
+  {
+    keywords: ["http"],
+    icon: (props) => <MdHttp {...props} />,
+    isReactIcon: true,
+  },
   {
     keywords: ["api"],
     icon: (props) => <TbApi {...props} />,
@@ -258,7 +269,8 @@ const nodejsMappings: IconMapping[] = [
   { keywords: ["middleware"], icon: (props) => <Workflow {...props} /> },
   {
     keywords: ["websocket", "socket"],
-    icon: (props) => <Antenna {...props} />,
+    icon: (props) => <SiSocketdotio {...props} />,
+    isReactIcon: true,
   },
   {
     keywords: ["message", "queue"],
@@ -276,11 +288,7 @@ const nodejsMappings: IconMapping[] = [
     icon: (props) => <GrTest {...props} />,
     isReactIcon: true,
   },
-  {
-    keywords: ["graph"],
-    icon: (props) => <SiGraphql {...props} />,
-    isReactIcon: true,
-  },
+
   {
     keywords: ["deploy"],
     icon: (props) => <MdRocket {...props} />,
@@ -440,6 +448,11 @@ const tailwindMappings: IconMapping[] = [
 ];
 
 const generalConceptMappings: IconMapping[] = [
+  {
+    keywords: ["structure", "struct"],
+    icon: (props) => <SiInstructure {...props} />,
+    isReactIcon: true,
+  },
   {
     keywords: ["fundamental", "core", "basic", "foundation"],
     icon: (props) => <BookOpen {...props} />,
