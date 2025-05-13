@@ -50,6 +50,8 @@ const FileTree: React.FC<FileTreeProps> = ({
       ? getIconForTech(category.name)
       : () => getTopicIcon(`${parentCategory ?? ""}_${category.name}`);
 
+  console.log(category.name);
+
   const {
     totalFilesCount,
     readFilesCount,
@@ -98,7 +100,7 @@ const FileTree: React.FC<FileTreeProps> = ({
         type: "spring",
         stiffness: 300,
         damping: 30,
-        duration: 0.3,
+        duration: 0.2,
       },
     },
     collapsed: {
@@ -194,52 +196,53 @@ const FileTree: React.FC<FileTreeProps> = ({
         </div>
       </CollapsibleTrigger>
 
-      {/* Subcategories and files - animated when expanding/collapsing */}
       <CollapsibleContent asChild>
-        <motion.div
-          variants={variants}
-          initial="collapsed"
-          animate={isExpanded ? "open" : "collapsed"}
-          exit="collapsed"
-          className="overflow-hidden pl-4"
-        >
-          <div className="py-1">
-            {category.categories?.map((subcategory) => (
-              <FileTree
-                key={subcategory.id}
-                category={subcategory}
-                depth={depth + 1}
-                expandedCategories={expandedCategories}
-                handleToggleExpand={handleToggleExpand}
-                handleSelectFile={handleSelectFile}
-                filePaths={filePaths}
-                currentFilePath={currentFilePath}
-                showDescriptions={showDescriptions}
-                parentCategory={category.id}
-              />
-            ))}
-
-            {/* Render files with status indicators */}
-            {category.files?.map((file, index) => {
-              const isCurrentFile = file.path === currentFilePath;
-
-              return (
-                <CategoryFile
-                  key={file.path}
-                  file={file}
+        {isExpanded ? (
+          <motion.div
+            variants={variants}
+            initial="collapsed"
+            animate={isExpanded ? "open" : "collapsed"}
+            exit="collapsed"
+            className="overflow-hidden pl-4"
+          >
+            <div className="py-1">
+              {category.categories?.map((subcategory) => (
+                <FileTree
+                  key={subcategory.id}
+                  category={subcategory}
                   depth={depth + 1}
-                  isCurrentFile={isCurrentFile}
-                  isTodo={filePaths.todo.has(file.path)}
-                  isCompleted={filePaths.completed.has(file.path)}
-                  isRead={filePaths.read.has(file.path)}
-                  fileNumber={index + 1}
+                  expandedCategories={expandedCategories}
+                  handleToggleExpand={handleToggleExpand}
                   handleSelectFile={handleSelectFile}
+                  filePaths={filePaths}
+                  currentFilePath={currentFilePath}
                   showDescriptions={showDescriptions}
+                  parentCategory={category.id}
                 />
-              );
-            })}
-          </div>
-        </motion.div>
+              ))}
+
+              {/* Render files with status indicators */}
+              {category.files?.map((file, index) => {
+                const isCurrentFile = file.path === currentFilePath;
+
+                return (
+                  <CategoryFile
+                    key={file.path}
+                    file={file}
+                    depth={depth + 1}
+                    isCurrentFile={isCurrentFile}
+                    isTodo={filePaths.todo.has(file.path)}
+                    isCompleted={filePaths.completed.has(file.path)}
+                    isRead={filePaths.read.has(file.path)}
+                    fileNumber={index + 1}
+                    handleSelectFile={handleSelectFile}
+                    showDescriptions={showDescriptions}
+                  />
+                );
+              })}
+            </div>
+          </motion.div>
+        ) : null}
       </CollapsibleContent>
     </Collapsible>
   );
