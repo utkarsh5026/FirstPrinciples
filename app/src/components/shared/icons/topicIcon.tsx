@@ -49,7 +49,6 @@ import {
   BellRing,
 } from "lucide-react";
 
-// Import React Icons we need
 import {
   FaReact,
   FaNodeJs,
@@ -110,507 +109,498 @@ import {
 
 import { ImConnection } from "react-icons/im";
 
-/**
- * This is a comprehensive topic icon mapping function that analyzes a topic name
- * and returns the most appropriate icon based on keywords and context.
- *
- * The function works by:
- * 1. First identifying category-specific keywords
- * 2. Then identifying general concept keywords
- * 3. Using fallback icons when no specific match is found
- *
- * @param topic The topic or subdirectory name
- * @param size Icon size (defaults to 16px)
- * @returns A React component for the icon
- */
+type IconMapping = {
+  keywords: string[];
+  icon: (props: LucideProps) => React.ReactElement;
+  isReactIcon?: boolean;
+};
+
+const getIconProps = (size: number): LucideProps => ({
+  size,
+  className: "text-primary flex-shrink-0",
+});
+
+const getReactIconStyle = (size: number) => ({
+  fontSize: size,
+  color: "currentColor",
+});
+
+const reactMappings: IconMapping[] = [
+  {
+    keywords: ["hook"],
+    icon: (props) => <MdWebhook {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["component"], icon: (props) => <Component {...props} /> },
+  {
+    keywords: ["fiber"],
+    icon: (props) => <FaLayerGroup {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["reconciliation"], icon: (props) => <RefreshCw {...props} /> },
+  { keywords: ["render"], icon: (props) => <Repeat {...props} /> },
+  { keywords: ["state"], icon: (props) => <FolderKanban {...props} /> },
+  { keywords: ["route"], icon: (props) => <Router {...props} /> },
+  {
+    keywords: ["react"],
+    icon: (props) => <FaReact {...props} />,
+    isReactIcon: true,
+  },
+];
+
+const cssMappings: IconMapping[] = [
+  { keywords: ["layout"], icon: (props) => <LayoutGrid {...props} /> },
+  {
+    keywords: ["architecture"],
+    icon: (props) => <MdArchitecture {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["performance"], icon: (props) => <Gauge {...props} /> },
+  { keywords: ["visual"], icon: (props) => <Palette {...props} /> },
+  { keywords: ["advanced"], icon: (props) => <Pipette {...props} /> },
+  {
+    keywords: ["css", "style"],
+    icon: (props) => <TbBrandCss3 {...props} />,
+    isReactIcon: true,
+  },
+];
+
+const javascriptMappings: IconMapping[] = [
+  { keywords: ["dom"], icon: (props) => <AppWindow {...props} /> },
+  { keywords: ["event"], icon: (props) => <BellRing {...props} /> },
+  { keywords: ["loop"], icon: (props) => <TimerReset {...props} /> },
+  {
+    keywords: ["object"],
+    icon: (props) => <FaRegObjectGroup {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["function"],
+    icon: (props) => <PiFunctionFill {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["scope"],
+    icon: (props) => <BsWindow {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["browser"], icon: (props) => <Globe {...props} /> },
+  { keywords: ["async"], icon: (props) => <Clock {...props} /> },
+  {
+    keywords: ["engine"],
+    icon: (props) => <TbEngine {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["this"], icon: (props) => <Crosshair {...props} /> },
+
+  {
+    keywords: ["javascript", "js "],
+    icon: (props) => <SiJavascript {...props} />,
+    isReactIcon: true,
+  },
+];
+
+const typescriptMappings: IconMapping[] = [
+  {
+    keywords: ["advanced type"],
+    icon: (props) => <BiCodeCurly {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["generic"], icon: (props) => <Brackets {...props} /> },
+  {
+    keywords: ["object"],
+    icon: (props) => <FaRegObjectGroup {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["system"], icon: (props) => <CircuitBoard {...props} /> },
+  // Default TypeScript icon
+  {
+    keywords: ["typescript", "ts ", "type", "interface"],
+    icon: (props) => <SiTypescript {...props} />,
+    isReactIcon: true,
+  },
+];
+
+const nodejsMappings: IconMapping[] = [
+  {
+    keywords: ["sequelize"],
+    icon: (props) => <SiSequelize {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["express"],
+    icon: (props) => <SiExpress {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["stream"],
+    icon: (props) => <FaStream {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["module"], icon: (props) => <Puzzle {...props} /> },
+  { keywords: ["http"], icon: (props) => <Network {...props} /> },
+  {
+    keywords: ["api"],
+    icon: (props) => <TbApi {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["auth"], icon: (props) => <Lock {...props} /> },
+  {
+    keywords: ["passport"],
+    icon: (props) => <SiPassport {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["worker"],
+    icon: (props) => <GrUserWorker {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["middleware"], icon: (props) => <Workflow {...props} /> },
+  {
+    keywords: ["websocket", "socket"],
+    icon: (props) => <Antenna {...props} />,
+  },
+  {
+    keywords: ["message", "queue"],
+    icon: (props) => <MessageCircle {...props} />,
+  },
+  { keywords: ["crypto"], icon: (props) => <Shield {...props} /> },
+  { keywords: ["serverless"], icon: (props) => <Cloud {...props} /> },
+  {
+    keywords: ["mongoose"],
+    icon: (props) => <SiMongodb {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["test"],
+    icon: (props) => <GrTest {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["graph"],
+    icon: (props) => <SiGraphql {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["deploy"],
+    icon: (props) => <MdRocket {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["real time"], icon: (props) => <Activity {...props} /> },
+  {
+    keywords: ["node", "server", "npm"],
+    icon: (props) => <FaNodeJs {...props} />,
+    isReactIcon: true,
+  },
+];
+
+const goMappings: IconMapping[] = [
+  {
+    keywords: ["channel"],
+    icon: (props) => <ImConnection {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["concurrency"],
+    icon: (props) => <FaInfinity {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["context"],
+    icon: (props) => <BsCompass {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["goroutine"],
+    icon: (props) => <FaNetworkWired {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["scheduler"], icon: (props) => <Calendar {...props} /> },
+  {
+    keywords: ["memory"],
+    icon: (props) => <MdMemory {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["standard library"], icon: (props) => <FileStack {...props} /> },
+  {
+    keywords: ["sync"],
+    icon: (props) => <MdSync {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["select"], icon: (props) => <Filter {...props} /> },
+  {
+    keywords: ["go ", "golang"],
+    icon: (props) => <TbBrandGolang {...props} />,
+    isReactIcon: true,
+  },
+];
+
+const pythonMappings: IconMapping[] = [
+  {
+    keywords: ["object"],
+    icon: (props) => <FaRegObjectGroup {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["concurrent"],
+    icon: (props) => <IoIosGitNetwork {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["standard library"], icon: (props) => <FileStack {...props} /> },
+  {
+    keywords: ["data structure"],
+    icon: (props) => <FaLayerGroup {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["algorithm"],
+    icon: (props) => <BiBrain {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["python", "django", "flask"],
+    icon: (props) => <TbBrandPython {...props} />,
+    isReactIcon: true,
+  },
+];
+
+const dockerMappings: IconMapping[] = [
+  { keywords: ["container"], icon: (props) => <Container {...props} /> },
+  { keywords: ["image"], icon: (props) => <AppWindow {...props} /> },
+  {
+    keywords: ["docker"],
+    icon: (props) => <TbBrandDocker {...props} />,
+    isReactIcon: true,
+  },
+];
+
+const gitMappings: IconMapping[] = [
+  { keywords: ["branch"], icon: (props) => <GitBranch {...props} /> },
+  { keywords: ["merge"], icon: (props) => <GitMerge {...props} /> },
+  {
+    keywords: ["rebase"],
+    icon: (props) => <TbGitFork {...props} />,
+    isReactIcon: true,
+  },
+  { keywords: ["object"], icon: (props) => <FileCode {...props} /> },
+  { keywords: ["internal"], icon: (props) => <GitCommit {...props} /> },
+  {
+    keywords: ["basics"],
+    icon: (props) => <RiGitRepositoryLine {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["git", "commit"],
+    icon: (props) => <BiGitRepoForked {...props} />,
+    isReactIcon: true,
+  },
+];
+
+const redisMappings: IconMapping[] = [
+  { keywords: ["pub sub"], icon: (props) => <Antenna {...props} /> },
+  {
+    keywords: ["data structure"],
+    icon: (props) => <FaLayerGroup {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["cache"],
+    icon: (props) => <IoIosRefresh {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["persistance"],
+    icon: (props) => <FaRegSave {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["command"],
+    icon: (props) => <HiOutlineTerminal {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["architecture"],
+    icon: (props) => <MdArchitecture {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["redis"],
+    icon: (props) => <SiRedis {...props} />,
+    isReactIcon: true,
+  },
+];
+
+const tailwindMappings: IconMapping[] = [
+  { keywords: ["layout"], icon: (props) => <LayoutGrid {...props} /> },
+  {
+    keywords: ["tailwind", "utility", "css framework"],
+    icon: (props) => <SiTailwindcss {...props} />,
+    isReactIcon: true,
+  },
+];
+
+const generalConceptMappings: IconMapping[] = [
+  {
+    keywords: ["fundamental", "core", "basic", "foundation"],
+    icon: (props) => <BookOpen {...props} />,
+  },
+  {
+    keywords: ["advanced", "deep dive", "internals"],
+    icon: (props) => <Lightbulb {...props} />,
+  },
+  {
+    keywords: ["architecture", "structure", "design"],
+    icon: (props) => <MdArchitecture {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["pattern", "practice"],
+    icon: (props) => <PuzzleIcon {...props} />,
+  },
+  {
+    keywords: ["performance", "optimization", "efficient"],
+    icon: (props) => <Gauge {...props} />,
+  },
+  {
+    keywords: ["security", "auth", "token", "encryption"],
+    icon: (props) => <Shield {...props} />,
+  },
+  {
+    keywords: ["data", "storage", "database"],
+    icon: (props) => <Database {...props} />,
+  },
+  {
+    keywords: ["api", "endpoint", "service"],
+    icon: (props) => <MdApi {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["async", "concurrent", "parallel", "thread"],
+    icon: (props) => <BiNetworkChart {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["test", "quality", "validation"],
+    icon: (props) => <ClipboardCheck {...props} />,
+  },
+  {
+    keywords: ["deploy", "release", "continuous"],
+    icon: (props) => <Rocket {...props} />,
+  },
+  {
+    keywords: ["layout", "grid", "flex"],
+    icon: (props) => <LayoutGrid {...props} />,
+  },
+  {
+    keywords: ["function", "lambda", "callback"],
+    icon: (props) => <PiFunctionFill {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["object", "class", "inheritance"],
+    icon: (props) => <FaRegObjectGroup {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["algorithm", "data structure", "complexity"],
+    icon: (props) => <BiData {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["state", "store", "context"],
+    icon: (props) => <Workflow {...props} />,
+  },
+  {
+    keywords: ["render", "display", "ui", "interface"],
+    icon: (props) => <AppWindow {...props} />,
+  },
+  {
+    keywords: ["tool", "config", "build"],
+    icon: (props) => <Wrench {...props} />,
+  },
+  {
+    keywords: ["network", "protocol", "http", "socket", "communication"],
+    icon: (props) => <Globe {...props} />,
+  },
+  {
+    keywords: ["system", "design"],
+    icon: (props) => <LayoutDashboard {...props} />,
+  },
+];
+
+const fallbackMappings: IconMapping[] = [
+  { keywords: ["implementation"], icon: (props) => <Hammer {...props} /> },
+  { keywords: ["deep dive"], icon: (props) => <Sparkles {...props} /> },
+  { keywords: ["web"], icon: (props) => <Globe {...props} /> },
+  { keywords: ["server"], icon: (props) => <Server {...props} /> },
+  { keywords: ["client"], icon: (props) => <AppWindow {...props} /> },
+];
+
+const allMappings = [
+  {
+    keywords: ["node", "express", "npm", "server", "api", "middleware"],
+    mappings: nodejsMappings,
+  },
+  {
+    keywords: ["react", "component", "hooks", "jsx", "rendering", "fiber"],
+    mappings: reactMappings,
+  },
+  { keywords: ["css", "style", "layout", "visual"], mappings: cssMappings },
+  {
+    keywords: ["javascript", "js ", "dom", "event", "browser"],
+    mappings: javascriptMappings,
+  },
+  {
+    keywords: ["typescript", "ts ", "type", "interface"],
+    mappings: typescriptMappings,
+  },
+
+  {
+    keywords: ["go ", "golang", "goroutine", "concurrency"],
+    mappings: goMappings,
+  },
+  { keywords: ["python", "django", "flask"], mappings: pythonMappings },
+  { keywords: ["docker", "container", "image"], mappings: dockerMappings },
+  {
+    keywords: ["git", "branch", "merge", "rebase", "commit"],
+    mappings: gitMappings,
+  },
+  { keywords: ["redis", "cache", "pub sub"], mappings: redisMappings },
+  {
+    keywords: ["tailwind", "utility", "css framework"],
+    mappings: tailwindMappings,
+  },
+];
+
 const getTopicIcon = (topic: string, size: number = 16): React.ReactElement => {
   const normalizedTopic = topic.toLowerCase().replace(/_/g, " ");
-  console.log(normalizedTopic);
 
-  const iconProps: LucideProps = {
-    size,
-    className: "text-primary flex-shrink-0",
+  const iconProps = getIconProps(size);
+  const reactIconStyle = getReactIconStyle(size);
+
+  const getIconFromMappings = (mappings: IconMapping[]) => {
+    for (const { keywords, isReactIcon, icon } of mappings) {
+      if (!keywords.some((k) => normalizedTopic.includes(k))) {
+        continue;
+      }
+      return isReactIcon ? icon(reactIconStyle) : icon(iconProps);
+    }
   };
-  const reactIconStyle = { fontSize: size, color: "currentColor" };
 
-  if (
-    normalizedTopic.includes("node") ||
-    normalizedTopic.includes("express") ||
-    normalizedTopic.includes("npm") ||
-    normalizedTopic.includes("server") ||
-    normalizedTopic.includes("api") ||
-    normalizedTopic.includes("middleware")
-  ) {
-    if (normalizedTopic.includes("sequelize"))
-      return <SiSequelize style={reactIconStyle} />;
-    if (normalizedTopic.includes("express"))
-      return <SiExpress style={reactIconStyle} />;
-    if (normalizedTopic.includes("stream"))
-      return <FaStream style={reactIconStyle} />;
-    if (normalizedTopic.includes("module")) return <Puzzle {...iconProps} />;
-    if (normalizedTopic.includes("http")) return <Network {...iconProps} />;
-    if (normalizedTopic.includes("api"))
-      return <TbApi style={reactIconStyle} />;
-    if (normalizedTopic.includes("auth")) return <Lock {...iconProps} />;
-    if (normalizedTopic.includes("passport"))
-      return <SiPassport style={reactIconStyle} />;
-    if (normalizedTopic.includes("worker"))
-      return <GrUserWorker style={reactIconStyle} />;
-    if (normalizedTopic.includes("middleware"))
-      return <Workflow {...iconProps} />;
-    if (
-      normalizedTopic.includes("websocket") ||
-      normalizedTopic.includes("socket")
-    )
-      return <Antenna {...iconProps} />;
-    if (
-      normalizedTopic.includes("message") ||
-      normalizedTopic.includes("queue")
-    )
-      return <MessageCircle {...iconProps} />;
-    if (normalizedTopic.includes("crypto")) return <Shield {...iconProps} />;
-    if (normalizedTopic.includes("serverless")) return <Cloud {...iconProps} />;
-    if (normalizedTopic.includes("mongoose"))
-      return <SiMongodb style={reactIconStyle} />;
+  for (const { keywords: categoryKeywords, mappings } of allMappings) {
+    if (!categoryKeywords.some((keyword) => normalizedTopic.includes(keyword)))
+      continue;
 
-    if (normalizedTopic.includes("test"))
-      return <GrTest style={reactIconStyle} />;
-    if (normalizedTopic.includes("graph"))
-      return <SiGraphql style={reactIconStyle} />;
-    if (normalizedTopic.includes("deploy"))
-      return <MdRocket style={reactIconStyle} />;
-    if (normalizedTopic.includes("real time"))
-      return <Activity {...iconProps} />;
-
-    return <FaNodeJs style={reactIconStyle} />;
+    const icon = getIconFromMappings(mappings);
+    if (icon) return icon;
   }
 
-  if (
-    normalizedTopic.includes("react") ||
-    normalizedTopic.includes("component") ||
-    normalizedTopic.includes("hooks") ||
-    normalizedTopic.includes("jsx") ||
-    normalizedTopic.includes("rendering") ||
-    normalizedTopic.includes("fiber")
-  ) {
-    if (normalizedTopic.includes("hook"))
-      return <MdWebhook style={reactIconStyle} />;
-    if (normalizedTopic.includes("component"))
-      return <Component {...iconProps} />;
-    if (normalizedTopic.includes("fiber"))
-      return <FaLayerGroup style={reactIconStyle} />;
-    if (normalizedTopic.includes("reconciliation"))
-      return <RefreshCw {...iconProps} />;
-    if (normalizedTopic.includes("render")) return <Repeat {...iconProps} />;
-    if (normalizedTopic.includes("state"))
-      return <FolderKanban {...iconProps} />;
-    if (normalizedTopic.includes("route")) return <Router {...iconProps} />;
+  const generalConceptIcon = getIconFromMappings(generalConceptMappings);
+  if (generalConceptIcon) return generalConceptIcon;
 
-    // Default React icon
-    return <FaReact style={reactIconStyle} />;
-  }
+  const fallbackIcon = getIconFromMappings(fallbackMappings);
+  if (fallbackIcon) return fallbackIcon;
 
-  // CSS and styling related topics
-  if (
-    normalizedTopic.includes("css") ||
-    normalizedTopic.includes("style") ||
-    normalizedTopic.includes("layout") ||
-    normalizedTopic.includes("visual")
-  ) {
-    if (normalizedTopic.includes("layout"))
-      return <LayoutGrid {...iconProps} />;
-    if (normalizedTopic.includes("architecture"))
-      return <MdArchitecture style={reactIconStyle} />;
-    if (normalizedTopic.includes("performance"))
-      return <Gauge {...iconProps} />;
-    if (normalizedTopic.includes("visual")) return <Palette {...iconProps} />;
-    if (normalizedTopic.includes("advanced")) return <Pipette {...iconProps} />;
-
-    // Default CSS icon
-    return <TbBrandCss3 style={reactIconStyle} />;
-  }
-
-  // JavaScript-specific topics
-  if (
-    normalizedTopic.includes("javascript") ||
-    normalizedTopic.includes("js ") ||
-    normalizedTopic.includes("dom") ||
-    normalizedTopic.includes("event") ||
-    normalizedTopic.includes("browser")
-  ) {
-    if (normalizedTopic.includes("dom")) return <AppWindow {...iconProps} />;
-    if (normalizedTopic.includes("event")) return <BellRing {...iconProps} />;
-    if (normalizedTopic.includes("loop")) return <TimerReset {...iconProps} />;
-    if (normalizedTopic.includes("object"))
-      return <FaRegObjectGroup style={reactIconStyle} />;
-    if (normalizedTopic.includes("function"))
-      return <PiFunctionFill {...iconProps} />;
-    if (normalizedTopic.includes("scope"))
-      return <BsWindow style={reactIconStyle} />;
-    if (normalizedTopic.includes("browser")) return <Globe {...iconProps} />;
-    if (normalizedTopic.includes("async")) return <Clock {...iconProps} />;
-    if (normalizedTopic.includes("engine"))
-      return <TbEngine style={reactIconStyle} />;
-    if (normalizedTopic.includes("this")) return <Crosshair {...iconProps} />;
-
-    // Default JavaScript icon
-    return <SiJavascript style={reactIconStyle} />;
-  }
-
-  // TypeScript-specific topics
-  if (
-    normalizedTopic.includes("typescript") ||
-    normalizedTopic.includes("ts ") ||
-    normalizedTopic.includes("type") ||
-    normalizedTopic.includes("interface")
-  ) {
-    if (normalizedTopic.includes("advanced type"))
-      return <BiCodeCurly style={reactIconStyle} />;
-    if (normalizedTopic.includes("generic")) return <Brackets {...iconProps} />;
-    if (normalizedTopic.includes("object"))
-      return <FaRegObjectGroup style={reactIconStyle} />;
-    if (normalizedTopic.includes("system"))
-      return <CircuitBoard {...iconProps} />;
-
-    // Default TypeScript icon
-    return <SiTypescript style={reactIconStyle} />;
-  }
-
-  // Go-specific topics
-  if (
-    normalizedTopic.includes("go ") ||
-    normalizedTopic.includes("golang") ||
-    normalizedTopic.includes("goroutine") ||
-    normalizedTopic.includes("concurrency")
-  ) {
-    if (normalizedTopic.includes("channel"))
-      return <ImConnection style={reactIconStyle} />;
-    if (normalizedTopic.includes("concurrency"))
-      return <FaInfinity style={reactIconStyle} />;
-    if (normalizedTopic.includes("context"))
-      return <BsCompass style={reactIconStyle} />;
-    if (normalizedTopic.includes("goroutine"))
-      return <FaNetworkWired style={reactIconStyle} />;
-    if (normalizedTopic.includes("scheduler"))
-      return <Calendar {...iconProps} />;
-    if (normalizedTopic.includes("memory")) return <MdMemory {...iconProps} />;
-    if (normalizedTopic.includes("standard library"))
-      return <FileStack {...iconProps} />;
-    if (normalizedTopic.includes("sync"))
-      return <MdSync style={reactIconStyle} />;
-    if (normalizedTopic.includes("select")) return <Filter {...iconProps} />;
-
-    // Default Go icon
-    return <TbBrandGolang style={reactIconStyle} />;
-  }
-
-  // Python-specific topics
-  if (
-    normalizedTopic.includes("python") ||
-    normalizedTopic.includes("django") ||
-    normalizedTopic.includes("flask")
-  ) {
-    if (normalizedTopic.includes("object"))
-      return <FaRegObjectGroup style={reactIconStyle} />;
-    if (normalizedTopic.includes("concurrent"))
-      return <IoIosGitNetwork style={reactIconStyle} />;
-    if (normalizedTopic.includes("standard library"))
-      return <FileStack {...iconProps} />;
-    if (normalizedTopic.includes("data structure"))
-      return <FaLayerGroup style={reactIconStyle} />;
-    if (normalizedTopic.includes("algorithm"))
-      return <BiBrain style={reactIconStyle} />;
-
-    // Default Python icon
-    return <TbBrandPython style={reactIconStyle} />;
-  }
-
-  // Docker-specific topics
-  if (
-    normalizedTopic.includes("docker") ||
-    normalizedTopic.includes("container") ||
-    normalizedTopic.includes("image")
-  ) {
-    if (normalizedTopic.includes("container"))
-      return <Container {...iconProps} />;
-    if (normalizedTopic.includes("image")) return <AppWindow {...iconProps} />;
-
-    // Default Docker icon
-    return <TbBrandDocker style={reactIconStyle} />;
-  }
-
-  // Git-specific topics
-  if (
-    normalizedTopic.includes("git") ||
-    normalizedTopic.includes("branch") ||
-    normalizedTopic.includes("merge") ||
-    normalizedTopic.includes("rebase") ||
-    normalizedTopic.includes("commit")
-  ) {
-    if (normalizedTopic.includes("branch")) return <GitBranch {...iconProps} />;
-    if (normalizedTopic.includes("merge")) return <GitMerge {...iconProps} />;
-    if (normalizedTopic.includes("rebase"))
-      return <TbGitFork style={reactIconStyle} />;
-    if (normalizedTopic.includes("object")) return <FileCode {...iconProps} />;
-    if (normalizedTopic.includes("internal"))
-      return <GitCommit {...iconProps} />;
-    if (normalizedTopic.includes("basics"))
-      return <RiGitRepositoryLine style={reactIconStyle} />;
-
-    // Default Git icon
-    return <BiGitRepoForked style={reactIconStyle} />;
-  }
-
-  // Redis-specific topics
-  if (
-    normalizedTopic.includes("redis") ||
-    normalizedTopic.includes("cache") ||
-    normalizedTopic.includes("pub sub")
-  ) {
-    if (normalizedTopic.includes("pub sub")) return <Antenna {...iconProps} />;
-    if (normalizedTopic.includes("data structure"))
-      return <FaLayerGroup style={reactIconStyle} />;
-    if (normalizedTopic.includes("cache"))
-      return <IoIosRefresh style={reactIconStyle} />;
-    if (normalizedTopic.includes("persistance"))
-      return <FaRegSave style={reactIconStyle} />;
-    if (normalizedTopic.includes("command"))
-      return <HiOutlineTerminal style={reactIconStyle} />;
-    if (normalizedTopic.includes("architecture"))
-      return <MdArchitecture style={reactIconStyle} />;
-
-    // Default Redis icon
-    return <SiRedis style={reactIconStyle} />;
-  }
-
-  // Tailwind-specific topics
-  if (
-    normalizedTopic.includes("tailwind") ||
-    normalizedTopic.includes("utility") ||
-    normalizedTopic.includes("css framework")
-  ) {
-    if (normalizedTopic.includes("layout"))
-      return <LayoutGrid {...iconProps} />;
-
-    // Default Tailwind icon
-    return <SiTailwindcss style={reactIconStyle} />;
-  }
-
-  // GENERAL CONCEPT KEYWORDS MATCHING
-  // Check for general concepts that appear across multiple technologies
-
-  // Fundamentals concepts
-  if (
-    normalizedTopic.includes("fundamental") ||
-    normalizedTopic.includes("core") ||
-    normalizedTopic.includes("basic") ||
-    normalizedTopic.includes("foundation")
-  ) {
-    return <BookOpen {...iconProps} />;
-  }
-
-  // Advanced concepts
-  if (
-    normalizedTopic.includes("advanced") ||
-    normalizedTopic.includes("deep dive") ||
-    normalizedTopic.includes("internals")
-  ) {
-    return <Lightbulb {...iconProps} />;
-  }
-
-  // Architecture related
-  if (
-    normalizedTopic.includes("architecture") ||
-    normalizedTopic.includes("structure") ||
-    normalizedTopic.includes("design")
-  ) {
-    return <MdArchitecture {...iconProps} />;
-  }
-
-  // Pattern related
-  if (
-    normalizedTopic.includes("pattern") ||
-    normalizedTopic.includes("practice")
-  ) {
-    return <PuzzleIcon {...iconProps} />;
-  }
-
-  // Performance related
-  if (
-    normalizedTopic.includes("performance") ||
-    normalizedTopic.includes("optimization") ||
-    normalizedTopic.includes("efficient")
-  ) {
-    return <Gauge {...iconProps} />;
-  }
-
-  // Security related
-  if (
-    normalizedTopic.includes("security") ||
-    normalizedTopic.includes("auth") ||
-    normalizedTopic.includes("token") ||
-    normalizedTopic.includes("encryption")
-  ) {
-    return <Shield {...iconProps} />;
-  }
-
-  // Data related
-  if (
-    normalizedTopic.includes("data") ||
-    normalizedTopic.includes("storage") ||
-    normalizedTopic.includes("database")
-  ) {
-    return <Database {...iconProps} />;
-  }
-
-  // API related
-  if (
-    normalizedTopic.includes("api") ||
-    normalizedTopic.includes("endpoint") ||
-    normalizedTopic.includes("service")
-  ) {
-    return <MdApi style={reactIconStyle} />;
-  }
-
-  // Concurrency and async
-  if (
-    normalizedTopic.includes("async") ||
-    normalizedTopic.includes("concurrent") ||
-    normalizedTopic.includes("parallel") ||
-    normalizedTopic.includes("thread")
-  ) {
-    return <BiNetworkChart style={reactIconStyle} />;
-  }
-
-  // Testing related
-  if (
-    normalizedTopic.includes("test") ||
-    normalizedTopic.includes("quality") ||
-    normalizedTopic.includes("validation")
-  ) {
-    return <ClipboardCheck {...iconProps} />;
-  }
-
-  // Deployment related
-  if (
-    normalizedTopic.includes("deploy") ||
-    normalizedTopic.includes("release") ||
-    normalizedTopic.includes("continuous")
-  ) {
-    return <Rocket {...iconProps} />;
-  }
-
-  // LAYOUT RELATED
-  if (
-    normalizedTopic.includes("layout") ||
-    normalizedTopic.includes("grid") ||
-    normalizedTopic.includes("flex")
-  ) {
-    return <LayoutGrid {...iconProps} />;
-  }
-
-  // FUNCTIONAL CONCEPTS
-  if (
-    normalizedTopic.includes("function") ||
-    normalizedTopic.includes("lambda") ||
-    normalizedTopic.includes("callback")
-  ) {
-    return <PiFunctionFill {...iconProps} />;
-  }
-
-  // OBJECT-ORIENTED CONCEPTS
-  if (
-    normalizedTopic.includes("object") ||
-    normalizedTopic.includes("class") ||
-    normalizedTopic.includes("inheritance")
-  ) {
-    return <FaRegObjectGroup style={reactIconStyle} />;
-  }
-
-  // ALGORITHM & DATA STRUCTURE CONCEPTS
-  if (
-    normalizedTopic.includes("algorithm") ||
-    normalizedTopic.includes("data structure") ||
-    normalizedTopic.includes("complexity")
-  ) {
-    return <BiData style={reactIconStyle} />;
-  }
-
-  // STATE MANAGEMENT
-  if (
-    normalizedTopic.includes("state") ||
-    normalizedTopic.includes("store") ||
-    normalizedTopic.includes("context")
-  ) {
-    return <Workflow {...iconProps} />;
-  }
-
-  // RENDERING & UI
-  if (
-    normalizedTopic.includes("render") ||
-    normalizedTopic.includes("display") ||
-    normalizedTopic.includes("ui") ||
-    normalizedTopic.includes("interface")
-  ) {
-    return <AppWindow {...iconProps} />;
-  }
-
-  // TOOLING & CONFIGURATION
-  if (
-    normalizedTopic.includes("tool") ||
-    normalizedTopic.includes("config") ||
-    normalizedTopic.includes("build")
-  ) {
-    return <Wrench {...iconProps} />;
-  }
-
-  // NETWORK & COMMUNICATION
-  if (
-    normalizedTopic.includes("network") ||
-    normalizedTopic.includes("protocol") ||
-    normalizedTopic.includes("http") ||
-    normalizedTopic.includes("socket") ||
-    normalizedTopic.includes("communication")
-  ) {
-    return <Globe {...iconProps} />;
-  }
-
-  // SYSTEM DESIGN
-  if (
-    normalizedTopic.includes("system") ||
-    normalizedTopic.includes("design") ||
-    normalizedTopic.includes("architecture")
-  ) {
-    return <LayoutDashboard {...iconProps} />;
-  }
-
-  // LAST RESORT - DEFAULT FALLBACKS BASED ON WORD PATTERNS
-
-  // Check if it's an "implementation" topic
-  if (normalizedTopic.includes("implementation")) {
-    return <Hammer {...iconProps} />;
-  }
-
-  // Check if it's a "deep dive" topic
-  if (normalizedTopic.includes("deep dive")) {
-    return <Sparkles {...iconProps} />;
-  }
-
-  // Handle compound words that might be technologies
-  if (normalizedTopic.includes("web")) {
-    return <Globe {...iconProps} />;
-  }
-
-  if (normalizedTopic.includes("server")) {
-    return <Server {...iconProps} />;
-  }
-
-  if (normalizedTopic.includes("client")) {
-    return <AppWindow {...iconProps} />;
-  }
-
-  // ABSOLUTE FINAL DEFAULT
-  // If we couldn't find a specific icon, use a generic code icon
   return <Code2 {...iconProps} />;
 };
 
