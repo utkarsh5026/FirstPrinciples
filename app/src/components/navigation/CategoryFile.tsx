@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import { CircleDot, BookMarked, Clock, CheckCircle } from "lucide-react";
 import type { FileMetadata } from "@/services/document";
-import { motion } from "framer-motion";
 
 interface CategoryFileProps {
   file: FileMetadata;
@@ -32,7 +31,7 @@ const CategoryFile: React.FC<CategoryFileProps> = ({
   const fileStatus = getFileStatus(isTodo, isCompleted, isRead);
 
   return (
-    <motion.div whileTap={{ scale: 0.98 }} className="px-1 my-1">
+    <div className="px-1 my-1">
       <button
         key={file.path}
         className={cn(
@@ -76,7 +75,7 @@ const CategoryFile: React.FC<CategoryFileProps> = ({
           )}
         </div>
       </button>
-    </motion.div>
+    </div>
   );
 };
 

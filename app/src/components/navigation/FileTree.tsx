@@ -11,7 +11,6 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import CategoryFile from "./CategoryFile";
 import { memo, useMemo } from "react";
-import { motion } from "framer-motion";
 
 interface FileTreeProps {
   category: Category;
@@ -91,26 +90,6 @@ const FileTree: React.FC<FileTreeProps> = memo(
 
     if (!hasContent) return null;
 
-    const variants = {
-      open: {
-        opacity: 1,
-        height: "auto",
-        transition: {
-          type: "spring",
-          stiffness: 300,
-          damping: 30,
-          duration: 0.2,
-        },
-      },
-      collapsed: {
-        opacity: 0,
-        height: 0,
-        transition: {
-          duration: 0.2,
-        },
-      },
-    };
-
     return (
       <Collapsible key={category.id} open={isExpanded}>
         <CollapsibleTrigger asChild>
@@ -182,7 +161,7 @@ const FileTree: React.FC<FileTreeProps> = memo(
                       <div className="flex items-center bg-green-400/10 px-1.5 py-0.5 rounded-full">
                         <Clock size={12} className="text-green-200 mr-0.5" />
                         <span className="text-xs text-green-200 font-medium">
-                          {readFilesCount - completedFilesCount}
+                          {readFilesCount}
                         </span>
                       </div>
                     )}
@@ -202,50 +181,42 @@ const FileTree: React.FC<FileTreeProps> = memo(
 
         <CollapsibleContent asChild>
           {isExpanded ? (
-            <motion.div
-              variants={variants}
-              initial="collapsed"
-              animate={isExpanded ? "open" : "collapsed"}
-              exit="collapsed"
-              className="overflow-hidden pl-4"
-            >
-              <div className="py-1">
-                {category.categories?.map((subcategory) => (
-                  <FileTree
-                    key={subcategory.id}
-                    category={subcategory}
+            <div className="overflow-hidden pl-4">
+              {category.categories?.map((subcategory) => (
+                <FileTree
+                  key={subcategory.id}
+                  category={subcategory}
+                  depth={depth + 1}
+                  expandedCategories={expandedCategories}
+                  handleToggleExpand={handleToggleExpand}
+                  handleSelectFile={handleSelectFile}
+                  filePaths={filePaths}
+                  currentFilePath={currentFilePath}
+                  showDescriptions={showDescriptions}
+                  parentCategory={category.id}
+                />
+              ))}
+
+              {/* Render files with status indicators */}
+              {category.files?.map((file, index) => {
+                const isCurrentFile = file.path === currentFilePath;
+
+                return (
+                  <CategoryFile
+                    key={file.path}
+                    file={file}
                     depth={depth + 1}
-                    expandedCategories={expandedCategories}
-                    handleToggleExpand={handleToggleExpand}
+                    isCurrentFile={isCurrentFile}
+                    isTodo={filePaths.todo.has(file.path)}
+                    isCompleted={filePaths.completed.has(file.path)}
+                    isRead={filePaths.read.has(file.path)}
+                    fileNumber={index + 1}
                     handleSelectFile={handleSelectFile}
-                    filePaths={filePaths}
-                    currentFilePath={currentFilePath}
                     showDescriptions={showDescriptions}
-                    parentCategory={category.id}
                   />
-                ))}
-
-                {/* Render files with status indicators */}
-                {category.files?.map((file, index) => {
-                  const isCurrentFile = file.path === currentFilePath;
-
-                  return (
-                    <CategoryFile
-                      key={file.path}
-                      file={file}
-                      depth={depth + 1}
-                      isCurrentFile={isCurrentFile}
-                      isTodo={filePaths.todo.has(file.path)}
-                      isCompleted={filePaths.completed.has(file.path)}
-                      isRead={filePaths.read.has(file.path)}
-                      fileNumber={index + 1}
-                      handleSelectFile={handleSelectFile}
-                      showDescriptions={showDescriptions}
-                    />
-                  );
-                })}
-              </div>
-            </motion.div>
+                );
+              })}
+            </div>
           ) : null}
         </CollapsibleContent>
       </Collapsible>
