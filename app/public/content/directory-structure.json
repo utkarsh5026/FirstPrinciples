@@ -245,8 +245,8 @@
       ]
     },
     {
-      "id": "node_js",
-      "name": "Node Js",
+      "id": "nodejs",
+      "name": "Nodejs",
       "categories": [
         {
           "id": "api_development",

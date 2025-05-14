@@ -300,7 +300,7 @@ const nodejsMappings: IconMapping[] = [
   },
   { keywords: ["real time"], icon: (props) => <Activity {...props} /> },
   {
-    keywords: ["node", "server", "npm"],
+    keywords: ["server", "npm"],
     icon: (props) => <FaNodeJs {...props} />,
     isReactIcon: true,
   },
@@ -572,7 +572,7 @@ const allMappings = [
     mappings: cssMappings,
   },
   {
-    keywords: ["javascript", "js ", "dom", "event", "browser"],
+    keywords: ["javascript", "dom", "event", "browser"],
     mappings: javascriptMappings,
   },
   {
