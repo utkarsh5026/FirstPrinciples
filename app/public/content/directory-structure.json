@@ -249,20 +249,20 @@
       "name": "Node Js",
       "categories": [
         {
-          "id": "advanced_asynchronous_patterns",
-          "name": "Advanced Asynchronous Patterns"
-        },
-        {
           "id": "api_development",
           "name": "Api Development"
         },
         {
-          "id": "asynchronous_programming_fundamentals",
-          "name": "Asynchronous Programming Fundamentals"
+          "id": "asynchronous_programming",
+          "name": "Asynchronous Programming"
         },
         {
           "id": "authentication_and_security",
           "name": "Authentication And Security"
+        },
+        {
+          "id": "core_concepts",
+          "name": "Core Concepts"
         },
         {
           "id": "database_integration",
@@ -277,24 +277,12 @@
           "name": "Modules"
         },
         {
-          "id": "node_js_fundamentals",
-          "name": "Node Js Fundamentals"
-        },
-        {
-          "id": "node_js_internals",
-          "name": "Node Js Internals"
-        },
-        {
           "id": "real_time_communication",
           "name": "Real Time Communication"
         },
         {
           "id": "web_frameworks",
           "name": "Web Frameworks"
-        },
-        {
-          "id": "worker_threads_and_parallelism",
-          "name": "Worker Threads And Parallelism"
         }
       ]
     },

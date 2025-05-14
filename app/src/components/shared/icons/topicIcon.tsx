@@ -200,7 +200,7 @@ const javascriptMappings: IconMapping[] = [
   { keywords: ["this"], icon: (props) => <Crosshair {...props} /> },
 
   {
-    keywords: ["javascript", "js "],
+    keywords: ["javascript", "js"],
     icon: (props) => <SiJavascript {...props} />,
     isReactIcon: true,
   },

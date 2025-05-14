@@ -1983,47 +1983,6 @@
       "name": "Node Js",
       "categories": [
         {
-          "id": "advanced_asynchronous_patterns",
-          "name": "Advanced Asynchronous Patterns",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/advanced_asynchronous_patterns/async_generators_and_for_await_of_loops.md"
-            },
-            {
-              "path": "node_js/advanced_asynchronous_patterns/async_hooks_for_tracking_async_resources.md"
-            },
-            {
-              "path": "node_js/advanced_asynchronous_patterns/cooperative_scheduling_with_set_immediate.md"
-            },
-            {
-              "path": "node_js/advanced_asynchronous_patterns/custom_promise_implementations.md"
-            },
-            {
-              "path": "node_js/advanced_asynchronous_patterns/generators_and_iterators_for_async_control_flow.md"
-            },
-            {
-              "path": "node_js/advanced_asynchronous_patterns/implementing_cancellable_operations.md"
-            },
-            {
-              "path": "node_js/advanced_asynchronous_patterns/promise_combinators.md"
-            },
-            {
-              "path": "node_js/advanced_asynchronous_patterns/queuing_and_rate_limiting_patterns.md"
-            },
-            {
-              "path": "node_js/advanced_asynchronous_patterns/retry_and_backoff_strategies.md"
-            },
-            {
-              "path": "node_js/advanced_asynchronous_patterns/timeout_patterns_for_async_operations.md"
-            },
-            {
-              "path": "node_js/advanced_asynchronous_patterns/understanding_process_nexttick_vs_set_immediate.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
           "id": "api_development",
           "name": "Api Development",
           "categories": [
@@ -2199,44 +2158,134 @@
           "totalFileSize": 0
         },
         {
-          "id": "asynchronous_programming_fundamentals",
-          "name": "Asynchronous Programming Fundamentals",
-          "categories": [],
-          "files": [
+          "id": "asynchronous_programming",
+          "name": "Asynchronous Programming",
+          "categories": [
             {
-              "path": "node_js/asynchronous_programming_fundamentals/async_await_syntax_and_patterns.md"
+              "id": "advanced_asynchronous_patterns",
+              "name": "Advanced Asynchronous Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/asynchronous_programming/advanced_asynchronous_patterns/async_generators_and_for_await_of_loops.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/advanced_asynchronous_patterns/async_hooks_for_tracking_async_resources.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/advanced_asynchronous_patterns/cooperative_scheduling_with_set_immediate.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/advanced_asynchronous_patterns/custom_promise_implementations.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/advanced_asynchronous_patterns/generators_and_iterators_for_async_control_flow.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/advanced_asynchronous_patterns/implementing_cancellable_operations.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/advanced_asynchronous_patterns/promise_combinators.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/advanced_asynchronous_patterns/queuing_and_rate_limiting_patterns.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/advanced_asynchronous_patterns/retry_and_backoff_strategies.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/advanced_asynchronous_patterns/timeout_patterns_for_async_operations.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/advanced_asynchronous_patterns/understanding_process_nexttick_vs_set_immediate.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/asynchronous_programming_fundamentals/callback_pattern_and_callback_hell.md"
+              "id": "asynchronous_programming_fundamentals",
+              "name": "Asynchronous Programming Fundamentals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/asynchronous_programming/asynchronous_programming_fundamentals/async_await_syntax_and_patterns.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/asynchronous_programming_fundamentals/callback_pattern_and_callback_hell.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/asynchronous_programming_fundamentals/callback_vs_promise_vs_async_await_patterns.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/asynchronous_programming_fundamentals/error_handling_in_asynchronous_code.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/asynchronous_programming_fundamentals/event_emitters_and_event_driven_architecture.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/asynchronous_programming_fundamentals/event_emitter_class_and_custom_events.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/asynchronous_programming_fundamentals/managing_concurrency_with_async_operations.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/asynchronous_programming_fundamentals/promise_error_propagation.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/asynchronous_programming_fundamentals/promise_fundamentals_and_chaining.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/asynchronous_programming_fundamentals/sequential_vs_parallel_execution_patterns.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/asynchronous_programming_fundamentals/understanding_synchronous_vs_asynchronous_code.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/asynchronous_programming_fundamentals/callback_vs_promise_vs_async_await_patterns.md"
-            },
-            {
-              "path": "node_js/asynchronous_programming_fundamentals/error_handling_in_asynchronous_code.md"
-            },
-            {
-              "path": "node_js/asynchronous_programming_fundamentals/event_emitters_and_event_driven_architecture.md"
-            },
-            {
-              "path": "node_js/asynchronous_programming_fundamentals/event_emitter_class_and_custom_events.md"
-            },
-            {
-              "path": "node_js/asynchronous_programming_fundamentals/managing_concurrency_with_async_operations.md"
-            },
-            {
-              "path": "node_js/asynchronous_programming_fundamentals/promise_error_propagation.md"
-            },
-            {
-              "path": "node_js/asynchronous_programming_fundamentals/promise_fundamentals_and_chaining.md"
-            },
-            {
-              "path": "node_js/asynchronous_programming_fundamentals/sequential_vs_parallel_execution_patterns.md"
-            },
-            {
-              "path": "node_js/asynchronous_programming_fundamentals/understanding_synchronous_vs_asynchronous_code.md"
+              "id": "worker_threads_and_parallelism",
+              "name": "Worker Threads And Parallelism",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/asynchronous_programming/worker_threads_and_parallelism/atomics_for_thread_synchronization.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/worker_threads_and_parallelism/cpu_bound_task_optimization.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/worker_threads_and_parallelism/debugging_multi_threaded_applications.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/worker_threads_and_parallelism/error_handling_in_worker_threads.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/worker_threads_and_parallelism/performance_analysis_of_threaded_code.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/worker_threads_and_parallelism/shared_memory_with_shared_array_buffer.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/worker_threads_and_parallelism/thread_communication_strategies.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/worker_threads_and_parallelism/thread_lifecycle_management.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/worker_threads_and_parallelism/worker_pool_implementation_patterns.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/worker_threads_and_parallelism/worker_threads_api_in_depth.md"
+                },
+                {
+                  "path": "node_js/asynchronous_programming/worker_threads_and_parallelism/workload_distribution_algorithms.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -2406,6 +2455,96 @@
                 },
                 {
                   "path": "node_js/authentication_and_security/passport_js_strategy_implementation/testing_passport_strategies.md"
+                }
+              ],
+              "totalFileSize": 0
+            }
+          ],
+          "files": [],
+          "totalFileSize": 0
+        },
+        {
+          "id": "core_concepts",
+          "name": "Core Concepts",
+          "categories": [
+            {
+              "id": "node_js_fundamentals",
+              "name": "Node Js Fundamentals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/core_concepts/node_js_fundamentals/exit_codes_and_process_signals.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_fundamentals/javascript_runtime_environment_concepts.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_fundamentals/node_js_philosophy_and_design_principles.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_fundamentals/node_js_repl.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_fundamentals/process_object_and_command_line_arguments.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_fundamentals/running_node_js_scripts.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_fundamentals/setting_up_a_node_js_development_environment.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_fundamentals/understanding_the_event_driven_non_blocking_io_model.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_fundamentals/understanding_the_global_object_and_global_scope.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_fundamentals/v8_javascript_engine_and_its_role_in_node_js.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "node_js_internals",
+              "name": "Node Js Internals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/core_concepts/node_js_internals/garbage_collection_phases_and_algorithms.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_internals/hidden_classes_and_inline_caching_in_v8.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_internals/internal_threading_model_of_node_js.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_internals/just_in_time_jit_compilation_process.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_internals/libuv_and_the_event_loop_architecture.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_internals/memory_management_in_node_js.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_internals/phases_of_the_event_loop.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_internals/stack_and_heap_concepts.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_internals/the_node_js_startup_process.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_internals/the_role_of_cpp_addons_in_node_js.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_internals/understanding_microtasks_and_macrotasks_queues.md"
+                },
+                {
+                  "path": "node_js/core_concepts/node_js_internals/v8_engine_internals_and_optimization_techniques.md"
                 }
               ],
               "totalFileSize": 0
@@ -2776,88 +2915,6 @@
           "totalFileSize": 0
         },
         {
-          "id": "node_js_fundamentals",
-          "name": "Node Js Fundamentals",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/node_js_fundamentals/exit_codes_and_process_signals.md"
-            },
-            {
-              "path": "node_js/node_js_fundamentals/javascript_runtime_environment_concepts.md"
-            },
-            {
-              "path": "node_js/node_js_fundamentals/node_js_philosophy_and_design_principles.md"
-            },
-            {
-              "path": "node_js/node_js_fundamentals/node_js_repl.md"
-            },
-            {
-              "path": "node_js/node_js_fundamentals/process_object_and_command_line_arguments.md"
-            },
-            {
-              "path": "node_js/node_js_fundamentals/running_node_js_scripts.md"
-            },
-            {
-              "path": "node_js/node_js_fundamentals/setting_up_a_node_js_development_environment.md"
-            },
-            {
-              "path": "node_js/node_js_fundamentals/understanding_the_event_driven_non_blocking_io_model.md"
-            },
-            {
-              "path": "node_js/node_js_fundamentals/understanding_the_global_object_and_global_scope.md"
-            },
-            {
-              "path": "node_js/node_js_fundamentals/v8_javascript_engine_and_its_role_in_node_js.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "node_js_internals",
-          "name": "Node Js Internals",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/node_js_internals/garbage_collection_phases_and_algorithms.md"
-            },
-            {
-              "path": "node_js/node_js_internals/hidden_classes_and_inline_caching_in_v8.md"
-            },
-            {
-              "path": "node_js/node_js_internals/internal_threading_model_of_node_js.md"
-            },
-            {
-              "path": "node_js/node_js_internals/just_in_time_jit_compilation_process.md"
-            },
-            {
-              "path": "node_js/node_js_internals/libuv_and_the_event_loop_architecture.md"
-            },
-            {
-              "path": "node_js/node_js_internals/memory_management_in_node_js.md"
-            },
-            {
-              "path": "node_js/node_js_internals/phases_of_the_event_loop.md"
-            },
-            {
-              "path": "node_js/node_js_internals/stack_and_heap_concepts.md"
-            },
-            {
-              "path": "node_js/node_js_internals/the_node_js_startup_process.md"
-            },
-            {
-              "path": "node_js/node_js_internals/the_role_of_cpp_addons_in_node_js.md"
-            },
-            {
-              "path": "node_js/node_js_internals/understanding_microtasks_and_macrotasks_queues.md"
-            },
-            {
-              "path": "node_js/node_js_internals/v8_engine_internals_and_optimization_techniques.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
           "id": "real_time_communication",
           "name": "Real Time Communication",
           "categories": [
@@ -3117,47 +3174,6 @@
             }
           ],
           "files": [],
-          "totalFileSize": 0
-        },
-        {
-          "id": "worker_threads_and_parallelism",
-          "name": "Worker Threads And Parallelism",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/worker_threads_and_parallelism/atomics_for_thread_synchronization.md"
-            },
-            {
-              "path": "node_js/worker_threads_and_parallelism/cpu_bound_task_optimization.md"
-            },
-            {
-              "path": "node_js/worker_threads_and_parallelism/debugging_multi_threaded_applications.md"
-            },
-            {
-              "path": "node_js/worker_threads_and_parallelism/error_handling_in_worker_threads.md"
-            },
-            {
-              "path": "node_js/worker_threads_and_parallelism/performance_analysis_of_threaded_code.md"
-            },
-            {
-              "path": "node_js/worker_threads_and_parallelism/shared_memory_with_shared_array_buffer.md"
-            },
-            {
-              "path": "node_js/worker_threads_and_parallelism/thread_communication_strategies.md"
-            },
-            {
-              "path": "node_js/worker_threads_and_parallelism/thread_lifecycle_management.md"
-            },
-            {
-              "path": "node_js/worker_threads_and_parallelism/worker_pool_implementation_patterns.md"
-            },
-            {
-              "path": "node_js/worker_threads_and_parallelism/worker_threads_api_in_depth.md"
-            },
-            {
-              "path": "node_js/worker_threads_and_parallelism/workload_distribution_algorithms.md"
-            }
-          ],
           "totalFileSize": 0
         }
       ],
