@@ -86,6 +86,7 @@ import {
   MdHttp,
   MdLocalLibrary,
   MdAltRoute,
+  MdAnimation,
 } from "react-icons/md";
 
 import {
@@ -150,6 +151,11 @@ const reactMappings: IconMapping[] = [
 
 const cssMappings: IconMapping[] = [
   { keywords: ["layout"], icon: (props) => <LayoutGrid {...props} /> },
+  {
+    keywords: ["animation", "animate"],
+    icon: (props) => <MdAnimation {...props} />,
+    isReactIcon: true,
+  },
   {
     keywords: ["architecture"],
     icon: (props) => <MdArchitecture {...props} />,
@@ -562,7 +568,7 @@ const allMappings = [
     mappings: reactMappings,
   },
   {
-    keywords: ["css", "style", "layout", "visual", "styling"],
+    keywords: ["css", "style", "layout", "visual", "styling", "animation"],
     mappings: cssMappings,
   },
   {
