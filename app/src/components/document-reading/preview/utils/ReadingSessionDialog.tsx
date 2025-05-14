@@ -11,14 +11,11 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import getIconForTech from "@/components/shared/icons";
 
 interface ReadingSessionDialogProps {
   open: boolean;
   onClose: () => void;
-  documentTitle: string;
   timeSpent: number;
-  category: string;
   sectionData: {
     total: number;
     previouslyRead: number;
@@ -30,13 +27,10 @@ interface ReadingSessionDialogProps {
 const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
   open,
   onClose,
-  documentTitle,
   timeSpent,
-  category,
   sectionData,
 }) => {
   const formattedTime = formatTimeInMs(timeSpent);
-  const CategoryIcon = getIconForTech(category);
 
   const completedPercent = (sectionData.completed / sectionData.total) * 100;
 
@@ -64,15 +58,7 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
         </DialogHeader>
 
         <div className="py-3 overflow-auto">
-          <div className="bg-card/50 p-4 rounded-2xl border border-border/50">
-            <h3 className="text-sm font-medium mb-3 flex items-center">
-              <CategoryIcon className="h-6 w-6 mr-2 text-primary/70" />
-              <span className="text-foreground/90 break-words text-center">
-                {documentTitle}
-              </span>
-            </h3>
-
-            {/* Reading Progress Grid */}
+          <div className="bg-transparent p-4 rounded-2xl">
             <div className="grid grid-cols-2 gap-3 mb-3">
               <StatGridItem icon={Clock} label="Time" value={formattedTime} />
               <SessionStatGridItem
@@ -86,7 +72,6 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
               />
             </div>
 
-            {/* Progress Bar for this session */}
             {sectionData.previouslyRead < sectionData.total && (
               <div className="mt-2">
                 <div className="flex justify-between text-xs text-muted-foreground mb-1">

@@ -212,8 +212,6 @@ const DocumentPreview: React.FC = () => {
       <ReadingSessionDialog
         open={dialogOpen}
         onClose={handleDialogClose}
-        documentTitle={documentTitle}
-        category={category}
         timeSpent={sessionData.totalTime}
         sectionData={{
           total: sectionData.sectionsContent.length,
