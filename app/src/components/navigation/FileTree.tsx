@@ -50,6 +50,8 @@ const FileTree: React.FC<FileTreeProps> = memo(
         ? getIconForTech(category.name)
         : () => getTopicIcon(`${parentCategory ?? ""}_${category.name}`);
 
+    console.log(parentCategory);
+
     const {
       totalFilesCount,
       readFilesCount,
@@ -193,7 +195,7 @@ const FileTree: React.FC<FileTreeProps> = memo(
                   filePaths={filePaths}
                   currentFilePath={currentFilePath}
                   showDescriptions={showDescriptions}
-                  parentCategory={category.id}
+                  parentCategory={`${parentCategory ?? ""}_${category.name}`}
                 />
               ))}
 

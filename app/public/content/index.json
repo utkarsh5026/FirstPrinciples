@@ -2024,44 +2024,178 @@
           "totalFileSize": 0
         },
         {
-          "id": "api_design_and_implementation",
-          "name": "Api Design And Implementation",
-          "categories": [],
-          "files": [
+          "id": "api_development",
+          "name": "Api Development",
+          "categories": [
             {
-              "path": "node_js/api_design_and_implementation/api_documentation_automation.md"
+              "id": "api_design_and_implementation",
+              "name": "Api Design And Implementation",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/api_development/api_design_and_implementation/api_documentation_automation.md"
+                },
+                {
+                  "path": "node_js/api_development/api_design_and_implementation/api_pagination_implementation_techniques.md"
+                },
+                {
+                  "path": "node_js/api_development/api_design_and_implementation/api_rate_limiting_and_throttling.md"
+                },
+                {
+                  "path": "node_js/api_development/api_design_and_implementation/api_versioning_strategies_and_implementation.md"
+                },
+                {
+                  "path": "node_js/api_development/api_design_and_implementation/batch_processing_api_patterns.md"
+                },
+                {
+                  "path": "node_js/api_development/api_design_and_implementation/error_handling_and_response_standardization.md"
+                },
+                {
+                  "path": "node_js/api_development/api_design_and_implementation/filtering_sorting_and_searching_in_apis.md"
+                },
+                {
+                  "path": "node_js/api_development/api_design_and_implementation/hateoas_and_hypermedia_controls.md"
+                },
+                {
+                  "path": "node_js/api_development/api_design_and_implementation/long_running_operations_and_status_reporting.md"
+                },
+                {
+                  "path": "node_js/api_development/api_design_and_implementation/resource_naming_and_uri_structure_design.md"
+                },
+                {
+                  "path": "node_js/api_development/api_design_and_implementation/rest_api_best_practices_and_conventions.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/api_design_and_implementation/api_pagination_implementation_techniques.md"
+              "id": "graph_ql_api_development",
+              "name": "Graph Ql Api Development",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/api_development/graph_ql_api_development/authentication_and_authorization_in_graph_ql.md"
+                },
+                {
+                  "path": "node_js/api_development/graph_ql_api_development/batching_and_caching_in_graph_ql.md"
+                },
+                {
+                  "path": "node_js/api_development/graph_ql_api_development/error_handling_best_practices.md"
+                },
+                {
+                  "path": "node_js/api_development/graph_ql_api_development/federation_and_microservices_with_graph_ql.md"
+                },
+                {
+                  "path": "node_js/api_development/graph_ql_api_development/graph_ql_performance_optimization.md"
+                },
+                {
+                  "path": "node_js/api_development/graph_ql_api_development/graph_ql_subscriptions_for_real_time_data.md"
+                },
+                {
+                  "path": "node_js/api_development/graph_ql_api_development/graph_ql_vs_rest_architecture.md"
+                },
+                {
+                  "path": "node_js/api_development/graph_ql_api_development/n_1_query_problem_solutions.md"
+                },
+                {
+                  "path": "node_js/api_development/graph_ql_api_development/query_and_mutation_implementation.md"
+                },
+                {
+                  "path": "node_js/api_development/graph_ql_api_development/resolvers_implementation_in_node_js.md"
+                },
+                {
+                  "path": "node_js/api_development/graph_ql_api_development/schema_definition_language.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/api_design_and_implementation/api_rate_limiting_and_throttling.md"
+              "id": "rate_limiting_and_api_gateways",
+              "name": "Rate Limiting And Api Gateways",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/api_development/rate_limiting_and_api_gateways/api_gateway_architecture_and_patterns.md"
+                },
+                {
+                  "path": "node_js/api_development/rate_limiting_and_api_gateways/api_gateway_security_implementation.md"
+                },
+                {
+                  "path": "node_js/api_development/rate_limiting_and_api_gateways/cache_management_at_gateway_level.md"
+                },
+                {
+                  "path": "node_js/api_development/rate_limiting_and_api_gateways/distributed_rate_limiting_implementation.md"
+                },
+                {
+                  "path": "node_js/api_development/rate_limiting_and_api_gateways/ip_based_vs_user_based_rate_limiting.md"
+                },
+                {
+                  "path": "node_js/api_development/rate_limiting_and_api_gateways/rate_limiting_and_api_gateways.md"
+                },
+                {
+                  "path": "node_js/api_development/rate_limiting_and_api_gateways/request_and_response_transformation.md"
+                },
+                {
+                  "path": "node_js/api_development/rate_limiting_and_api_gateways/request_routing_and_load_balancing.md"
+                },
+                {
+                  "path": "node_js/api_development/rate_limiting_and_api_gateways/service_composition_through_api_gateway.md"
+                },
+                {
+                  "path": "node_js/api_development/rate_limiting_and_api_gateways/traffic_monitoring_and_analytics.md"
+                },
+                {
+                  "path": "node_js/api_development/rate_limiting_and_api_gateways/versioning_through_api_gateway.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/api_design_and_implementation/api_versioning_strategies_and_implementation.md"
-            },
-            {
-              "path": "node_js/api_design_and_implementation/batch_processing_api_patterns.md"
-            },
-            {
-              "path": "node_js/api_design_and_implementation/error_handling_and_response_standardization.md"
-            },
-            {
-              "path": "node_js/api_design_and_implementation/filtering_sorting_and_searching_in_apis.md"
-            },
-            {
-              "path": "node_js/api_design_and_implementation/hateoas_and_hypermedia_controls.md"
-            },
-            {
-              "path": "node_js/api_design_and_implementation/long_running_operations_and_status_reporting.md"
-            },
-            {
-              "path": "node_js/api_design_and_implementation/resource_naming_and_uri_structure_design.md"
-            },
-            {
-              "path": "node_js/api_design_and_implementation/rest_api_best_practices_and_conventions.md"
+              "id": "server_sent_events",
+              "name": "Server Sent Events",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/api_development/server_sent_events/browser_compatibility_handling.md"
+                },
+                {
+                  "path": "node_js/api_development/server_sent_events/custom_event_stream_management.md"
+                },
+                {
+                  "path": "node_js/api_development/server_sent_events/event_compression_techniques.md"
+                },
+                {
+                  "path": "node_js/api_development/server_sent_events/multi_client_broadcasting.md"
+                },
+                {
+                  "path": "node_js/api_development/server_sent_events/performance_monitoring.md"
+                },
+                {
+                  "path": "node_js/api_development/server_sent_events/reconnection_handling_patterns.md"
+                },
+                {
+                  "path": "node_js/api_development/server_sent_events/sse_debugging_strategies.md"
+                },
+                {
+                  "path": "node_js/api_development/server_sent_events/sse_event_filtering.md"
+                },
+                {
+                  "path": "node_js/api_development/server_sent_events/sse_implementation_with_node_js.md"
+                },
+                {
+                  "path": "node_js/api_development/server_sent_events/sse_proxy_configuration.md"
+                },
+                {
+                  "path": "node_js/api_development/server_sent_events/sse_vs_web_socket_comparison.md"
+                },
+                {
+                  "path": "node_js/api_development/server_sent_events/sse_with_authentication.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -2106,495 +2240,539 @@
           "totalFileSize": 0
         },
         {
-          "id": "authentication_and_authorization",
-          "name": "Authentication And Authorization",
-          "categories": [],
-          "files": [
+          "id": "authentication_and_security",
+          "name": "Authentication And Security",
+          "categories": [
             {
-              "path": "node_js/authentication_and_authorization/api_key_management_and_rotation.md"
+              "id": "authentication_and_authorization",
+              "name": "Authentication And Authorization",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/authentication_and_security/authentication_and_authorization/api_key_management_and_rotation.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/authentication_and_authorization/attribute_based_access_control.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/authentication_and_authorization/authentication_vs_authorization_concepts.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/authentication_and_authorization/multi_factor_authentication_implementation.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/authentication_and_authorization/permission_management_systems.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/authentication_and_authorization/role_based_access_control.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/authentication_and_authorization/session_based_authentication_implementation.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/authentication_and_authorization/single_sign_on_sso_integration.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/authentication_and_authorization/social_authentication_strategies.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/authentication_and_authorization/token_based_authentication.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/authentication_and_authorization/user_identity_management_best_practices.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/authentication_and_authorization/attribute_based_access_control.md"
+              "id": "crypto_libraries",
+              "name": "Crypto Libraries",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/aes_encryption_strategies.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/bcrypt_password_hashing_patterns.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/cryptographic_audit_patterns.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/crypto_js_for_advanced_cryptography.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/crypto_performance_optimization.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/custom_encryption_decryption_utilities.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/digital_signature_implementation.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/hardware_security_module_integration.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/key_derivation_functions.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/key_management_patterns.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/pbkdf2_implementation_patterns.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/crypto_libraries/secure_random_generation.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/authentication_and_authorization/authentication_vs_authorization_concepts.md"
+              "id": "data_validation_and_sanitization",
+              "name": "Data Validation And Sanitization",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/authentication_and_security/data_validation_and_sanitization/content_sanitization_techniques.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/data_validation_and_sanitization/cross_site_scripting_xss_prevention.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/data_validation_and_sanitization/custom_validators_implementation.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/data_validation_and_sanitization/data_transformation_pipelines.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/data_validation_and_sanitization/error_reporting_for_validation_failures.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/data_validation_and_sanitization/input_validation_strategies.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/data_validation_and_sanitization/no_sql_injection_prevention.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/data_validation_and_sanitization/schema_validation_libraries.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/data_validation_and_sanitization/sql_injection_prevention.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/data_validation_and_sanitization/validation_middleware_design.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/authentication_and_authorization/multi_factor_authentication_implementation.md"
-            },
-            {
-              "path": "node_js/authentication_and_authorization/permission_management_systems.md"
-            },
-            {
-              "path": "node_js/authentication_and_authorization/role_based_access_control.md"
-            },
-            {
-              "path": "node_js/authentication_and_authorization/session_based_authentication_implementation.md"
-            },
-            {
-              "path": "node_js/authentication_and_authorization/single_sign_on_sso_integration.md"
-            },
-            {
-              "path": "node_js/authentication_and_authorization/social_authentication_strategies.md"
-            },
-            {
-              "path": "node_js/authentication_and_authorization/token_based_authentication.md"
-            },
-            {
-              "path": "node_js/authentication_and_authorization/user_identity_management_best_practices.md"
+              "id": "passport_js_strategy_implementation",
+              "name": "Passport Js Strategy Implementation",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/authentication_flow_optimization.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/custom_authentication_strategies.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/custom_error_handling_in_auth_flows.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/custom_serialization_deserialization.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/multi_factor_authentication_with_passport.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/oauth_provider_integration.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/passport_middleware_customization.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/passport_with_graphql.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/role_based_authorization_patterns.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/session_vs_token_based_auth_with_passport.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/strategy_configuration_patterns.md"
+                },
+                {
+                  "path": "node_js/authentication_and_security/passport_js_strategy_implementation/testing_passport_strategies.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "crypto_libraries",
-          "name": "Crypto Libraries",
-          "categories": [],
-          "files": [
+          "id": "database_integration",
+          "name": "Database Integration",
+          "categories": [
             {
-              "path": "node_js/crypto_libraries/aes_encryption_strategies.md"
+              "id": "mongoose",
+              "name": "Mongoose",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/database_integration/mongoose/aggregation_pipeline_optimization.md"
+                },
+                {
+                  "path": "node_js/database_integration/mongoose/custom_mongoose_types_and_casting.md"
+                },
+                {
+                  "path": "node_js/database_integration/mongoose/custom_query_helpers_and_static_methods.md"
+                },
+                {
+                  "path": "node_js/database_integration/mongoose/custom_schema_validators_and_middleware.md"
+                },
+                {
+                  "path": "node_js/database_integration/mongoose/discriminators_for_inheritance_patterns.md"
+                },
+                {
+                  "path": "node_js/database_integration/mongoose/mongoose_connection_pooling.md"
+                },
+                {
+                  "path": "node_js/database_integration/mongoose/mongoose_plugins_and_hooks.md"
+                },
+                {
+                  "path": "node_js/database_integration/mongoose/mongoose_schema_design_patterns.md"
+                },
+                {
+                  "path": "node_js/database_integration/mongoose/population_strategies_and_performance.md"
+                },
+                {
+                  "path": "node_js/database_integration/mongoose/schema_versioning_strategies.md"
+                },
+                {
+                  "path": "node_js/database_integration/mongoose/transaction_handling_with_mongoose.md"
+                },
+                {
+                  "path": "node_js/database_integration/mongoose/virtual_fields_and_computed_properties.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/crypto_libraries/bcrypt_password_hashing_patterns.md"
-            },
-            {
-              "path": "node_js/crypto_libraries/cryptographic_audit_patterns.md"
-            },
-            {
-              "path": "node_js/crypto_libraries/crypto_js_for_advanced_cryptography.md"
-            },
-            {
-              "path": "node_js/crypto_libraries/crypto_performance_optimization.md"
-            },
-            {
-              "path": "node_js/crypto_libraries/custom_encryption_decryption_utilities.md"
-            },
-            {
-              "path": "node_js/crypto_libraries/digital_signature_implementation.md"
-            },
-            {
-              "path": "node_js/crypto_libraries/hardware_security_module_integration.md"
-            },
-            {
-              "path": "node_js/crypto_libraries/key_derivation_functions.md"
-            },
-            {
-              "path": "node_js/crypto_libraries/key_management_patterns.md"
-            },
-            {
-              "path": "node_js/crypto_libraries/pbkdf2_implementation_patterns.md"
-            },
-            {
-              "path": "node_js/crypto_libraries/secure_random_generation.md"
+              "id": "sequelize",
+              "name": "Sequelize",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/database_integration/sequelize/advanced_query_building.md"
+                },
+                {
+                  "path": "node_js/database_integration/sequelize/connection_pooling_configuration.md"
+                },
+                {
+                  "path": "node_js/database_integration/sequelize/custom_validators_and_hooks.md"
+                },
+                {
+                  "path": "node_js/database_integration/sequelize/eager_loading_optimization.md"
+                },
+                {
+                  "path": "node_js/database_integration/sequelize/migration_management_and_best_practices.md"
+                },
+                {
+                  "path": "node_js/database_integration/sequelize/model_definition_and_associations.md"
+                },
+                {
+                  "path": "node_js/database_integration/sequelize/model_inheritance_patterns.md"
+                },
+                {
+                  "path": "node_js/database_integration/sequelize/performance_optimization_techniques.md"
+                },
+                {
+                  "path": "node_js/database_integration/sequelize/raw_query_integration.md"
+                },
+                {
+                  "path": "node_js/database_integration/sequelize/sequelize_cli_and_automation.md"
+                },
+                {
+                  "path": "node_js/database_integration/sequelize/sequelize_with_typescript.md"
+                },
+                {
+                  "path": "node_js/database_integration/sequelize/transaction_patterns_and_isolation_levels.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "data_validation_and_sanitization",
-          "name": "Data Validation And Sanitization",
-          "categories": [],
-          "files": [
+          "id": "deployment_and_testing",
+          "name": "Deployment And Testing",
+          "categories": [
             {
-              "path": "node_js/data_validation_and_sanitization/content_sanitization_techniques.md"
+              "id": "deployment_and_devops",
+              "name": "Deployment And Devops",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/deployment_and_testing/deployment_and_devops/a_b_testing_infrastructure.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/deployment_and_devops/canary_releases_implementation.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/deployment_and_devops/ci_cd_pipeline_setup_for_node_js.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/deployment_and_devops/containerization_with_docker.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/deployment_and_devops/environment_configuration_management.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/deployment_and_devops/infrastructure_as_code_for_node_js_apps.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/deployment_and_devops/kubernetes_deployment_strategies.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/deployment_and_devops/rollback_strategies_and_versioning.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/deployment_and_devops/secret_management_best_practices.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/deployment_and_devops/serverless_deployment.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/data_validation_and_sanitization/cross_site_scripting_xss_prevention.md"
+              "id": "serverless_and_function_as_a_service",
+              "name": "Serverless And Function As A Service",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/deployment_and_testing/serverless_and_function_as_a_service/aws_lambda_integration_with_node_js.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/serverless_and_function_as_a_service/azure_functions_development.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/serverless_and_function_as_a_service/cold_start_optimization_techniques.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/serverless_and_function_as_a_service/event_driven_serverless_architectures.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/serverless_and_function_as_a_service/google_cloud_functions_implementation.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/serverless_and_function_as_a_service/monitoring_and_debugging_serverless_applications.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/serverless_and_function_as_a_service/serverless_api_design_patterns.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/serverless_and_function_as_a_service/serverless_architecture_principles.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/serverless_and_function_as_a_service/serverless_database_access_patterns.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/serverless_and_function_as_a_service/serverless_framework_integration.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/serverless_and_function_as_a_service/testing_serverless_functions.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/data_validation_and_sanitization/custom_validators_implementation.md"
-            },
-            {
-              "path": "node_js/data_validation_and_sanitization/data_transformation_pipelines.md"
-            },
-            {
-              "path": "node_js/data_validation_and_sanitization/error_reporting_for_validation_failures.md"
-            },
-            {
-              "path": "node_js/data_validation_and_sanitization/input_validation_strategies.md"
-            },
-            {
-              "path": "node_js/data_validation_and_sanitization/no_sql_injection_prevention.md"
-            },
-            {
-              "path": "node_js/data_validation_and_sanitization/schema_validation_libraries.md"
-            },
-            {
-              "path": "node_js/data_validation_and_sanitization/sql_injection_prevention.md"
-            },
-            {
-              "path": "node_js/data_validation_and_sanitization/validation_middleware_design.md"
+              "id": "testing_utilities",
+              "name": "Testing Utilities",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/api_contract_testing.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/chai_assertion_library_patterns.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/ci_cd_integration_for_tests.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/end_to_end_testing_with_puppeteer.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/integration_test_isolation.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/load_testing_with_artillery.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/property_based_testing_with_fast_check.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/sinon_for_mocks_and_stubs.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/supertest_for_http_testing.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/testing_database_operations.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/test_data_factories.md"
+                },
+                {
+                  "path": "node_js/deployment_and_testing/testing_utilities/visual_regression_testing.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "deployment_and_devops",
-          "name": "Deployment And Devops",
-          "categories": [],
-          "files": [
+          "id": "modules",
+          "name": "Modules",
+          "categories": [
             {
-              "path": "node_js/deployment_and_devops/a_b_testing_infrastructure.md"
+              "id": "module_system_deep_dive",
+              "name": "Module System Deep Dive",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/modules/module_system_deep_dive/circular_dependency_management.md"
+                },
+                {
+                  "path": "node_js/modules/module_system_deep_dive/common_js_module_resolution_algorithm.md"
+                },
+                {
+                  "path": "node_js/modules/module_system_deep_dive/creating_and_publishing_npm_packages.md"
+                },
+                {
+                  "path": "node_js/modules/module_system_deep_dive/dynamic_module_loading_techniques.md"
+                },
+                {
+                  "path": "node_js/modules/module_system_deep_dive/es_modules_in_node_js.md"
+                },
+                {
+                  "path": "node_js/modules/module_system_deep_dive/module_bundling_tools_for_node_js.md"
+                },
+                {
+                  "path": "node_js/modules/module_system_deep_dive/module_caching_mechanisms.md"
+                },
+                {
+                  "path": "node_js/modules/module_system_deep_dive/package_json_configuration_in_depth.md"
+                },
+                {
+                  "path": "node_js/modules/module_system_deep_dive/package_lock_files_and_deterministic_builds.md"
+                },
+                {
+                  "path": "node_js/modules/module_system_deep_dive/semantic_versioning_and_dependency_management.md"
+                },
+                {
+                  "path": "node_js/modules/module_system_deep_dive/transpilers_and_compilers_integration.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/deployment_and_devops/canary_releases_implementation.md"
+              "id": "node_js_core_modules",
+              "name": "Node Js Core Modules",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/modules/node_js_core_modules/buffer_module_for_binary_data.md"
+                },
+                {
+                  "path": "node_js/modules/node_js_core_modules/child_process_module_introduction.md"
+                },
+                {
+                  "path": "node_js/modules/node_js_core_modules/cluster_module_for_multi_process_applications.md"
+                },
+                {
+                  "path": "node_js/modules/node_js_core_modules/crypto_module_for_cryptography.md"
+                },
+                {
+                  "path": "node_js/modules/node_js_core_modules/file_system_fs_module_fundamentals.md"
+                },
+                {
+                  "path": "node_js/modules/node_js_core_modules/http_https_module_basics.md"
+                },
+                {
+                  "path": "node_js/modules/node_js_core_modules/os_module_for_operating_system_interaction.md"
+                },
+                {
+                  "path": "node_js/modules/node_js_core_modules/path_module_for_cross_platform_path_handling.md"
+                },
+                {
+                  "path": "node_js/modules/node_js_core_modules/stream_module_and_streaming_interfaces.md"
+                },
+                {
+                  "path": "node_js/modules/node_js_core_modules/understanding_the_module_system_architecture.md"
+                },
+                {
+                  "path": "node_js/modules/node_js_core_modules/url_and_querystring_modules.md"
+                },
+                {
+                  "path": "node_js/modules/node_js_core_modules/worker_threads_for_cpu_intensive_tasks.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/deployment_and_devops/ci_cd_pipeline_setup_for_node_js.md"
-            },
-            {
-              "path": "node_js/deployment_and_devops/containerization_with_docker.md"
-            },
-            {
-              "path": "node_js/deployment_and_devops/environment_configuration_management.md"
-            },
-            {
-              "path": "node_js/deployment_and_devops/infrastructure_as_code_for_node_js_apps.md"
-            },
-            {
-              "path": "node_js/deployment_and_devops/kubernetes_deployment_strategies.md"
-            },
-            {
-              "path": "node_js/deployment_and_devops/rollback_strategies_and_versioning.md"
-            },
-            {
-              "path": "node_js/deployment_and_devops/secret_management_best_practices.md"
-            },
-            {
-              "path": "node_js/deployment_and_devops/serverless_deployment.md"
+              "id": "streams_and_buffer_management",
+              "name": "Streams And Buffer Management",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/modules/streams_and_buffer_management/binary_data_manipulation_techniques.md"
+                },
+                {
+                  "path": "node_js/modules/streams_and_buffer_management/buffer_pooling_and_performance_optimization.md"
+                },
+                {
+                  "path": "node_js/modules/streams_and_buffer_management/custom_transform_streams_implementation.md"
+                },
+                {
+                  "path": "node_js/modules/streams_and_buffer_management/flow_control_with_backpressure_handling.md"
+                },
+                {
+                  "path": "node_js/modules/streams_and_buffer_management/memory_efficient_stream_processing.md"
+                },
+                {
+                  "path": "node_js/modules/streams_and_buffer_management/piping_streams_for_efficient_data_flow.md"
+                },
+                {
+                  "path": "node_js/modules/streams_and_buffer_management/streaming_api_patterns_and_best_practices.md"
+                },
+                {
+                  "path": "node_js/modules/streams_and_buffer_management/streaming_protocol_implementations.md"
+                },
+                {
+                  "path": "node_js/modules/streams_and_buffer_management/stream_error_handling_and_recovery.md"
+                },
+                {
+                  "path": "node_js/modules/streams_and_buffer_management/stream_types.md"
+                },
+                {
+                  "path": "node_js/modules/streams_and_buffer_management/working_with_object_mode_streams.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "express_js",
-          "name": "Express Js",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/express_js/advanced_routing_patterns_and_regex_routes.md"
-            },
-            {
-              "path": "node_js/express_js/async_middleware_error_handling.md"
-            },
-            {
-              "path": "node_js/express_js/custom_middleware_creation_and_composition.md"
-            },
-            {
-              "path": "node_js/express_js/error_boundary_implementation.md"
-            },
-            {
-              "path": "node_js/express_js/express_application_architecture_and_lifecycle.md"
-            },
-            {
-              "path": "node_js/express_js/express_app_testing_strategies.md"
-            },
-            {
-              "path": "node_js/express_js/express_extensions_and_plugins_ecosystem.md"
-            },
-            {
-              "path": "node_js/express_js/express_generator_and_project_scaffolding.md"
-            },
-            {
-              "path": "node_js/express_js/performance_optimization_techniques_for_express.md"
-            },
-            {
-              "path": "node_js/express_js/request_response_object_modification_patterns.md"
-            },
-            {
-              "path": "node_js/express_js/static_file_serving_optimization.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "graph_ql_api_development",
-          "name": "Graph Ql Api Development",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/graph_ql_api_development/authentication_and_authorization_in_graph_ql.md"
-            },
-            {
-              "path": "node_js/graph_ql_api_development/batching_and_caching_in_graph_ql.md"
-            },
-            {
-              "path": "node_js/graph_ql_api_development/error_handling_best_practices.md"
-            },
-            {
-              "path": "node_js/graph_ql_api_development/federation_and_microservices_with_graph_ql.md"
-            },
-            {
-              "path": "node_js/graph_ql_api_development/graph_ql_performance_optimization.md"
-            },
-            {
-              "path": "node_js/graph_ql_api_development/graph_ql_subscriptions_for_real_time_data.md"
-            },
-            {
-              "path": "node_js/graph_ql_api_development/graph_ql_vs_rest_architecture.md"
-            },
-            {
-              "path": "node_js/graph_ql_api_development/n_1_query_problem_solutions.md"
-            },
-            {
-              "path": "node_js/graph_ql_api_development/query_and_mutation_implementation.md"
-            },
-            {
-              "path": "node_js/graph_ql_api_development/resolvers_implementation_in_node_js.md"
-            },
-            {
-              "path": "node_js/graph_ql_api_development/schema_definition_language.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "http_server_implementation",
-          "name": "Http Server Implementation",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/http_server_implementation/content_negotiation_techniques.md"
-            },
-            {
-              "path": "node_js/http_server_implementation/cookie_handling_and_sessions.md"
-            },
-            {
-              "path": "node_js/http_server_implementation/cors_implementation_strategies.md"
-            },
-            {
-              "path": "node_js/http_server_implementation/graphql_server_implementation.md"
-            },
-            {
-              "path": "node_js/http_server_implementation/http_2_support_and_implementation.md"
-            },
-            {
-              "path": "node_js/http_server_implementation/http_headers_management.md"
-            },
-            {
-              "path": "node_js/http_server_implementation/http_server_core_concepts.md"
-            },
-            {
-              "path": "node_js/http_server_implementation/request_and_response_objects_in_depth.md"
-            },
-            {
-              "path": "node_js/http_server_implementation/server_sent_events_implementation.md"
-            },
-            {
-              "path": "node_js/http_server_implementation/web_socket_server_implementation.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "message_queues_and_event_driven_architecture",
-          "name": "Message Queues And Event Driven Architecture",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/message_queues_and_event_driven_architecture/command_and_event_separation.md"
-            },
-            {
-              "path": "node_js/message_queues_and_event_driven_architecture/dead_letter_queues_and_retry_mechanisms.md"
-            },
-            {
-              "path": "node_js/message_queues_and_event_driven_architecture/event_driven_architecture_patterns.md"
-            },
-            {
-              "path": "node_js/message_queues_and_event_driven_architecture/event_sourcing_implementation.md"
-            },
-            {
-              "path": "node_js/message_queues_and_event_driven_architecture/guaranteed_message_delivery_patterns.md"
-            },
-            {
-              "path": "node_js/message_queues_and_event_driven_architecture/idempotent_message_processing.md"
-            },
-            {
-              "path": "node_js/message_queues_and_event_driven_architecture/message_broker_integration.md"
-            },
-            {
-              "path": "node_js/message_queues_and_event_driven_architecture/message_queue_patterns_and_topologies.md"
-            },
-            {
-              "path": "node_js/message_queues_and_event_driven_architecture/message_serialization_formats.md"
-            },
-            {
-              "path": "node_js/message_queues_and_event_driven_architecture/publish_subscribe_pattern_implementation.md"
-            },
-            {
-              "path": "node_js/message_queues_and_event_driven_architecture/real_time_event_processing_with_node_js.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "middleware_design_patterns",
-          "name": "Middleware Design Patterns",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/middleware_design_patterns/authentication_and_authorization_middleware.md"
-            },
-            {
-              "path": "node_js/middleware_design_patterns/caching_middleware_strategies.md"
-            },
-            {
-              "path": "node_js/middleware_design_patterns/composable_middleware_implementation.md"
-            },
-            {
-              "path": "node_js/middleware_design_patterns/cross_cutting_concerns_separation.md"
-            },
-            {
-              "path": "node_js/middleware_design_patterns/error_handling_middleware.md"
-            },
-            {
-              "path": "node_js/middleware_design_patterns/logging_and_monitoring_middleware.md"
-            },
-            {
-              "path": "node_js/middleware_design_patterns/middleware_performance_optimization.md"
-            },
-            {
-              "path": "node_js/middleware_design_patterns/rate_limiting_middleware_implementation.md"
-            },
-            {
-              "path": "node_js/middleware_design_patterns/request_processing_pipeline_architecture.md"
-            },
-            {
-              "path": "node_js/middleware_design_patterns/request_transformation_middleware.md"
-            },
-            {
-              "path": "node_js/middleware_design_patterns/response_compression_middleware.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "module_system_deep_dive",
-          "name": "Module System Deep Dive",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/module_system_deep_dive/circular_dependency_management.md"
-            },
-            {
-              "path": "node_js/module_system_deep_dive/common_js_module_resolution_algorithm.md"
-            },
-            {
-              "path": "node_js/module_system_deep_dive/creating_and_publishing_npm_packages.md"
-            },
-            {
-              "path": "node_js/module_system_deep_dive/dynamic_module_loading_techniques.md"
-            },
-            {
-              "path": "node_js/module_system_deep_dive/es_modules_in_node_js.md"
-            },
-            {
-              "path": "node_js/module_system_deep_dive/module_bundling_tools_for_node_js.md"
-            },
-            {
-              "path": "node_js/module_system_deep_dive/module_caching_mechanisms.md"
-            },
-            {
-              "path": "node_js/module_system_deep_dive/package_json_configuration_in_depth.md"
-            },
-            {
-              "path": "node_js/module_system_deep_dive/package_lock_files_and_deterministic_builds.md"
-            },
-            {
-              "path": "node_js/module_system_deep_dive/semantic_versioning_and_dependency_management.md"
-            },
-            {
-              "path": "node_js/module_system_deep_dive/transpilers_and_compilers_integration.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "mongoose",
-          "name": "Mongoose",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/mongoose/aggregation_pipeline_optimization.md"
-            },
-            {
-              "path": "node_js/mongoose/custom_mongoose_types_and_casting.md"
-            },
-            {
-              "path": "node_js/mongoose/custom_query_helpers_and_static_methods.md"
-            },
-            {
-              "path": "node_js/mongoose/custom_schema_validators_and_middleware.md"
-            },
-            {
-              "path": "node_js/mongoose/discriminators_for_inheritance_patterns.md"
-            },
-            {
-              "path": "node_js/mongoose/mongoose_connection_pooling.md"
-            },
-            {
-              "path": "node_js/mongoose/mongoose_plugins_and_hooks.md"
-            },
-            {
-              "path": "node_js/mongoose/mongoose_schema_design_patterns.md"
-            },
-            {
-              "path": "node_js/mongoose/population_strategies_and_performance.md"
-            },
-            {
-              "path": "node_js/mongoose/schema_versioning_strategies.md"
-            },
-            {
-              "path": "node_js/mongoose/transaction_handling_with_mongoose.md"
-            },
-            {
-              "path": "node_js/mongoose/virtual_fields_and_computed_properties.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "node_js_core_modules",
-          "name": "Node Js Core Modules",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/node_js_core_modules/buffer_module_for_binary_data.md"
-            },
-            {
-              "path": "node_js/node_js_core_modules/child_process_module_introduction.md"
-            },
-            {
-              "path": "node_js/node_js_core_modules/cluster_module_for_multi_process_applications.md"
-            },
-            {
-              "path": "node_js/node_js_core_modules/crypto_module_for_cryptography.md"
-            },
-            {
-              "path": "node_js/node_js_core_modules/file_system_fs_module_fundamentals.md"
-            },
-            {
-              "path": "node_js/node_js_core_modules/http_https_module_basics.md"
-            },
-            {
-              "path": "node_js/node_js_core_modules/os_module_for_operating_system_interaction.md"
-            },
-            {
-              "path": "node_js/node_js_core_modules/path_module_for_cross_platform_path_handling.md"
-            },
-            {
-              "path": "node_js/node_js_core_modules/stream_module_and_streaming_interfaces.md"
-            },
-            {
-              "path": "node_js/node_js_core_modules/understanding_the_module_system_architecture.md"
-            },
-            {
-              "path": "node_js/node_js_core_modules/url_and_querystring_modules.md"
-            },
-            {
-              "path": "node_js/node_js_core_modules/worker_threads_for_cpu_intensive_tasks.md"
-            }
-          ],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -2680,387 +2858,265 @@
           "totalFileSize": 0
         },
         {
-          "id": "passport_js_strategy_implementation",
-          "name": "Passport Js Strategy Implementation",
-          "categories": [],
-          "files": [
+          "id": "real_time_communication",
+          "name": "Real Time Communication",
+          "categories": [
             {
-              "path": "node_js/passport_js_strategy_implementation/authentication_flow_optimization.md"
+              "id": "message_queues_and_event_driven_architecture",
+              "name": "Message Queues And Event Driven Architecture",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/real_time_communication/message_queues_and_event_driven_architecture/command_and_event_separation.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/message_queues_and_event_driven_architecture/dead_letter_queues_and_retry_mechanisms.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/message_queues_and_event_driven_architecture/event_driven_architecture_patterns.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/message_queues_and_event_driven_architecture/event_sourcing_implementation.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/message_queues_and_event_driven_architecture/guaranteed_message_delivery_patterns.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/message_queues_and_event_driven_architecture/idempotent_message_processing.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/message_queues_and_event_driven_architecture/message_broker_integration.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/message_queues_and_event_driven_architecture/message_queue_patterns_and_topologies.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/message_queues_and_event_driven_architecture/message_serialization_formats.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/message_queues_and_event_driven_architecture/publish_subscribe_pattern_implementation.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/message_queues_and_event_driven_architecture/real_time_event_processing_with_node_js.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/passport_js_strategy_implementation/custom_authentication_strategies.md"
+              "id": "real_time_systems_with_node_js",
+              "name": "Real Time Systems With Node Js",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/real_time_communication/real_time_systems_with_node_js/binary_protocols_for_real_time_data.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/real_time_systems_with_node_js/connection_state_recovery.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/real_time_systems_with_node_js/fallback_mechanisms_for_real_time_communications.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/real_time_systems_with_node_js/latency_optimization_techniques.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/real_time_systems_with_node_js/presence_and_state_synchronization.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/real_time_systems_with_node_js/pub_sub_patterns_for_real_time_apps.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/real_time_systems_with_node_js/real_time_architecture_patterns.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/real_time_systems_with_node_js/real_time_data_consistency_strategies.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/real_time_systems_with_node_js/scaling_web_socket_applications.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/real_time_systems_with_node_js/socket_io_and_its_internals.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/real_time_systems_with_node_js/web_socket_implementation_deep_dive.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/passport_js_strategy_implementation/custom_error_handling_in_auth_flows.md"
-            },
-            {
-              "path": "node_js/passport_js_strategy_implementation/custom_serialization_deserialization.md"
-            },
-            {
-              "path": "node_js/passport_js_strategy_implementation/multi_factor_authentication_with_passport.md"
-            },
-            {
-              "path": "node_js/passport_js_strategy_implementation/oauth_provider_integration.md"
-            },
-            {
-              "path": "node_js/passport_js_strategy_implementation/passport_middleware_customization.md"
-            },
-            {
-              "path": "node_js/passport_js_strategy_implementation/passport_with_graphql.md"
-            },
-            {
-              "path": "node_js/passport_js_strategy_implementation/role_based_authorization_patterns.md"
-            },
-            {
-              "path": "node_js/passport_js_strategy_implementation/session_vs_token_based_auth_with_passport.md"
-            },
-            {
-              "path": "node_js/passport_js_strategy_implementation/strategy_configuration_patterns.md"
-            },
-            {
-              "path": "node_js/passport_js_strategy_implementation/testing_passport_strategies.md"
+              "id": "socket_io_patterns",
+              "name": "Socket Io Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/authentication_with_socket_io.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/binary_event_handling.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/connection_state_management.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/custom_namespace_implementation.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/custom_parser_implementation.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/fallback_transport_handling.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/room_management_strategies.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/scaling_socket_io_horizontally.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/socket_io_adapter_customization.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/socket_io_monitoring_and_debugging.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/socket_io_with_redis_adapter.md"
+                },
+                {
+                  "path": "node_js/real_time_communication/socket_io_patterns/socket_middleware_patterns.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "rate_limiting_and_api_gateways",
-          "name": "Rate Limiting And Api Gateways",
-          "categories": [],
-          "files": [
+          "id": "web_frameworks",
+          "name": "Web Frameworks",
+          "categories": [
             {
-              "path": "node_js/rate_limiting_and_api_gateways/api_gateway_architecture_and_patterns.md"
+              "id": "express_js",
+              "name": "Express Js",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/web_frameworks/express_js/advanced_routing_patterns_and_regex_routes.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/express_js/async_middleware_error_handling.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/express_js/custom_middleware_creation_and_composition.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/express_js/error_boundary_implementation.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/express_js/express_application_architecture_and_lifecycle.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/express_js/express_app_testing_strategies.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/express_js/express_extensions_and_plugins_ecosystem.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/express_js/express_generator_and_project_scaffolding.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/express_js/performance_optimization_techniques_for_express.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/express_js/request_response_object_modification_patterns.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/express_js/static_file_serving_optimization.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/rate_limiting_and_api_gateways/api_gateway_security_implementation.md"
+              "id": "http_server_implementation",
+              "name": "Http Server Implementation",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/web_frameworks/http_server_implementation/content_negotiation_techniques.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/http_server_implementation/cookie_handling_and_sessions.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/http_server_implementation/cors_implementation_strategies.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/http_server_implementation/graphql_server_implementation.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/http_server_implementation/http_2_support_and_implementation.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/http_server_implementation/http_headers_management.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/http_server_implementation/http_server_core_concepts.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/http_server_implementation/request_and_response_objects_in_depth.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/http_server_implementation/server_sent_events_implementation.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/http_server_implementation/web_socket_server_implementation.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "node_js/rate_limiting_and_api_gateways/cache_management_at_gateway_level.md"
-            },
-            {
-              "path": "node_js/rate_limiting_and_api_gateways/distributed_rate_limiting_implementation.md"
-            },
-            {
-              "path": "node_js/rate_limiting_and_api_gateways/ip_based_vs_user_based_rate_limiting.md"
-            },
-            {
-              "path": "node_js/rate_limiting_and_api_gateways/rate_limiting_and_api_gateways.md"
-            },
-            {
-              "path": "node_js/rate_limiting_and_api_gateways/request_and_response_transformation.md"
-            },
-            {
-              "path": "node_js/rate_limiting_and_api_gateways/request_routing_and_load_balancing.md"
-            },
-            {
-              "path": "node_js/rate_limiting_and_api_gateways/service_composition_through_api_gateway.md"
-            },
-            {
-              "path": "node_js/rate_limiting_and_api_gateways/traffic_monitoring_and_analytics.md"
-            },
-            {
-              "path": "node_js/rate_limiting_and_api_gateways/versioning_through_api_gateway.md"
+              "id": "middleware_design_patterns",
+              "name": "Middleware Design Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "node_js/web_frameworks/middleware_design_patterns/authentication_and_authorization_middleware.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/middleware_design_patterns/caching_middleware_strategies.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/middleware_design_patterns/composable_middleware_implementation.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/middleware_design_patterns/cross_cutting_concerns_separation.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/middleware_design_patterns/error_handling_middleware.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/middleware_design_patterns/logging_and_monitoring_middleware.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/middleware_design_patterns/middleware_performance_optimization.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/middleware_design_patterns/rate_limiting_middleware_implementation.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/middleware_design_patterns/request_processing_pipeline_architecture.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/middleware_design_patterns/request_transformation_middleware.md"
+                },
+                {
+                  "path": "node_js/web_frameworks/middleware_design_patterns/response_compression_middleware.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "real_time_systems_with_node_js",
-          "name": "Real Time Systems With Node Js",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/real_time_systems_with_node_js/binary_protocols_for_real_time_data.md"
-            },
-            {
-              "path": "node_js/real_time_systems_with_node_js/connection_state_recovery.md"
-            },
-            {
-              "path": "node_js/real_time_systems_with_node_js/fallback_mechanisms_for_real_time_communications.md"
-            },
-            {
-              "path": "node_js/real_time_systems_with_node_js/latency_optimization_techniques.md"
-            },
-            {
-              "path": "node_js/real_time_systems_with_node_js/presence_and_state_synchronization.md"
-            },
-            {
-              "path": "node_js/real_time_systems_with_node_js/pub_sub_patterns_for_real_time_apps.md"
-            },
-            {
-              "path": "node_js/real_time_systems_with_node_js/real_time_architecture_patterns.md"
-            },
-            {
-              "path": "node_js/real_time_systems_with_node_js/real_time_data_consistency_strategies.md"
-            },
-            {
-              "path": "node_js/real_time_systems_with_node_js/scaling_web_socket_applications.md"
-            },
-            {
-              "path": "node_js/real_time_systems_with_node_js/socket_io_and_its_internals.md"
-            },
-            {
-              "path": "node_js/real_time_systems_with_node_js/web_socket_implementation_deep_dive.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "sequelize",
-          "name": "Sequelize",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/sequelize/advanced_query_building.md"
-            },
-            {
-              "path": "node_js/sequelize/connection_pooling_configuration.md"
-            },
-            {
-              "path": "node_js/sequelize/custom_validators_and_hooks.md"
-            },
-            {
-              "path": "node_js/sequelize/eager_loading_optimization.md"
-            },
-            {
-              "path": "node_js/sequelize/migration_management_and_best_practices.md"
-            },
-            {
-              "path": "node_js/sequelize/model_definition_and_associations.md"
-            },
-            {
-              "path": "node_js/sequelize/model_inheritance_patterns.md"
-            },
-            {
-              "path": "node_js/sequelize/performance_optimization_techniques.md"
-            },
-            {
-              "path": "node_js/sequelize/raw_query_integration.md"
-            },
-            {
-              "path": "node_js/sequelize/sequelize_cli_and_automation.md"
-            },
-            {
-              "path": "node_js/sequelize/sequelize_with_typescript.md"
-            },
-            {
-              "path": "node_js/sequelize/transaction_patterns_and_isolation_levels.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "serverless_and_function_as_a_service",
-          "name": "Serverless And Function As A Service",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/serverless_and_function_as_a_service/aws_lambda_integration_with_node_js.md"
-            },
-            {
-              "path": "node_js/serverless_and_function_as_a_service/azure_functions_development.md"
-            },
-            {
-              "path": "node_js/serverless_and_function_as_a_service/cold_start_optimization_techniques.md"
-            },
-            {
-              "path": "node_js/serverless_and_function_as_a_service/event_driven_serverless_architectures.md"
-            },
-            {
-              "path": "node_js/serverless_and_function_as_a_service/google_cloud_functions_implementation.md"
-            },
-            {
-              "path": "node_js/serverless_and_function_as_a_service/monitoring_and_debugging_serverless_applications.md"
-            },
-            {
-              "path": "node_js/serverless_and_function_as_a_service/serverless_api_design_patterns.md"
-            },
-            {
-              "path": "node_js/serverless_and_function_as_a_service/serverless_architecture_principles.md"
-            },
-            {
-              "path": "node_js/serverless_and_function_as_a_service/serverless_database_access_patterns.md"
-            },
-            {
-              "path": "node_js/serverless_and_function_as_a_service/serverless_framework_integration.md"
-            },
-            {
-              "path": "node_js/serverless_and_function_as_a_service/testing_serverless_functions.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "server_sent_events",
-          "name": "Server Sent Events",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/server_sent_events/browser_compatibility_handling.md"
-            },
-            {
-              "path": "node_js/server_sent_events/custom_event_stream_management.md"
-            },
-            {
-              "path": "node_js/server_sent_events/event_compression_techniques.md"
-            },
-            {
-              "path": "node_js/server_sent_events/multi_client_broadcasting.md"
-            },
-            {
-              "path": "node_js/server_sent_events/performance_monitoring.md"
-            },
-            {
-              "path": "node_js/server_sent_events/reconnection_handling_patterns.md"
-            },
-            {
-              "path": "node_js/server_sent_events/sse_debugging_strategies.md"
-            },
-            {
-              "path": "node_js/server_sent_events/sse_event_filtering.md"
-            },
-            {
-              "path": "node_js/server_sent_events/sse_implementation_with_node_js.md"
-            },
-            {
-              "path": "node_js/server_sent_events/sse_proxy_configuration.md"
-            },
-            {
-              "path": "node_js/server_sent_events/sse_vs_web_socket_comparison.md"
-            },
-            {
-              "path": "node_js/server_sent_events/sse_with_authentication.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "socket_io_patterns",
-          "name": "Socket Io Patterns",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/socket_io_patterns/authentication_with_socket_io.md"
-            },
-            {
-              "path": "node_js/socket_io_patterns/binary_event_handling.md"
-            },
-            {
-              "path": "node_js/socket_io_patterns/connection_state_management.md"
-            },
-            {
-              "path": "node_js/socket_io_patterns/custom_namespace_implementation.md"
-            },
-            {
-              "path": "node_js/socket_io_patterns/custom_parser_implementation.md"
-            },
-            {
-              "path": "node_js/socket_io_patterns/fallback_transport_handling.md"
-            },
-            {
-              "path": "node_js/socket_io_patterns/room_management_strategies.md"
-            },
-            {
-              "path": "node_js/socket_io_patterns/scaling_socket_io_horizontally.md"
-            },
-            {
-              "path": "node_js/socket_io_patterns/socket_io_adapter_customization.md"
-            },
-            {
-              "path": "node_js/socket_io_patterns/socket_io_monitoring_and_debugging.md"
-            },
-            {
-              "path": "node_js/socket_io_patterns/socket_io_with_redis_adapter.md"
-            },
-            {
-              "path": "node_js/socket_io_patterns/socket_middleware_patterns.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "streams_and_buffer_management",
-          "name": "Streams And Buffer Management",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/streams_and_buffer_management/binary_data_manipulation_techniques.md"
-            },
-            {
-              "path": "node_js/streams_and_buffer_management/buffer_pooling_and_performance_optimization.md"
-            },
-            {
-              "path": "node_js/streams_and_buffer_management/custom_transform_streams_implementation.md"
-            },
-            {
-              "path": "node_js/streams_and_buffer_management/flow_control_with_backpressure_handling.md"
-            },
-            {
-              "path": "node_js/streams_and_buffer_management/memory_efficient_stream_processing.md"
-            },
-            {
-              "path": "node_js/streams_and_buffer_management/piping_streams_for_efficient_data_flow.md"
-            },
-            {
-              "path": "node_js/streams_and_buffer_management/streaming_api_patterns_and_best_practices.md"
-            },
-            {
-              "path": "node_js/streams_and_buffer_management/streaming_protocol_implementations.md"
-            },
-            {
-              "path": "node_js/streams_and_buffer_management/stream_error_handling_and_recovery.md"
-            },
-            {
-              "path": "node_js/streams_and_buffer_management/stream_types.md"
-            },
-            {
-              "path": "node_js/streams_and_buffer_management/working_with_object_mode_streams.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "testing_utilities",
-          "name": "Testing Utilities",
-          "categories": [],
-          "files": [
-            {
-              "path": "node_js/testing_utilities/api_contract_testing.md"
-            },
-            {
-              "path": "node_js/testing_utilities/chai_assertion_library_patterns.md"
-            },
-            {
-              "path": "node_js/testing_utilities/ci_cd_integration_for_tests.md"
-            },
-            {
-              "path": "node_js/testing_utilities/end_to_end_testing_with_puppeteer.md"
-            },
-            {
-              "path": "node_js/testing_utilities/integration_test_isolation.md"
-            },
-            {
-              "path": "node_js/testing_utilities/load_testing_with_artillery.md"
-            },
-            {
-              "path": "node_js/testing_utilities/property_based_testing_with_fast_check.md"
-            },
-            {
-              "path": "node_js/testing_utilities/sinon_for_mocks_and_stubs.md"
-            },
-            {
-              "path": "node_js/testing_utilities/supertest_for_http_testing.md"
-            },
-            {
-              "path": "node_js/testing_utilities/testing_database_operations.md"
-            },
-            {
-              "path": "node_js/testing_utilities/test_data_factories.md"
-            },
-            {
-              "path": "node_js/testing_utilities/visual_regression_testing.md"
-            }
-          ],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -3516,44 +3572,6 @@
           "totalFileSize": 0
         },
         {
-          "id": "advanced_hooks_and_patterns",
-          "name": "Advanced Hooks And Patterns",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/advanced_hooks_and_patterns/complex_custom_hooks_composition.md"
-            },
-            {
-              "path": "react/advanced_hooks_and_patterns/context_selectors_pattern_implementation.md"
-            },
-            {
-              "path": "react/advanced_hooks_and_patterns/hooks_dependency_management_strategies.md"
-            },
-            {
-              "path": "react/advanced_hooks_and_patterns/reducer_patterns_with_use_reducer.md"
-            },
-            {
-              "path": "react/advanced_hooks_and_patterns/use_debug_value_for_custom_hook_debugging.md"
-            },
-            {
-              "path": "react/advanced_hooks_and_patterns/use_deferred_value_for_deferred_updates.md"
-            },
-            {
-              "path": "react/advanced_hooks_and_patterns/use_id_for_stable_ids_in_ssr.md"
-            },
-            {
-              "path": "react/advanced_hooks_and_patterns/use_imperative_handle_for_ref_customization.md"
-            },
-            {
-              "path": "react/advanced_hooks_and_patterns/use_layout_effect_for_synchronous_effects.md"
-            },
-            {
-              "path": "react/advanced_hooks_and_patterns/use_transition_for_non_urgent_updates.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
           "id": "advanced_rendering_optimization",
           "name": "Advanced Rendering Optimization",
           "categories": [],
@@ -3584,135 +3602,6 @@
             },
             {
               "path": "react/advanced_rendering_optimization/virtualization_implementation_details.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "build_and_deployment",
-          "name": "Build And Deployment",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/build_and_deployment/analytics_integration.md"
-            },
-            {
-              "path": "react/build_and_deployment/ci_cd_pipelines_for_react_applications.md"
-            },
-            {
-              "path": "react/build_and_deployment/code_splitting_strategies.md"
-            },
-            {
-              "path": "react/build_and_deployment/containerization_with_docker.md"
-            },
-            {
-              "path": "react/build_and_deployment/deployment_strategies.md"
-            },
-            {
-              "path": "react/build_and_deployment/environment_configuration.md"
-            },
-            {
-              "path": "react/build_and_deployment/error_tracking_solutions.md"
-            },
-            {
-              "path": "react/build_and_deployment/modern_build_tooling.md"
-            },
-            {
-              "path": "react/build_and_deployment/progressive_web_app_capabilities.md"
-            },
-            {
-              "path": "react/build_and_deployment/seo_optimization_techniques.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "component_fundamentals",
-          "name": "Component Fundamentals",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/component_fundamentals/component_composition_and_reusability.md"
-            },
-            {
-              "path": "react/component_fundamentals/component_lifecycle.md"
-            },
-            {
-              "path": "react/component_fundamentals/component_local_state_implementation.md"
-            },
-            {
-              "path": "react/component_fundamentals/component_memory_management.md"
-            },
-            {
-              "path": "react/component_fundamentals/component_mounting_and_unmounting_process.md"
-            },
-            {
-              "path": "react/component_fundamentals/component_state_with_use_state.md"
-            },
-            {
-              "path": "react/component_fundamentals/component_update_batching.md"
-            },
-            {
-              "path": "react/component_fundamentals/conditional_rendering_techniques.md"
-            },
-            {
-              "path": "react/component_fundamentals/controlled_vs_uncontrolled_components.md"
-            },
-            {
-              "path": "react/component_fundamentals/event_handling_in_react_components.md"
-            },
-            {
-              "path": "react/component_fundamentals/functional_components_vs_class_components.md"
-            },
-            {
-              "path": "react/component_fundamentals/list_rendering_and_key_prop_importance.md"
-            },
-            {
-              "path": "react/component_fundamentals/one_way_data_flow.md"
-            },
-            {
-              "path": "react/component_fundamentals/props_passing_and_prop_types.md"
-            },
-            {
-              "path": "react/component_fundamentals/synthetic_event_system_in_components.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "data_fetching_strategies",
-          "name": "Data Fetching Strategies",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/data_fetching_strategies/custom_data_fetching_hooks.md"
-            },
-            {
-              "path": "react/data_fetching_strategies/error_boundary_usage_with_data_fetching.md"
-            },
-            {
-              "path": "react/data_fetching_strategies/graphql_with_apollo_client.md"
-            },
-            {
-              "path": "react/data_fetching_strategies/offline_first_strategies_in_react.md"
-            },
-            {
-              "path": "react/data_fetching_strategies/optimistic_ui_updates_implementation.md"
-            },
-            {
-              "path": "react/data_fetching_strategies/react_query_for_data_management.md"
-            },
-            {
-              "path": "react/data_fetching_strategies/restful_api_integration_patterns.md"
-            },
-            {
-              "path": "react/data_fetching_strategies/suspense_for_data_fetching.md"
-            },
-            {
-              "path": "react/data_fetching_strategies/swr_for_stale_while_revalidate_pattern.md"
-            },
-            {
-              "path": "react/data_fetching_strategies/use_effect_for_data_fetching.md"
             }
           ],
           "totalFileSize": 0
@@ -3756,146 +3645,296 @@
           "totalFileSize": 0
         },
         {
-          "id": "framer_motion_for_animations",
-          "name": "Framer Motion For Animations",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/framer_motion_for_animations/accessibility_considerations_in_animations.md"
-            },
-            {
-              "path": "react/framer_motion_for_animations/animation_orchestration_between_components.md"
-            },
-            {
-              "path": "react/framer_motion_for_animations/basic_animation_properties_and_variants.md"
-            },
-            {
-              "path": "react/framer_motion_for_animations/complex_animation_sequences_and_timelines.md"
-            },
-            {
-              "path": "react/framer_motion_for_animations/gesture_recognition_and_handling.md"
-            },
-            {
-              "path": "react/framer_motion_for_animations/layout_animations_and_flip_technique.md"
-            },
-            {
-              "path": "react/framer_motion_for_animations/page_transitions_with_animatepresence.md"
-            },
-            {
-              "path": "react/framer_motion_for_animations/performance_optimization_for_animations.md"
-            },
-            {
-              "path": "react/framer_motion_for_animations/scroll_based_animations.md"
-            },
-            {
-              "path": "react/framer_motion_for_animations/svg_animation_techniques.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
           "id": "fundamentals",
           "name": "Fundamentals",
-          "categories": [],
-          "files": [
+          "categories": [
             {
-              "path": "react/fundamentals/build_tooling_and_compilation_process.md"
+              "id": "component_fundamentals",
+              "name": "Component Fundamentals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/fundamentals/component_fundamentals/component_composition_and_reusability.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/component_lifecycle.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/component_local_state_implementation.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/component_memory_management.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/component_mounting_and_unmounting_process.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/component_state_with_use_state.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/component_update_batching.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/conditional_rendering_techniques.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/controlled_vs_uncontrolled_components.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/event_handling_in_react_components.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/functional_components_vs_class_components.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/list_rendering_and_key_prop_importance.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/one_way_data_flow.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/props_passing_and_prop_types.md"
+                },
+                {
+                  "path": "react/fundamentals/component_fundamentals/synthetic_event_system_in_components.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "react/fundamentals/development_environment_configuration.md"
-            },
-            {
-              "path": "react/fundamentals/jsx_syntax_and_transformation_process.md"
-            },
-            {
-              "path": "react/fundamentals/project_structure_best_practices.md"
-            },
-            {
-              "path": "react/fundamentals/react_developer_tools_and_debugging_practices.md"
-            },
-            {
-              "path": "react/fundamentals/react_element_structure_and_create_element_function.md"
-            },
-            {
-              "path": "react/fundamentals/react_philosophy_and_declarative_ui_paradigm.md"
-            },
-            {
-              "path": "react/fundamentals/virtual_dom_concept_and_advantages.md"
+              "id": "react_fundamentals",
+              "name": "React Fundamentals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/fundamentals/react_fundamentals/build_tooling_and_compilation_process.md"
+                },
+                {
+                  "path": "react/fundamentals/react_fundamentals/development_environment_configuration.md"
+                },
+                {
+                  "path": "react/fundamentals/react_fundamentals/jsx_syntax_and_transformation_process.md"
+                },
+                {
+                  "path": "react/fundamentals/react_fundamentals/project_structure_best_practices.md"
+                },
+                {
+                  "path": "react/fundamentals/react_fundamentals/react_developer_tools_and_debugging_practices.md"
+                },
+                {
+                  "path": "react/fundamentals/react_fundamentals/react_element_structure_and_create_element_function.md"
+                },
+                {
+                  "path": "react/fundamentals/react_fundamentals/react_philosophy_and_declarative_ui_paradigm.md"
+                },
+                {
+                  "path": "react/fundamentals/react_fundamentals/virtual_dom_concept_and_advantages.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "hooks_internals",
-          "name": "Hooks Internals",
-          "categories": [],
-          "files": [
+          "id": "hooks",
+          "name": "Hooks",
+          "categories": [
             {
-              "path": "react/hooks_internals/effect_scheduling_and_cleanup.md"
+              "id": "advanced_hooks_and_patterns",
+              "name": "Advanced Hooks And Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/hooks/advanced_hooks_and_patterns/complex_custom_hooks_composition.md"
+                },
+                {
+                  "path": "react/hooks/advanced_hooks_and_patterns/context_selectors_pattern_implementation.md"
+                },
+                {
+                  "path": "react/hooks/advanced_hooks_and_patterns/hooks_dependency_management_strategies.md"
+                },
+                {
+                  "path": "react/hooks/advanced_hooks_and_patterns/reducer_patterns_with_use_reducer.md"
+                },
+                {
+                  "path": "react/hooks/advanced_hooks_and_patterns/use_debug_value_for_custom_hook_debugging.md"
+                },
+                {
+                  "path": "react/hooks/advanced_hooks_and_patterns/use_deferred_value_for_deferred_updates.md"
+                },
+                {
+                  "path": "react/hooks/advanced_hooks_and_patterns/use_id_for_stable_ids_in_ssr.md"
+                },
+                {
+                  "path": "react/hooks/advanced_hooks_and_patterns/use_imperative_handle_for_ref_customization.md"
+                },
+                {
+                  "path": "react/hooks/advanced_hooks_and_patterns/use_layout_effect_for_synchronous_effects.md"
+                },
+                {
+                  "path": "react/hooks/advanced_hooks_and_patterns/use_transition_for_non_urgent_updates.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "react/hooks_internals/hooks_dependency_tracking_system.md"
+              "id": "hooks_internals",
+              "name": "Hooks Internals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/hooks/hooks_internals/effect_scheduling_and_cleanup.md"
+                },
+                {
+                  "path": "react/hooks/hooks_internals/hooks_dependency_tracking_system.md"
+                },
+                {
+                  "path": "react/hooks/hooks_internals/hooks_dispatcher_switching_mechanism.md"
+                },
+                {
+                  "path": "react/hooks/hooks_internals/hooks_implementation_architecture.md"
+                },
+                {
+                  "path": "react/hooks/hooks_internals/hooks_interaction_with_concurrent_features.md"
+                },
+                {
+                  "path": "react/hooks/hooks_internals/hooks_rules_enforcement_implementation.md"
+                },
+                {
+                  "path": "react/hooks/hooks_internals/hook_creation_and_update_paths.md"
+                },
+                {
+                  "path": "react/hooks/hooks_internals/hook_memoization_strategies.md"
+                },
+                {
+                  "path": "react/hooks/hooks_internals/hook_storage_in_fiber_nodes.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "react/hooks_internals/hooks_dispatcher_switching_mechanism.md"
-            },
-            {
-              "path": "react/hooks_internals/hooks_implementation_architecture.md"
-            },
-            {
-              "path": "react/hooks_internals/hooks_interaction_with_concurrent_features.md"
-            },
-            {
-              "path": "react/hooks_internals/hooks_rules_enforcement_implementation.md"
-            },
-            {
-              "path": "react/hooks_internals/hook_creation_and_update_paths.md"
-            },
-            {
-              "path": "react/hooks_internals/hook_memoization_strategies.md"
-            },
-            {
-              "path": "react/hooks_internals/hook_storage_in_fiber_nodes.md"
+              "id": "hooks_system",
+              "name": "Hooks System",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/hooks/hooks_system/custom_hooks_creation_patterns.md"
+                },
+                {
+                  "path": "react/hooks/hooks_system/dependency_arrays_and_optimization.md"
+                },
+                {
+                  "path": "react/hooks/hooks_system/hooks_philosophy_and_rules.md"
+                },
+                {
+                  "path": "react/hooks/hooks_system/use_callback_for_stable_function_references.md"
+                },
+                {
+                  "path": "react/hooks/hooks_system/use_context_for_context_consumption.md"
+                },
+                {
+                  "path": "react/hooks/hooks_system/use_effect_for_side_effects_management.md"
+                },
+                {
+                  "path": "react/hooks/hooks_system/use_memo_for_expensive_calculations.md"
+                },
+                {
+                  "path": "react/hooks/hooks_system/use_reducer_for_complex_state_logic.md"
+                },
+                {
+                  "path": "react/hooks/hooks_system/use_ref_for_dom_references_and_persistent_values.md"
+                },
+                {
+                  "path": "react/hooks/hooks_system/use_state_for_local_component_state.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "hooks_system",
-          "name": "Hooks System",
-          "categories": [],
-          "files": [
+          "id": "libraries",
+          "name": "Libraries",
+          "categories": [
             {
-              "path": "react/hooks_system/custom_hooks_creation_patterns.md"
+              "id": "framer_motion_for_animations",
+              "name": "Framer Motion For Animations",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/libraries/framer_motion_for_animations/accessibility_considerations_in_animations.md"
+                },
+                {
+                  "path": "react/libraries/framer_motion_for_animations/animation_orchestration_between_components.md"
+                },
+                {
+                  "path": "react/libraries/framer_motion_for_animations/basic_animation_properties_and_variants.md"
+                },
+                {
+                  "path": "react/libraries/framer_motion_for_animations/complex_animation_sequences_and_timelines.md"
+                },
+                {
+                  "path": "react/libraries/framer_motion_for_animations/gesture_recognition_and_handling.md"
+                },
+                {
+                  "path": "react/libraries/framer_motion_for_animations/layout_animations_and_flip_technique.md"
+                },
+                {
+                  "path": "react/libraries/framer_motion_for_animations/page_transitions_with_animatepresence.md"
+                },
+                {
+                  "path": "react/libraries/framer_motion_for_animations/performance_optimization_for_animations.md"
+                },
+                {
+                  "path": "react/libraries/framer_motion_for_animations/scroll_based_animations.md"
+                },
+                {
+                  "path": "react/libraries/framer_motion_for_animations/svg_animation_techniques.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "react/hooks_system/dependency_arrays_and_optimization.md"
-            },
-            {
-              "path": "react/hooks_system/hooks_philosophy_and_rules.md"
-            },
-            {
-              "path": "react/hooks_system/use_callback_for_stable_function_references.md"
-            },
-            {
-              "path": "react/hooks_system/use_context_for_context_consumption.md"
-            },
-            {
-              "path": "react/hooks_system/use_effect_for_side_effects_management.md"
-            },
-            {
-              "path": "react/hooks_system/use_memo_for_expensive_calculations.md"
-            },
-            {
-              "path": "react/hooks_system/use_reducer_for_complex_state_logic.md"
-            },
-            {
-              "path": "react/hooks_system/use_ref_for_dom_references_and_persistent_values.md"
-            },
-            {
-              "path": "react/hooks_system/use_state_for_local_component_state.md"
+              "id": "tan_stack_library_ecosystem",
+              "name": "Tan Stack Library Ecosystem",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/libraries/tan_stack_library_ecosystem/form_state_management_with_tan_stack_form.md"
+                },
+                {
+                  "path": "react/libraries/tan_stack_library_ecosystem/managing_server_and_client_state_separation.md"
+                },
+                {
+                  "path": "react/libraries/tan_stack_library_ecosystem/performance_patterns_across_tan_stack_libraries.md"
+                },
+                {
+                  "path": "react/libraries/tan_stack_library_ecosystem/query_invalidation_strategies.md"
+                },
+                {
+                  "path": "react/libraries/tan_stack_library_ecosystem/router_implementation_with_tan_stack_router.md"
+                },
+                {
+                  "path": "react/libraries/tan_stack_library_ecosystem/table_for_data_grid_implementation.md"
+                },
+                {
+                  "path": "react/libraries/tan_stack_library_ecosystem/testing_tan_stack_powered_components.md"
+                },
+                {
+                  "path": "react/libraries/tan_stack_library_ecosystem/type_script_integration_for_type_safety.md"
+                },
+                {
+                  "path": "react/libraries/tan_stack_library_ecosystem/virtual_rendering_with_tan_stack_virtual.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -3937,41 +3976,87 @@
           "totalFileSize": 0
         },
         {
-          "id": "production_ready_applications",
-          "name": "Production Ready Applications",
-          "categories": [],
-          "files": [
+          "id": "production_and_deployment",
+          "name": "Production And Deployment",
+          "categories": [
             {
-              "path": "react/production_ready_applications/ab_testing_frameworks.md"
+              "id": "build_and_deployment",
+              "name": "Build And Deployment",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/production_and_deployment/build_and_deployment/analytics_integration.md"
+                },
+                {
+                  "path": "react/production_and_deployment/build_and_deployment/ci_cd_pipelines_for_react_applications.md"
+                },
+                {
+                  "path": "react/production_and_deployment/build_and_deployment/code_splitting_strategies.md"
+                },
+                {
+                  "path": "react/production_and_deployment/build_and_deployment/containerization_with_docker.md"
+                },
+                {
+                  "path": "react/production_and_deployment/build_and_deployment/deployment_strategies.md"
+                },
+                {
+                  "path": "react/production_and_deployment/build_and_deployment/environment_configuration.md"
+                },
+                {
+                  "path": "react/production_and_deployment/build_and_deployment/error_tracking_solutions.md"
+                },
+                {
+                  "path": "react/production_and_deployment/build_and_deployment/modern_build_tooling.md"
+                },
+                {
+                  "path": "react/production_and_deployment/build_and_deployment/progressive_web_app_capabilities.md"
+                },
+                {
+                  "path": "react/production_and_deployment/build_and_deployment/seo_optimization_techniques.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "react/production_ready_applications/analytics_implementation.md"
-            },
-            {
-              "path": "react/production_ready_applications/authentication_patterns.md"
-            },
-            {
-              "path": "react/production_ready_applications/authorization_strategies.md"
-            },
-            {
-              "path": "react/production_ready_applications/error_monitoring_and_reporting.md"
-            },
-            {
-              "path": "react/production_ready_applications/feature_flags_implementation.md"
-            },
-            {
-              "path": "react/production_ready_applications/logging_and_debugging_in_production.md"
-            },
-            {
-              "path": "react/production_ready_applications/performance_monitoring_strategies.md"
-            },
-            {
-              "path": "react/production_ready_applications/security_best_practices.md"
-            },
-            {
-              "path": "react/production_ready_applications/service_worker_strategies.md"
+              "id": "production_ready_applications",
+              "name": "Production Ready Applications",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/production_and_deployment/production_ready_applications/ab_testing_frameworks.md"
+                },
+                {
+                  "path": "react/production_and_deployment/production_ready_applications/analytics_implementation.md"
+                },
+                {
+                  "path": "react/production_and_deployment/production_ready_applications/authentication_patterns.md"
+                },
+                {
+                  "path": "react/production_and_deployment/production_ready_applications/authorization_strategies.md"
+                },
+                {
+                  "path": "react/production_and_deployment/production_ready_applications/error_monitoring_and_reporting.md"
+                },
+                {
+                  "path": "react/production_and_deployment/production_ready_applications/feature_flags_implementation.md"
+                },
+                {
+                  "path": "react/production_and_deployment/production_ready_applications/logging_and_debugging_in_production.md"
+                },
+                {
+                  "path": "react/production_and_deployment/production_ready_applications/performance_monitoring_strategies.md"
+                },
+                {
+                  "path": "react/production_and_deployment/production_ready_applications/security_best_practices.md"
+                },
+                {
+                  "path": "react/production_and_deployment/production_ready_applications/service_worker_strategies.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -4048,41 +4133,87 @@
           "totalFileSize": 0
         },
         {
-          "id": "routing_in_react",
-          "name": "Routing In React",
-          "categories": [],
-          "files": [
+          "id": "routing_and_data",
+          "name": "Routing And Data",
+          "categories": [
             {
-              "path": "react/routing_in_react/client_side_routing_concept.md"
+              "id": "data_fetching_strategies",
+              "name": "Data Fetching Strategies",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/routing_and_data/data_fetching_strategies/custom_data_fetching_hooks.md"
+                },
+                {
+                  "path": "react/routing_and_data/data_fetching_strategies/error_boundary_usage_with_data_fetching.md"
+                },
+                {
+                  "path": "react/routing_and_data/data_fetching_strategies/graphql_with_apollo_client.md"
+                },
+                {
+                  "path": "react/routing_and_data/data_fetching_strategies/offline_first_strategies_in_react.md"
+                },
+                {
+                  "path": "react/routing_and_data/data_fetching_strategies/optimistic_ui_updates_implementation.md"
+                },
+                {
+                  "path": "react/routing_and_data/data_fetching_strategies/react_query_for_data_management.md"
+                },
+                {
+                  "path": "react/routing_and_data/data_fetching_strategies/restful_api_integration_patterns.md"
+                },
+                {
+                  "path": "react/routing_and_data/data_fetching_strategies/suspense_for_data_fetching.md"
+                },
+                {
+                  "path": "react/routing_and_data/data_fetching_strategies/swr_for_stale_while_revalidate_pattern.md"
+                },
+                {
+                  "path": "react/routing_and_data/data_fetching_strategies/use_effect_for_data_fetching.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "react/routing_in_react/handling_404_pages_and_redirects.md"
-            },
-            {
-              "path": "react/routing_in_react/history_api_and_navigation.md"
-            },
-            {
-              "path": "react/routing_in_react/location_state_for_passing_data.md"
-            },
-            {
-              "path": "react/routing_in_react/nested_routes_implementation.md"
-            },
-            {
-              "path": "react/routing_in_react/protected_routes_for_authentication.md"
-            },
-            {
-              "path": "react/routing_in_react/react_router_setup_and_configuration.md"
-            },
-            {
-              "path": "react/routing_in_react/route_based_code_splitting.md"
-            },
-            {
-              "path": "react/routing_in_react/route_parameters_and_query_strings.md"
-            },
-            {
-              "path": "react/routing_in_react/route_transitions_and_animations.md"
+              "id": "routing_in_react",
+              "name": "Routing In React",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/routing_and_data/routing_in_react/client_side_routing_concept.md"
+                },
+                {
+                  "path": "react/routing_and_data/routing_in_react/handling_404_pages_and_redirects.md"
+                },
+                {
+                  "path": "react/routing_and_data/routing_in_react/history_api_and_navigation.md"
+                },
+                {
+                  "path": "react/routing_and_data/routing_in_react/location_state_for_passing_data.md"
+                },
+                {
+                  "path": "react/routing_and_data/routing_in_react/nested_routes_implementation.md"
+                },
+                {
+                  "path": "react/routing_and_data/routing_in_react/protected_routes_for_authentication.md"
+                },
+                {
+                  "path": "react/routing_and_data/routing_in_react/react_router_setup_and_configuration.md"
+                },
+                {
+                  "path": "react/routing_and_data/routing_in_react/route_based_code_splitting.md"
+                },
+                {
+                  "path": "react/routing_and_data/routing_in_react/route_parameters_and_query_strings.md"
+                },
+                {
+                  "path": "react/routing_and_data/routing_in_react/route_transitions_and_animations.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -4151,41 +4282,6 @@
             },
             {
               "path": "react/styling_in_react/theme_implementation_strategies.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "tan_stack_library_ecosystem",
-          "name": "Tan Stack Library Ecosystem",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/tan_stack_library_ecosystem/form_state_management_with_tan_stack_form.md"
-            },
-            {
-              "path": "react/tan_stack_library_ecosystem/managing_server_and_client_state_separation.md"
-            },
-            {
-              "path": "react/tan_stack_library_ecosystem/performance_patterns_across_tan_stack_libraries.md"
-            },
-            {
-              "path": "react/tan_stack_library_ecosystem/query_invalidation_strategies.md"
-            },
-            {
-              "path": "react/tan_stack_library_ecosystem/router_implementation_with_tan_stack_router.md"
-            },
-            {
-              "path": "react/tan_stack_library_ecosystem/table_for_data_grid_implementation.md"
-            },
-            {
-              "path": "react/tan_stack_library_ecosystem/testing_tan_stack_powered_components.md"
-            },
-            {
-              "path": "react/tan_stack_library_ecosystem/type_script_integration_for_type_safety.md"
-            },
-            {
-              "path": "react/tan_stack_library_ecosystem/virtual_rendering_with_tan_stack_virtual.md"
             }
           ],
           "totalFileSize": 0

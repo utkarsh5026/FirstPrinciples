@@ -253,60 +253,28 @@
           "name": "Advanced Asynchronous Patterns"
         },
         {
-          "id": "api_design_and_implementation",
-          "name": "Api Design And Implementation"
+          "id": "api_development",
+          "name": "Api Development"
         },
         {
           "id": "asynchronous_programming_fundamentals",
           "name": "Asynchronous Programming Fundamentals"
         },
         {
-          "id": "authentication_and_authorization",
-          "name": "Authentication And Authorization"
+          "id": "authentication_and_security",
+          "name": "Authentication And Security"
         },
         {
-          "id": "crypto_libraries",
-          "name": "Crypto Libraries"
+          "id": "database_integration",
+          "name": "Database Integration"
         },
         {
-          "id": "data_validation_and_sanitization",
-          "name": "Data Validation And Sanitization"
+          "id": "deployment_and_testing",
+          "name": "Deployment And Testing"
         },
         {
-          "id": "deployment_and_devops",
-          "name": "Deployment And Devops"
-        },
-        {
-          "id": "express_js",
-          "name": "Express Js"
-        },
-        {
-          "id": "graph_ql_api_development",
-          "name": "Graph Ql Api Development"
-        },
-        {
-          "id": "http_server_implementation",
-          "name": "Http Server Implementation"
-        },
-        {
-          "id": "message_queues_and_event_driven_architecture",
-          "name": "Message Queues And Event Driven Architecture"
-        },
-        {
-          "id": "middleware_design_patterns",
-          "name": "Middleware Design Patterns"
-        },
-        {
-          "id": "module_system_deep_dive",
-          "name": "Module System Deep Dive"
-        },
-        {
-          "id": "mongoose",
-          "name": "Mongoose"
-        },
-        {
-          "id": "node_js_core_modules",
-          "name": "Node Js Core Modules"
+          "id": "modules",
+          "name": "Modules"
         },
         {
           "id": "node_js_fundamentals",
@@ -317,40 +285,12 @@
           "name": "Node Js Internals"
         },
         {
-          "id": "passport_js_strategy_implementation",
-          "name": "Passport Js Strategy Implementation"
+          "id": "real_time_communication",
+          "name": "Real Time Communication"
         },
         {
-          "id": "rate_limiting_and_api_gateways",
-          "name": "Rate Limiting And Api Gateways"
-        },
-        {
-          "id": "real_time_systems_with_node_js",
-          "name": "Real Time Systems With Node Js"
-        },
-        {
-          "id": "sequelize",
-          "name": "Sequelize"
-        },
-        {
-          "id": "serverless_and_function_as_a_service",
-          "name": "Serverless And Function As A Service"
-        },
-        {
-          "id": "server_sent_events",
-          "name": "Server Sent Events"
-        },
-        {
-          "id": "socket_io_patterns",
-          "name": "Socket Io Patterns"
-        },
-        {
-          "id": "streams_and_buffer_management",
-          "name": "Streams And Buffer Management"
-        },
-        {
-          "id": "testing_utilities",
-          "name": "Testing Utilities"
+          "id": "web_frameworks",
+          "name": "Web Frameworks"
         },
         {
           "id": "worker_threads_and_parallelism",
@@ -397,52 +337,32 @@
           "name": "Advanced Component Patterns"
         },
         {
-          "id": "advanced_hooks_and_patterns",
-          "name": "Advanced Hooks And Patterns"
-        },
-        {
           "id": "advanced_rendering_optimization",
           "name": "Advanced Rendering Optimization"
-        },
-        {
-          "id": "build_and_deployment",
-          "name": "Build And Deployment"
-        },
-        {
-          "id": "component_fundamentals",
-          "name": "Component Fundamentals"
-        },
-        {
-          "id": "data_fetching_strategies",
-          "name": "Data Fetching Strategies"
         },
         {
           "id": "fiber_architecture",
           "name": "Fiber Architecture"
         },
         {
-          "id": "framer_motion_for_animations",
-          "name": "Framer Motion For Animations"
-        },
-        {
           "id": "fundamentals",
           "name": "Fundamentals"
         },
         {
-          "id": "hooks_internals",
-          "name": "Hooks Internals"
+          "id": "hooks",
+          "name": "Hooks"
         },
         {
-          "id": "hooks_system",
-          "name": "Hooks System"
+          "id": "libraries",
+          "name": "Libraries"
         },
         {
           "id": "performance_optimization",
           "name": "Performance Optimization"
         },
         {
-          "id": "production_ready_applications",
-          "name": "Production Ready Applications"
+          "id": "production_and_deployment",
+          "name": "Production And Deployment"
         },
         {
           "id": "reconciliation_algorithm",
@@ -453,8 +373,8 @@
           "name": "Rendering Process In React"
         },
         {
-          "id": "routing_in_react",
-          "name": "Routing In React"
+          "id": "routing_and_data",
+          "name": "Routing And Data"
         },
         {
           "id": "state_management_solutions",
@@ -463,10 +383,6 @@
         {
           "id": "styling_in_react",
           "name": "Styling In React"
-        },
-        {
-          "id": "tan_stack_library_ecosystem",
-          "name": "Tan Stack Library Ecosystem"
         }
       ]
     },
