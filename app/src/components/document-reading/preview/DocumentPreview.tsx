@@ -215,7 +215,6 @@ const DocumentPreview: React.FC = () => {
         documentTitle={documentTitle}
         category={category}
         timeSpent={sessionData.totalTime}
-        estimatedWordsRead={sessionData.totalWords}
         sectionData={{
           total: sectionData.sectionsContent.length,
           previouslyRead: sectionData.previouslyCompletedSections.size,

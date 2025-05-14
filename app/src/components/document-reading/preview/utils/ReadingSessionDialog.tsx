@@ -1,21 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Clock,
-  BarChart,
-  TrendingUp,
-  Layers,
-  Check,
-  ArrowRight,
-  Trophy,
-} from "lucide-react";
+import { Clock, Layers, Check, ArrowRight } from "lucide-react";
 import { formatTimeInMs } from "@/utils/time";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -27,7 +18,6 @@ interface ReadingSessionDialogProps {
   onClose: () => void;
   documentTitle: string;
   timeSpent: number;
-  estimatedWordsRead: number;
   category: string;
   sectionData: {
     total: number;
@@ -42,18 +32,11 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
   onClose,
   documentTitle,
   timeSpent,
-  estimatedWordsRead,
   category,
   sectionData,
 }) => {
   const formattedTime = formatTimeInMs(timeSpent);
-  const minutesSpent = Math.round(timeSpent / (1000 * 60));
   const CategoryIcon = getIconForTech(category);
-
-  const readingSpeed =
-    timeSpent > 0
-      ? Math.round(estimatedWordsRead / (timeSpent / 1000 / 60))
-      : 0;
 
   const completedPercent = (sectionData.completed / sectionData.total) * 100;
 
@@ -70,23 +53,14 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
       <DialogContent className="sm:max-w-md font-cascadia-code max-w-[95vw] mx-auto rounded-2xl">
         <DialogHeader>
           <DialogTitle className="text-xl flex items-center gap-2">
-            <motion.div
+            <motion.span
               initial={{ rotate: -10, scale: 0.9 }}
               animate={{ rotate: 0, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <Trophy className="h-5 w-5 text-primary" />
-            </motion.div>
-            <span>Current Session Summary</span>
+              Current Session Summary 🤗
+            </motion.span>
           </DialogTitle>
-          <DialogDescription className="text-muted-foreground break-words">
-            {getSessionInsight(
-              sectionData.newlyRead,
-              sectionData.total,
-              minutesSpent,
-              readingSpeed
-            )}
-          </DialogDescription>
         </DialogHeader>
 
         <div className="py-3 overflow-auto">
@@ -101,11 +75,6 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
             {/* Reading Progress Grid */}
             <div className="grid grid-cols-2 gap-3 mb-3">
               <StatGridItem icon={Clock} label="Time" value={formattedTime} />
-              <StatGridItem
-                icon={BarChart}
-                label="Words"
-                value={`~${estimatedWordsRead.toLocaleString()}`}
-              />
               <SessionStatGridItem
                 icon={Layers}
                 label="Sections"
@@ -114,11 +83,6 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
                 }
                 total={sectionData.total}
                 showCheck={sectionData.newlyRead > 0}
-              />
-              <StatGridItem
-                icon={TrendingUp}
-                label="Speed"
-                value={`${readingSpeed} WPM`}
               />
             </div>
 
@@ -199,35 +163,6 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
       </DialogContent>
     </Dialog>
   );
-};
-
-const getSessionInsight = (
-  sectionsReadInSession: number,
-  totalSections: number,
-  minutesSpent: number,
-  readingSpeed: number
-) => {
-  if (sectionsReadInSession === 0)
-    return "You didn't complete any sections in this session. Try reading at least one full section next time.";
-  if (sectionsReadInSession === totalSections)
-    return "Amazing! You completed the entire document in this session.";
-  if (sectionsReadInSession >= Math.floor(totalSections * 0.75))
-    return "Impressive progress! You read most of the document in this session.";
-  if (sectionsReadInSession >= Math.floor(totalSections * 0.5))
-    return "Great work! You completed half of the document in this session.";
-  if (sectionsReadInSession >= Math.floor(totalSections * 0.25))
-    return "Good progress in this session! Keep building your understanding.";
-  if (readingSpeed > 400)
-    return "You're reading quite fast this session. Consider slowing down for better retention.";
-  if (readingSpeed < 100)
-    return "You're taking your time in this session. Careful reading improves understanding.";
-  if (minutesSpent > 15)
-    return "Excellent focus! Your extended reading session helps build deeper knowledge.";
-  if (sectionsReadInSession > 0)
-    return `You read ${sectionsReadInSession} ${
-      sectionsReadInSession === 1 ? "section" : "sections"
-    } in this session. Well done!`;
-  return "Keep reading regularly to improve your knowledge and retention.";
 };
 
 interface StatGridItemProps {
