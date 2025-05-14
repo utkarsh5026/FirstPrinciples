@@ -417,32 +417,40 @@
           "name": "Data Fetching Strategies"
         },
         {
-          "id": "fiber_architecture_deep_dive",
-          "name": "Fiber Architecture Deep Dive"
+          "id": "fiber_architecture",
+          "name": "Fiber Architecture"
+        },
+        {
+          "id": "framer_motion_for_animations",
+          "name": "Framer Motion For Animations"
+        },
+        {
+          "id": "fundamentals",
+          "name": "Fundamentals"
+        },
+        {
+          "id": "hooks_internals",
+          "name": "Hooks Internals"
         },
         {
           "id": "hooks_system",
           "name": "Hooks System"
         },
         {
-          "id": "react_fundamentals",
-          "name": "React Fundamentals"
+          "id": "performance_optimization",
+          "name": "Performance Optimization"
         },
         {
-          "id": "react_hooks_internals",
-          "name": "React Hooks Internals"
-        },
-        {
-          "id": "react_performance_optimization",
-          "name": "React Performance Optimization"
-        },
-        {
-          "id": "react_rendering_process",
-          "name": "React Rendering Process"
+          "id": "production_ready_applications",
+          "name": "Production Ready Applications"
         },
         {
           "id": "reconciliation_algorithm",
           "name": "Reconciliation Algorithm"
+        },
+        {
+          "id": "rendering_process_in_react",
+          "name": "Rendering Process In React"
         },
         {
           "id": "routing_in_react",

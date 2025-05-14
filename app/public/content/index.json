@@ -3718,39 +3718,144 @@
           "totalFileSize": 0
         },
         {
-          "id": "fiber_architecture_deep_dive",
-          "name": "Fiber Architecture Deep Dive",
+          "id": "fiber_architecture",
+          "name": "Fiber Architecture",
           "categories": [],
           "files": [
             {
-              "path": "react/fiber_architecture_deep_dive/double_buffering_implementation.md"
+              "path": "react/fiber_architecture/double_buffering_implementation.md"
             },
             {
-              "path": "react/fiber_architecture_deep_dive/effect_list_creation_and_traversal.md"
+              "path": "react/fiber_architecture/effect_list_creation_and_traversal.md"
             },
             {
-              "path": "react/fiber_architecture_deep_dive/fiber_flags_and_side_effects_tracking.md"
+              "path": "react/fiber_architecture/fiber_flags_and_side_effects_tracking.md"
             },
             {
-              "path": "react/fiber_architecture_deep_dive/fiber_lanes_and_priorities.md"
+              "path": "react/fiber_architecture/fiber_lanes_and_priorities.md"
             },
             {
-              "path": "react/fiber_architecture_deep_dive/fiber_linked_list_structure_child_sibling_return.md"
+              "path": "react/fiber_architecture/fiber_linked_list_structure_child_sibling_return.md"
             },
             {
-              "path": "react/fiber_architecture_deep_dive/fiber_node_structure_and_properties.md"
+              "path": "react/fiber_architecture/fiber_node_structure_and_properties.md"
             },
             {
-              "path": "react/fiber_architecture_deep_dive/fiber_root_management.md"
+              "path": "react/fiber_architecture/fiber_root_management.md"
             },
             {
-              "path": "react/fiber_architecture_deep_dive/fiber_update_queue_management.md"
+              "path": "react/fiber_architecture/fiber_update_queue_management.md"
             },
             {
-              "path": "react/fiber_architecture_deep_dive/time_slicing_implementation.md"
+              "path": "react/fiber_architecture/time_slicing_implementation.md"
             },
             {
-              "path": "react/fiber_architecture_deep_dive/work_in_progress_tree_construction.md"
+              "path": "react/fiber_architecture/work_in_progress_tree_construction.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "framer_motion_for_animations",
+          "name": "Framer Motion For Animations",
+          "categories": [],
+          "files": [
+            {
+              "path": "react/framer_motion_for_animations/accessibility_considerations_in_animations.md"
+            },
+            {
+              "path": "react/framer_motion_for_animations/animation_orchestration_between_components.md"
+            },
+            {
+              "path": "react/framer_motion_for_animations/basic_animation_properties_and_variants.md"
+            },
+            {
+              "path": "react/framer_motion_for_animations/complex_animation_sequences_and_timelines.md"
+            },
+            {
+              "path": "react/framer_motion_for_animations/gesture_recognition_and_handling.md"
+            },
+            {
+              "path": "react/framer_motion_for_animations/layout_animations_and_flip_technique.md"
+            },
+            {
+              "path": "react/framer_motion_for_animations/page_transitions_with_animatepresence.md"
+            },
+            {
+              "path": "react/framer_motion_for_animations/performance_optimization_for_animations.md"
+            },
+            {
+              "path": "react/framer_motion_for_animations/scroll_based_animations.md"
+            },
+            {
+              "path": "react/framer_motion_for_animations/svg_animation_techniques.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "fundamentals",
+          "name": "Fundamentals",
+          "categories": [],
+          "files": [
+            {
+              "path": "react/fundamentals/build_tooling_and_compilation_process.md"
+            },
+            {
+              "path": "react/fundamentals/development_environment_configuration.md"
+            },
+            {
+              "path": "react/fundamentals/jsx_syntax_and_transformation_process.md"
+            },
+            {
+              "path": "react/fundamentals/project_structure_best_practices.md"
+            },
+            {
+              "path": "react/fundamentals/react_developer_tools_and_debugging_practices.md"
+            },
+            {
+              "path": "react/fundamentals/react_element_structure_and_create_element_function.md"
+            },
+            {
+              "path": "react/fundamentals/react_philosophy_and_declarative_ui_paradigm.md"
+            },
+            {
+              "path": "react/fundamentals/virtual_dom_concept_and_advantages.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "hooks_internals",
+          "name": "Hooks Internals",
+          "categories": [],
+          "files": [
+            {
+              "path": "react/hooks_internals/effect_scheduling_and_cleanup.md"
+            },
+            {
+              "path": "react/hooks_internals/hooks_dependency_tracking_system.md"
+            },
+            {
+              "path": "react/hooks_internals/hooks_dispatcher_switching_mechanism.md"
+            },
+            {
+              "path": "react/hooks_internals/hooks_implementation_architecture.md"
+            },
+            {
+              "path": "react/hooks_internals/hooks_interaction_with_concurrent_features.md"
+            },
+            {
+              "path": "react/hooks_internals/hooks_rules_enforcement_implementation.md"
+            },
+            {
+              "path": "react/hooks_internals/hook_creation_and_update_paths.md"
+            },
+            {
+              "path": "react/hooks_internals/hook_memoization_strategies.md"
+            },
+            {
+              "path": "react/hooks_internals/hook_storage_in_fiber_nodes.md"
             }
           ],
           "totalFileSize": 0
@@ -3794,144 +3899,77 @@
           "totalFileSize": 0
         },
         {
-          "id": "react_fundamentals",
-          "name": "React Fundamentals",
+          "id": "performance_optimization",
+          "name": "Performance Optimization",
           "categories": [],
           "files": [
             {
-              "path": "react/react_fundamentals/build_tooling_and_compilation_process.md"
+              "path": "react/performance_optimization/bundle_size_optimization_strategies.md"
             },
             {
-              "path": "react/react_fundamentals/development_environment_configuration.md"
+              "path": "react/performance_optimization/code_splitting_with_dynamic_imports.md"
             },
             {
-              "path": "react/react_fundamentals/jsx_syntax_and_transformation_process.md"
+              "path": "react/performance_optimization/component_re_render_behavior.md"
             },
             {
-              "path": "react/react_fundamentals/project_structure_best_practices.md"
+              "path": "react/performance_optimization/image_and_asset_optimization.md"
             },
             {
-              "path": "react/react_fundamentals/react_developer_tools_and_debugging_practices.md"
+              "path": "react/performance_optimization/performance_measurement_tools.md"
             },
             {
-              "path": "react/react_fundamentals/react_element_structure_and_create_element_function.md"
+              "path": "react/performance_optimization/performance_profiling_and_debugging.md"
             },
             {
-              "path": "react/react_fundamentals/react_philosophy_and_declarative_ui_paradigm.md"
+              "path": "react/performance_optimization/react_memo_for_component_memoization.md"
             },
             {
-              "path": "react/react_fundamentals/virtual_dom_concept_and_advantages.md"
+              "path": "react/performance_optimization/react_rendering_process_understanding.md"
+            },
+            {
+              "path": "react/performance_optimization/usememo_and_usecallback_usage_patterns.md"
+            },
+            {
+              "path": "react/performance_optimization/virtualization_for_long_lists.md"
             }
           ],
           "totalFileSize": 0
         },
         {
-          "id": "react_hooks_internals",
-          "name": "React Hooks Internals",
+          "id": "production_ready_applications",
+          "name": "Production Ready Applications",
           "categories": [],
           "files": [
             {
-              "path": "react/react_hooks_internals/effect_scheduling_and_cleanup.md"
+              "path": "react/production_ready_applications/ab_testing_frameworks.md"
             },
             {
-              "path": "react/react_hooks_internals/hooks_dependency_tracking_system.md"
+              "path": "react/production_ready_applications/analytics_implementation.md"
             },
             {
-              "path": "react/react_hooks_internals/hooks_dispatcher_switching_mechanism.md"
+              "path": "react/production_ready_applications/authentication_patterns.md"
             },
             {
-              "path": "react/react_hooks_internals/hooks_implementation_architecture.md"
+              "path": "react/production_ready_applications/authorization_strategies.md"
             },
             {
-              "path": "react/react_hooks_internals/hooks_interaction_with_concurrent_features.md"
+              "path": "react/production_ready_applications/error_monitoring_and_reporting.md"
             },
             {
-              "path": "react/react_hooks_internals/hooks_rules_enforcement_implementation.md"
+              "path": "react/production_ready_applications/feature_flags_implementation.md"
             },
             {
-              "path": "react/react_hooks_internals/hook_creation_and_update_paths.md"
+              "path": "react/production_ready_applications/logging_and_debugging_in_production.md"
             },
             {
-              "path": "react/react_hooks_internals/hook_memoization_strategies.md"
+              "path": "react/production_ready_applications/performance_monitoring_strategies.md"
             },
             {
-              "path": "react/react_hooks_internals/hook_storage_in_fiber_nodes.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "react_performance_optimization",
-          "name": "React Performance Optimization",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/react_performance_optimization/bundle_size_optimization_strategies.md"
+              "path": "react/production_ready_applications/security_best_practices.md"
             },
             {
-              "path": "react/react_performance_optimization/code_splitting_with_dynamic_imports.md"
-            },
-            {
-              "path": "react/react_performance_optimization/component_re_render_behavior.md"
-            },
-            {
-              "path": "react/react_performance_optimization/image_and_asset_optimization.md"
-            },
-            {
-              "path": "react/react_performance_optimization/performance_measurement_tools.md"
-            },
-            {
-              "path": "react/react_performance_optimization/performance_profiling_and_debugging.md"
-            },
-            {
-              "path": "react/react_performance_optimization/react_memo_for_component_memoization.md"
-            },
-            {
-              "path": "react/react_performance_optimization/react_rendering_process_understanding.md"
-            },
-            {
-              "path": "react/react_performance_optimization/usememo_and_usecallback_usage_patterns.md"
-            },
-            {
-              "path": "react/react_performance_optimization/virtualization_for_long_lists.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "react_rendering_process",
-          "name": "React Rendering Process",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/react_rendering_process/bailout_conditions_for_rendering.md"
-            },
-            {
-              "path": "react/react_rendering_process/batching_update_mechanism.md"
-            },
-            {
-              "path": "react/react_rendering_process/component_re_render_behavior.md"
-            },
-            {
-              "path": "react/react_rendering_process/initial_render_mounting_process_flow.md"
-            },
-            {
-              "path": "react/react_rendering_process/pure_rendering_vs_side_effects.md"
-            },
-            {
-              "path": "react/react_rendering_process/react_dom_render_and_create_root_internals.md"
-            },
-            {
-              "path": "react/react_rendering_process/render_phases_render_reconciliation_and_commit.md"
-            },
-            {
-              "path": "react/react_rendering_process/render_preparation_and_setup.md"
-            },
-            {
-              "path": "react/react_rendering_process/render_priorities_and_scheduling.md"
-            },
-            {
-              "path": "react/react_rendering_process/update_render_flow_and_optimizations.md"
+              "path": "react/production_ready_applications/service_worker_strategies.md"
             }
           ],
           "totalFileSize": 0
@@ -3967,6 +4005,44 @@
             },
             {
               "path": "react/reconciliation_algorithm/virtual_dom_diffing_algorithm_implementation.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "rendering_process_in_react",
+          "name": "Rendering Process In React",
+          "categories": [],
+          "files": [
+            {
+              "path": "react/rendering_process_in_react/bailout_conditions_for_rendering.md"
+            },
+            {
+              "path": "react/rendering_process_in_react/batching_update_mechanism.md"
+            },
+            {
+              "path": "react/rendering_process_in_react/component_re_render_behavior.md"
+            },
+            {
+              "path": "react/rendering_process_in_react/initial_render_mounting_process_flow.md"
+            },
+            {
+              "path": "react/rendering_process_in_react/pure_rendering_vs_side_effects.md"
+            },
+            {
+              "path": "react/rendering_process_in_react/react_dom_render_and_create_root_internals.md"
+            },
+            {
+              "path": "react/rendering_process_in_react/render_phases_render_reconciliation_and_commit.md"
+            },
+            {
+              "path": "react/rendering_process_in_react/render_preparation_and_setup.md"
+            },
+            {
+              "path": "react/rendering_process_in_react/render_priorities_and_scheduling.md"
+            },
+            {
+              "path": "react/rendering_process_in_react/update_render_flow_and_optimizations.md"
             }
           ],
           "totalFileSize": 0

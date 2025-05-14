@@ -506,7 +506,7 @@ const generalConceptMappings: IconMapping[] = [
     icon: (props) => <ClipboardCheck {...props} />,
   },
   {
-    keywords: ["deploy", "release", "continuous"],
+    keywords: ["deploy", "release", "continuous", "production"],
     icon: (props) => <Rocket {...props} />,
   },
   {
