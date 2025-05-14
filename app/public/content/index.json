@@ -190,6 +190,91 @@
       "name": "Design Patterns",
       "categories": [
         {
+          "id": "anti_patterns_and_refactoring",
+          "name": "Anti Patterns And Refactoring",
+          "categories": [],
+          "files": [
+            {
+              "path": "design_patterns/anti_patterns_and_refactoring/circular_dependencies.md"
+            },
+            {
+              "path": "design_patterns/anti_patterns_and_refactoring/common_anti_patterns_identification.md"
+            },
+            {
+              "path": "design_patterns/anti_patterns_and_refactoring/dead_code_and_speculative_generality.md"
+            },
+            {
+              "path": "design_patterns/anti_patterns_and_refactoring/feature_envy_detection.md"
+            },
+            {
+              "path": "design_patterns/anti_patterns_and_refactoring/god_object_anti_pattern.md"
+            },
+            {
+              "path": "design_patterns/anti_patterns_and_refactoring/golden_hammer_anti_pattern.md"
+            },
+            {
+              "path": "design_patterns/anti_patterns_and_refactoring/primitive_obsession_refactoring.md"
+            },
+            {
+              "path": "design_patterns/anti_patterns_and_refactoring/refactoring_to_patterns.md"
+            },
+            {
+              "path": "design_patterns/anti_patterns_and_refactoring/shotgun_surgery_and_divergent_change.md"
+            },
+            {
+              "path": "design_patterns/anti_patterns_and_refactoring/spaghetti_code_anti_pattern.md"
+            },
+            {
+              "path": "design_patterns/anti_patterns_and_refactoring/technical_debt_management.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "behavioral_design_patterns",
+          "name": "Behavioral Design Patterns",
+          "categories": [],
+          "files": [
+            {
+              "path": "design_patterns/behavioral_design_patterns/chain_of_responsibility.md"
+            },
+            {
+              "path": "design_patterns/behavioral_design_patterns/command_pattern.md"
+            },
+            {
+              "path": "design_patterns/behavioral_design_patterns/interpreter_pattern.md"
+            },
+            {
+              "path": "design_patterns/behavioral_design_patterns/iterator_pattern.md"
+            },
+            {
+              "path": "design_patterns/behavioral_design_patterns/mediator_pattern.md"
+            },
+            {
+              "path": "design_patterns/behavioral_design_patterns/memento_pattern.md"
+            },
+            {
+              "path": "design_patterns/behavioral_design_patterns/null_object_pattern.md"
+            },
+            {
+              "path": "design_patterns/behavioral_design_patterns/observer_pattern.md"
+            },
+            {
+              "path": "design_patterns/behavioral_design_patterns/state_pattern.md"
+            },
+            {
+              "path": "design_patterns/behavioral_design_patterns/strategy_pattern.md"
+            },
+            {
+              "path": "design_patterns/behavioral_design_patterns/template_method.md"
+            },
+            {
+              "path": "design_patterns/behavioral_design_patterns/visitor_pattern.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
           "id": "creational_design_patterns",
           "name": "Creational Design Patterns",
           "categories": [],
@@ -1273,705 +1358,737 @@
       "name": "Javascript",
       "categories": [
         {
-          "id": "advanced_dom_patterns",
-          "name": "Advanced Dom Patterns",
-          "categories": [],
-          "files": [
+          "id": "browser_and_dom",
+          "name": "Browser And Dom",
+          "categories": [
             {
-              "path": "javascript/advanced_dom_patterns/canvas_based_dom_optimization.md"
+              "id": "advanced_dom_patterns",
+              "name": "Advanced Dom Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/canvas_based_dom_optimization.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/complex_table_implementations.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/dom_virtualization_for_large_datasets.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/drag_and_drop_systems.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/form_validation_architectures.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/infinite_scrolling_implementation.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/resizable_and_sortable_interfaces.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/tree_view_and_recursive_component_patterns.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/virtual_scrolling_for_performance.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/advanced_dom_patterns/complex_table_implementations.md"
+              "id": "browser_rendering_pipeline",
+              "name": "Browser Rendering Pipeline",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/browser_and_dom/browser_rendering_pipeline/browser_frame_rendering_lifecycle.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/browser_rendering_pipeline/browser_rendering_optimization_techniques.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/browser_rendering_pipeline/critical_rendering_path_in_browsers.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/browser_rendering_pipeline/hardware_acceleration_in_modern_browsers.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/browser_rendering_pipeline/layout_and_reflow_processes.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/browser_rendering_pipeline/layout_thrashing_prevention.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/browser_rendering_pipeline/paint_and_composite_operations.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/browser_rendering_pipeline/preventing_browser_jank_and_stuttering.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/browser_rendering_pipeline/rendering_performance_metrics.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/browser_rendering_pipeline/visual_feedback_and_perceived_performance.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/advanced_dom_patterns/dom_virtualization_for_large_datasets.md"
+              "id": "dom_fundamentals",
+              "name": "Dom Fundamentals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/browser_and_dom/dom_fundamentals/creating_and_manipulating_dom_elements_dynamically.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/dom_fundamentals/dom_collections_vs_java_script_arrays.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/dom_fundamentals/dom_node_types_and_their_properties.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/dom_fundamentals/dom_traversal_techniques.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/dom_fundamentals/element_content_manipulation.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/dom_fundamentals/html_parsing_behavior_in_browsers.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/dom_fundamentals/selecting_dom_elements.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/dom_fundamentals/the_dom_structure_and_hierarchy.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/dom_fundamentals/understanding_the_dom_as_a_living_document.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/dom_fundamentals/working_with_dom_attributes_and_properties.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/advanced_dom_patterns/drag_and_drop_systems.md"
+              "id": "frontend_performance_optimization",
+              "name": "Frontend Performance Optimization",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/browser_and_dom/frontend_performance_optimization/browser_caching_strategies.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/frontend_performance_optimization/code_splitting_and_lazy_loading.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/frontend_performance_optimization/javascript_bundle_optimization_techniques.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/frontend_performance_optimization/javascript_execution_optimization.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/frontend_performance_optimization/memory_leak_prevention_in_browser_apps.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/frontend_performance_optimization/module_preloading_strategies.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/frontend_performance_optimization/performance_budgeting_and_monitoring.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/frontend_performance_optimization/resource_loading_prioritization.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/frontend_performance_optimization/runtime_performance_optimization.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/frontend_performance_optimization/tree_shaking_for_dead_code_elimination.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/advanced_dom_patterns/form_validation_architectures.md"
-            },
-            {
-              "path": "javascript/advanced_dom_patterns/infinite_scrolling_implementation.md"
-            },
-            {
-              "path": "javascript/advanced_dom_patterns/resizable_and_sortable_interfaces.md"
-            },
-            {
-              "path": "javascript/advanced_dom_patterns/tree_view_and_recursive_component_patterns.md"
-            },
-            {
-              "path": "javascript/advanced_dom_patterns/virtual_scrolling_for_performance.md"
+              "id": "modern_dom_manipulation",
+              "name": "Modern Dom Manipulation",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/browser_and_dom/modern_dom_manipulation/custom_elements_and_web_components.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/modern_dom_manipulation/declarative_rendering_patterns.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/modern_dom_manipulation/dom_diffing_algorithms.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/modern_dom_manipulation/fragment_based_batch_dom_updates.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/modern_dom_manipulation/performance_optimized_dom_operations.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/modern_dom_manipulation/progressive_enhancement_strategies.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/modern_dom_manipulation/shadow_dom_for_component_encapsulation.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/modern_dom_manipulation/slot_elements_for_content_distribution.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/modern_dom_manipulation/template_elements_for_markup_templates.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/modern_dom_manipulation/virtual_dom_concepts_and_implementations.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "advanced_event_handling",
-          "name": "Advanced Event Handling",
-          "categories": [],
-          "files": [
+          "id": "browser_apis",
+          "name": "Browser Apis",
+          "categories": [
             {
-              "path": "javascript/advanced_event_handling/complex_event_coordination_patterns.md"
+              "id": "browser_apis_and_web_platform",
+              "name": "Browser Apis And Web Platform",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/clipboard_api_for_copy_paste_functionality.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/fetch_api_for_modern_resource_requests.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/geolocation_api_for_location_aware_applications.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/history_api_for_client_side_routing.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/intersection_observer_for_viewport_detection.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/media_apis.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/mutation_observer_for_dom_change_detection.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/notifications_api_for_browser_notifications.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/url_and_url_search_params_for_url_handling.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/web_animations_api_for_programmatic_animations.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/web_speech_api_for_voice_recognition_and_synthesis.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_apis_and_web_platform/xml_http_request_for_data_fetching.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/advanced_event_handling/custom_event_systems_implementation.md"
+              "id": "browser_compatibility",
+              "name": "Browser Compatibility",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/browser_apis/browser_compatibility/browser_compatibility_testing.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_compatibility/cross_browser_debugging_techniques.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_compatibility/feature_detection_vs_browser_detection.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_compatibility/graceful_degradation_approaches.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_compatibility/handling_browser_specific_bugs_and_quirks.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_compatibility/mobile_browser_considerations.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_compatibility/polyfill_implementation_strategies.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_compatibility/progressive_enhancement_techniques.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_compatibility/transpilation_for_browser_compatibility.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_compatibility/vendor_prefix_handling.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/advanced_event_handling/drag_and_drop_implementation.md"
+              "id": "browser_security",
+              "name": "Browser Security",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/browser_apis/browser_security/content_security_policy_implementation.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_security/cross_site_request_forgery_protection.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_security/cross_site_scripting_prevention.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_security/feature_policy_implementation.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_security/iframe_sandboxing_techniques.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_security/same_origin_policy_and_its_implications.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_security/secure_authentication_in_browser_applications.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_security/secure_data_storage_in_the_browser.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_security/security_headers_for_browser_applications.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_security/subresource_integrity_checking.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/advanced_event_handling/event_sourcing_in_browser_applications.md"
-            },
-            {
-              "path": "javascript/advanced_event_handling/focus_management_strategies.md"
-            },
-            {
-              "path": "javascript/advanced_event_handling/gamepad_and_alternative_input_methods.md"
-            },
-            {
-              "path": "javascript/advanced_event_handling/input_method_handling.md"
-            },
-            {
-              "path": "javascript/advanced_event_handling/keyboard_accessibility_patterns.md"
-            },
-            {
-              "path": "javascript/advanced_event_handling/multi_touch_and_gesture_recognition.md"
-            },
-            {
-              "path": "javascript/advanced_event_handling/reactive_event_handling_patterns.md"
+              "id": "browser_storage",
+              "name": "Browser Storage",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/browser_apis/browser_storage/cache_api_for_resource_caching.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_storage/client_side_session_state_management.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_storage/cookie_management_in_javascript.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_storage/indexed_db_for_client_side_database_storage.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_storage/offline_data_persistence_strategies.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_storage/secure_storage_practices_in_browsers.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_storage/storage_event_handling_for_cross_tab_communication.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_storage/storage_quotas_and_limitations.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_storage/storage_sync_with_browser_extensions.md"
+                },
+                {
+                  "path": "javascript/browser_apis/browser_storage/web_storage_api.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "advanced_javascript_patterns",
-          "name": "Advanced Javascript Patterns",
-          "categories": [],
-          "files": [
+          "id": "core",
+          "name": "Core",
+          "categories": [
             {
-              "path": "javascript/advanced_javascript_patterns/chain_of_responsibility_pattern.md"
+              "id": "advanced_javascript_patterns",
+              "name": "Advanced Javascript Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/core/advanced_javascript_patterns/chain_of_responsibility_pattern.md"
+                },
+                {
+                  "path": "javascript/core/advanced_javascript_patterns/command_pattern_for_action_encapsulation.md"
+                },
+                {
+                  "path": "javascript/core/advanced_javascript_patterns/decorator_pattern_in_javascript.md"
+                },
+                {
+                  "path": "javascript/core/advanced_javascript_patterns/factory_pattern_for_object_creation.md"
+                },
+                {
+                  "path": "javascript/core/advanced_javascript_patterns/mediator_pattern_for_component_communication.md"
+                },
+                {
+                  "path": "javascript/core/advanced_javascript_patterns/module_patterns.md"
+                },
+                {
+                  "path": "javascript/core/advanced_javascript_patterns/observer_pattern_for_event_handling.md"
+                },
+                {
+                  "path": "javascript/core/advanced_javascript_patterns/proxy_pattern_and_es6_proxy_objects.md"
+                },
+                {
+                  "path": "javascript/core/advanced_javascript_patterns/revealing_module_pattern.md"
+                },
+                {
+                  "path": "javascript/core/advanced_javascript_patterns/singleton_pattern_implementation.md"
+                },
+                {
+                  "path": "javascript/core/advanced_javascript_patterns/strategy_pattern_for_algorithm_selection.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/advanced_javascript_patterns/command_pattern_for_action_encapsulation.md"
+              "id": "functions_and_scope",
+              "name": "Functions And Scope",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/core/functions_and_scope/arrow_functions_and_their_special_properties.md"
+                },
+                {
+                  "path": "javascript/core/functions_and_scope/block_scope_vs_function_scope.md"
+                },
+                {
+                  "path": "javascript/core/functions_and_scope/closures_and_their_practical_applications.md"
+                },
+                {
+                  "path": "javascript/core/functions_and_scope/function_currying_and_partial_application.md"
+                },
+                {
+                  "path": "javascript/core/functions_and_scope/function_declarations_vs_expressions.md"
+                },
+                {
+                  "path": "javascript/core/functions_and_scope/function_parameters.md"
+                },
+                {
+                  "path": "javascript/core/functions_and_scope/higher_order_functions.md"
+                },
+                {
+                  "path": "javascript/core/functions_and_scope/immediately_invoked_function_expressions.md"
+                },
+                {
+                  "path": "javascript/core/functions_and_scope/recursion_and_tail_call_optimization.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/advanced_javascript_patterns/decorator_pattern_in_javascript.md"
+              "id": "javascript_engine_architecture",
+              "name": "Javascript Engine Architecture",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/core/javascript_engine_architecture/abstract_syntax_tree_generation_and_use.md"
+                },
+                {
+                  "path": "javascript/core/javascript_engine_architecture/bytecode_generation_and_execution.md"
+                },
+                {
+                  "path": "javascript/core/javascript_engine_architecture/engine_hooks_and_extension_points.md"
+                },
+                {
+                  "path": "javascript/core/javascript_engine_architecture/engine_optimizations_across_browser_implementations.md"
+                },
+                {
+                  "path": "javascript/core/javascript_engine_architecture/interpreter_vs_compiler_approaches.md"
+                },
+                {
+                  "path": "javascript/core/javascript_engine_architecture/javascript_engine_components.md"
+                },
+                {
+                  "path": "javascript/core/javascript_engine_architecture/just_in_time_compilation_process.md"
+                },
+                {
+                  "path": "javascript/core/javascript_engine_architecture/major_browser_engines_comparison.md"
+                },
+                {
+                  "path": "javascript/core/javascript_engine_architecture/source_map_implementation_and_debugging_support.md"
+                },
+                {
+                  "path": "javascript/core/javascript_engine_architecture/web_assembly_integration_with_java_script_engines.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/advanced_javascript_patterns/factory_pattern_for_object_creation.md"
+              "id": "object_oriented_javascript",
+              "name": "Object Oriented Javascript",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/core/object_oriented_javascript/class_inheritance_vs_prototypal_inheritance.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/composition_vs_inheritance_in_javascript.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/constructor_functions_and_the_new_operator.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/es6_classes_and_their_internal_workings.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/factory_functions_vs_constructor_patterns.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/instance_methods_vs_prototype_methods.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/mixins_and_multiple_inheritance_simulation.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/objects_and_property_accessors.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/objects_linked_to_other_objects_pattern.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/property_descriptors_and_attributes.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/prototypal_inheritance_model.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/prototype_chain_lookup_mechanism.md"
+                },
+                {
+                  "path": "javascript/core/object_oriented_javascript/static_methods_and_properties.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/advanced_javascript_patterns/mediator_pattern_for_component_communication.md"
-            },
-            {
-              "path": "javascript/advanced_javascript_patterns/module_patterns.md"
-            },
-            {
-              "path": "javascript/advanced_javascript_patterns/observer_pattern_for_event_handling.md"
-            },
-            {
-              "path": "javascript/advanced_javascript_patterns/proxy_pattern_and_es6_proxy_objects.md"
-            },
-            {
-              "path": "javascript/advanced_javascript_patterns/revealing_module_pattern.md"
-            },
-            {
-              "path": "javascript/advanced_javascript_patterns/singleton_pattern_implementation.md"
-            },
-            {
-              "path": "javascript/advanced_javascript_patterns/strategy_pattern_for_algorithm_selection.md"
+              "id": "the_this_keyword_deep_dive",
+              "name": "The This Keyword Deep Dive",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/core/the_this_keyword_deep_dive/common_this_pitfalls_and_solutions.md"
+                },
+                {
+                  "path": "javascript/core/the_this_keyword_deep_dive/default_binding_with_global_undefined.md"
+                },
+                {
+                  "path": "javascript/core/the_this_keyword_deep_dive/event_handler_this_binding_in_browsers.md"
+                },
+                {
+                  "path": "javascript/core/the_this_keyword_deep_dive/explicit_binding_with_call_apply_and_bind.md"
+                },
+                {
+                  "path": "javascript/core/the_this_keyword_deep_dive/implicit_binding_in_method_calls.md"
+                },
+                {
+                  "path": "javascript/core/the_this_keyword_deep_dive/lexical_this_in_arrow_functions.md"
+                },
+                {
+                  "path": "javascript/core/the_this_keyword_deep_dive/new_binding_with_constructor_functions.md"
+                },
+                {
+                  "path": "javascript/core/the_this_keyword_deep_dive/preserving_this_context_techniques.md"
+                },
+                {
+                  "path": "javascript/core/the_this_keyword_deep_dive/this_binding_rules_and_precedence.md"
+                },
+                {
+                  "path": "javascript/core/the_this_keyword_deep_dive/this_in_callbacks_and_nested_functions.md"
+                },
+                {
+                  "path": "javascript/core/the_this_keyword_deep_dive/this_in_strict_vs_non_strict_mode.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "asynchronous_javascript_in_the_browser",
-          "name": "Asynchronous Javascript In The Browser",
-          "categories": [],
-          "files": [
+          "id": "events_and_async",
+          "name": "Events And Async",
+          "categories": [
             {
-              "path": "javascript/asynchronous_javascript_in_the_browser/animation_frame_scheduling.md"
+              "id": "advanced_event_handling",
+              "name": "Advanced Event Handling",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/events_and_async/advanced_event_handling/complex_event_coordination_patterns.md"
+                },
+                {
+                  "path": "javascript/events_and_async/advanced_event_handling/custom_event_systems_implementation.md"
+                },
+                {
+                  "path": "javascript/events_and_async/advanced_event_handling/drag_and_drop_implementation.md"
+                },
+                {
+                  "path": "javascript/events_and_async/advanced_event_handling/event_sourcing_in_browser_applications.md"
+                },
+                {
+                  "path": "javascript/events_and_async/advanced_event_handling/focus_management_strategies.md"
+                },
+                {
+                  "path": "javascript/events_and_async/advanced_event_handling/gamepad_and_alternative_input_methods.md"
+                },
+                {
+                  "path": "javascript/events_and_async/advanced_event_handling/input_method_handling.md"
+                },
+                {
+                  "path": "javascript/events_and_async/advanced_event_handling/keyboard_accessibility_patterns.md"
+                },
+                {
+                  "path": "javascript/events_and_async/advanced_event_handling/multi_touch_and_gesture_recognition.md"
+                },
+                {
+                  "path": "javascript/events_and_async/advanced_event_handling/reactive_event_handling_patterns.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/asynchronous_javascript_in_the_browser/async_await_in_modern_browsers.md"
+              "id": "asynchronous_javascript_in_the_browser",
+              "name": "Asynchronous Javascript In The Browser",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/events_and_async/asynchronous_javascript_in_the_browser/animation_frame_scheduling.md"
+                },
+                {
+                  "path": "javascript/events_and_async/asynchronous_javascript_in_the_browser/async_await_in_modern_browsers.md"
+                },
+                {
+                  "path": "javascript/events_and_async/asynchronous_javascript_in_the_browser/browser_event_loop_and_task_queues_in_detail.md"
+                },
+                {
+                  "path": "javascript/events_and_async/asynchronous_javascript_in_the_browser/browser_timer_functions.md"
+                },
+                {
+                  "path": "javascript/events_and_async/asynchronous_javascript_in_the_browser/callback_patterns_in_browser_contexts.md"
+                },
+                {
+                  "path": "javascript/events_and_async/asynchronous_javascript_in_the_browser/handling_browser_specific_async_behaviors.md"
+                },
+                {
+                  "path": "javascript/events_and_async/asynchronous_javascript_in_the_browser/microtasks_vs_macrotasks_in_the_browser.md"
+                },
+                {
+                  "path": "javascript/events_and_async/asynchronous_javascript_in_the_browser/promise_implementation_across_browsers.md"
+                },
+                {
+                  "path": "javascript/events_and_async/asynchronous_javascript_in_the_browser/understanding_asynchronous_execution_in_the_browser.md"
+                },
+                {
+                  "path": "javascript/events_and_async/asynchronous_javascript_in_the_browser/worker_threads_and_parallel_execution.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/asynchronous_javascript_in_the_browser/browser_event_loop_and_task_queues_in_detail.md"
+              "id": "browser_events",
+              "name": "Browser Events",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/events_and_async/browser_events/browser_event_model_and_bubbling_mechanics.md"
+                },
+                {
+                  "path": "javascript/events_and_async/browser_events/custom_events_and_the_event_constructor.md"
+                },
+                {
+                  "path": "javascript/events_and_async/browser_events/event_delegation_for_dynamic_elements.md"
+                },
+                {
+                  "path": "javascript/events_and_async/browser_events/event_driven_programming_in_the_browser.md"
+                },
+                {
+                  "path": "javascript/events_and_async/browser_events/event_listeners_vs_inline_event_handlers.md"
+                },
+                {
+                  "path": "javascript/events_and_async/browser_events/event_object_properties_and_methods.md"
+                },
+                {
+                  "path": "javascript/events_and_async/browser_events/event_propagation.md"
+                },
+                {
+                  "path": "javascript/events_and_async/browser_events/event_throttling_and_debouncing_techniques.md"
+                },
+                {
+                  "path": "javascript/events_and_async/browser_events/form_events_and_data_handling.md"
+                },
+                {
+                  "path": "javascript/events_and_async/browser_events/keyboard_event_handling_and_accessibility.md"
+                },
+                {
+                  "path": "javascript/events_and_async/browser_events/mouse_and_touch_event_handling.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "javascript/asynchronous_javascript_in_the_browser/browser_timer_functions.md"
-            },
-            {
-              "path": "javascript/asynchronous_javascript_in_the_browser/callback_patterns_in_browser_contexts.md"
-            },
-            {
-              "path": "javascript/asynchronous_javascript_in_the_browser/handling_browser_specific_async_behaviors.md"
-            },
-            {
-              "path": "javascript/asynchronous_javascript_in_the_browser/microtasks_vs_macrotasks_in_the_browser.md"
-            },
-            {
-              "path": "javascript/asynchronous_javascript_in_the_browser/promise_implementation_across_browsers.md"
-            },
-            {
-              "path": "javascript/asynchronous_javascript_in_the_browser/understanding_asynchronous_execution_in_the_browser.md"
-            },
-            {
-              "path": "javascript/asynchronous_javascript_in_the_browser/worker_threads_and_parallel_execution.md"
+              "id": "event_loop_implementation",
+              "name": "Event Loop Implementation",
+              "categories": [],
+              "files": [
+                {
+                  "path": "javascript/events_and_async/event_loop_implementation/browser_rendering_coordination_with_js_execution.md"
+                },
+                {
+                  "path": "javascript/events_and_async/event_loop_implementation/browser_specific_event_loop_behaviors.md"
+                },
+                {
+                  "path": "javascript/events_and_async/event_loop_implementation/event_loop_architecture_in_browsers.md"
+                },
+                {
+                  "path": "javascript/events_and_async/event_loop_implementation/event_loop_phases_and_internal_timing.md"
+                },
+                {
+                  "path": "javascript/events_and_async/event_loop_implementation/io_callback_processing.md"
+                },
+                {
+                  "path": "javascript/events_and_async/event_loop_implementation/microtask_queue_internals.md"
+                },
+                {
+                  "path": "javascript/events_and_async/event_loop_implementation/performance_implications_of_event_loop_design.md"
+                },
+                {
+                  "path": "javascript/events_and_async/event_loop_implementation/priority_handling_in_event_processing.md"
+                },
+                {
+                  "path": "javascript/events_and_async/event_loop_implementation/task_queue_implementation_details.md"
+                },
+                {
+                  "path": "javascript/events_and_async/event_loop_implementation/timer_implementation_details.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "browser_apis_and_web_platform",
-          "name": "Browser Apis And Web Platform",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/browser_apis_and_web_platform/clipboard_api_for_copy_paste_functionality.md"
-            },
-            {
-              "path": "javascript/browser_apis_and_web_platform/fetch_api_for_modern_resource_requests.md"
-            },
-            {
-              "path": "javascript/browser_apis_and_web_platform/geolocation_api_for_location_aware_applications.md"
-            },
-            {
-              "path": "javascript/browser_apis_and_web_platform/history_api_for_client_side_routing.md"
-            },
-            {
-              "path": "javascript/browser_apis_and_web_platform/intersection_observer_for_viewport_detection.md"
-            },
-            {
-              "path": "javascript/browser_apis_and_web_platform/media_apis.md"
-            },
-            {
-              "path": "javascript/browser_apis_and_web_platform/mutation_observer_for_dom_change_detection.md"
-            },
-            {
-              "path": "javascript/browser_apis_and_web_platform/notifications_api_for_browser_notifications.md"
-            },
-            {
-              "path": "javascript/browser_apis_and_web_platform/url_and_url_search_params_for_url_handling.md"
-            },
-            {
-              "path": "javascript/browser_apis_and_web_platform/web_animations_api_for_programmatic_animations.md"
-            },
-            {
-              "path": "javascript/browser_apis_and_web_platform/web_speech_api_for_voice_recognition_and_synthesis.md"
-            },
-            {
-              "path": "javascript/browser_apis_and_web_platform/xml_http_request_for_data_fetching.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "browser_compatibility",
-          "name": "Browser Compatibility",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/browser_compatibility/browser_compatibility_testing.md"
-            },
-            {
-              "path": "javascript/browser_compatibility/cross_browser_debugging_techniques.md"
-            },
-            {
-              "path": "javascript/browser_compatibility/feature_detection_vs_browser_detection.md"
-            },
-            {
-              "path": "javascript/browser_compatibility/graceful_degradation_approaches.md"
-            },
-            {
-              "path": "javascript/browser_compatibility/handling_browser_specific_bugs_and_quirks.md"
-            },
-            {
-              "path": "javascript/browser_compatibility/mobile_browser_considerations.md"
-            },
-            {
-              "path": "javascript/browser_compatibility/polyfill_implementation_strategies.md"
-            },
-            {
-              "path": "javascript/browser_compatibility/progressive_enhancement_techniques.md"
-            },
-            {
-              "path": "javascript/browser_compatibility/transpilation_for_browser_compatibility.md"
-            },
-            {
-              "path": "javascript/browser_compatibility/vendor_prefix_handling.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "browser_events",
-          "name": "Browser Events",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/browser_events/browser_event_model_and_bubbling_mechanics.md"
-            },
-            {
-              "path": "javascript/browser_events/custom_events_and_the_event_constructor.md"
-            },
-            {
-              "path": "javascript/browser_events/event_delegation_for_dynamic_elements.md"
-            },
-            {
-              "path": "javascript/browser_events/event_driven_programming_in_the_browser.md"
-            },
-            {
-              "path": "javascript/browser_events/event_listeners_vs_inline_event_handlers.md"
-            },
-            {
-              "path": "javascript/browser_events/event_object_properties_and_methods.md"
-            },
-            {
-              "path": "javascript/browser_events/event_propagation.md"
-            },
-            {
-              "path": "javascript/browser_events/event_throttling_and_debouncing_techniques.md"
-            },
-            {
-              "path": "javascript/browser_events/form_events_and_data_handling.md"
-            },
-            {
-              "path": "javascript/browser_events/keyboard_event_handling_and_accessibility.md"
-            },
-            {
-              "path": "javascript/browser_events/mouse_and_touch_event_handling.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "browser_rendering_pipeline",
-          "name": "Browser Rendering Pipeline",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/browser_rendering_pipeline/browser_frame_rendering_lifecycle.md"
-            },
-            {
-              "path": "javascript/browser_rendering_pipeline/browser_rendering_optimization_techniques.md"
-            },
-            {
-              "path": "javascript/browser_rendering_pipeline/critical_rendering_path_in_browsers.md"
-            },
-            {
-              "path": "javascript/browser_rendering_pipeline/hardware_acceleration_in_modern_browsers.md"
-            },
-            {
-              "path": "javascript/browser_rendering_pipeline/layout_and_reflow_processes.md"
-            },
-            {
-              "path": "javascript/browser_rendering_pipeline/layout_thrashing_prevention.md"
-            },
-            {
-              "path": "javascript/browser_rendering_pipeline/paint_and_composite_operations.md"
-            },
-            {
-              "path": "javascript/browser_rendering_pipeline/preventing_browser_jank_and_stuttering.md"
-            },
-            {
-              "path": "javascript/browser_rendering_pipeline/rendering_performance_metrics.md"
-            },
-            {
-              "path": "javascript/browser_rendering_pipeline/visual_feedback_and_perceived_performance.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "browser_security",
-          "name": "Browser Security",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/browser_security/content_security_policy_implementation.md"
-            },
-            {
-              "path": "javascript/browser_security/cross_site_request_forgery_protection.md"
-            },
-            {
-              "path": "javascript/browser_security/cross_site_scripting_prevention.md"
-            },
-            {
-              "path": "javascript/browser_security/feature_policy_implementation.md"
-            },
-            {
-              "path": "javascript/browser_security/iframe_sandboxing_techniques.md"
-            },
-            {
-              "path": "javascript/browser_security/same_origin_policy_and_its_implications.md"
-            },
-            {
-              "path": "javascript/browser_security/secure_authentication_in_browser_applications.md"
-            },
-            {
-              "path": "javascript/browser_security/secure_data_storage_in_the_browser.md"
-            },
-            {
-              "path": "javascript/browser_security/security_headers_for_browser_applications.md"
-            },
-            {
-              "path": "javascript/browser_security/subresource_integrity_checking.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "browser_storage",
-          "name": "Browser Storage",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/browser_storage/cache_api_for_resource_caching.md"
-            },
-            {
-              "path": "javascript/browser_storage/client_side_session_state_management.md"
-            },
-            {
-              "path": "javascript/browser_storage/cookie_management_in_javascript.md"
-            },
-            {
-              "path": "javascript/browser_storage/indexed_db_for_client_side_database_storage.md"
-            },
-            {
-              "path": "javascript/browser_storage/offline_data_persistence_strategies.md"
-            },
-            {
-              "path": "javascript/browser_storage/secure_storage_practices_in_browsers.md"
-            },
-            {
-              "path": "javascript/browser_storage/storage_event_handling_for_cross_tab_communication.md"
-            },
-            {
-              "path": "javascript/browser_storage/storage_quotas_and_limitations.md"
-            },
-            {
-              "path": "javascript/browser_storage/storage_sync_with_browser_extensions.md"
-            },
-            {
-              "path": "javascript/browser_storage/web_storage_api.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "dom_fundamentals",
-          "name": "Dom Fundamentals",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/dom_fundamentals/creating_and_manipulating_dom_elements_dynamically.md"
-            },
-            {
-              "path": "javascript/dom_fundamentals/dom_collections_vs_java_script_arrays.md"
-            },
-            {
-              "path": "javascript/dom_fundamentals/dom_node_types_and_their_properties.md"
-            },
-            {
-              "path": "javascript/dom_fundamentals/dom_traversal_techniques.md"
-            },
-            {
-              "path": "javascript/dom_fundamentals/element_content_manipulation.md"
-            },
-            {
-              "path": "javascript/dom_fundamentals/html_parsing_behavior_in_browsers.md"
-            },
-            {
-              "path": "javascript/dom_fundamentals/selecting_dom_elements.md"
-            },
-            {
-              "path": "javascript/dom_fundamentals/the_dom_structure_and_hierarchy.md"
-            },
-            {
-              "path": "javascript/dom_fundamentals/understanding_the_dom_as_a_living_document.md"
-            },
-            {
-              "path": "javascript/dom_fundamentals/working_with_dom_attributes_and_properties.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "event_loop_implementation",
-          "name": "Event Loop Implementation",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/event_loop_implementation/browser_rendering_coordination_with_js_execution.md"
-            },
-            {
-              "path": "javascript/event_loop_implementation/browser_specific_event_loop_behaviors.md"
-            },
-            {
-              "path": "javascript/event_loop_implementation/event_loop_architecture_in_browsers.md"
-            },
-            {
-              "path": "javascript/event_loop_implementation/event_loop_phases_and_internal_timing.md"
-            },
-            {
-              "path": "javascript/event_loop_implementation/io_callback_processing.md"
-            },
-            {
-              "path": "javascript/event_loop_implementation/microtask_queue_internals.md"
-            },
-            {
-              "path": "javascript/event_loop_implementation/performance_implications_of_event_loop_design.md"
-            },
-            {
-              "path": "javascript/event_loop_implementation/priority_handling_in_event_processing.md"
-            },
-            {
-              "path": "javascript/event_loop_implementation/task_queue_implementation_details.md"
-            },
-            {
-              "path": "javascript/event_loop_implementation/timer_implementation_details.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "frontend_performance_optimization",
-          "name": "Frontend Performance Optimization",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/frontend_performance_optimization/browser_caching_strategies.md"
-            },
-            {
-              "path": "javascript/frontend_performance_optimization/code_splitting_and_lazy_loading.md"
-            },
-            {
-              "path": "javascript/frontend_performance_optimization/javascript_bundle_optimization_techniques.md"
-            },
-            {
-              "path": "javascript/frontend_performance_optimization/javascript_execution_optimization.md"
-            },
-            {
-              "path": "javascript/frontend_performance_optimization/memory_leak_prevention_in_browser_apps.md"
-            },
-            {
-              "path": "javascript/frontend_performance_optimization/module_preloading_strategies.md"
-            },
-            {
-              "path": "javascript/frontend_performance_optimization/performance_budgeting_and_monitoring.md"
-            },
-            {
-              "path": "javascript/frontend_performance_optimization/resource_loading_prioritization.md"
-            },
-            {
-              "path": "javascript/frontend_performance_optimization/runtime_performance_optimization.md"
-            },
-            {
-              "path": "javascript/frontend_performance_optimization/tree_shaking_for_dead_code_elimination.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "functions_and_scope",
-          "name": "Functions And Scope",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/functions_and_scope/arrow_functions_and_their_special_properties.md"
-            },
-            {
-              "path": "javascript/functions_and_scope/block_scope_vs_function_scope.md"
-            },
-            {
-              "path": "javascript/functions_and_scope/closures_and_their_practical_applications.md"
-            },
-            {
-              "path": "javascript/functions_and_scope/function_currying_and_partial_application.md"
-            },
-            {
-              "path": "javascript/functions_and_scope/function_declarations_vs_expressions.md"
-            },
-            {
-              "path": "javascript/functions_and_scope/function_parameters.md"
-            },
-            {
-              "path": "javascript/functions_and_scope/higher_order_functions.md"
-            },
-            {
-              "path": "javascript/functions_and_scope/immediately_invoked_function_expressions.md"
-            },
-            {
-              "path": "javascript/functions_and_scope/recursion_and_tail_call_optimization.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "javascript_engine_architecture",
-          "name": "Javascript Engine Architecture",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/javascript_engine_architecture/abstract_syntax_tree_generation_and_use.md"
-            },
-            {
-              "path": "javascript/javascript_engine_architecture/bytecode_generation_and_execution.md"
-            },
-            {
-              "path": "javascript/javascript_engine_architecture/engine_hooks_and_extension_points.md"
-            },
-            {
-              "path": "javascript/javascript_engine_architecture/engine_optimizations_across_browser_implementations.md"
-            },
-            {
-              "path": "javascript/javascript_engine_architecture/interpreter_vs_compiler_approaches.md"
-            },
-            {
-              "path": "javascript/javascript_engine_architecture/javascript_engine_components.md"
-            },
-            {
-              "path": "javascript/javascript_engine_architecture/just_in_time_compilation_process.md"
-            },
-            {
-              "path": "javascript/javascript_engine_architecture/major_browser_engines_comparison.md"
-            },
-            {
-              "path": "javascript/javascript_engine_architecture/source_map_implementation_and_debugging_support.md"
-            },
-            {
-              "path": "javascript/javascript_engine_architecture/web_assembly_integration_with_java_script_engines.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "modern_dom_manipulation",
-          "name": "Modern Dom Manipulation",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/modern_dom_manipulation/custom_elements_and_web_components.md"
-            },
-            {
-              "path": "javascript/modern_dom_manipulation/declarative_rendering_patterns.md"
-            },
-            {
-              "path": "javascript/modern_dom_manipulation/dom_diffing_algorithms.md"
-            },
-            {
-              "path": "javascript/modern_dom_manipulation/fragment_based_batch_dom_updates.md"
-            },
-            {
-              "path": "javascript/modern_dom_manipulation/performance_optimized_dom_operations.md"
-            },
-            {
-              "path": "javascript/modern_dom_manipulation/progressive_enhancement_strategies.md"
-            },
-            {
-              "path": "javascript/modern_dom_manipulation/shadow_dom_for_component_encapsulation.md"
-            },
-            {
-              "path": "javascript/modern_dom_manipulation/slot_elements_for_content_distribution.md"
-            },
-            {
-              "path": "javascript/modern_dom_manipulation/template_elements_for_markup_templates.md"
-            },
-            {
-              "path": "javascript/modern_dom_manipulation/virtual_dom_concepts_and_implementations.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "object_oriented_javascript",
-          "name": "Object Oriented Javascript",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/object_oriented_javascript/class_inheritance_vs_prototypal_inheritance.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/composition_vs_inheritance_in_javascript.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/constructor_functions_and_the_new_operator.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/es6_classes_and_their_internal_workings.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/factory_functions_vs_constructor_patterns.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/instance_methods_vs_prototype_methods.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/mixins_and_multiple_inheritance_simulation.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/objects_and_property_accessors.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/objects_linked_to_other_objects_pattern.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/property_descriptors_and_attributes.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/prototypal_inheritance_model.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/prototype_chain_lookup_mechanism.md"
-            },
-            {
-              "path": "javascript/object_oriented_javascript/static_methods_and_properties.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "the_this_keyword_deep_dive",
-          "name": "The This Keyword Deep Dive",
-          "categories": [],
-          "files": [
-            {
-              "path": "javascript/the_this_keyword_deep_dive/common_this_pitfalls_and_solutions.md"
-            },
-            {
-              "path": "javascript/the_this_keyword_deep_dive/default_binding_with_global_undefined.md"
-            },
-            {
-              "path": "javascript/the_this_keyword_deep_dive/event_handler_this_binding_in_browsers.md"
-            },
-            {
-              "path": "javascript/the_this_keyword_deep_dive/explicit_binding_with_call_apply_and_bind.md"
-            },
-            {
-              "path": "javascript/the_this_keyword_deep_dive/implicit_binding_in_method_calls.md"
-            },
-            {
-              "path": "javascript/the_this_keyword_deep_dive/lexical_this_in_arrow_functions.md"
-            },
-            {
-              "path": "javascript/the_this_keyword_deep_dive/new_binding_with_constructor_functions.md"
-            },
-            {
-              "path": "javascript/the_this_keyword_deep_dive/preserving_this_context_techniques.md"
-            },
-            {
-              "path": "javascript/the_this_keyword_deep_dive/this_binding_rules_and_precedence.md"
-            },
-            {
-              "path": "javascript/the_this_keyword_deep_dive/this_in_callbacks_and_nested_functions.md"
-            },
-            {
-              "path": "javascript/the_this_keyword_deep_dive/this_in_strict_vs_non_strict_mode.md"
-            }
-          ],
+          "files": [],
           "totalFileSize": 0
         }
       ],

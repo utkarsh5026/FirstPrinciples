@@ -35,6 +35,14 @@
       "name": "Design Patterns",
       "categories": [
         {
+          "id": "anti_patterns_and_refactoring",
+          "name": "Anti Patterns And Refactoring"
+        },
+        {
+          "id": "behavioral_design_patterns",
+          "name": "Behavioral Design Patterns"
+        },
+        {
           "id": "creational_design_patterns",
           "name": "Creational Design Patterns"
         },
@@ -171,76 +179,20 @@
       "name": "Javascript",
       "categories": [
         {
-          "id": "advanced_dom_patterns",
-          "name": "Advanced Dom Patterns"
+          "id": "browser_and_dom",
+          "name": "Browser And Dom"
         },
         {
-          "id": "advanced_event_handling",
-          "name": "Advanced Event Handling"
+          "id": "browser_apis",
+          "name": "Browser Apis"
         },
         {
-          "id": "advanced_javascript_patterns",
-          "name": "Advanced Javascript Patterns"
+          "id": "core",
+          "name": "Core"
         },
         {
-          "id": "asynchronous_javascript_in_the_browser",
-          "name": "Asynchronous Javascript In The Browser"
-        },
-        {
-          "id": "browser_apis_and_web_platform",
-          "name": "Browser Apis And Web Platform"
-        },
-        {
-          "id": "browser_compatibility",
-          "name": "Browser Compatibility"
-        },
-        {
-          "id": "browser_events",
-          "name": "Browser Events"
-        },
-        {
-          "id": "browser_rendering_pipeline",
-          "name": "Browser Rendering Pipeline"
-        },
-        {
-          "id": "browser_security",
-          "name": "Browser Security"
-        },
-        {
-          "id": "browser_storage",
-          "name": "Browser Storage"
-        },
-        {
-          "id": "dom_fundamentals",
-          "name": "Dom Fundamentals"
-        },
-        {
-          "id": "event_loop_implementation",
-          "name": "Event Loop Implementation"
-        },
-        {
-          "id": "frontend_performance_optimization",
-          "name": "Frontend Performance Optimization"
-        },
-        {
-          "id": "functions_and_scope",
-          "name": "Functions And Scope"
-        },
-        {
-          "id": "javascript_engine_architecture",
-          "name": "Javascript Engine Architecture"
-        },
-        {
-          "id": "modern_dom_manipulation",
-          "name": "Modern Dom Manipulation"
-        },
-        {
-          "id": "object_oriented_javascript",
-          "name": "Object Oriented Javascript"
-        },
-        {
-          "id": "the_this_keyword_deep_dive",
-          "name": "The This Keyword Deep Dive"
+          "id": "events_and_async",
+          "name": "Events And Async"
         }
       ]
     },

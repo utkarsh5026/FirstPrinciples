@@ -37,13 +37,6 @@ interface ReadingSessionDialogProps {
   };
 }
 
-/**
- * Enhanced Reading Session Dialog Component
- *
- * A visually rich dialog that summarizes the user's reading session when they exit fullscreen mode.
- * Displays comprehensive reading statistics for the CURRENT SESSION including time spent, words read,
- * sections completed, and insightful metrics about reading efficiency.
- */
 const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
   open,
   onClose,
@@ -86,7 +79,7 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
             </motion.div>
             <span>Current Session Summary</span>
           </DialogTitle>
-          <DialogDescription className="text-muted-foreground">
+          <DialogDescription className="text-muted-foreground break-words">
             {getSessionInsight(
               sectionData.newlyRead,
               sectionData.total,
@@ -96,11 +89,11 @@ const ReadingSessionDialog: React.FC<ReadingSessionDialogProps> = ({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="py-3">
+        <div className="py-3 overflow-auto">
           <div className="bg-card/50 p-4 rounded-2xl border border-border/50">
             <h3 className="text-sm font-medium mb-3 flex items-center">
-              <CategoryIcon className="h-4 w-4 mr-2 text-primary/70" />
-              <span className="truncate text-foreground/90">
+              <CategoryIcon className="h-6 w-6 mr-2 text-primary/70" />
+              <span className="text-foreground/90 break-words text-center">
                 {documentTitle}
               </span>
             </h3>
