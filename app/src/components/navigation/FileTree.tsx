@@ -48,7 +48,7 @@ const FileTree: React.FC<FileTreeProps> = memo(
     const IconComponent =
       depth === 0
         ? getIconForTech(category.name)
-        : () => getTopicIcon(`${parentCategory ?? ""}_${category.name}`);
+        : () => getTopicIcon(`${parentCategory ?? ""}>${category.name}`);
 
     console.log(parentCategory);
 
@@ -195,7 +195,7 @@ const FileTree: React.FC<FileTreeProps> = memo(
                   filePaths={filePaths}
                   currentFilePath={currentFilePath}
                   showDescriptions={showDescriptions}
-                  parentCategory={`${parentCategory ?? ""}_${category.name}`}
+                  parentCategory={`${parentCategory ?? ""} > ${category.name}`}
                 />
               ))}
 

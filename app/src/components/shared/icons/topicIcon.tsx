@@ -597,23 +597,35 @@ const allMappings = [
   },
 ];
 
+const topicCache = new Map<string, React.ReactElement>();
+
 const getTopicIcon = (topic: string, size: number = 16): React.ReactElement => {
+  if (topicCache.has(topic)) return topicCache.get(topic) as React.ReactElement;
+
   const normalizedTopic = topic.toLowerCase().replace(/_/g, " ");
+  const parts = normalizedTopic
+    .split(">")
+    .map((part) => part.trim())
+    .filter(Boolean);
+  const mainCategory = parts[0];
+  const specificTopic = parts[parts.length - 1];
 
   const iconProps = getIconProps(size);
   const reactIconStyle = getReactIconStyle(size);
 
   const getIconFromMappings = (mappings: IconMapping[]) => {
     for (const { keywords, isReactIcon, icon } of mappings) {
-      if (!keywords.some((k) => normalizedTopic.includes(k))) {
+      if (!keywords.some((k) => specificTopic.includes(k))) {
         continue;
       }
-      return isReactIcon ? icon(reactIconStyle) : icon(iconProps);
+      const topicIcon = isReactIcon ? icon(reactIconStyle) : icon(iconProps);
+      topicCache.set(topic, topicIcon);
+      return topicIcon;
     }
   };
 
   for (const { keywords: categoryKeywords, mappings } of allMappings) {
-    if (!categoryKeywords.some((keyword) => normalizedTopic.includes(keyword)))
+    if (!categoryKeywords.some((keyword) => mainCategory.includes(keyword)))
       continue;
 
     const icon = getIconFromMappings(mappings);
