@@ -581,7 +581,7 @@ const allMappings = [
   },
 
   {
-    keywords: ["go ", "golang", "goroutine"],
+    keywords: ["go", "golang", "goroutine"],
     mappings: goMappings,
   },
   { keywords: ["python"], mappings: pythonMappings },
@@ -609,6 +609,8 @@ const getTopicIcon = (topic: string, size: number = 16): React.ReactElement => {
     .filter(Boolean);
   const mainCategory = parts[0];
   const specificTopic = parts[parts.length - 1];
+
+  console.log(mainCategory, specificTopic);
 
   const iconProps = getIconProps(size);
   const reactIconStyle = getReactIconStyle(size);

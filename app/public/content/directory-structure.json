@@ -109,68 +109,28 @@
       "name": "Go",
       "categories": [
         {
-          "id": "advanced_channel_patterns",
-          "name": "Advanced Channel Patterns"
+          "id": "advanced_concurrency",
+          "name": "Advanced Concurrency"
         },
         {
-          "id": "advanced_concurrency_patterns",
-          "name": "Advanced Concurrency Patterns"
+          "id": "channels_and_communication",
+          "name": "Channels And Communication"
         },
         {
-          "id": "channels",
-          "name": "Channels"
+          "id": "concurrency",
+          "name": "Concurrency"
         },
         {
-          "id": "concurrency_foundations",
-          "name": "Concurrency Foundations"
+          "id": "core_language",
+          "name": "Core Language"
         },
         {
-          "id": "concurrency_safety",
-          "name": "Concurrency Safety"
+          "id": "internals",
+          "name": "Internals"
         },
         {
-          "id": "context_package_deep_dive",
-          "name": "Context Package Deep Dive"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        },
-        {
-          "id": "fundamentals",
-          "name": "Fundamentals"
-        },
-        {
-          "id": "goroutine_patterns",
-          "name": "Goroutine Patterns"
-        },
-        {
-          "id": "go_scheduler_internals",
-          "name": "Go Scheduler Internals"
-        },
-        {
-          "id": "memory_model",
-          "name": "Memory Model"
-        },
-        {
-          "id": "select_statement_patterns",
-          "name": "Select Statement Patterns"
-        },
-        {
-          "id": "standard_library",
-          "name": "Standard Library"
-        },
-        {
-          "id": "structured_concurrency",
-          "name": "Structured Concurrency"
-        },
-        {
-          "id": "synchronization_performance",
-          "name": "Synchronization Performance"
-        },
-        {
-          "id": "synchronization_primitives",
-          "name": "Synchronization Primitives"
+          "id": "synchronization",
+          "name": "Synchronization"
         }
       ]
     },
@@ -273,18 +233,6 @@
       "name": "React",
       "categories": [
         {
-          "id": "advanced_component_patterns",
-          "name": "Advanced Component Patterns"
-        },
-        {
-          "id": "advanced_rendering_optimization",
-          "name": "Advanced Rendering Optimization"
-        },
-        {
-          "id": "fiber_architecture",
-          "name": "Fiber Architecture"
-        },
-        {
           "id": "fundamentals",
           "name": "Fundamentals"
         },
@@ -293,24 +241,12 @@
           "name": "Hooks"
         },
         {
-          "id": "libraries",
-          "name": "Libraries"
-        },
-        {
-          "id": "performance_optimization",
-          "name": "Performance Optimization"
-        },
-        {
           "id": "production_and_deployment",
           "name": "Production And Deployment"
         },
         {
-          "id": "reconciliation_algorithm",
-          "name": "Reconciliation Algorithm"
-        },
-        {
-          "id": "rendering_process_in_react",
-          "name": "Rendering Process In React"
+          "id": "rendering_and_performance",
+          "name": "Rendering And Performance"
         },
         {
           "id": "routing_and_data",
@@ -321,8 +257,8 @@
           "name": "State Management Solutions"
         },
         {
-          "id": "styling_in_react",
-          "name": "Styling In React"
+          "id": "ui_and_styling",
+          "name": "Ui And Styling"
         }
       ]
     },

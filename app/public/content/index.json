@@ -757,596 +757,644 @@
       "name": "Go",
       "categories": [
         {
-          "id": "advanced_channel_patterns",
-          "name": "Advanced Channel Patterns",
-          "categories": [],
-          "files": [
+          "id": "advanced_concurrency",
+          "name": "Advanced Concurrency",
+          "categories": [
             {
-              "path": "go/advanced_channel_patterns/advanced_error_handling_with_channels.md"
+              "id": "advanced_channel_patterns",
+              "name": "Advanced Channel Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/advanced_concurrency/advanced_channel_patterns/advanced_error_handling_with_channels.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_channel_patterns/batching_strategies_with_channels.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_channel_patterns/composable_channel_operations.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_channel_patterns/implementing_complex_state_machines.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_channel_patterns/implementing_futures_with_channels.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_channel_patterns/implementing_priority_queues.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_channel_patterns/implementing_timeouts_and_deadlines.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_channel_patterns/recursive_channel_algorithms.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_channel_patterns/synchronous_vs_asynchronous_messaging.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_channel_patterns/throttling_patterns_with_channels.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "go/advanced_channel_patterns/batching_strategies_with_channels.md"
+              "id": "advanced_concurrency_patterns",
+              "name": "Advanced Concurrency Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/advanced_concurrency/advanced_concurrency_patterns/bounded_concurrency_patterns.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_concurrency_patterns/broadcast_and_subscription_models.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_concurrency_patterns/concurrent_map_implementations.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_concurrency_patterns/context_package_for_cancellation.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_concurrency_patterns/futures_and_promises_in_go.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_concurrency_patterns/pipeline_construction_for_data_processing.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_concurrency_patterns/rate_limiting_implementations.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_concurrency_patterns/resource_pooling_patterns.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_concurrency_patterns/timeout_and_deadline_management.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/advanced_concurrency_patterns/worker_pool_implementation_strategies.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "go/advanced_channel_patterns/composable_channel_operations.md"
-            },
-            {
-              "path": "go/advanced_channel_patterns/implementing_complex_state_machines.md"
-            },
-            {
-              "path": "go/advanced_channel_patterns/implementing_futures_with_channels.md"
-            },
-            {
-              "path": "go/advanced_channel_patterns/implementing_priority_queues.md"
-            },
-            {
-              "path": "go/advanced_channel_patterns/implementing_timeouts_and_deadlines.md"
-            },
-            {
-              "path": "go/advanced_channel_patterns/recursive_channel_algorithms.md"
-            },
-            {
-              "path": "go/advanced_channel_patterns/synchronous_vs_asynchronous_messaging.md"
-            },
-            {
-              "path": "go/advanced_channel_patterns/throttling_patterns_with_channels.md"
+              "id": "structured_concurrency",
+              "name": "Structured Concurrency",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/advanced_concurrency/structured_concurrency/cancellation_cascades_implementation.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/structured_concurrency/composing_concurrent_operations.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/structured_concurrency/error_propagation_in_structured_concurrency.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/structured_concurrency/implementing_task_groups.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/structured_concurrency/migration_strategies_toward_structured_concurrency.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/structured_concurrency/parent_child_relationships_in_concurrent_code.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/structured_concurrency/resource_cleanup_in_concurrent_hierarchies.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/structured_concurrency/structured_concurrency_principles.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/structured_concurrency/task_scoping_and_lifetime_management.md"
+                },
+                {
+                  "path": "go/advanced_concurrency/structured_concurrency/testing_structured_concurrent_code.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "advanced_concurrency_patterns",
-          "name": "Advanced Concurrency Patterns",
-          "categories": [],
-          "files": [
+          "id": "channels_and_communication",
+          "name": "Channels And Communication",
+          "categories": [
             {
-              "path": "go/advanced_concurrency_patterns/bounded_concurrency_patterns.md"
+              "id": "channels",
+              "name": "Channels",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/channels_and_communication/channels/cancellation_propagation_via_channels.md"
+                },
+                {
+                  "path": "go/channels_and_communication/channels/channel_based_semaphores.md"
+                },
+                {
+                  "path": "go/channels_and_communication/channels/channel_closing_semantics.md"
+                },
+                {
+                  "path": "go/channels_and_communication/channels/channel_ownership_principles.md"
+                },
+                {
+                  "path": "go/channels_and_communication/channels/fan_out_fan_in_patterns.md"
+                },
+                {
+                  "path": "go/channels_and_communication/channels/go_channels.md"
+                },
+                {
+                  "path": "go/channels_and_communication/channels/go_directional_channels.md"
+                },
+                {
+                  "path": "go/channels_and_communication/channels/implementing_backpressure_with_channels.md"
+                },
+                {
+                  "path": "go/channels_and_communication/channels/implementing_timeouts_with_channels.md"
+                },
+                {
+                  "path": "go/channels_and_communication/channels/nil_channels_and_their_behavior.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "go/advanced_concurrency_patterns/broadcast_and_subscription_models.md"
-            },
-            {
-              "path": "go/advanced_concurrency_patterns/concurrent_map_implementations.md"
-            },
-            {
-              "path": "go/advanced_concurrency_patterns/context_package_for_cancellation.md"
-            },
-            {
-              "path": "go/advanced_concurrency_patterns/futures_and_promises_in_go.md"
-            },
-            {
-              "path": "go/advanced_concurrency_patterns/pipeline_construction_for_data_processing.md"
-            },
-            {
-              "path": "go/advanced_concurrency_patterns/rate_limiting_implementations.md"
-            },
-            {
-              "path": "go/advanced_concurrency_patterns/resource_pooling_patterns.md"
-            },
-            {
-              "path": "go/advanced_concurrency_patterns/timeout_and_deadline_management.md"
-            },
-            {
-              "path": "go/advanced_concurrency_patterns/worker_pool_implementation_strategies.md"
+              "id": "select_statement_patterns",
+              "name": "Select Statement Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/channels_and_communication/select_statement_patterns/breaking_from_infinite_select_loops.md"
+                },
+                {
+                  "path": "go/channels_and_communication/select_statement_patterns/default_case_for_non_blocking_operations.md"
+                },
+                {
+                  "path": "go/channels_and_communication/select_statement_patterns/dynamic_channel_selection.md"
+                },
+                {
+                  "path": "go/channels_and_communication/select_statement_patterns/error_handling_in_select_statements.md"
+                },
+                {
+                  "path": "go/channels_and_communication/select_statement_patterns/multiplexing_multiple_channels.md"
+                },
+                {
+                  "path": "go/channels_and_communication/select_statement_patterns/multi_channel_coordination_with_select.md"
+                },
+                {
+                  "path": "go/channels_and_communication/select_statement_patterns/performance_considerations_in_select_usage.md"
+                },
+                {
+                  "path": "go/channels_and_communication/select_statement_patterns/prioritizing_channel_operations.md"
+                },
+                {
+                  "path": "go/channels_and_communication/select_statement_patterns/timeout_patterns_with_select.md"
+                },
+                {
+                  "path": "go/channels_and_communication/select_statement_patterns/using_reflect_select_for_dynamic_cases.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "channels",
-          "name": "Channels",
-          "categories": [],
-          "files": [
+          "id": "concurrency",
+          "name": "Concurrency",
+          "categories": [
             {
-              "path": "go/channels/cancellation_propagation_via_channels.md"
+              "id": "concurrency_foundations",
+              "name": "Concurrency Foundations",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/concurrency/concurrency_foundations/buffered_vs_unbuffered_channels.md"
+                },
+                {
+                  "path": "go/concurrency/concurrency_foundations/concurrency_safety_fundamentals.md"
+                },
+                {
+                  "path": "go/concurrency/concurrency_foundations/concurrency_vs_parallelism.md"
+                },
+                {
+                  "path": "go/concurrency/concurrency_foundations/goroutine_creation_and_lifecycle.md"
+                },
+                {
+                  "path": "go/concurrency/concurrency_foundations/goroutine_memory_consumption.md"
+                },
+                {
+                  "path": "go/concurrency/concurrency_foundations/go_channels.md"
+                },
+                {
+                  "path": "go/concurrency/concurrency_foundations/go_scheduler_and_work_stealing.md"
+                },
+                {
+                  "path": "go/concurrency/concurrency_foundations/introduction_to_goroutines.md"
+                },
+                {
+                  "path": "go/concurrency/concurrency_foundations/select_statement_for_channel_operations.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "go/channels/channel_based_semaphores.md"
-            },
-            {
-              "path": "go/channels/channel_closing_semantics.md"
-            },
-            {
-              "path": "go/channels/channel_ownership_principles.md"
-            },
-            {
-              "path": "go/channels/fan_out_fan_in_patterns.md"
-            },
-            {
-              "path": "go/channels/go_channels.md"
-            },
-            {
-              "path": "go/channels/go_directional_channels.md"
-            },
-            {
-              "path": "go/channels/implementing_backpressure_with_channels.md"
-            },
-            {
-              "path": "go/channels/implementing_timeouts_with_channels.md"
-            },
-            {
-              "path": "go/channels/nil_channels_and_their_behavior.md"
+              "id": "goroutine_patterns",
+              "name": "Goroutine Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/concurrency/goroutine_patterns/avoiding_goroutine_leaks.md"
+                },
+                {
+                  "path": "go/concurrency/goroutine_patterns/balancing_goroutine_workloads.md"
+                },
+                {
+                  "path": "go/concurrency/goroutine_patterns/benchmarking_goroutine_performance.md"
+                },
+                {
+                  "path": "go/concurrency/goroutine_patterns/capturing_variables_in_goroutines.md"
+                },
+                {
+                  "path": "go/concurrency/goroutine_patterns/controlling_goroutine_execution_order.md"
+                },
+                {
+                  "path": "go/concurrency/goroutine_patterns/debugging_goroutine_issues.md"
+                },
+                {
+                  "path": "go/concurrency/goroutine_patterns/goroutine_creation_best_practices.md"
+                },
+                {
+                  "path": "go/concurrency/goroutine_patterns/graceful_goroutine_termination.md"
+                },
+                {
+                  "path": "go/concurrency/goroutine_patterns/parent_child_goroutine_relationships.md"
+                },
+                {
+                  "path": "go/concurrency/goroutine_patterns/stack_traces_and_goroutine_forensics.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "concurrency_foundations",
-          "name": "Concurrency Foundations",
-          "categories": [],
-          "files": [
+          "id": "core_language",
+          "name": "Core Language",
+          "categories": [
             {
-              "path": "go/concurrency_foundations/buffered_vs_unbuffered_channels.md"
+              "id": "core",
+              "name": "Core",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/core_language/core/arrays_slices_and_their_internal_structure.md"
+                },
+                {
+                  "path": "go/core_language/core/defer_panic_and_recover_mechanisms.md"
+                },
+                {
+                  "path": "go/core_language/core/garbage_collection_principles.md"
+                },
+                {
+                  "path": "go/core_language/core/interfaces_and_polymorphism.md"
+                },
+                {
+                  "path": "go/core_language/core/maps_implementation.md"
+                },
+                {
+                  "path": "go/core_language/core/methods_and_receiver_types.md"
+                },
+                {
+                  "path": "go/core_language/core/pointers_and_memory_management.md"
+                },
+                {
+                  "path": "go/core_language/core/structs_and_custom_types.md"
+                },
+                {
+                  "path": "go/core_language/core/type_assertions_and_type_switches.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "go/concurrency_foundations/concurrency_safety_fundamentals.md"
+              "id": "fundamentals",
+              "name": "Fundamentals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/core_language/fundamentals/basic_syntax_and_language_structure.md"
+                },
+                {
+                  "path": "go/core_language/fundamentals/control_structures.md"
+                },
+                {
+                  "path": "go/core_language/fundamentals/error_handling_fundamentals.md"
+                },
+                {
+                  "path": "go/core_language/fundamentals/go_compilation_and_execution_model.md"
+                },
+                {
+                  "path": "go/core_language/fundamentals/go_development_environment.md"
+                },
+                {
+                  "path": "go/core_language/fundamentals/packages_and_imports.md"
+                },
+                {
+                  "path": "go/core_language/fundamentals/philosophy_and_design_principles.md"
+                },
+                {
+                  "path": "go/core_language/fundamentals/variables_and_basic_data_types.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "go/concurrency_foundations/concurrency_vs_parallelism.md"
-            },
-            {
-              "path": "go/concurrency_foundations/goroutine_creation_and_lifecycle.md"
-            },
-            {
-              "path": "go/concurrency_foundations/goroutine_memory_consumption.md"
-            },
-            {
-              "path": "go/concurrency_foundations/go_channels.md"
-            },
-            {
-              "path": "go/concurrency_foundations/go_scheduler_and_work_stealing.md"
-            },
-            {
-              "path": "go/concurrency_foundations/introduction_to_goroutines.md"
-            },
-            {
-              "path": "go/concurrency_foundations/select_statement_for_channel_operations.md"
+              "id": "standard_library",
+              "name": "Standard Library",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/core_language/standard_library/http_client_and_server_implementation.md"
+                },
+                {
+                  "path": "go/core_language/standard_library/json_xml_and_data_serialization.md"
+                },
+                {
+                  "path": "go/core_language/standard_library/regular_expressions.md"
+                },
+                {
+                  "path": "go/core_language/standard_library/Sort package and custom sorting.md"
+                },
+                {
+                  "path": "go/core_language/standard_library/string_manipulation_and_formatting.md"
+                },
+                {
+                  "path": "go/core_language/standard_library/template_parsing_and_execution.md"
+                },
+                {
+                  "path": "go/core_language/standard_library/Testing package fundamentals.md"
+                },
+                {
+                  "path": "go/core_language/standard_library/time_and_date_handling.md"
+                },
+                {
+                  "path": "go/core_language/standard_library/working_with_files_and_io.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "concurrency_safety",
-          "name": "Concurrency Safety",
-          "categories": [],
-          "files": [
+          "id": "internals",
+          "name": "Internals",
+          "categories": [
             {
-              "path": "go/concurrency_safety/data_races_vs_race_conditions.md"
+              "id": "context_package_deep_dive",
+              "name": "Context Package Deep Dive",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/internals/context_package_deep_dive/best_practices_for_context_propagation.md"
+                },
+                {
+                  "path": "go/internals/context_package_deep_dive/common_context_anti_patterns.md"
+                },
+                {
+                  "path": "go/internals/context_package_deep_dive/context_design_principles_and_usage.md"
+                },
+                {
+                  "path": "go/internals/context_package_deep_dive/context_integration_with_apis.md"
+                },
+                {
+                  "path": "go/internals/context_package_deep_dive/context_performance_considerations.md"
+                },
+                {
+                  "path": "go/internals/context_package_deep_dive/context_values_for_request_scoped_data.md"
+                },
+                {
+                  "path": "go/internals/context_package_deep_dive/creating_and_cascading_cancellation.md"
+                },
+                {
+                  "path": "go/internals/context_package_deep_dive/custom_context_implementations.md"
+                },
+                {
+                  "path": "go/internals/context_package_deep_dive/deadline_and_timeout_propagation.md"
+                },
+                {
+                  "path": "go/internals/context_package_deep_dive/testing_code_that_uses_context.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "go/concurrency_safety/deadlock_detection_and_prevention.md"
+              "id": "go_scheduler_internals",
+              "name": "Go Scheduler Internals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/internals/go_scheduler_internals/cooperative_scheduling_mechanisms.md"
+                },
+                {
+                  "path": "go/internals/go_scheduler_internals/gomaxprocs_and_cpu_utilization.md"
+                },
+                {
+                  "path": "go/internals/go_scheduler_internals/go_scheduler_design_and_implementation.md"
+                },
+                {
+                  "path": "go/internals/go_scheduler_internals/performance_tuning_for_the_scheduler.md"
+                },
+                {
+                  "path": "go/internals/go_scheduler_internals/preemption_in_the_go_scheduler.md"
+                },
+                {
+                  "path": "go/internals/go_scheduler_internals/processor_machine_and_goroutine.md"
+                },
+                {
+                  "path": "go/internals/go_scheduler_internals/scheduler_optimizations_over_go_versions.md"
+                },
+                {
+                  "path": "go/internals/go_scheduler_internals/scheduler_tracing_and_visualization.md"
+                },
+                {
+                  "path": "go/internals/go_scheduler_internals/system_call_handling_in_the_scheduler.md"
+                },
+                {
+                  "path": "go/internals/go_scheduler_internals/work_stealing_algorithm_details.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "go/concurrency_safety/immutability_as_a_concurrency_strategy.md"
-            },
-            {
-              "path": "go/concurrency_safety/livelock_detection_and_prevention.md"
-            },
-            {
-              "path": "go/concurrency_safety/race_conditions_and_detection.md"
-            },
-            {
-              "path": "go/concurrency_safety/starvation_issues_in_concurrent_systems.md"
-            },
-            {
-              "path": "go/concurrency_safety/synchronization_boundary_design.md"
-            },
-            {
-              "path": "go/concurrency_safety/thread_safe_data_structure_design.md"
-            },
-            {
-              "path": "go/concurrency_safety/using_the_race_detector_effectively.md"
-            },
-            {
-              "path": "go/concurrency_safety/verification_approaches_for_concurrent_code.md"
+              "id": "memory_model",
+              "name": "Memory Model",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/internals/memory_model/atomicity_visibility_and_ordering_guarantees.md"
+                },
+                {
+                  "path": "go/internals/memory_model/cache_coherence_implications.md"
+                },
+                {
+                  "path": "go/internals/memory_model/go_memory_model_specification.md"
+                },
+                {
+                  "path": "go/internals/memory_model/happens_before_relationships.md"
+                },
+                {
+                  "path": "go/internals/memory_model/lock_free_programming_considerations.md"
+                },
+                {
+                  "path": "go/internals/memory_model/memory_fences_and_barriers_in_go.md"
+                },
+                {
+                  "path": "go/internals/memory_model/memory_model_edge_cases_and_pitfalls.md"
+                },
+                {
+                  "path": "go/internals/memory_model/memory_reordering_effects.md"
+                },
+                {
+                  "path": "go/internals/memory_model/synchronizing_access_to_shared_memory.md"
+                },
+                {
+                  "path": "go/internals/memory_model/weak_vs_strong_memory_ordering.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "context_package_deep_dive",
-          "name": "Context Package Deep Dive",
-          "categories": [],
-          "files": [
+          "id": "synchronization",
+          "name": "Synchronization",
+          "categories": [
             {
-              "path": "go/context_package_deep_dive/best_practices_for_context_propagation.md"
+              "id": "concurrency_safety",
+              "name": "Concurrency Safety",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/synchronization/concurrency_safety/data_races_vs_race_conditions.md"
+                },
+                {
+                  "path": "go/synchronization/concurrency_safety/deadlock_detection_and_prevention.md"
+                },
+                {
+                  "path": "go/synchronization/concurrency_safety/immutability_as_a_concurrency_strategy.md"
+                },
+                {
+                  "path": "go/synchronization/concurrency_safety/livelock_detection_and_prevention.md"
+                },
+                {
+                  "path": "go/synchronization/concurrency_safety/race_conditions_and_detection.md"
+                },
+                {
+                  "path": "go/synchronization/concurrency_safety/starvation_issues_in_concurrent_systems.md"
+                },
+                {
+                  "path": "go/synchronization/concurrency_safety/synchronization_boundary_design.md"
+                },
+                {
+                  "path": "go/synchronization/concurrency_safety/thread_safe_data_structure_design.md"
+                },
+                {
+                  "path": "go/synchronization/concurrency_safety/using_the_race_detector_effectively.md"
+                },
+                {
+                  "path": "go/synchronization/concurrency_safety/verification_approaches_for_concurrent_code.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "go/context_package_deep_dive/common_context_anti_patterns.md"
+              "id": "synchronization_performance",
+              "name": "Synchronization Performance",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/synchronization/synchronization_performance/atomic_operations_performance.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_performance/benchmarking_synchronization_approaches.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_performance/fine_grained_vs_coarse_grained_locking.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_performance/hardware_considerations_for_synchronization.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_performance/lock_contention_measurement.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_performance/lock_free_data_structures.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_performance/memory_access_patterns_and_cache_effects.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_performance/read_heavy_vs_write_heavy_optimizations.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_performance/scalability_limitations_in_synchronization.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_performance/wait_free_algorithms_in_go.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "go/context_package_deep_dive/context_design_principles_and_usage.md"
-            },
-            {
-              "path": "go/context_package_deep_dive/context_integration_with_apis.md"
-            },
-            {
-              "path": "go/context_package_deep_dive/context_performance_considerations.md"
-            },
-            {
-              "path": "go/context_package_deep_dive/context_values_for_request_scoped_data.md"
-            },
-            {
-              "path": "go/context_package_deep_dive/creating_and_cascading_cancellation.md"
-            },
-            {
-              "path": "go/context_package_deep_dive/custom_context_implementations.md"
-            },
-            {
-              "path": "go/context_package_deep_dive/deadline_and_timeout_propagation.md"
-            },
-            {
-              "path": "go/context_package_deep_dive/testing_code_that_uses_context.md"
+              "id": "synchronization_primitives",
+              "name": "Synchronization Primitives",
+              "categories": [],
+              "files": [
+                {
+                  "path": "go/synchronization/synchronization_primitives/atomic_operations_for_simple_synchronization.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_primitives/cond_for_condition_variable_patterns.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_primitives/efficient_concurrent_data_access_patterns.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_primitives/measuring_and_reducing_lock_contention.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_primitives/mutex_and_rw_mutex_for_exclusive_access.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_primitives/once_for_one_time_initialization.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_primitives/understanding_lock_contention_issues.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_primitives/using_sync_pool_for_object_reuse.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_primitives/wait_group_for_goroutine_coordination.md"
+                },
+                {
+                  "path": "go/synchronization/synchronization_primitives/when_to_use_channels_vs_mutexes.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "core",
-          "name": "Core",
-          "categories": [],
-          "files": [
-            {
-              "path": "go/core/arrays_slices_and_their_internal_structure.md"
-            },
-            {
-              "path": "go/core/defer_panic_and_recover_mechanisms.md"
-            },
-            {
-              "path": "go/core/garbage_collection_principles.md"
-            },
-            {
-              "path": "go/core/interfaces_and_polymorphism.md"
-            },
-            {
-              "path": "go/core/maps_implementation.md"
-            },
-            {
-              "path": "go/core/methods_and_receiver_types.md"
-            },
-            {
-              "path": "go/core/pointers_and_memory_management.md"
-            },
-            {
-              "path": "go/core/structs_and_custom_types.md"
-            },
-            {
-              "path": "go/core/type_assertions_and_type_switches.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "fundamentals",
-          "name": "Fundamentals",
-          "categories": [],
-          "files": [
-            {
-              "path": "go/fundamentals/basic_syntax_and_language_structure.md"
-            },
-            {
-              "path": "go/fundamentals/control_structures.md"
-            },
-            {
-              "path": "go/fundamentals/error_handling_fundamentals.md"
-            },
-            {
-              "path": "go/fundamentals/go_compilation_and_execution_model.md"
-            },
-            {
-              "path": "go/fundamentals/go_development_environment.md"
-            },
-            {
-              "path": "go/fundamentals/packages_and_imports.md"
-            },
-            {
-              "path": "go/fundamentals/philosophy_and_design_principles.md"
-            },
-            {
-              "path": "go/fundamentals/variables_and_basic_data_types.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "goroutine_patterns",
-          "name": "Goroutine Patterns",
-          "categories": [],
-          "files": [
-            {
-              "path": "go/goroutine_patterns/avoiding_goroutine_leaks.md"
-            },
-            {
-              "path": "go/goroutine_patterns/balancing_goroutine_workloads.md"
-            },
-            {
-              "path": "go/goroutine_patterns/benchmarking_goroutine_performance.md"
-            },
-            {
-              "path": "go/goroutine_patterns/capturing_variables_in_goroutines.md"
-            },
-            {
-              "path": "go/goroutine_patterns/controlling_goroutine_execution_order.md"
-            },
-            {
-              "path": "go/goroutine_patterns/debugging_goroutine_issues.md"
-            },
-            {
-              "path": "go/goroutine_patterns/goroutine_creation_best_practices.md"
-            },
-            {
-              "path": "go/goroutine_patterns/graceful_goroutine_termination.md"
-            },
-            {
-              "path": "go/goroutine_patterns/parent_child_goroutine_relationships.md"
-            },
-            {
-              "path": "go/goroutine_patterns/stack_traces_and_goroutine_forensics.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "go_scheduler_internals",
-          "name": "Go Scheduler Internals",
-          "categories": [],
-          "files": [
-            {
-              "path": "go/go_scheduler_internals/cooperative_scheduling_mechanisms.md"
-            },
-            {
-              "path": "go/go_scheduler_internals/gomaxprocs_and_cpu_utilization.md"
-            },
-            {
-              "path": "go/go_scheduler_internals/go_scheduler_design_and_implementation.md"
-            },
-            {
-              "path": "go/go_scheduler_internals/performance_tuning_for_the_scheduler.md"
-            },
-            {
-              "path": "go/go_scheduler_internals/preemption_in_the_go_scheduler.md"
-            },
-            {
-              "path": "go/go_scheduler_internals/processor_machine_and_goroutine.md"
-            },
-            {
-              "path": "go/go_scheduler_internals/scheduler_optimizations_over_go_versions.md"
-            },
-            {
-              "path": "go/go_scheduler_internals/scheduler_tracing_and_visualization.md"
-            },
-            {
-              "path": "go/go_scheduler_internals/system_call_handling_in_the_scheduler.md"
-            },
-            {
-              "path": "go/go_scheduler_internals/work_stealing_algorithm_details.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "memory_model",
-          "name": "Memory Model",
-          "categories": [],
-          "files": [
-            {
-              "path": "go/memory_model/atomicity_visibility_and_ordering_guarantees.md"
-            },
-            {
-              "path": "go/memory_model/cache_coherence_implications.md"
-            },
-            {
-              "path": "go/memory_model/go_memory_model_specification.md"
-            },
-            {
-              "path": "go/memory_model/happens_before_relationships.md"
-            },
-            {
-              "path": "go/memory_model/lock_free_programming_considerations.md"
-            },
-            {
-              "path": "go/memory_model/memory_fences_and_barriers_in_go.md"
-            },
-            {
-              "path": "go/memory_model/memory_model_edge_cases_and_pitfalls.md"
-            },
-            {
-              "path": "go/memory_model/memory_reordering_effects.md"
-            },
-            {
-              "path": "go/memory_model/synchronizing_access_to_shared_memory.md"
-            },
-            {
-              "path": "go/memory_model/weak_vs_strong_memory_ordering.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "select_statement_patterns",
-          "name": "Select Statement Patterns",
-          "categories": [],
-          "files": [
-            {
-              "path": "go/select_statement_patterns/breaking_from_infinite_select_loops.md"
-            },
-            {
-              "path": "go/select_statement_patterns/default_case_for_non_blocking_operations.md"
-            },
-            {
-              "path": "go/select_statement_patterns/dynamic_channel_selection.md"
-            },
-            {
-              "path": "go/select_statement_patterns/error_handling_in_select_statements.md"
-            },
-            {
-              "path": "go/select_statement_patterns/multiplexing_multiple_channels.md"
-            },
-            {
-              "path": "go/select_statement_patterns/multi_channel_coordination_with_select.md"
-            },
-            {
-              "path": "go/select_statement_patterns/performance_considerations_in_select_usage.md"
-            },
-            {
-              "path": "go/select_statement_patterns/prioritizing_channel_operations.md"
-            },
-            {
-              "path": "go/select_statement_patterns/timeout_patterns_with_select.md"
-            },
-            {
-              "path": "go/select_statement_patterns/using_reflect_select_for_dynamic_cases.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "standard_library",
-          "name": "Standard Library",
-          "categories": [],
-          "files": [
-            {
-              "path": "go/standard_library/http_client_and_server_implementation.md"
-            },
-            {
-              "path": "go/standard_library/json_xml_and_data_serialization.md"
-            },
-            {
-              "path": "go/standard_library/regular_expressions.md"
-            },
-            {
-              "path": "go/standard_library/Sort package and custom sorting.md"
-            },
-            {
-              "path": "go/standard_library/string_manipulation_and_formatting.md"
-            },
-            {
-              "path": "go/standard_library/template_parsing_and_execution.md"
-            },
-            {
-              "path": "go/standard_library/Testing package fundamentals.md"
-            },
-            {
-              "path": "go/standard_library/time_and_date_handling.md"
-            },
-            {
-              "path": "go/standard_library/working_with_files_and_io.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "structured_concurrency",
-          "name": "Structured Concurrency",
-          "categories": [],
-          "files": [
-            {
-              "path": "go/structured_concurrency/cancellation_cascades_implementation.md"
-            },
-            {
-              "path": "go/structured_concurrency/composing_concurrent_operations.md"
-            },
-            {
-              "path": "go/structured_concurrency/error_propagation_in_structured_concurrency.md"
-            },
-            {
-              "path": "go/structured_concurrency/implementing_task_groups.md"
-            },
-            {
-              "path": "go/structured_concurrency/migration_strategies_toward_structured_concurrency.md"
-            },
-            {
-              "path": "go/structured_concurrency/parent_child_relationships_in_concurrent_code.md"
-            },
-            {
-              "path": "go/structured_concurrency/resource_cleanup_in_concurrent_hierarchies.md"
-            },
-            {
-              "path": "go/structured_concurrency/structured_concurrency_principles.md"
-            },
-            {
-              "path": "go/structured_concurrency/task_scoping_and_lifetime_management.md"
-            },
-            {
-              "path": "go/structured_concurrency/testing_structured_concurrent_code.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "synchronization_performance",
-          "name": "Synchronization Performance",
-          "categories": [],
-          "files": [
-            {
-              "path": "go/synchronization_performance/atomic_operations_performance.md"
-            },
-            {
-              "path": "go/synchronization_performance/benchmarking_synchronization_approaches.md"
-            },
-            {
-              "path": "go/synchronization_performance/fine_grained_vs_coarse_grained_locking.md"
-            },
-            {
-              "path": "go/synchronization_performance/hardware_considerations_for_synchronization.md"
-            },
-            {
-              "path": "go/synchronization_performance/lock_contention_measurement.md"
-            },
-            {
-              "path": "go/synchronization_performance/lock_free_data_structures.md"
-            },
-            {
-              "path": "go/synchronization_performance/memory_access_patterns_and_cache_effects.md"
-            },
-            {
-              "path": "go/synchronization_performance/read_heavy_vs_write_heavy_optimizations.md"
-            },
-            {
-              "path": "go/synchronization_performance/scalability_limitations_in_synchronization.md"
-            },
-            {
-              "path": "go/synchronization_performance/wait_free_algorithms_in_go.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "synchronization_primitives",
-          "name": "Synchronization Primitives",
-          "categories": [],
-          "files": [
-            {
-              "path": "go/synchronization_primitives/atomic_operations_for_simple_synchronization.md"
-            },
-            {
-              "path": "go/synchronization_primitives/cond_for_condition_variable_patterns.md"
-            },
-            {
-              "path": "go/synchronization_primitives/efficient_concurrent_data_access_patterns.md"
-            },
-            {
-              "path": "go/synchronization_primitives/measuring_and_reducing_lock_contention.md"
-            },
-            {
-              "path": "go/synchronization_primitives/mutex_and_rw_mutex_for_exclusive_access.md"
-            },
-            {
-              "path": "go/synchronization_primitives/once_for_one_time_initialization.md"
-            },
-            {
-              "path": "go/synchronization_primitives/understanding_lock_contention_issues.md"
-            },
-            {
-              "path": "go/synchronization_primitives/using_sync_pool_for_object_reuse.md"
-            },
-            {
-              "path": "go/synchronization_primitives/wait_group_for_goroutine_coordination.md"
-            },
-            {
-              "path": "go/synchronization_primitives/when_to_use_channels_vs_mutexes.md"
-            }
-          ],
+          "files": [],
           "totalFileSize": 0
         }
       ],
@@ -3667,120 +3715,47 @@
       "name": "React",
       "categories": [
         {
-          "id": "advanced_component_patterns",
-          "name": "Advanced Component Patterns",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/advanced_component_patterns/component_inversion_control.md"
-            },
-            {
-              "path": "react/advanced_component_patterns/compound_components_pattern.md"
-            },
-            {
-              "path": "react/advanced_component_patterns/controlled_vs_uncontrolled_component_patterns.md"
-            },
-            {
-              "path": "react/advanced_component_patterns/higher_order_components.md"
-            },
-            {
-              "path": "react/advanced_component_patterns/polymorphic_components_implementation.md"
-            },
-            {
-              "path": "react/advanced_component_patterns/props_collection_pattern.md"
-            },
-            {
-              "path": "react/advanced_component_patterns/prop_getters_pattern.md"
-            },
-            {
-              "path": "react/advanced_component_patterns/render_props_pattern_implementation.md"
-            },
-            {
-              "path": "react/advanced_component_patterns/state_machines_in_react_components.md"
-            },
-            {
-              "path": "react/advanced_component_patterns/state_reducer_pattern.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "advanced_rendering_optimization",
-          "name": "Advanced Rendering Optimization",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/advanced_rendering_optimization/component_composition_for_performance.md"
-            },
-            {
-              "path": "react/advanced_rendering_optimization/frame_rate_optimization_techniques.md"
-            },
-            {
-              "path": "react/advanced_rendering_optimization/memory_usage_optimization.md"
-            },
-            {
-              "path": "react/advanced_rendering_optimization/react_profiler_api_usage.md"
-            },
-            {
-              "path": "react/advanced_rendering_optimization/rendering_bottleneck_identification.md"
-            },
-            {
-              "path": "react/advanced_rendering_optimization/scheduling_and_prioritization_techniques.md"
-            },
-            {
-              "path": "react/advanced_rendering_optimization/selective_rendering_strategies.md"
-            },
-            {
-              "path": "react/advanced_rendering_optimization/state_colocation_principles.md"
-            },
-            {
-              "path": "react/advanced_rendering_optimization/virtualization_implementation_details.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "fiber_architecture",
-          "name": "Fiber Architecture",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/fiber_architecture/double_buffering_implementation.md"
-            },
-            {
-              "path": "react/fiber_architecture/effect_list_creation_and_traversal.md"
-            },
-            {
-              "path": "react/fiber_architecture/fiber_flags_and_side_effects_tracking.md"
-            },
-            {
-              "path": "react/fiber_architecture/fiber_lanes_and_priorities.md"
-            },
-            {
-              "path": "react/fiber_architecture/fiber_linked_list_structure_child_sibling_return.md"
-            },
-            {
-              "path": "react/fiber_architecture/fiber_node_structure_and_properties.md"
-            },
-            {
-              "path": "react/fiber_architecture/fiber_root_management.md"
-            },
-            {
-              "path": "react/fiber_architecture/fiber_update_queue_management.md"
-            },
-            {
-              "path": "react/fiber_architecture/time_slicing_implementation.md"
-            },
-            {
-              "path": "react/fiber_architecture/work_in_progress_tree_construction.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
           "id": "fundamentals",
           "name": "Fundamentals",
           "categories": [
+            {
+              "id": "advanced_component_patterns",
+              "name": "Advanced Component Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/fundamentals/advanced_component_patterns/component_inversion_control.md"
+                },
+                {
+                  "path": "react/fundamentals/advanced_component_patterns/compound_components_pattern.md"
+                },
+                {
+                  "path": "react/fundamentals/advanced_component_patterns/controlled_vs_uncontrolled_component_patterns.md"
+                },
+                {
+                  "path": "react/fundamentals/advanced_component_patterns/higher_order_components.md"
+                },
+                {
+                  "path": "react/fundamentals/advanced_component_patterns/polymorphic_components_implementation.md"
+                },
+                {
+                  "path": "react/fundamentals/advanced_component_patterns/props_collection_pattern.md"
+                },
+                {
+                  "path": "react/fundamentals/advanced_component_patterns/prop_getters_pattern.md"
+                },
+                {
+                  "path": "react/fundamentals/advanced_component_patterns/render_props_pattern_implementation.md"
+                },
+                {
+                  "path": "react/fundamentals/advanced_component_patterns/state_machines_in_react_components.md"
+                },
+                {
+                  "path": "react/fundamentals/advanced_component_patterns/state_reducer_pattern.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
             {
               "id": "component_fundamentals",
               "name": "Component Fundamentals",
@@ -3990,125 +3965,6 @@
           "totalFileSize": 0
         },
         {
-          "id": "libraries",
-          "name": "Libraries",
-          "categories": [
-            {
-              "id": "framer_motion_for_animations",
-              "name": "Framer Motion For Animations",
-              "categories": [],
-              "files": [
-                {
-                  "path": "react/libraries/framer_motion_for_animations/accessibility_considerations_in_animations.md"
-                },
-                {
-                  "path": "react/libraries/framer_motion_for_animations/animation_orchestration_between_components.md"
-                },
-                {
-                  "path": "react/libraries/framer_motion_for_animations/basic_animation_properties_and_variants.md"
-                },
-                {
-                  "path": "react/libraries/framer_motion_for_animations/complex_animation_sequences_and_timelines.md"
-                },
-                {
-                  "path": "react/libraries/framer_motion_for_animations/gesture_recognition_and_handling.md"
-                },
-                {
-                  "path": "react/libraries/framer_motion_for_animations/layout_animations_and_flip_technique.md"
-                },
-                {
-                  "path": "react/libraries/framer_motion_for_animations/page_transitions_with_animatepresence.md"
-                },
-                {
-                  "path": "react/libraries/framer_motion_for_animations/performance_optimization_for_animations.md"
-                },
-                {
-                  "path": "react/libraries/framer_motion_for_animations/scroll_based_animations.md"
-                },
-                {
-                  "path": "react/libraries/framer_motion_for_animations/svg_animation_techniques.md"
-                }
-              ],
-              "totalFileSize": 0
-            },
-            {
-              "id": "tan_stack_library_ecosystem",
-              "name": "Tan Stack Library Ecosystem",
-              "categories": [],
-              "files": [
-                {
-                  "path": "react/libraries/tan_stack_library_ecosystem/form_state_management_with_tan_stack_form.md"
-                },
-                {
-                  "path": "react/libraries/tan_stack_library_ecosystem/managing_server_and_client_state_separation.md"
-                },
-                {
-                  "path": "react/libraries/tan_stack_library_ecosystem/performance_patterns_across_tan_stack_libraries.md"
-                },
-                {
-                  "path": "react/libraries/tan_stack_library_ecosystem/query_invalidation_strategies.md"
-                },
-                {
-                  "path": "react/libraries/tan_stack_library_ecosystem/router_implementation_with_tan_stack_router.md"
-                },
-                {
-                  "path": "react/libraries/tan_stack_library_ecosystem/table_for_data_grid_implementation.md"
-                },
-                {
-                  "path": "react/libraries/tan_stack_library_ecosystem/testing_tan_stack_powered_components.md"
-                },
-                {
-                  "path": "react/libraries/tan_stack_library_ecosystem/type_script_integration_for_type_safety.md"
-                },
-                {
-                  "path": "react/libraries/tan_stack_library_ecosystem/virtual_rendering_with_tan_stack_virtual.md"
-                }
-              ],
-              "totalFileSize": 0
-            }
-          ],
-          "files": [],
-          "totalFileSize": 0
-        },
-        {
-          "id": "performance_optimization",
-          "name": "Performance Optimization",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/performance_optimization/bundle_size_optimization_strategies.md"
-            },
-            {
-              "path": "react/performance_optimization/code_splitting_with_dynamic_imports.md"
-            },
-            {
-              "path": "react/performance_optimization/component_re_render_behavior.md"
-            },
-            {
-              "path": "react/performance_optimization/image_and_asset_optimization.md"
-            },
-            {
-              "path": "react/performance_optimization/performance_measurement_tools.md"
-            },
-            {
-              "path": "react/performance_optimization/performance_profiling_and_debugging.md"
-            },
-            {
-              "path": "react/performance_optimization/react_memo_for_component_memoization.md"
-            },
-            {
-              "path": "react/performance_optimization/react_rendering_process_understanding.md"
-            },
-            {
-              "path": "react/performance_optimization/usememo_and_usecallback_usage_patterns.md"
-            },
-            {
-              "path": "react/performance_optimization/virtualization_for_long_lists.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
           "id": "production_and_deployment",
           "name": "Production And Deployment",
           "categories": [
@@ -4193,76 +4049,195 @@
           "totalFileSize": 0
         },
         {
-          "id": "reconciliation_algorithm",
-          "name": "Reconciliation Algorithm",
-          "categories": [],
-          "files": [
+          "id": "rendering_and_performance",
+          "name": "Rendering And Performance",
+          "categories": [
             {
-              "path": "react/reconciliation_algorithm/child_reconciliation_process.md"
+              "id": "advanced_rendering_optimization",
+              "name": "Advanced Rendering Optimization",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/rendering_and_performance/advanced_rendering_optimization/component_composition_for_performance.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/advanced_rendering_optimization/frame_rate_optimization_techniques.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/advanced_rendering_optimization/memory_usage_optimization.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/advanced_rendering_optimization/react_profiler_api_usage.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/advanced_rendering_optimization/rendering_bottleneck_identification.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/advanced_rendering_optimization/scheduling_and_prioritization_techniques.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/advanced_rendering_optimization/selective_rendering_strategies.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/advanced_rendering_optimization/state_colocation_principles.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/advanced_rendering_optimization/virtualization_implementation_details.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "react/reconciliation_algorithm/element_creation_and_cloning.md"
+              "id": "fiber_architecture",
+              "name": "Fiber Architecture",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/rendering_and_performance/fiber_architecture/double_buffering_implementation.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/fiber_architecture/effect_list_creation_and_traversal.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/fiber_architecture/fiber_flags_and_side_effects_tracking.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/fiber_architecture/fiber_lanes_and_priorities.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/fiber_architecture/fiber_linked_list_structure_child_sibling_return.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/fiber_architecture/fiber_node_structure_and_properties.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/fiber_architecture/fiber_root_management.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/fiber_architecture/fiber_update_queue_management.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/fiber_architecture/time_slicing_implementation.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/fiber_architecture/work_in_progress_tree_construction.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "react/reconciliation_algorithm/key_prop_usage_in_reconciliation.md"
+              "id": "performance_optimization",
+              "name": "Performance Optimization",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/rendering_and_performance/performance_optimization/bundle_size_optimization_strategies.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/performance_optimization/code_splitting_with_dynamic_imports.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/performance_optimization/component_re_render_behavior.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/performance_optimization/image_and_asset_optimization.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/performance_optimization/performance_measurement_tools.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/performance_optimization/performance_profiling_and_debugging.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/performance_optimization/react_memo_for_component_memoization.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/performance_optimization/react_rendering_process_understanding.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/performance_optimization/usememo_and_usecallback_usage_patterns.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/performance_optimization/virtualization_for_long_lists.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "react/reconciliation_algorithm/list_reconciliation_optimization.md"
+              "id": "reconciliation_algorithm",
+              "name": "Reconciliation Algorithm",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/rendering_and_performance/reconciliation_algorithm/child_reconciliation_process.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/reconciliation_algorithm/element_creation_and_cloning.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/reconciliation_algorithm/key_prop_usage_in_reconciliation.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/reconciliation_algorithm/list_reconciliation_optimization.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/reconciliation_algorithm/props_comparison_strategies.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/reconciliation_algorithm/reconciliation_bailout_opportunities.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/reconciliation_algorithm/reconciliation_heuristics_and_assumptions.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/reconciliation_algorithm/tree_comparison_techniques.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/reconciliation_algorithm/virtual_dom_diffing_algorithm_implementation.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "react/reconciliation_algorithm/props_comparison_strategies.md"
-            },
-            {
-              "path": "react/reconciliation_algorithm/reconciliation_bailout_opportunities.md"
-            },
-            {
-              "path": "react/reconciliation_algorithm/reconciliation_heuristics_and_assumptions.md"
-            },
-            {
-              "path": "react/reconciliation_algorithm/tree_comparison_techniques.md"
-            },
-            {
-              "path": "react/reconciliation_algorithm/virtual_dom_diffing_algorithm_implementation.md"
+              "id": "rendering_process_in_react",
+              "name": "Rendering Process In React",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/rendering_and_performance/rendering_process_in_react/bailout_conditions_for_rendering.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/rendering_process_in_react/batching_update_mechanism.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/rendering_process_in_react/component_re_render_behavior.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/rendering_process_in_react/initial_render_mounting_process_flow.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/rendering_process_in_react/pure_rendering_vs_side_effects.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/rendering_process_in_react/react_dom_render_and_create_root_internals.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/rendering_process_in_react/render_phases_render_reconciliation_and_commit.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/rendering_process_in_react/render_preparation_and_setup.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/rendering_process_in_react/render_priorities_and_scheduling.md"
+                },
+                {
+                  "path": "react/rendering_and_performance/rendering_process_in_react/update_render_flow_and_optimizations.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "rendering_process_in_react",
-          "name": "Rendering Process In React",
-          "categories": [],
-          "files": [
-            {
-              "path": "react/rendering_process_in_react/bailout_conditions_for_rendering.md"
-            },
-            {
-              "path": "react/rendering_process_in_react/batching_update_mechanism.md"
-            },
-            {
-              "path": "react/rendering_process_in_react/component_re_render_behavior.md"
-            },
-            {
-              "path": "react/rendering_process_in_react/initial_render_mounting_process_flow.md"
-            },
-            {
-              "path": "react/rendering_process_in_react/pure_rendering_vs_side_effects.md"
-            },
-            {
-              "path": "react/rendering_process_in_react/react_dom_render_and_create_root_internals.md"
-            },
-            {
-              "path": "react/rendering_process_in_react/render_phases_render_reconciliation_and_commit.md"
-            },
-            {
-              "path": "react/rendering_process_in_react/render_preparation_and_setup.md"
-            },
-            {
-              "path": "react/rendering_process_in_react/render_priorities_and_scheduling.md"
-            },
-            {
-              "path": "react/rendering_process_in_react/update_render_flow_and_optimizations.md"
-            }
-          ],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -4344,6 +4319,41 @@
                 }
               ],
               "totalFileSize": 0
+            },
+            {
+              "id": "tan_stack_library_ecosystem",
+              "name": "Tan Stack Library Ecosystem",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/routing_and_data/tan_stack_library_ecosystem/form_state_management_with_tan_stack_form.md"
+                },
+                {
+                  "path": "react/routing_and_data/tan_stack_library_ecosystem/managing_server_and_client_state_separation.md"
+                },
+                {
+                  "path": "react/routing_and_data/tan_stack_library_ecosystem/performance_patterns_across_tan_stack_libraries.md"
+                },
+                {
+                  "path": "react/routing_and_data/tan_stack_library_ecosystem/query_invalidation_strategies.md"
+                },
+                {
+                  "path": "react/routing_and_data/tan_stack_library_ecosystem/router_implementation_with_tan_stack_router.md"
+                },
+                {
+                  "path": "react/routing_and_data/tan_stack_library_ecosystem/table_for_data_grid_implementation.md"
+                },
+                {
+                  "path": "react/routing_and_data/tan_stack_library_ecosystem/testing_tan_stack_powered_components.md"
+                },
+                {
+                  "path": "react/routing_and_data/tan_stack_library_ecosystem/type_script_integration_for_type_safety.md"
+                },
+                {
+                  "path": "react/routing_and_data/tan_stack_library_ecosystem/virtual_rendering_with_tan_stack_virtual.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
           "files": [],
@@ -4385,38 +4395,84 @@
           "totalFileSize": 0
         },
         {
-          "id": "styling_in_react",
-          "name": "Styling In React",
-          "categories": [],
-          "files": [
+          "id": "ui_and_styling",
+          "name": "Ui And Styling",
+          "categories": [
             {
-              "path": "react/styling_in_react/css_modules_for_component_scoping.md"
+              "id": "framer_motion_for_animations",
+              "name": "Framer Motion For Animations",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/ui_and_styling/framer_motion_for_animations/accessibility_considerations_in_animations.md"
+                },
+                {
+                  "path": "react/ui_and_styling/framer_motion_for_animations/animation_orchestration_between_components.md"
+                },
+                {
+                  "path": "react/ui_and_styling/framer_motion_for_animations/basic_animation_properties_and_variants.md"
+                },
+                {
+                  "path": "react/ui_and_styling/framer_motion_for_animations/complex_animation_sequences_and_timelines.md"
+                },
+                {
+                  "path": "react/ui_and_styling/framer_motion_for_animations/gesture_recognition_and_handling.md"
+                },
+                {
+                  "path": "react/ui_and_styling/framer_motion_for_animations/layout_animations_and_flip_technique.md"
+                },
+                {
+                  "path": "react/ui_and_styling/framer_motion_for_animations/page_transitions_with_animatepresence.md"
+                },
+                {
+                  "path": "react/ui_and_styling/framer_motion_for_animations/performance_optimization_for_animations.md"
+                },
+                {
+                  "path": "react/ui_and_styling/framer_motion_for_animations/scroll_based_animations.md"
+                },
+                {
+                  "path": "react/ui_and_styling/framer_motion_for_animations/svg_animation_techniques.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "react/styling_in_react/css_stylesheets_with_react.md"
-            },
-            {
-              "path": "react/styling_in_react/css_utility_libraries_with_react.md"
-            },
-            {
-              "path": "react/styling_in_react/emotion_for_css_composition.md"
-            },
-            {
-              "path": "react/styling_in_react/inline_styles_approach_and_limitations.md"
-            },
-            {
-              "path": "react/styling_in_react/responsive_design_patterns_in_react.md"
-            },
-            {
-              "path": "react/styling_in_react/styled_components_and_css_in_js.md"
-            },
-            {
-              "path": "react/styling_in_react/tailwind_css_integration_with_react.md"
-            },
-            {
-              "path": "react/styling_in_react/theme_implementation_strategies.md"
+              "id": "styling_in_react",
+              "name": "Styling In React",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/ui_and_styling/styling_in_react/css_modules_for_component_scoping.md"
+                },
+                {
+                  "path": "react/ui_and_styling/styling_in_react/css_stylesheets_with_react.md"
+                },
+                {
+                  "path": "react/ui_and_styling/styling_in_react/css_utility_libraries_with_react.md"
+                },
+                {
+                  "path": "react/ui_and_styling/styling_in_react/emotion_for_css_composition.md"
+                },
+                {
+                  "path": "react/ui_and_styling/styling_in_react/inline_styles_approach_and_limitations.md"
+                },
+                {
+                  "path": "react/ui_and_styling/styling_in_react/responsive_design_patterns_in_react.md"
+                },
+                {
+                  "path": "react/ui_and_styling/styling_in_react/styled_components_and_css_in_js.md"
+                },
+                {
+                  "path": "react/ui_and_styling/styling_in_react/tailwind_css_integration_with_react.md"
+                },
+                {
+                  "path": "react/ui_and_styling/styling_in_react/theme_implementation_strategies.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         }
       ],
