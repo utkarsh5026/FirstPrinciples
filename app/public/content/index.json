@@ -231,199 +231,256 @@
           "totalFileSize": 0
         },
         {
-          "id": "behavioral_design_patterns",
-          "name": "Behavioral Design Patterns",
+          "id": "concurrency_design_patterns",
+          "name": "Concurrency Design Patterns",
           "categories": [],
           "files": [
             {
-              "path": "design_patterns/behavioral_design_patterns/chain_of_responsibility.md"
+              "path": "design_patterns/concurrency_design_patterns/active_object_for_decoupled_method_execution.md"
             },
             {
-              "path": "design_patterns/behavioral_design_patterns/command_pattern.md"
+              "path": "design_patterns/concurrency_design_patterns/balking_pattern_for_conditional_execution.md"
             },
             {
-              "path": "design_patterns/behavioral_design_patterns/interpreter_pattern.md"
+              "path": "design_patterns/concurrency_design_patterns/double_checked_locking_optimization.md"
             },
             {
-              "path": "design_patterns/behavioral_design_patterns/iterator_pattern.md"
+              "path": "design_patterns/concurrency_design_patterns/guarded_suspension_for_coordinated_interaction.md"
             },
             {
-              "path": "design_patterns/behavioral_design_patterns/mediator_pattern.md"
+              "path": "design_patterns/concurrency_design_patterns/leader_followers_for_concurrent_request_handling.md"
             },
             {
-              "path": "design_patterns/behavioral_design_patterns/memento_pattern.md"
+              "path": "design_patterns/concurrency_design_patterns/monitor_object_for_synchronized_access.md"
             },
             {
-              "path": "design_patterns/behavioral_design_patterns/null_object_pattern.md"
+              "path": "design_patterns/concurrency_design_patterns/proactor_pattern.md"
             },
             {
-              "path": "design_patterns/behavioral_design_patterns/observer_pattern.md"
+              "path": "design_patterns/concurrency_design_patterns/reactor_pattern_for_event_handling.md"
             },
             {
-              "path": "design_patterns/behavioral_design_patterns/state_pattern.md"
+              "path": "design_patterns/concurrency_design_patterns/read_write_lock_for_concurrent_access_control.md"
             },
             {
-              "path": "design_patterns/behavioral_design_patterns/strategy_pattern.md"
+              "path": "design_patterns/concurrency_design_patterns/thread_pool_for_efficient_thread_management.md"
             },
             {
-              "path": "design_patterns/behavioral_design_patterns/template_method.md"
-            },
-            {
-              "path": "design_patterns/behavioral_design_patterns/visitor_pattern.md"
+              "path": "design_patterns/concurrency_design_patterns/thread_specific_storage_pattern.md"
             }
           ],
           "totalFileSize": 0
         },
         {
-          "id": "creational_design_patterns",
-          "name": "Creational Design Patterns",
-          "categories": [],
-          "files": [
+          "id": "design_pattern_fundamentals",
+          "name": "Design Pattern Fundamentals",
+          "categories": [
             {
-              "path": "design_patterns/creational_design_patterns/abstract_factory_for_families_of_objects.md"
+              "id": "foundational_design_principles",
+              "name": "Foundational Design Principles",
+              "categories": [],
+              "files": [
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/foundational_design_principles/code_cohesion_and_coupling_concepts.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/foundational_design_principles/composition_over_inheritance.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/foundational_design_principles/dry.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/foundational_design_principles/encapsulation_and_information_hiding.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/foundational_design_principles/kiss.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/foundational_design_principles/law_of_demeter.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/foundational_design_principles/programming_to_interfaces_not_implementations.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/foundational_design_principles/separation_of_concerns.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/foundational_design_principles/solid_principles_in_depth.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/foundational_design_principles/yagni.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "design_patterns/creational_design_patterns/builder_pattern_and_fluent_interfaces.md"
-            },
-            {
-              "path": "design_patterns/creational_design_patterns/dependency_injection_as_a_creation_pattern.md"
-            },
-            {
-              "path": "design_patterns/creational_design_patterns/factory_comparison.md"
-            },
-            {
-              "path": "design_patterns/creational_design_patterns/factory_method_pattern_for_object_creation.md"
-            },
-            {
-              "path": "design_patterns/creational_design_patterns/lazy_initialization_strategies.md"
-            },
-            {
-              "path": "design_patterns/creational_design_patterns/multiton_pattern.md"
-            },
-            {
-              "path": "design_patterns/creational_design_patterns/object_pool_for_resource_management.md"
-            },
-            {
-              "path": "design_patterns/creational_design_patterns/prototype_pattern_for_object_cloning.md"
-            },
-            {
-              "path": "design_patterns/creational_design_patterns/singleton_pattern_and_lifecycle_management.md"
+              "id": "fundamentals",
+              "name": "Fundamentals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/fundamentals/common_design_pattern_criticisms_and_limitations.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/fundamentals/design_patterns_across_different_programming_paradigms.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/fundamentals/design_pattern_structure_and_documentation.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/fundamentals/origins_and_history_of_design_patterns.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/fundamentals/pattern_classification_system_and_terminology.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/fundamentals/pattern_language_concepts_from_christopher_alexander.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/fundamentals/problem_solution_context_in_design_patterns.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/fundamentals/relationship_between_patterns_and_principles.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/fundamentals/understanding_the_purpose_and_benefits_of_design_patterns.md"
+                },
+                {
+                  "path": "design_patterns/design_pattern_fundamentals/fundamentals/when_to_use_and_not_use_design_patterns.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
-          "id": "foundational_design_principles",
-          "name": "Foundational Design Principles",
-          "categories": [],
-          "files": [
+          "id": "implementations",
+          "name": "Implementations",
+          "categories": [
             {
-              "path": "design_patterns/foundational_design_principles/code_cohesion_and_coupling_concepts.md"
+              "id": "behavioral_design_patterns",
+              "name": "Behavioral Design Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/chain_of_responsibility.md"
+                },
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/command_pattern.md"
+                },
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/interpreter_pattern.md"
+                },
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/iterator_pattern.md"
+                },
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/mediator_pattern.md"
+                },
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/memento_pattern.md"
+                },
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/null_object_pattern.md"
+                },
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/observer_pattern.md"
+                },
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/state_pattern.md"
+                },
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/strategy_pattern.md"
+                },
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/template_method.md"
+                },
+                {
+                  "path": "design_patterns/implementations/behavioral_design_patterns/visitor_pattern.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "design_patterns/foundational_design_principles/composition_over_inheritance.md"
+              "id": "creational_design_patterns",
+              "name": "Creational Design Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "design_patterns/implementations/creational_design_patterns/abstract_factory_for_families_of_objects.md"
+                },
+                {
+                  "path": "design_patterns/implementations/creational_design_patterns/builder_pattern_and_fluent_interfaces.md"
+                },
+                {
+                  "path": "design_patterns/implementations/creational_design_patterns/dependency_injection_as_a_creation_pattern.md"
+                },
+                {
+                  "path": "design_patterns/implementations/creational_design_patterns/factory_comparison.md"
+                },
+                {
+                  "path": "design_patterns/implementations/creational_design_patterns/factory_method_pattern_for_object_creation.md"
+                },
+                {
+                  "path": "design_patterns/implementations/creational_design_patterns/lazy_initialization_strategies.md"
+                },
+                {
+                  "path": "design_patterns/implementations/creational_design_patterns/multiton_pattern.md"
+                },
+                {
+                  "path": "design_patterns/implementations/creational_design_patterns/object_pool_for_resource_management.md"
+                },
+                {
+                  "path": "design_patterns/implementations/creational_design_patterns/prototype_pattern_for_object_cloning.md"
+                },
+                {
+                  "path": "design_patterns/implementations/creational_design_patterns/singleton_pattern_and_lifecycle_management.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "design_patterns/foundational_design_principles/dry.md"
-            },
-            {
-              "path": "design_patterns/foundational_design_principles/encapsulation_and_information_hiding.md"
-            },
-            {
-              "path": "design_patterns/foundational_design_principles/kiss.md"
-            },
-            {
-              "path": "design_patterns/foundational_design_principles/law_of_demeter.md"
-            },
-            {
-              "path": "design_patterns/foundational_design_principles/programming_to_interfaces_not_implementations.md"
-            },
-            {
-              "path": "design_patterns/foundational_design_principles/separation_of_concerns.md"
-            },
-            {
-              "path": "design_patterns/foundational_design_principles/solid_principles_in_depth.md"
-            },
-            {
-              "path": "design_patterns/foundational_design_principles/yagni.md"
+              "id": "structural_design_patterns",
+              "name": "Structural Design Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "design_patterns/implementations/structural_design_patterns/adapter_pattern_for_interface_compatibility.md"
+                },
+                {
+                  "path": "design_patterns/implementations/structural_design_patterns/bridge_pattern_for_separation_of_abstraction_and_implementation.md"
+                },
+                {
+                  "path": "design_patterns/implementations/structural_design_patterns/composite_pattern_for_tree_structures.md"
+                },
+                {
+                  "path": "design_patterns/implementations/structural_design_patterns/decorator_pattern_for_extending_functionality.md"
+                },
+                {
+                  "path": "design_patterns/implementations/structural_design_patterns/extension_object_for_modular_capabilities.md"
+                },
+                {
+                  "path": "design_patterns/implementations/structural_design_patterns/façade_pattern_for_simplified_interfaces.md"
+                },
+                {
+                  "path": "design_patterns/implementations/structural_design_patterns/flyweight_pattern_for_memory_optimization.md"
+                },
+                {
+                  "path": "design_patterns/implementations/structural_design_patterns/module_pattern_in_javascript.md"
+                },
+                {
+                  "path": "design_patterns/implementations/structural_design_patterns/private_class_data_for_encapsulation.md"
+                },
+                {
+                  "path": "design_patterns/implementations/structural_design_patterns/proxy_pattern_and_its_variations.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "fundamentals",
-          "name": "Fundamentals",
-          "categories": [],
-          "files": [
-            {
-              "path": "design_patterns/fundamentals/common_design_pattern_criticisms_and_limitations.md"
-            },
-            {
-              "path": "design_patterns/fundamentals/design_patterns_across_different_programming_paradigms.md"
-            },
-            {
-              "path": "design_patterns/fundamentals/design_pattern_structure_and_documentation.md"
-            },
-            {
-              "path": "design_patterns/fundamentals/origins_and_history_of_design_patterns.md"
-            },
-            {
-              "path": "design_patterns/fundamentals/pattern_classification_system_and_terminology.md"
-            },
-            {
-              "path": "design_patterns/fundamentals/pattern_language_concepts_from_christopher_alexander.md"
-            },
-            {
-              "path": "design_patterns/fundamentals/problem_solution_context_in_design_patterns.md"
-            },
-            {
-              "path": "design_patterns/fundamentals/relationship_between_patterns_and_principles.md"
-            },
-            {
-              "path": "design_patterns/fundamentals/understanding_the_purpose_and_benefits_of_design_patterns.md"
-            },
-            {
-              "path": "design_patterns/fundamentals/when_to_use_and_not_use_design_patterns.md"
-            }
-          ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "structural_design_patterns",
-          "name": "Structural Design Patterns",
-          "categories": [],
-          "files": [
-            {
-              "path": "design_patterns/structural_design_patterns/adapter_pattern_for_interface_compatibility.md"
-            },
-            {
-              "path": "design_patterns/structural_design_patterns/bridge_pattern_for_separation_of_abstraction_and_implementation.md"
-            },
-            {
-              "path": "design_patterns/structural_design_patterns/composite_pattern_for_tree_structures.md"
-            },
-            {
-              "path": "design_patterns/structural_design_patterns/decorator_pattern_for_extending_functionality.md"
-            },
-            {
-              "path": "design_patterns/structural_design_patterns/extension_object_for_modular_capabilities.md"
-            },
-            {
-              "path": "design_patterns/structural_design_patterns/façade_pattern_for_simplified_interfaces.md"
-            },
-            {
-              "path": "design_patterns/structural_design_patterns/flyweight_pattern_for_memory_optimization.md"
-            },
-            {
-              "path": "design_patterns/structural_design_patterns/module_pattern_in_javascript.md"
-            },
-            {
-              "path": "design_patterns/structural_design_patterns/private_class_data_for_encapsulation.md"
-            },
-            {
-              "path": "design_patterns/structural_design_patterns/proxy_pattern_and_its_variations.md"
-            }
-          ],
+          "files": [],
           "totalFileSize": 0
         }
       ],
@@ -1415,31 +1472,31 @@
               "categories": [],
               "files": [
                 {
-                  "path": "javascript/browser_and_dom/advanced_dom_patterns/canvas_based_dom_optimization.md"
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/canvas_optimization.md"
                 },
                 {
-                  "path": "javascript/browser_and_dom/advanced_dom_patterns/complex_table_implementations.md"
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/complex_tables.md"
                 },
                 {
-                  "path": "javascript/browser_and_dom/advanced_dom_patterns/dom_virtualization_for_large_datasets.md"
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/dom_virtualization.md"
                 },
                 {
-                  "path": "javascript/browser_and_dom/advanced_dom_patterns/drag_and_drop_systems.md"
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/drag_and_drop.md"
                 },
                 {
-                  "path": "javascript/browser_and_dom/advanced_dom_patterns/form_validation_architectures.md"
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/form_architectures.md"
                 },
                 {
-                  "path": "javascript/browser_and_dom/advanced_dom_patterns/infinite_scrolling_implementation.md"
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/infinite_scrolling.md"
+                },
+                {
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/recursive_component_patterns.md"
                 },
                 {
                   "path": "javascript/browser_and_dom/advanced_dom_patterns/resizable_and_sortable_interfaces.md"
                 },
                 {
-                  "path": "javascript/browser_and_dom/advanced_dom_patterns/tree_view_and_recursive_component_patterns.md"
-                },
-                {
-                  "path": "javascript/browser_and_dom/advanced_dom_patterns/virtual_scrolling_for_performance.md"
+                  "path": "javascript/browser_and_dom/advanced_dom_patterns/virtual_scrolling.md"
                 }
               ],
               "totalFileSize": 0
@@ -3333,6 +3390,223 @@
                 },
                 {
                   "path": "nodejs/web_frameworks/middleware_design_patterns/response_compression_middleware.md"
+                }
+              ],
+              "totalFileSize": 0
+            }
+          ],
+          "files": [],
+          "totalFileSize": 0
+        }
+      ],
+      "files": [],
+      "totalFileSize": 0
+    },
+    {
+      "id": "postgresql",
+      "name": "Postgresql",
+      "categories": [
+        {
+          "id": "fundamentals",
+          "name": "Fundamentals",
+          "categories": [
+            {
+              "id": "aggregation_and_functions",
+              "name": "Aggregation And Functions",
+              "categories": [],
+              "files": [
+                {
+                  "path": "postgresql/fundamentals/aggregation_and_functions/aggregation_functions.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/aggregation_and_functions/case_expressions_for_conditional_logic.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/aggregation_and_functions/group_by_clause.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/aggregation_and_functions/having_clause.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/aggregation_and_functions/nullif_coalesce_and_greatest_least_functions.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/aggregation_and_functions/pattern_matching.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/aggregation_and_functions/similarity_matching_with_fuzzy_search.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/aggregation_and_functions/string_manipulation.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/aggregation_and_functions/window_functions_basics.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "basic_joins_and_set_operations",
+              "name": "Basic Joins And Set Operations",
+              "categories": [],
+              "files": [
+                {
+                  "path": "postgresql/fundamentals/basic_joins_and_set_operations/correlated_subqueries.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/basic_joins_and_set_operations/exists_and_not_exists_operations.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/basic_joins_and_set_operations/self_joins.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/basic_joins_and_set_operations/set_operations.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/basic_joins_and_set_operations/subqueries_in_select_from_and_where.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/basic_joins_and_set_operations/table_joins.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "basic_sql_syntax_and_structure",
+              "name": "Basic Sql Syntax And Structure",
+              "categories": [],
+              "files": [
+                {
+                  "path": "postgresql/fundamentals/basic_sql_syntax_and_structure/basic_sql_syntax.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/basic_sql_syntax_and_structure/column_constraints.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/basic_sql_syntax_and_structure/creating_and_managing_tables.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/basic_sql_syntax_and_structure/ddl_commands.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/basic_sql_syntax_and_structure/foreign_key_constraints.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/basic_sql_syntax_and_structure/primary_keys.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "core_data_types",
+              "name": "Core Data Types",
+              "categories": [],
+              "files": [
+                {
+                  "path": "postgresql/fundamentals/core_data_types/arrays_in_postgre_sql.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/core_data_types/custom_data_types.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/core_data_types/domain_types_for_custom_constraints.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/core_data_types/full_text_search_data_types.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/core_data_types/geometric_data_types.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/core_data_types/json_and_jsonb.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/core_data_types/network_address_types.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/core_data_types/range_types.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/core_data_types/type_casting_and_conversion.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/core_data_types/understanding_data_types_in_postgre_sql.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/core_data_types/uuid_type.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/core_data_types/xml_data_type.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "database_concepts",
+              "name": "Database Concepts",
+              "categories": [],
+              "files": [
+                {
+                  "path": "postgresql/fundamentals/database_concepts/character_encoding_and_collation_fundamentals.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/database_concepts/comparing_postgre_sql_with_other_database_systems.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/database_concepts/database_and_schema_organization_principles.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/database_concepts/directory_structure_and_configuration_files.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/database_concepts/postgresql_history_and_design_philosophy.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/database_concepts/understanding_client_server_architecture_of_postgresql.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/database_concepts/understanding_relational_database_concepts_and_principles.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/database_concepts/user_management.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "data_manipulation_fundamentals",
+              "name": "Data Manipulation Fundamentals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "postgresql/fundamentals/data_manipulation_fundamentals/acid_properties.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/data_manipulation_fundamentals/basic_select_statement_structure.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/data_manipulation_fundamentals/delete_and_truncate.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/data_manipulation_fundamentals/dml_basics.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/data_manipulation_fundamentals/filtering_data_with_where.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/data_manipulation_fundamentals/insert_statements.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/data_manipulation_fundamentals/limiting_and_offsetting.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/data_manipulation_fundamentals/sorting_results_with_order_by.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/data_manipulation_fundamentals/transaction_management.md"
+                },
+                {
+                  "path": "postgresql/fundamentals/data_manipulation_fundamentals/updating_existing_data_with_update.md"
                 }
               ],
               "totalFileSize": 0

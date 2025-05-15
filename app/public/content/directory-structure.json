@@ -39,24 +39,16 @@
           "name": "Anti Patterns And Refactoring"
         },
         {
-          "id": "behavioral_design_patterns",
-          "name": "Behavioral Design Patterns"
+          "id": "concurrency_design_patterns",
+          "name": "Concurrency Design Patterns"
         },
         {
-          "id": "creational_design_patterns",
-          "name": "Creational Design Patterns"
+          "id": "design_pattern_fundamentals",
+          "name": "Design Pattern Fundamentals"
         },
         {
-          "id": "foundational_design_principles",
-          "name": "Foundational Design Principles"
-        },
-        {
-          "id": "fundamentals",
-          "name": "Fundamentals"
-        },
-        {
-          "id": "structural_design_patterns",
-          "name": "Structural Design Patterns"
+          "id": "implementations",
+          "name": "Implementations"
         }
       ]
     },
@@ -195,6 +187,16 @@
         {
           "id": "web_frameworks",
           "name": "Web Frameworks"
+        }
+      ]
+    },
+    {
+      "id": "postgresql",
+      "name": "Postgresql",
+      "categories": [
+        {
+          "id": "fundamentals",
+          "name": "Fundamentals"
         }
       ]
     },
