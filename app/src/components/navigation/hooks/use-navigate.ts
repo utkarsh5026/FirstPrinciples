@@ -1,6 +1,6 @@
 import { useReadingHistory, useReadingList, useDocumentList } from "@/hooks";
 import { useEffect, useMemo, useState } from "react";
-import { FileMetadata } from "@/services/document";
+import { Category, FileMetadata } from "@/services/document";
 
 export type NavigationFileItem = FileMetadata & {
   depth: number;
@@ -13,6 +13,7 @@ export type NavigationFileItem = FileMetadata & {
 export type CurrentCategory = {
   name: string;
   root: string;
+  path: string;
   files: NavigationFileItem[];
 };
 
@@ -69,29 +70,37 @@ const useNavigation = (currentFilePath?: string) => {
       return;
     }
 
-    const [root, immediate] = currentFilePath.split("/");
-    const category = contentIndex.categories.find(({ id }) => id === root);
-    if (category) {
-      const immediateParent = category.categories?.find(
-        ({ id }) => id === immediate
-      );
-      if (immediateParent) {
-        const currentOpen = {
-          name: immediateParent.name,
-          root,
-          files:
-            immediateParent.files?.map((file) => ({
-              ...file,
-              depth: 0,
-              isCurrentFile: file.path === currentFilePath,
-              isTodo: todo.has(file.path),
-              isCompleted: completed.has(file.path),
-              isRead: readFilePaths.has(file.path),
-            })) ?? [],
-        };
-        setCurrentOpen(currentOpen);
-        localStorage.setItem("currentOpen", JSON.stringify(currentOpen));
+    const parts = currentFilePath.split("/");
+    let { categories } = contentIndex;
+    let immediateParent: Category | null = null;
+    const path = parts.slice(0, -1).join("/");
+
+    for (let i = 0; i < parts.length - 1; i++) {
+      const part = parts[i];
+      const category = categories.find(({ id }) => id === part);
+      if (category) {
+        immediateParent = category;
+        categories = category.categories ?? [];
       }
+    }
+
+    if (immediateParent) {
+      const currentOpen = {
+        name: immediateParent.name,
+        root: parts[0],
+        path,
+        files:
+          immediateParent.files?.map((file) => ({
+            ...file,
+            depth: 0,
+            isCurrentFile: file.path === currentFilePath,
+            isTodo: todo.has(file.path),
+            isCompleted: completed.has(file.path),
+            isRead: readFilePaths.has(file.path),
+          })) ?? [],
+      };
+      setCurrentOpen(currentOpen);
+      localStorage.setItem("currentOpen", JSON.stringify(currentOpen));
     }
   }, [
     currentFilePath,
@@ -99,6 +108,7 @@ const useNavigation = (currentFilePath?: string) => {
     todo,
     completed,
     readFilePaths,
+    contentIndex,
   ]);
 
   return {
