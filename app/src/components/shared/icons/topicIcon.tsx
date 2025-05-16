@@ -120,7 +120,7 @@ type IconMapping = {
 
 const getIconProps = (size: number): LucideProps => ({
   size,
-  className: "text-primary flex-shrink-0",
+  className: "flex-shrink-0",
 });
 
 const getReactIconStyle = (size: number) => ({
@@ -609,8 +609,6 @@ const getTopicIcon = (topic: string, size: number = 16): React.ReactElement => {
     .filter(Boolean);
   const mainCategory = parts[0];
   const specificTopic = parts[parts.length - 1];
-
-  console.log(mainCategory, specificTopic);
 
   const iconProps = getIconProps(size);
   const reactIconStyle = getReactIconStyle(size);

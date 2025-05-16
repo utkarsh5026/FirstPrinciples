@@ -63,14 +63,22 @@ const Category: React.FC<CategoryProps> = ({
           <ChevronRight size={16} />
         </div>
 
-        <div className="flex-shrink-0 mr-2 text-primary mt-0.5">
+        <div
+          className={cn(
+            "flex-shrink-0 mr-2 mt-0.5",
+            depth === 0 && "text-primary",
+            depth === 1 && "text-foreground/70",
+            depth === 2 && "text-muted-foreground",
+            isExpanded && "text-primary"
+          )}
+        >
           <IconComponent size={16} />
         </div>
 
         <div className="flex flex-col flex-grow min-w-0">
           <span
             className={cn(
-              "break-words text-left font-medium",
+              "break-words text-left font-medium text-foreground/70",
               isExpanded ? "text-primary" : ""
             )}
           >

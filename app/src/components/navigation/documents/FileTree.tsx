@@ -4,9 +4,9 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import CategoryFile from "./CategoryFile";
 import { memo, useMemo } from "react";
 import Category from "./Category";
+import CategoryFile from "./CategoryFile";
 
 interface FileTreeProps {
   category: CategoryType;
