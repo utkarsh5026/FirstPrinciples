@@ -39,7 +39,7 @@ const TabbedNavigation: React.FC<TabbedNavigationProps> = ({
   const tabs = [
     {
       value: "reading",
-      label: "Currently Reading",
+      label: "Reading",
     },
     {
       value: "documents",
@@ -62,7 +62,7 @@ const TabbedNavigation: React.FC<TabbedNavigationProps> = ({
             <TabsTrigger
               key={value}
               value={value}
-              className="flex-1 text-xs data-[state=active]:bg-primary data-[state=active]:text-primary"
+              className="flex-1 text-xs data-[state=active]:bg-primary data-[state=active]:text-primary rounded-2xl border-none px-2 py-1 break-words"
             >
               {label}
             </TabsTrigger>
