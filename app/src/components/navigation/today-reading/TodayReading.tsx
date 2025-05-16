@@ -1,8 +1,13 @@
-import { BookMarked, Calendar } from "lucide-react";
+import { BookMarked, Calendar, BarChart, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import { useReadingHistory } from "@/hooks";
 import { useMemo } from "react";
 import ReadingItem from "./ReadingItem";
+import {
+  CategoryDistribution,
+  TimeOfTheDayDistribution,
+} from "@/components/shared/visualizations";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface TodayReadingProps {
   onFileSelect: (path: string) => void;
@@ -26,15 +31,51 @@ const TodayReading: React.FC<TodayReadingProps> = ({ onFileSelect }) => {
   return (
     <div className="px-4 pb-6">
       {todayHistory.length > 0 ? (
-        <div className="flex flex-col gap-4 overflow-auto scrollbar-hide">
-          {todayHistory.map((item) => (
-            <ReadingItem
-              item={item}
-              onFileSelect={onFileSelect}
-              key={item.id}
+        <Tabs defaultValue="history" className="w-full">
+          <div className="flex items-center justify-end w-full mb-4">
+            <TabsList>
+              <TabsTrigger value="history" className="flex items-center gap-2">
+                <Clock size={16} />
+              </TabsTrigger>
+              <TabsTrigger
+                value="visualizations"
+                className="flex items-center gap-2"
+              >
+                <BarChart size={16} />
+              </TabsTrigger>
+            </TabsList>
+          </div>
+
+          <TabsContent
+            value="history"
+            className="space-y-4 w-full flex flex-col gap-4 px-4"
+          >
+            {todayHistory.map((item) => (
+              <ReadingItem
+                item={item}
+                onFileSelect={onFileSelect}
+                key={item.id}
+              />
+            ))}
+          </TabsContent>
+
+          <TabsContent
+            value="visualizations"
+            className="flex flex-col gap-4 px-4"
+          >
+            <CategoryDistribution history={todayHistory} compact />
+            <TimeOfTheDayDistribution
+              history={todayHistory}
+              compact
+              typeOfChart="area"
             />
-          ))}
-        </div>
+            <TimeOfTheDayDistribution
+              history={todayHistory}
+              compact
+              typeOfChart="bar"
+            />
+          </TabsContent>
+        </Tabs>
       ) : (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
