@@ -1,24 +1,16 @@
-import { X, Info, Eye, EyeOff, HomeIcon } from "lucide-react";
+import { X, Info, HomeIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
 import Legend from "./Legend";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 interface HeaderProps {
-  showDescriptions: boolean;
-  setShowDescriptions: (show: boolean) => void;
   setSidebarOpen: (open: boolean) => void;
   handleHomeClick: () => void;
 }
 
-const Header = ({
-  showDescriptions,
-  setShowDescriptions,
-  setSidebarOpen,
-  handleHomeClick,
-}: HeaderProps) => {
+const Header: React.FC<HeaderProps> = ({ setSidebarOpen, handleHomeClick }) => {
   const [showLegend, setShowLegend] = useState(false);
 
   return (
@@ -41,21 +33,6 @@ const Header = ({
 
         <div className="flex items-center gap-2">
           {/* Description toggle with icon */}
-          <div className="flex items-center gap-2 bg-secondary/20 px-2.5 py-1.5 rounded-full">
-            <span className="text-xs text-muted-foreground hidden xs:inline">
-              {showDescriptions ? "Hide" : "Show"} Details
-            </span>
-            <Switch
-              checked={showDescriptions}
-              onCheckedChange={setShowDescriptions}
-              className="data-[state=checked]:bg-primary"
-            />
-            {showDescriptions ? (
-              <Eye size={14} className="text-primary xs:hidden" />
-            ) : (
-              <EyeOff size={14} className="text-muted-foreground xs:hidden" />
-            )}
-          </div>
 
           {/* Legend button */}
           <Button

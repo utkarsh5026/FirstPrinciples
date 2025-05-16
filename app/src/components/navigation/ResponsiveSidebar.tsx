@@ -34,8 +34,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set()
   );
-  const [showDescriptions, setShowDescriptions] = useState(false);
-
   const { contentIndex, getFileBreadcrumbs } = useDocumentList();
   const { readFilePaths, todo, completed, documentsCount, currentOpen } =
     useNavigation(currentFilePath);
@@ -102,8 +100,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
       >
         <SheetHeader className="p-0">
           <Header
-            showDescriptions={showDescriptions}
-            setShowDescriptions={setShowDescriptions}
             setSidebarOpen={setSidebarOpen}
             handleHomeClick={handleHomeClick}
           />
