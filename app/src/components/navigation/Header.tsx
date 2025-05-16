@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, handleHomeClick }) => {
             "font-medium bg-secondary/30 px-3 py-1.5 hover:bg-secondary/50 transition-all"
           )}
           onClick={handleHomeClick}
-          whileHover={{ scale: 1.02 }}
+          whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.98 }}
         >
           <div className="flex-shrink-0 mr-2 text-primary">

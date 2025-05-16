@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Sheet,
   SheetContent,
@@ -73,14 +73,17 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     loadCategories();
   }, [currentFilePath, contentIndex, getFileBreadcrumbs]);
 
-  const handleToggleExpand = (categoryId: string, isExpanded: boolean) => {
-    const newExpandedCategories = new Set(expandedCategories);
+  const handleToggleExpand = useCallback(
+    (categoryId: string, isExpanded: boolean) => {
+      const newExpandedCategories = new Set(expandedCategories);
 
-    if (isExpanded) newExpandedCategories.add(categoryId);
-    else newExpandedCategories.delete(categoryId);
+      if (isExpanded) newExpandedCategories.add(categoryId);
+      else newExpandedCategories.delete(categoryId);
 
-    setExpandedCategories(newExpandedCategories);
-  };
+      setExpandedCategories(newExpandedCategories);
+    },
+    [expandedCategories]
+  );
 
   const handleSelectFile = (filepath: string) => {
     onSelectFile(filepath);
