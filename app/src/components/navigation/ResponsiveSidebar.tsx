@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Sheet, SheetContent, SheetHeader } from "@/components/ui/sheet";
 import { useDocumentList } from "@/hooks";
-import { BookOpen, Trash2, ArrowLeftCircle } from "lucide-react";
+import { BookOpen, Trash2 } from "lucide-react";
 import Header from "./Header";
 import useNavigation from "./hooks/use-navigate";
 import { databaseService } from "@/infrastructure/storage";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
 import TabbedNavigation from "./TabbedNavigation";
 
 interface ResponsiveSidebarProps {
@@ -122,57 +121,35 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
           />
         </div>
 
-        <div className="w-full flex-shrink-0">
-          <div className="px-4 py-3">
-            <div className="w-full border-t border-border/30 pt-3 mt-1">
-              <div className="flex flex-col gap-3 w-full">
-                <div className="flex items-center justify-between">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex items-center bg-card px-3 py-1.5 rounded-full shadow-sm border border-border/20"
-                  >
-                    <BookOpen size={14} className="mr-2 text-primary" />
-                    <span className="font-medium text-sm">
-                      {readFilePaths.size}
-                    </span>
-                    <span className="mx-1 text-muted-foreground text-sm">
-                      /
-                    </span>
-                    <span className="text-sm">{documentsCount}</span>
-                    <span className="ml-1 text-muted-foreground text-sm">
-                      read
-                    </span>
-                  </motion.div>
-
-                  <Button
-                    variant="outline"
-                    onClick={() => setSidebarOpen(false)}
-                    className="h-9 px-3 rounded-full flex items-center border-border/40 shadow-sm hover:bg-card hover:text-primary transition-all"
-                  >
-                    <ArrowLeftCircle size={14} className="mr-2" />
-                    <span className="text-sm">Close</span>
-                  </Button>
-                </div>
-
-                <Button
-                  variant="ghost"
-                  onClick={async () => {
-                    if (
-                      window.confirm(
-                        "Are you sure you want to clear all reading data? This cannot be undone."
-                      )
-                    ) {
-                      await databaseService.deleteDatabase();
-                      window.location.reload();
-                    }
-                  }}
-                  className="h-8 text-xs rounded-lg text-red-500 hover:bg-red-500/10 hover:text-red-500 transition-colors flex items-center justify-center border border-red-500/10"
-                >
-                  <Trash2 size={12} className="mr-1.5" />
-                  Clear all reading data
-                </Button>
+        <div className="w-full flex-shrink-0 font-type-mono p-6">
+          <div className="flex flex-col gap-3 w-full">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center bg-card px-3 py-1.5 rounded-full shadow-sm border border-border/20">
+                <BookOpen size={14} className="mr-2 text-primary" />
+                <span className="font-medium text-sm">
+                  {readFilePaths.size}
+                </span>
+                <span className="mx-1 text-muted-foreground text-sm">/</span>
+                <span className="text-sm">{documentsCount}</span>
+                <span className="ml-1 text-muted-foreground text-sm">read</span>
               </div>
+              <Button
+                variant="ghost"
+                onClick={async () => {
+                  if (
+                    window.confirm(
+                      "Are you sure you want to clear all reading data? This cannot be undone."
+                    )
+                  ) {
+                    await databaseService.deleteDatabase();
+                    window.location.reload();
+                  }
+                }}
+                className="h-8 text-xs rounded-2xl text-red-500 hover:bg-red-500/10 hover:text-red-500 transition-colors flex items-center justify-center bg-red-500/10"
+              >
+                <Trash2 size={12} className="mr-1.5" />
+                Clear all reading data
+              </Button>
             </div>
           </div>
         </div>
