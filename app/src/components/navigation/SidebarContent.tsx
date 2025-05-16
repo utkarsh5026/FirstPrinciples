@@ -20,7 +20,6 @@ interface SidebarContentProps {
   };
   currentFilePath?: string;
   handleToggleExpand: (categoryId: string, isExpanded: boolean) => void;
-  showDescriptions: boolean;
 }
 
 const SidebarContent: React.FC<SidebarContentProps> = memo(
@@ -31,7 +30,6 @@ const SidebarContent: React.FC<SidebarContentProps> = memo(
     filePaths,
     currentFilePath,
     handleToggleExpand,
-    showDescriptions,
   }) => {
     const [currentCategoryExpanded, setCurrentCategoryExpanded] =
       useState(false);
@@ -50,7 +48,6 @@ const SidebarContent: React.FC<SidebarContentProps> = memo(
                   currentCategory={categoryData.current}
                   currentFilePath={currentFilePath ?? ""}
                   onSelectFile={onFileSelect}
-                  showDescriptions={showDescriptions}
                   expanded={currentCategoryExpanded}
                   setExpanded={setCurrentCategoryExpanded}
                 />
@@ -80,7 +77,6 @@ const SidebarContent: React.FC<SidebarContentProps> = memo(
                           handleSelectFile={onFileSelect}
                           filePaths={filePaths}
                           currentFilePath={currentFilePath ?? ""}
-                          showDescriptions={showDescriptions}
                           expandedCategories={categoryData.expanded}
                           handleToggleExpand={handleToggleExpand}
                         />

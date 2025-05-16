@@ -20,7 +20,6 @@ interface FileTreeProps {
     read: Set<string>;
   };
   currentFilePath: string;
-  showDescriptions: boolean;
   parentCategory?: string;
 }
 
@@ -33,7 +32,6 @@ const FileTree: React.FC<FileTreeProps> = memo(
     handleSelectFile,
     filePaths,
     currentFilePath,
-    showDescriptions,
     parentCategory,
   }) => {
     const isExpanded = expandedCategories.has(category.id);
@@ -112,7 +110,6 @@ const FileTree: React.FC<FileTreeProps> = memo(
                   handleSelectFile={handleSelectFile}
                   filePaths={filePaths}
                   currentFilePath={currentFilePath}
-                  showDescriptions={showDescriptions}
                   parentCategory={`${parentCategory ?? ""} > ${category.name}`}
                 />
               ))}
@@ -132,7 +129,6 @@ const FileTree: React.FC<FileTreeProps> = memo(
                     isRead={filePaths.read.has(file.path)}
                     fileNumber={index + 1}
                     handleSelectFile={handleSelectFile}
-                    showDescriptions={showDescriptions}
                   />
                 );
               })}

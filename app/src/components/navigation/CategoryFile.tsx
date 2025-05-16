@@ -11,7 +11,6 @@ interface CategoryFileProps {
   isRead: boolean;
   fileNumber: number;
   handleSelectFile: (filePath: string) => void;
-  showDescriptions: boolean;
 }
 
 const CategoryFile: React.FC<CategoryFileProps> = ({
@@ -22,7 +21,6 @@ const CategoryFile: React.FC<CategoryFileProps> = ({
   isCompleted,
   isRead,
   handleSelectFile,
-  showDescriptions,
   fileNumber,
 }: CategoryFileProps) => {
   const fileStatusIcon = getFileStatusIcon(isTodo, isCompleted, isRead);
@@ -66,13 +64,6 @@ const CategoryFile: React.FC<CategoryFileProps> = ({
               </span>
             </div>
           </div>
-
-          {/* Description if enabled and available */}
-          {showDescriptions && file.description && (
-            <span className="text-xs text-muted-foreground mt-2 break-words w-full leading-relaxed">
-              {file.description}
-            </span>
-          )}
         </div>
       </button>
     </div>

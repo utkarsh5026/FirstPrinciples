@@ -15,7 +15,6 @@ interface CurrentlyReadingProps {
   currentCategory: CurrentCategory;
   currentFilePath: string;
   onSelectFile: (filePath: string) => void;
-  showDescriptions: boolean;
   expanded: boolean;
   setExpanded: (expanded: boolean) => void;
 }
@@ -24,7 +23,6 @@ const CurrentlyReading: React.FC<CurrentlyReadingProps> = ({
   currentCategory,
   currentFilePath,
   onSelectFile,
-  showDescriptions,
   expanded,
   setExpanded,
 }) => {
@@ -114,7 +112,6 @@ const CurrentlyReading: React.FC<CurrentlyReadingProps> = ({
                     isRead={isRead}
                     fileNumber={index + 1}
                     handleSelectFile={onSelectFile}
-                    showDescriptions={showDescriptions}
                   />
                 );
               })}

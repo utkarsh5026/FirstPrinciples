@@ -128,7 +128,6 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
                 currentFilePath={currentFilePath}
                 handleToggleExpand={handleToggleExpand}
                 loading={loading}
-                showDescriptions={showDescriptions}
                 categoryData={{
                   tree: contentIndex.categories,
                   expanded: expandedCategories,
