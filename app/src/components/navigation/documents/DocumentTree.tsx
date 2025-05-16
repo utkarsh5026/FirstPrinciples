@@ -1,11 +1,10 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Category } from "@/services/document/document-loader";
 import FileTree from "./FileTree";
-import CurrentlyReading from "./CurrentlyReading";
-import type { CurrentCategory } from "./hooks/use-navigate";
-import { memo, useState } from "react";
+import type { CurrentCategory } from "../hooks/use-navigate";
+import { memo } from "react";
 
-interface SidebarContentProps {
+interface DocumentTreeProps {
   categoryData: {
     tree: Category[];
     expanded: Set<string>;
@@ -22,7 +21,7 @@ interface SidebarContentProps {
   handleToggleExpand: (categoryId: string, isExpanded: boolean) => void;
 }
 
-const SidebarContent: React.FC<SidebarContentProps> = memo(
+const DocumentTree: React.FC<DocumentTreeProps> = memo(
   ({
     categoryData,
     loading,
@@ -31,29 +30,10 @@ const SidebarContent: React.FC<SidebarContentProps> = memo(
     currentFilePath,
     handleToggleExpand,
   }) => {
-    const [currentCategoryExpanded, setCurrentCategoryExpanded] =
-      useState(false);
-
     return (
       <div className="h-full flex flex-col overflow-auto font-cascadia-code text-xs">
-        {/* Main scrollable content */}
         <ScrollArea className="flex-1 px-2 overflow-auto text-xs">
           <div className="pb-4 pt-2">
-            <div className="flex flex-col justify-center">
-              <span className="text-xs font-medium ml-4 text-primary/80">
-                Currently Reading
-              </span>
-              {!loading && categoryData.current && (
-                <CurrentlyReading
-                  currentCategory={categoryData.current}
-                  currentFilePath={currentFilePath ?? ""}
-                  onSelectFile={onFileSelect}
-                  expanded={currentCategoryExpanded}
-                  setExpanded={setCurrentCategoryExpanded}
-                />
-              )}
-            </div>
-
             {loading ? (
               // Loading skeleton
               <div className="space-y-2 px-2">
@@ -93,4 +73,4 @@ const SidebarContent: React.FC<SidebarContentProps> = memo(
   }
 );
 
-export default SidebarContent;
+export default DocumentTree;

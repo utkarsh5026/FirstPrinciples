@@ -1,19 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-} from "@/components/ui/sheet";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Sheet, SheetContent, SheetHeader } from "@/components/ui/sheet";
 import { useDocumentList } from "@/hooks";
-import SidebarContent from "./SidebarContent";
 import { BookOpen, Trash2, ArrowLeftCircle } from "lucide-react";
 import Header from "./Header";
 import useNavigation from "./hooks/use-navigate";
 import { databaseService } from "@/infrastructure/storage";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import TabbedNavigation from "./TabbedNavigation";
 
 interface ResponsiveSidebarProps {
   onSelectFile: (filepath: string) => void;
@@ -108,55 +102,56 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
           />
         </SheetHeader>
 
-        <AnimatePresence>
-          <ScrollArea className="flex-1 overflow-y-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="h-full"
-            >
-              <SidebarContent
-                onFileSelect={handleSelectFile}
-                filePaths={{
-                  read: readFilePaths,
-                  todo: todo,
-                  completed: completed,
-                }}
-                currentFilePath={currentFilePath}
-                handleToggleExpand={handleToggleExpand}
-                loading={loading}
-                categoryData={{
-                  tree: contentIndex.categories,
-                  expanded: expandedCategories,
-                  current: currentOpen,
-                }}
-              />
-            </motion.div>
-          </ScrollArea>
-        </AnimatePresence>
+        <div className="flex-1 flex flex-col overflow-auto">
+          <TabbedNavigation
+            currentCategory={currentOpen}
+            currentFilePath={currentFilePath ?? ""}
+            onFileSelect={handleSelectFile}
+            filePaths={{
+              read: readFilePaths,
+              todo: todo,
+              completed: completed,
+            }}
+            handleToggleExpand={handleToggleExpand}
+            loading={loading}
+            categoryData={{
+              tree: contentIndex.categories ?? [],
+              expanded: expandedCategories,
+              current: currentOpen,
+            }}
+          />
+        </div>
 
         <div className="w-full flex-shrink-0">
-          <SheetFooter className="px-2">
-            <div className="w-full border-t border-border/50 bg-card/70 backdrop-blur-sm flex-shrink-0 font-cascadia-code p-3 rounded-2xl">
-              <div className="flex flex-col gap-2 w-full">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="flex items-center bg-secondary/30 px-2 py-1 rounded-full">
-                    <BookOpen size={14} className="mr-1.5" />
-                    <span className="font-medium">{readFilePaths.size}</span>
-                    <span className="mx-1 text-muted-foreground">/</span>
-                    <span>{documentsCount}</span>
-                    <span className="ml-1 text-muted-foreground">read</span>
-                  </span>
+          <div className="px-4 py-3">
+            <div className="w-full border-t border-border/30 pt-3 mt-1">
+              <div className="flex flex-col gap-3 w-full">
+                <div className="flex items-center justify-between">
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center bg-card px-3 py-1.5 rounded-full shadow-sm border border-border/20"
+                  >
+                    <BookOpen size={14} className="mr-2 text-primary" />
+                    <span className="font-medium text-sm">
+                      {readFilePaths.size}
+                    </span>
+                    <span className="mx-1 text-muted-foreground text-sm">
+                      /
+                    </span>
+                    <span className="text-sm">{documentsCount}</span>
+                    <span className="ml-1 text-muted-foreground text-sm">
+                      read
+                    </span>
+                  </motion.div>
 
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     onClick={() => setSidebarOpen(false)}
-                    className="h-8 px-3 text-xs rounded-full flex items-center bg-secondary/20 hover:bg-secondary/40 transition-all"
+                    className="h-9 px-3 rounded-full flex items-center border-border/40 shadow-sm hover:bg-card hover:text-primary transition-all"
                   >
-                    <ArrowLeftCircle size={14} className="mr-1" />
-                    Close
+                    <ArrowLeftCircle size={14} className="mr-2" />
+                    <span className="text-sm">Close</span>
                   </Button>
                 </div>
 
@@ -172,14 +167,14 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
                       window.location.reload();
                     }
                   }}
-                  className="text-xs text-red-600 hover:bg-red-600/10 hover:text-red-600 transition-colors flex items-center cursor-pointer justify-center py-1"
+                  className="h-8 text-xs rounded-lg text-red-500 hover:bg-red-500/10 hover:text-red-500 transition-colors flex items-center justify-center border border-red-500/10"
                 >
-                  <Trash2 size={12} className="mr-1" />
+                  <Trash2 size={12} className="mr-1.5" />
                   Clear all reading data
                 </Button>
               </div>
             </div>
-          </SheetFooter>
+          </div>
         </div>
       </SheetContent>
     </Sheet>
