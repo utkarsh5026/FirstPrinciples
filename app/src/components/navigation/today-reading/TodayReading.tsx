@@ -32,7 +32,13 @@ const TodayReading: React.FC<TodayReadingProps> = ({ onFileSelect }) => {
     <div className="px-4 pb-6">
       {todayHistory.length > 0 ? (
         <Tabs defaultValue="history" className="w-full">
-          <div className="flex items-center justify-end w-full mb-4">
+          <div className="flex items-center justify-between w-full mb-4">
+            <span className="text-sm text-muted-foreground">
+              <span className="font-bold text-primary">
+                {todayHistory.length}
+              </span>{" "}
+              documents read today
+            </span>
             <TabsList>
               <TabsTrigger value="history" className="flex items-center gap-2">
                 <Clock size={16} />

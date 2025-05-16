@@ -3,7 +3,6 @@ import { PieChart as RechartsPieChart, Pie, Cell } from "recharts";
 import {
   BookText,
   TrendingUp,
-  PieChart,
   Shuffle,
   Filter,
   Scale,
@@ -129,7 +128,7 @@ const CategoryDistributionPieChart: React.FC<CategoryPieChartProps> = memo(
 
     const left = categoryMetrics?.mostRead?.category
       ? {
-          icon: PieChart,
+          icon: TrendingUp,
           label: "Top: ",
           value: fromSnakeToTitleCase(categoryMetrics?.mostRead.category),
         }
@@ -147,11 +146,7 @@ const CategoryDistributionPieChart: React.FC<CategoryPieChartProps> = memo(
       <ChartContainer left={left} right={right}>
         <ShadcnChartContainer className="w-full h-full" config={config}>
           <RechartsPieChart>
-            <ChartTooltip
-              content={renderCategoryTooltip}
-              cursor={false}
-              trigger="click"
-            />
+            <ChartTooltip content={renderCategoryTooltip} />
             <Pie
               data={categoryBreakdown}
               cx="50%"
