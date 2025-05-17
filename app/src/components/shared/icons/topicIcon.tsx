@@ -69,6 +69,7 @@ import {
   SiSequelize,
   SiInstructure,
   SiSocketdotio,
+  SiTypeorm,
 } from "react-icons/si";
 import { PiFunctionFill } from "react-icons/pi";
 
@@ -236,6 +237,11 @@ const nodejsMappings: IconMapping[] = [
   {
     keywords: ["sequelize"],
     icon: (props) => <SiSequelize {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["typeorm"],
+    icon: (props) => <SiTypeorm {...props} />,
     isReactIcon: true,
   },
   {
