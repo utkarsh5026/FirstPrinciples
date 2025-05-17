@@ -21,6 +21,7 @@ import {
   SiGraphql,
 } from "react-icons/si";
 import { FiFolder, FiPackage } from "react-icons/fi";
+import { FaAws } from "react-icons/fa";
 import { IconType } from "react-icons";
 
 // Map of technology/language names to their corresponding icons
@@ -49,6 +50,7 @@ export const iconMap: Record<string, IconType> = {
   // DevOps and Cloud
   docker: SiDocker,
   kubernetes: SiKubernetes,
+  aws: FaAws,
 
   // Version Control
   git: SiGit,
