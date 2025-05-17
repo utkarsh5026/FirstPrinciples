@@ -70,6 +70,7 @@ import {
   SiInstructure,
   SiSocketdotio,
   SiTypeorm,
+  SiAxios,
 } from "react-icons/si";
 import { PiFunctionFill } from "react-icons/pi";
 
@@ -133,6 +134,11 @@ const reactMappings: IconMapping[] = [
   {
     keywords: ["hook"],
     icon: (props) => <MdWebhook {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["axios"],
+    icon: (props) => <SiAxios {...props} />,
     isReactIcon: true,
   },
   { keywords: ["component"], icon: (props) => <Component {...props} /> },
