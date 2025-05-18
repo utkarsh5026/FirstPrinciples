@@ -47,7 +47,7 @@ const CategoryFile: React.FC<CategoryFileProps> = ({
           {/* File name with number */}
           <div className="flex items-center text-foreground/80">
             <span className="font-medium mr-1">{fileNumber}.</span>
-            <span className="break-words w-full">{file.title}</span>
+            <span className="break-words w-full text-xs">{file.title}</span>
           </div>
 
           {/* Status info with badge */}
