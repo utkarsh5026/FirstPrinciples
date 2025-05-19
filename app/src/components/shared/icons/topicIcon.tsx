@@ -45,6 +45,7 @@ import {
   Crosshair,
   LayoutDashboard,
   BellRing,
+  CloudAlert,
 } from "lucide-react";
 
 import {
@@ -71,6 +72,16 @@ import {
   SiSocketdotio,
   SiTypeorm,
   SiAxios,
+  SiAmazons3,
+  SiAmazondynamodb,
+  SiAmazonec2,
+  SiAmazoncloudwatch,
+  SiAmazonrds,
+  SiAwslambda,
+  SiAmazonsqs,
+  SiAmazonroute53,
+  SiAmazoneks,
+  SiAmazonapigateway,
 } from "react-icons/si";
 import { PiFunctionFill } from "react-icons/pi";
 
@@ -398,6 +409,74 @@ const dockerMappings: IconMapping[] = [
   },
 ];
 
+const awsMappings: IconMapping[] = [
+  {
+    keywords: ["s3", "storage", "bucket"],
+    icon: (props) => <SiAmazons3 {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["dynamodb", "dynamo", "nosql"],
+    icon: (props) => <SiAmazondynamodb {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["ec2", "compute", "instance"],
+    icon: (props) => <SiAmazonec2 {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["cloudwatch", "monitoring", "logs"],
+    icon: (props) => <SiAmazoncloudwatch {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["rds", "database", "relational"],
+    icon: (props) => <SiAmazonrds {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["lambda", "serverless", "function"],
+    icon: (props) => <SiAwslambda {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["sqs", "queue", "message"],
+    icon: (props) => <SiAmazonsqs {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["cloudfront", "cdn", "distribution"],
+    icon: (props) => <CloudAlert {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["route53", "dns", "domain"],
+    icon: (props) => <SiAmazonroute53 {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["eks", "kubernetes"],
+    icon: (props) => <SiAmazoneks {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["ecr", "container", "registry"],
+    icon: (props) => <Container {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["ecs", "container", "service"],
+    icon: (props) => <Container {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["api gateway", "gateway"],
+    icon: (props) => <SiAmazonapigateway {...props} />,
+    isReactIcon: true,
+  },
+];
+
 const gitMappings: IconMapping[] = [
   { keywords: ["branch"], icon: (props) => <GitBranch {...props} /> },
   { keywords: ["merge"], icon: (props) => <GitMerge {...props} /> },
@@ -571,6 +650,10 @@ const fallbackMappings: IconMapping[] = [
 ];
 
 const allMappings = [
+  {
+    keywords: ["aws", "amazon"],
+    mappings: awsMappings,
+  },
   {
     keywords: ["node", "npm"],
     mappings: nodejsMappings,
