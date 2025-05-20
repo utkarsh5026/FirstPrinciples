@@ -96,55 +96,52 @@ const Category: React.FC<CategoryProps> = ({
         </div>
 
         {/* Stats badges */}
-        <div className="ml-auto flex-shrink-0 flex items-start gap-2.5 mt-0.5">
-          {/* Subcategories badge - only show if there are subcategories */}
+
+        {/* File stats badges group */}
+        <div className="flex items-center gap-1.5">
           {subcategoriesCount > 0 && (
-            <div className="flex items-center bg-blue-500/10 px-1.5 py-0.5 rounded-full">
+            <div className="flex items-center  px-1.5 py-0.5 rounded-full">
               <Folder size={12} className="text-blue-400 mr-0.5" />
               <span className="text-xs text-blue-400 font-medium">
                 {subcategoriesCount}
               </span>
             </div>
           )}
+          {/* Only show badges with counts > 0 */}
+          {stats.completedFilesCount > 0 && (
+            <div className="flex items-center bg-green-500/10 px-1.5 py-0.5 rounded-full">
+              <CheckCircle size={12} className="text-green-500 mr-0.5" />
+              <span className="text-xs text-green-500 font-medium">
+                {stats.completedFilesCount}
+              </span>
+            </div>
+          )}
 
-          {/* File stats badges group */}
-          <div className="flex items-center gap-1.5">
-            {/* Only show badges with counts > 0 */}
-            {stats.completedFilesCount > 0 && (
-              <div className="flex items-center bg-green-500/10 px-1.5 py-0.5 rounded-full">
-                <CheckCircle size={12} className="text-green-500 mr-0.5" />
-                <span className="text-xs text-green-500 font-medium">
-                  {stats.completedFilesCount}
-                </span>
-              </div>
-            )}
+          {todoFilesCount > 0 && (
+            <div className="flex items-center bg-primary/10 px-1.5 py-0.5 rounded-full">
+              <BookMarked size={12} className="text-primary mr-0.5" />
+              <span className="text-xs text-primary font-medium">
+                {todoFilesCount}
+              </span>
+            </div>
+          )}
 
-            {todoFilesCount > 0 && (
-              <div className="flex items-center bg-primary/10 px-1.5 py-0.5 rounded-full">
-                <BookMarked size={12} className="text-primary mr-0.5" />
-                <span className="text-xs text-primary font-medium">
-                  {todoFilesCount}
-                </span>
-              </div>
-            )}
+          {readFilesCount > 0 && readFilesCount !== completedFilesCount && (
+            <div className="flex items-center  px-1.5 py-0.5 rounded-full">
+              <Clock size={12} className="text-green-200 mr-0.5" />
+              <span className="text-xs text-green-200 font-medium">
+                {readFilesCount}
+              </span>
+            </div>
+          )}
 
-            {readFilesCount > 0 && readFilesCount !== completedFilesCount && (
-              <div className="flex items-center bg-green-400/10 px-1.5 py-0.5 rounded-full">
-                <Clock size={12} className="text-green-200 mr-0.5" />
-                <span className="text-xs text-green-200 font-medium">
-                  {readFilesCount}
-                </span>
-              </div>
-            )}
-
-            {/* Total files counter */}
-            <Badge
-              variant="secondary"
-              className="text-xs bg-secondary/40 ml-1 px-2 py-0.5 h-5 rounded-full"
-            >
-              {totalFilesCount}
-            </Badge>
-          </div>
+          {/* Total files counter */}
+          <Badge
+            variant="secondary"
+            className="text-xs bg-secondary/40 ml-1 px-2 py-0.5 h-5 rounded-full text-muted-foreground"
+          >
+            {totalFilesCount}
+          </Badge>
         </div>
       </button>
     </div>
