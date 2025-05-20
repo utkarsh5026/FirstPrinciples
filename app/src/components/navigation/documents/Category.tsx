@@ -1,6 +1,12 @@
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { BookMarked, CheckCircle, ChevronRight, Clock } from "lucide-react";
+import {
+  BookMarked,
+  CheckCircle,
+  ChevronRight,
+  Clock,
+  Folder,
+} from "lucide-react";
 import { Category as CategoryType } from "@/services/document";
 import { getIconForTech } from "@/components/shared/icons/iconMap";
 import getTopicIcon from "@/components/shared/icons/topicIcon";
@@ -40,6 +46,9 @@ const Category: React.FC<CategoryProps> = ({
     readFilesCount,
     totalFilesCount,
   } = stats;
+
+  // Get subcategories count
+  const subcategoriesCount = category.categories?.length || 0;
 
   return (
     <div className="my-1.5 px-1">
@@ -86,8 +95,19 @@ const Category: React.FC<CategoryProps> = ({
           </span>
         </div>
 
-        {/* File stats badges */}
-        <div className="ml-auto flex-shrink-0 flex items-start gap-1.5 mt-0.5">
+        {/* Stats badges */}
+        <div className="ml-auto flex-shrink-0 flex items-start gap-2.5 mt-0.5">
+          {/* Subcategories badge - only show if there are subcategories */}
+          {subcategoriesCount > 0 && (
+            <div className="flex items-center bg-blue-500/10 px-1.5 py-0.5 rounded-full">
+              <Folder size={12} className="text-blue-400 mr-0.5" />
+              <span className="text-xs text-blue-400 font-medium">
+                {subcategoriesCount}
+              </span>
+            </div>
+          )}
+
+          {/* File stats badges group */}
           <div className="flex items-center gap-1.5">
             {/* Only show badges with counts > 0 */}
             {stats.completedFilesCount > 0 && (

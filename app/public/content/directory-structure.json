@@ -1,6 +1,60 @@
 {
   "categories": [
     {
+      "id": "aws",
+      "name": "Aws",
+      "categories": [
+        {
+          "id": "application_integration_services",
+          "name": "Application Integration Services"
+        },
+        {
+          "id": "compute_services",
+          "name": "Compute Services"
+        },
+        {
+          "id": "core",
+          "name": "Core"
+        },
+        {
+          "id": "database_services",
+          "name": "Database Services"
+        },
+        {
+          "id": "high_availability_and_fault_tolerance",
+          "name": "High Availability And Fault Tolerance"
+        },
+        {
+          "id": "infrastructure_as_code",
+          "name": "Infrastructure As Code"
+        },
+        {
+          "id": "monitoring_and_management",
+          "name": "Monitoring And Management"
+        },
+        {
+          "id": "networking_in_aws",
+          "name": "Networking In Aws"
+        },
+        {
+          "id": "security_best_practices",
+          "name": "Security Best Practices"
+        },
+        {
+          "id": "serverless_architecture",
+          "name": "Serverless Architecture"
+        },
+        {
+          "id": "storage",
+          "name": "Storage"
+        },
+        {
+          "id": "storage_services",
+          "name": "Storage Services"
+        }
+      ]
+    },
+    {
       "id": "css",
       "name": "Css",
       "categories": [

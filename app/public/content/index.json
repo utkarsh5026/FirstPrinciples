@@ -1,6 +1,727 @@
 {
   "categories": [
     {
+      "id": "aws",
+      "name": "Aws",
+      "categories": [
+        {
+          "id": "application_integration_services",
+          "name": "Application Integration Services",
+          "categories": [],
+          "files": [
+            {
+              "path": "aws/application_integration_services/api_gateway_for_restful_and_web_socket_apis.md"
+            },
+            {
+              "path": "aws/application_integration_services/app_sync_for_graphql_apis.md"
+            },
+            {
+              "path": "aws/application_integration_services/eventbridge_for_event_routing.md"
+            },
+            {
+              "path": "aws/application_integration_services/event_driven_architecture_patterns.md"
+            },
+            {
+              "path": "aws/application_integration_services/mq_for_message_broker_compatibility.md"
+            },
+            {
+              "path": "aws/application_integration_services/service_integration_patterns_and_anti_patterns.md"
+            },
+            {
+              "path": "aws/application_integration_services/sns_topics_and_subscription_types.md"
+            },
+            {
+              "path": "aws/application_integration_services/sqs_queue_types_and_message_processing.md"
+            },
+            {
+              "path": "aws/application_integration_services/step_functions_for_workflow_orchestration.md"
+            },
+            {
+              "path": "aws/application_integration_services/swf_for_human_in_the_loop_workflows.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "compute_services",
+          "name": "Compute Services",
+          "categories": [],
+          "files": [
+            {
+              "path": "aws/compute_services/auto_scaling_groups_and_launch_templates.md"
+            },
+            {
+              "path": "aws/compute_services/aws_batch_for_batch_computing_workloads.md"
+            },
+            {
+              "path": "aws/compute_services/container_services.md"
+            },
+            {
+              "path": "aws/compute_services/ec2_dedicated_hosts_and_dedicated_instances.md"
+            },
+            {
+              "path": "aws/compute_services/ec2_instance_types_and_selection_criteria.md"
+            },
+            {
+              "path": "aws/compute_services/ec2_placement_groups_and_instance_affinity.md"
+            },
+            {
+              "path": "aws/compute_services/elastic_beanstalk_for_application_deployment.md"
+            },
+            {
+              "path": "aws/compute_services/lambda_functions_and_event_driven_architecture.md"
+            },
+            {
+              "path": "aws/compute_services/lambda_layers_and_runtime_environments.md"
+            },
+            {
+              "path": "aws/compute_services/spot_instances_and_spot_fleet_management.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "core",
+          "name": "Core",
+          "categories": [
+            {
+              "id": "aws_architecture_principles",
+              "name": "Aws Architecture Principles",
+              "categories": [],
+              "files": [
+                {
+                  "path": "aws/core/aws_architecture_principles/building_for_elasticity_and_scalability.md"
+                },
+                {
+                  "path": "aws/core/aws_architecture_principles/cost_optimization_strategies.md"
+                },
+                {
+                  "path": "aws/core/aws_architecture_principles/design_for_failure_and_high_availability.md"
+                },
+                {
+                  "path": "aws/core/aws_architecture_principles/leverage_managed_services.md"
+                },
+                {
+                  "path": "aws/core/aws_architecture_principles/loose_coupling_for_service_independence.md"
+                },
+                {
+                  "path": "aws/core/aws_architecture_principles/operational_excellence_foundations.md"
+                },
+                {
+                  "path": "aws/core/aws_architecture_principles/performance_efficiency_principles.md"
+                },
+                {
+                  "path": "aws/core/aws_architecture_principles/security_at_every_layer.md"
+                },
+                {
+                  "path": "aws/core/aws_architecture_principles/sustainability_considerations_in_architecture.md"
+                },
+                {
+                  "path": "aws/core/aws_architecture_principles/think_parallel_for_performance.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "core_services_overview",
+              "name": "Core Services Overview",
+              "categories": [],
+              "files": [
+                {
+                  "path": "aws/core/core_services_overview/analytics_services_overview.md"
+                },
+                {
+                  "path": "aws/core/core_services_overview/application_integration_overview.md"
+                },
+                {
+                  "path": "aws/core/core_services_overview/compute_services_overview.md"
+                },
+                {
+                  "path": "aws/core/core_services_overview/content_delivery_overview.md"
+                },
+                {
+                  "path": "aws/core/core_services_overview/database_services_overview.md"
+                },
+                {
+                  "path": "aws/core/core_services_overview/machine_learning_services_overview.md"
+                },
+                {
+                  "path": "aws/core/core_services_overview/management_tools_overview.md"
+                },
+                {
+                  "path": "aws/core/core_services_overview/networking_services_overview.md"
+                },
+                {
+                  "path": "aws/core/core_services_overview/security_services_overview.md"
+                },
+                {
+                  "path": "aws/core/core_services_overview/storage_services_overview.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "fundamentals",
+              "name": "Fundamentals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "aws/core/fundamentals/aws_cli.md"
+                },
+                {
+                  "path": "aws/core/fundamentals/aws_global_infrastructure.md"
+                },
+                {
+                  "path": "aws/core/fundamentals/aws_management_console_navigation.md"
+                },
+                {
+                  "path": "aws/core/fundamentals/aws_pricing_models.md"
+                },
+                {
+                  "path": "aws/core/fundamentals/aws_shared_responsibility_model.md"
+                },
+                {
+                  "path": "aws/core/fundamentals/aws_software_development_kits.md"
+                },
+                {
+                  "path": "aws/core/fundamentals/aws_well_architected_framework.md"
+                },
+                {
+                  "path": "aws/core/fundamentals/cloud_computing_concepts_and_service_models.md"
+                },
+                {
+                  "path": "aws/core/fundamentals/resource_tagging_and_organization_strategies.md"
+                }
+              ],
+              "totalFileSize": 0
+            }
+          ],
+          "files": [],
+          "totalFileSize": 0
+        },
+        {
+          "id": "database_services",
+          "name": "Database Services",
+          "categories": [
+            {
+              "id": "aws_dynamodb",
+              "name": "Aws Dynamodb",
+              "categories": [
+                {
+                  "id": "advanced_features_implementation",
+                  "name": "Advanced Features Implementation",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_features_implementation/contributor_insights_monitoring_architecture.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_features_implementation/global_tables_conflict_resolution_strategies.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_features_implementation/import_export_patterns_for_bulk_data_operations.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_features_implementation/point_in_time_recovery_implementation_details.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_features_implementation/transactions_across_partition_keys.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_features_implementation/ttl_mechanism_and_deletion_patterns.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "advanced_query_and_access_patterns",
+                  "name": "Advanced Query And Access Patterns",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_query_and_access_patterns/composite_key_condition_expression_optimization.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_query_and_access_patterns/pagination_implementation_strategies.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_query_and_access_patterns/partiql_integration_and_sql_like_query_patterns.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_query_and_access_patterns/projection_expressions_for_efficient_data_retrieval.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_query_and_access_patterns/query_optimization_for_complex_filter_conditions.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/advanced_query_and_access_patterns/sparse_index_query_techniques.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "architecture_and_internals",
+                  "name": "Architecture And Internals",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/database_services/aws_dynamodb/architecture_and_internals/automatic_sharding_and_scaling_mechanisms.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/architecture_and_internals/consistency_model_internals.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/architecture_and_internals/partition_and_hash_key_distribution_algorithms.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/architecture_and_internals/read_write_capacity_unit_implementation_details.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/architecture_and_internals/storage_engine.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/architecture_and_internals/transaction_implementation_and_conflict_resolution.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "data_modeling_patterns",
+                  "name": "Data Modeling Patterns",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/database_services/aws_dynamodb/data_modeling_patterns/composite_key_design_strategies_for_complex_access_patterns.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/data_modeling_patterns/hierarchical_data_relationships_in_nosql_context.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/data_modeling_patterns/many_to_many_relationship_implementation_techniques.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/data_modeling_patterns/single_table_design_principles_and_implementation.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/data_modeling_patterns/sparse_index_patterns_with_gsis.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/data_modeling_patterns/time_series_data_modeling_approaches.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "performance_optimization_strategies",
+                  "name": "Performance Optimization Strategies",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/database_services/aws_dynamodb/performance_optimization_strategies/adaptive_capacity_and_partition_throttling_management.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/performance_optimization_strategies/burst_capacity_management_techniques.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/performance_optimization_strategies/caching_strategies_with_dax.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/performance_optimization_strategies/cost_optimization_for_read_write_intensive_workloads.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/performance_optimization_strategies/read_write_capacity_planning_methodologies.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/performance_optimization_strategies/write_sharding_techniques_for_hot_keys.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "streams_and_processing",
+                  "name": "Streams And Processing",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/database_services/aws_dynamodb/streams_and_processing/change_data_capture_patterns_with_lambda_integration.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/streams_and_processing/event_driven_architectures_with_dynamo_db_streams.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/streams_and_processing/exactly_once_processing_implementation_patterns.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/streams_and_processing/real_time_analytics_pipelines_with_dynamodb.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/streams_and_processing/streams_internal_architecture_and_shard_management.md"
+                    },
+                    {
+                      "path": "aws/database_services/aws_dynamodb/streams_and_processing/stream_processing_for_cross_region_replication.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                }
+              ],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
+              "id": "overview",
+              "name": "Overview",
+              "categories": [],
+              "files": [
+                {
+                  "path": "aws/database_services/overview/aurora_architecture_and_features.md"
+                },
+                {
+                  "path": "aws/database_services/overview/documentdb_for_mongodb_workloads.md"
+                },
+                {
+                  "path": "aws/database_services/overview/dynamodb_design_patterns_and_best_practices.md"
+                },
+                {
+                  "path": "aws/database_services/overview/dynamodb_global_tables_and_transactions.md"
+                },
+                {
+                  "path": "aws/database_services/overview/elasticache_for_redis_and_memcached.md"
+                },
+                {
+                  "path": "aws/database_services/overview/neptune_for_graph_databases.md"
+                },
+                {
+                  "path": "aws/database_services/overview/rds_engine_options_and_capabilities.md"
+                },
+                {
+                  "path": "aws/database_services/overview/rds_multi_az_and_read_replicas.md"
+                },
+                {
+                  "path": "aws/database_services/overview/redshift_data_warehousing.md"
+                },
+                {
+                  "path": "aws/database_services/overview/timestream_for_time_series_data.md"
+                }
+              ],
+              "totalFileSize": 0
+            }
+          ],
+          "files": [],
+          "totalFileSize": 0
+        },
+        {
+          "id": "high_availability_and_fault_tolerance",
+          "name": "High Availability And Fault Tolerance",
+          "categories": [],
+          "files": [
+            {
+              "path": "aws/high_availability_and_fault_tolerance/auto_scaling_for_reliability.md"
+            },
+            {
+              "path": "aws/high_availability_and_fault_tolerance/disaster_recovery_planning_and_implementation.md"
+            },
+            {
+              "path": "aws/high_availability_and_fault_tolerance/dynamodb_global_tables_for_multi_region_availability.md"
+            },
+            {
+              "path": "aws/high_availability_and_fault_tolerance/health_checks_and_graceful_degradation.md"
+            },
+            {
+              "path": "aws/high_availability_and_fault_tolerance/load_balancing_with_elb.md"
+            },
+            {
+              "path": "aws/high_availability_and_fault_tolerance/multi_az_deployment_strategies.md"
+            },
+            {
+              "path": "aws/high_availability_and_fault_tolerance/rds_multi_az_and_failover_mechanics.md"
+            },
+            {
+              "path": "aws/high_availability_and_fault_tolerance/regional_failover_architectures.md"
+            },
+            {
+              "path": "aws/high_availability_and_fault_tolerance/route_53_routing_policies_for_ha.md"
+            },
+            {
+              "path": "aws/high_availability_and_fault_tolerance/s3_cross_region_replication.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "infrastructure_as_code",
+          "name": "Infrastructure As Code",
+          "categories": [],
+          "files": [
+            {
+              "path": "aws/infrastructure_as_code/aws_cloud_development_kit.md"
+            },
+            {
+              "path": "aws/infrastructure_as_code/ci_cd_for_infrastructure_deployment.md"
+            },
+            {
+              "path": "aws/infrastructure_as_code/cloud_formation_custom_resources.md"
+            },
+            {
+              "path": "aws/infrastructure_as_code/cloud_formation_nested_stacks_and_stack_sets.md"
+            },
+            {
+              "path": "aws/infrastructure_as_code/cloud_formation_stack_management.md"
+            },
+            {
+              "path": "aws/infrastructure_as_code/cloud_formation_template_structure.md"
+            },
+            {
+              "path": "aws/infrastructure_as_code/infrastructure_version_control_strategies.md"
+            },
+            {
+              "path": "aws/infrastructure_as_code/service_catalog_for_template_distribution.md"
+            },
+            {
+              "path": "aws/infrastructure_as_code/terraform_for_aws_provisioning.md"
+            },
+            {
+              "path": "aws/infrastructure_as_code/testing_iac_templates.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "monitoring_and_management",
+          "name": "Monitoring And Management",
+          "categories": [],
+          "files": [
+            {
+              "path": "aws/monitoring_and_management/aws_config_for_resource_configuration_tracking.md"
+            },
+            {
+              "path": "aws/monitoring_and_management/cloudtrail_for_api_activity_tracking.md"
+            },
+            {
+              "path": "aws/monitoring_and_management/cloud_watch_logs_for_log_management.md"
+            },
+            {
+              "path": "aws/monitoring_and_management/cloud_watch_metrics_alarms_and_dashboards.md"
+            },
+            {
+              "path": "aws/monitoring_and_management/cost_explorer_and_budgets_for_cost_tracking.md"
+            },
+            {
+              "path": "aws/monitoring_and_management/personal_health_dashboard_for_service_health.md"
+            },
+            {
+              "path": "aws/monitoring_and_management/service_quotas_management.md"
+            },
+            {
+              "path": "aws/monitoring_and_management/systems_manager_for_operations_management.md"
+            },
+            {
+              "path": "aws/monitoring_and_management/trusted_advisor_for_best_practice_checks.md"
+            },
+            {
+              "path": "aws/monitoring_and_management/x_ray_for_application_tracing.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "networking_in_aws",
+          "name": "Networking In Aws",
+          "categories": [],
+          "files": [
+            {
+              "path": "aws/networking_in_aws/aws_global_accelerator_for_network_performance.md"
+            },
+            {
+              "path": "aws/networking_in_aws/cloudfront_and_global_content_delivery.md"
+            },
+            {
+              "path": "aws/networking_in_aws/direct_connect_and_site_to_site_vpn.md"
+            },
+            {
+              "path": "aws/networking_in_aws/internet_and_nat_gateways.md"
+            },
+            {
+              "path": "aws/networking_in_aws/route_53_dns_management.md"
+            },
+            {
+              "path": "aws/networking_in_aws/security_groups_and_network_acls.md"
+            },
+            {
+              "path": "aws/networking_in_aws/subnet_configurations_and_routing.md"
+            },
+            {
+              "path": "aws/networking_in_aws/vpc_design_and_implementation.md"
+            },
+            {
+              "path": "aws/networking_in_aws/vpc_endpoints_for_private_service_access.md"
+            },
+            {
+              "path": "aws/networking_in_aws/vpc_peering_and_transit_gateway.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "security_best_practices",
+          "name": "Security Best Practices",
+          "categories": [],
+          "files": [
+            {
+              "path": "aws/security_best_practices/certificate_manager_for_tls_certificates.md"
+            },
+            {
+              "path": "aws/security_best_practices/data_encryption_at_rest_and_in_transit.md"
+            },
+            {
+              "path": "aws/security_best_practices/detective_for_security_investigation.md"
+            },
+            {
+              "path": "aws/security_best_practices/guardduty_for_threat_detection.md"
+            },
+            {
+              "path": "aws/security_best_practices/inspector_for_vulnerability_assessment.md"
+            },
+            {
+              "path": "aws/security_best_practices/key_management_service_kms_and_cloud_hsm.md"
+            },
+            {
+              "path": "aws/security_best_practices/macie_for_sensitive_data_discovery.md"
+            },
+            {
+              "path": "aws/security_best_practices/secrets_manager_for_credential_management.md"
+            },
+            {
+              "path": "aws/security_best_practices/security_hub_for_security_posture.md"
+            },
+            {
+              "path": "aws/security_best_practices/shield_and_waf_for_ddo_s_protection.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "serverless_architecture",
+          "name": "Serverless Architecture",
+          "categories": [],
+          "files": [
+            {
+              "path": "aws/serverless_architecture/api_gateway_integration_patterns.md"
+            },
+            {
+              "path": "aws/serverless_architecture/cold_start_optimization_technique.md"
+            },
+            {
+              "path": "aws/serverless_architecture/dynamo_db_with_lambda_integration.md"
+            },
+            {
+              "path": "aws/serverless_architecture/event_driven_serverless_architectures.md"
+            },
+            {
+              "path": "aws/serverless_architecture/lambda_concurrency_and_throttling.md"
+            },
+            {
+              "path": "aws/serverless_architecture/lambda_function_design_patterns.md"
+            },
+            {
+              "path": "aws/serverless_architecture/s3_event_processing_with_lambda.md"
+            },
+            {
+              "path": "aws/serverless_architecture/serverless_application_monitoring.md"
+            },
+            {
+              "path": "aws/serverless_architecture/serverless_framework_and_sam.md"
+            },
+            {
+              "path": "aws/serverless_architecture/step_functions_for_serverless_workflows.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "storage",
+          "name": "Storage",
+          "categories": [
+            {
+              "id": "aws_s3",
+              "name": "Aws S3",
+              "categories": [
+                {
+                  "id": "architecture_and_internals",
+                  "name": "Architecture And Internals",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/storage/aws_s3/architecture_and_internals/bucket_and_object_namespaces_architecture.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/architecture_and_internals/data_consistency_model_and_eventual_consistency_guarantees.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/architecture_and_internals/metadata_indexing_and_retrieval_systems.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/architecture_and_internals/request_routing_and_load_balancing_architecture.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/architecture_and_internals/s3_internal_partitioning_and_sharding_mechanisms.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/architecture_and_internals/storage_class_implementation_details_and_internal_transitions.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                }
+              ],
+              "files": [],
+              "totalFileSize": 0
+            }
+          ],
+          "files": [],
+          "totalFileSize": 0
+        },
+        {
+          "id": "storage_services",
+          "name": "Storage Services",
+          "categories": [],
+          "files": [
+            {
+              "path": "aws/storage_services/ebs_snapshots_and_data_lifecycle.md"
+            },
+            {
+              "path": "aws/storage_services/ebs_volume_types_and_performance_characteristics.md"
+            },
+            {
+              "path": "aws/storage_services/efs_file_systems_and_access_patterns.md"
+            },
+            {
+              "path": "aws/storage_services/fsx_for_windows_and_lustre_file_systems.md"
+            },
+            {
+              "path": "aws/storage_services/s3_event_notifications_and_triggers.md"
+            },
+            {
+              "path": "aws/storage_services/s3_performance_optimization.md"
+            },
+            {
+              "path": "aws/storage_services/s3_security_features_and_access_control.md"
+            },
+            {
+              "path": "aws/storage_services/s3_storage_classes_and_lifecycle_policies.md"
+            },
+            {
+              "path": "aws/storage_services/snow_family_for_large_data_transfers.md"
+            },
+            {
+              "path": "aws/storage_services/storage_gateway_for_hybrid_environments.md"
+            }
+          ],
+          "totalFileSize": 0
+        }
+      ],
+      "files": [],
+      "totalFileSize": 0
+    },
+    {
       "id": "css",
       "name": "Css",
       "categories": [
@@ -2866,6 +3587,50 @@
                 }
               ],
               "totalFileSize": 0
+            },
+            {
+              "id": "typeorm",
+              "name": "Typeorm",
+              "categories": [],
+              "files": [
+                {
+                  "path": "nodejs/database_integration/typeorm/active_record_vs_data_mapper_patterns.md"
+                },
+                {
+                  "path": "nodejs/database_integration/typeorm/connection_management.md"
+                },
+                {
+                  "path": "nodejs/database_integration/typeorm/custom_decorators_and_metadata.md"
+                },
+                {
+                  "path": "nodejs/database_integration/typeorm/custom_repository_patterns.md"
+                },
+                {
+                  "path": "nodejs/database_integration/typeorm/database_specific_features.md"
+                },
+                {
+                  "path": "nodejs/database_integration/typeorm/embedded_entities_and_soft_deletes.md"
+                },
+                {
+                  "path": "nodejs/database_integration/typeorm/entity_relationships_and_decorators.md"
+                },
+                {
+                  "path": "nodejs/database_integration/typeorm/migrations.md"
+                },
+                {
+                  "path": "nodejs/database_integration/typeorm/performance_monitoring.md"
+                },
+                {
+                  "path": "nodejs/database_integration/typeorm/query_builder_advanced_techniques.md"
+                },
+                {
+                  "path": "nodejs/database_integration/typeorm/typeorm_with_graphql.md"
+                },
+                {
+                  "path": "nodejs/database_integration/typeorm/typeorm_with_mongodb.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
           "files": [],
@@ -4518,6 +5283,47 @@
           "id": "routing_and_data",
           "name": "Routing And Data",
           "categories": [
+            {
+              "id": "axios",
+              "name": "Axios",
+              "categories": [],
+              "files": [
+                {
+                  "path": "react/routing_and_data/axios/advanced_timeout_configuration.md"
+                },
+                {
+                  "path": "react/routing_and_data/axios/custom_adapter_implementation.md"
+                },
+                {
+                  "path": "react/routing_and_data/axios/custom_axios_instances.md"
+                },
+                {
+                  "path": "react/routing_and_data/axios/custom_error_handling_strategies.md"
+                },
+                {
+                  "path": "react/routing_and_data/axios/interceptor_patterns.md"
+                },
+                {
+                  "path": "react/routing_and_data/axios/multipart_form_data_handling.md"
+                },
+                {
+                  "path": "react/routing_and_data/axios/progress_tracking_implementation.md"
+                },
+                {
+                  "path": "react/routing_and_data/axios/request_cancellation_patterns.md"
+                },
+                {
+                  "path": "react/routing_and_data/axios/request_response_caching.md"
+                },
+                {
+                  "path": "react/routing_and_data/axios/request_response_transformation.md"
+                },
+                {
+                  "path": "react/routing_and_data/axios/retry_mechanisms_and_exponential_backoff.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
             {
               "id": "data_fetching_strategies",
               "name": "Data Fetching Strategies",
