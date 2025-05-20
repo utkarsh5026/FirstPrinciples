@@ -65,7 +65,7 @@ const Category: React.FC<CategoryProps> = ({
 
         <div
           className={cn(
-            "flex-shrink-0 mr-2 mt-0.5",
+            "flex-shrink-0 mr-2 mt-0.5 text-sm",
             depth === 0 && "text-primary",
             depth === 1 && "text-foreground/70",
             depth === 2 && "text-muted-foreground",
@@ -78,7 +78,7 @@ const Category: React.FC<CategoryProps> = ({
         <div className="flex flex-col flex-grow min-w-0">
           <span
             className={cn(
-              "break-words text-left font-medium text-foreground/70",
+              "break-words text-left font-medium text-foreground/70 text-xs",
               isExpanded ? "text-primary" : ""
             )}
           >
