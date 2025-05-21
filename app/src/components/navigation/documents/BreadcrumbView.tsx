@@ -26,7 +26,7 @@ const BreadcrumbView: React.FC<BreadCrumbViewProps> = ({
         <BreadcrumbItem>
           <BreadcrumbLink
             onClick={() => onBreadCrubClick(-1)}
-            className="flex items-center h-7 px-2 rounded-md hover:bg-secondary/30"
+            className="flex items-center h-7 px-2 rounded-md hover:bg-secondary/30 cursor-pointer"
           >
             <Home
               size={20}
@@ -55,7 +55,7 @@ const BreadcrumbView: React.FC<BreadCrumbViewProps> = ({
               </BreadcrumbSeparator>
               <BreadcrumbItem>
                 {index === breadcrumbs.length - 1 ? (
-                  <BreadcrumbPage className="flex items-center">
+                  <BreadcrumbPage className="flex items-center cursor-pointer">
                     <div className="mr-1.5 text-primary text-xs">
                       <CrumbIcon size={14} />
                     </div>
@@ -64,7 +64,7 @@ const BreadcrumbView: React.FC<BreadCrumbViewProps> = ({
                 ) : (
                   <BreadcrumbLink
                     onClick={() => onBreadCrubClick(index)}
-                    className="flex items-center hover:text-primary"
+                    className="flex items-center hover:text-primary cursor-pointer"
                   >
                     <div className="mr-1.5">
                       <CrumbIcon size={14} />

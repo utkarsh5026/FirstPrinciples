@@ -91,7 +91,17 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
                 <motion.div
                   variants={itemVariants}
                   key={category.id}
-                  transition={{ delay: index * 0.05 }}
+                  transition={{
+                    delay: index * 0.05,
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 20,
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    transition: { duration: 0.2 },
+                    cursor: "pointer",
+                  }}
                 >
                   <Category
                     parentCategory={parentCategory}
