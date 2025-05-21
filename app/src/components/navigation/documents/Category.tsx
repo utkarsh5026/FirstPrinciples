@@ -10,6 +10,7 @@ import {
 import { Category as CategoryType } from "@/services/document";
 import { getIconForTech } from "@/components/shared/icons/iconMap";
 import getTopicIcon from "@/components/shared/icons/topicIcon";
+import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface CategoryProps {
   category: CategoryType;
@@ -93,7 +94,7 @@ const Category: React.FC<CategoryProps> = ({
               isExpanded ? "text-primary" : ""
             )}
           >
-            {category.name}
+            {fromSnakeToTitleCase(category.name)}
           </span>
         </div>
 

@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { CircleDot, BookMarked, Clock, CheckCircle } from "lucide-react";
 import type { FileMetadata } from "@/services/document";
+import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface CategoryFileProps {
   file: FileMetadata;
@@ -47,7 +48,9 @@ const CategoryFile: React.FC<CategoryFileProps> = ({
           {/* File name with number */}
           <div className="flex items-center text-foreground/80">
             <span className="font-medium mr-1">{fileNumber}.</span>
-            <span className="break-words w-full text-xs">{file.title}</span>
+            <span className="break-words w-full text-xs">
+              {fromSnakeToTitleCase(file.title)}
+            </span>
           </div>
 
           {/* Status info with badge */}

@@ -10,6 +10,7 @@ import {
 import { ChevronRight, Home } from "lucide-react";
 import getIconForTech from "@/components/shared/icons";
 import getTopicIcon from "@/components/shared/icons/topicIcon";
+import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface BreadCrumbViewProps {
   onBreadCrubClick: (index: number) => void;
@@ -20,6 +21,11 @@ const BreadcrumbView: React.FC<BreadCrumbViewProps> = ({
   onBreadCrubClick,
   breadcrumbs,
 }) => {
+  const crumbs = breadcrumbs.map((crumb) => ({
+    ...crumb,
+    name: fromSnakeToTitleCase(crumb.name),
+  }));
+
   return (
     <Breadcrumb>
       <BreadcrumbList className="px-1 py-1 bg-secondary/10 rounded-lg border border-border/30">
@@ -35,7 +41,7 @@ const BreadcrumbView: React.FC<BreadCrumbViewProps> = ({
           </BreadcrumbLink>
         </BreadcrumbItem>
 
-        {breadcrumbs.map((crumb, index) => {
+        {crumbs.map((crumb, index) => {
           // Use the app's existing icon system
           const CrumbIcon =
             index === 0
