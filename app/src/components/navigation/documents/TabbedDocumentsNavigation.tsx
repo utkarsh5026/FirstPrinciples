@@ -5,11 +5,10 @@ import { Category } from "@/services/document";
 import FileTree from "./FileTree";
 import FlatDirectoryView from "./FlatDirectoryView";
 import { FolderTree, LayoutGrid } from "lucide-react";
-import { useDocumentList } from "@/hooks";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSwipeGesture } from "@/hooks/device/use-swipe-gesture";
-import useMobile from "@/hooks/device/use-mobile";
 import BreadcrumbView from "./BreadcrumbView";
+import { useLocalStorage, useMobile, useDocumentList } from "@/hooks";
 
 interface TabbedDocumentNavigationProps {
   categoryData: {
@@ -44,7 +43,10 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
   currentFilePath,
   handleToggleExpand,
 }) => {
-  const [viewType, setViewType] = useState<"tree" | "flat">("tree");
+  const { storedValue: viewType, setValue: setViewType } = useLocalStorage(
+    "viewType",
+    "tree"
+  );
   const [currentPathSegments, setCurrentPathSegments] = useState<string[]>([]);
   const [currentCategory, setCurrentCategory] = useState<Category | null>(null);
   const { contentIndex } = useDocumentList();
