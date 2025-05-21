@@ -78,6 +78,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --font-type-mono: "Cascadia Code", monospace;
   --font-cascadia-code: "Cascadia Code", monospace;
+  --font-roboto-slab: "Roboto Slab", monospace;
 }
 
 @layer base {

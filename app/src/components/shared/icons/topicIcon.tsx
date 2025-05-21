@@ -124,6 +124,7 @@ import {
 } from "react-icons/bi";
 
 import { ImConnection } from "react-icons/im";
+import getIconForTech from "./iconMap";
 
 type IconMapping = {
   keywords: string[];
@@ -702,6 +703,11 @@ const getTopicIcon = (topic: string, size: number = 16): React.ReactElement => {
     .split(">")
     .map((part) => part.trim())
     .filter(Boolean);
+
+  if (parts.length === 1) {
+    const icon = getIconForTech(parts[0]);
+    if (icon) return React.createElement(icon, { size });
+  }
   const mainCategory = parts[0];
   const specificTopic = parts[parts.length - 1];
 

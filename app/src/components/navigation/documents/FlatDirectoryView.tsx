@@ -175,6 +175,7 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
                     todoFilesCount: 0,
                     totalFilesCount: category.files?.length ?? 0,
                   }}
+                  colorIcon={true}
                 />
               );
             })}

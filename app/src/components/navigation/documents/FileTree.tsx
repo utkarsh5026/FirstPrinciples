@@ -94,6 +94,7 @@ const FileTree: React.FC<FileTreeProps> = memo(
               completedFilesCount,
             }}
             parentCategory={parentCategory}
+            showExpandIcon={true}
           />
         </CollapsibleTrigger>
 

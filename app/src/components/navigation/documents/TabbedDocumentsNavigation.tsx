@@ -4,21 +4,12 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Category } from "@/services/document";
 import FileTree from "./FileTree";
 import FlatDirectoryView from "./FlatDirectoryView";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { FolderTree, LayoutGrid, ChevronRight } from "lucide-react";
+import { FolderTree, LayoutGrid } from "lucide-react";
 import { useDocumentList } from "@/hooks";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSwipeGesture } from "@/hooks/device/use-swipe-gesture";
 import useMobile from "@/hooks/device/use-mobile";
-import getIconForTech from "@/components/shared/icons";
-import getTopicIcon from "@/components/shared/icons/topicIcon";
+import BreadcrumbView from "./BreadcrumbView";
 
 interface TabbedDocumentNavigationProps {
   categoryData: {
@@ -235,58 +226,10 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
           <TabsContent value="flat" className="mt-0 h-full flex flex-col">
             {/* Flat view navigation with breadcrumbs */}
             <div className="mb-3">
-              <Breadcrumb>
-                <BreadcrumbList className="px-1 py-1 bg-secondary/10 rounded-lg border border-border/30">
-                  <BreadcrumbItem>
-                    <BreadcrumbLink
-                      onClick={() => navigateToBreadcrumb(-1)}
-                      className="flex items-center h-7 px-2 rounded-md hover:bg-secondary/30"
-                    >
-                      {React.createElement(getIconForTech("home"), {
-                        size: 16,
-                        className: "text-primary",
-                      })}
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-
-                  {breadcrumbs.map((crumb, index) => {
-                    // Use the app's existing icon system
-                    const CrumbIcon = crumb.id
-                      ? getIconForTech(crumb.id)
-                      : () => getTopicIcon(crumb.id || crumb.name);
-
-                    return (
-                      <React.Fragment key={crumb.id}>
-                        <BreadcrumbSeparator>
-                          <ChevronRight size={14} />
-                        </BreadcrumbSeparator>
-                        <BreadcrumbItem>
-                          {index === breadcrumbs.length - 1 ? (
-                            <BreadcrumbPage className="flex items-center">
-                              <div className="mr-1.5 text-primary">
-                                <CrumbIcon size={14} />
-                              </div>
-                              <span className="font-medium text-sm">
-                                {crumb.name}
-                              </span>
-                            </BreadcrumbPage>
-                          ) : (
-                            <BreadcrumbLink
-                              onClick={() => navigateToBreadcrumb(index)}
-                              className="flex items-center hover:text-primary"
-                            >
-                              <div className="mr-1.5">
-                                <CrumbIcon size={14} />
-                              </div>
-                              <span className="text-sm">{crumb.name}</span>
-                            </BreadcrumbLink>
-                          )}
-                        </BreadcrumbItem>
-                      </React.Fragment>
-                    );
-                  })}
-                </BreadcrumbList>
-              </Breadcrumb>
+              <BreadcrumbView
+                onBreadCrubClick={navigateToBreadcrumb}
+                breadcrumbs={breadcrumbs}
+              />
             </div>
 
             {/* Flat directory content */}

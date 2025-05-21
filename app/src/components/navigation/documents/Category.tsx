@@ -24,6 +24,8 @@ interface CategoryProps {
   };
   parentCategory?: string;
   style?: React.CSSProperties;
+  showExpandIcon?: boolean;
+  colorIcon?: boolean;
 }
 
 const Category: React.FC<CategoryProps> = ({
@@ -34,6 +36,8 @@ const Category: React.FC<CategoryProps> = ({
   stats,
   parentCategory,
   style,
+  showExpandIcon,
+  colorIcon,
 }) => {
   const IconComponent =
     depth === 0
@@ -64,14 +68,16 @@ const Category: React.FC<CategoryProps> = ({
         )}
         style={{ paddingLeft: `${depth * 12 + 12}px`, ...style }}
       >
-        <div
-          className={cn(
-            "mr-2 flex-shrink-0 transition-transform duration-200 mt-0.5",
-            isExpanded ? "text-primary rotate-90" : "text-muted-foreground"
-          )}
-        >
-          <ChevronRight size={16} />
-        </div>
+        {showExpandIcon && (
+          <div
+            className={cn(
+              "mr-2 flex-shrink-0 transition-transform duration-200 mt-0.5",
+              isExpanded ? "text-primary rotate-90" : "text-muted-foreground"
+            )}
+          >
+            <ChevronRight size={16} />
+          </div>
+        )}
 
         <div
           className={cn(
@@ -79,7 +85,7 @@ const Category: React.FC<CategoryProps> = ({
             depth === 0 && "text-primary",
             depth === 1 && "text-foreground/70",
             depth === 2 && "text-muted-foreground",
-            isExpanded && "text-primary"
+            (isExpanded || colorIcon) && "text-primary"
           )}
         >
           <IconComponent size={16} />
@@ -96,9 +102,6 @@ const Category: React.FC<CategoryProps> = ({
           </span>
         </div>
 
-        {/* Stats badges */}
-
-        {/* File stats badges group */}
         <div className="flex items-center gap-1.5">
           {subcategoriesCount > 0 && (
             <div className="flex items-center  px-1.5 py-0.5 rounded-full">
