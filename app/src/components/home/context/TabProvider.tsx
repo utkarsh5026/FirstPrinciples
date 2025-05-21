@@ -20,12 +20,12 @@ export const TabProvider: React.FC<TabProviderProps> = ({
   const [activeTab, setActiveTab] = useState<TabType>(defaultTab);
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => {
+    onSwipedRight: () => {
       const currentIndex = tabs.indexOf(activeTab);
       const nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
       setActiveTab(tabs[nextIndex]);
     },
-    onSwipedRight: () => {
+    onSwipedLeft: () => {
       const currentIndex = tabs.indexOf(activeTab);
       const nextIndex = (currentIndex + 1) % tabs.length;
       setActiveTab(tabs[nextIndex]);
