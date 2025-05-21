@@ -1,19 +1,13 @@
 import React from "react";
-import { Category, FileMetadata } from "@/services/document";
+import { Category as CategoryType, FileMetadata } from "@/services/document";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import {
-  ChevronRight,
-  BookMarked,
-  Clock,
-  CheckCircle,
-  CircleDot,
-} from "lucide-react";
+import { BookMarked, Clock, CheckCircle, CircleDot } from "lucide-react";
 import { getIconForTech } from "@/components/shared/icons/iconMap";
-import getTopicIcon from "@/components/shared/icons/topicIcon";
+import Category from "./Category";
 
 interface FlatDirectoryViewProps {
-  categories: Category[];
+  categories: CategoryType[];
   files: FileMetadata[];
   onSelectCategory: (categoryId: string) => void;
   onSelectFile: (filePath: string) => void;
@@ -23,6 +17,7 @@ interface FlatDirectoryViewProps {
     completed: Set<string>;
   };
   currentFilePath?: string;
+  parentCategory?: string;
 }
 
 /**
@@ -38,6 +33,7 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
   onSelectFile,
   filePaths,
   currentFilePath,
+  parentCategory,
 }) => {
   if (categories.length === 0 && files.length === 0) {
     return (
@@ -165,34 +161,21 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
           </div>
           <div className="space-y-1">
             {categories.map((category) => {
-              // Use the app's existing icon system
-              const CategoryIcon = category.id
-                ? getIconForTech(category.id)
-                : () => getTopicIcon(category.name);
-
               return (
-                <motion.div
+                <Category
+                  parentCategory={parentCategory}
+                  category={category}
                   key={category.id}
-                  variants={itemVariants}
-                  whileHover={{ y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <button
-                    onClick={() => onSelectCategory(category.id)}
-                    className="w-full flex items-center px-3 py-2.5 rounded-lg hover:bg-primary/5 text-sm transition-all"
-                  >
-                    <div className="mr-3 text-primary">
-                      <CategoryIcon size={18} />
-                    </div>
-                    <span className="font-medium truncate flex-1 text-left">
-                      {category.name}
-                    </span>
-                    <ChevronRight
-                      size={16}
-                      className="text-muted-foreground ml-2"
-                    />
-                  </button>
-                </motion.div>
+                  depth={1}
+                  isExpanded={false}
+                  handleToggleExpand={onSelectCategory}
+                  stats={{
+                    readFilesCount: 0,
+                    completedFilesCount: 0,
+                    todoFilesCount: 0,
+                    totalFilesCount: category.files?.length ?? 0,
+                  }}
+                />
               );
             })}
           </div>

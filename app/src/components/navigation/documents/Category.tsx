@@ -48,7 +48,8 @@ const Category: React.FC<CategoryProps> = ({
   } = stats;
 
   // Get subcategories count
-  const subcategoriesCount = category.categories?.length || 0;
+  const subcategoriesCount = category.categories?.length ?? 0;
+  console.log(parentCategory);
 
   return (
     <div className="my-1.5 px-1">
@@ -87,7 +88,7 @@ const Category: React.FC<CategoryProps> = ({
         <div className="flex flex-col flex-grow min-w-0">
           <span
             className={cn(
-              "break-words text-left font-medium text-foreground/70 text-xs",
+              "break-words text-left font-medium text-foreground/90 text-sm",
               isExpanded ? "text-primary" : ""
             )}
           >

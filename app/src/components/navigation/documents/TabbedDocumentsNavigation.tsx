@@ -168,6 +168,8 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
     return result;
   }, [currentPathSegments, contentIndex]);
 
+  console.log(breadcrumbs);
+
   return (
     <div className="h-full flex flex-col overflow-hidden" ref={containerRef}>
       {/* View toggle tabs */}
@@ -299,6 +301,11 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
                   className="p-2"
                 >
                   <FlatDirectoryView
+                    parentCategory={
+                      breadcrumbs.length > 0
+                        ? breadcrumbs[breadcrumbs.length - 1].id
+                        : undefined
+                    }
                     categories={categories}
                     files={files}
                     onSelectCategory={navigateToDirectory}
