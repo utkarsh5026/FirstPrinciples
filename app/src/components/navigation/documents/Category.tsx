@@ -44,12 +44,7 @@ const Category: React.FC<CategoryProps> = ({
       ? getIconForTech(category.name)
       : () => getTopicIcon(`${parentCategory ?? ""}>${category.name}`);
 
-  const {
-    completedFilesCount,
-    todoFilesCount,
-    readFilesCount,
-    totalFilesCount,
-  } = stats;
+  const { completedFilesCount, todoFilesCount, readFilesCount } = stats;
 
   // Get subcategories count
   const subcategoriesCount = category.categories?.length ?? 0;
@@ -144,7 +139,7 @@ const Category: React.FC<CategoryProps> = ({
             variant="secondary"
             className="text-xs bg-secondary/40 ml-1 px-2 py-0.5 h-5 rounded-full text-muted-foreground"
           >
-            {totalFilesCount}
+            {category.fileCount}
           </Badge>
         </div>
       </button>

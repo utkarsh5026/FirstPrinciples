@@ -16,6 +16,7 @@ type State = LoadingWithError & {
   fileMap: Record<string, FileMetadata>;
   contentIndex: ContentIndex;
   selectedFile: string | null;
+  docCountMap: Record<string, number>;
 };
 
 type Actions = {
@@ -71,6 +72,8 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
     categories: [],
     files: [],
   },
+
+  docCountMap: {},
 
   /**
    * 📌 Select a document and update the URL
@@ -161,6 +164,8 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
       };
 
       collectFilesFromCategories(contentIndex.categories || []);
+
+      console.log("contentIndex.categories", contentIndex.categories);
 
       const fileMap = allFiles.reduce((acc, file) => {
         acc[file.path] = file;

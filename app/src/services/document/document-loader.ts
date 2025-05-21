@@ -56,6 +56,7 @@ export type Category = {
   icon?: string;
   categories?: Category[];
   files?: FileMetadata[];
+  fileCount?: number;
 };
 
 /**
@@ -114,6 +115,20 @@ const fetchContentIndex = async (): Promise<ContentIndex> => {
       }));
     };
 
+    const addFileCountToCategories = (categories: Category[]): number => {
+      let fileCount = 0;
+      categories.forEach((category) => {
+        const currentFiles = category.files?.length ?? 0;
+        const currentCategories = addFileCountToCategories(
+          category.categories || []
+        );
+        category.fileCount = currentFiles + currentCategories;
+        fileCount += currentFiles + currentCategories;
+      });
+
+      return fileCount;
+    };
+
     const baseUrl = getBaseContentUrl();
     const indexFileName = "index.json";
     const response = await fetch(`${baseUrl}${indexFileName}`);
@@ -124,8 +139,10 @@ const fetchContentIndex = async (): Promise<ContentIndex> => {
     }
 
     const data = (await response.json()) as ContentIndex;
-    console.log("Content index loaded:", data);
     data.categories = traverseCategories(data.categories);
+    data.categories.forEach((category) => {
+      category.fileCount = addFileCountToCategories(category.categories || []);
+    });
     return data;
   } catch (error) {
     console.error("Error loading content index:", error);
