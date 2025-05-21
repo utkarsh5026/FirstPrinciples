@@ -115,7 +115,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
   const [showFileDialog, setShowFileDialog] = useState(false);
-  const { activeTab, setActiveTab } = useTabContext();
+  const { activeTab, setActiveTab, handlers } = useTabContext();
   const [categories, setCategories] = useState<Category[]>([]);
   const [tabError, setTabError] = useState<string | null>(null);
 
@@ -159,7 +159,10 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto font-cascadia-code pt-2 md:pt-6 pb-20 md:pb-6">
+    <div
+      className="w-full max-w-4xl mx-auto font-cascadia-code pt-2 md:pt-6 pb-20 md:pb-6"
+      {...handlers}
+    >
       {/* 🖥️ Desktop Tabs - Hidden on mobile */}
       <div className="hidden md:block mb-6">
         <div className="flex items-center justify-between">
