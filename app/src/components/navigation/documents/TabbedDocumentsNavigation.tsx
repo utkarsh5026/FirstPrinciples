@@ -212,16 +212,16 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
           onValueChange={(value) => setViewType(value as "tree" | "flat")}
           className="w-full"
         >
-          <TabsList className="grid grid-cols-2 w-full mb-3">
-            <TabsTrigger value="tree" className="flex items-center">
-              <FolderTree size={14} className="mr-2" />
-              Tree View
-            </TabsTrigger>
-            <TabsTrigger value="flat" className="flex items-center">
-              <LayoutGrid size={14} className="mr-2" />
-              Flat View
-            </TabsTrigger>
-          </TabsList>
+          <div className="flex items-center justify-end w-full">
+            <TabsList className="grid grid-cols-2 mb-3">
+              <TabsTrigger value="tree" className="flex items-center">
+                <FolderTree size={14} className="mr-2" />
+              </TabsTrigger>
+              <TabsTrigger value="flat" className="flex items-center">
+                <LayoutGrid size={14} className="mr-2" />
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           <TabsContent value="tree" className="mt-0 h-full">
             {/* Traditional tree view */}
