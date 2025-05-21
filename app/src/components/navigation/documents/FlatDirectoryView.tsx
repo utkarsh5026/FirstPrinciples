@@ -132,7 +132,20 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
                 <motion.div
                   variants={itemVariants}
                   key={file.path}
-                  transition={{ delay: index * 0.05 }}
+                  transition={{
+                    delay: index * 0.05,
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 20,
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    transition: { duration: 0.2 },
+                  }}
+                  className="rounded-2xl overflow-hidden relative hover:bg-primary/5 border border-transparent hover:border-primary/10"
+                  initial={{
+                    boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                  }}
                 >
                   <CategoryFile
                     file={file}
