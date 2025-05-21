@@ -1,4 +1,4 @@
-import React, { useState, useEffect, RefObject, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Category } from "@/services/document";
@@ -6,10 +6,9 @@ import FileTree from "./FileTree";
 import FlatDirectoryView from "./FlatDirectoryView";
 import { FolderTree, LayoutGrid } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSwipeGesture } from "@/hooks/device/use-swipe-gesture";
 import BreadcrumbView from "./BreadcrumbView";
 import { useLocalStorage, useMobile, useDocumentList } from "@/hooks";
-
+import { useSwipeable } from "react-swipeable";
 interface TabbedDocumentNavigationProps {
   categoryData: {
     tree: Category[];
@@ -35,6 +34,15 @@ interface TabbedDocumentNavigationProps {
  *
  * Users can switch between these views using tabs.
  */
+/**
+ * 🎯 A versatile document navigation component that lets users browse their files in two ways:
+ * - Tree View: Classic folder structure with expandable directories 🌳
+ * - Flat View: Modern Google Drive-style navigation with breadcrumbs 📱
+ *
+ * 🔄 Features smooth transitions and animations when switching between views or navigating directories
+ * 📱 Mobile-friendly with swipe gestures for easy navigation
+ * 🗂️ Keeps track of file states (read, to-do, completed) and current selections
+ */
 const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
   categoryData,
   loading,
@@ -43,27 +51,50 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
   currentFilePath,
   handleToggleExpand,
 }) => {
+  /**
+   * 💾 Persists user's preferred view type (tree/flat) across sessions
+   */
   const { storedValue: viewType, setValue: setViewType } = useLocalStorage(
     "viewType",
     "tree"
   );
+
+  /**
+   * 📍 Tracks current location in the directory structure
+   */
   const [currentPathSegments, setCurrentPathSegments] = useState<string[]>([]);
+
+  /**
+   * 📂 Maintains reference to current directory for flat view
+   */
   const [currentCategory, setCurrentCategory] = useState<Category | null>(null);
+
+  /**
+   * 📚 Provides access to the full document structure
+   */
   const { contentIndex } = useDocumentList();
+
+  /**
+   * 📱 Detects if user is on mobile for responsive features
+   */
   const { isPhone } = useMobile();
 
-  const containerRef = React.useRef<HTMLDivElement>(null);
-
-  // Use swipe gesture for navigation in flat view on mobile
-  useSwipeGesture({
-    onSwipeRight: () => {
+  /**
+   * 👆 Enables swipe navigation for mobile users
+   */
+  const handlers = useSwipeable({
+    onSwipedRight: () => {
       if (viewType === "flat" && currentPathSegments.length > 0) {
         navigateUp();
       }
     },
-    targetRef: containerRef as RefObject<HTMLElement>,
+    trackTouch: true,
+    trackMouse: true,
   });
 
+  /**
+   * 🧭 Updates current location when navigating to a specific path
+   */
   const navigateToPath = useCallback(
     (pathSegments: string[]) => {
       setCurrentPathSegments(pathSegments);
@@ -87,6 +118,9 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
     [contentIndex.categories]
   );
 
+  /**
+   * 🔄 Syncs flat view location with current file path
+   */
   useEffect(() => {
     if (viewType === "flat" && currentFilePath) {
       const pathParts = currentFilePath.split("/");
@@ -95,54 +129,65 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
     }
   }, [currentFilePath, viewType, contentIndex, navigateToPath]);
 
-  const navigateToDirectory = (categoryId: string) => {
-    const newPath = [...currentPathSegments, categoryId];
-    navigateToPath(newPath);
-  };
+  /**
+   * 📂 Handles navigation into a directory
+   */
+  const navigateToDirectory = useCallback(
+    (categoryId: string) => {
+      const newPath = [...currentPathSegments, categoryId];
+      navigateToPath(newPath);
+    },
+    [currentPathSegments, navigateToPath]
+  );
 
-  // Navigate up one level in flat view
-  const navigateUp = () => {
+  /**
+   * ⬆️ Handles navigation to parent directory
+   */
+  const navigateUp = useCallback(() => {
     if (currentPathSegments.length > 0) {
       const newPath = currentPathSegments.slice(0, -1);
       navigateToPath(newPath);
     }
-  };
+  }, [currentPathSegments, navigateToPath]);
 
-  // Navigate to a specific breadcrumb segment in flat view
-  const navigateToBreadcrumb = (index: number) => {
-    // If index is -1, navigate to root
-    if (index === -1) {
-      navigateToPath([]);
-      return;
-    }
+  /**
+   * 🔗 Handles navigation via breadcrumb clicks
+   */
+  const navigateToBreadcrumb = useCallback(
+    (index: number) => {
+      if (index === -1) {
+        navigateToPath([]);
+        return;
+      }
 
-    const newPath = currentPathSegments.slice(0, index + 1);
-    navigateToPath(newPath);
-  };
+      const newPath = currentPathSegments.slice(0, index + 1);
+      navigateToPath(newPath);
+    },
+    [currentPathSegments, navigateToPath]
+  );
 
-  // Get current level items for flat view (both categories and files)
-  const getCurrentLevelItems = () => {
+  /**
+   * 📑 Provides current directory contents
+   */
+  const { categories, files } = useMemo(() => {
     if (!currentCategory && currentPathSegments.length === 0) {
-      // At root level
       return {
         categories: contentIndex.categories || [],
         files: [],
       };
     } else if (currentCategory) {
-      // Inside a category
       return {
         categories: currentCategory.categories || [],
         files: currentCategory.files || [],
       };
     }
-
     return { categories: [], files: [] };
-  };
+  }, [currentCategory, currentPathSegments, contentIndex]);
 
-  const { categories, files } = getCurrentLevelItems();
-
-  // Resolve category names from IDs for breadcrumbs
-  const breadcrumbs = React.useMemo(() => {
+  /**
+   * 🗺️ Generates breadcrumb trail for current location
+   */
+  const breadcrumbs = useMemo(() => {
     const result: { id: string; name: string }[] = [];
 
     let currentCategories = contentIndex.categories || [];
@@ -152,19 +197,14 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
       if (category) {
         result.push({ id: segment, name: category.name });
         currentCategories = category.categories || [];
-      } else {
-        // If we can't find the category, use the ID as the name
-        result.push({ id: segment, name: segment });
-      }
+      } else result.push({ id: segment, name: segment });
     }
 
     return result;
   }, [currentPathSegments, contentIndex]);
 
-  console.log(breadcrumbs);
-
   return (
-    <div className="h-full flex flex-col overflow-hidden" ref={containerRef}>
+    <div className="h-full flex flex-col overflow-hidden" {...handlers}>
       {/* View toggle tabs */}
       <div className="mb-4">
         <Tabs
