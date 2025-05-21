@@ -1,10 +1,9 @@
 import React from "react";
 import { Category as CategoryType, FileMetadata } from "@/services/document";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { BookMarked, Clock, CheckCircle, CircleDot } from "lucide-react";
 import { getIconForTech } from "@/components/shared/icons/iconMap";
 import Category from "./Category";
+import CategoryFile from "./CategoryFile";
 
 interface FlatDirectoryViewProps {
   categories: CategoryType[];
@@ -73,79 +72,6 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
     visible: { opacity: 1, y: 0, transition: { duration: 0.2 } },
   };
 
-  // Get appropriate icon for a file status
-  const getFileStatusIcon = (
-    isInTodo: boolean,
-    isCompleted: boolean,
-    isRead: boolean
-  ) => {
-    switch (true) {
-      case isCompleted:
-        return (
-          <CheckCircle size={12} className="text-green-500 flex-shrink-0" />
-        );
-      case isInTodo:
-        return <BookMarked size={12} className="text-primary flex-shrink-0" />;
-      case isRead:
-        return <Clock size={12} className="text-green-200 flex-shrink-0" />;
-      default:
-        return (
-          <CircleDot
-            size={12}
-            className="text-muted-foreground/40 flex-shrink-0"
-          />
-        );
-    }
-  };
-
-  // Get file status text
-  const getFileStatusText = (
-    isInTodo: boolean,
-    isCompleted: boolean,
-    isRead: boolean
-  ) => {
-    switch (true) {
-      case isCompleted:
-        return "Completed";
-      case isInTodo:
-        return "Reading list";
-      case isRead:
-        return "Previously read";
-      default:
-        return "Unread";
-    }
-  };
-
-  // Get file status styles
-  const getFileStatus = (
-    isInTodo: boolean,
-    isCompleted: boolean,
-    isRead: boolean
-  ) => {
-    switch (true) {
-      case isCompleted:
-        return {
-          bgColor: "bg-green-500/10",
-          textColor: "text-green-500",
-        };
-      case isInTodo:
-        return {
-          bgColor: "bg-primary/10",
-          textColor: "text-primary",
-        };
-      case isRead:
-        return {
-          bgColor: "bg-green-200/10",
-          textColor: "text-green-200",
-        };
-      default:
-        return {
-          bgColor: "bg-secondary/20",
-          textColor: "text-muted-foreground",
-        };
-    }
-  };
-
   return (
     <motion.div
       variants={containerVariants}
@@ -157,26 +83,32 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
       {categories.length > 0 && (
         <div className="mb-2">
           <div className="text-xs font-medium text-muted-foreground mb-2 px-2">
-            Directories
+            Categories
           </div>
           <div className="space-y-1">
-            {categories.map((category) => {
+            {categories.map((category, index) => {
               return (
-                <Category
-                  parentCategory={parentCategory}
-                  category={category}
+                <motion.div
+                  variants={itemVariants}
                   key={category.id}
-                  depth={1}
-                  isExpanded={false}
-                  handleToggleExpand={onSelectCategory}
-                  stats={{
-                    readFilesCount: 0,
-                    completedFilesCount: 0,
-                    todoFilesCount: 0,
-                    totalFilesCount: category.files?.length ?? 0,
-                  }}
-                  colorIcon={true}
-                />
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <Category
+                    parentCategory={parentCategory}
+                    category={category}
+                    key={category.id}
+                    depth={1}
+                    isExpanded={false}
+                    handleToggleExpand={onSelectCategory}
+                    stats={{
+                      readFilesCount: 0,
+                      completedFilesCount: 0,
+                      todoFilesCount: 0,
+                      totalFilesCount: category.files?.length ?? 0,
+                    }}
+                    colorIcon={true}
+                  />
+                </motion.div>
               );
             })}
           </div>
@@ -196,72 +128,22 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
               const isCompleted = filePaths.completed.has(file.path);
               const isRead = filePaths.read.has(file.path);
 
-              const fileStatusIcon = getFileStatusIcon(
-                isInTodo,
-                isCompleted,
-                isRead
-              );
-              const statusText = getFileStatusText(
-                isInTodo,
-                isCompleted,
-                isRead
-              );
-              const fileStatus = getFileStatus(isInTodo, isCompleted, isRead);
-
-              // Extract the category from the file path to use the correct icon
-              const filePathParts = file.path.split("/");
-              const fileCategory =
-                filePathParts.length > 0 ? filePathParts[0] : "";
-              const FileIcon = getIconForTech(fileCategory);
-
               return (
                 <motion.div
-                  key={file.path}
                   variants={itemVariants}
-                  whileHover={{ y: -1 }}
-                  whileTap={{ scale: 0.98 }}
+                  key={file.path}
+                  transition={{ delay: index * 0.05 }}
                 >
-                  <button
-                    onClick={() => onSelectFile(file.path)}
-                    className={cn(
-                      "w-full flex items-center px-3 py-2.5 rounded-lg transition-all",
-                      isCurrentFile
-                        ? "bg-primary/10 text-primary"
-                        : "hover:bg-secondary/20"
-                    )}
-                  >
-                    <div className="flex-shrink-0 mr-3">
-                      <FileIcon
-                        size={18}
-                        className={
-                          isCurrentFile
-                            ? "text-primary"
-                            : "text-muted-foreground"
-                        }
-                      />
-                    </div>
-
-                    <div className="flex-1 min-w-0 text-left">
-                      <div className="flex items-center">
-                        <span className="font-medium mr-1">{index + 1}.</span>
-                        <span className="truncate">{file.title}</span>
-                      </div>
-
-                      <div className="flex items-center mt-1">
-                        <div
-                          className={cn(
-                            "flex items-center px-1.5 py-0.5 rounded-full text-xs",
-                            fileStatus.bgColor
-                          )}
-                        >
-                          {fileStatusIcon}
-                          <span className={cn("ml-1", fileStatus.textColor)}>
-                            {statusText}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </button>
+                  <CategoryFile
+                    file={file}
+                    isTodo={isInTodo}
+                    isCompleted={isCompleted}
+                    depth={0}
+                    isCurrentFile={isCurrentFile}
+                    fileNumber={index + 1}
+                    isRead={isRead}
+                    handleSelectFile={onSelectFile}
+                  />
                 </motion.div>
               );
             })}
