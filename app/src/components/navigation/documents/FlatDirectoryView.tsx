@@ -94,15 +94,28 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
                   transition={{
                     delay: index * 0.05,
                     type: "spring",
-                    stiffness: 300,
-                    damping: 20,
+                    stiffness: 400,
+                    damping: 15,
                   }}
                   whileHover={{
-                    scale: 1.02,
-                    transition: { duration: 0.2 },
+                    scale: 1.04,
+                    boxShadow:
+                      "0 15px 30px -10px rgba(var(--secondary), 0.35), 0 10px 20px -10px rgba(var(--secondary-rgb), 0.25)",
+                    transition: { duration: 0.3 },
                     cursor: "pointer",
                   }}
+                  className="rounded-2xl overflow-hidden relative border border-transparent hover:border-secondary/30 group backdrop-blur-lg hover:shadow-lg hover:shadow-primary/20 transition-all cursor-pointer"
+                  initial={{
+                    boxShadow:
+                      "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03)",
+                  }}
                 >
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-tl from-secondary/10 via-transparent to-secondary/15 pointer-events-none transition-all duration-500 z-0">
+                    <div className="absolute inset-0 bg-[conic-gradient(at_bottom_right,rgba(var(--secondary-rgb),0.1)_30deg,transparent_80deg,rgba(var(--secondary-rgb),0.07)_180deg,transparent_270deg,rgba(var(--secondary-rgb),0.1)_300deg)] mix-blend-screen"></div>
+                    <div className="absolute -inset-1 opacity-20 bg-[linear-gradient(115deg,transparent_20%,rgba(var(--secondary-rgb),0.2)_40%,rgba(var(--secondary-rgb),0.4)_60%,transparent_80%)] animate-shimmer-slow blur-xl"></div>
+                    <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-secondary/40 to-transparent"></div>
+                    <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-secondary/30 to-transparent"></div>
+                  </div>
                   <Category
                     parentCategory={parentCategory}
                     category={category}
