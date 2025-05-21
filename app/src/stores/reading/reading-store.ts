@@ -101,10 +101,7 @@ export const useReadingStore = create<State & Actions>((set, get) => ({
       const updatedItem = await readingListService.toggleCompletion(id);
 
       if (updatedItem) {
-        console.log("Updated item:", updatedItem);
         await get().refreshReadingList();
-      } else {
-        console.log("No updated item");
       }
 
       return updatedItem;
@@ -211,7 +208,6 @@ export const useReadingStore = create<State & Actions>((set, get) => ({
    * Gets everything ready for your reading adventures. 📚
    */
   initialize: async () => {
-    console.log("Initializing reading list");
     set({ isLoading: true });
     try {
       await get().refreshReadingList();

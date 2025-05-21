@@ -25,7 +25,6 @@ const useDocumentReading = () => {
     const fetchReadSections = async () => {
       try {
         const documentHistory = await getDocumentHistory(documentPath);
-        console.log(documentHistory, "Document history changed", documentPath);
         setLoading(false);
         if (!documentHistory) return;
 
@@ -47,20 +46,12 @@ const useDocumentReading = () => {
    */
   const startSectionReading = useCallback(
     async (sectionIndex: number) => {
-      console.log(
-        documentPath,
-        sectionIndex,
-        sections,
-        "Start section reading"
-      );
       if (!documentPath) return false;
 
       if (sectionIndex < 0 || sectionIndex >= sections.length) return false;
 
       await markSectionsCompleted(documentPath, [sectionIndex]);
-      console.log(sectionIndex);
       setSectionsReadSoFar((prev) => {
-        console.log(prev);
         return union(prev, [sectionIndex]);
       });
       newSectionRead.current.add(sectionIndex);
@@ -79,13 +70,6 @@ const useDocumentReading = () => {
     },
     [sections]
   );
-
-  /**
-   * 📚 Log new sections read count
-   */
-  useEffect(() => {
-    console.log(newSectionRead.current, "New sections read count");
-  }, [newSectionRead]);
 
   /**
    * 📚 End reading

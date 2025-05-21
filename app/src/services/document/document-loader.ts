@@ -201,8 +201,6 @@ const loadMarkdownContent = async (
     const baseUrl = getBaseContentUrl();
     const fullUrl = `${baseUrl}${filepath}`;
 
-    console.log("Loading markdown content from:", fullUrl);
-
     const response = await fetch(fullUrl);
     if (!response.ok) {
       console.error(

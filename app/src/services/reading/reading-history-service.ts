@@ -180,9 +180,6 @@ export async function getDocumentHistory(
       cleanedPath
     );
 
-    console.log(items, "Items");
-
-    if (!items) console.log("No items found");
     return items.length > 0 ? items[0] : null;
   } catch (error) {
     console.error("Error getting document history:", error);
@@ -298,10 +295,6 @@ export async function cleanDuplicateHistory(): Promise<{
       STORE_NAME
     );
 
-    console.log(
-      `Processing ${allItems.length} history items for duplicate removal`
-    );
-
     /**
      * Group reading history items by their normalized path
      */
@@ -378,9 +371,6 @@ export async function cleanDuplicateHistory(): Promise<{
     await persistCleanedItems(itemsToKeep);
 
     const removedCount = allItems.length - itemsToKeep.length;
-    console.log(
-      `Successfully removed ${removedCount} duplicate history entries`
-    );
 
     return {
       removedCount,

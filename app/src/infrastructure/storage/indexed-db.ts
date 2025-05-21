@@ -37,7 +37,6 @@ export class DatabaseService {
 
       request.onsuccess = (event) => {
         this.db = (event.target as IDBOpenDBRequest).result;
-        console.log("Database initialized successfully");
         this.initialized = true;
         resolve();
       };

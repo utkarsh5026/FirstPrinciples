@@ -49,25 +49,10 @@ export class SectionReadingService {
   public async initialize(): Promise<void> {
     try {
       await databaseService.initDatabase();
-
-      // Ensure required indexes exist (for database versions that might not have them)
-      this.ensureIndexes();
     } catch (error) {
       console.error("Error initializing SectionReadingService:", error);
       throw error;
     }
-  }
-
-  /**
-   * Ensure all required indexes exist
-   * This is a safety measure for upgrading from old schemas
-   */
-  private async ensureIndexes(): Promise<void> {
-    // This would typically be handled by the database upgrade mechanism
-    // But including it here as a reference for what indexes we need
-    console.log(
-      "Indexes should be created in DatabaseService.ts onupgradeneeded"
-    );
   }
 
   /**
@@ -93,17 +78,6 @@ export class SectionReadingService {
         lastReadAt: Date.now(),
         isComplete,
       });
-
-      console.log("Recorded section reading:", {
-        documentPath,
-        sectionId,
-        sectionTitle,
-        category,
-        wordCount,
-        timeSpent,
-        isComplete,
-      });
-
       // Update document stats
       await this.updateDocumentStats(documentPath, category);
     } catch (error) {

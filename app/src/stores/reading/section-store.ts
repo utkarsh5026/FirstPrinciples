@@ -139,19 +139,8 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
       try {
         const currentState = get().readingState;
 
-        console.log("Starting section reading:", {
-          documentPath,
-          sectionId,
-          category,
-          wordCount,
-          sectionTitle,
-        });
-
         // End previous reading session if one exists
         if (currentState.currentSectionId && currentState.startTime) {
-          console.log("Ending previous reading session:", {
-            currentState,
-          });
           const timeSpent = Date.now() - currentState.startTime;
 
           // Record the previous reading session
@@ -222,14 +211,6 @@ export const useSectionStore = create<StoreState & StoreActions>((set, get) => {
           sectionTitle &&
           startTime
         ) {
-          console.log("Ending section reading:", {
-            currentSectionId,
-            documentPath,
-            category,
-            wordCount,
-            sectionTitle,
-          });
-
           const timeSpent = Date.now() - startTime;
 
           await sectionReadingService.recordSectionReading(

@@ -35,7 +35,6 @@ export const useDocument = (documentPath: string) => {
   );
 
   useEffect(() => {
-    console.log(documentPath, "Document path changed");
     setCompletedSectionIndices(new Set());
     newlyCompletedSections.current.clear();
     previouslyCompletedSections.current.clear();
@@ -64,7 +63,6 @@ export const useDocument = (documentPath: string) => {
     const fetchCompletedSections = async () => {
       try {
         const documentHistory = await getDocumentHistory(documentPath);
-        console.log(documentHistory, "Document history changed", documentPath);
         setIsLoadingSectionData(false);
         if (!documentHistory) return;
 

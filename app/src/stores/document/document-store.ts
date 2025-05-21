@@ -165,8 +165,6 @@ export const useDocumentStore = create<State & Actions>((set, get) => ({
 
       collectFilesFromCategories(contentIndex.categories || []);
 
-      console.log("contentIndex.categories", contentIndex.categories);
-
       const fileMap = allFiles.reduce((acc, file) => {
         acc[file.path] = file;
         return acc;

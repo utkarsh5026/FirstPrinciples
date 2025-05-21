@@ -31,8 +31,6 @@ export function getHistoryByCategory(
     return history;
   }
 
-  console.log(history);
-
   return history.filter((item) => {
     const itemCategory = item.path.split("/")[0] || "uncategorized";
     return itemCategory.toLowerCase() === category.toLowerCase();
@@ -139,8 +137,6 @@ export const filterHistory = (
   if (options.category) {
     filteredHistory = getHistoryByCategory(filteredHistory, options.category);
   }
-
-  console.log(filteredHistory);
 
   if (options.timePeriod) {
     filteredHistory = getHistoryByTimePeriod(

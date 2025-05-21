@@ -68,17 +68,11 @@ export function useReadingHistory() {
   const updateReadingTime = useCallback(
     async (path: string, title: string, timeSpent: number) => {
       try {
-        // Get existing history item if it exists
         const historyItem = await readingHistoryService.getDocumentHistory(
           path
         );
 
-        // Calculate estimated words read based on time spent
         const wordsRead = estimateWordsRead(timeSpent);
-
-        console.log(
-          `Updating reading time: ${path}, Time: ${timeSpent}ms, Words: ~${wordsRead}`
-        );
 
         if (historyItem) {
           // Update existing history item
