@@ -56,10 +56,10 @@ const BreadcrumbView: React.FC<BreadCrumbViewProps> = ({
               <BreadcrumbItem>
                 {index === breadcrumbs.length - 1 ? (
                   <BreadcrumbPage className="flex items-center">
-                    <div className="mr-1.5 text-primary">
+                    <div className="mr-1.5 text-primary text-xs">
                       <CrumbIcon size={14} />
                     </div>
-                    <span className="font-medium text-sm">{crumb.name}</span>
+                    <span className="font-medium text-xs">{crumb.name}</span>
                   </BreadcrumbPage>
                 ) : (
                   <BreadcrumbLink
@@ -69,7 +69,7 @@ const BreadcrumbView: React.FC<BreadCrumbViewProps> = ({
                     <div className="mr-1.5">
                       <CrumbIcon size={14} />
                     </div>
-                    <span className="text-sm">{crumb.name}</span>
+                    <span className="text-xs">{crumb.name}</span>
                   </BreadcrumbLink>
                 )}
               </BreadcrumbItem>
