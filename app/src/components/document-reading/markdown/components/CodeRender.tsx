@@ -97,7 +97,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
   ) : (
     <div
       ref={codeRef}
-      className="my-6 rounded-2xl overflow-hidden border border-[#222222] relative font-cascadia-code"
+      className="my-6 rounded-2xl overflow-hidden border border-[#222222] relative font-fira-code"
     >
       <div className="bg-[#1c1c1c] text-gray-400 px-4 py-2 text-sm font-bold border-b border-[#222222] flex justify-between items-center">
         <span>{language || "code"}</span>
@@ -127,7 +127,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
         codeTagProps={{
           style: {
             backgroundColor: "transparent",
-            fontFamily: "Fira Code",
+            fontFamily: "Source Code Pro, monospace",
           },
         }}
         {...props}
