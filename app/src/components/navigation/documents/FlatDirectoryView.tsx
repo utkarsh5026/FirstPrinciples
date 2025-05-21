@@ -150,13 +150,21 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
                   }}
                   whileHover={{
                     scale: 1.02,
-                    transition: { duration: 0.2 },
+                    boxShadow:
+                      "0 10px 25px -5px rgba(var(--primary-rgb), 0.3), 0 8px 15px -6px rgba(var(--primary-rgb), 0.2)",
+                    transition: { duration: 0.3 },
                   }}
-                  className="rounded-2xl overflow-hidden relative hover:bg-primary/5 border border-transparent hover:border-primary/10"
+                  className="rounded-2xl overflow-hidden relative border border-transparent hover:border-primary/30 group backdrop-blur-sm"
                   initial={{
-                    boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                    boxShadow:
+                      "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)",
                   }}
                 >
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-primary/10 via-transparent to-primary/20 pointer-events-none transition-all duration-500 z-0">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(var(--primary-rgb),0.15)_0%,transparent_70%)] mix-blend-overlay"></div>
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+                  </div>
                   <CategoryFile
                     file={file}
                     isTodo={isInTodo}
