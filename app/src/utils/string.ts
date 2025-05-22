@@ -57,4 +57,7 @@ const capitalWords = new Set([
   "KISS",
   "YAGNI",
   "RDS",
+  "OOPS",
+  "MRO",
+  "ORM",
 ]);
