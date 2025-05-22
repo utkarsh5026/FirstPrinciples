@@ -1,563 +1,340 @@
-# Mathematics and Numeric Operations in Python's Standard Library
 
-I'll explain the mathematical and numeric operations available in Python's standard library from first principles, building up from the most basic concepts to more advanced functionality.
+## Understanding Python's Mathematical Foundation
 
-## Fundamentals of Numbers in Python
+Mathematical operations form the foundation of computational thinking in Python. Let's begin our journey by understanding what mathematics means in the context of programming, then build up to explore Python's comprehensive mathematical toolkit.
 
-At its core, Python recognizes several types of numbers, each with distinct properties and behaviors. Understanding these types is essential before we dive into operations.
+> **Core Principle** : Mathematics in programming is about transforming data through precise, repeatable calculations. Python treats numbers as objects that can be manipulated through operators and functions.
+>
 
-### Number Types
-
-1. **Integers (`int`)** : Whole numbers without decimal points
-2. **Floating-point numbers (`float`)** : Numbers with decimal points
-3. **Complex numbers (`complex`)** : Numbers with real and imaginary parts
-
-Let's see examples of each:
+Python approaches mathematics through two primary mechanisms: **operators** (symbols that perform operations) and **functions** (reusable pieces of code that perform specific calculations). Think of operators as the basic mathematical symbols you learned in school (+, -, ×, ÷), while functions are like specialized calculators designed for specific tasks.
 
 ```python
-# Integer examples
-x = 5
-y = -10
-z = 0
+# Basic arithmetic operators - these work directly on numbers
+result = 5 + 3    # Addition operator
+difference = 10 - 4    # Subtraction operator
+product = 6 * 7    # Multiplication operator
+quotient = 15 / 3    # Division operator
 
-# Float examples
-a = 3.14
-b = -0.001
-c = 2.0
-
-# Complex examples
-d = 3 + 4j
-e = complex(2, 3)  # Creates 2 + 3j
+print(f"Addition: {result}")
+print(f"Subtraction: {difference}")
+print(f"Multiplication: {product}")  
+print(f"Division: {quotient}")
 ```
 
-The way Python stores these numbers internally affects precision and range. Integers in Python 3 have unlimited precision (limited only by available memory), while floats typically use 64-bit double-precision representation, giving approximately 15-17 significant decimal digits of precision.
+In this example, we're using Python's built-in arithmetic operators. Each operator takes two numbers (called operands) and produces a result. The `print` statements help us see what's happening - we're not just calculating, we're observing the results of our mathematical operations.
 
-## Basic Arithmetic Operations
+## The math Module: Python's Mathematical Powerhouse
 
-Python supports the fundamental arithmetic operations through built-in operators:
+Python's `math` module contains mathematical functions that extend far beyond basic arithmetic. Think of it as a scientific calculator built into the language.
 
-```python
-# Addition
-sum_result = 5 + 3  # 8
-
-# Subtraction
-difference = 10 - 4  # 6
-
-# Multiplication
-product = 6 * 7  # 42
-
-# Division (returns float)
-quotient = 20 / 4  # 5.0
-
-# Floor division (returns integer, discarding remainder)
-floor_quotient = 20 // 6  # 3
-
-# Modulo (remainder)
-remainder = 20 % 6  # 2
-
-# Exponentiation
-power = 2 ** 3  # 8
-```
-
-### Division Deep Dive
-
-It's worth noting the difference between regular division (`/`) and floor division (`//`):
-
-```python
-# Regular division always returns a float
-print(10 / 5)  # 2.0
-print(11 / 4)  # 2.75
-
-# Floor division returns the quotient without the remainder (integer for integer inputs)
-print(10 // 5)  # 2
-print(11 // 4)  # 2
-```
-
-The modulo operator (`%`) works hand-in-hand with division, returning the remainder:
-
-```python
-# Modulo examples
-print(10 % 3)  # 1 (10 = 3*3 + 1)
-print(20 % 7)  # 6 (20 = 7*2 + 6)
-```
-
-A common pattern is using divmod() which returns both the quotient and remainder:
-
-```python
-quotient, remainder = divmod(20, 6)
-print(quotient)    # 3
-print(remainder)   # 2
-```
-
-## The `math` Module
-
-For more advanced mathematical operations, Python provides the `math` module in its standard library. This module contains functions for mathematical operations beyond the basic arithmetic.
+> **Key Insight** : The math module provides functions that work with real numbers and cannot handle complex numbers (numbers with imaginary components). For complex numbers, Python has a separate `cmath` module.
 
 ```python
 import math
 
-# Constants
-print(math.pi)     # 3.141592653589793
-print(math.e)      # 2.718281828459045
-print(math.tau)    # 6.283185307179586 (2*pi)
-print(math.inf)    # Infinity
-print(math.nan)    # Not a Number
+# Demonstrating basic mathematical functions
+number = 16
+square_root = math.sqrt(number)
+logarithm = math.log(number)
+sine_value = math.sin(math.pi / 2)  # sine of 90 degrees in radians
+
+print(f"Square root of {number}: {square_root}")
+print(f"Natural logarithm of {number}: {logarithm}")
+print(f"Sine of π/2 radians (90 degrees): {sine_value}")
 ```
 
-### Rounding Functions
+Here we're importing the entire math module and using three fundamental functions. The `sqrt` function finds the square root, `log` calculates the natural logarithm, and `sin` computes the sine of an angle measured in radians.
+
+## Exponential and Logarithmic Functions
+
+Exponential and logarithmic functions represent inverse relationships - they "undo" each other. Understanding this relationship is crucial for many mathematical applications.
+
+> **First Principle** : An exponential function grows by repeated multiplication, while a logarithm asks "to what power must we raise a base to get a specific result?"
 
 ```python
 import math
 
-# ceil(): rounds up to nearest integer
-print(math.ceil(4.2))    # 5
-print(math.ceil(-4.2))   # -4
+# Exponential functions
+base = 2
+exponent = 3
+power_result = math.pow(base, exponent)  # 2 raised to the power of 3
+exp_result = math.exp(1)  # e raised to the power of 1
 
-# floor(): rounds down to nearest integer
-print(math.floor(4.2))   # 4
-print(math.floor(-4.2))  # -5
+print(f"{base} raised to power {exponent}: {power_result}")
+print(f"e raised to power 1: {exp_result}")
 
-# trunc(): truncates decimal part (towards zero)
-print(math.trunc(4.2))   # 4
-print(math.trunc(-4.2))  # -4
+# Logarithmic functions (inverse of exponential)
+number = 8
+log_base_2 = math.log(number, 2)  # logarithm of 8 with base 2
+natural_log = math.log(number)    # natural logarithm (base e)
+log_base_10 = math.log10(number)  # logarithm base 10
 
-# round(): rounds to specified precision (built-in function)
-print(round(4.5))        # 4 (ties round to even number)
-print(round(5.5))        # 6
-print(round(4.56789, 2)) # 4.57
+print(f"Log base 2 of {number}: {log_base_2}")
+print(f"Natural log of {number}: {natural_log}")
+print(f"Log base 10 of {number}: {log_base_10}")
 ```
 
-The distinction between `floor()`, `trunc()`, and `ceil()` is particularly important for negative numbers:
+This example demonstrates the relationship between exponentials and logarithms. When we calculate 2³ = 8, the logarithm base 2 of 8 gives us back 3. This inverse relationship is fundamental to understanding how these functions work together.
 
-* `floor(-4.2)` gives -5 (the largest integer less than -4.2)
-* `trunc(-4.2)` gives -4 (removes the decimal part)
-* `ceil(-4.2)` gives -4 (the smallest integer greater than -4.2)
+## Trigonometric Functions: Measuring Angles and Rotations
 
-### Power and Logarithmic Functions
+Trigonometric functions originally described relationships in triangles, but in programming, they're essential for describing periodic patterns, rotations, and wave-like behaviors.
+
+> **Essential Understanding** : Trigonometric functions in Python expect angles in radians, not degrees. A full circle is 2π radians, equivalent to 360 degrees.
 
 ```python
 import math
 
-# Power functions
-print(math.pow(2, 3))      # 8.0 (returns float, unlike 2**3)
-print(math.sqrt(25))       # 5.0 (square root)
-print(math.cbrt(27))       # 3.0 (cube root)
+# Converting between degrees and radians
+degrees = 45
+radians = math.radians(degrees)  # Convert degrees to radians
+back_to_degrees = math.degrees(radians)  # Convert back to degrees
 
-# Exponential and logarithmic functions
-print(math.exp(1))         # 2.718281828459045 (e^1)
-print(math.log(100))       # 4.605170185988092 (natural log, base e)
-print(math.log10(100))     # 2.0 (base-10 log)
-print(math.log2(8))        # 3.0 (base-2 log)
-print(math.log(8, 2))      # 3.0 (custom base log)
-```
-
-Understanding the relationship between exponents and logarithms is key:
-
-* If y = b^x, then log_b(y) = x
-* For example, 2^3 = 8, so log_2(8) = 3
-
-### Trigonometric Functions
-
-The `math` module provides all standard trigonometric functions, working in radians:
-
-```python
-import math
+print(f"{degrees} degrees = {radians} radians")
+print(f"{radians} radians = {back_to_degrees} degrees")
 
 # Basic trigonometric functions
-print(math.sin(math.pi/2))  # 1.0
-print(math.cos(0))          # 1.0
-print(math.tan(math.pi/4))  # 1.0
+angle_rad = math.pi / 4  # 45 degrees in radians
+sine = math.sin(angle_rad)
+cosine = math.cos(angle_rad)
+tangent = math.tan(angle_rad)
 
-# Inverse trigonometric functions
-print(math.asin(1))         # 1.5707963267948966 (pi/2)
-print(math.acos(0))         # 1.5707963267948966 (pi/2)
-print(math.atan(1))         # 0.7853981633974483 (pi/4)
-
-# Conversion between degrees and radians
-print(math.radians(180))    # 3.141592653589793 (pi)
-print(math.degrees(math.pi))# 180.0
+print(f"\nFor angle {math.degrees(angle_rad)} degrees:")
+print(f"Sine: {sine}")
+print(f"Cosine: {cosine}")
+print(f"Tangent: {tangent}")
 ```
 
-To help visualize these functions, consider:
+This code shows the conversion between degrees and radians, then calculates the three primary trigonometric functions. Notice how we use `math.pi / 4` to represent 45 degrees - this is exactly π/4 radians.
 
-* `sin(0)` = 0, `sin(π/2)` = 1, `sin(π)` = 0
-* `cos(0)` = 1, `cos(π/2)` = 0, `cos(π)` = -1
-* `tan(θ)` = `sin(θ)/cos(θ)`
+## Rounding and Precision Control
 
-### Hyperbolic Functions
+Working with decimal numbers often requires controlling precision. Python provides several functions for rounding numbers in different ways.
 
 ```python
 import math
 
-# Hyperbolic functions
-print(math.sinh(1))    # 1.1752011936438014
-print(math.cosh(1))    # 1.5430806348152437
-print(math.tanh(1))    # 0.7615941559557649
+# Different rounding strategies
+number = 3.7861
+simple_round = round(number, 2)  # Built-in round function
+floor_value = math.floor(number)  # Always rounds down
+ceil_value = math.ceil(number)   # Always rounds up
+truncate_value = math.trunc(number)  # Removes decimal part
 
-# Inverse hyperbolic functions
-print(math.asinh(1))   # 0.8813735870195429
-print(math.acosh(2))   # 1.3169578969248166
-print(math.atanh(0.5)) # 0.5493061443340548
+print(f"Original number: {number}")
+print(f"Rounded to 2 places: {simple_round}")
+print(f"Floor (rounds down): {floor_value}")
+print(f"Ceiling (rounds up): {ceil_value}")
+print(f"Truncated: {truncate_value}")
+
+# Demonstrating difference with negative numbers
+negative_num = -3.7
+print(f"\nWith negative number {negative_num}:")
+print(f"Floor: {math.floor(negative_num)}")  # -4, not -3!
+print(f"Ceiling: {math.ceil(negative_num)}")  # -3
+print(f"Truncate: {math.trunc(negative_num)}")  # -3
 ```
 
-Hyperbolic functions relate to the regular trigonometric functions but are based on the exponential function instead of the unit circle:
+This example reveals an important distinction: `floor` always rounds toward negative infinity, while `trunc` simply removes the decimal portion. For negative numbers, these produce different results.
 
-* sinh(x) = (e^x - e^(-x))/2
-* cosh(x) = (e^x + e^(-x))/2
-* tanh(x) = sinh(x)/cosh(x)
+## Statistical Functions: Understanding Data
 
-### Special Functions
+Python's math module includes functions for basic statistical calculations, helping us understand datasets and distributions.
+
+> **Core Concept** : Statistical functions help us summarize and understand collections of numbers by finding central tendencies and measuring spread.
 
 ```python
 import math
 
-# Factorial
-print(math.factorial(5))      # 120 (5! = 5×4×3×2×1)
+# Working with collections of numbers
+numbers = [1, 4, 9, 16, 25, 36]
 
-# Greatest common divisor
-print(math.gcd(48, 18))       # 6
+# Calculate sum and length for other statistics
+total = sum(numbers)
+count = len(numbers)
+mean = total / count
 
-# Least common multiple (Python 3.9+)
-print(math.lcm(15, 20))       # 60
+print(f"Numbers: {numbers}")
+print(f"Sum: {total}")
+print(f"Count: {count}")
+print(f"Mean (average): {mean}")
 
-# Error function
-print(math.erf(1))            # 0.8427007929497149
+# Using math functions for more complex calculations
+# Standard deviation calculation (measuring spread)
+squared_differences = [(x - mean) ** 2 for x in numbers]
+variance = sum(squared_differences) / count
+standard_deviation = math.sqrt(variance)
 
-# Gamma function (generalized factorial)
-print(math.gamma(5))          # 24.0 (4! = 24)
+print(f"Variance: {variance}")
+print(f"Standard deviation: {standard_deviation}")
+
+# Geometric mean (different type of average)
+product = 1
+for num in numbers:
+    product *= num
+geometric_mean = math.pow(product, 1/count)
+
+print(f"Geometric mean: {geometric_mean}")
 ```
 
-For factorial, it's important to note that `math.factorial()` only works with non-negative integers. The gamma function extends the concept of factorial to real and complex numbers, with Γ(n) = (n-1)! for positive integers.
+This example demonstrates how mathematical functions combine to create more complex statistical measures. We calculate the standard deviation step by step, showing how `math.sqrt` helps us complete the calculation.
 
-## The `statistics` Module
+## Special Mathematical Constants
 
-For statistical operations, Python provides the `statistics` module:
-
-```python
-import statistics
-
-data = [2, 5, 7, 9, 10, 13, 15]
-
-# Measures of central tendency
-print(statistics.mean(data))      # 8.714285714285714
-print(statistics.median(data))    # 9
-print(statistics.mode([1, 2, 2, 3, 3, 3, 4])) # 3
-
-# Measures of dispersion
-print(statistics.variance(data))  # 19.071428571428573
-print(statistics.stdev(data))     # 4.367073911460844
-```
-
-Let's understand what these statistics represent:
-
-* **Mean** : The average value (sum divided by count)
-* **Median** : The middle value when data is sorted
-* **Mode** : The most frequently occurring value
-* **Variance** : Average of squared deviations from the mean
-* **Standard deviation** : Square root of variance
-
-## Random Number Generation
-
-Python's `random` module provides tools for generating random numbers:
-
-```python
-import random
-
-# Random float between 0.0 and 1.0
-print(random.random())        # e.g., 0.7586036209688392
-
-# Random integer between a and b (inclusive)
-print(random.randint(1, 10))  # e.g., 7
-
-# Random choice from a sequence
-print(random.choice(['apple', 'banana', 'cherry']))  # e.g., 'banana'
-
-# Random sample without replacement
-print(random.sample(range(100), 5))  # e.g., [42, 68, 35, 1, 79]
-
-# Shuffling a list in-place
-deck = list(range(10))
-random.shuffle(deck)
-print(deck)  # e.g., [3, 8, 5, 1, 9, 0, 7, 4, 2, 6]
-```
-
-For reproducible results, you can set a seed:
-
-```python
-random.seed(42)
-print(random.random())  # Always 0.6394267984578837 when seed is 42
-```
-
-This is crucial for scientific computing or when debugging code with random elements.
-
-## Decimal Module for Precision Arithmetic
-
-The `decimal` module provides support for decimal floating-point arithmetic:
-
-```python
-from decimal import Decimal, getcontext
-
-# Set precision (28 digits by default)
-getcontext().prec = 28
-
-# Compare float vs Decimal for financial calculations
-print(0.1 + 0.2)            # 0.30000000000000004 (float imprecision)
-print(Decimal('0.1') + Decimal('0.2'))  # 0.3 (exact)
-
-# Precise division
-print(Decimal(1) / Decimal(7))  # 0.1428571428571428571428571429
-```
-
-The `decimal` module is particularly important for financial calculations where precision matters. The floating-point representation used by Python's `float` type can lead to small rounding errors, which might be unacceptable in financial contexts.
-
-## Fractions Module for Rational Numbers
-
-The `fractions` module provides support for rational number arithmetic:
-
-```python
-from fractions import Fraction
-
-# Create fractions
-a = Fraction(1, 3)  # 1/3
-b = Fraction(2, 5)  # 2/5
-
-# Arithmetic with fractions
-print(a + b)        # 11/15
-print(a * b)        # 2/15
-print(a / b)        # 5/6
-
-# Convert from decimal
-print(Fraction(0.25))  # 1/4
-print(Fraction('0.25'))  # 1/4
-```
-
-Fractions allow exact arithmetic with rational numbers, avoiding the floating-point precision issues. Each fraction consists of a numerator and denominator, maintained in lowest form.
-
-## Complex Numbers
-
-Python has built-in support for complex numbers:
-
-```python
-# Creating complex numbers
-z1 = 3 + 4j
-z2 = complex(2, -1)  # 2-1j
-
-# Basic operations
-print(z1 + z2)  # (5+3j)
-print(z1 * z2)  # (10+5j)
-
-# Accessing real and imaginary parts
-print(z1.real)  # 3.0
-print(z1.imag)  # 4.0
-
-# Conjugate
-print(z1.conjugate())  # (3-4j)
-
-# Magnitude/absolute value
-import math
-print(abs(z1))  # 5.0 (sqrt(3² + 4²))
-```
-
-The `cmath` module provides specialized functions for complex numbers:
-
-```python
-import cmath
-
-# Square root of a negative number
-print(cmath.sqrt(-1))  # 1j
-
-# Complex exponential
-print(cmath.exp(1j * math.pi))  # (-1+1.2246467991473532e-16j) ≈ -1+0j
-
-# Polar form
-r, theta = cmath.polar(1 + 1j)
-print(r)      # 1.4142135623730951 (magnitude)
-print(theta)  # 0.7853981633974483 (phase in radians)
-```
-
-Euler's formula, e^(ix) = cos(x) + i·sin(x), is the foundation for many complex number operations. When x = π, we get the famous equation e^(iπ) = -1.
-
-## Number Theory Functions
-
-Python provides some basic number theory functions:
-
-```python
-# Check if a number is prime
-def is_prime(n):
-    if n <= 1:
-        return False
-    if n <= 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-        i += 6
-    return True
-
-print(is_prime(17))  # True
-print(is_prime(20))  # False
-
-# Greatest common divisor
-import math
-print(math.gcd(48, 18))  # 6
-
-# Least common multiple
-print(math.lcm(15, 20))  # 60 (Python 3.9+)
-```
-
-For more advanced number theory, you might want to use specialized libraries outside the standard library, such as `sympy`.
-
-## Numerical Representation and Conversion
-
-Python provides several functions for converting between different number representations:
-
-```python
-# Binary representation
-print(bin(42))  # '0b101010'
-
-# Octal representation
-print(oct(42))  # '0o52'
-
-# Hexadecimal representation
-print(hex(42))  # '0x2a'
-
-# Integer from string with base
-print(int('101010', 2))  # 42 (binary to decimal)
-print(int('2a', 16))     # 42 (hex to decimal)
-
-# Float representation
-print(float.hex(3.14))   # '0x1.91eb851eb851fp+1'
-```
-
-Understanding these representations is crucial for low-level programming, bit manipulation, and interfacing with hardware.
-
-## Practical Examples
-
-### Example 1: Compound Interest Calculator
-
-```python
-def compound_interest(principal, rate, time, compounding_periods=1):
-    """
-    Calculate compound interest.
-  
-    Args:
-        principal: Initial amount
-        rate: Annual interest rate (decimal)
-        time: Time in years
-        compounding_periods: Number of times interest is compounded per year
-  
-    Returns:
-        Final amount after compound interest
-    """
-    return principal * (1 + rate/compounding_periods)**(compounding_periods*time)
-
-# $1000 invested at 5% annual interest for 5 years, compounded quarterly
-result = compound_interest(1000, 0.05, 5, 4)
-print(f"Final amount: ${result:.2f}")  # Final amount: $1282.85
-```
-
-This example demonstrates the power of Python for financial calculations. The formula used is A = P(1 + r/n)^(nt), where:
-
-* A is the final amount
-* P is the principal
-* r is the annual interest rate
-* n is the number of times interest is compounded per year
-* t is the time in years
-
-### Example 2: Standard Deviation Calculation
+Mathematical constants are numbers that appear frequently in calculations and have special mathematical significance.
 
 ```python
 import math
 
-def standard_deviation(data):
-    """
-    Calculate the standard deviation of a list of numbers.
-    """
-    # Step 1: Calculate the mean
-    mean = sum(data) / len(data)
-  
-    # Step 2: Calculate the squared differences from the mean
-    squared_diff = [(x - mean)**2 for x in data]
-  
-    # Step 3: Calculate the variance (mean of squared differences)
-    variance = sum(squared_diff) / len(data)
-  
-    # Step 4: Take the square root to get standard deviation
-    std_dev = math.sqrt(variance)
-  
-    return std_dev
+# Important mathematical constants
+print("Mathematical Constants:")
+print(f"π (pi): {math.pi}")
+print(f"e (Euler's number): {math.e}")
+print(f"τ (tau = 2π): {math.tau}")
+print(f"Infinity: {math.inf}")
+print(f"Not a Number: {math.nan}")
 
-# Sample data
-heights = [170, 175, 180, 165, 190, 172, 178, 176]
-print(f"Standard deviation of heights: {standard_deviation(heights):.2f} cm")
-# Standard deviation of heights: 7.23 cm
+# Using constants in calculations
+circle_radius = 5
+circumference = 2 * math.pi * circle_radius
+area = math.pi * math.pow(circle_radius, 2)
+
+print(f"\nFor a circle with radius {circle_radius}:")
+print(f"Circumference: {circumference}")
+print(f"Area: {area}")
+
+# Working with exponential growth using e
+initial_amount = 1000
+growth_rate = 0.05  # 5% growth rate
+time = 2  # 2 time periods
+compound_growth = initial_amount * math.pow(math.e, growth_rate * time)
+
+print(f"\nExponential growth example:")
+print(f"Initial: ${initial_amount}")
+print(f"After {time} periods at {growth_rate*100}% rate: ${compound_growth:.2f}")
 ```
 
-This example breaks down the standard deviation calculation into steps:
+These constants appear in formulas across mathematics and science. Pi relates to circles, e appears in exponential growth and decay, and infinity represents unbounded quantities.
 
-1. Calculate the mean of the data
-2. Find the squared difference between each data point and the mean
-3. Calculate the average of these squared differences (variance)
-4. Take the square root of the variance to get the standard deviation
+## Practical Application: Building a Simple Calculator
 
-### Example 3: Monte Carlo Estimation of Pi
+Let's combine multiple mathematical concepts into a practical calculator that demonstrates various operations working together.
 
 ```python
-import random
 import math
 
-def estimate_pi(num_points=1000000):
+def advanced_calculator():
     """
-    Estimate the value of Pi using Monte Carlo method.
-  
-    We place random points in a 2x2 square centered at the origin,
-    and count how many fall within a unit circle. The ratio should
-    approximate π/4.
+    A calculator that demonstrates various mathematical operations
+    working together in a practical context.
     """
-    points_inside_circle = 0
   
-    for _ in range(num_points):
-        # Generate random point in [-1,1] x [-1,1] square
-        x = random.uniform(-1, 1)
-        y = random.uniform(-1, 1)
-      
-        # Check if point is inside the unit circle
-        if x**2 + y**2 <= 1:
-            points_inside_circle += 1
+    print("Advanced Calculator Demo")
+    print("-" * 25)
   
-    # The ratio approximates π/4
-    return 4 * points_inside_circle / num_points
+    # Get input values
+    num1 = 25
+    num2 = 4
+    angle_degrees = 60
+  
+    print(f"Working with numbers: {num1} and {num2}")
+    print(f"Angle: {angle_degrees} degrees")
+    print()
+  
+    # Basic arithmetic
+    print("Basic Operations:")
+    print(f"Addition: {num1} + {num2} = {num1 + num2}")
+    print(f"Subtraction: {num1} - {num2} = {num1 - num2}")
+    print(f"Multiplication: {num1} × {num2} = {num1 * num2}")
+    print(f"Division: {num1} ÷ {num2} = {num1 / num2}")
+    print(f"Power: {num1} ^ {num2} = {math.pow(num1, num2)}")
+    print()
+  
+    # Advanced operations
+    print("Advanced Operations:")
+    print(f"Square root of {num1}: {math.sqrt(num1)}")
+    print(f"Logarithm (base 10) of {num1}: {math.log10(num1)}")
+    print(f"Natural log of {num1}: {math.log(num1)}")
+    print()
+  
+    # Trigonometry
+    angle_rad = math.radians(angle_degrees)
+    print("Trigonometric Functions:")
+    print(f"sin({angle_degrees}°) = {math.sin(angle_rad):.4f}")
+    print(f"cos({angle_degrees}°) = {math.cos(angle_rad):.4f}")
+    print(f"tan({angle_degrees}°) = {math.tan(angle_rad):.4f}")
+    print()
+  
+    # Practical application - compound interest
+    principal = 1000
+    rate = 0.08  # 8% annual rate
+    time = 5     # 5 years
+  
+    # Using e for continuous compounding
+    continuous_compound = principal * math.exp(rate * time)
+  
+    print("Financial Calculation (Continuous Compounding):")
+    print(f"Principal: ${principal}")
+    print(f"Rate: {rate*100}% per year")
+    print(f"Time: {time} years")
+    print(f"Final amount: ${continuous_compound:.2f}")
 
-estimated_pi = estimate_pi()
-print(f"Estimated π: {estimated_pi}")
-print(f"Actual π: {math.pi}")
-print(f"Difference: {abs(estimated_pi - math.pi)}")
+# Run the calculator
+advanced_calculator()
 ```
 
-This Monte Carlo method illustrates how randomization can be used for numerical estimation. The idea is:
+This comprehensive example brings together arithmetic operations, exponential functions, logarithms, trigonometry, and practical applications. Each section builds on previous concepts while demonstrating real-world usage.
 
-1. We have a square with side length 2, centered at the origin
-2. We inscribe a circle with radius 1 in this square
-3. The area of the square is 4, and the area of the circle is π
-4. The ratio of points falling in the circle to total points should approximate π/4
+## Understanding Function Behavior and Edge Cases
 
-## Conclusion
+Mathematical functions have specific behaviors at boundary conditions. Understanding these behaviors prevents errors in your programs.
 
-Python's standard library provides a rich set of tools for mathematical and numeric operations, from basic arithmetic to complex statistical analysis. Understanding these tools from first principles allows you to build sophisticated mathematical applications without the need for external libraries.
+```python
+import math
 
-The key modules we explored are:
+# Exploring function boundaries and special cases
+print("Special Cases and Boundaries:")
 
-* Built-in numeric types and operators
-* `math` module for mathematical functions
-* `statistics` module for statistical operations
-* `random` module for random number generation
-* `decimal` module for precise decimal arithmetic
-* `fractions` module for rational number arithmetic
-* Complex number support and the `cmath` module
+# Square root limitations
+try:
+    negative_sqrt = math.sqrt(-1)  # This will cause an error
+except ValueError as e:
+    print(f"Cannot take square root of negative number: {e}")
 
-While external libraries like NumPy, SciPy, and SymPy provide even more advanced mathematical capabilities, Python's standard library offers a solid foundation for most mathematical needs.
+# Division by zero
+try:
+    division_by_zero = 10 / 0
+except ZeroDivisionError as e:
+    print(f"Division by zero error: {e}")
 
-Would you like me to explore any particular aspect of Python's mathematical capabilities in more depth?
+# Working with very large numbers
+large_number = 10**100
+print(f"\nVery large number: {large_number}")
+print(f"Square root: {math.sqrt(large_number)}")
+
+# Understanding infinity and NaN
+print(f"\nSpecial values:")
+print(f"Positive infinity: {math.inf}")
+print(f"Negative infinity: {-math.inf}")
+print(f"Not a Number: {math.nan}")
+
+# Testing for special values
+test_values = [42, math.inf, -math.inf, math.nan]
+for value in test_values:
+    print(f"Value: {value}")
+    print(f"  Is finite? {math.isfinite(value)}")
+    print(f"  Is infinite? {math.isinf(value)}")
+    print(f"  Is NaN? {math.isnan(value)}")
+```
+
+This example shows how to handle edge cases gracefully. Understanding when functions fail or produce special values helps you write robust programs.
+
+## The Flow of Mathematical Computing
+
+> **Central Truth** : Mathematical operations in Python follow a predictable flow: input validation, computation, result formatting, and error handling. Master this flow, and you master mathematical programming.
+
+Mathematical computing in Python represents a journey from simple arithmetic to complex calculations. Each function and operator serves as a building block, combining to solve increasingly sophisticated problems. The key to mastering Python's mathematical capabilities lies in understanding both the individual tools and how they work together in harmony.
+
+Through these examples and explanations, you've seen how Python transforms abstract mathematical concepts into concrete, executable code. The standard library's math module provides the foundation, but the real power emerges when you combine these tools creatively to solve real-world problems.
+
+Remember that mathematics in programming isn't just about getting the right answer - it's about understanding the process, handling edge cases gracefully, and building solutions that others can understand and maintain. Each mathematical operation tells a story, and your job as a programmer is to make that story clear and compelling.
