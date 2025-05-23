@@ -1,400 +1,1112 @@
-{
-  "categories": [
-    {
-      "id": "aws",
-      "name": "Aws",
-      "categories": [
-        {
-          "id": "application_integration_services",
-          "name": "Application Integration Services"
-        },
-        {
-          "id": "compute_services",
-          "name": "Compute Services"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        },
-        {
-          "id": "database_services",
-          "name": "Database Services"
-        },
-        {
-          "id": "high_availability_and_fault_tolerance",
-          "name": "High Availability And Fault Tolerance"
-        },
-        {
-          "id": "infrastructure_as_code",
-          "name": "Infrastructure As Code"
-        },
-        {
-          "id": "monitoring_and_management",
-          "name": "Monitoring And Management"
-        },
-        {
-          "id": "networking_in_aws",
-          "name": "Networking In Aws"
-        },
-        {
-          "id": "security_best_practices",
-          "name": "Security Best Practices"
-        },
-        {
-          "id": "serverless_architecture",
-          "name": "Serverless Architecture"
-        },
-        {
-          "id": "storage",
-          "name": "Storage"
-        },
-        {
-          "id": "storage_services",
-          "name": "Storage Services"
-        }
-      ]
-    },
-    {
-      "id": "css",
-      "name": "Css",
-      "categories": [
-        {
-          "id": "advanced_styling",
-          "name": "Advanced Styling"
-        },
-        {
-          "id": "css_architecture",
-          "name": "Css Architecture"
-        },
-        {
-          "id": "fundamental",
-          "name": "Fundamental"
-        },
-        {
-          "id": "layout",
-          "name": "Layout"
-        },
-        {
-          "id": "performance_optimization",
-          "name": "Performance Optimization"
-        },
-        {
-          "id": "visual_styles",
-          "name": "Visual Styles"
-        }
-      ]
-    },
-    {
-      "id": "design_patterns",
-      "name": "Design Patterns",
-      "categories": [
-        {
-          "id": "anti_patterns_and_refactoring",
-          "name": "Anti Patterns And Refactoring"
-        },
-        {
-          "id": "concurrency_design_patterns",
-          "name": "Concurrency Design Patterns"
-        },
-        {
-          "id": "design_pattern_fundamentals",
-          "name": "Design Pattern Fundamentals"
-        },
-        {
-          "id": "implementations",
-          "name": "Implementations"
-        }
-      ]
-    },
-    {
-      "id": "docker",
-      "name": "Docker",
-      "categories": [
-        {
-          "id": "containers",
-          "name": "Containers"
-        },
-        {
-          "id": "images",
-          "name": "Images"
-        }
-      ]
-    },
-    {
-      "id": "git",
-      "name": "Git",
-      "categories": [
-        {
-          "id": "basics",
-          "name": "Basics"
-        },
-        {
-          "id": "branch",
-          "name": "Branch"
-        },
-        {
-          "id": "internals",
-          "name": "Internals"
-        },
-        {
-          "id": "merge",
-          "name": "Merge"
-        },
-        {
-          "id": "objects",
-          "name": "Objects"
-        },
-        {
-          "id": "rebase",
-          "name": "Rebase"
-        }
-      ]
-    },
-    {
-      "id": "go",
-      "name": "Go",
-      "categories": [
-        {
-          "id": "advanced_concurrency",
-          "name": "Advanced Concurrency"
-        },
-        {
-          "id": "channels_and_communication",
-          "name": "Channels And Communication"
-        },
-        {
-          "id": "concurrency",
-          "name": "Concurrency"
-        },
-        {
-          "id": "core_language",
-          "name": "Core Language"
-        },
-        {
-          "id": "internals",
-          "name": "Internals"
-        },
-        {
-          "id": "synchronization",
-          "name": "Synchronization"
-        }
-      ]
-    },
-    {
-      "id": "javascript",
-      "name": "Javascript",
-      "categories": [
-        {
-          "id": "browser_and_dom",
-          "name": "Browser And Dom"
-        },
-        {
-          "id": "browser_apis",
-          "name": "Browser Apis"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        },
-        {
-          "id": "events_and_async",
-          "name": "Events And Async"
-        }
-      ]
-    },
-    {
-      "id": "nodejs",
-      "name": "Nodejs",
-      "categories": [
-        {
-          "id": "api_development",
-          "name": "Api Development"
-        },
-        {
-          "id": "asynchronous_programming",
-          "name": "Asynchronous Programming"
-        },
-        {
-          "id": "authentication_and_security",
-          "name": "Authentication And Security"
-        },
-        {
-          "id": "core_concepts",
-          "name": "Core Concepts"
-        },
-        {
-          "id": "database_integration",
-          "name": "Database Integration"
-        },
-        {
-          "id": "deployment_and_testing",
-          "name": "Deployment And Testing"
-        },
-        {
-          "id": "modules",
-          "name": "Modules"
-        },
-        {
-          "id": "real_time_communication",
-          "name": "Real Time Communication"
-        },
-        {
-          "id": "web_frameworks",
-          "name": "Web Frameworks"
-        }
-      ]
-    },
-    {
-      "id": "postgresql",
-      "name": "Postgresql",
-      "categories": [
-        {
-          "id": "fundamentals",
-          "name": "Fundamentals"
-        }
-      ]
-    },
-    {
-      "id": "python",
-      "name": "Python",
-      "categories": [
-        {
-          "id": "concurrent_and_parallel_programming",
-          "name": "Concurrent And Parallel Programming"
-        },
-        {
-          "id": "core_python_concepts",
-          "name": "Core Python Concepts"
-        },
-        {
-          "id": "data_structures_and_algorithms",
-          "name": "Data Structures And Algorithms"
-        },
-        {
-          "id": "object_oriented_python",
-          "name": "Object Oriented Python"
-        },
-        {
-          "id": "python_fundamentals",
-          "name": "Python Fundamentals"
-        },
-        {
-          "id": "standard_library",
-          "name": "Standard Library"
-        }
-      ]
-    },
-    {
-      "id": "react",
-      "name": "React",
-      "categories": [
-        {
-          "id": "fundamentals",
-          "name": "Fundamentals"
-        },
-        {
-          "id": "hooks",
-          "name": "Hooks"
-        },
-        {
-          "id": "production_and_deployment",
-          "name": "Production And Deployment"
-        },
-        {
-          "id": "rendering_and_performance",
-          "name": "Rendering And Performance"
-        },
-        {
-          "id": "routing_and_data",
-          "name": "Routing And Data"
-        },
-        {
-          "id": "state_management_solutions",
-          "name": "State Management Solutions"
-        },
-        {
-          "id": "ui_and_styling",
-          "name": "Ui And Styling"
-        }
-      ]
-    },
-    {
-      "id": "redis",
-      "name": "Redis",
-      "categories": [
-        {
-          "id": "advanced_data_manipulation",
-          "name": "Advanced Data Manipulation"
-        },
-        {
-          "id": "architecture",
-          "name": "Architecture"
-        },
-        {
-          "id": "commands_deep_dive",
-          "name": "Commands Deep Dive"
-        },
-        {
-          "id": "data_structures",
-          "name": "Data Structures"
-        },
-        {
-          "id": "fundamentals",
-          "name": "Fundamentals"
-        },
-        {
-          "id": "persistance_and_durability",
-          "name": "Persistance And Durability"
-        },
-        {
-          "id": "redis_for_caching",
-          "name": "Redis For Caching"
-        },
-        {
-          "id": "redis_pub_sub",
-          "name": "Redis Pub Sub"
-        }
-      ]
-    },
-    {
-      "id": "tailwind",
-      "name": "Tailwind",
-      "categories": [
-        {
-          "id": "fundamentals",
-          "name": "Fundamentals"
-        },
-        {
-          "id": "layout",
-          "name": "Layout"
-        }
-      ]
-    },
-    {
-      "id": "typescript",
-      "name": "Typescript",
-      "categories": [
-        {
-          "id": "advanced_types",
-          "name": "Advanced Types"
-        },
-        {
-          "id": "foundations",
-          "name": "Foundations"
-        },
-        {
-          "id": "generics",
-          "name": "Generics"
-        },
-        {
-          "id": "object_oriented",
-          "name": "Object Oriented"
-        },
-        {
-          "id": "type_system",
-          "name": "Type System"
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+    "id": "aws",
+    "name": "Aws",
+    "categories": [
+      {
+        "id": "application_integration_services",
+        "name": "Application Integration Services",
+        "categories": []
+      },
+      {
+        "id": "compute_services",
+        "name": "Compute Services",
+        "categories": [
+          {
+            "id": "overview",
+            "name": "Overview",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "core",
+        "name": "Core",
+        "categories": [
+          {
+            "id": "aws_architecture_principles",
+            "name": "Aws Architecture Principles",
+            "categories": []
+          },
+          {
+            "id": "core_services_overview",
+            "name": "Core Services Overview",
+            "categories": []
+          },
+          {
+            "id": "fundamentals",
+            "name": "Fundamentals",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "database_services",
+        "name": "Database Services",
+        "categories": [
+          {
+            "id": "aws_dynamodb",
+            "name": "Aws Dynamodb",
+            "categories": [
+              {
+                "id": "advanced_features_implementation",
+                "name": "Advanced Features Implementation",
+                "categories": []
+              },
+              {
+                "id": "advanced_query_and_access_patterns",
+                "name": "Advanced Query And Access Patterns",
+                "categories": []
+              },
+              {
+                "id": "architecture_and_internals",
+                "name": "Architecture And Internals",
+                "categories": []
+              },
+              {
+                "id": "data_modeling_patterns",
+                "name": "Data Modeling Patterns",
+                "categories": []
+              },
+              {
+                "id": "performance_optimization_strategies",
+                "name": "Performance Optimization Strategies",
+                "categories": []
+              },
+              {
+                "id": "streams_and_processing",
+                "name": "Streams And Processing",
+                "categories": []
+              }
+            ]
+          },
+          {
+            "id": "overview",
+            "name": "Overview",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "high_availability_and_fault_tolerance",
+        "name": "High Availability And Fault Tolerance",
+        "categories": []
+      },
+      {
+        "id": "infrastructure_as_code",
+        "name": "Infrastructure As Code",
+        "categories": []
+      },
+      {
+        "id": "monitoring_and_management",
+        "name": "Monitoring And Management",
+        "categories": []
+      },
+      {
+        "id": "networking_in_aws",
+        "name": "Networking In Aws",
+        "categories": []
+      },
+      {
+        "id": "security_best_practices",
+        "name": "Security Best Practices",
+        "categories": []
+      },
+      {
+        "id": "serverless_architecture",
+        "name": "Serverless Architecture",
+        "categories": []
+      },
+      {
+        "id": "storage",
+        "name": "Storage",
+        "categories": [
+          {
+            "id": "aws_s3",
+            "name": "Aws S3",
+            "categories": [
+              {
+                "id": "advanced_s3_data_management",
+                "name": "Advanced S3 Data Management",
+                "categories": []
+              },
+              {
+                "id": "application_patterns",
+                "name": "Application Patterns",
+                "categories": []
+              },
+              {
+                "id": "architecture_and_internals",
+                "name": "Architecture And Internals",
+                "categories": []
+              },
+              {
+                "id": "data_processing_patterns",
+                "name": "Data Processing Patterns",
+                "categories": []
+              },
+              {
+                "id": "performance_optimization_strategies",
+                "name": "Performance Optimization Strategies",
+                "categories": []
+              },
+              {
+                "id": "security_patterns",
+                "name": "Security Patterns",
+                "categories": []
+              }
+            ]
+          },
+          {
+            "id": "overview",
+            "name": "Overview",
+            "categories": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "css",
+    "name": "Css",
+    "categories": [
+      {
+        "id": "advanced_styling",
+        "name": "Advanced Styling",
+        "categories": []
+      },
+      {
+        "id": "css_architecture",
+        "name": "Css Architecture",
+        "categories": []
+      },
+      {
+        "id": "fundamental",
+        "name": "Fundamental",
+        "categories": []
+      },
+      {
+        "id": "layout",
+        "name": "Layout",
+        "categories": []
+      },
+      {
+        "id": "performance_optimization",
+        "name": "Performance Optimization",
+        "categories": []
+      },
+      {
+        "id": "visual_styles",
+        "name": "Visual Styles",
+        "categories": []
+      }
+    ]
+  },
+  {
+    "id": "design_patterns",
+    "name": "Design Patterns",
+    "categories": [
+      {
+        "id": "anti_patterns_and_refactoring",
+        "name": "Anti Patterns And Refactoring",
+        "categories": []
+      },
+      {
+        "id": "concurrency_design_patterns",
+        "name": "Concurrency Design Patterns",
+        "categories": []
+      },
+      {
+        "id": "design_pattern_fundamentals",
+        "name": "Design Pattern Fundamentals",
+        "categories": [
+          {
+            "id": "foundational_design_principles",
+            "name": "Foundational Design Principles",
+            "categories": []
+          },
+          {
+            "id": "fundamentals",
+            "name": "Fundamentals",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "implementations",
+        "name": "Implementations",
+        "categories": [
+          {
+            "id": "behavioral_design_patterns",
+            "name": "Behavioral Design Patterns",
+            "categories": []
+          },
+          {
+            "id": "creational_design_patterns",
+            "name": "Creational Design Patterns",
+            "categories": []
+          },
+          {
+            "id": "structural_design_patterns",
+            "name": "Structural Design Patterns",
+            "categories": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "docker",
+    "name": "Docker",
+    "categories": [
+      {
+        "id": "containers",
+        "name": "Containers",
+        "categories": [
+          {
+            "id": "basics",
+            "name": "Basics",
+            "categories": []
+          },
+          {
+            "id": "internals",
+            "name": "Internals",
+            "categories": []
+          },
+          {
+            "id": "logging",
+            "name": "Logging",
+            "categories": []
+          },
+          {
+            "id": "monitor",
+            "name": "Monitor",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "images",
+        "name": "Images",
+        "categories": [
+          {
+            "id": "basics",
+            "name": "Basics",
+            "categories": []
+          },
+          {
+            "id": "layers",
+            "name": "Layers",
+            "categories": []
+          },
+          {
+            "id": "volumes",
+            "name": "Volumes",
+            "categories": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "git",
+    "name": "Git",
+    "categories": [
+      {
+        "id": "basics",
+        "name": "Basics",
+        "categories": []
+      },
+      {
+        "id": "branch",
+        "name": "Branch",
+        "categories": []
+      },
+      {
+        "id": "internals",
+        "name": "Internals",
+        "categories": []
+      },
+      {
+        "id": "merge",
+        "name": "Merge",
+        "categories": []
+      },
+      {
+        "id": "objects",
+        "name": "Objects",
+        "categories": []
+      },
+      {
+        "id": "rebase",
+        "name": "Rebase",
+        "categories": []
+      }
+    ]
+  },
+  {
+    "id": "go",
+    "name": "Go",
+    "categories": [
+      {
+        "id": "advanced_concurrency",
+        "name": "Advanced Concurrency",
+        "categories": [
+          {
+            "id": "advanced_channel_patterns",
+            "name": "Advanced Channel Patterns",
+            "categories": []
+          },
+          {
+            "id": "advanced_concurrency_patterns",
+            "name": "Advanced Concurrency Patterns",
+            "categories": []
+          },
+          {
+            "id": "structured_concurrency",
+            "name": "Structured Concurrency",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "channels_and_communication",
+        "name": "Channels And Communication",
+        "categories": [
+          {
+            "id": "channels",
+            "name": "Channels",
+            "categories": []
+          },
+          {
+            "id": "select_statement_patterns",
+            "name": "Select Statement Patterns",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "concurrency",
+        "name": "Concurrency",
+        "categories": [
+          {
+            "id": "concurrency_foundations",
+            "name": "Concurrency Foundations",
+            "categories": []
+          },
+          {
+            "id": "goroutine_patterns",
+            "name": "Goroutine Patterns",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "core_language",
+        "name": "Core Language",
+        "categories": [
+          {
+            "id": "core",
+            "name": "Core",
+            "categories": []
+          },
+          {
+            "id": "fundamentals",
+            "name": "Fundamentals",
+            "categories": []
+          },
+          {
+            "id": "standard_library",
+            "name": "Standard Library",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "internals",
+        "name": "Internals",
+        "categories": [
+          {
+            "id": "context_package_deep_dive",
+            "name": "Context Package Deep Dive",
+            "categories": []
+          },
+          {
+            "id": "go_scheduler_internals",
+            "name": "Go Scheduler Internals",
+            "categories": []
+          },
+          {
+            "id": "memory_model",
+            "name": "Memory Model",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "synchronization",
+        "name": "Synchronization",
+        "categories": [
+          {
+            "id": "concurrency_safety",
+            "name": "Concurrency Safety",
+            "categories": []
+          },
+          {
+            "id": "synchronization_performance",
+            "name": "Synchronization Performance",
+            "categories": []
+          },
+          {
+            "id": "synchronization_primitives",
+            "name": "Synchronization Primitives",
+            "categories": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "javascript",
+    "name": "Javascript",
+    "categories": [
+      {
+        "id": "browser_and_dom",
+        "name": "Browser And Dom",
+        "categories": [
+          {
+            "id": "advanced_dom_patterns",
+            "name": "Advanced Dom Patterns",
+            "categories": []
+          },
+          {
+            "id": "browser_rendering_pipeline",
+            "name": "Browser Rendering Pipeline",
+            "categories": []
+          },
+          {
+            "id": "dom_fundamentals",
+            "name": "Dom Fundamentals",
+            "categories": []
+          },
+          {
+            "id": "frontend_performance_optimization",
+            "name": "Frontend Performance Optimization",
+            "categories": []
+          },
+          {
+            "id": "modern_dom_manipulation",
+            "name": "Modern Dom Manipulation",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "browser_apis",
+        "name": "Browser Apis",
+        "categories": [
+          {
+            "id": "browser_apis_and_web_platform",
+            "name": "Browser Apis And Web Platform",
+            "categories": []
+          },
+          {
+            "id": "browser_compatibility",
+            "name": "Browser Compatibility",
+            "categories": []
+          },
+          {
+            "id": "browser_security",
+            "name": "Browser Security",
+            "categories": []
+          },
+          {
+            "id": "browser_storage",
+            "name": "Browser Storage",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "core",
+        "name": "Core",
+        "categories": [
+          {
+            "id": "advanced_javascript_patterns",
+            "name": "Advanced Javascript Patterns",
+            "categories": []
+          },
+          {
+            "id": "functions_and_scope",
+            "name": "Functions And Scope",
+            "categories": []
+          },
+          {
+            "id": "javascript_engine_architecture",
+            "name": "Javascript Engine Architecture",
+            "categories": []
+          },
+          {
+            "id": "object_oriented_javascript",
+            "name": "Object Oriented Javascript",
+            "categories": []
+          },
+          {
+            "id": "the_this_keyword_deep_dive",
+            "name": "The This Keyword Deep Dive",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "events_and_async",
+        "name": "Events And Async",
+        "categories": [
+          {
+            "id": "advanced_event_handling",
+            "name": "Advanced Event Handling",
+            "categories": []
+          },
+          {
+            "id": "asynchronous_javascript_in_the_browser",
+            "name": "Asynchronous Javascript In The Browser",
+            "categories": []
+          },
+          {
+            "id": "browser_events",
+            "name": "Browser Events",
+            "categories": []
+          },
+          {
+            "id": "event_loop_implementation",
+            "name": "Event Loop Implementation",
+            "categories": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nodejs",
+    "name": "Nodejs",
+    "categories": [
+      {
+        "id": "api_development",
+        "name": "Api Development",
+        "categories": [
+          {
+            "id": "api_design_and_implementation",
+            "name": "Api Design And Implementation",
+            "categories": []
+          },
+          {
+            "id": "graph_ql_api_development",
+            "name": "Graph Ql Api Development",
+            "categories": []
+          },
+          {
+            "id": "rate_limiting_and_api_gateways",
+            "name": "Rate Limiting And Api Gateways",
+            "categories": []
+          },
+          {
+            "id": "server_sent_events",
+            "name": "Server Sent Events",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "asynchronous_programming",
+        "name": "Asynchronous Programming",
+        "categories": [
+          {
+            "id": "advanced_asynchronous_patterns",
+            "name": "Advanced Asynchronous Patterns",
+            "categories": []
+          },
+          {
+            "id": "asynchronous_programming_fundamentals",
+            "name": "Asynchronous Programming Fundamentals",
+            "categories": []
+          },
+          {
+            "id": "worker_threads_and_parallelism",
+            "name": "Worker Threads And Parallelism",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "authentication_and_security",
+        "name": "Authentication And Security",
+        "categories": [
+          {
+            "id": "authentication_and_authorization",
+            "name": "Authentication And Authorization",
+            "categories": []
+          },
+          {
+            "id": "crypto_libraries",
+            "name": "Crypto Libraries",
+            "categories": []
+          },
+          {
+            "id": "data_validation_and_sanitization",
+            "name": "Data Validation And Sanitization",
+            "categories": []
+          },
+          {
+            "id": "passport_js_strategy_implementation",
+            "name": "Passport Js Strategy Implementation",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "core_concepts",
+        "name": "Core Concepts",
+        "categories": [
+          {
+            "id": "node_js_fundamentals",
+            "name": "Node Js Fundamentals",
+            "categories": []
+          },
+          {
+            "id": "node_js_internals",
+            "name": "Node Js Internals",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "database_integration",
+        "name": "Database Integration",
+        "categories": [
+          {
+            "id": "mongoose",
+            "name": "Mongoose",
+            "categories": []
+          },
+          {
+            "id": "sequelize",
+            "name": "Sequelize",
+            "categories": []
+          },
+          {
+            "id": "typeorm",
+            "name": "Typeorm",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "deployment_and_testing",
+        "name": "Deployment And Testing",
+        "categories": [
+          {
+            "id": "deployment_and_devops",
+            "name": "Deployment And Devops",
+            "categories": []
+          },
+          {
+            "id": "serverless_and_function_as_a_service",
+            "name": "Serverless And Function As A Service",
+            "categories": []
+          },
+          {
+            "id": "testing_utilities",
+            "name": "Testing Utilities",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "modules",
+        "name": "Modules",
+        "categories": [
+          {
+            "id": "module_system_deep_dive",
+            "name": "Module System Deep Dive",
+            "categories": []
+          },
+          {
+            "id": "node_js_core_modules",
+            "name": "Node Js Core Modules",
+            "categories": []
+          },
+          {
+            "id": "streams_and_buffer_management",
+            "name": "Streams And Buffer Management",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "real_time_communication",
+        "name": "Real Time Communication",
+        "categories": [
+          {
+            "id": "message_queues_and_event_driven_architecture",
+            "name": "Message Queues And Event Driven Architecture",
+            "categories": []
+          },
+          {
+            "id": "real_time_systems_with_node_js",
+            "name": "Real Time Systems With Node Js",
+            "categories": []
+          },
+          {
+            "id": "socket_io_patterns",
+            "name": "Socket Io Patterns",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "web_frameworks",
+        "name": "Web Frameworks",
+        "categories": [
+          {
+            "id": "express_js",
+            "name": "Express Js",
+            "categories": []
+          },
+          {
+            "id": "http_server_implementation",
+            "name": "Http Server Implementation",
+            "categories": []
+          },
+          {
+            "id": "middleware_design_patterns",
+            "name": "Middleware Design Patterns",
+            "categories": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "postgresql",
+    "name": "Postgresql",
+    "categories": [
+      {
+        "id": "fundamentals",
+        "name": "Fundamentals",
+        "categories": [
+          {
+            "id": "aggregation_and_functions",
+            "name": "Aggregation And Functions",
+            "categories": []
+          },
+          {
+            "id": "basic_joins_and_set_operations",
+            "name": "Basic Joins And Set Operations",
+            "categories": []
+          },
+          {
+            "id": "basic_sql_syntax_and_structure",
+            "name": "Basic Sql Syntax And Structure",
+            "categories": []
+          },
+          {
+            "id": "core_data_types",
+            "name": "Core Data Types",
+            "categories": []
+          },
+          {
+            "id": "database_concepts",
+            "name": "Database Concepts",
+            "categories": []
+          },
+          {
+            "id": "data_manipulation_fundamentals",
+            "name": "Data Manipulation Fundamentals",
+            "categories": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "categories": [
+      {
+        "id": "advanced_oop_concepts",
+        "name": "Advanced Oop Concepts",
+        "categories": []
+      },
+      {
+        "id": "core_data_structures",
+        "name": "Core Data Structures",
+        "categories": []
+      },
+      {
+        "id": "files_and_io_operations",
+        "name": "Files And Io Operations",
+        "categories": []
+      },
+      {
+        "id": "functions",
+        "name": "Functions",
+        "categories": []
+      },
+      {
+        "id": "fundamentals",
+        "name": "Fundamentals",
+        "categories": []
+      },
+      {
+        "id": "modules_and_packages",
+        "name": "Modules And Packages",
+        "categories": []
+      },
+      {
+        "id": "oops",
+        "name": "Oops",
+        "categories": []
+      },
+      {
+        "id": "standard_library",
+        "name": "Standard Library",
+        "categories": []
+      }
+    ]
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "categories": [
+      {
+        "id": "fundamentals",
+        "name": "Fundamentals",
+        "categories": [
+          {
+            "id": "advanced_component_patterns",
+            "name": "Advanced Component Patterns",
+            "categories": []
+          },
+          {
+            "id": "component_fundamentals",
+            "name": "Component Fundamentals",
+            "categories": []
+          },
+          {
+            "id": "react_fundamentals",
+            "name": "React Fundamentals",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "hooks",
+        "name": "Hooks",
+        "categories": [
+          {
+            "id": "advanced_hooks_and_patterns",
+            "name": "Advanced Hooks And Patterns",
+            "categories": []
+          },
+          {
+            "id": "hooks_internals",
+            "name": "Hooks Internals",
+            "categories": []
+          },
+          {
+            "id": "hooks_system",
+            "name": "Hooks System",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "production_and_deployment",
+        "name": "Production And Deployment",
+        "categories": [
+          {
+            "id": "build_and_deployment",
+            "name": "Build And Deployment",
+            "categories": []
+          },
+          {
+            "id": "production_ready_applications",
+            "name": "Production Ready Applications",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "rendering_and_performance",
+        "name": "Rendering And Performance",
+        "categories": [
+          {
+            "id": "advanced_rendering_optimization",
+            "name": "Advanced Rendering Optimization",
+            "categories": []
+          },
+          {
+            "id": "fiber_architecture",
+            "name": "Fiber Architecture",
+            "categories": []
+          },
+          {
+            "id": "performance_optimization",
+            "name": "Performance Optimization",
+            "categories": []
+          },
+          {
+            "id": "reconciliation_algorithm",
+            "name": "Reconciliation Algorithm",
+            "categories": []
+          },
+          {
+            "id": "rendering_process_in_react",
+            "name": "Rendering Process In React",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "routing_and_data",
+        "name": "Routing And Data",
+        "categories": [
+          {
+            "id": "axios",
+            "name": "Axios",
+            "categories": []
+          },
+          {
+            "id": "data_fetching_strategies",
+            "name": "Data Fetching Strategies",
+            "categories": []
+          },
+          {
+            "id": "routing_in_react",
+            "name": "Routing In React",
+            "categories": []
+          },
+          {
+            "id": "tan_stack_library_ecosystem",
+            "name": "Tan Stack Library Ecosystem",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "state_management_solutions",
+        "name": "State Management Solutions",
+        "categories": []
+      },
+      {
+        "id": "ui_and_styling",
+        "name": "Ui And Styling",
+        "categories": [
+          {
+            "id": "framer_motion_for_animations",
+            "name": "Framer Motion For Animations",
+            "categories": []
+          },
+          {
+            "id": "styling_in_react",
+            "name": "Styling In React",
+            "categories": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "redis",
+    "name": "Redis",
+    "categories": [
+      {
+        "id": "advanced_data_manipulation",
+        "name": "Advanced Data Manipulation",
+        "categories": []
+      },
+      {
+        "id": "architecture",
+        "name": "Architecture",
+        "categories": []
+      },
+      {
+        "id": "commands_deep_dive",
+        "name": "Commands Deep Dive",
+        "categories": []
+      },
+      {
+        "id": "data_structures",
+        "name": "Data Structures",
+        "categories": []
+      },
+      {
+        "id": "fundamentals",
+        "name": "Fundamentals",
+        "categories": []
+      },
+      {
+        "id": "persistance_and_durability",
+        "name": "Persistance And Durability",
+        "categories": []
+      },
+      {
+        "id": "redis_for_caching",
+        "name": "Redis For Caching",
+        "categories": []
+      },
+      {
+        "id": "redis_pub_sub",
+        "name": "Redis Pub Sub",
+        "categories": []
+      }
+    ]
+  },
+  {
+    "id": "tailwind",
+    "name": "Tailwind",
+    "categories": [
+      {
+        "id": "fundamentals",
+        "name": "Fundamentals",
+        "categories": []
+      },
+      {
+        "id": "layout",
+        "name": "Layout",
+        "categories": []
+      }
+    ]
+  },
+  {
+    "id": "typescript",
+    "name": "Typescript",
+    "categories": [
+      {
+        "id": "advanced_types",
+        "name": "Advanced Types",
+        "categories": []
+      },
+      {
+        "id": "foundations",
+        "name": "Foundations",
+        "categories": []
+      },
+      {
+        "id": "generics",
+        "name": "Generics",
+        "categories": []
+      },
+      {
+        "id": "object_oriented",
+        "name": "Object Oriented",
+        "categories": []
+      },
+      {
+        "id": "type_system",
+        "name": "Type System",
+        "categories": []
+      }
+    ]
+  }
+]

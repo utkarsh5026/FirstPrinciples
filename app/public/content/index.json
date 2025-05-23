@@ -45,39 +45,47 @@
         {
           "id": "compute_services",
           "name": "Compute Services",
-          "categories": [],
-          "files": [
+          "categories": [
             {
-              "path": "aws/compute_services/auto_scaling_groups_and_launch_templates.md"
-            },
-            {
-              "path": "aws/compute_services/aws_batch_for_batch_computing_workloads.md"
-            },
-            {
-              "path": "aws/compute_services/container_services.md"
-            },
-            {
-              "path": "aws/compute_services/ec2_dedicated_hosts_and_dedicated_instances.md"
-            },
-            {
-              "path": "aws/compute_services/ec2_instance_types_and_selection_criteria.md"
-            },
-            {
-              "path": "aws/compute_services/ec2_placement_groups_and_instance_affinity.md"
-            },
-            {
-              "path": "aws/compute_services/elastic_beanstalk_for_application_deployment.md"
-            },
-            {
-              "path": "aws/compute_services/lambda_functions_and_event_driven_architecture.md"
-            },
-            {
-              "path": "aws/compute_services/lambda_layers_and_runtime_environments.md"
-            },
-            {
-              "path": "aws/compute_services/spot_instances_and_spot_fleet_management.md"
+              "id": "overview",
+              "name": "Overview",
+              "categories": [],
+              "files": [
+                {
+                  "path": "aws/compute_services/overview/auto_scaling_groups_and_launch_templates.md"
+                },
+                {
+                  "path": "aws/compute_services/overview/aws_batch_for_batch_computing_workloads.md"
+                },
+                {
+                  "path": "aws/compute_services/overview/container_services.md"
+                },
+                {
+                  "path": "aws/compute_services/overview/ec2_dedicated_hosts_and_dedicated_instances.md"
+                },
+                {
+                  "path": "aws/compute_services/overview/ec2_instance_types_and_selection_criteria.md"
+                },
+                {
+                  "path": "aws/compute_services/overview/ec2_placement_groups_and_instance_affinity.md"
+                },
+                {
+                  "path": "aws/compute_services/overview/elastic_beanstalk_for_application_deployment.md"
+                },
+                {
+                  "path": "aws/compute_services/overview/lambda_functions_and_event_driven_architecture.md"
+                },
+                {
+                  "path": "aws/compute_services/overview/lambda_layers_and_runtime_environments.md"
+                },
+                {
+                  "path": "aws/compute_services/overview/spot_instances_and_spot_fleet_management.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -646,6 +654,58 @@
               "name": "Aws S3",
               "categories": [
                 {
+                  "id": "advanced_s3_data_management",
+                  "name": "Advanced S3 Data Management",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/storage/aws_s3/advanced_s3_data_management/data_organization_strategies_for_analytics_workloads.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/advanced_s3_data_management/intelligent_tiering_internals_and_transition_mechanisms.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/advanced_s3_data_management/multi_region_replication_architecture_and_conflict_handling.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/advanced_s3_data_management/object_lifecycle_implementation_strategies.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/advanced_s3_data_management/object_lock_and_retention_mechanisms.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/advanced_s3_data_management/versioning_implementation_and_storage_implications.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "application_patterns",
+                  "name": "Application Patterns",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/storage/aws_s3/application_patterns/backup_and_archive_architectural_patterns.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/application_patterns/content_delivery_patterns_with_cloud_front_integration.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/application_patterns/media_storage_and_streaming_implementation.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/application_patterns/mobile_application_integration_strategies.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/application_patterns/s3_transfer_acceleration_for_global_uploads.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/application_patterns/static_website_hosting_architecture_and_optimization.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
                   "id": "architecture_and_internals",
                   "name": "Architecture And Internals",
                   "categories": [],
@@ -670,51 +730,129 @@
                     }
                   ],
                   "totalFileSize": 0
+                },
+                {
+                  "id": "data_processing_patterns",
+                  "name": "Data Processing Patterns",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/storage/aws_s3/data_processing_patterns/event_notification_architecture_and_integration_points.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/data_processing_patterns/integration_with_lambda_for_serverless_processing.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/data_processing_patterns/s3_as_a_data_lake_foundation_architecture.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/data_processing_patterns/s3_batch_operations_implementation_strategies.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/data_processing_patterns/s3_object_lambda_data_transformation_patterns.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/data_processing_patterns/s3_select_and_glacier_select_query_optimization.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "performance_optimization_strategies",
+                  "name": "Performance Optimization Strategies",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/storage/aws_s3/performance_optimization_strategies/latency_optimization_for_different_access_patterns.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/performance_optimization_strategies/multipart_upload_optimization_techniques.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/performance_optimization_strategies/parallel_request_patterns_with_byte_range_fetches.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/performance_optimization_strategies/request_rate_performance_and_automatic_scaling_mechanisms.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/performance_optimization_strategies/s3_client_side_performance_tuning_approaches.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/performance_optimization_strategies/transfer_acceleration_architecture_and_implementation.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "security_patterns",
+                  "name": "Security Patterns",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/storage/aws_s3/security_patterns/bucket_policy_vs_iam_policy_resolution_logic.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/security_patterns/iam_policy_evaluation_workflow_for_s3_requests.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/security_patterns/object_level_permission_techniques_with_access_points.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/security_patterns/s3_block_public_access_implementation_details.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/security_patterns/server_side_encryption_implementation.md"
+                    },
+                    {
+                      "path": "aws/storage/aws_s3/security_patterns/vpc_endpoints_for_s3_secure_access_patterns.md"
+                    }
+                  ],
+                  "totalFileSize": 0
                 }
               ],
               "files": [],
               "totalFileSize": 0
+            },
+            {
+              "id": "overview",
+              "name": "Overview",
+              "categories": [],
+              "files": [
+                {
+                  "path": "aws/storage/overview/ebs_snapshots_and_data_lifecycle.md"
+                },
+                {
+                  "path": "aws/storage/overview/ebs_volume_types_and_performance_characteristics.md"
+                },
+                {
+                  "path": "aws/storage/overview/efs_file_systems_and_access_patterns.md"
+                },
+                {
+                  "path": "aws/storage/overview/fsx_for_windows_and_lustre_file_systems.md"
+                },
+                {
+                  "path": "aws/storage/overview/s3_event_notifications_and_triggers.md"
+                },
+                {
+                  "path": "aws/storage/overview/s3_performance_optimization.md"
+                },
+                {
+                  "path": "aws/storage/overview/s3_security_features_and_access_control.md"
+                },
+                {
+                  "path": "aws/storage/overview/s3_storage_classes_and_lifecycle_policies.md"
+                },
+                {
+                  "path": "aws/storage/overview/snow_family_for_large_data_transfers.md"
+                },
+                {
+                  "path": "aws/storage/overview/storage_gateway_for_hybrid_environments.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
           "files": [],
-          "totalFileSize": 0
-        },
-        {
-          "id": "storage_services",
-          "name": "Storage Services",
-          "categories": [],
-          "files": [
-            {
-              "path": "aws/storage_services/ebs_snapshots_and_data_lifecycle.md"
-            },
-            {
-              "path": "aws/storage_services/ebs_volume_types_and_performance_characteristics.md"
-            },
-            {
-              "path": "aws/storage_services/efs_file_systems_and_access_patterns.md"
-            },
-            {
-              "path": "aws/storage_services/fsx_for_windows_and_lustre_file_systems.md"
-            },
-            {
-              "path": "aws/storage_services/s3_event_notifications_and_triggers.md"
-            },
-            {
-              "path": "aws/storage_services/s3_performance_optimization.md"
-            },
-            {
-              "path": "aws/storage_services/s3_security_features_and_access_control.md"
-            },
-            {
-              "path": "aws/storage_services/s3_storage_classes_and_lifecycle_policies.md"
-            },
-            {
-              "path": "aws/storage_services/snow_family_for_large_data_transfers.md"
-            },
-            {
-              "path": "aws/storage_services/storage_gateway_for_hybrid_environments.md"
-            }
-          ],
           "totalFileSize": 0
         }
       ],
@@ -4389,293 +4527,267 @@
       "name": "Python",
       "categories": [
         {
-          "id": "concurrent_and_parallel_programming",
-          "name": "Concurrent And Parallel Programming",
+          "id": "advanced_oop_concepts",
+          "name": "Advanced Oop Concepts",
           "categories": [],
           "files": [
             {
-              "path": "python/concurrent_and_parallel_programming/asynchronous_context_managers_and_generators.md"
+              "path": "python/advanced_oop_concepts/attribute_lookup_chain.md"
             },
             {
-              "path": "python/concurrent_and_parallel_programming/asyncio_event_loop.md"
+              "path": "python/advanced_oop_concepts/class_decorators_for_extension.md"
             },
             {
-              "path": "python/concurrent_and_parallel_programming/asyncio_framework_and_event_loops.md"
+              "path": "python/advanced_oop_concepts/clean_architecture_principles.md"
             },
             {
-              "path": "python/concurrent_and_parallel_programming/async_await_syntax_and_patterns.md"
+              "path": "python/advanced_oop_concepts/customizing_class_behavior_with_dunder_methods.md"
             },
             {
-              "path": "python/concurrent_and_parallel_programming/concurrent_futures_framework.md"
+              "path": "python/advanced_oop_concepts/dataclasses_and_their_benefits.md"
             },
             {
-              "path": "python/concurrent_and_parallel_programming/Inter-process communication.md"
+              "path": "python/advanced_oop_concepts/design_patterns_in_python.md"
             },
             {
-              "path": "python/concurrent_and_parallel_programming/multiprocessing_and_process_pools.md"
+              "path": "python/advanced_oop_concepts/metaclasses_and_class_creation.md"
             },
             {
-              "path": "python/concurrent_and_parallel_programming/parallel_processing_libraries.md"
+              "path": "python/advanced_oop_concepts/method_resolution_order_in_depth.md"
             },
             {
-              "path": "python/concurrent_and_parallel_programming/race_conditions_and_deadlock_prevention.md"
+              "path": "python/advanced_oop_concepts/mixins_and_composition_patterns.md"
             },
             {
-              "path": "python/concurrent_and_parallel_programming/shared_memory_management.md"
-            },
-            {
-              "path": "python/concurrent_and_parallel_programming/synchronization_in_async_code.md"
-            },
-            {
-              "path": "python/concurrent_and_parallel_programming/task_scheduling_and_cancellation.md"
-            },
-            {
-              "path": "python/concurrent_and_parallel_programming/threading_and_the_global_interpreter_lock.md"
-            },
-            {
-              "path": "python/concurrent_and_parallel_programming/thread_and_process_safety.md"
-            },
-            {
-              "path": "python/concurrent_and_parallel_programming/thread_synchronization_primitives.md"
-            },
-            {
-              "path": "python/concurrent_and_parallel_programming/understanding_cpu_bound_vs_io_bound_tasks.md"
-            },
-            {
-              "path": "python/concurrent_and_parallel_programming/work_distribution_strategies.md"
+              "path": "python/advanced_oop_concepts/slots_for_memory_optimization.md"
             }
           ],
           "totalFileSize": 0
         },
         {
-          "id": "core_python_concepts",
-          "name": "Core Python Concepts",
+          "id": "core_data_structures",
+          "name": "Core Data Structures",
           "categories": [],
           "files": [
             {
-              "path": "python/core_python_concepts/closures_and_nested_functions.md"
+              "path": "python/core_data_structures/choosing_the_right_data_structure.md"
             },
             {
-              "path": "python/core_python_concepts/command_line_arguments_parsing.md"
+              "path": "python/core_data_structures/collection_comprehensions.md"
             },
             {
-              "path": "python/core_python_concepts/comprehensions.md"
+              "path": "python/core_data_structures/dictionaries_for_key_value_pairs.md"
             },
             {
-              "path": "python/core_python_concepts/context_managers_and_the_with_statement.md"
+              "path": "python/core_data_structures/lists_and_list_operations.md"
             },
             {
-              "path": "python/core_python_concepts/deep_dive_into_python_data_types.md"
+              "path": "python/core_data_structures/memory_model_for_python_objects.md"
             },
             {
-              "path": "python/core_python_concepts/exception_hierarchy_and_custom_exceptions.md"
+              "path": "python/core_data_structures/mutability_vs_immutability.md"
             },
             {
-              "path": "python/core_python_concepts/extended_operators_and_their_behavior.md"
+              "path": "python/core_data_structures/sequence_operations_and_slicing.md"
             },
             {
-              "path": "python/core_python_concepts/file_operations.md"
+              "path": "python/core_data_structures/sets_and_set_operations.md"
             },
             {
-              "path": "python/core_python_concepts/first_class_functions.md"
+              "path": "python/core_data_structures/strings_and_string_manipulation.md"
             },
             {
-              "path": "python/core_python_concepts/function_arguments.md"
-            },
-            {
-              "path": "python/core_python_concepts/iterators_and_generators.md"
-            },
-            {
-              "path": "python/core_python_concepts/lambda_functions.md"
-            },
-            {
-              "path": "python/core_python_concepts/modules_and_import_system.md"
-            },
-            {
-              "path": "python/core_python_concepts/path_handling_and_file_system_operations.md"
-            },
-            {
-              "path": "python/core_python_concepts/python_memory_model_and_garbage_collection.md"
-            },
-            {
-              "path": "python/core_python_concepts/regular_expressions.md"
-            },
-            {
-              "path": "python/core_python_concepts/scope_and_namespaces.md"
-            },
-            {
-              "path": "python/core_python_concepts/string_operations_and_advanced_formatting.md"
-            },
-            {
-              "path": "python/core_python_concepts/type_annotations_and_hints.md"
-            },
-            {
-              "path": "python/core_python_concepts/working_with_dates_and_times.md"
+              "path": "python/core_data_structures/tuples_and_their_immutability.md"
             }
           ],
           "totalFileSize": 0
         },
         {
-          "id": "data_structures_and_algorithms",
-          "name": "Data Structures And Algorithms",
+          "id": "files_and_io_operations",
+          "name": "Files And Io Operations",
           "categories": [],
           "files": [
             {
-              "path": "python/data_structures_and_algorithms/arrays_and_byte_arrays.md"
+              "path": "python/files_and_io_operations/binary_file_operations.md"
             },
             {
-              "path": "python/data_structures_and_algorithms/collections_module_deep_dive.md"
+              "path": "python/files_and_io_operations/configuration_files_with_configparser.md"
             },
             {
-              "path": "python/data_structures_and_algorithms/dictionaries_and_their_hash_based_implementation.md"
+              "path": "python/files_and_io_operations/context_managers_with_with_statement.md"
             },
             {
-              "path": "python/data_structures_and_algorithms/graph_representations_and_algorithms.md"
+              "path": "python/files_and_io_operations/csv_file_processing.md"
             },
             {
-              "path": "python/data_structures_and_algorithms/hashing_and_hash_functions.md"
+              "path": "python/files_and_io_operations/directory_operations.md"
             },
             {
-              "path": "python/data_structures_and_algorithms/lists_tuples_and_their_internal_implementation.md"
+              "path": "python/files_and_io_operations/file_handling_basics.md"
             },
             {
-              "path": "python/data_structures_and_algorithms/recursion_techniques_and_optimization.md"
+              "path": "python/files_and_io_operations/file_modes_and_encoding_options.md"
             },
             {
-              "path": "python/data_structures_and_algorithms/search_algorithms_and_their_implementations.md"
+              "path": "python/files_and_io_operations/serialization_with_pickle_and_json.md"
             },
             {
-              "path": "python/data_structures_and_algorithms/sets_and_frozen_sets.md"
+              "path": "python/files_and_io_operations/temporary_files_and_directories.md"
             },
             {
-              "path": "python/data_structures_and_algorithms/sorting_algorithms_and_python_timsort.md"
-            },
-            {
-              "path": "python/data_structures_and_algorithms/stacks_queues_and_deques.md"
-            },
-            {
-              "path": "python/data_structures_and_algorithms/tree_implementations.md"
+              "path": "python/files_and_io_operations/working_with_file_paths_using_pathlib.md"
             }
           ],
           "totalFileSize": 0
         },
         {
-          "id": "object_oriented_python",
-          "name": "Object Oriented Python",
+          "id": "functions",
+          "name": "Functions",
           "categories": [],
           "files": [
             {
-              "path": "python/object_oriented_python/abstract_base_classes_and_interfaces.md"
+              "path": "python/functions/default_parameters_and_keyword_arguments.md"
             },
             {
-              "path": "python/object_oriented_python/class_definition_and_instantiation.md"
+              "path": "python/functions/docstrings_and_function_documentation.md"
             },
             {
-              "path": "python/object_oriented_python/clean_oop_architecture.md"
+              "path": "python/functions/first_class_functions.md"
             },
             {
-              "path": "python/object_oriented_python/customizing_class_behavior_with_special_methods.md"
+              "path": "python/functions/function_annotations_and_type_hints.md"
             },
             {
-              "path": "python/object_oriented_python/design_patterns_in_python.md"
+              "path": "python/functions/function_definition_and_calling_syntax.md"
             },
             {
-              "path": "python/object_oriented_python/encapsulation_and_name_mangling.md"
+              "path": "python/functions/lambda_functions_and_their_usage.md"
             },
             {
-              "path": "python/object_oriented_python/inheritance_and_method_resolution_order_mro.md"
+              "path": "python/functions/parameters_and_arguments.md"
             },
             {
-              "path": "python/object_oriented_python/instance_methods_vs_class_methods_vs_static_methods.md"
+              "path": "python/functions/return_values_and_multiple_returns.md"
             },
             {
-              "path": "python/object_oriented_python/instance_variables_vs_class_variables.md"
+              "path": "python/functions/scope_and_namespaces.md"
             },
             {
-              "path": "python/object_oriented_python/interfaces_and_protocols.md"
-            },
-            {
-              "path": "python/object_oriented_python/managing_object_lifecycle.md"
-            },
-            {
-              "path": "python/object_oriented_python/metaclasses_and_class_creation.md"
-            },
-            {
-              "path": "python/object_oriented_python/method_overriding_and_super.md"
-            },
-            {
-              "path": "python/object_oriented_python/multiple_inheritance_and_mixins.md"
-            },
-            {
-              "path": "python/object_oriented_python/object_serialization_techniques.md"
-            },
-            {
-              "path": "python/object_oriented_python/polymorphism_in_python.md"
-            },
-            {
-              "path": "python/object_oriented_python/properties_and_descriptors.md"
-            },
-            {
-              "path": "python/object_oriented_python/slots_and_memory_optimization.md"
-            },
-            {
-              "path": "python/object_oriented_python/solid_principles_application.md"
-            },
-            {
-              "path": "python/object_oriented_python/testing_and_debugging_oop_code.md"
+              "path": "python/functions/variable_length_arguments.md"
             }
           ],
           "totalFileSize": 0
         },
         {
-          "id": "python_fundamentals",
-          "name": "Python Fundamentals",
+          "id": "fundamentals",
+          "name": "Fundamentals",
           "categories": [],
           "files": [
             {
-              "path": "python/python_fundamentals/basic_data_types.md"
+              "path": "python/fundamentals/arithmetic_relational_and_logical_operators.md"
             },
             {
-              "path": "python/python_fundamentals/basic_input_output_operations.md"
+              "path": "python/fundamentals/basic_syntax_and_language_structure.md"
             },
             {
-              "path": "python/python_fundamentals/basic_math_operations.md"
+              "path": "python/fundamentals/comments_and_documentation_conventions.md"
             },
             {
-              "path": "python/python_fundamentals/basic_string_manipulation_and_formatting.md"
+              "path": "python/fundamentals/control_structures.md"
             },
             {
-              "path": "python/python_fundamentals/basic_syntax_and_language_structure.md"
+              "path": "python/fundamentals/input_and_output_basics.md"
             },
             {
-              "path": "python/python_fundamentals/control_flow_statements.md"
+              "path": "python/fundamentals/python_interpreter_and_execution_model.md"
             },
             {
-              "path": "python/python_fundamentals/function_basics.md"
+              "path": "python/fundamentals/python_philosophy_and_design_principles.md"
             },
             {
-              "path": "python/python_fundamentals/introduction_to_python_memory_management.md"
+              "path": "python/fundamentals/setting_up_the_python_development_environment.md"
             },
             {
-              "path": "python/python_fundamentals/python_indentation_and_code_style.md"
+              "path": "python/fundamentals/understanding_indentation_and_its_importance.md"
             },
             {
-              "path": "python/python_fundamentals/python_interpreter_and_execution_model.md"
+              "path": "python/fundamentals/variables_constants_and_primitive_data_types.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "modules_and_packages",
+          "name": "Modules And Packages",
+          "categories": [],
+          "files": [
+            {
+              "path": "python/modules_and_packages/creating_and_importing_modules.md"
             },
             {
-              "path": "python/python_fundamentals/python_philosophy_and_design_principles.md"
+              "path": "python/modules_and_packages/creating_installable_packages.md"
             },
             {
-              "path": "python/python_fundamentals/python_versions_differences_2_vs_3.md"
+              "path": "python/modules_and_packages/import_patterns_and_best_practices.md"
             },
             {
-              "path": "python/python_fundamentals/setting_up_development_environment.md"
+              "path": "python/modules_and_packages/module_level_code_execution.md"
             },
             {
-              "path": "python/python_fundamentals/type_conversion_and_type_checking.md"
+              "path": "python/modules_and_packages/module_search_path_and_resolution.md"
             },
             {
-              "path": "python/python_fundamentals/variables_naming_conventions_and_memory_model.md"
+              "path": "python/modules_and_packages/namespace_packages.md"
+            },
+            {
+              "path": "python/modules_and_packages/package_creation_and_organization.md"
+            },
+            {
+              "path": "python/modules_and_packages/package_initialization.md"
+            },
+            {
+              "path": "python/modules_and_packages/relative_vs_absolute_imports.md"
+            },
+            {
+              "path": "python/modules_and_packages/the_standard_library_structure.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "oops",
+          "name": "Oops",
+          "categories": [],
+          "files": [
+            {
+              "path": "python/oops/abstract_base_classes.md"
+            },
+            {
+              "path": "python/oops/attributes_and_methods.md"
+            },
+            {
+              "path": "python/oops/class_definition_and_instantiation.md"
+            },
+            {
+              "path": "python/oops/constructor_and_initialization.md"
+            },
+            {
+              "path": "python/oops/encapsulation_and_name_mangling.md"
+            },
+            {
+              "path": "python/oops/inheritance_and_method_overriding.md"
+            },
+            {
+              "path": "python/oops/instance_class_and_static_methods.md"
+            },
+            {
+              "path": "python/oops/multiple_inheritance_and_mro.md"
+            },
+            {
+              "path": "python/oops/operator_overloading.md"
+            },
+            {
+              "path": "python/oops/property_decorators_and_descriptors.md"
             }
           ],
           "totalFileSize": 0
@@ -4686,61 +4798,46 @@
           "categories": [],
           "files": [
             {
-              "path": "python/standard_library/advanced_collections.md"
+              "path": "python/standard_library/collections_module.md"
             },
             {
-              "path": "python/standard_library/binary_data_services.md"
-            },
-            {
-              "path": "python/standard_library/concurrent_execution.md"
-            },
-            {
-              "path": "python/standard_library/cryptographic_services.md"
+              "path": "python/standard_library/command_line_arguments_parsing.md"
             },
             {
               "path": "python/standard_library/data_compression_and_archiving.md"
             },
             {
-              "path": "python/standard_library/data_encoding_and_decoding.md"
-            },
-            {
-              "path": "python/standard_library/data_persistence_and_serialization.md"
-            },
-            {
               "path": "python/standard_library/date_and_time_handling.md"
-            },
-            {
-              "path": "python/standard_library/deep_dive_into_built_in_functions.md"
             },
             {
               "path": "python/standard_library/development_tools_in_the_standard_library.md"
             },
             {
-              "path": "python/standard_library/file_and_directory_access.md"
+              "path": "python/standard_library/file_system_operations_with_os_and_shutil.md"
             },
             {
-              "path": "python/standard_library/functional_programming_tools.md"
+              "path": "python/standard_library/functools_for_functional_programming.md"
             },
             {
-              "path": "python/standard_library/internet_protocols_and_support.md"
-            },
-            {
-              "path": "python/standard_library/interprocess_communication.md"
+              "path": "python/standard_library/itertools_for_efficient_iteration.md"
             },
             {
               "path": "python/standard_library/mathematics_and_numeric_operations.md"
             },
             {
-              "path": "python/standard_library/string_processing_capabilities.md"
+              "path": "python/standard_library/network_protocols_and_support.md"
+            },
+            {
+              "path": "python/standard_library/random_number_generation.md"
+            },
+            {
+              "path": "python/standard_library/regular_expressions_with_re.md"
             },
             {
               "path": "python/standard_library/structured_markup_processing_tools.md"
             },
             {
               "path": "python/standard_library/text_processing_services.md"
-            },
-            {
-              "path": "python/standard_library/working_with_iterables.md"
             }
           ],
           "totalFileSize": 0

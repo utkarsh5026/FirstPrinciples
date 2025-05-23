@@ -102,21 +102,15 @@ function scanDirectory(dir, basePath = "") {
 
 /**
  * Extracts only the directory structure from the scan result
- * @param {Object} result - The scan result object
+ * @param {Object} categories - The scan result object
  * @returns {Object} The directory structure
  */
-function extractDirectoryStructure(result) {
-  const structure = {
-    categories: result.categories.map((category) => ({
-      id: category.id,
-      name: category.name,
-      categories: category.categories.map((subCategory) => ({
-        id: subCategory.id,
-        name: subCategory.name,
-      })),
-    })),
-  };
-  return structure;
+function extractDirectoryStructure(categories) {
+  return categories.map((category) => ({
+    id: category.id,
+    name: category.name,
+    categories: extractDirectoryStructure(category.categories),
+  }));
 }
 
 try {
@@ -136,7 +130,7 @@ try {
   };
 
   // Generate directory structure
-  const dirStructure = extractDirectoryStructure(result);
+  const dirStructure = extractDirectoryStructure(result.categories);
   const dirStructureFile = path.join(contentDir, "directory-structure.json");
 
   const dir = path.dirname(outputFile);
