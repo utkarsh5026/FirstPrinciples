@@ -17,6 +17,12 @@ export function truncateText(text: string, maxLength: number): string {
 
 const capitalWords = new Set([
   "AWS",
+  "ECS",
+  "EC2",
+  "EKS",
+  "NUMA",
+  "AMI",
+  "VPC",
   "API",
   "HTML",
   "CSS",
