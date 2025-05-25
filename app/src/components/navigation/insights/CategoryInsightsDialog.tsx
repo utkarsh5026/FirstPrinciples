@@ -17,7 +17,6 @@ import {
   CheckCircle,
   BookMarked,
   Clock,
-  TrendingUp,
   FileText,
   Layers,
   PieChart,
@@ -62,7 +61,6 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
       todoFilesCount,
     } = stats;
 
-    // Calculate percentages for progress visualization
     const readPercentage =
       totalFilesCount > 0
         ? Math.round((readFilesCount / totalFilesCount) * 100)
@@ -78,36 +76,11 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
         ? Math.round((todoFilesCount / totalFilesCount) * 100)
         : 0;
 
-    // Calculate remaining files (not yet touched)
     const untouchedFiles = totalFilesCount - readFilesCount;
     const untouchedPercentage =
       totalFilesCount > 0
         ? Math.round((untouchedFiles / totalFilesCount) * 100)
         : 0;
-
-    // Determine learning status based on progress
-    let learningStatus: string;
-    let statusColor: string;
-
-    if (completedPercentage === 100) {
-      learningStatus = "Mastered! 🎉";
-      statusColor = "text-green-500";
-    } else if (completedPercentage >= 75) {
-      learningStatus = "Almost there! 💪";
-      statusColor = "text-blue-500";
-    } else if (completedPercentage >= 50) {
-      learningStatus = "Making great progress! 📈";
-      statusColor = "text-yellow-500";
-    } else if (completedPercentage >= 25) {
-      learningStatus = "Good start! 🚀";
-      statusColor = "text-orange-500";
-    } else if (readFilesCount > 0) {
-      learningStatus = "Just getting started 🌱";
-      statusColor = "text-purple-500";
-    } else {
-      learningStatus = "Ready to explore! 🗺️";
-      statusColor = "text-gray-500";
-    }
 
     return {
       readPercentage,
@@ -115,8 +88,6 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
       todoPercentage,
       untouchedFiles,
       untouchedPercentage,
-      learningStatus,
-      statusColor,
     };
   }, [stats]);
 
@@ -166,26 +137,6 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
 
         <ScrollArea className="max-h-[calc(85vh-120px)] px-6 pb-6">
           <div className="flex flex-col gap-8">
-            {/* Learning Status Card */}
-            <Card className="p-4 border-2 border-dashed rounded-2xl">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">
-                    Learning Status
-                  </p>
-                  <p
-                    className={cn(
-                      "text-lg font-semibold mt-1",
-                      insights.statusColor
-                    )}
-                  >
-                    {insights.learningStatus}
-                  </p>
-                </div>
-                <TrendingUp className={cn("h-8 w-8", insights.statusColor)} />
-              </div>
-            </Card>
-
             {/* Overall Progress */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
@@ -305,21 +256,6 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
                 </div>
               </div>
             </div>
-
-            {/* Motivational Message */}
-            {stats.totalFilesCount > 0 && (
-              <Card className="p-4 bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20 rounded-2xl mb-4">
-                <p className="text-sm text-center">
-                  {insights.completedPercentage === 100
-                    ? "🎉 Congratulations! You've completed all files in this category!"
-                    : insights.completedPercentage >= 50
-                    ? "📚 Keep going! You're more than halfway through!"
-                    : insights.readPercentage > 0
-                    ? "🌟 Great start! Every document read is progress made!"
-                    : "🚀 Ready to begin? Pick a document and start your journey!"}
-                </p>
-              </Card>
-            )}
           </div>
         </ScrollArea>
       </DialogContent>
