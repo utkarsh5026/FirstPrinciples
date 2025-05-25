@@ -100,10 +100,12 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
       setCurrentPathSegments(pathSegments);
 
       let category: Document | null = null;
+      let currentCategories = docs;
       for (const segment of pathSegments) {
-        const found = docs.find((cat) => cat.id === segment);
+        const found = currentCategories.find((cat) => cat.id === segment);
         if (found) {
           category = found;
+          currentCategories = found.documents || [];
         } else {
           category = null;
           break;
