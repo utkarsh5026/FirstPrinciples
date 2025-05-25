@@ -15,7 +15,6 @@ import {
   BookMarked,
   CheckCircle2,
   Files,
-  Layers,
   TrendingUp,
   Target,
   Zap,
@@ -39,7 +38,6 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
 }) => {
   // Calculate insights
   const totalFiles = category.fileCount ?? 0;
-  const totalSubcategories = category.documents?.length || 0;
   const readCount = category.readFiles.length;
   const todoCount = category.todoFiles.length;
   const unreadCount = Math.max(0, totalFiles - readCount);
@@ -91,19 +89,6 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
           : completionRate > 50
           ? "text-blue-500"
           : "text-amber-500",
-    },
-    {
-      title: "Structure",
-      value:
-        totalSubcategories > 0
-          ? `${totalSubcategories} sections`
-          : "Single level",
-      description:
-        totalSubcategories > 0
-          ? "Contains nested categories"
-          : "Direct file collection",
-      icon: Layers,
-      color: "text-purple-500",
     },
     {
       title: "Status",
