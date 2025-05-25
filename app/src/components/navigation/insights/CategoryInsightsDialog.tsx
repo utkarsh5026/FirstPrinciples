@@ -19,6 +19,8 @@ import {
   TrendingUp,
   Target,
   Zap,
+  FolderTree,
+  ChevronRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -123,6 +125,8 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
     },
   ];
 
+  const path = category.path.split("/").filter(Boolean);
+
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -138,11 +142,52 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
               <CategoryIcon />
             </motion.div>
             <div className="flex-1 min-w-0  flex items-start">
-              <DialogTitle className="text-lg font-semibold text-foreground leading-tight">
+              <DialogTitle className="text-base font-semibold text-foreground leading-tight">
                 {fromSnakeToTitleCase(category.name)}
               </DialogTitle>
             </div>
           </div>
+
+          {path.length > 1 && (
+            <div className="mt-2 bg-background/90 rounded-2xl p-3 text-xs">
+              <div className="flex items-center gap-1.5 mb-1.5 text-muted-foreground">
+                <FolderTree size={14} className="text-primary/70" />
+                <span className="font-medium">Directory Tree</span>
+              </div>
+              <div className="space-y-1">
+                {path.map((segment, index) => (
+                  <div
+                    key={segment}
+                    className="flex items-center gap-1.5"
+                    style={{ marginLeft: `${index * 16}px` }}
+                  >
+                    {index < path.length - 1 ? (
+                      <div className="w-[14px] h-[14px] flex items-center justify-center">
+                        <ChevronRight
+                          size={12}
+                          className="text-muted-foreground/50"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-[14px] h-[14px] flex items-center justify-center text-primary">
+                        {getTopicIcon(path.slice(0, index + 1).join("/"))}
+                      </div>
+                    )}
+                    <span
+                      className={cn(
+                        "transition-colors",
+                        index === path.length - 1
+                          ? "font-medium text-primary"
+                          : "text-muted-foreground hover:text-foreground/70"
+                      )}
+                    >
+                      {fromSnakeToTitleCase(segment)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </DialogHeader>
 
         <ScrollArea className="flex-1 max-h-[calc(90vh-120px)]">
@@ -180,7 +225,7 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
                           {stat.value}
                         </p>
                       </div>
-                      <div className={cn("p-2 rounded-lg", stat.bgColor)}>
+                      <div className={cn("p-2 rounded-2xl", stat.bgColor)}>
                         <stat.icon size={16} className={stat.color} />
                       </div>
                     </div>
