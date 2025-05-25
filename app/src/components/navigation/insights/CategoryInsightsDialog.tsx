@@ -14,25 +14,18 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Info,
   BookOpen,
-  CheckCircle,
   BookMarked,
   Clock,
   FileText,
   Layers,
   PieChart,
 } from "lucide-react";
-import { Category } from "@/services/document";
+import { Document } from "@/stores/document/document-store";
 import { cn } from "@/lib/utils";
 import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface CategoryInsightsDialogProps {
-  category: Category;
-  stats: {
-    completedFilesCount: number;
-    todoFilesCount: number;
-    readFilesCount: number;
-    totalFilesCount: number;
-  };
+  category: Document;
   children?: React.ReactNode;
 }
 
@@ -49,50 +42,32 @@ interface CategoryInsightsDialogProps {
  */
 const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
   category,
-  stats,
   children,
 }) => {
   // Calculate derived statistics for deeper insights
   const insights = useMemo(() => {
-    const {
-      totalFilesCount,
-      readFilesCount,
-      completedFilesCount,
-      todoFilesCount,
-    } = stats;
+    const { fileCount = 0, readFiles, todoFiles } = category;
 
     const readPercentage =
-      totalFilesCount > 0
-        ? Math.round((readFilesCount / totalFilesCount) * 100)
-        : 0;
-
-    const completedPercentage =
-      totalFilesCount > 0
-        ? Math.round((completedFilesCount / totalFilesCount) * 100)
-        : 0;
+      fileCount > 0 ? Math.round((readFiles.length / fileCount) * 100) : 0;
 
     const todoPercentage =
-      totalFilesCount > 0
-        ? Math.round((todoFilesCount / totalFilesCount) * 100)
-        : 0;
+      fileCount > 0 ? Math.round((todoFiles.length / fileCount) * 100) : 0;
 
-    const untouchedFiles = totalFilesCount - readFilesCount;
+    const untouchedFiles = fileCount - readFiles.length;
     const untouchedPercentage =
-      totalFilesCount > 0
-        ? Math.round((untouchedFiles / totalFilesCount) * 100)
-        : 0;
+      fileCount > 0 ? Math.round((untouchedFiles / fileCount) * 100) : 0;
 
     return {
       readPercentage,
-      completedPercentage,
       todoPercentage,
       untouchedFiles,
       untouchedPercentage,
     };
-  }, [stats]);
+  }, [category]);
 
   // Calculate subcategory count
-  const subcategoriesCount = category.categories?.length ?? 0;
+  const subcategoriesCount = category.documents?.length ?? 0;
 
   return (
     <Dialog>
@@ -142,20 +117,18 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
               <div className="flex items-center justify-between text-sm">
                 <span className="font-medium">Overall Progress</span>
                 <span className="text-muted-foreground">
-                  {insights.completedPercentage}% Complete
+                  {insights.readPercentage}% Complete
                 </span>
               </div>
-              <Progress value={insights.completedPercentage} className="h-2" />
+              <Progress value={insights.readPercentage} className="h-2" />
             </div>
 
-            {/* Statistics Grid */}
-            {/* Stats Cards */}
             <div className="grid grid-cols-2 gap-3">
               <StatisticCard
                 icon={<FileText size={18} />}
                 iconBgColor="bg-secondary/50"
                 iconColor="text-foreground"
-                value={stats.totalFilesCount}
+                value={category.fileCount ?? 0}
                 label="Total Files"
               />
 
@@ -177,22 +150,12 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
               </h4>
 
               <StatisticItem
-                icon={<CheckCircle size={16} />}
-                bgColor="bg-green-500/10"
-                iconColor="text-green-500"
-                valueColor="text-green-500"
-                label="Completed"
-                value={stats.completedFilesCount}
-                percentage={insights.completedPercentage}
-              />
-
-              <StatisticItem
                 icon={<BookMarked size={16} />}
                 bgColor="bg-primary/10"
                 iconColor="text-primary"
                 valueColor="text-primary"
                 label="Reading List"
-                value={stats.todoFilesCount}
+                value={category.todoFiles.length}
                 percentage={insights.todoPercentage}
               />
 
@@ -202,12 +165,8 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
                 iconColor="text-green-200"
                 valueColor="text-green-200"
                 label="Previously Read"
-                value={stats.readFilesCount - stats.completedFilesCount}
-                percentage={Math.round(
-                  ((stats.readFilesCount - stats.completedFilesCount) /
-                    stats.totalFilesCount) *
-                    100
-                )}
+                value={category.readFiles.length}
+                percentage={insights.readPercentage}
               />
 
               <StatisticItem
@@ -232,12 +191,12 @@ const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
                   <span className="text-xs">Completed</span>
                   <div className="flex-1">
                     <Progress
-                      value={insights.completedPercentage}
+                      value={insights.readPercentage}
                       className="h-1.5"
                     />
                   </div>
                   <span className="text-xs text-muted-foreground">
-                    {insights.completedPercentage}%
+                    {insights.readPercentage}%
                   </span>
                 </div>
 

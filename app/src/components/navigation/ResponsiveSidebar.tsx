@@ -27,7 +27,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set()
   );
-  const { contentIndex, getFileBreadcrumbs } = useDocumentList();
+  const { getFileBreadcrumbs, docs } = useDocumentList();
   const { readFilePaths, todo, completed, documentsCount, currentOpen } =
     useNavigation(currentFilePath);
 
@@ -64,7 +64,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     };
 
     loadCategories();
-  }, [currentFilePath, contentIndex, getFileBreadcrumbs]);
+  }, [currentFilePath, getFileBreadcrumbs]);
 
   const handleToggleExpand = useCallback(
     (categoryId: string, isExpanded: boolean) => {
@@ -114,7 +114,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
             handleToggleExpand={handleToggleExpand}
             loading={loading}
             categoryData={{
-              tree: contentIndex.categories ?? [],
+              tree: docs,
               expanded: expandedCategories,
               current: currentOpen,
             }}

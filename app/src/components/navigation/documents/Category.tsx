@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import {
   BookMarked,
-  CheckCircle,
   ChevronRight,
   Clock,
   Layers,
@@ -9,24 +8,17 @@ import {
   Files,
   Info,
 } from "lucide-react";
-import { Category as CategoryType } from "@/services/document";
 import { getIconForTech } from "@/components/shared/icons/iconMap";
 import getTopicIcon from "@/components/shared/icons/topicIcon";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import CategoryInsightsDialog from "@/components/navigation/insights/CategoryInsightsDialog";
+import { Document } from "@/stores/document/document-store";
 
 interface CategoryProps {
-  category: CategoryType;
+  category: Document;
   isExpanded: boolean;
   handleToggleExpand: (categoryId: string, isExpanded: boolean) => void;
   depth: number;
-  stats: {
-    completedFilesCount: number;
-    todoFilesCount: number;
-    readFilesCount: number;
-    totalFilesCount: number;
-  };
-  parentCategory?: string;
   style?: React.CSSProperties;
   showExpandIcon?: boolean;
   colorIcon?: boolean;
@@ -52,8 +44,6 @@ const Category: React.FC<CategoryProps> = ({
   isExpanded,
   handleToggleExpand,
   depth,
-  stats,
-  parentCategory,
   style,
   showExpandIcon,
   colorIcon,
@@ -61,12 +51,9 @@ const Category: React.FC<CategoryProps> = ({
   const IconComponent =
     depth === 0
       ? getIconForTech(category.name)
-      : () => getTopicIcon(`${parentCategory ?? ""}>${category.name}`);
+      : () => getTopicIcon(category.path);
 
-  const { todoFilesCount, readFilesCount } = stats;
-
-  // Get subcategories count
-  const subcategoriesCount = category.categories?.length ?? 0;
+  const subcategoriesCount = category.documents?.length ?? 0;
 
   // Check if this is an empty category (no files and no subcategories)
   const isEmptyCategory =
@@ -137,29 +124,20 @@ const Category: React.FC<CategoryProps> = ({
             </div>
           )}
 
-          {stats.completedFilesCount > 0 && (
-            <div className="flex items-center bg-green-500/10 px-1.5 py-0.5 rounded-full">
-              <CheckCircle size={12} className="text-green-500 mr-0.5" />
-              <span className="text-xs text-green-500 font-medium">
-                {stats.completedFilesCount}
-              </span>
-            </div>
-          )}
-
-          {todoFilesCount > 0 && (
+          {category.todoFiles.length > 0 && (
             <div className="flex items-center bg-primary/10 px-1.5 py-0.5 rounded-full">
               <BookMarked size={12} className="text-primary mr-0.5" />
               <span className="text-xs text-primary font-medium">
-                {todoFilesCount}
+                {category.todoFiles.length}
               </span>
             </div>
           )}
 
-          {readFilesCount > 0 && (
+          {category.readFiles.length > 0 && (
             <div className="flex items-center px-1.5 py-0.5 rounded-full">
               <Clock size={12} className="text-green-200 mr-0.5" />
               <span className="text-xs text-green-200 font-medium">
-                {readFilesCount}
+                {category.readFiles.length}
               </span>
             </div>
           )}
@@ -184,7 +162,7 @@ const Category: React.FC<CategoryProps> = ({
 
           {/* Info button with insights dialog */}
 
-          <CategoryInsightsDialog category={category} stats={stats}>
+          <CategoryInsightsDialog category={category}>
             <button
               className={cn(
                 "ml-1 p-1.5 rounded-full",

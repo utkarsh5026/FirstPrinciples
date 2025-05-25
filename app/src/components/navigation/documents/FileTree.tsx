@@ -1,15 +1,14 @@
-import { Category as CategoryType } from "@/services/document/document-loader";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import Category from "./Category";
 import CategoryFile from "./CategoryFile";
-
+import type { Document } from "@/stores/document/document-store";
 interface FileTreeProps {
-  category: CategoryType;
+  category: Document;
   depth?: number;
   expandedCategories: Set<string>;
   handleToggleExpand: (categoryId: string, isExpanded: boolean) => void;
@@ -20,7 +19,6 @@ interface FileTreeProps {
     read: Set<string>;
   };
   currentFilePath: string;
-  parentCategory?: string;
 }
 
 const FileTree: React.FC<FileTreeProps> = memo(
@@ -32,50 +30,11 @@ const FileTree: React.FC<FileTreeProps> = memo(
     handleSelectFile,
     filePaths,
     currentFilePath,
-    parentCategory,
   }) => {
     const isExpanded = expandedCategories.has(category.id);
     const hasContent =
       (category.files && category.files.length > 0) ||
-      (category.categories && category.categories.length > 0);
-
-    const {
-      totalFilesCount,
-      readFilesCount,
-      todoFilesCount,
-      completedFilesCount,
-    } = useMemo(() => {
-      let totalFilesCount = 0;
-      let readFilesCount = 0;
-      let todoFilesCount = 0;
-      let completedFilesCount = 0;
-
-      const { todo, read, completed } = filePaths;
-
-      const countFiles = (cat: CategoryType) => {
-        if (cat.files) {
-          totalFilesCount += cat.files.length;
-          cat.files.forEach(({ path }) => {
-            if (read.has(path)) readFilesCount++;
-            if (todo.has(path)) todoFilesCount++;
-            if (completed.has(path)) completedFilesCount++;
-          });
-        }
-
-        if (cat.categories) {
-          cat.categories.forEach(countFiles);
-        }
-      };
-
-      countFiles(category);
-
-      return {
-        totalFilesCount,
-        readFilesCount,
-        todoFilesCount,
-        completedFilesCount,
-      };
-    }, [category, filePaths]);
+      (category.documents && category.documents.length > 0);
 
     if (!hasContent) return null;
 
@@ -87,21 +46,14 @@ const FileTree: React.FC<FileTreeProps> = memo(
             isExpanded={isExpanded}
             handleToggleExpand={handleToggleExpand}
             depth={depth}
-            stats={{
-              totalFilesCount,
-              readFilesCount,
-              todoFilesCount,
-              completedFilesCount,
-            }}
-            parentCategory={parentCategory}
             showExpandIcon={true}
           />
         </CollapsibleTrigger>
 
         <CollapsibleContent asChild>
-          {isExpanded || category.categories === undefined ? (
+          {isExpanded || category.documents === undefined ? (
             <div className="overflow-hidden pl-4">
-              {category.categories?.map((subcategory) => (
+              {category.documents?.map((subcategory) => (
                 <FileTree
                   key={subcategory.id}
                   category={subcategory}
@@ -111,7 +63,6 @@ const FileTree: React.FC<FileTreeProps> = memo(
                   handleSelectFile={handleSelectFile}
                   filePaths={filePaths}
                   currentFilePath={currentFilePath}
-                  parentCategory={`${parentCategory ?? ""} > ${category.name}`}
                 />
               ))}
 
@@ -122,12 +73,14 @@ const FileTree: React.FC<FileTreeProps> = memo(
                 return (
                   <CategoryFile
                     key={file.path}
-                    file={file}
+                    file={{
+                      ...file,
+                      isTodo: filePaths.todo.has(file.path),
+                      isCompleted: filePaths.completed.has(file.path),
+                      isRead: filePaths.read.has(file.path),
+                    }}
                     depth={depth + 1}
                     isCurrentFile={isCurrentFile}
-                    isTodo={filePaths.todo.has(file.path)}
-                    isCompleted={filePaths.completed.has(file.path)}
-                    isRead={filePaths.read.has(file.path)}
                     fileNumber={index + 1}
                     handleSelectFile={handleSelectFile}
                   />

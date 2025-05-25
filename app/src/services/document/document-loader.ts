@@ -57,6 +57,7 @@ export type Category = {
   categories?: Category[];
   files?: FileMetadata[];
   fileCount?: number;
+  path: string;
 };
 
 /**
@@ -115,6 +116,9 @@ const fetchContentIndex = async (): Promise<ContentIndex> => {
       }));
     };
 
+    /**
+     *
+     */
     const addFileCountToCategories = (categories: Category[]): number => {
       let fileCount = 0;
       categories.forEach((category) => {
@@ -127,6 +131,14 @@ const fetchContentIndex = async (): Promise<ContentIndex> => {
       });
 
       return fileCount;
+    };
+
+    const addPathToCategory = (parentPathSoFar: string, category: Category) => {
+      category.path = `${parentPathSoFar}${category.id}/`;
+      category.categories?.forEach((subcategory) => {
+        addPathToCategory(category.path, subcategory);
+      });
+      return category;
     };
 
     const baseUrl = getBaseContentUrl();
@@ -143,6 +155,7 @@ const fetchContentIndex = async (): Promise<ContentIndex> => {
     data.categories.forEach((category) => {
       category.fileCount = addFileCountToCategories(category.categories || []);
     });
+    data.categories = data.categories.map((c) => addPathToCategory("", c));
     return data;
   } catch (error) {
     console.error("Error loading content index:", error);

@@ -5,7 +5,7 @@ import { BookOpen, FolderTree } from "lucide-react";
 import CurrentlyReading from "./currenty-reading/CurrentlyReading";
 import DocumentTree from "./documents/DocumentTree";
 import { CurrentCategory } from "./hooks/use-navigate";
-import { Category } from "@/services/document";
+import type { Document } from "@/stores/document/document-store";
 import { motion } from "framer-motion";
 import TodayReading from "./today-reading/TodayReading";
 
@@ -21,7 +21,7 @@ interface TabbedNavigationProps {
   handleToggleExpand: (categoryId: string, isExpanded: boolean) => void;
   loading: boolean;
   categoryData: {
-    tree: Category[];
+    tree: Document[];
     expanded: Set<string>;
     current: CurrentCategory | null;
   };

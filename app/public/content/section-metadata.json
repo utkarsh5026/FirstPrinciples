@@ -122469,6 +122469,1194 @@
     "title": "auto_scaling_groups_and_launch_templates",
     "frontmatter": {}
   },
+  "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\snap_start_implementation_for_java_workloads.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\snap_start_implementation_for_java_workloads.md",
+    "sections": [
+      {
+        "id": "aws-lambda-snapstart-deep-dive-from-first-principles",
+        "title": "AWS Lambda SnapStart: Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 31
+      },
+      {
+        "id": "understanding-the-cold-start-problem",
+        "title": "Understanding the Cold Start Problem",
+        "level": 2,
+        "wordCount": 175
+      },
+      {
+        "id": "the-fundamental-principle-behind-snapstart",
+        "title": "The Fundamental Principle Behind SnapStart",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "how-snapstart-works-the-technical-deep-dive",
+        "title": "How SnapStart Works: The Technical Deep Dive",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "implementation-step-by-step-guide",
+        "title": "Implementation: Step-by-Step Guide",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "configuration-and-deployment",
+        "title": "Configuration and Deployment",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "performance-analysis-before-and-after",
+        "title": "Performance Analysis: Before and After",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "best-practices-and-optimization-patterns",
+        "title": "Best Practices and Optimization Patterns",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "monitoring-and-troubleshooting",
+        "title": "Monitoring and Troubleshooting",
+        "level": 2,
+        "wordCount": 10
+      },
+      {
+        "id": "limitations-and-considerations",
+        "title": "Limitations and Considerations",
+        "level": 2,
+        "wordCount": 118
+      }
+    ],
+    "totalWordCount": 688,
+    "estimatedReadingTime": 180000,
+    "title": "snap_start_implementation_for_java_workloads",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\lifecycle_hook_utilization_for_performance.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\lifecycle_hook_utilization_for_performance.md",
+    "sections": [
+      {
+        "id": "aws-lambda-lifecycle-hooks-mastering-performance-from-first-principles",
+        "title": "AWS Lambda Lifecycle Hooks: Mastering Performance from First Principles",
+        "level": 1,
+        "wordCount": 9
+      },
+      {
+        "id": "understanding-the-foundation-what-is-lambda-lifecycle",
+        "title": "Understanding the Foundation: What is Lambda Lifecycle?",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "phase-1-init-the-foundation-phase",
+        "title": "Phase 1: INIT - The Foundation Phase",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "phase-2-invoke-the-execution-phase",
+        "title": "Phase 2: INVOKE - The Execution Phase",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "phase-3-idle-the-waiting-phase",
+        "title": "Phase 3: IDLE - The Waiting Phase",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "phase-4-shutdown-the-cleanup-phase",
+        "title": "Phase 4: SHUTDOWN - The Cleanup Phase",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "lambda-extensions-your-performance-toolkit",
+        "title": "Lambda Extensions: Your Performance Toolkit",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "practical-performance-optimization-strategies",
+        "title": "Practical Performance Optimization Strategies",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "advanced-performance-patterns",
+        "title": "Advanced Performance Patterns",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "mobile-optimized-lifecycle-diagram",
+        "title": "Mobile-Optimized Lifecycle Diagram",
+        "level": 2,
+        "wordCount": 3
+      },
+      {
+        "id": "key-performance-metrics-to-monitor",
+        "title": "Key Performance Metrics to Monitor",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "best-practices-summary",
+        "title": "Best Practices Summary",
+        "level": 2,
+        "wordCount": 108
+      }
+    ],
+    "totalWordCount": 709,
+    "estimatedReadingTime": 180000,
+    "title": "lifecycle_hook_utilization_for_performance",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\language_runtime_performance_characteristics.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\language_runtime_performance_characteristics.md",
+    "sections": [
+      {
+        "id": "aws-lambda-language-runtime-performance-a-deep-dive-from-first-principles",
+        "title": "AWS Lambda Language Runtime Performance: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 11
+      },
+      {
+        "id": "understanding-lambdas-foundation",
+        "title": "Understanding Lambda's Foundation",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "the-lambda-execution-model",
+        "title": "The Lambda Execution Model",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "language-runtime-categories",
+        "title": "Language Runtime Categories",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "performance-characteristics-by-runtime",
+        "title": "Performance Characteristics by Runtime",
+        "level": 2,
+        "wordCount": 252
+      },
+      {
+        "id": "memory-and-cpu-allocation-impact",
+        "title": "Memory and CPU Allocation Impact",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "cold-start-optimization-strategies",
+        "title": "Cold Start Optimization Strategies",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "runtime-specific-optimization-techniques",
+        "title": "Runtime-Specific Optimization Techniques",
+        "level": 2,
+        "wordCount": 7
+      },
+      {
+        "id": "performance-monitoring-and-measurement",
+        "title": "Performance Monitoring and Measurement",
+        "level": 2,
+        "wordCount": 11
+      },
+      {
+        "id": "choosing-the-right-runtime",
+        "title": "Choosing the Right Runtime",
+        "level": 2,
+        "wordCount": 75
+      }
+    ],
+    "totalWordCount": 583,
+    "estimatedReadingTime": 180000,
+    "title": "language_runtime_performance_characteristics",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\dependency_management_for_performance.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\dependency_management_for_performance.md",
+    "sections": [
+      {
+        "id": "aws-lambda-dependency-management-for-performance-from-first-principles",
+        "title": "AWS Lambda Dependency Management for Performance: From First Principles",
+        "level": 1,
+        "wordCount": 22
+      },
+      {
+        "id": "what-are-dependencies",
+        "title": "What Are Dependencies?",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "the-lambda-runtime-environment",
+        "title": "The Lambda Runtime Environment",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "why-dependency-management-matters-for-performance",
+        "title": "Why Dependency Management Matters for Performance",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "dependency-optimization-strategies",
+        "title": "Dependency Optimization Strategies",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "advanced-performance-patterns",
+        "title": "Advanced Performance Patterns",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "monitoring-and-optimization",
+        "title": "Monitoring and Optimization",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "best-practices-summary",
+        "title": "Best Practices Summary",
+        "level": 2,
+        "wordCount": 129
+      }
+    ],
+    "totalWordCount": 699,
+    "estimatedReadingTime": 180000,
+    "title": "dependency_management_for_performance",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\custom_runtime_optimization_techniques.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\custom_runtime_optimization_techniques.md",
+    "sections": [
+      {
+        "id": "aws-lambda-custom-runtime-optimization-from-first-principles",
+        "title": "AWS Lambda Custom Runtime Optimization: From First Principles",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "what-is-aws-lambda-at-its-core",
+        "title": "What is AWS Lambda at its Core?",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "understanding-lambda-runtimes-from-ground-up",
+        "title": "Understanding Lambda Runtimes from Ground Up",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "why-custom-runtime-optimization-matters",
+        "title": "Why Custom Runtime Optimization Matters",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "core-optimization-techniques",
+        "title": "Core Optimization Techniques",
+        "level": 2,
+        "wordCount": 177
+      },
+      {
+        "id": "advanced-optimization-strategies",
+        "title": "Advanced Optimization Strategies",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "mobile-optimized-deployment-architecture",
+        "title": "Mobile-Optimized Deployment Architecture",
+        "level": 2,
+        "wordCount": 3
+      },
+      {
+        "id": "practical-implementation-example",
+        "title": "Practical Implementation Example",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "key-takeaways-for-maximum-optimization",
+        "title": "Key Takeaways for Maximum Optimization",
+        "level": 2,
+        "wordCount": 137
+      }
+    ],
+    "totalWordCount": 756,
+    "estimatedReadingTime": 240000,
+    "title": "custom_runtime_optimization_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\compiled_vs_interpreted_language_considerations.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\performance_optimization_patterns\\compiled_vs_interpreted_language_considerations.md",
+    "sections": [
+      {
+        "id": "aws-lambda-compiled-vs-interpreted-languages-a-complete-deep-dive",
+        "title": "AWS Lambda: Compiled vs. Interpreted Languages - A Complete Deep Dive",
+        "level": 1,
+        "wordCount": 34
+      },
+      {
+        "id": "understanding-code-execution-the-foundation",
+        "title": "Understanding Code Execution: The Foundation",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "compiled-languages-translation-before-execution",
+        "title": "Compiled Languages: Translation Before Execution",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "interpreted-languages-translation-during-execution",
+        "title": "Interpreted Languages: Translation During Execution",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "aws-lambda-runtime-environment-the-critical-factor",
+        "title": "AWS Lambda Runtime Environment: The Critical Factor",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "performance-implications-cold-start-analysis",
+        "title": "Performance Implications: Cold Start Analysis",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "memory-and-resource-considerations",
+        "title": "Memory and Resource Considerations",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "development-experience-trade-offs",
+        "title": "Development Experience Trade-offs",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "choosing-the-right-approach-for-lambda",
+        "title": "Choosing the Right Approach for Lambda",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "hybrid-approaches-and-modern-considerations",
+        "title": "Hybrid Approaches and Modern Considerations",
+        "level": 2,
+        "wordCount": 85
+      }
+    ],
+    "totalWordCount": 742,
+    "estimatedReadingTime": 180000,
+    "title": "compiled_vs_interpreted_language_considerations",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\retry_behavior_customization_techniques.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\retry_behavior_customization_techniques.md",
+    "sections": [
+      {
+        "id": "retry-behavior-customization-in-aws-lambda-from-first-principles",
+        "title": "Retry Behavior Customization in AWS Lambda: From First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "what-is-a-retry-in-computing",
+        "title": "What is a Retry in Computing?",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "aws-lambdas-event-processing-model",
+        "title": "AWS Lambda's Event Processing Model",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "two-fundamental-invocation-types",
+        "title": "Two Fundamental Invocation Types",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "default-retry-behavior-for-asynchronous-invocation",
+        "title": "Default Retry Behavior for Asynchronous Invocation",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "stream-based-event-sources",
+        "title": "Stream-Based Event Sources",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "customizing-retry-behavior",
+        "title": "Customizing Retry Behavior",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "advanced-retry-patterns",
+        "title": "Advanced Retry Patterns",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "monitoring-and-observability",
+        "title": "Monitoring and Observability",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "best-practices-summary",
+        "title": "Best Practices Summary",
+        "level": 2,
+        "wordCount": 170
+      }
+    ],
+    "totalWordCount": 865,
+    "estimatedReadingTime": 240000,
+    "title": "retry_behavior_customization_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\event_source_mapping_internals_for_different_triggers.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\event_source_mapping_internals_for_different_triggers.md",
+    "sections": [
+      {
+        "id": "aws-lambda-event-source-mapping-complete-deep-dive-from-first-principles",
+        "title": "AWS Lambda Event Source Mapping: Complete Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 34
+      },
+      {
+        "id": "what-is-event-source-mapping-at-its-core",
+        "title": "What is Event Source Mapping at its Core?",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "the-two-fundamental-types-of-event-sources",
+        "title": "The Two Fundamental Types of Event Sources",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "deep-dive-sqs-event-source-mapping-internals",
+        "title": "Deep Dive: SQS Event Source Mapping Internals",
+        "level": 2,
+        "wordCount": 141
+      },
+      {
+        "id": "kinesis-event-source-mapping-shard-based-processing",
+        "title": "Kinesis Event Source Mapping: Shard-Based Processing",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "dynamodb-streams-change-data-capture",
+        "title": "DynamoDB Streams: Change Data Capture",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "error-handling-and-retry-logic",
+        "title": "Error Handling and Retry Logic",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "configuration-deep-dive",
+        "title": "Configuration Deep Dive",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "performance-optimization-strategies",
+        "title": "Performance Optimization Strategies",
+        "level": 2,
+        "wordCount": 89
+      }
+    ],
+    "totalWordCount": 659,
+    "estimatedReadingTime": 180000,
+    "title": "event_source_mapping_internals_for_different_triggers",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\event_filtering_techniques_for_conditional_execution.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\event_filtering_techniques_for_conditional_execution.md",
+    "sections": [
+      {
+        "id": "aws-lambda-event-filtering-building-smart-conditional-execution",
+        "title": "AWS Lambda Event Filtering: Building Smart, Conditional Execution",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "understanding-the-foundation-what-is-an-event",
+        "title": "Understanding the Foundation: What is an Event?",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "the-problem-why-filter-events",
+        "title": "The Problem: Why Filter Events?",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "event-filtering-techniques-from-basic-to-advanced",
+        "title": "Event Filtering Techniques: From Basic to Advanced",
+        "level": 2,
+        "wordCount": 281
+      },
+      {
+        "id": "advanced-filtering-patterns",
+        "title": "Advanced Filtering Patterns",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "best-practices-for-event-filtering",
+        "title": "Best Practices for Event Filtering",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "mobile-optimized-filtering-architecture",
+        "title": "Mobile-Optimized Filtering Architecture",
+        "level": 2,
+        "wordCount": 75
+      }
+    ],
+    "totalWordCount": 597,
+    "estimatedReadingTime": 180000,
+    "title": "event_filtering_techniques_for_conditional_execution",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\event_batching_optimization_patterns.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\event_batching_optimization_patterns.md",
+    "sections": [
+      {
+        "id": "aws-lambda-event-batching-optimization-patterns-from-first-principles",
+        "title": "AWS Lambda Event Batching Optimization Patterns: From First Principles",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "what-is-aws-lambda-first-principles",
+        "title": "What is AWS Lambda? (First Principles)",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "understanding-events-in-lambda",
+        "title": "Understanding Events in Lambda",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "the-fundamental-problem-why-batching-matters",
+        "title": "The Fundamental Problem: Why Batching Matters",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "event-source-mapping-the-foundation-of-batching",
+        "title": "Event Source Mapping: The Foundation of Batching",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "core-batching-configuration-parameters",
+        "title": "Core Batching Configuration Parameters",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "optimization-pattern-1-adaptive-batch-processing",
+        "title": "Optimization Pattern 1: Adaptive Batch Processing",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "optimization-pattern-2-parallel-processing-within-batches",
+        "title": "Optimization Pattern 2: Parallel Processing Within Batches",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "optimization-pattern-3-smart-batch-size-calculation",
+        "title": "Optimization Pattern 3: Smart Batch Size Calculation",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "optimization-pattern-4-memory-and-resource-management",
+        "title": "Optimization Pattern 4: Memory and Resource Management",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "optimization-pattern-5-database-connection-pooling-for-batches",
+        "title": "Optimization Pattern 5: Database Connection Pooling for Batches",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "configuration-best-practices",
+        "title": "Configuration Best Practices",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "monitoring-and-observability",
+        "title": "Monitoring and Observability",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "summary-key-optimization-principles",
+        "title": "Summary: Key Optimization Principles",
+        "level": 2,
+        "wordCount": 113
+      }
+    ],
+    "totalWordCount": 779,
+    "estimatedReadingTime": 240000,
+    "title": "event_batching_optimization_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\dead_letter_queue_implementation_strategies.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\dead_letter_queue_implementation_strategies.md",
+    "sections": [
+      {
+        "id": "aws-lambda-dead-letter-queue-complete-implementation-guide",
+        "title": "AWS Lambda Dead Letter Queue: Complete Implementation Guide",
+        "level": 1,
+        "wordCount": 8
+      },
+      {
+        "id": "understanding-dead-letter-queues-from-first-principles",
+        "title": "Understanding Dead Letter Queues from First Principles",
+        "level": 2,
+        "wordCount": 132
+      },
+      {
+        "id": "dead-letter-queue-architecture-fundamentals",
+        "title": "Dead Letter Queue Architecture Fundamentals",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "implementation-strategy-1-sqs-dead-letter-queue",
+        "title": "Implementation Strategy 1: SQS Dead Letter Queue",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "implementation-strategy-2-sns-dead-letter-queue",
+        "title": "Implementation Strategy 2: SNS Dead Letter Queue",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "implementation-strategy-3-eventbridge-with-dlq",
+        "title": "Implementation Strategy 3: EventBridge with DLQ",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "dlq-monitoring-and-alerting-strategy",
+        "title": "DLQ Monitoring and Alerting Strategy",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "best-practices-and-advanced-patterns",
+        "title": "Best Practices and Advanced Patterns",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "troubleshooting-and-debugging",
+        "title": "Troubleshooting and Debugging",
+        "level": 2,
+        "wordCount": 60
+      }
+    ],
+    "totalWordCount": 492,
+    "estimatedReadingTime": 120000,
+    "title": "dead_letter_queue_implementation_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\asynchronous_invocation_pattern_details.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\event_processing_patterns\\asynchronous_invocation_pattern_details.md",
+    "sections": [
+      {
+        "id": "aws-lambda-asynchronous-invocation-from-first-principles",
+        "title": "AWS Lambda Asynchronous Invocation: From First Principles",
+        "level": 1,
+        "wordCount": 25
+      },
+      {
+        "id": "what-is-function-invocation",
+        "title": "What is Function Invocation?",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "the-two-fundamental-invocation-models",
+        "title": "The Two Fundamental Invocation Models",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "deep-dive-how-asynchronous-invocation-works",
+        "title": "Deep Dive: How Asynchronous Invocation Works",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "event-sources-that-use-asynchronous-invocation",
+        "title": "Event Sources That Use Asynchronous Invocation",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "error-handling-in-asynchronous-invocation",
+        "title": "Error Handling in Asynchronous Invocation",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "dead-letter-queues-dlq-handling-ultimate-failures",
+        "title": "Dead Letter Queues (DLQ): Handling Ultimate Failures",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "destination-configuration-advanced-error-handling",
+        "title": "Destination Configuration: Advanced Error Handling",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "real-world-example-image-processing-pipeline",
+        "title": "Real-World Example: Image Processing Pipeline",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "monitoring-and-observability",
+        "title": "Monitoring and Observability",
+        "level": 2,
+        "wordCount": 12
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 27
+      },
+      {
+        "id": "best-practices-for-asynchronous-lambda-functions",
+        "title": "Best Practices for Asynchronous Lambda Functions",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "when-to-use-asynchronous-invocation",
+        "title": "When to Use Asynchronous Invocation",
+        "level": 2,
+        "wordCount": 117
+      }
+    ],
+    "totalWordCount": 718,
+    "estimatedReadingTime": 180000,
+    "title": "asynchronous_invocation_pattern_details",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\memory_allocation_and_cpu_scaling_correlation.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\memory_allocation_and_cpu_scaling_correlation.md",
+    "sections": [
+      {
+        "id": "aws-lambda-memory-allocation-and-cpu-scaling-correlation",
+        "title": "AWS Lambda Memory Allocation and CPU Scaling Correlation",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "the-fundamental-architecture",
+        "title": "The Fundamental Architecture",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "the-mathematical-relationship",
+        "title": "The Mathematical Relationship",
+        "level": 2,
+        "wordCount": 126
+      },
+      {
+        "id": "why-this-architecture-exists",
+        "title": "Why This Architecture Exists",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "practical-implications",
+        "title": "Practical Implications",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "the-sweet-spot-analysis",
+        "title": "The Sweet Spot Analysis",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "real-world-optimization-strategies",
+        "title": "Real-World Optimization Strategies",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "common-pitfalls-and-misconceptions",
+        "title": "Common Pitfalls and Misconceptions",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "monitoring-and-optimization",
+        "title": "Monitoring and Optimization",
+        "level": 2,
+        "wordCount": 141
+      }
+    ],
+    "totalWordCount": 687,
+    "estimatedReadingTime": 180000,
+    "title": "memory_allocation_and_cpu_scaling_correlation",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\lambda_service_architecture_and_scaling_limits.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\lambda_service_architecture_and_scaling_limits.md",
+    "sections": [
+      {
+        "id": "aws-lambda-cold-start-from-first-principles-to-optimization",
+        "title": "AWS Lambda Cold Start: From First Principles to Optimization",
+        "level": 1,
+        "wordCount": 9
+      },
+      {
+        "id": "what-is-a-cold-start-understanding-the-foundation",
+        "title": "What is a Cold Start? Understanding the Foundation",
+        "level": 2,
+        "wordCount": 188
+      },
+      {
+        "id": "the-anatomy-of-a-cold-start",
+        "title": "The Anatomy of a Cold Start",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "deep-dive-what-causes-cold-start-latency",
+        "title": "Deep Dive: What Causes Cold Start Latency?",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "aws-lambda-container-reuse-model",
+        "title": "AWS Lambda Container Reuse Model",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "optimization-strategies-from-theory-to-practice",
+        "title": "Optimization Strategies: From Theory to Practice",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "advanced-cold-start-mitigation-techniques",
+        "title": "Advanced Cold Start Mitigation Techniques",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "monitoring-and-measuring-cold-starts",
+        "title": "Monitoring and Measuring Cold Starts",
+        "level": 2,
+        "wordCount": 9
+      },
+      {
+        "id": "real-world-optimization-case-study",
+        "title": "Real-World Optimization Case Study",
+        "level": 2,
+        "wordCount": 101
+      }
+    ],
+    "totalWordCount": 545,
+    "estimatedReadingTime": 180000,
+    "title": "lambda_service_architecture_and_scaling_limits",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\initialization_phase_optimization_techniques.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\initialization_phase_optimization_techniques.md",
+    "sections": [
+      {
+        "id": "aws-lambda-initialization-phase-optimization-from-first-principles",
+        "title": "AWS Lambda Initialization Phase Optimization: From First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "what-is-aws-lambda-initialization",
+        "title": "What is AWS Lambda Initialization?",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "the-lambda-execution-model-breaking-down-first-principles",
+        "title": "The Lambda Execution Model: Breaking Down First Principles",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "core-optimization-techniques",
+        "title": "Core Optimization Techniques",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "advanced-optimization-patterns",
+        "title": "Advanced Optimization Patterns",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "monitoring-and-debugging-initialization",
+        "title": "Monitoring and Debugging Initialization",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "summary-the-optimization-hierarchy",
+        "title": "Summary: The Optimization Hierarchy",
+        "level": 2,
+        "wordCount": 120
+      }
+    ],
+    "totalWordCount": 622,
+    "estimatedReadingTime": 180000,
+    "title": "initialization_phase_optimization_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\execution_environment_lifecycle_management.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\execution_environment_lifecycle_management.md",
+    "sections": [
+      {
+        "id": "aws-lambda-execution-environment-lifecycle-management",
+        "title": "AWS Lambda Execution Environment Lifecycle Management",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "understanding-the-fundamental-problem",
+        "title": "Understanding the Fundamental Problem",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "first-principles-what-is-an-execution-environment",
+        "title": "First Principles: What is an Execution Environment?",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "the-complete-lifecycle-journey",
+        "title": "The Complete Lifecycle Journey",
+        "level": 2,
+        "wordCount": 220
+      },
+      {
+        "id": "optimization-strategies",
+        "title": "Optimization Strategies",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "deep-dive-memory-and-performance-impact",
+        "title": "Deep Dive: Memory and Performance Impact",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "real-world-example-database-connection-pooling",
+        "title": "Real-World Example: Database Connection Pooling",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "monitoring-and-observability",
+        "title": "Monitoring and Observability",
+        "level": 2,
+        "wordCount": 8
+      },
+      {
+        "id": "key-takeaways",
+        "title": "Key Takeaways",
+        "level": 2,
+        "wordCount": 119
+      }
+    ],
+    "totalWordCount": 622,
+    "estimatedReadingTime": 180000,
+    "title": "execution_environment_lifecycle_management",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\container_reuse_mechanisms_and_patterns.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\container_reuse_mechanisms_and_patterns.md",
+    "sections": [
+      {
+        "id": "container-reuse-mechanisms-and-patterns-in-aws-lambda",
+        "title": "Container Reuse Mechanisms and Patterns in AWS Lambda",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "first-principles-what-is-a-lambda-container",
+        "title": "First Principles: What is a Lambda Container?",
+        "level": 2,
+        "wordCount": 149
+      },
+      {
+        "id": "the-reuse-mechanism-how-it-actually-works",
+        "title": "The Reuse Mechanism: How It Actually Works",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "practical-reuse-patterns",
+        "title": "Practical Reuse Patterns",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "advanced-container-patterns",
+        "title": "Advanced Container Patterns",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "container-reuse-best-practices",
+        "title": "Container Reuse Best Practices",
+        "level": 2,
+        "wordCount": 126
+      }
+    ],
+    "totalWordCount": 558,
+    "estimatedReadingTime": 180000,
+    "title": "container_reuse_mechanisms_and_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\cold_start_internals_and_optimization_strategies.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_lambda\\architecture_and_internals\\cold_start_internals_and_optimization_strategies.md",
+    "sections": [
+      {
+        "id": "aws-lambda-cold-start-from-first-principles-to-optimization",
+        "title": "AWS Lambda Cold Start: From First Principles to Optimization",
+        "level": 1,
+        "wordCount": 9
+      },
+      {
+        "id": "what-is-a-cold-start-understanding-the-foundation",
+        "title": "What is a Cold Start? Understanding the Foundation",
+        "level": 2,
+        "wordCount": 188
+      },
+      {
+        "id": "the-anatomy-of-a-cold-start",
+        "title": "The Anatomy of a Cold Start",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "deep-dive-what-causes-cold-start-latency",
+        "title": "Deep Dive: What Causes Cold Start Latency?",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "aws-lambda-container-reuse-model",
+        "title": "AWS Lambda Container Reuse Model",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "optimization-strategies-from-theory-to-practice",
+        "title": "Optimization Strategies: From Theory to Practice",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "advanced-cold-start-mitigation-techniques",
+        "title": "Advanced Cold Start Mitigation Techniques",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "monitoring-and-measuring-cold-starts",
+        "title": "Monitoring and Measuring Cold Starts",
+        "level": 2,
+        "wordCount": 9
+      },
+      {
+        "id": "real-world-optimization-case-study",
+        "title": "Real-World Optimization Case Study",
+        "level": 2,
+        "wordCount": 101
+      }
+    ],
+    "totalWordCount": 545,
+    "estimatedReadingTime": 180000,
+    "title": "cold_start_internals_and_optimization_strategies",
+    "frontmatter": {}
+  },
   "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\storage_encryption_implementation_details.md": {
     "path": "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\storage_encryption_implementation_details.md",
     "sections": [

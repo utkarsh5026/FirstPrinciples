@@ -700,7 +700,7 @@ const getTopicIcon = (topic: string, size: number = 16): React.ReactElement => {
 
   const normalizedTopic = topic.toLowerCase().replace(/_/g, " ");
   const parts = normalizedTopic
-    .split(">")
+    .split("/")
     .map((part) => part.trim())
     .filter(Boolean);
 

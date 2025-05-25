@@ -50,12 +50,14 @@ const CurrentlyReading: React.FC<CurrentlyReadingProps> = ({
           return (
             <CategoryFile
               key={path}
-              file={file}
+              file={{
+                ...file,
+                isTodo: isTodo,
+                isCompleted: isCompleted,
+                isRead: isRead,
+              }}
               depth={depth}
               isCurrentFile={isCurrentFile}
-              isTodo={isTodo}
-              isCompleted={isCompleted}
-              isRead={isRead}
               fileNumber={index + 1}
               handleSelectFile={onSelectFile}
             />

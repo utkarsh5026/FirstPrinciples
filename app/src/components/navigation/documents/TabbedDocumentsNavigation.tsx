@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Category } from "@/services/document";
 import FileTree from "./FileTree";
 import FlatDirectoryView from "./FlatDirectoryView";
 import { FolderTree, LayoutGrid } from "lucide-react";
@@ -9,9 +8,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import BreadcrumbView from "./BreadcrumbView";
 import { useLocalStorage, useMobile, useDocumentList } from "@/hooks";
 import { useSwipeable } from "react-swipeable";
+import type { Document } from "@/stores/document/document-store";
 interface TabbedDocumentNavigationProps {
   categoryData: {
-    tree: Category[];
+    tree: Document[];
     expanded: Set<string>;
   };
   loading: boolean;
@@ -67,12 +67,12 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
   /**
    * 📂 Maintains reference to current directory for flat view
    */
-  const [currentCategory, setCurrentCategory] = useState<Category | null>(null);
+  const [currentCategory, setCurrentCategory] = useState<Document | null>(null);
 
   /**
    * 📚 Provides access to the full document structure
    */
-  const { contentIndex } = useDocumentList();
+  const { docs } = useDocumentList();
 
   /**
    * 📱 Detects if user is on mobile for responsive features
@@ -99,14 +99,11 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
     (pathSegments: string[]) => {
       setCurrentPathSegments(pathSegments);
 
-      let category: Category | null = null;
-      let currentCategories = contentIndex.categories || [];
-
+      let category: Document | null = null;
       for (const segment of pathSegments) {
-        const found = currentCategories.find((cat) => cat.id === segment);
+        const found = docs.find((cat) => cat.id === segment);
         if (found) {
           category = found;
-          currentCategories = found.categories || [];
         } else {
           category = null;
           break;
@@ -115,7 +112,7 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
 
       setCurrentCategory(category);
     },
-    [contentIndex.categories]
+    [docs]
   );
 
   /**
@@ -127,7 +124,7 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
       const dirPath = pathParts.slice(0, -1);
       navigateToPath(dirPath);
     }
-  }, [currentFilePath, viewType, contentIndex, navigateToPath]);
+  }, [currentFilePath, viewType, docs, navigateToPath]);
 
   /**
    * 📂 Handles navigation into a directory
@@ -172,17 +169,17 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
   const { categories, files } = useMemo(() => {
     if (!currentCategory && currentPathSegments.length === 0) {
       return {
-        categories: contentIndex.categories || [],
+        categories: docs || [],
         files: [],
       };
     } else if (currentCategory) {
       return {
-        categories: currentCategory.categories || [],
+        categories: currentCategory.documents || [],
         files: currentCategory.files || [],
       };
     }
     return { categories: [], files: [] };
-  }, [currentCategory, currentPathSegments, contentIndex]);
+  }, [currentCategory, currentPathSegments, docs]);
 
   /**
    * 🗺️ Generates breadcrumb trail for current location
@@ -190,18 +187,18 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
   const breadcrumbs = useMemo(() => {
     const result: { id: string; name: string }[] = [];
 
-    let currentCategories = contentIndex.categories || [];
+    let currentCategories = docs;
 
     for (const segment of currentPathSegments) {
       const category = currentCategories.find((cat) => cat.id === segment);
       if (category) {
         result.push({ id: segment, name: category.name });
-        currentCategories = category.categories || [];
+        currentCategories = category.documents || [];
       } else result.push({ id: segment, name: segment });
     }
 
     return result;
-  }, [currentPathSegments, contentIndex]);
+  }, [currentPathSegments, docs]);
 
   return (
     <div className="h-full flex flex-col overflow-hidden" {...handlers}>
@@ -286,11 +283,6 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
                   className="p-2"
                 >
                   <FlatDirectoryView
-                    parentCategory={
-                      breadcrumbs.length > 0
-                        ? breadcrumbs[breadcrumbs.length - 1].id
-                        : undefined
-                    }
                     categories={categories}
                     files={files}
                     onSelectCategory={navigateToDirectory}

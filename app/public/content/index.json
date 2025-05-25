@@ -234,7 +234,86 @@
             {
               "id": "aws_lambda",
               "name": "Aws Lambda",
-              "categories": [],
+              "categories": [
+                {
+                  "id": "architecture_and_internals",
+                  "name": "Architecture And Internals",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/compute_services/aws_lambda/architecture_and_internals/cold_start_internals_and_optimization_strategies.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/architecture_and_internals/container_reuse_mechanisms_and_patterns.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/architecture_and_internals/execution_environment_lifecycle_management.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/architecture_and_internals/initialization_phase_optimization_techniques.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/architecture_and_internals/lambda_service_architecture_and_scaling_limits.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/architecture_and_internals/memory_allocation_and_cpu_scaling_correlation.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "event_processing_patterns",
+                  "name": "Event Processing Patterns",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/compute_services/aws_lambda/event_processing_patterns/asynchronous_invocation_pattern_details.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/event_processing_patterns/dead_letter_queue_implementation_strategies.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/event_processing_patterns/event_batching_optimization_patterns.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/event_processing_patterns/event_filtering_techniques_for_conditional_execution.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/event_processing_patterns/event_source_mapping_internals_for_different_triggers.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/event_processing_patterns/retry_behavior_customization_techniques.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "performance_optimization_patterns",
+                  "name": "Performance Optimization Patterns",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/compute_services/aws_lambda/performance_optimization_patterns/compiled_vs_interpreted_language_considerations.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/performance_optimization_patterns/custom_runtime_optimization_techniques.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/performance_optimization_patterns/dependency_management_for_performance.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/performance_optimization_patterns/language_runtime_performance_characteristics.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/performance_optimization_patterns/lifecycle_hook_utilization_for_performance.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_lambda/performance_optimization_patterns/snap_start_implementation_for_java_workloads.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                }
+              ],
               "files": [],
               "totalFileSize": 0
             },

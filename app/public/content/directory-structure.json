@@ -66,7 +66,23 @@
           {
             "id": "aws_lambda",
             "name": "Aws Lambda",
-            "categories": []
+            "categories": [
+              {
+                "id": "architecture_and_internals",
+                "name": "Architecture And Internals",
+                "categories": []
+              },
+              {
+                "id": "event_processing_patterns",
+                "name": "Event Processing Patterns",
+                "categories": []
+              },
+              {
+                "id": "performance_optimization_patterns",
+                "name": "Performance Optimization Patterns",
+                "categories": []
+              }
+            ]
           },
           {
             "id": "overview",

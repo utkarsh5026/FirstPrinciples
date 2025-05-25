@@ -1,12 +1,12 @@
 import React from "react";
-import { Category as CategoryType, FileMetadata } from "@/services/document";
+import { FileMetadata } from "@/services/document";
 import { motion } from "framer-motion";
 import { getIconForTech } from "@/components/shared/icons/iconMap";
 import Category from "./Category";
 import CategoryFile from "./CategoryFile";
-
+import type { Document } from "@/stores/document/document-store";
 interface FlatDirectoryViewProps {
-  categories: CategoryType[];
+  categories: Document[];
   files: FileMetadata[];
   onSelectCategory: (categoryId: string) => void;
   onSelectFile: (filePath: string) => void;
@@ -16,7 +16,6 @@ interface FlatDirectoryViewProps {
     completed: Set<string>;
   };
   currentFilePath?: string;
-  parentCategory?: string;
 }
 
 /**
@@ -32,7 +31,6 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
   onSelectFile,
   filePaths,
   currentFilePath,
-  parentCategory,
 }) => {
   if (categories.length === 0 && files.length === 0) {
     return (
@@ -117,18 +115,11 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
                     <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-secondary/30 to-transparent"></div>
                   </div>
                   <Category
-                    parentCategory={parentCategory}
                     category={category}
                     key={category.id}
                     depth={1}
                     isExpanded={false}
                     handleToggleExpand={onSelectCategory}
-                    stats={{
-                      readFilesCount: 0,
-                      completedFilesCount: 0,
-                      todoFilesCount: 0,
-                      totalFilesCount: category.files?.length ?? 0,
-                    }}
                     colorIcon={true}
                   />
                 </motion.div>
@@ -179,13 +170,15 @@ const FlatDirectoryView: React.FC<FlatDirectoryViewProps> = ({
                     <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
                   </div>
                   <CategoryFile
-                    file={file}
-                    isTodo={isInTodo}
-                    isCompleted={isCompleted}
+                    file={{
+                      ...file,
+                      isTodo: isInTodo,
+                      isCompleted: isCompleted,
+                      isRead: isRead,
+                    }}
                     depth={0}
                     isCurrentFile={isCurrentFile}
                     fileNumber={index + 1}
-                    isRead={isRead}
                     handleSelectFile={onSelectFile}
                   />
                 </motion.div>

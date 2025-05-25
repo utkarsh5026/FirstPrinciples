@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import TabbedDocumentNavigation from "./TabbedDocumentsNavigation";
-import { Category } from "@/services/document/document-loader";
+import type { Document } from "@/stores/document/document-store";
 
 interface DocumentTreeProps {
   categoryData: {
-    tree: Category[];
+    tree: Document[];
     expanded: Set<string>;
   };
   loading: boolean;

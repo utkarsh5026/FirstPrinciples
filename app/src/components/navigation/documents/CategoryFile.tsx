@@ -3,13 +3,16 @@ import { CircleDot, BookMarked, Clock, CheckCircle } from "lucide-react";
 import type { FileMetadata } from "@/services/document";
 import { fromSnakeToTitleCase } from "@/utils/string";
 
-interface CategoryFileProps {
-  file: FileMetadata;
-  depth: number;
-  isCurrentFile: boolean;
+type CategoryFileWithStatus = FileMetadata & {
   isTodo: boolean;
   isCompleted: boolean;
   isRead: boolean;
+};
+
+interface CategoryFileProps {
+  file: CategoryFileWithStatus;
+  depth: number;
+  isCurrentFile: boolean;
   fileNumber: number;
   handleSelectFile: (filePath: string) => void;
 }
@@ -18,16 +21,21 @@ const CategoryFile: React.FC<CategoryFileProps> = ({
   file,
   depth,
   isCurrentFile,
-  isTodo,
-  isCompleted,
-  isRead,
   handleSelectFile,
   fileNumber,
 }: CategoryFileProps) => {
-  const fileStatusIcon = getFileStatusIcon(isTodo, isCompleted, isRead);
-  const statusText = getFileStatusText(isTodo, isCompleted, isRead);
+  const fileStatusIcon = getFileStatusIcon(
+    file.isTodo,
+    file.isCompleted,
+    file.isRead
+  );
+  const statusText = getFileStatusText(
+    file.isTodo,
+    file.isCompleted,
+    file.isRead
+  );
 
-  const fileStatus = getFileStatus(isTodo, isCompleted, isRead);
+  const fileStatus = getFileStatus(file.isTodo, file.isCompleted, file.isRead);
 
   return (
     <div className="px-1 my-1">
@@ -39,7 +47,10 @@ const CategoryFile: React.FC<CategoryFileProps> = ({
           isCurrentFile
             ? "bg-primary/15 text-primary font-medium shadow-sm"
             : "hover:bg-secondary/30 hover:shadow-sm text-foreground hover:text-foreground",
-          isRead && !isCurrentFile && !isCompleted && "text-muted-foreground"
+          file.isRead &&
+            !isCurrentFile &&
+            !file.isCompleted &&
+            "text-muted-foreground"
         )}
         style={{ paddingLeft: `${(depth + 1) * 16}px` }}
         onClick={() => handleSelectFile(file.path)}
