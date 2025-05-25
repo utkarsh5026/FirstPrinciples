@@ -1,288 +1,268 @@
-import React, { useMemo } from "react";
+import React from "react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import {
-  Info,
   BookOpen,
-  BookMarked,
   Clock,
-  FileText,
+  BookMarked,
+  CheckCircle2,
+  Files,
   Layers,
-  PieChart,
+  TrendingUp,
+  Target,
+  Zap,
 } from "lucide-react";
-import { Document } from "@/stores/document/document-store";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { fromSnakeToTitleCase } from "@/utils/string";
+import getTopicIcon from "@/components/shared/icons/topicIcon";
+import { Document } from "@/stores/document/document-store";
 
 interface CategoryInsightsDialogProps {
   category: Document;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
-/**
- * 📊 Category Insights Dialog
- *
- * This component provides a comprehensive view of reading statistics and progress
- * for a specific category. It displays various metrics to help users understand
- * their learning journey within each topic area.
- *
- * The dialog is designed to be mobile-first while maintaining excellent desktop
- * usability. It uses visual indicators like progress bars and statistics cards
- * to make the information easily digestible at a glance.
- */
 const CategoryInsightsDialog: React.FC<CategoryInsightsDialogProps> = ({
   category,
   children,
 }) => {
-  // Calculate derived statistics for deeper insights
-  const insights = useMemo(() => {
-    const { fileCount = 0, readFiles, todoFiles } = category;
+  // Calculate insights
+  const totalFiles = category.fileCount ?? 0;
+  const totalSubcategories = category.documents?.length || 0;
+  const readCount = category.readFiles.length;
+  const todoCount = category.todoFiles.length;
+  const unreadCount = Math.max(0, totalFiles - readCount);
+  const completionRate =
+    totalFiles > 0 ? Math.round((readCount / totalFiles) * 100) : 0;
 
-    const readPercentage =
-      fileCount > 0 ? Math.round((readFiles.length / fileCount) * 100) : 0;
+  const CategoryIcon = () => getTopicIcon(category.path);
 
-    const todoPercentage =
-      fileCount > 0 ? Math.round((todoFiles.length / fileCount) * 100) : 0;
+  const stats = [
+    {
+      label: "Total Files",
+      value: totalFiles,
+      icon: Files,
+      color: "text-blue-500",
+      bgColor: "bg-blue-500/10",
+    },
+    {
+      label: "Read",
+      value: readCount,
+      icon: CheckCircle2,
+      color: "text-green-500",
+      bgColor: "bg-green-500/10",
+    },
+    {
+      label: "In Reading List",
+      value: todoCount,
+      icon: BookMarked,
+      color: "text-primary",
+      bgColor: "bg-primary/10",
+    },
+    {
+      label: "Unread",
+      value: unreadCount,
+      icon: Clock,
+      color: "text-amber-500",
+      bgColor: "bg-amber-500/10",
+    },
+  ];
 
-    const untouchedFiles = fileCount - readFiles.length;
-    const untouchedPercentage =
-      fileCount > 0 ? Math.round((untouchedFiles / fileCount) * 100) : 0;
-
-    return {
-      readPercentage,
-      todoPercentage,
-      untouchedFiles,
-      untouchedPercentage,
-    };
-  }, [category]);
-
-  // Calculate subcategory count
-  const subcategoriesCount = category.documents?.length ?? 0;
+  const insights = [
+    {
+      title: "Reading Progress",
+      value: `${completionRate}%`,
+      description: `${readCount} of ${totalFiles} files completed`,
+      icon: TrendingUp,
+      color:
+        completionRate > 75
+          ? "text-green-500"
+          : completionRate > 50
+          ? "text-blue-500"
+          : "text-amber-500",
+    },
+    {
+      title: "Structure",
+      value:
+        totalSubcategories > 0
+          ? `${totalSubcategories} sections`
+          : "Single level",
+      description:
+        totalSubcategories > 0
+          ? "Contains nested categories"
+          : "Direct file collection",
+      icon: Layers,
+      color: "text-purple-500",
+    },
+    {
+      title: "Status",
+      value:
+        todoCount > 0 ? "Active" : readCount > 0 ? "Visited" : "Unexplored",
+      description:
+        todoCount > 0
+          ? "Has items in reading list"
+          : readCount > 0
+          ? "Previously accessed"
+          : "Not yet explored",
+      icon: Target,
+      color:
+        todoCount > 0
+          ? "text-primary"
+          : readCount > 0
+          ? "text-green-500"
+          : "text-muted-foreground",
+    },
+  ];
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        {children || (
-          <Button
-            variant="ghost"
-            size="icon"
-            className={cn(
-              "h-7 w-7 rounded-full",
-              "hover:bg-primary/20 hover:text-primary",
-              "transition-all duration-200",
-              "flex items-center justify-center",
-              "touch-manipulation" // Better mobile touch handling
-            )}
-            onClick={(e) => e.stopPropagation()} // Prevent category expansion
-          >
-            <Info size={14} />
-          </Button>
-        )}
-      </DialogTrigger>
-      <DialogContent
-        className={cn(
-          "max-w-md w-[calc(100vw-2rem)] font-type-mono", // Mobile-friendly width
-          "max-h-[85vh]", // Prevent overflow on mobile
-          "p-0", // Remove default padding for custom layout
-          "rounded-2xl",
-          "bg-gradient-to-b from-background to-background/95"
-        )}
-      >
-        <DialogHeader className="p-6 pb-2">
-          <DialogTitle className="text-xl font-semibold flex items-center gap-2">
-            <div className="p-2 rounded-lg bg-primary/10">
-              <PieChart size={20} className="text-primary" />
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent className="sm:max-w-md max-w-[95vw] max-h-[90vh] p-0 gap-0 bg-card/95 backdrop-blur-xl border border-border/50 shadow-2xl rounded-2xl font-cascadia-code">
+        <DialogHeader className="p-6 pb-4 space-y-0">
+          <div className="flex items-center gap-3">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="flex-shrink-0 p-2.5 rounded-full bg-primary/10"
+            >
+              <CategoryIcon />
+            </motion.div>
+            <div className="flex-1 min-w-0  flex items-start">
+              <DialogTitle className="text-lg font-semibold text-foreground leading-tight">
+                {fromSnakeToTitleCase(category.name)}
+              </DialogTitle>
             </div>
-            {fromSnakeToTitleCase(category.name)} Insights
-          </DialogTitle>
-          <DialogDescription className="mt-2">
-            Your learning progress and statistics for this category
-          </DialogDescription>
+          </div>
         </DialogHeader>
 
-        <ScrollArea className="max-h-[calc(85vh-120px)] px-6 pb-6">
-          <div className="flex flex-col gap-8">
-            {/* Overall Progress */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <span className="font-medium">Overall Progress</span>
-                <span className="text-muted-foreground">
-                  {insights.readPercentage}% Complete
-                </span>
+        <ScrollArea className="flex-1 max-h-[calc(90vh-120px)]">
+          <div className="px-6 pb-6 space-y-6">
+            {/* Quick Stats Grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="space-y-3"
+            >
+              <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
+                <Zap size={16} className="text-primary" />
+                Quick Stats
+              </h3>
+              <div className="grid grid-cols-2 gap-3">
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 + index * 0.05 }}
+                    className={cn(
+                      "relative overflow-hidden rounded-2xl border border-border/50",
+                      "bg-gradient-to-br from-card to-card/50 p-4",
+                      "hover:shadow-lg transition-all duration-300 group"
+                    )}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="space-y-1">
+                        <p className="text-xs text-muted-foreground font-medium">
+                          {stat.label}
+                        </p>
+                        <p className="text-lg font-bold text-foreground">
+                          {stat.value}
+                        </p>
+                      </div>
+                      <div className={cn("p-2 rounded-lg", stat.bgColor)}>
+                        <stat.icon size={16} className={stat.color} />
+                      </div>
+                    </div>
+
+                    {/* Subtle background pattern */}
+                    <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity">
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-              <Progress value={insights.readPercentage} className="h-2" />
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <StatisticCard
-                icon={<FileText size={18} />}
-                iconBgColor="bg-secondary/50"
-                iconColor="text-foreground"
-                value={category.fileCount ?? 0}
-                label="Total Files"
-              />
+            <Separator className="my-6" />
 
-              {subcategoriesCount > 0 && (
-                <StatisticCard
-                  icon={<Layers size={18} />}
-                  iconBgColor="bg-blue-500/10"
-                  iconColor="text-blue-500"
-                  value={subcategoriesCount}
-                  label="Subcategories"
-                />
-              )}
-            </div>
-
-            {/* Detailed Statistics */}
-            <div className="space-y-3">
-              <h4 className="text-sm font-semibold text-foreground/80">
-                Reading Statistics
-              </h4>
-
-              <StatisticItem
-                icon={<BookMarked size={16} />}
-                bgColor="bg-primary/10"
-                iconColor="text-primary"
-                valueColor="text-primary"
-                label="Reading List"
-                value={category.todoFiles.length}
-                percentage={insights.todoPercentage}
-              />
-
-              <StatisticItem
-                icon={<Clock size={16} />}
-                bgColor="bg-green-200/10"
-                iconColor="text-green-200"
-                valueColor="text-green-200"
-                label="Previously Read"
-                value={category.readFiles.length}
-                percentage={insights.readPercentage}
-              />
-
-              <StatisticItem
-                icon={<BookOpen size={16} />}
-                bgColor="bg-secondary/30"
-                iconColor="text-muted-foreground"
-                valueColor="text-muted-foreground"
-                label="Not Yet Started"
-                value={insights.untouchedFiles}
-                percentage={insights.untouchedPercentage}
-              />
-            </div>
-
-            {/* Progress Visualization */}
-            <div className="space-y-3 pt-2">
-              <h4 className="text-sm font-semibold text-foreground/80">
-                Progress Breakdown
-              </h4>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
-                  <span className="text-xs">Completed</span>
-                  <div className="flex-1">
-                    <Progress
-                      value={insights.readPercentage}
-                      className="h-1.5"
-                    />
-                  </div>
-                  <span className="text-xs text-muted-foreground">
-                    {insights.readPercentage}%
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-primary" />
-                  <span className="text-xs">In Progress</span>
-                  <div className="flex-1">
-                    <Progress
-                      value={insights.todoPercentage}
-                      className="h-1.5"
-                    />
-                  </div>
-                  <span className="text-xs text-muted-foreground">
-                    {insights.todoPercentage}%
-                  </span>
-                </div>
+            {/* Detailed Insights */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="space-y-3"
+            >
+              <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
+                <BookOpen size={16} className="text-primary" />
+                Insights
+              </h3>
+              <div className="space-y-3">
+                {insights.map((insight, index) => (
+                  <motion.div
+                    key={insight.title}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 + index * 0.1 }}
+                    className="flex items-start gap-3 p-3 rounded-2xl bg-secondary/30 hover:bg-secondary/50 transition-colors"
+                  >
+                    <div className="flex-shrink-0 p-1.5 rounded-md bg-background/80">
+                      <insight.icon size={14} className={insight.color} />
+                    </div>
+                    <div className="flex-1 min-w-0 space-y-1">
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm font-medium text-foreground">
+                          {insight.title}
+                        </p>
+                        <Badge variant="secondary" className="text-xs">
+                          {insight.value}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {insight.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-            </div>
+            </motion.div>
+
+            {/* Empty State */}
+            {totalFiles === 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-center py-8 space-y-3"
+              >
+                <div className="p-3 rounded-full bg-muted/50 inline-block">
+                  <Files size={24} className="text-muted-foreground" />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-foreground">
+                    Empty Category
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    This category doesn't contain any files yet.
+                  </p>
+                </div>
+              </motion.div>
+            )}
           </div>
         </ScrollArea>
       </DialogContent>
     </Dialog>
   );
 };
-
-interface StatisticCardProps {
-  icon: React.ReactNode;
-  iconBgColor: string;
-  iconColor: string;
-  value: number;
-  label: string;
-}
-
-const StatisticCard: React.FC<StatisticCardProps> = ({
-  icon,
-  iconBgColor,
-  iconColor,
-  value,
-  label,
-}) => (
-  <Card className="p-4 hover:shadow-md transition-shadow rounded-2xl">
-    <div className="flex items-center gap-3">
-      <div className={`p-2 rounded-lg ${iconBgColor}`}>
-        <div className={iconColor}>{icon}</div>
-      </div>
-      <div>
-        <p className="text-2xl font-semibold">{value}</p>
-        <p className="text-xs text-muted-foreground">{label}</p>
-      </div>
-    </div>
-  </Card>
-);
-
-interface StatisticItemProps {
-  icon: React.ReactNode;
-  bgColor: string;
-  iconColor: string;
-  valueColor: string;
-  label: string;
-  value: number;
-  percentage: number;
-}
-
-const StatisticItem: React.FC<StatisticItemProps> = ({
-  icon,
-  bgColor,
-  iconColor,
-  valueColor,
-  label,
-  value,
-  percentage,
-}) => (
-  <div
-    className={`flex items-center justify-between p-3 rounded-2xl ${bgColor}`}
-  >
-    <div className="flex items-center gap-2">
-      <div className={iconColor}>{icon}</div>
-      <span className="text-sm font-medium">{label}</span>
-    </div>
-    <div className="text-right">
-      <span className={`text-sm font-semibold ${valueColor}`}>{value}</span>
-      <span className="text-xs text-muted-foreground ml-1">
-        ({percentage}%)
-      </span>
-    </div>
-  </div>
-);
 
 export default CategoryInsightsDialog;
