@@ -61,8 +61,7 @@ function scanDirectory(dir, basePath = "") {
 
     if (subResult.files.length > 0) category.files = subResult.files;
 
-    if (category.categories.length > 0 || category.files.length > 0)
-      result.categories.push(category);
+    result.categories.push(category);
 
     result.totalFileSize += subResult.totalFileSize;
   };

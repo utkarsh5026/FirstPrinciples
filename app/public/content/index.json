@@ -1,6 +1,13 @@
 {
   "categories": [
     {
+      "id": "algorithms",
+      "name": "Algorithms",
+      "categories": [],
+      "files": [],
+      "totalFileSize": 0
+    },
+    {
       "id": "aws",
       "name": "Aws",
       "categories": [
@@ -46,6 +53,191 @@
           "id": "compute_services",
           "name": "Compute Services",
           "categories": [
+            {
+              "id": "aws_ec2",
+              "name": "Aws Ec2",
+              "categories": [
+                {
+                  "id": "architecture_and_internals",
+                  "name": "Architecture And Internals",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/compute_services/aws_ec2/architecture_and_internals/ami_internals_and_storage_backing_mechanisms.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/architecture_and_internals/ec2_networking_implementation.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/architecture_and_internals/hypervisor_technology_and_virtualization_implementation.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/architecture_and_internals/instance_lifecycle_state_management.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/architecture_and_internals/instance_types_and_underlying_hardware_architecture.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/architecture_and_internals/nitro_system_architecture_and_performance_characteristics.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "fleet_management",
+                  "name": "Fleet Management",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/compute_services/aws_ec2/fleet_management/auto_scaling_implementation_patterns.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/fleet_management/capacity_reservation_management_techniques.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/fleet_management/fleet_cost_optimization_strategies.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/fleet_management/launch_template_versioning_best_practices.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/fleet_management/mixed_instance_policies_and_allocation_strategies.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/fleet_management/spot_instance_interruption_handling_strategies.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "instance_optimization_strategies",
+                  "name": "Instance Optimization Strategies",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/compute_services/aws_ec2/instance_optimization_strategies/cpu_optimization_techniques.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/instance_optimization_strategies/gpu_and_specialized_hardware_acceleration.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/instance_optimization_strategies/memory_allocation_and_numa_considerations.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/instance_optimization_strategies/network_performance_optimization_techniques.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/instance_optimization_strategies/performance_tuning_for_specific_workloads.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/instance_optimization_strategies/storage_io_optimization_with_instance_storage.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "networking_architecture",
+                  "name": "Networking Architecture",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/compute_services/aws_ec2/networking_architecture/cross_az_networking_considerations_and_cost_optimization.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/networking_architecture/enhanced_networking_enablement_and_performance.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/networking_architecture/ipv6_implementation_strategies.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/networking_architecture/multi_eni_architecture_patterns.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/networking_architecture/placement_group_strategies_for_latency_sensitive_workloads.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/networking_architecture/vpc_networking_with_ec2_instances.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "operational_patterns",
+                  "name": "Operational Patterns",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/compute_services/aws_ec2/operational_patterns/ami_management_and_patching_strategies.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/operational_patterns/auto_recovery_configuration_and_implementation.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/operational_patterns/cross_account_ami_sharing_and_management.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/operational_patterns/instance_monitoring_and_metric_collection_strategies.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/operational_patterns/scheduled_start_stop_patterns_for_cost_optimization.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/operational_patterns/user_data_and_instance_initialization_patterns.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "storage_integration_patterns",
+                  "name": "Storage Integration Patterns",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/compute_services/aws_ec2/storage_integration_patterns/ebs_volume_type_selection_and_performance_characteristics.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/storage_integration_patterns/instance_storage_use_cases_and_data_persistence_strategies.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/storage_integration_patterns/io_throughput_and_latency_optimization_techniques.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/storage_integration_patterns/multi_volume_raid_configuration_patterns.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/storage_integration_patterns/snapshot_management_automation_patterns.md"
+                    },
+                    {
+                      "path": "aws/compute_services/aws_ec2/storage_integration_patterns/storage_encryption_implementation_details.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                }
+              ],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
+              "id": "aws_ecs",
+              "name": "Aws Ecs",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
+              "id": "aws_eks",
+              "name": "Aws Eks",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
+              "id": "aws_lambda",
+              "name": "Aws Lambda",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            },
             {
               "id": "overview",
               "name": "Overview",
@@ -212,6 +404,13 @@
           "name": "Database Services",
           "categories": [
             {
+              "id": "aws_aurora",
+              "name": "Aws Aurora",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
               "id": "aws_dynamodb",
               "name": "Aws Dynamodb",
               "categories": [
@@ -372,6 +571,13 @@
                   "totalFileSize": 0
                 }
               ],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
+              "id": "aws_rds",
+              "name": "Aws Rds",
+              "categories": [],
               "files": [],
               "totalFileSize": 0
             },
@@ -649,6 +855,13 @@
           "id": "storage",
           "name": "Storage",
           "categories": [
+            {
+              "id": "aws_ebs",
+              "name": "Aws Ebs",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            },
             {
               "id": "aws_s3",
               "name": "Aws S3",
@@ -992,6 +1205,13 @@
               "path": "css/layout/z_index.md"
             }
           ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "modern_css",
+          "name": "Modern Css",
+          "categories": [],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -4565,6 +4785,120 @@
           "totalFileSize": 0
         },
         {
+          "id": "advanced_python_constructs",
+          "name": "Advanced Python Constructs",
+          "categories": [],
+          "files": [
+            {
+              "path": "python/advanced_python_constructs/context_manager_protocol.md"
+            },
+            {
+              "path": "python/advanced_python_constructs/coroutines_and_async_await.md"
+            },
+            {
+              "path": "python/advanced_python_constructs/descriptors_and_their_applications.md"
+            },
+            {
+              "path": "python/advanced_python_constructs/dynamic_attribute_access.md"
+            },
+            {
+              "path": "python/advanced_python_constructs/generators_and_yield_statements.md"
+            },
+            {
+              "path": "python/advanced_python_constructs/generator_expressions_and_evaluation.md"
+            },
+            {
+              "path": "python/advanced_python_constructs/introspection_and_reflection.md"
+            },
+            {
+              "path": "python/advanced_python_constructs/iterators_and_iteration_protocol.md"
+            },
+            {
+              "path": "python/advanced_python_constructs/method_resolution_order_customization.md"
+            },
+            {
+              "path": "python/advanced_python_constructs/monkey_patching_techniques.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "asynchronous_programming",
+          "name": "Asynchronous Programming",
+          "categories": [],
+          "files": [
+            {
+              "path": "python/asynchronous_programming/asynchronous_context_managers.md"
+            },
+            {
+              "path": "python/asynchronous_programming/asynchronous_generators_and_comprehensions.md"
+            },
+            {
+              "path": "python/asynchronous_programming/async_and_await_syntax.md"
+            },
+            {
+              "path": "python/asynchronous_programming/async_io_framework.md"
+            },
+            {
+              "path": "python/asynchronous_programming/event_loops_and_coroutines.md"
+            },
+            {
+              "path": "python/asynchronous_programming/integration_with_synchronous_code.md"
+            },
+            {
+              "path": "python/asynchronous_programming/synchronization_primitives.md"
+            },
+            {
+              "path": "python/asynchronous_programming/tasks_and_futures_in_async_io.md"
+            },
+            {
+              "path": "python/asynchronous_programming/timeouts_and_cancellation.md"
+            },
+            {
+              "path": "python/asynchronous_programming/understanding_asynchronous_programming.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "concurrent_programming",
+          "name": "Concurrent Programming",
+          "categories": [],
+          "files": [
+            {
+              "path": "python/concurrent_programming/concurrent_data_structures.md"
+            },
+            {
+              "path": "python/concurrent_programming/concurrent_futures_module.md"
+            },
+            {
+              "path": "python/concurrent_programming/future_objects_and_callbacks.md"
+            },
+            {
+              "path": "python/concurrent_programming/multiprocessing_for_parallelism.md"
+            },
+            {
+              "path": "python/concurrent_programming/process_pools_and_thread_pools.md"
+            },
+            {
+              "path": "python/concurrent_programming/producer_consumer_patterns.md"
+            },
+            {
+              "path": "python/concurrent_programming/queues_for_inter_process_communication.md"
+            },
+            {
+              "path": "python/concurrent_programming/race_conditions_and_deadlocks.md"
+            },
+            {
+              "path": "python/concurrent_programming/threading_and_the_global_interpreter_lock.md"
+            },
+            {
+              "path": "python/concurrent_programming/thread_synchronization_mechanisms.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
           "id": "core_data_structures",
           "name": "Core Data Structures",
           "categories": [],
@@ -4636,6 +4970,44 @@
             },
             {
               "path": "python/files_and_io_operations/working_with_file_paths_using_pathlib.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "functional_programming",
+          "name": "Functional Programming",
+          "categories": [],
+          "files": [
+            {
+              "path": "python/functional_programming/closures_and_scoping.md"
+            },
+            {
+              "path": "python/functional_programming/functional_programming_principles.md"
+            },
+            {
+              "path": "python/functional_programming/function_decorators.md"
+            },
+            {
+              "path": "python/functional_programming/higher_order_functions.md"
+            },
+            {
+              "path": "python/functional_programming/immutable_data_structures.md"
+            },
+            {
+              "path": "python/functional_programming/list_comprehensions_as_functional_constructs.md"
+            },
+            {
+              "path": "python/functional_programming/map_filter_and_reduce.md"
+            },
+            {
+              "path": "python/functional_programming/partial_functions_and_currying.md"
+            },
+            {
+              "path": "python/functional_programming/pure_functions_and_side_effects.md"
+            },
+            {
+              "path": "python/functional_programming/recursion_techniques.md"
             }
           ],
           "totalFileSize": 0
@@ -5957,9 +6329,23 @@
       "totalFileSize": 0
     },
     {
+      "id": "rust",
+      "name": "Rust",
+      "categories": [],
+      "files": [],
+      "totalFileSize": 0
+    },
+    {
       "id": "tailwind",
       "name": "Tailwind",
       "categories": [
+        {
+          "id": "flexbox",
+          "name": "Flexbox",
+          "categories": [],
+          "files": [],
+          "totalFileSize": 0
+        },
         {
           "id": "fundamentals",
           "name": "Fundamentals",
@@ -5975,6 +6361,13 @@
               "path": "tailwind/fundamentals/utility_first_css.md"
             }
           ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "grid",
+          "name": "Grid",
+          "categories": [],
+          "files": [],
           "totalFileSize": 0
         },
         {

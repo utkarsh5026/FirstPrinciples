@@ -29765,6 +29765,792 @@
     "title": "default_parameters_and_keyword_arguments",
     "frontmatter": {}
   },
+  "public\\content\\python\\functional_programming\\recursion_techniques.md": {
+    "path": "public\\content\\python\\functional_programming\\recursion_techniques.md",
+    "sections": [
+      {
+        "id": "understanding-recursion-in-python-a-journey-from-first-principles",
+        "title": "Understanding Recursion in Python: A Journey from First Principles",
+        "level": 1,
+        "wordCount": 44
+      },
+      {
+        "id": "what-is-recursion-really",
+        "title": "What Is Recursion, Really?",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "the-mathematical-foundation",
+        "title": "The Mathematical Foundation",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "the-anatomy-of-recursion-in-programming",
+        "title": "The Anatomy of Recursion in Programming",
+        "level": 2,
+        "wordCount": 126
+      },
+      {
+        "id": "how-python-handles-recursive-calls-the-call-stack",
+        "title": "How Python Handles Recursive Calls: The Call Stack",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "building-your-first-recursive-function",
+        "title": "Building Your First Recursive Function",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "the-power-of-recursive-thinking-sum-of-numbers",
+        "title": "The Power of Recursive Thinking: Sum of Numbers",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "working-with-lists-recursive-list-processing",
+        "title": "Working with Lists: Recursive List Processing",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "finding-elements-recursive-search",
+        "title": "Finding Elements: Recursive Search",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "advanced-pattern-tree-like-recursion",
+        "title": "Advanced Pattern: Tree-like Recursion",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "practical-recursion-directory-traversal",
+        "title": "Practical Recursion: Directory Traversal",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "memory-optimization-tail-recursion-with-limitations",
+        "title": "Memory Optimization: Tail Recursion (with Limitations)",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "handling-recursion-limits",
+        "title": "Handling Recursion Limits",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "when-to-use-recursion-vs-iteration",
+        "title": "When to Use Recursion vs. Iteration",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "practice-exercise-palindrome-checker",
+        "title": "Practice Exercise: Palindrome Checker",
+        "level": 2,
+        "wordCount": 195
+      }
+    ],
+    "totalWordCount": 1240,
+    "estimatedReadingTime": 300000,
+    "title": "recursion_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\functional_programming\\pure_functions_and_side_effects.md": {
+    "path": "public\\content\\python\\functional_programming\\pure_functions_and_side_effects.md",
+    "sections": [
+      {
+        "id": "pure-functions-and-side-effects-in-python-a-deep-dive-from-first-principles",
+        "title": "Pure Functions and Side Effects in Python: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "what-is-a-function-at-its-core",
+        "title": "What Is a Function at Its Core?",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "understanding-pure-functions-from-first-principles",
+        "title": "Understanding Pure Functions from First Principles",
+        "level": 2,
+        "wordCount": 205
+      },
+      {
+        "id": "what-are-side-effects-a-detailed-exploration",
+        "title": "What Are Side Effects? A Detailed Exploration",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "creating-pure-versions-transformation-examples",
+        "title": "Creating Pure Versions: Transformation Examples",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "working-with-complex-data-pure-functions-and-immutability",
+        "title": "Working with Complex Data: Pure Functions and Immutability",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "the-benefits-of-pure-functions-why-this-matters",
+        "title": "The Benefits of Pure Functions: Why This Matters",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "practical-guidelines-for-writing-pure-functions",
+        "title": "Practical Guidelines for Writing Pure Functions",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "when-to-use-pure-functions-vs-when-side-effects-are-necessary",
+        "title": "When to Use Pure Functions vs. When Side Effects Are Necessary",
+        "level": 2,
+        "wordCount": 174
+      }
+    ],
+    "totalWordCount": 898,
+    "estimatedReadingTime": 240000,
+    "title": "pure_functions_and_side_effects",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\functional_programming\\partial_functions_and_currying.md": {
+    "path": "public\\content\\python\\functional_programming\\partial_functions_and_currying.md",
+    "sections": [
+      {
+        "id": "partial-functions-and-currying-in-python-a-deep-dive-from-first-principles",
+        "title": "Partial Functions and Currying in Python: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "understanding-functions-from-first-principles",
+        "title": "Understanding Functions from First Principles",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "the-birth-of-partial-functions",
+        "title": "The Birth of Partial Functions",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "understanding-currying-from-first-principles",
+        "title": "Understanding Currying from First Principles",
+        "level": 2,
+        "wordCount": 175
+      },
+      {
+        "id": "the-relationship-between-partial-functions-and-currying",
+        "title": "The Relationship Between Partial Functions and Currying",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "practical-applications-and-real-world-examples",
+        "title": "Practical Applications and Real-World Examples",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "advanced-patterns-and-techniques",
+        "title": "Advanced Patterns and Techniques",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "memory-and-performance-considerations",
+        "title": "Memory and Performance Considerations",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "when-to-use-each-technique",
+        "title": "When to Use Each Technique",
+        "level": 2,
+        "wordCount": 148
+      }
+    ],
+    "totalWordCount": 771,
+    "estimatedReadingTime": 240000,
+    "title": "partial_functions_and_currying",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\functional_programming\\map_filter_and_reduce.md": {
+    "path": "public\\content\\python\\functional_programming\\map_filter_and_reduce.md",
+    "sections": [
+      {
+        "id": "understanding-map-filter-and-reduce-the-foundation-of-data-transformation",
+        "title": "Understanding Map, Filter, and Reduce: The Foundation of Data Transformation",
+        "level": 1,
+        "wordCount": 46
+      },
+      {
+        "id": "the-first-principle-why-do-these-functions-exist",
+        "title": "The First Principle: Why Do These Functions Exist?",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "understanding-higher-order-functions",
+        "title": "Understanding Higher-Order Functions",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "map-the-art-of-transformation",
+        "title": "Map: The Art of Transformation",
+        "level": 2,
+        "wordCount": 184
+      },
+      {
+        "id": "filter-the-art-of-selection",
+        "title": "Filter: The Art of Selection",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "reduce-the-art-of-aggregation",
+        "title": "Reduce: The Art of Aggregation",
+        "level": 2,
+        "wordCount": 188
+      },
+      {
+        "id": "bringing-it-all-together-the-power-of-composition",
+        "title": "Bringing It All Together: The Power of Composition",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "advanced-concepts-and-best-practices",
+        "title": "Advanced Concepts and Best Practices",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "conclusion-thinking-functionally",
+        "title": "Conclusion: Thinking Functionally",
+        "level": 2,
+        "wordCount": 138
+      }
+    ],
+    "totalWordCount": 1158,
+    "estimatedReadingTime": 300000,
+    "title": "map_filter_and_reduce",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\functional_programming\\list_comprehensions_as_functional_constructs.md": {
+    "path": "public\\content\\python\\functional_programming\\list_comprehensions_as_functional_constructs.md",
+    "sections": [
+      {
+        "id": "list-comprehensions-as-functional-constructs-a-deep-dive-from-first-principles",
+        "title": "List Comprehensions as Functional Constructs: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 44
+      },
+      {
+        "id": "understanding-the-foundation-what-is-functional-programming",
+        "title": "Understanding the Foundation: What is Functional Programming?",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "the-mathematical-foundation-set-builder-notation",
+        "title": "The Mathematical Foundation: Set-Builder Notation",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "the-anatomy-of-a-list-comprehension-deconstructing-the-components",
+        "title": "The Anatomy of a List Comprehension: Deconstructing the Components",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "the-functional-trinity-map-filter-and-reduce-concepts",
+        "title": "The Functional Trinity: Map, Filter, and Reduce Concepts",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "nested-list-comprehensions-multi-dimensional-thinking",
+        "title": "Nested List Comprehensions: Multi-Dimensional Thinking",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "dictionary-and-set-comprehensions-extending-the-functional-pattern",
+        "title": "Dictionary and Set Comprehensions: Extending the Functional Pattern",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "real-world-functional-applications",
+        "title": "Real-World Functional Applications",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "performance-and-lazy-evaluation-considerations",
+        "title": "Performance and Lazy Evaluation Considerations",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "common-functional-patterns-and-anti-patterns",
+        "title": "Common Functional Patterns and Anti-Patterns",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "the-deeper-philosophy-why-functional-constructs-matter",
+        "title": "The Deeper Philosophy: Why Functional Constructs Matter",
+        "level": 2,
+        "wordCount": 157
+      }
+    ],
+    "totalWordCount": 756,
+    "estimatedReadingTime": 240000,
+    "title": "list_comprehensions_as_functional_constructs",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\functional_programming\\immutable_data_structures.md": {
+    "path": "public\\content\\python\\functional_programming\\immutable_data_structures.md",
+    "sections": [
+      {
+        "id": "immutable-data-structures-in-python-functional-programming",
+        "title": "Immutable Data Structures in Python Functional Programming",
+        "level": 1,
+        "wordCount": 37
+      },
+      {
+        "id": "understanding-mutability-the-foundation",
+        "title": "Understanding Mutability: The Foundation",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "the-philosophy-behind-immutability-in-functional-programming",
+        "title": "The Philosophy Behind Immutability in Functional Programming",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "pythons-built-in-immutable-types",
+        "title": "Python's Built-in Immutable Types",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "building-custom-immutable-data-structures",
+        "title": "Building Custom Immutable Data Structures",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "working-with-immutable-collections-advanced-patterns",
+        "title": "Working with Immutable Collections: Advanced Patterns",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "immutable-libraries-and-tools",
+        "title": "Immutable Libraries and Tools",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "benefits-and-trade-offs-of-immutable-data-structures",
+        "title": "Benefits and Trade-offs of Immutable Data Structures",
+        "level": 2,
+        "wordCount": 275
+      }
+    ],
+    "totalWordCount": 847,
+    "estimatedReadingTime": 240000,
+    "title": "immutable_data_structures",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\functional_programming\\higher_order_functions.md": {
+    "path": "public\\content\\python\\functional_programming\\higher_order_functions.md",
+    "sections": [
+      {
+        "id": "higher-order-functions-in-python-a-complete-journey-from-first-principles",
+        "title": "Higher-Order Functions in Python: A Complete Journey from First Principles",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "understanding-functions-from-first-principles",
+        "title": "Understanding Functions from First Principles",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "what-makes-a-function-higher-order",
+        "title": "What Makes a Function \"Higher-Order\"?",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "category-1-functions-that-accept-other-functions",
+        "title": "Category 1: Functions That Accept Other Functions",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "pythons-built-in-higher-order-functions",
+        "title": "Python's Built-in Higher-Order Functions",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "category-2-functions-that-return-other-functions",
+        "title": "Category 2: Functions That Return Other Functions",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "advanced-concepts-decorators",
+        "title": "Advanced Concepts: Decorators",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "combining-higher-order-functions",
+        "title": "Combining Higher-Order Functions",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "performance-considerations-and-best-practices",
+        "title": "Performance Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "advanced-patterns-and-techniques",
+        "title": "Advanced Patterns and Techniques",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "memory-and-closure-deep-dive",
+        "title": "Memory and Closure Deep Dive",
+        "level": 2,
+        "wordCount": 104
+      }
+    ],
+    "totalWordCount": 899,
+    "estimatedReadingTime": 240000,
+    "title": "higher_order_functions",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\functional_programming\\function_decorators.md": {
+    "path": "public\\content\\python\\functional_programming\\function_decorators.md",
+    "sections": [
+      {
+        "id": "function-decorators-in-python-a-deep-dive-from-first-principles",
+        "title": "Function Decorators in Python: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "understanding-the-foundation-what-are-functions-really",
+        "title": "Understanding the Foundation: What Are Functions Really?",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "functions-inside-functions-the-nested-concept",
+        "title": "Functions Inside Functions: The Nested Concept",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "functions-returning-functions-the-next-level",
+        "title": "Functions Returning Functions: The Next Level",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "functions-that-accept-functions-higher-order-functions",
+        "title": "Functions That Accept Functions: Higher-Order Functions",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "your-first-decorator-manual-decoration",
+        "title": "Your First Decorator: Manual Decoration",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "the-syntax-pythons-syntactic-sugar",
+        "title": "The @ Syntax: Python's Syntactic Sugar",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "handling-functions-with-arguments",
+        "title": "Handling Functions with Arguments",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "creating-decorators-with-parameters",
+        "title": "Creating Decorators with Parameters",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "preserving-function-metadata-with-functoolswraps",
+        "title": "Preserving Function Metadata with functools.wraps",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "real-world-example-authentication-decorator",
+        "title": "Real-World Example: Authentication Decorator",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "chaining-multiple-decorators",
+        "title": "Chaining Multiple Decorators",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "class-based-decorators",
+        "title": "Class-Based Decorators",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "when-to-use-decorators",
+        "title": "When to Use Decorators",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "a-complete-practical-example-caching-decorator",
+        "title": "A Complete Practical Example: Caching Decorator",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "mental-model-the-decorator-flow",
+        "title": "Mental Model: The Decorator Flow",
+        "level": 2,
+        "wordCount": 49
+      },
+      {
+        "id": "key-takeaways",
+        "title": "Key Takeaways",
+        "level": 2,
+        "wordCount": 180
+      }
+    ],
+    "totalWordCount": 1327,
+    "estimatedReadingTime": 360000,
+    "title": "function_decorators",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\functional_programming\\functional_programming_principles.md": {
+    "path": "public\\content\\python\\functional_programming\\functional_programming_principles.md",
+    "sections": [
+      {
+        "id": "functional-programming-in-python-a-journey-from-first-principles",
+        "title": "Functional Programming in Python: A Journey from First Principles",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "understanding-programming-paradigms-the-foundation",
+        "title": "Understanding Programming Paradigms: The Foundation",
+        "level": 2,
+        "wordCount": 177
+      },
+      {
+        "id": "the-mathematical-foundation-of-functional-programming",
+        "title": "The Mathematical Foundation of Functional Programming",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "core-principle-1-pure-functions",
+        "title": "Core Principle 1: Pure Functions",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "core-principle-2-immutability",
+        "title": "Core Principle 2: Immutability",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "core-principle-3-higher-order-functions",
+        "title": "Core Principle 3: Higher-Order Functions",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "pythons-built-in-functional-tools",
+        "title": "Python's Built-in Functional Tools",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "function-composition-building-complex-logic-from-simple-parts",
+        "title": "Function Composition: Building Complex Logic from Simple Parts",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "practical-example-data-processing-pipeline",
+        "title": "Practical Example: Data Processing Pipeline",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "benefits-and-trade-offs-of-functional-programming",
+        "title": "Benefits and Trade-offs of Functional Programming",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "practical-functional-programming-in-python",
+        "title": "Practical Functional Programming in Python",
+        "level": 2,
+        "wordCount": 96
+      }
+    ],
+    "totalWordCount": 963,
+    "estimatedReadingTime": 240000,
+    "title": "functional_programming_principles",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\functional_programming\\closures_and_scoping.md": {
+    "path": "public\\content\\python\\functional_programming\\closures_and_scoping.md",
+    "sections": [
+      {
+        "id": "understanding-closures-and-scoping-in-python-a-deep-dive-from-first-principles",
+        "title": "Understanding Closures and Scoping in Python: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 66
+      },
+      {
+        "id": "what-is-scope-understanding-the-foundation",
+        "title": "What is Scope? Understanding the Foundation",
+        "level": 2,
+        "wordCount": 157
+      },
+      {
+        "id": "the-legb-rule-pythons-search-strategy",
+        "title": "The LEGB Rule: Python's Search Strategy",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "introducing-closures-functions-that-remember",
+        "title": "Introducing Closures: Functions That Remember",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "visualizing-closure-memory",
+        "title": "Visualizing Closure Memory",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "practical-example-a-counter-function",
+        "title": "Practical Example: A Counter Function",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "advanced-closure-patterns",
+        "title": "Advanced Closure Patterns",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "decorators-closures-in-disguise",
+        "title": "Decorators: Closures in Disguise",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "memory-management-and-closure-lifecycle",
+        "title": "Memory Management and Closure Lifecycle",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 10
+      },
+      {
+        "id": "advanced-scoping-concepts",
+        "title": "Advanced Scoping Concepts",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "performance-considerations",
+        "title": "Performance Considerations",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "debugging-closures",
+        "title": "Debugging Closures",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "key-takeaways",
+        "title": "Key Takeaways",
+        "level": 2,
+        "wordCount": 136
+      }
+    ],
+    "totalWordCount": 1047,
+    "estimatedReadingTime": 300000,
+    "title": "closures_and_scoping",
+    "frontmatter": {}
+  },
   "public\\content\\python\\files_and_io_operations\\working_with_file_paths_using_pathlib.md": {
     "path": "public\\content\\python\\files_and_io_operations\\working_with_file_paths_using_pathlib.md",
     "sections": [
@@ -31419,6 +32205,2490 @@
     "totalWordCount": 1089,
     "estimatedReadingTime": 300000,
     "title": "choosing_the_right_data_structure",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_programming\\thread_synchronization_mechanisms.md": {
+    "path": "public\\content\\python\\concurrent_programming\\thread_synchronization_mechanisms.md",
+    "sections": [
+      {
+        "id": "thread-synchronization-in-python-from-first-principles",
+        "title": "Thread Synchronization in Python: From First Principles",
+        "level": 1,
+        "wordCount": 33
+      },
+      {
+        "id": "what-are-threads-and-why-do-they-matter",
+        "title": "What Are Threads and Why Do They Matter?",
+        "level": 2,
+        "wordCount": 185
+      },
+      {
+        "id": "the-foundation-understanding-atomic-operations",
+        "title": "The Foundation: Understanding Atomic Operations",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "lock-the-foundation-of-thread-synchronization",
+        "title": "Lock: The Foundation of Thread Synchronization",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "rlock-when-one-lock-isnt-enough",
+        "title": "RLock: When One Lock Isn't Enough",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "condition-variables-coordinated-waiting",
+        "title": "Condition Variables: Coordinated Waiting",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "semaphores-controlling-resource-access",
+        "title": "Semaphores: Controlling Resource Access",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "events-simple-signaling-mechanism",
+        "title": "Events: Simple Signaling Mechanism",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "barriers-synchronizing-multiple-threads",
+        "title": "Barriers: Synchronizing Multiple Threads",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "thread-safe-data-structures",
+        "title": "Thread-Safe Data Structures",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "deadlock-the-ultimate-enemy",
+        "title": "Deadlock: The Ultimate Enemy",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "putting-it-all-together-a-complete-example",
+        "title": "Putting It All Together: A Complete Example",
+        "level": 2,
+        "wordCount": 93
+      }
+    ],
+    "totalWordCount": 784,
+    "estimatedReadingTime": 240000,
+    "title": "thread_synchronization_mechanisms",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_programming\\threading_and_the_global_interpreter_lock.md": {
+    "path": "public\\content\\python\\concurrent_programming\\threading_and_the_global_interpreter_lock.md",
+    "sections": [
+      {
+        "id": "what-is-threading-starting-from-first-principles",
+        "title": "What is Threading? Starting from First Principles",
+        "level": 2,
+        "wordCount": 228
+      },
+      {
+        "id": "understanding-concurrency-vs-parallelism",
+        "title": "Understanding Concurrency vs Parallelism",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "what-is-the-global-interpreter-lock-gil",
+        "title": "What is the Global Interpreter Lock (GIL)?",
+        "level": 2,
+        "wordCount": 245
+      },
+      {
+        "id": "how-the-gil-works-the-mechanism",
+        "title": "How the GIL Works: The Mechanism",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "when-threads-help-and-when-they-dont",
+        "title": "When Threads Help and When They Don't",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "the-gils-impact-on-different-types-of-work",
+        "title": "The GIL's Impact on Different Types of Work",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "working-around-the-gil",
+        "title": "Working Around the GIL",
+        "level": 2,
+        "wordCount": 142
+      },
+      {
+        "id": "thread-synchronization-controlling-access-to-shared-resources",
+        "title": "Thread Synchronization: Controlling Access to Shared Resources",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "advanced-threading-concepts",
+        "title": "Advanced Threading Concepts",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "best-practices-and-common-pitfalls",
+        "title": "Best Practices and Common Pitfalls",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "summary-when-to-use-threading-in-python",
+        "title": "Summary: When to Use Threading in Python",
+        "level": 2,
+        "wordCount": 117
+      }
+    ],
+    "totalWordCount": 1100,
+    "estimatedReadingTime": 300000,
+    "title": "threading_and_the_global_interpreter_lock",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_programming\\race_conditions_and_deadlocks.md": {
+    "path": "public\\content\\python\\concurrent_programming\\race_conditions_and_deadlocks.md",
+    "sections": [
+      {
+        "id": "understanding-race-conditions-and-deadlocks-in-python-a-complete-journey-from-first-principles",
+        "title": "Understanding Race Conditions and Deadlocks in Python: A Complete Journey from First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "what-is-concurrency-and-why-does-it-matter",
+        "title": "What Is Concurrency and Why Does It Matter?",
+        "level": 2,
+        "wordCount": 156
+      },
+      {
+        "id": "understanding-shared-resources-the-root-of-all-problems",
+        "title": "Understanding Shared Resources: The Root of All Problems",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "race-conditions-when-timing-becomes-everything",
+        "title": "Race Conditions: When Timing Becomes Everything",
+        "level": 2,
+        "wordCount": 194
+      },
+      {
+        "id": "preventing-race-conditions-locks-and-synchronization",
+        "title": "Preventing Race Conditions: Locks and Synchronization",
+        "level": 2,
+        "wordCount": 140
+      },
+      {
+        "id": "understanding-deadlocks-when-threads-get-stuck-forever",
+        "title": "Understanding Deadlocks: When Threads Get Stuck Forever",
+        "level": 2,
+        "wordCount": 175
+      },
+      {
+        "id": "real-world-deadlock-example-the-dining-philosophers-problem",
+        "title": "Real-World Deadlock Example: The Dining Philosophers Problem",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "preventing-deadlocks-strategies-and-solutions",
+        "title": "Preventing Deadlocks: Strategies and Solutions",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "advanced-synchronization-primitives",
+        "title": "Advanced Synchronization Primitives",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "best-practices-and-patterns",
+        "title": "Best Practices and Patterns",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "summary-key-takeaways",
+        "title": "Summary: Key Takeaways",
+        "level": 2,
+        "wordCount": 212
+      }
+    ],
+    "totalWordCount": 1375,
+    "estimatedReadingTime": 360000,
+    "title": "race_conditions_and_deadlocks",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_programming\\queues_for_inter_process_communication.md": {
+    "path": "public\\content\\python\\concurrent_programming\\queues_for_inter_process_communication.md",
+    "sections": [
+      {
+        "id": "understanding-queues-for-inter-process-communication-in-python",
+        "title": "Understanding Queues for Inter-Process Communication in Python",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "what-is-inter-process-communication",
+        "title": "What is Inter-Process Communication?",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "understanding-queues-the-foundation",
+        "title": "Understanding Queues: The Foundation",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "why-queues-for-inter-process-communication",
+        "title": "Why Queues for Inter-Process Communication?",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "pythons-queue-implementation",
+        "title": "Python's Queue Implementation",
+        "level": 2,
+        "wordCount": 194
+      },
+      {
+        "id": "multiple-producers-and-consumers",
+        "title": "Multiple Producers and Consumers",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "queue-types-and-their-use-cases",
+        "title": "Queue Types and Their Use Cases",
+        "level": 2,
+        "wordCount": 135
+      },
+      {
+        "id": "error-handling-and-robustness",
+        "title": "Error Handling and Robustness",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "performance-considerations-and-optimization",
+        "title": "Performance Considerations and Optimization",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "advanced-patterns-and-real-world-applications",
+        "title": "Advanced Patterns and Real-World Applications",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "testing-and-debugging-queue-based-applications",
+        "title": "Testing and Debugging Queue-Based Applications",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "conclusion-and-best-practices",
+        "title": "Conclusion and Best Practices",
+        "level": 2,
+        "wordCount": 199
+      }
+    ],
+    "totalWordCount": 1286,
+    "estimatedReadingTime": 360000,
+    "title": "queues_for_inter_process_communication",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_programming\\producer_consumer_patterns.md": {
+    "path": "public\\content\\python\\concurrent_programming\\producer_consumer_patterns.md",
+    "sections": [
+      {
+        "id": "the-producer-consumer-pattern-a-journey-from-first-principles",
+        "title": "The Producer-Consumer Pattern: A Journey from First Principles",
+        "level": 1,
+        "wordCount": 46
+      },
+      {
+        "id": "what-problem-are-we-actually-solving",
+        "title": "What Problem Are We Actually Solving?",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "building-understanding-the-core-components",
+        "title": "Building Understanding: The Core Components",
+        "level": 2,
+        "wordCount": 170
+      },
+      {
+        "id": "understanding-the-flow-control",
+        "title": "Understanding the Flow Control",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "pythons-built-in-solution-queuequeue",
+        "title": "Python's Built-in Solution: queue.Queue",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "advanced-pattern-priority-based-processing",
+        "title": "Advanced Pattern: Priority-Based Processing",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "real-world-application-web-scraper-with-rate-limiting",
+        "title": "Real-World Application: Web Scraper with Rate Limiting",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "key-design-principles",
+        "title": "Key Design Principles",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 143
+      }
+    ],
+    "totalWordCount": 816,
+    "estimatedReadingTime": 240000,
+    "title": "producer_consumer_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_programming\\process_pools_and_thread_pools.md": {
+    "path": "public\\content\\python\\concurrent_programming\\process_pools_and_thread_pools.md",
+    "sections": [
+      {
+        "id": "understanding-process-pools-and-thread-pools-in-python-a-journey-from-first-principles",
+        "title": "Understanding Process Pools and Thread Pools in Python: A Journey from First Principles",
+        "level": 1,
+        "wordCount": 43
+      },
+      {
+        "id": "the-foundation-what-is-concurrency",
+        "title": "The Foundation: What is Concurrency?",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "the-two-fundamental-approaches-processes-vs-threads",
+        "title": "The Two Fundamental Approaches: Processes vs Threads",
+        "level": 2,
+        "wordCount": 176
+      },
+      {
+        "id": "the-challenge-managing-multiple-workers",
+        "title": "The Challenge: Managing Multiple Workers",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "process-pools-your-team-of-independent-workers",
+        "title": "Process Pools: Your Team of Independent Workers",
+        "level": 2,
+        "wordCount": 199
+      },
+      {
+        "id": "thread-pools-efficient-sharing-and-coordination",
+        "title": "Thread Pools: Efficient Sharing and Coordination",
+        "level": 2,
+        "wordCount": 291
+      },
+      {
+        "id": "choosing-between-process-and-thread-pools",
+        "title": "Choosing Between Process and Thread Pools",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "best-practices-and-common-pitfalls",
+        "title": "Best Practices and Common Pitfalls",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "real-world-application-building-a-web-scraper",
+        "title": "Real-World Application: Building a Web Scraper",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "performance-tuning-and-optimization",
+        "title": "Performance Tuning and Optimization",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "summary-mastering-concurrency-in-python",
+        "title": "Summary: Mastering Concurrency in Python",
+        "level": 2,
+        "wordCount": 132
+      }
+    ],
+    "totalWordCount": 1256,
+    "estimatedReadingTime": 360000,
+    "title": "process_pools_and_thread_pools",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_programming\\multiprocessing_for_parallelism.md": {
+    "path": "public\\content\\python\\concurrent_programming\\multiprocessing_for_parallelism.md",
+    "sections": [
+      {
+        "id": "understanding-multiprocessing-for-parallelism-in-python-from-first-principles",
+        "title": "Understanding Multiprocessing for Parallelism in Python: From First Principles",
+        "level": 1,
+        "wordCount": 31
+      },
+      {
+        "id": "what-is-computation-at-its-core",
+        "title": "What Is Computation at Its Core?",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "the-foundation-processes-vs-threads",
+        "title": "The Foundation: Processes vs Threads",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "enter-multiprocessing-breaking-free-from-sequential-limitations",
+        "title": "Enter Multiprocessing: Breaking Free from Sequential Limitations",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "the-architecture-of-process-communication",
+        "title": "The Architecture of Process Communication",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "queues-the-highway-for-process-communication",
+        "title": "Queues: The Highway for Process Communication",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "process-pools-organized-parallel-execution",
+        "title": "Process Pools: Organized Parallel Execution",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "advanced-patterns-chunk-processing-for-large-datasets",
+        "title": "Advanced Patterns: Chunk Processing for Large Datasets",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "error-handling-and-robust-multiprocessing",
+        "title": "Error Handling and Robust Multiprocessing",
+        "level": 2,
+        "wordCount": 11
+      },
+      {
+        "id": "performance-considerations-and-when-to-use-multiprocessing",
+        "title": "Performance Considerations and When to Use Multiprocessing",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "a-complete-real-world-example-image-processing-pipeline",
+        "title": "A Complete Real-World Example: Image Processing Pipeline",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "key-takeaways-and-best-practices",
+        "title": "Key Takeaways and Best Practices",
+        "level": 2,
+        "wordCount": 181
+      }
+    ],
+    "totalWordCount": 951,
+    "estimatedReadingTime": 240000,
+    "title": "multiprocessing_for_parallelism",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_programming\\future_objects_and_callbacks.md": {
+    "path": "public\\content\\python\\concurrent_programming\\future_objects_and_callbacks.md",
+    "sections": [
+      {
+        "id": "understanding-future-objects-and-callbacks-in-python-a-deep-dive-from-first-principles",
+        "title": "Understanding Future Objects and Callbacks in Python: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 37
+      },
+      {
+        "id": "what-is-asynchronous-programming-the-foundation",
+        "title": "What is Asynchronous Programming? The Foundation",
+        "level": 2,
+        "wordCount": 146
+      },
+      {
+        "id": "understanding-callbacks-the-traditional-approach",
+        "title": "Understanding Callbacks: The Traditional Approach",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "the-problem-with-callbacks-callback-hell",
+        "title": "The Problem with Callbacks: Callback Hell",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "enter-future-objects-a-better-way",
+        "title": "Enter Future Objects: A Better Way",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "future-objects-in-detail-the-complete-picture",
+        "title": "Future Objects in Detail: The Complete Picture",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "advanced-future-patterns",
+        "title": "Advanced Future Patterns",
+        "level": 2,
+        "wordCount": 7
+      },
+      {
+        "id": "callbacks-vs-futures-a-direct-comparison",
+        "title": "Callbacks vs Futures: A Direct Comparison",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "modern-python-asyncio-and-asyncawait",
+        "title": "Modern Python: AsyncIO and Async/Await",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "when-to-use-each-approach",
+        "title": "When to Use Each Approach",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "real-world-example-web-scraper",
+        "title": "Real-World Example: Web Scraper",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "memory-management-and-best-practices",
+        "title": "Memory Management and Best Practices",
+        "level": 2,
+        "wordCount": 102
+      }
+    ],
+    "totalWordCount": 784,
+    "estimatedReadingTime": 240000,
+    "title": "future_objects_and_callbacks",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_programming\\concurrent_futures_module.md": {
+    "path": "public\\content\\python\\concurrent_programming\\concurrent_futures_module.md",
+    "sections": [
+      {
+        "id": "the-concurrentfutures-module-understanding-pythons-path-to-efficient-concurrency",
+        "title": "The concurrent.futures Module: Understanding Python's Path to Efficient Concurrency",
+        "level": 1,
+        "wordCount": 41
+      },
+      {
+        "id": "what-is-concurrency-and-why-do-we-need-it",
+        "title": "What Is Concurrency and Why Do We Need It?",
+        "level": 2,
+        "wordCount": 145
+      },
+      {
+        "id": "the-problem-with-traditional-python-threading",
+        "title": "The Problem with Traditional Python Threading",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "enter-concurrentfutures-a-higher-level-abstraction",
+        "title": "Enter concurrent.futures: A Higher-Level Abstraction",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "threadpoolexecutor-for-io-bound-tasks",
+        "title": "ThreadPoolExecutor: For I/O-Bound Tasks",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "processpoolexecutor-for-cpu-bound-tasks",
+        "title": "ProcessPoolExecutor: For CPU-Bound Tasks",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "the-future-object-understanding-asynchronous-results",
+        "title": "The Future Object: Understanding Asynchronous Results",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "exception-handling-in-concurrent-execution",
+        "title": "Exception Handling in Concurrent Execution",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "as_completed-processing-results-as-they-finish",
+        "title": "as_completed(): Processing Results as They Finish",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "timeouts-preventing-indefinite-waits",
+        "title": "Timeouts: Preventing Indefinite Waits",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "practical-example-web-scraping-with-concurrency",
+        "title": "Practical Example: Web Scraping with Concurrency",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "understanding-the-global-interpreter-lock-gil-impact",
+        "title": "Understanding the Global Interpreter Lock (GIL) Impact",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "advanced-features-customizing-executor-behavior",
+        "title": "Advanced Features: Customizing Executor Behavior",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "performance-considerations-and-best-practices",
+        "title": "Performance Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "real-world-application-building-a-concurrent-file-processor",
+        "title": "Real-World Application: Building a Concurrent File Processor",
+        "level": 2,
+        "wordCount": 86
+      }
+    ],
+    "totalWordCount": 1117,
+    "estimatedReadingTime": 300000,
+    "title": "concurrent_futures_module",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\concurrent_programming\\concurrent_data_structures.md": {
+    "path": "public\\content\\python\\concurrent_programming\\concurrent_data_structures.md",
+    "sections": [
+      {
+        "id": "understanding-concurrent-data-structures-in-python-from-first-principles",
+        "title": "Understanding Concurrent Data Structures in Python from First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "what-is-concurrency-and-why-do-we-need-special-data-structures",
+        "title": "What is Concurrency and Why Do We Need Special Data Structures?",
+        "level": 2,
+        "wordCount": 144
+      },
+      {
+        "id": "the-solution-thread-safe-data-structures",
+        "title": "The Solution: Thread-Safe Data Structures",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "1-locks-the-foundation-of-thread-safety",
+        "title": "1. Locks - The Foundation of Thread Safety",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "2-built-in-thread-safe-collections",
+        "title": "2. Built-in Thread-Safe Collections",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "3-collections-module-thread-safe-alternatives",
+        "title": "3. Collections Module - Thread-Safe Alternatives",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "4-building-custom-thread-safe-data-structures",
+        "title": "4. Building Custom Thread-Safe Data Structures",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "5-advanced-concepts-lock-free-data-structures",
+        "title": "5. Advanced Concepts: Lock-Free Data Structures",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "6-performance-considerations-and-trade-offs",
+        "title": "6. Performance Considerations and Trade-offs",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "7-best-practices-and-common-pitfalls",
+        "title": "7. Best Practices and Common Pitfalls",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "putting-it-all-together-a-real-world-example",
+        "title": "Putting It All Together: A Real-World Example",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "summary-key-takeaways",
+        "title": "Summary: Key Takeaways",
+        "level": 2,
+        "wordCount": 172
+      }
+    ],
+    "totalWordCount": 684,
+    "estimatedReadingTime": 180000,
+    "title": "concurrent_data_structures",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\asynchronous_programming\\understanding_asynchronous_programming.md": {
+    "path": "public\\content\\python\\asynchronous_programming\\understanding_asynchronous_programming.md",
+    "sections": [
+      {
+        "id": "understanding-asynchronous-programming-in-python-a-journey-from-first-principles",
+        "title": "Understanding Asynchronous Programming in Python: A Journey from First Principles",
+        "level": 1,
+        "wordCount": 107
+      },
+      {
+        "id": "the-foundation-understanding-synchronous-vs-asynchronous",
+        "title": "The Foundation: Understanding Synchronous vs Asynchronous",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "why-asynchronous-programming-matters",
+        "title": "Why Asynchronous Programming Matters",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "enter-the-event-loop-the-heart-of-async-programming",
+        "title": "Enter the Event Loop: The Heart of Async Programming",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "your-first-async-function-coroutines",
+        "title": "Your First Async Function: Coroutines",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "understanding-tasks-the-workers-of-async-programming",
+        "title": "Understanding Tasks: The Workers of Async Programming",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "real-world-example-web-scraping",
+        "title": "Real-World Example: Web Scraping",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "the-await-keyword-yielding-control",
+        "title": "The await Keyword: Yielding Control",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "exception-handling-in-async-code",
+        "title": "Exception Handling in Async Code",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "advanced-patterns-semaphores-and-rate-limiting",
+        "title": "Advanced Patterns: Semaphores and Rate Limiting",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "producer-consumer-pattern-with-queues",
+        "title": "Producer-Consumer Pattern with Queues",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "when-to-use-async-programming",
+        "title": "When to Use Async Programming",
+        "level": 2,
+        "wordCount": 58
+      },
+      {
+        "id": "building-your-mental-model",
+        "title": "Building Your Mental Model",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "your-next-steps",
+        "title": "Your Next Steps",
+        "level": 2,
+        "wordCount": 153
+      }
+    ],
+    "totalWordCount": 1250,
+    "estimatedReadingTime": 300000,
+    "title": "understanding_asynchronous_programming",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\asynchronous_programming\\timeouts_and_cancellation.md": {
+    "path": "public\\content\\python\\asynchronous_programming\\timeouts_and_cancellation.md",
+    "sections": [
+      {
+        "id": "understanding-timeouts-and-cancellation-in-python-asyncio-from-first-principles",
+        "title": "Understanding Timeouts and Cancellation in Python Asyncio: From First Principles",
+        "level": 1,
+        "wordCount": 46
+      },
+      {
+        "id": "what-are-timeouts-and-cancellation-the-fundamental-concepts",
+        "title": "What Are Timeouts and Cancellation? The Fundamental Concepts",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "why-do-we-need-timeouts-and-cancellation-in-async-programming",
+        "title": "Why Do We Need Timeouts and Cancellation in Async Programming?",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "the-foundation-understanding-asyncio-tasks-and-coroutines",
+        "title": "The Foundation: Understanding Asyncio Tasks and Coroutines",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "introducing-timeouts-the-asynciowait_for-function",
+        "title": "Introducing Timeouts: The `asyncio.wait_for()` Function",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "understanding-cancellation-the-cooperative-nature",
+        "title": "Understanding Cancellation: The Cooperative Nature",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "timeout-vs-cancellation-understanding-the-relationship",
+        "title": "Timeout vs. Cancellation: Understanding the Relationship",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "advanced-timeout-patterns-multiple-operations",
+        "title": "Advanced Timeout Patterns: Multiple Operations",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "using-asynciowait-for-fine-grained-control",
+        "title": "Using `asyncio.wait()` for Fine-Grained Control",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "context-managers-and-automatic-timeout-management",
+        "title": "Context Managers and Automatic Timeout Management",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "handling-cancellation-gracefully-best-practices",
+        "title": "Handling Cancellation Gracefully: Best Practices",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "real-world-example-http-client-with-timeouts",
+        "title": "Real-World Example: HTTP Client with Timeouts",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "summary-key-principles-for-timeouts-and-cancellation",
+        "title": "Summary: Key Principles for Timeouts and Cancellation",
+        "level": 2,
+        "wordCount": 165
+      }
+    ],
+    "totalWordCount": 1109,
+    "estimatedReadingTime": 300000,
+    "title": "timeouts_and_cancellation",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\asynchronous_programming\\tasks_and_futures_in_async_io.md": {
+    "path": "public\\content\\python\\asynchronous_programming\\tasks_and_futures_in_async_io.md",
+    "sections": [
+      {
+        "id": "understanding-tasks-and-futures-in-python-asyncio-from-first-principles",
+        "title": "Understanding Tasks and Futures in Python AsyncIO: From First Principles",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "the-foundation-what-is-asynchronous-programming",
+        "title": "The Foundation: What is Asynchronous Programming?",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "understanding-the-event-loop-the-heart-of-asyncio",
+        "title": "Understanding the Event Loop: The Heart of AsyncIO",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "what-are-futures-the-promise-of-a-result",
+        "title": "What Are Futures? The Promise of a Result",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "what-are-tasks-futures-with-superpowers",
+        "title": "What Are Tasks? Futures with Superpowers",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "the-relationship-between-futures-and-tasks",
+        "title": "The Relationship Between Futures and Tasks",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "practical-example-building-a-web-scraper",
+        "title": "Practical Example: Building a Web Scraper",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "advanced-task-management",
+        "title": "Advanced Task Management",
+        "level": 2,
+        "wordCount": 9
+      },
+      {
+        "id": "task-states-and-lifecycle",
+        "title": "Task States and Lifecycle",
+        "level": 2,
+        "wordCount": 11
+      },
+      {
+        "id": "common-patterns-and-best-practices",
+        "title": "Common Patterns and Best Practices",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "error-handling-with-tasks-and-futures",
+        "title": "Error Handling with Tasks and Futures",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "performance-comparison-sync-vs-async",
+        "title": "Performance Comparison: Sync vs Async",
+        "level": 2,
+        "wordCount": 12
+      },
+      {
+        "id": "summary-key-takeaways",
+        "title": "Summary: Key Takeaways",
+        "level": 2,
+        "wordCount": 210
+      }
+    ],
+    "totalWordCount": 870,
+    "estimatedReadingTime": 240000,
+    "title": "tasks_and_futures_in_async_io",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\asynchronous_programming\\synchronization_primitives.md": {
+    "path": "public\\content\\python\\asynchronous_programming\\synchronization_primitives.md",
+    "sections": [
+      {
+        "id": "understanding-synchronization-primitives-in-python-asyncio-a-journey-from-first-principles",
+        "title": "Understanding Synchronization Primitives in Python Asyncio: A Journey from First Principles",
+        "level": 1,
+        "wordCount": 46
+      },
+      {
+        "id": "what-is-synchronization-and-why-do-we-need-it",
+        "title": "What is Synchronization and Why Do We Need It?",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "the-foundation-understanding-async-concurrency",
+        "title": "The Foundation: Understanding Async Concurrency",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "the-asyncio-event-loop-the-stage-for-synchronization",
+        "title": "The Asyncio Event Loop: The Stage for Synchronization",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "synchronization-primitive-1-lock-mutual-exclusion",
+        "title": "Synchronization Primitive #1: Lock (Mutual Exclusion)",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "synchronization-primitive-2-semaphore-counting-lock",
+        "title": "Synchronization Primitive #2: Semaphore (Counting Lock)",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "synchronization-primitive-3-event-signal-coordination",
+        "title": "Synchronization Primitive #3: Event (Signal Coordination)",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "synchronization-primitive-4-condition-advanced-coordination",
+        "title": "Synchronization Primitive #4: Condition (Advanced Coordination)",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "synchronization-primitive-5-queue-producer-consumer-pattern",
+        "title": "Synchronization Primitive #5: Queue (Producer-Consumer Pattern)",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "real-world-example-web-scraper-with-rate-limiting",
+        "title": "Real-World Example: Web Scraper with Rate Limiting",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "visual-understanding-synchronization-primitive-flow",
+        "title": "Visual Understanding: Synchronization Primitive Flow",
+        "level": 2,
+        "wordCount": 12
+      },
+      {
+        "id": "best-practices-and-common-pitfalls",
+        "title": "Best Practices and Common Pitfalls",
+        "level": 2,
+        "wordCount": 61
+      }
+    ],
+    "totalWordCount": 751,
+    "estimatedReadingTime": 240000,
+    "title": "synchronization_primitives",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\asynchronous_programming\\integration_with_synchronous_code.md": {
+    "path": "public\\content\\python\\asynchronous_programming\\integration_with_synchronous_code.md",
+    "sections": [
+      {
+        "id": "integration-of-synchronous-code-with-python-asyncio-a-deep-dive-from-first-principles",
+        "title": "Integration of Synchronous Code with Python Asyncio: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 49
+      },
+      {
+        "id": "understanding-the-foundation-what-is-synchronous-vs-asynchronous-programming",
+        "title": "Understanding the Foundation: What is Synchronous vs Asynchronous Programming?",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "the-event-loop-the-heart-of-asyncio",
+        "title": "The Event Loop: The Heart of Asyncio",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "the-challenge-when-worlds-collide",
+        "title": "The Challenge: When Worlds Collide",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "solution-1-running-synchronous-code-in-async-context",
+        "title": "Solution 1: Running Synchronous Code in Async Context",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "solution-2-running-async-code-from-sync-context",
+        "title": "Solution 2: Running Async Code from Sync Context",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "practical-integration-patterns",
+        "title": "Practical Integration Patterns",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "advanced-integration-techniques",
+        "title": "Advanced Integration Techniques",
+        "level": 2,
+        "wordCount": 8
+      },
+      {
+        "id": "performance-considerations-and-best-practices",
+        "title": "Performance Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "summary-and-key-takeaways",
+        "title": "Summary and Key Takeaways",
+        "level": 2,
+        "wordCount": 172
+      }
+    ],
+    "totalWordCount": 782,
+    "estimatedReadingTime": 240000,
+    "title": "integration_with_synchronous_code",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\asynchronous_programming\\event_loops_and_coroutines.md": {
+    "path": "public\\content\\python\\asynchronous_programming\\event_loops_and_coroutines.md",
+    "sections": [
+      {
+        "id": "understanding-pythons-asyncio-event-loop-a-deep-dive-from-first-principles",
+        "title": "Understanding Python's Asyncio Event Loop: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 52
+      },
+      {
+        "id": "chapter-1-the-foundation-why-do-we-need-asynchronous-programming",
+        "title": "Chapter 1: The Foundation - Why Do We Need Asynchronous Programming?",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "chapter-2-enter-the-event-loop-the-heart-of-asynchronous-programming",
+        "title": "Chapter 2: Enter the Event Loop - The Heart of Asynchronous Programming",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "chapter-3-coroutines-the-building-blocks",
+        "title": "Chapter 3: Coroutines - The Building Blocks",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "chapter-4-the-event-loops-internal-architecture",
+        "title": "Chapter 4: The Event Loop's Internal Architecture",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "chapter-5-the-event-loop-lifecycle-step-by-step",
+        "title": "Chapter 5: The Event Loop Lifecycle - Step by Step",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "chapter-6-tasks-futures-and-coroutines-the-trinity",
+        "title": "Chapter 6: Tasks, Futures, and Coroutines - The Trinity",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "chapter-7-the-selector-handling-io-operations",
+        "title": "Chapter 7: The Selector - Handling I/O Operations",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "chapter-8-exception-handling-in-the-event-loop",
+        "title": "Chapter 8: Exception Handling in the Event Loop",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "chapter-9-event-loop-policies-and-thread-safety",
+        "title": "Chapter 9: Event Loop Policies and Thread Safety",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "chapter-10-performance-characteristics-and-best-practices",
+        "title": "Chapter 10: Performance Characteristics and Best Practices",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "chapter-11-debugging-and-monitoring-the-event-loop",
+        "title": "Chapter 11: Debugging and Monitoring the Event Loop",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "conclusion-mastering-the-event-loop",
+        "title": "Conclusion: Mastering the Event Loop",
+        "level": 2,
+        "wordCount": 152
+      }
+    ],
+    "totalWordCount": 948,
+    "estimatedReadingTime": 240000,
+    "title": "event_loops_and_coroutines",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\asynchronous_programming\\async_io_framework.md": {
+    "path": "public\\content\\python\\asynchronous_programming\\async_io_framework.md",
+    "sections": [
+      {
+        "id": "understanding-asyncio-in-python-from-first-principles",
+        "title": "Understanding AsyncIO in Python: From First Principles",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "the-foundation-why-do-we-need-asyncio",
+        "title": "The Foundation: Why Do We Need AsyncIO?",
+        "level": 2,
+        "wordCount": 132
+      },
+      {
+        "id": "the-fundamental-concepts",
+        "title": "The Fundamental Concepts",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "your-first-async-program",
+        "title": "Your First Async Program",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "understanding-coroutines-the-building-blocks",
+        "title": "Understanding Coroutines: The Building Blocks",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "the-asyncawait-syntax-a-deeper-look",
+        "title": "The Async/Await Syntax: A Deeper Look",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "event-loop-deep-dive",
+        "title": "Event Loop Deep Dive",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "real-world-example-web-scraping",
+        "title": "Real-World Example: Web Scraping",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "concurrency-vs-parallelism-a-critical-distinction",
+        "title": "Concurrency vs Parallelism: A Critical Distinction",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "advanced-asyncio-patterns",
+        "title": "Advanced AsyncIO Patterns",
+        "level": 2,
+        "wordCount": 10
+      },
+      {
+        "id": "when-to-use-asyncio-decision-framework",
+        "title": "When to Use AsyncIO: Decision Framework",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "building-your-asyncio-intuition",
+        "title": "Building Your AsyncIO Intuition",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 850,
+    "estimatedReadingTime": 240000,
+    "title": "async_io_framework",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\asynchronous_programming\\async_and_await_syntax.md": {
+    "path": "public\\content\\python\\asynchronous_programming\\async_and_await_syntax.md",
+    "sections": [
+      {
+        "id": "understanding-async-and-await-in-python-a-journey-from-first-principles",
+        "title": "Understanding Async and Await in Python: A Journey from First Principles",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "the-foundation-understanding-synchronous-vs-asynchronous-programming",
+        "title": "The Foundation: Understanding Synchronous vs Asynchronous Programming",
+        "level": 2,
+        "wordCount": 210
+      },
+      {
+        "id": "enter-asynchronous-programming-doing-multiple-things-concurrently",
+        "title": "Enter Asynchronous Programming: Doing Multiple Things Concurrently",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "understanding-the-building-blocks",
+        "title": "Understanding the Building Blocks",
+        "level": 2,
+        "wordCount": 132
+      },
+      {
+        "id": "the-async-keyword-defining-asynchronous-functions",
+        "title": "The `async` Keyword: Defining Asynchronous Functions",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "the-await-keyword-pausing-and-resuming-execution",
+        "title": "The `await` Keyword: Pausing and Resuming Execution",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "practical-example-building-a-web-scraper",
+        "title": "Practical Example: Building a Web Scraper",
+        "level": 2,
+        "wordCount": 123
+      },
+      {
+        "id": "advanced-patterns-and-techniques",
+        "title": "Advanced Patterns and Techniques",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "real-world-use-cases-and-best-practices",
+        "title": "Real-World Use Cases and Best Practices",
+        "level": 2,
+        "wordCount": 112
+      },
+      {
+        "id": "putting-it-all-together-a-complete-example",
+        "title": "Putting It All Together: A Complete Example",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "summary-the-journey-from-synchronous-to-asynchronous",
+        "title": "Summary: The Journey from Synchronous to Asynchronous",
+        "level": 2,
+        "wordCount": 174
+      }
+    ],
+    "totalWordCount": 1140,
+    "estimatedReadingTime": 300000,
+    "title": "async_and_await_syntax",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\asynchronous_programming\\asynchronous_generators_and_comprehensions.md": {
+    "path": "public\\content\\python\\asynchronous_programming\\asynchronous_generators_and_comprehensions.md",
+    "sections": [
+      {
+        "id": "asynchronous-generators-and-comprehensions-in-python-a-complete-journey-from-first-principles",
+        "title": "Asynchronous Generators and Comprehensions in Python: A Complete Journey from First Principles",
+        "level": 1,
+        "wordCount": 50
+      },
+      {
+        "id": "understanding-the-foundation-what-is-iteration",
+        "title": "Understanding the Foundation: What is Iteration?",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "the-iterator-protocol-pythons-secret-handshake",
+        "title": "The Iterator Protocol: Python's Secret Handshake",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "enter-generators-lazy-evaluation-champions",
+        "title": "Enter Generators: Lazy Evaluation Champions",
+        "level": 2,
+        "wordCount": 163
+      },
+      {
+        "id": "understanding-asynchronous-programming-the-restaurant-analogy",
+        "title": "Understanding Asynchronous Programming: The Restaurant Analogy",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "asynchronous-generators-the-best-of-both-worlds",
+        "title": "Asynchronous Generators: The Best of Both Worlds",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "generator-expressions-concise-lazy-evaluation",
+        "title": "Generator Expressions: Concise Lazy Evaluation",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "asynchronous-comprehensions-the-modern-python-superpower",
+        "title": "Asynchronous Comprehensions: The Modern Python Superpower",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "practical-example-building-a-web-scraper",
+        "title": "Practical Example: Building a Web Scraper",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "memory-efficiency-visualization",
+        "title": "Memory Efficiency Visualization",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "performance-comparison-the-numbers-dont-lie",
+        "title": "Performance Comparison: The Numbers Don't Lie",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "real-world-use-cases-when-to-use-what",
+        "title": "Real-World Use Cases: When to Use What",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "advanced-patterns-generator-composition",
+        "title": "Advanced Patterns: Generator Composition",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "debugging-and-monitoring-async-generators",
+        "title": "Debugging and Monitoring Async Generators",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "final-thoughts-choosing-the-right-tool",
+        "title": "Final Thoughts: Choosing the Right Tool",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "summary-the-journey-complete",
+        "title": "Summary: The Journey Complete",
+        "level": 2,
+        "wordCount": 179
+      }
+    ],
+    "totalWordCount": 1323,
+    "estimatedReadingTime": 360000,
+    "title": "asynchronous_generators_and_comprehensions",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\asynchronous_programming\\asynchronous_context_managers.md": {
+    "path": "public\\content\\python\\asynchronous_programming\\asynchronous_context_managers.md",
+    "sections": [
+      {
+        "id": "asynchronous-context-managers-in-python-a-deep-dive-from-first-principles",
+        "title": "Asynchronous Context Managers in Python: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "foundation-understanding-regular-context-managers",
+        "title": "Foundation: Understanding Regular Context Managers",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "foundation-understanding-asynchronous-programming",
+        "title": "Foundation: Understanding Asynchronous Programming",
+        "level": 2,
+        "wordCount": 108
+      },
+      {
+        "id": "combining-the-concepts-asynchronous-context-managers",
+        "title": "Combining the Concepts: Asynchronous Context Managers",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "the-asynccontextmanager-decorator",
+        "title": "The @asynccontextmanager Decorator",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "real-world-example-http-session-management",
+        "title": "Real-World Example: HTTP Session Management",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "error-handling-in-async-context-managers",
+        "title": "Error Handling in Async Context Managers",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "advanced-pattern-nested-async-context-managers",
+        "title": "Advanced Pattern: Nested Async Context Managers",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "performance-considerations-and-best-practices",
+        "title": "Performance Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "comparison-sync-vs-async-context-managers",
+        "title": "Comparison: Sync vs Async Context Managers",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "when-to-use-async-context-managers",
+        "title": "When to Use Async Context Managers",
+        "level": 2,
+        "wordCount": 137
+      }
+    ],
+    "totalWordCount": 680,
+    "estimatedReadingTime": 180000,
+    "title": "asynchronous_context_managers",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\advanced_python_constructs\\monkey_patching_techniques.md": {
+    "path": "public\\content\\python\\advanced_python_constructs\\monkey_patching_techniques.md",
+    "sections": [
+      {
+        "id": "understanding-monkey-patching-in-python-from-first-principles",
+        "title": "Understanding Monkey Patching in Python: From First Principles",
+        "level": 1,
+        "wordCount": 40
+      },
+      {
+        "id": "what-makes-monkey-patching-possible",
+        "title": "What Makes Monkey Patching Possible?",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "understanding-object-attribute-resolution",
+        "title": "Understanding Object Attribute Resolution",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "what-is-monkey-patching",
+        "title": "What is Monkey Patching?",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "basic-monkey-patching-techniques",
+        "title": "Basic Monkey Patching Techniques",
+        "level": 2,
+        "wordCount": 134
+      },
+      {
+        "id": "advanced-monkey-patching-patterns",
+        "title": "Advanced Monkey Patching Patterns",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "understanding-the-risks-and-best-practices",
+        "title": "Understanding the Risks and Best Practices",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "when-to-use-monkey-patching",
+        "title": "When to Use Monkey Patching",
+        "level": 2,
+        "wordCount": 127
+      }
+    ],
+    "totalWordCount": 729,
+    "estimatedReadingTime": 180000,
+    "title": "monkey_patching_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\advanced_python_constructs\\method_resolution_order_customization.md": {
+    "path": "public\\content\\python\\advanced_python_constructs\\method_resolution_order_customization.md",
+    "sections": [
+      {
+        "id": "method-resolution-order-customization-in-python-a-deep-dive-from-first-principles",
+        "title": "Method Resolution Order Customization in Python: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 52
+      },
+      {
+        "id": "what-is-method-resolution-order",
+        "title": "What is Method Resolution Order?",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "the-diamond-problem-and-why-mro-matters",
+        "title": "The Diamond Problem and Why MRO Matters",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "the-c3-linearization-algorithm",
+        "title": "The C3 Linearization Algorithm",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "understanding-super-and-mro",
+        "title": "Understanding `super()` and MRO",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "customizing-method-resolution-order",
+        "title": "Customizing Method Resolution Order",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "advanced-mro-customization-with-metaclasses",
+        "title": "Advanced MRO Customization with Metaclasses",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "debugging-and-introspecting-mro",
+        "title": "Debugging and Introspecting MRO",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "best-practices-and-common-pitfalls",
+        "title": "Best Practices and Common Pitfalls",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "real-world-applications",
+        "title": "Real-World Applications",
+        "level": 2,
+        "wordCount": 102
+      }
+    ],
+    "totalWordCount": 708,
+    "estimatedReadingTime": 180000,
+    "title": "method_resolution_order_customization",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\advanced_python_constructs\\iterators_and_iteration_protocol.md": {
+    "path": "public\\content\\python\\advanced_python_constructs\\iterators_and_iteration_protocol.md",
+    "sections": [
+      {
+        "id": "understanding-iterators-and-iteration-protocol-in-python-a-journey-from-first-principles",
+        "title": "Understanding Iterators and Iteration Protocol in Python: A Journey from First Principles",
+        "level": 1,
+        "wordCount": 55
+      },
+      {
+        "id": "what-is-iteration-at-its-core",
+        "title": "What Is Iteration at Its Core?",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "the-foundation-what-makes-something-iterable",
+        "title": "The Foundation: What Makes Something Iterable?",
+        "level": 2,
+        "wordCount": 155
+      },
+      {
+        "id": "the-iterator-protocol-in-detail",
+        "title": "The Iterator Protocol in Detail",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "built-in-iterables-and-their-secrets",
+        "title": "Built-in Iterables and Their Secrets",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "the-difference-between-iterables-and-iterators",
+        "title": "The Difference Between Iterables and Iterators",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "iterator-exhaustion-a-key-concept",
+        "title": "Iterator Exhaustion: A Key Concept",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "generator-functions-iterators-made-simple",
+        "title": "Generator Functions: Iterators Made Simple",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "generator-expressions-inline-iterator-creation",
+        "title": "Generator Expressions: Inline Iterator Creation",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "the-itertools-module-iterator-powerhouse",
+        "title": "The `itertools` Module: Iterator Powerhouse",
+        "level": 2,
+        "wordCount": 35
+      },
+      {
+        "id": "real-world-applications-and-best-practices",
+        "title": "Real-World Applications and Best Practices",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "advanced-concepts-iterator-protocols-in-action",
+        "title": "Advanced Concepts: Iterator Protocols in Action",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "performance-considerations-and-best-practices",
+        "title": "Performance Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "summary-the-iterator-mindset",
+        "title": "Summary: The Iterator Mindset",
+        "level": 2,
+        "wordCount": 147
+      }
+    ],
+    "totalWordCount": 1280,
+    "estimatedReadingTime": 360000,
+    "title": "iterators_and_iteration_protocol",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\advanced_python_constructs\\introspection_and_reflection.md": {
+    "path": "public\\content\\python\\advanced_python_constructs\\introspection_and_reflection.md",
+    "sections": [
+      {
+        "id": "introspection-and-reflection-in-python-a-complete-journey-from-first-principles",
+        "title": "Introspection and Reflection in Python: A Complete Journey from First Principles",
+        "level": 1,
+        "wordCount": 51
+      },
+      {
+        "id": "what-are-introspection-and-reflection-building-from-the-ground-up",
+        "title": "What Are Introspection and Reflection? Building from the Ground Up",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "the-foundation-everything-in-python-is-an-object",
+        "title": "The Foundation: Everything in Python is an Object",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "the-building-blocks-core-introspection-functions",
+        "title": "The Building Blocks: Core Introspection Functions",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "deep-dive-the-inspect-module-pythons-introspection-powerhouse",
+        "title": "Deep Dive: The `inspect` Module - Python's Introspection Powerhouse",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "practical-introspection-real-world-examples",
+        "title": "Practical Introspection: Real-World Examples",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "reflection-modifying-code-at-runtime",
+        "title": "Reflection: Modifying Code at Runtime",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "advanced-introspection-patterns",
+        "title": "Advanced Introspection Patterns",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "metaclasses-the-ultimate-reflection-tool",
+        "title": "Metaclasses: The Ultimate Reflection Tool",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "practical-applications-and-best-practices",
+        "title": "Practical Applications and Best Practices",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "conclusion-the-power-and-responsibility-of-introspection",
+        "title": "Conclusion: The Power and Responsibility of Introspection",
+        "level": 2,
+        "wordCount": 159
+      }
+    ],
+    "totalWordCount": 1045,
+    "estimatedReadingTime": 300000,
+    "title": "introspection_and_reflection",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\advanced_python_constructs\\generator_expressions_and_evaluation.md": {
+    "path": "public\\content\\python\\advanced_python_constructs\\generator_expressions_and_evaluation.md",
+    "sections": [
+      {
+        "id": "generator-expressions-and-evaluation-in-python-a-deep-dive-from-first-principles",
+        "title": "Generator Expressions and Evaluation in Python: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 55
+      },
+      {
+        "id": "understanding-the-foundation-what-is-generation-vs-collection",
+        "title": "Understanding the Foundation: What is Generation vs Collection?",
+        "level": 2,
+        "wordCount": 110
+      },
+      {
+        "id": "the-memory-problem-that-generators-solve",
+        "title": "The Memory Problem That Generators Solve",
+        "level": 2,
+        "wordCount": 73
+      },
+      {
+        "id": "enter-generator-expressions-the-elegant-solution",
+        "title": "Enter Generator Expressions: The Elegant Solution",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "the-lazy-evaluation-principle",
+        "title": "The Lazy Evaluation Principle",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "generator-expression-syntax-and-variations",
+        "title": "Generator Expression Syntax and Variations",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "nested-generator-expressions",
+        "title": "Nested Generator Expressions",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "memory-efficiency-demonstration",
+        "title": "Memory Efficiency Demonstration",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "evaluation-timing-and-state-management",
+        "title": "Evaluation Timing and State Management",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "working-with-generator-expression-results",
+        "title": "Working with Generator Expression Results",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "practical-applications-and-patterns",
+        "title": "Practical Applications and Patterns",
+        "level": 2,
+        "wordCount": 48
+      },
+      {
+        "id": "generator-expressions-vs-alternatives",
+        "title": "Generator Expressions vs Alternatives",
+        "level": 2,
+        "wordCount": 11
+      },
+      {
+        "id": "advanced-generator-expression-patterns",
+        "title": "Advanced Generator Expression Patterns",
+        "level": 2,
+        "wordCount": 12
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "performance-considerations-and-best-practices",
+        "title": "Performance Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "integration-with-built-in-functions",
+        "title": "Integration with Built-in Functions",
+        "level": 2,
+        "wordCount": 74
+      }
+    ],
+    "totalWordCount": 757,
+    "estimatedReadingTime": 240000,
+    "title": "generator_expressions_and_evaluation",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\advanced_python_constructs\\generators_and_yield_statements.md": {
+    "path": "public\\content\\python\\advanced_python_constructs\\generators_and_yield_statements.md",
+    "sections": [
+      {
+        "id": "python-generators-and-the-yield-statement-a-journey-from-first-principles",
+        "title": "Python Generators and the Yield Statement: A Journey from First Principles",
+        "level": 1,
+        "wordCount": 47
+      },
+      {
+        "id": "what-is-a-generator-understanding-the-core-concept",
+        "title": "What is a Generator? Understanding the Core Concept",
+        "level": 2,
+        "wordCount": 191
+      },
+      {
+        "id": "the-yield-statement-pause-and-resume-mechanism",
+        "title": "The Yield Statement: Pause and Resume Mechanism",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "memory-efficiency-the-real-power-of-generators",
+        "title": "Memory Efficiency: The Real Power of Generators",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "iteration-protocol-how-generators-work-with-loops",
+        "title": "Iteration Protocol: How Generators Work with Loops",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "generator-expressions-compact-syntax",
+        "title": "Generator Expressions: Compact Syntax",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "advanced-generator-features-send-throw-and-close",
+        "title": "Advanced Generator Features: Send, Throw, and Close",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "practical-example-processing-large-files",
+        "title": "Practical Example: Processing Large Files",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "generator-pipeline-chaining-operations",
+        "title": "Generator Pipeline: Chaining Operations",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "exception-handling-in-generators",
+        "title": "Exception Handling in Generators",
+        "level": 2,
+        "wordCount": 9
+      },
+      {
+        "id": "when-to-use-generators-decision-framework",
+        "title": "When to Use Generators: Decision Framework",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 117
+      }
+    ],
+    "totalWordCount": 685,
+    "estimatedReadingTime": 180000,
+    "title": "generators_and_yield_statements",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\advanced_python_constructs\\dynamic_attribute_access.md": {
+    "path": "public\\content\\python\\advanced_python_constructs\\dynamic_attribute_access.md",
+    "sections": [
+      {
+        "id": "dynamic-attribute-access-in-python-a-journey-from-first-principles",
+        "title": "Dynamic Attribute Access in Python: A Journey from First Principles",
+        "level": 1,
+        "wordCount": 72
+      },
+      {
+        "id": "understanding-the-foundation-what-are-attributes",
+        "title": "Understanding the Foundation: What Are Attributes?",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "the-birth-of-dynamic-access-why-do-we-need-it",
+        "title": "The Birth of Dynamic Access: Why Do We Need It?",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "the-three-pillars-of-dynamic-attribute-access",
+        "title": "The Three Pillars of Dynamic Attribute Access",
+        "level": 2,
+        "wordCount": 183
+      },
+      {
+        "id": "real-world-application-building-a-dynamic-data-processor",
+        "title": "Real-World Application: Building a Dynamic Data Processor",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "advanced-pattern-attribute-validation-and-transformation",
+        "title": "Advanced Pattern: Attribute Validation and Transformation",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "the-magic-behind-the-scenes-__getattribute__-and-__getattr__",
+        "title": "The Magic Behind the Scenes: `__getattribute__` and `__getattr__`",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "practical-applications-and-use-cases",
+        "title": "Practical Applications and Use Cases",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 104
+      }
+    ],
+    "totalWordCount": 783,
+    "estimatedReadingTime": 240000,
+    "title": "dynamic_attribute_access",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\advanced_python_constructs\\descriptors_and_their_applications.md": {
+    "path": "public\\content\\python\\advanced_python_constructs\\descriptors_and_their_applications.md",
+    "sections": [
+      {
+        "id": "python-descriptors-understanding-the-magic-behind-attribute-access",
+        "title": "Python Descriptors: Understanding the Magic Behind Attribute Access",
+        "level": 1,
+        "wordCount": 60
+      },
+      {
+        "id": "what-are-descriptors-the-first-principle",
+        "title": "What Are Descriptors? The First Principle",
+        "level": 2,
+        "wordCount": 89
+      },
+      {
+        "id": "the-descriptor-protocol-how-python-finds-attributes",
+        "title": "The Descriptor Protocol: How Python Finds Attributes",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "building-your-first-descriptor-a-temperature-converter",
+        "title": "Building Your First Descriptor: A Temperature Converter",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "data-vs-non-data-descriptors-understanding-the-hierarchy",
+        "title": "Data vs Non-Data Descriptors: Understanding the Hierarchy",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "advanced-descriptor-typed-attributes-with-validation",
+        "title": "Advanced Descriptor: Typed Attributes with Validation",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "understanding-how-properties-work-descriptors-under-the-hood",
+        "title": "Understanding How Properties Work: Descriptors Under the Hood",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "descriptor-based-caching-implementing-lazy-evaluation",
+        "title": "Descriptor-Based Caching: Implementing Lazy Evaluation",
+        "level": 2,
+        "wordCount": 21
+      },
+      {
+        "id": "method-descriptors-how-functions-become-bound-methods",
+        "title": "Method Descriptors: How Functions Become Bound Methods",
+        "level": 2,
+        "wordCount": 40
+      },
+      {
+        "id": "practical-application-database-field-descriptors",
+        "title": "Practical Application: Database Field Descriptors",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "the-__set_name__-method-modern-descriptor-enhancement",
+        "title": "The `__set_name__` Method: Modern Descriptor Enhancement",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "performance-considerations-and-best-practices",
+        "title": "Performance Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 125
+      }
+    ],
+    "totalWordCount": 628,
+    "estimatedReadingTime": 180000,
+    "title": "descriptors_and_their_applications",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\advanced_python_constructs\\coroutines_and_async_await.md": {
+    "path": "public\\content\\python\\advanced_python_constructs\\coroutines_and_async_await.md",
+    "sections": [
+      {
+        "id": "understanding-coroutines-and-asyncawait-in-python-a-journey-from-first-principles",
+        "title": "Understanding Coroutines and Async/Await in Python: A Journey from First Principles",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "what-problem-are-we-actually-solving",
+        "title": "What Problem Are We Actually Solving?",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "understanding-synchronous-vs-asynchronous-execution",
+        "title": "Understanding Synchronous vs Asynchronous Execution",
+        "level": 2,
+        "wordCount": 66
+      },
+      {
+        "id": "enter-asynchronous-programming",
+        "title": "Enter Asynchronous Programming",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "what-exactly-are-coroutines",
+        "title": "What Exactly Are Coroutines?",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "understanding-the-async-and-await-keywords",
+        "title": "Understanding the `async` and `await` Keywords",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "the-event-loop-the-heart-of-async-programming",
+        "title": "The Event Loop: The Heart of Async Programming",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "practical-example-web-scraping",
+        "title": "Practical Example: Web Scraping",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "understanding-different-ways-to-run-coroutines",
+        "title": "Understanding Different Ways to Run Coroutines",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "advanced-pattern-context-managers-with-async",
+        "title": "Advanced Pattern: Context Managers with Async",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "exception-handling-in-async-code",
+        "title": "Exception Handling in Async Code",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "when-to-use-asyncawait",
+        "title": "When to Use Async/Await",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "summary-the-core-concepts",
+        "title": "Summary: The Core Concepts",
+        "level": 2,
+        "wordCount": 199
+      }
+    ],
+    "totalWordCount": 1079,
+    "estimatedReadingTime": 300000,
+    "title": "coroutines_and_async_await",
+    "frontmatter": {}
+  },
+  "public\\content\\python\\advanced_python_constructs\\context_manager_protocol.md": {
+    "path": "public\\content\\python\\advanced_python_constructs\\context_manager_protocol.md",
+    "sections": [
+      {
+        "id": "understanding-pythons-context-manager-protocol-from-ground-zero",
+        "title": "Understanding Python's Context Manager Protocol: From Ground Zero",
+        "level": 1,
+        "wordCount": 45
+      },
+      {
+        "id": "what-is-a-context-manager-the-fundamental-concept",
+        "title": "What Is a Context Manager? The Fundamental Concept",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "the-foundation-understanding-resource-management",
+        "title": "The Foundation: Understanding Resource Management",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "the-context-manager-protocol-the-technical-foundation",
+        "title": "The Context Manager Protocol: The Technical Foundation",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "building-your-first-context-manager-step-by-step",
+        "title": "Building Your First Context Manager: Step by Step",
+        "level": 2,
+        "wordCount": 183
+      },
+      {
+        "id": "the-__exit__-method-understanding-exception-handling",
+        "title": "The `__exit__` Method: Understanding Exception Handling",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "the-contextlib-module-pythons-context-manager-toolkit",
+        "title": "The contextlib Module: Python's Context Manager Toolkit",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "advanced-context-manager-concepts",
+        "title": "Advanced Context Manager Concepts",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "real-world-applications-where-context-managers-shine",
+        "title": "Real-World Applications: Where Context Managers Shine",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "error-handling-and-exception-suppression",
+        "title": "Error Handling and Exception Suppression",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "performance-considerations-and-best-practices",
+        "title": "Performance Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "summary-the-power-of-context-managers",
+        "title": "Summary: The Power of Context Managers",
+        "level": 2,
+        "wordCount": 154
+      }
+    ],
+    "totalWordCount": 952,
+    "estimatedReadingTime": 240000,
+    "title": "context_manager_protocol",
     "frontmatter": {}
   },
   "public\\content\\python\\advanced_oop_concepts\\slots_for_memory_optimization.md": {
@@ -119197,6 +122467,2658 @@
     "totalWordCount": 1739,
     "estimatedReadingTime": 420000,
     "title": "auto_scaling_groups_and_launch_templates",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\storage_encryption_implementation_details.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\storage_encryption_implementation_details.md",
+    "sections": [
+      {
+        "id": "aws-ec2-storage-encryption-from-first-principles",
+        "title": "AWS EC2 Storage Encryption: From First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "what-is-encryption-at-first-principles",
+        "title": "What is Encryption at First Principles?",
+        "level": 2,
+        "wordCount": 160
+      },
+      {
+        "id": "why-storage-encryption-matters",
+        "title": "Why Storage Encryption Matters",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "aws-ec2-storage-architecture-fundamentals",
+        "title": "AWS EC2 Storage Architecture Fundamentals",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "ebs-encryption-the-foundation",
+        "title": "EBS Encryption: The Foundation",
+        "level": 2,
+        "wordCount": 366
+      },
+      {
+        "id": "instance-store-encryption",
+        "title": "Instance Store Encryption",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "efs-encryption-implementation",
+        "title": "EFS Encryption Implementation",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "snapshot-encryption-deep-dive",
+        "title": "Snapshot Encryption Deep Dive",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "encryption-key-rotation",
+        "title": "Encryption Key Rotation",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "monitoring-and-compliance",
+        "title": "Monitoring and Compliance",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "security-best-practices",
+        "title": "Security Best Practices",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "troubleshooting-common-issues",
+        "title": "Troubleshooting Common Issues",
+        "level": 2,
+        "wordCount": 80
+      }
+    ],
+    "totalWordCount": 1152,
+    "estimatedReadingTime": 300000,
+    "title": "storage_encryption_implementation_details",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\snapshot_management_automation_patterns.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\snapshot_management_automation_patterns.md",
+    "sections": [
+      {
+        "id": "snapshot-management-automation-patterns-in-aws-ec2",
+        "title": "Snapshot Management Automation Patterns in AWS EC2",
+        "level": 1,
+        "wordCount": 53
+      },
+      {
+        "id": "what-are-ebs-snapshots-at-first-principles",
+        "title": "What Are EBS Snapshots at First Principles?",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "the-fundamental-challenge-why-automation-matters",
+        "title": "The Fundamental Challenge: Why Automation Matters",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "core-automation-patterns",
+        "title": "Core Automation Patterns",
+        "level": 2,
+        "wordCount": 161
+      },
+      {
+        "id": "advanced-automation-patterns",
+        "title": "Advanced Automation Patterns",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "retention-and-cleanup-patterns",
+        "title": "Retention and Cleanup Patterns",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "monitoring-and-alerting-patterns",
+        "title": "Monitoring and Alerting Patterns",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "cost-optimization-patterns",
+        "title": "Cost Optimization Patterns",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "integration-patterns",
+        "title": "Integration Patterns",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "error-handling-and-recovery-patterns",
+        "title": "Error Handling and Recovery Patterns",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "complete-architecture-example",
+        "title": "Complete Architecture Example",
+        "level": 2,
+        "wordCount": 75
+      }
+    ],
+    "totalWordCount": 577,
+    "estimatedReadingTime": 180000,
+    "title": "snapshot_management_automation_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\multi_volume_raid_configuration_patterns.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\multi_volume_raid_configuration_patterns.md",
+    "sections": [
+      {
+        "id": "multi-volume-raid-configuration-patterns-in-aws-ec2-from-first-principles",
+        "title": "Multi-Volume RAID Configuration Patterns in AWS EC2: From First Principles",
+        "level": 1,
+        "wordCount": 34
+      },
+      {
+        "id": "what-is-raid-the-foundation",
+        "title": "What is RAID? The Foundation",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "why-raid-in-aws-ec2",
+        "title": "Why RAID in AWS EC2?",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "raid-levels-explained-from-first-principles",
+        "title": "RAID Levels Explained from First Principles",
+        "level": 2,
+        "wordCount": 250
+      },
+      {
+        "id": "aws-ec2-implementation-fundamentals",
+        "title": "AWS EC2 Implementation Fundamentals",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "practical-implementation-software-raid",
+        "title": "Practical Implementation: Software RAID",
+        "level": 2,
+        "wordCount": 170
+      },
+      {
+        "id": "performance-testing-and-validation",
+        "title": "Performance Testing and Validation",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "monitoring-and-maintenance",
+        "title": "Monitoring and Maintenance",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "advanced-configuration-patterns",
+        "title": "Advanced Configuration Patterns",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "performance-optimization-best-practices",
+        "title": "Performance Optimization Best Practices",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "persistent-configuration",
+        "title": "Persistent Configuration",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "troubleshooting-common-issues",
+        "title": "Troubleshooting Common Issues",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "cost-optimization-strategies",
+        "title": "Cost Optimization Strategies",
+        "level": 2,
+        "wordCount": 29
+      },
+      {
+        "id": "summary-and-key-takeaways",
+        "title": "Summary and Key Takeaways",
+        "level": 2,
+        "wordCount": 151
+      }
+    ],
+    "totalWordCount": 1215,
+    "estimatedReadingTime": 300000,
+    "title": "multi_volume_raid_configuration_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\io_throughput_and_latency_optimization_techniques.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\io_throughput_and_latency_optimization_techniques.md",
+    "sections": [
+      {
+        "id": "io-throughput-and-latency-optimization-in-aws-ec2-from-first-principles",
+        "title": "IO Throughput and Latency Optimization in AWS EC2: From First Principles",
+        "level": 1,
+        "wordCount": 11
+      },
+      {
+        "id": "understanding-io-at-the-foundation-level",
+        "title": "Understanding IO at the Foundation Level",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "virtualizations-impact-on-io-operations",
+        "title": "Virtualization's Impact on IO Operations",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "understanding-throughput-vs-latency",
+        "title": "Understanding Throughput vs Latency",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "aws-ec2-storage-types-and-their-characteristics",
+        "title": "AWS EC2 Storage Types and Their Characteristics",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "throughput-optimization-techniques",
+        "title": "Throughput Optimization Techniques",
+        "level": 2,
+        "wordCount": 181
+      },
+      {
+        "id": "latency-optimization-techniques",
+        "title": "Latency Optimization Techniques",
+        "level": 2,
+        "wordCount": 84
+      },
+      {
+        "id": "instance-level-optimizations",
+        "title": "Instance-Level Optimizations",
+        "level": 2,
+        "wordCount": 53
+      },
+      {
+        "id": "monitoring-and-measuring-io-performance",
+        "title": "Monitoring and Measuring IO Performance",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "advanced-optimization-patterns",
+        "title": "Advanced Optimization Patterns",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "real-world-configuration-examples",
+        "title": "Real-World Configuration Examples",
+        "level": 2,
+        "wordCount": 8
+      },
+      {
+        "id": "measuring-success",
+        "title": "Measuring Success",
+        "level": 2,
+        "wordCount": 105
+      }
+    ],
+    "totalWordCount": 856,
+    "estimatedReadingTime": 240000,
+    "title": "io_throughput_and_latency_optimization_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\instance_storage_use_cases_and_data_persistence_strategies.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\instance_storage_use_cases_and_data_persistence_strategies.md",
+    "sections": [
+      {
+        "id": "aws-ec2-instance-storage-a-deep-dive-from-first-principles",
+        "title": "AWS EC2 Instance Storage: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 33
+      },
+      {
+        "id": "what-is-storage-in-computing",
+        "title": "What is Storage in Computing?",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "the-foundation-understanding-ec2-instance-storage-types",
+        "title": "The Foundation: Understanding EC2 Instance Storage Types",
+        "level": 2,
+        "wordCount": 422
+      },
+      {
+        "id": "instance-storage-use-cases",
+        "title": "Instance Storage Use Cases",
+        "level": 2,
+        "wordCount": 246
+      },
+      {
+        "id": "data-persistence-strategies",
+        "title": "Data Persistence Strategies",
+        "level": 2,
+        "wordCount": 194
+      },
+      {
+        "id": "advanced-persistence-patterns",
+        "title": "Advanced Persistence Patterns",
+        "level": 2,
+        "wordCount": 100
+      }
+    ],
+    "totalWordCount": 1081,
+    "estimatedReadingTime": 300000,
+    "title": "instance_storage_use_cases_and_data_persistence_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\ebs_volume_type_selection_and_performance_characteristics.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\storage_integration_patterns\\ebs_volume_type_selection_and_performance_characteristics.md",
+    "sections": [
+      {
+        "id": "understanding-ebs-volume-types-and-performance-a-complete-guide-from-first-principles",
+        "title": "Understanding EBS Volume Types and Performance: A Complete Guide from First Principles",
+        "level": 1,
+        "wordCount": 53
+      },
+      {
+        "id": "the-foundation-what-is-storage-in-computing",
+        "title": "The Foundation: What is Storage in Computing?",
+        "level": 2,
+        "wordCount": 167
+      },
+      {
+        "id": "understanding-block-storage-vs-other-storage-types",
+        "title": "Understanding Block Storage vs Other Storage Types",
+        "level": 2,
+        "wordCount": 165
+      },
+      {
+        "id": "enter-amazon-ebs-block-storage-in-the-cloud",
+        "title": "Enter Amazon EBS: Block Storage in the Cloud",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "the-ebs-volume-types-understanding-the-options",
+        "title": "The EBS Volume Types: Understanding the Options",
+        "level": 2,
+        "wordCount": 839
+      },
+      {
+        "id": "performance-deep-dive-understanding-iops-vs-throughput",
+        "title": "Performance Deep Dive: Understanding IOPS vs Throughput",
+        "level": 2,
+        "wordCount": 168
+      },
+      {
+        "id": "understanding-burst-vs-baseline-performance",
+        "title": "Understanding Burst vs Baseline Performance",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "volume-selection-decision-framework",
+        "title": "Volume Selection Decision Framework",
+        "level": 2,
+        "wordCount": 224
+      },
+      {
+        "id": "real-world-configuration-examples",
+        "title": "Real-World Configuration Examples",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "monitoring-and-optimization",
+        "title": "Monitoring and Optimization",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "advanced-concepts-multi-attach-and-encryption",
+        "title": "Advanced Concepts: Multi-Attach and Encryption",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "putting-it-all-together-your-ebs-strategy",
+        "title": "Putting It All Together: Your EBS Strategy",
+        "level": 2,
+        "wordCount": 143
+      }
+    ],
+    "totalWordCount": 2162,
+    "estimatedReadingTime": 540000,
+    "title": "ebs_volume_type_selection_and_performance_characteristics",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\user_data_and_instance_initialization_patterns.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\user_data_and_instance_initialization_patterns.md",
+    "sections": [
+      {
+        "id": "aws-ec2-user-data-and-instance-initialization-patterns",
+        "title": "AWS EC2 User Data and Instance Initialization Patterns",
+        "level": 1,
+        "wordCount": 31
+      },
+      {
+        "id": "what-is-ec2-user-data",
+        "title": "What is EC2 User Data?",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "how-user-data-works-under-the-hood",
+        "title": "How User Data Works Under the Hood",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "user-data-script-types",
+        "title": "User Data Script Types",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "common-initialization-patterns",
+        "title": "Common Initialization Patterns",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "advanced-user-data-techniques",
+        "title": "Advanced User Data Techniques",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "cloud-init-directives-and-modules",
+        "title": "Cloud-Init Directives and Modules",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "instance-initialization-best-practices",
+        "title": "Instance Initialization Best Practices",
+        "level": 2,
+        "wordCount": 43
+      },
+      {
+        "id": "troubleshooting-user-data",
+        "title": "Troubleshooting User Data",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "integration-with-other-aws-services",
+        "title": "Integration with Other AWS Services",
+        "level": 2,
+        "wordCount": 70
+      }
+    ],
+    "totalWordCount": 915,
+    "estimatedReadingTime": 240000,
+    "title": "user_data_and_instance_initialization_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\scheduled_start_stop_patterns_for_cost_optimization.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\scheduled_start_stop_patterns_for_cost_optimization.md",
+    "sections": [
+      {
+        "id": "scheduled-startstop-patterns-for-aws-ec2-cost-optimization",
+        "title": "Scheduled Start/Stop Patterns for AWS EC2 Cost Optimization",
+        "level": 1,
+        "wordCount": 23
+      },
+      {
+        "id": "understanding-the-foundation-what-are-ec2-instances",
+        "title": "Understanding the Foundation: What Are EC2 Instances?",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "the-core-problem-always-on-vs-on-demand-usage",
+        "title": "The Core Problem: Always-On vs. On-Demand Usage",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "first-principles-of-ec2-billing",
+        "title": "First Principles of EC2 Billing",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "the-mathematics-of-cost-savings",
+        "title": "The Mathematics of Cost Savings",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "implementation-approaches-from-simple-to-sophisticated",
+        "title": "Implementation Approaches: From Simple to Sophisticated",
+        "level": 2,
+        "wordCount": 220
+      },
+      {
+        "id": "advanced-scheduling-patterns",
+        "title": "Advanced Scheduling Patterns",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "implementation-best-practices",
+        "title": "Implementation Best Practices",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "cost-impact-analysis",
+        "title": "Cost Impact Analysis",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "common-pitfalls-and-solutions",
+        "title": "Common Pitfalls and Solutions",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "advanced-cost-optimization-strategies",
+        "title": "Advanced Cost Optimization Strategies",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "monitoring-and-optimization",
+        "title": "Monitoring and Optimization",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "future-considerations-and-evolution",
+        "title": "Future Considerations and Evolution",
+        "level": 2,
+        "wordCount": 98
+      }
+    ],
+    "totalWordCount": 917,
+    "estimatedReadingTime": 240000,
+    "title": "scheduled_start_stop_patterns_for_cost_optimization",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\instance_monitoring_and_metric_collection_strategies.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\instance_monitoring_and_metric_collection_strategies.md",
+    "sections": [
+      {
+        "id": "ec2-instance-monitoring-and-metric-collection-a-complete-guide-from-first-principles",
+        "title": "EC2 Instance Monitoring and Metric Collection: A Complete Guide from First Principles",
+        "level": 1,
+        "wordCount": 12
+      },
+      {
+        "id": "what-is-monitoring-understanding-the-foundation",
+        "title": "What is Monitoring? Understanding the Foundation",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "understanding-ec2-instances-the-foundation",
+        "title": "Understanding EC2 Instances: The Foundation",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "the-anatomy-of-metrics-understanding-what-we-measure",
+        "title": "The Anatomy of Metrics: Understanding What We Measure",
+        "level": 2,
+        "wordCount": 123
+      },
+      {
+        "id": "aws-cloudwatch-the-foundation-of-ec2-monitoring",
+        "title": "AWS CloudWatch: The Foundation of EC2 Monitoring",
+        "level": 2,
+        "wordCount": 168
+      },
+      {
+        "id": "built-in-ec2-metrics-what-aws-monitors-automatically",
+        "title": "Built-in EC2 Metrics: What AWS Monitors Automatically",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "custom-metrics-monitoring-what-matters-to-your-application",
+        "title": "Custom Metrics: Monitoring What Matters to Your Application",
+        "level": 2,
+        "wordCount": 168
+      },
+      {
+        "id": "advanced-monitoring-cloudwatch-agent",
+        "title": "Advanced Monitoring: CloudWatch Agent",
+        "level": 2,
+        "wordCount": 172
+      },
+      {
+        "id": "monitoring-strategies-from-reactive-to-proactive",
+        "title": "Monitoring Strategies: From Reactive to Proactive",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "log-based-monitoring-understanding-system-behavior",
+        "title": "Log-Based Monitoring: Understanding System Behavior",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "performance-optimization-through-monitoring",
+        "title": "Performance Optimization Through Monitoring",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "monitoring-best-practices-building-a-robust-strategy",
+        "title": "Monitoring Best Practices: Building a Robust Strategy",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "cost-optimization-through-monitoring",
+        "title": "Cost Optimization Through Monitoring",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "security-monitoring-protecting-your-infrastructure",
+        "title": "Security Monitoring: Protecting Your Infrastructure",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "troubleshooting-common-monitoring-issues",
+        "title": "Troubleshooting Common Monitoring Issues",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "summary-building-a-complete-monitoring-strategy",
+        "title": "Summary: Building a Complete Monitoring Strategy",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2,
+        "wordCount": 141
+      }
+    ],
+    "totalWordCount": 1713,
+    "estimatedReadingTime": 420000,
+    "title": "instance_monitoring_and_metric_collection_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\cross_account_ami_sharing_and_management.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\cross_account_ami_sharing_and_management.md",
+    "sections": [
+      {
+        "id": "aws-ec2-cross-account-ami-sharing-and-management-a-complete-guide",
+        "title": "AWS EC2 Cross-Account AMI Sharing and Management: A Complete Guide",
+        "level": 1,
+        "wordCount": 28
+      },
+      {
+        "id": "understanding-the-foundation-what-is-an-ami",
+        "title": "Understanding the Foundation: What is an AMI?",
+        "level": 2,
+        "wordCount": 184
+      },
+      {
+        "id": "the-challenge-cross-account-resource-access",
+        "title": "The Challenge: Cross-Account Resource Access",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "cross-account-ami-sharing-the-solution",
+        "title": "Cross-Account AMI Sharing: The Solution",
+        "level": 2,
+        "wordCount": 227
+      },
+      {
+        "id": "advanced-management-techniques",
+        "title": "Advanced Management Techniques",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "security-considerations-and-best-practices",
+        "title": "Security Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "cross-region-ami-sharing",
+        "title": "Cross-Region AMI Sharing",
+        "level": 2,
+        "wordCount": 34
+      },
+      {
+        "id": "monitoring-and-automation",
+        "title": "Monitoring and Automation",
+        "level": 2,
+        "wordCount": 8
+      },
+      {
+        "id": "troubleshooting-common-issues",
+        "title": "Troubleshooting Common Issues",
+        "level": 2,
+        "wordCount": 11
+      },
+      {
+        "id": "cost-optimization-strategies",
+        "title": "Cost Optimization Strategies",
+        "level": 2,
+        "wordCount": 139
+      }
+    ],
+    "totalWordCount": 859,
+    "estimatedReadingTime": 240000,
+    "title": "cross_account_ami_sharing_and_management",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\auto_recovery_configuration_and_implementation.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\auto_recovery_configuration_and_implementation.md",
+    "sections": [
+      {
+        "id": "auto-recovery-configuration-and-implementation-in-aws-ec2",
+        "title": "Auto Recovery Configuration and Implementation in AWS EC2",
+        "level": 1,
+        "wordCount": 41
+      },
+      {
+        "id": "what-is-auto-recovery-the-foundation",
+        "title": "What is Auto Recovery? The Foundation",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "how-auto-recovery-works-the-mechanism",
+        "title": "How Auto Recovery Works: The Mechanism",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "types-of-auto-recovery",
+        "title": "Types of Auto Recovery",
+        "level": 2,
+        "wordCount": 141
+      },
+      {
+        "id": "instance-types-and-auto-recovery-compatibility",
+        "title": "Instance Types and Auto Recovery Compatibility",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "configuring-auto-recovery-step-by-step-implementation",
+        "title": "Configuring Auto Recovery: Step-by-Step Implementation",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "advanced-auto-recovery-patterns",
+        "title": "Advanced Auto Recovery Patterns",
+        "level": 2,
+        "wordCount": 68
+      },
+      {
+        "id": "monitoring-and-troubleshooting-auto-recovery",
+        "title": "Monitoring and Troubleshooting Auto Recovery",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "best-practices-for-auto-recovery-implementation",
+        "title": "Best Practices for Auto Recovery Implementation",
+        "level": 2,
+        "wordCount": 142
+      }
+    ],
+    "totalWordCount": 962,
+    "estimatedReadingTime": 240000,
+    "title": "auto_recovery_configuration_and_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\ami_management_and_patching_strategies.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\operational_patterns\\ami_management_and_patching_strategies.md",
+    "sections": [
+      {
+        "id": "ami-management-and-patching-strategies-in-aws-ec2-a-complete-guide-from-first-principles",
+        "title": "AMI Management and Patching Strategies in AWS EC2: A Complete Guide from First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "what-is-an-ami-understanding-the-foundation",
+        "title": "What is an AMI? Understanding the Foundation",
+        "level": 2,
+        "wordCount": 189
+      },
+      {
+        "id": "the-ami-lifecycle-from-creation-to-retirement",
+        "title": "The AMI Lifecycle: From Creation to Retirement",
+        "level": 2,
+        "wordCount": 161
+      },
+      {
+        "id": "understanding-patching-the-foundation-of-ami-management",
+        "title": "Understanding Patching: The Foundation of AMI Management",
+        "level": 2,
+        "wordCount": 133
+      },
+      {
+        "id": "core-patching-strategies",
+        "title": "Core Patching Strategies",
+        "level": 2,
+        "wordCount": 186
+      },
+      {
+        "id": "advanced-patching-patterns",
+        "title": "Advanced Patching Patterns",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "ami-management-best-practices",
+        "title": "AMI Management Best Practices",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "monitoring-and-alerting-for-ami-management",
+        "title": "Monitoring and Alerting for AMI Management",
+        "level": 2,
+        "wordCount": 21
+      },
+      {
+        "id": "putting-it-all-together-complete-ami-management-pipeline",
+        "title": "Putting It All Together: Complete AMI Management Pipeline",
+        "level": 2,
+        "wordCount": 80
+      },
+      {
+        "id": "key-takeaways",
+        "title": "Key Takeaways",
+        "level": 2,
+        "wordCount": 123
+      }
+    ],
+    "totalWordCount": 1071,
+    "estimatedReadingTime": 300000,
+    "title": "ami_management_and_patching_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\vpc_networking_with_ec2_instances.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\vpc_networking_with_ec2_instances.md",
+    "sections": [
+      {
+        "id": "understanding-vpc-networking-with-ec2-instances-a-complete-journey-from-first-principles",
+        "title": "Understanding VPC Networking with EC2 Instances: A Complete Journey from First Principles",
+        "level": 1,
+        "wordCount": 40
+      },
+      {
+        "id": "what-is-networking-at-its-core",
+        "title": "What is Networking at Its Core?",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "understanding-ip-addresses-the-foundation",
+        "title": "Understanding IP Addresses: The Foundation",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "what-is-a-vpc-building-your-own-private-network",
+        "title": "What is a VPC? Building Your Own Private Network",
+        "level": 2,
+        "wordCount": 286
+      },
+      {
+        "id": "internet-connectivity-connecting-to-the-outside-world",
+        "title": "Internet Connectivity: Connecting to the Outside World",
+        "level": 2,
+        "wordCount": 159
+      },
+      {
+        "id": "ec2-instances-in-vpc-context",
+        "title": "EC2 Instances in VPC Context",
+        "level": 2,
+        "wordCount": 149
+      },
+      {
+        "id": "advanced-networking-concepts",
+        "title": "Advanced Networking Concepts",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "practical-vpc-architecture-example",
+        "title": "Practical VPC Architecture Example",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "traffic-flow-analysis",
+        "title": "Traffic Flow Analysis",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "best-practices-and-common-patterns",
+        "title": "Best Practices and Common Patterns",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "troubleshooting-network-connectivity",
+        "title": "Troubleshooting Network Connectivity",
+        "level": 2,
+        "wordCount": 11
+      },
+      {
+        "id": "conclusion-putting-it-all-together",
+        "title": "Conclusion: Putting It All Together",
+        "level": 2,
+        "wordCount": 132
+      }
+    ],
+    "totalWordCount": 1214,
+    "estimatedReadingTime": 300000,
+    "title": "vpc_networking_with_ec2_instances",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\placement_group_strategies_for_latency_sensitive_workloads.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\placement_group_strategies_for_latency_sensitive_workloads.md",
+    "sections": [
+      {
+        "id": "understanding-aws-ec2-placement-groups-for-latency-sensitive-workloads",
+        "title": "Understanding AWS EC2 Placement Groups for Latency-Sensitive Workloads",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "the-foundation-what-happens-when-your-application-needs-speed",
+        "title": "The Foundation: What Happens When Your Application Needs Speed",
+        "level": 2,
+        "wordCount": 83
+      },
+      {
+        "id": "first-principles-understanding-physical-infrastructure",
+        "title": "First Principles: Understanding Physical Infrastructure",
+        "level": 2,
+        "wordCount": 123
+      },
+      {
+        "id": "what-are-placement-groups",
+        "title": "What Are Placement Groups?",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "1-cluster-placement-groups-maximum-performance",
+        "title": "1. Cluster Placement Groups: Maximum Performance",
+        "level": 2,
+        "wordCount": 192
+      },
+      {
+        "id": "2-spread-placement-groups-maximum-reliability",
+        "title": "2. Spread Placement Groups: Maximum Reliability",
+        "level": 2,
+        "wordCount": 162
+      },
+      {
+        "id": "3-partition-placement-groups-balanced-approach",
+        "title": "3. Partition Placement Groups: Balanced Approach",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "advanced-strategies-for-latency-sensitive-workloads",
+        "title": "Advanced Strategies for Latency-Sensitive Workloads",
+        "level": 2,
+        "wordCount": 54
+      },
+      {
+        "id": "monitoring-and-measuring-placement-group-performance",
+        "title": "Monitoring and Measuring Placement Group Performance",
+        "level": 2,
+        "wordCount": 17
+      },
+      {
+        "id": "common-pitfalls-and-how-to-avoid-them",
+        "title": "Common Pitfalls and How to Avoid Them",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "cost-optimization-strategies",
+        "title": "Cost Optimization Strategies",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "best-practices-summary",
+        "title": "Best Practices Summary",
+        "level": 2,
+        "wordCount": 138
+      }
+    ],
+    "totalWordCount": 1031,
+    "estimatedReadingTime": 300000,
+    "title": "placement_group_strategies_for_latency_sensitive_workloads",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\multi_eni_architecture_patterns.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\multi_eni_architecture_patterns.md",
+    "sections": [
+      {
+        "id": "multi-eni-architecture-patterns-in-aws-ec2-a-deep-dive-from-first-principles",
+        "title": "Multi-ENI Architecture Patterns in AWS EC2: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "understanding-network-interfaces-the-foundation",
+        "title": "Understanding Network Interfaces: The Foundation",
+        "level": 2,
+        "wordCount": 145
+      },
+      {
+        "id": "the-single-eni-pattern-where-we-start",
+        "title": "The Single ENI Pattern: Where We Start",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "multi-eni-architecture-the-solution",
+        "title": "Multi-ENI Architecture: The Solution",
+        "level": 2,
+        "wordCount": 202
+      },
+      {
+        "id": "advanced-multi-eni-patterns",
+        "title": "Advanced Multi-ENI Patterns",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "security-considerations-and-best-practices",
+        "title": "Security Considerations and Best Practices",
+        "level": 2,
+        "wordCount": 37
+      },
+      {
+        "id": "operational-considerations",
+        "title": "Operational Considerations",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "troubleshooting-multi-eni-architectures",
+        "title": "Troubleshooting Multi-ENI Architectures",
+        "level": 2,
+        "wordCount": 115
+      }
+    ],
+    "totalWordCount": 739,
+    "estimatedReadingTime": 180000,
+    "title": "multi_eni_architecture_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\ipv6_implementation_strategies.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\ipv6_implementation_strategies.md",
+    "sections": [
+      {
+        "id": "what-is-ipv6-and-why-does-it-matter",
+        "title": "What is IPv6 and Why Does It Matter?",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "aws-ec2-ipv6-fundamentals",
+        "title": "AWS EC2 IPv6 Fundamentals",
+        "level": 2,
+        "wordCount": 176
+      },
+      {
+        "id": "core-ipv6-implementation-strategies",
+        "title": "Core IPv6 Implementation Strategies",
+        "level": 2,
+        "wordCount": 212
+      },
+      {
+        "id": "security-considerations-in-ipv6-implementation",
+        "title": "Security Considerations in IPv6 Implementation",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "load-balancer-ipv6-implementation",
+        "title": "Load Balancer IPv6 Implementation",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "monitoring-and-troubleshooting-ipv6",
+        "title": "Monitoring and Troubleshooting IPv6",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "advanced-ipv6-strategies",
+        "title": "Advanced IPv6 Strategies",
+        "level": 2,
+        "wordCount": 114
+      }
+    ],
+    "totalWordCount": 791,
+    "estimatedReadingTime": 240000,
+    "title": "ipv6_implementation_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\enhanced_networking_enablement_and_performance.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\enhanced_networking_enablement_and_performance.md",
+    "sections": [
+      {
+        "id": "enhanced-networking-in-aws-ec2-a-deep-dive-from-first-principles",
+        "title": "Enhanced Networking in AWS EC2: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 43
+      },
+      {
+        "id": "understanding-the-foundation-what-is-computer-networking",
+        "title": "Understanding the Foundation: What is Computer Networking?",
+        "level": 2,
+        "wordCount": 162
+      },
+      {
+        "id": "the-virtualization-challenge-why-traditional-networking-struggles",
+        "title": "The Virtualization Challenge: Why Traditional Networking Struggles",
+        "level": 2,
+        "wordCount": 196
+      },
+      {
+        "id": "enter-enhanced-networking-the-solution-from-first-principles",
+        "title": "Enter Enhanced Networking: The Solution from First Principles",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "sr-iov-hardware-level-virtualization",
+        "title": "SR-IOV: Hardware-Level Virtualization",
+        "level": 2,
+        "wordCount": 220
+      },
+      {
+        "id": "dpdk-kernel-bypass-technology",
+        "title": "DPDK: Kernel Bypass Technology",
+        "level": 2,
+        "wordCount": 189
+      },
+      {
+        "id": "aws-implementation-elastic-network-adapter-ena",
+        "title": "AWS Implementation: Elastic Network Adapter (ENA)",
+        "level": 2,
+        "wordCount": 87
+      },
+      {
+        "id": "performance-benefits-quantified",
+        "title": "Performance Benefits: Quantified",
+        "level": 2,
+        "wordCount": 111
+      },
+      {
+        "id": "enabling-enhanced-networking-step-by-step-guide",
+        "title": "Enabling Enhanced Networking: Step-by-Step Guide",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "advanced-configuration-and-optimization",
+        "title": "Advanced Configuration and Optimization",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "real-world-performance-testing",
+        "title": "Real-World Performance Testing",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "use-cases-where-enhanced-networking-shines",
+        "title": "Use Cases Where Enhanced Networking Shines",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "monitoring-and-troubleshooting",
+        "title": "Monitoring and Troubleshooting",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "cost-considerations-and-trade-offs",
+        "title": "Cost Considerations and Trade-offs",
+        "level": 2,
+        "wordCount": 82
+      },
+      {
+        "id": "future-directions-and-advanced-features",
+        "title": "Future Directions and Advanced Features",
+        "level": 2,
+        "wordCount": 139
+      }
+    ],
+    "totalWordCount": 1718,
+    "estimatedReadingTime": 420000,
+    "title": "enhanced_networking_enablement_and_performance",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\cross_az_networking_considerations_and_cost_optimization.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\networking_architecture\\cross_az_networking_considerations_and_cost_optimization.md",
+    "sections": [
+      {
+        "id": "cross-az-networking-in-aws-ec2-a-deep-dive-from-first-principles",
+        "title": "Cross-AZ Networking in AWS EC2: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "understanding-the-foundation-what-are-availability-zones",
+        "title": "Understanding the Foundation: What Are Availability Zones?",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "the-networking-reality-how-azs-connect",
+        "title": "The Networking Reality: How AZs Connect",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "the-network-performance-characteristics",
+        "title": "The Network Performance Characteristics",
+        "level": 2,
+        "wordCount": 126
+      },
+      {
+        "id": "the-cost-reality-data-transfer-charges",
+        "title": "The Cost Reality: Data Transfer Charges",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "architectural-patterns-for-cost-optimization",
+        "title": "Architectural Patterns for Cost Optimization",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "monitoring-and-observability",
+        "title": "Monitoring and Observability",
+        "level": 2,
+        "wordCount": 26
+      },
+      {
+        "id": "advanced-optimization-strategies",
+        "title": "Advanced Optimization Strategies",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "real-world-implementation-example",
+        "title": "Real-World Implementation Example",
+        "level": 2,
+        "wordCount": 33
+      },
+      {
+        "id": "understanding-the-implementation",
+        "title": "Understanding the Implementation",
+        "level": 2,
+        "wordCount": 151
+      },
+      {
+        "id": "infrastructure-patterns-for-cross-az-optimization",
+        "title": "Infrastructure Patterns for Cross-AZ Optimization",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "database-optimization-strategies",
+        "title": "Database Optimization Strategies",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "cost-monitoring-and-alerting",
+        "title": "Cost Monitoring and Alerting",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "best-practices-summary",
+        "title": "Best Practices Summary",
+        "level": 2,
+        "wordCount": 294
+      }
+    ],
+    "totalWordCount": 1164,
+    "estimatedReadingTime": 300000,
+    "title": "cross_az_networking_considerations_and_cost_optimization",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\storage_io_optimization_with_instance_storage.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\storage_io_optimization_with_instance_storage.md",
+    "sections": [
+      {
+        "id": "storage-io-optimization-with-instance-storage-in-aws-ec2-a-deep-dive-from-first-principles",
+        "title": "Storage I/O Optimization with Instance Storage in AWS EC2: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 63
+      },
+      {
+        "id": "understanding-storage-and-io-the-foundation",
+        "title": "Understanding Storage and I/O: The Foundation",
+        "level": 2,
+        "wordCount": 172
+      },
+      {
+        "id": "the-storage-hierarchy-understanding-the-layers",
+        "title": "The Storage Hierarchy: Understanding the Layers",
+        "level": 2,
+        "wordCount": 190
+      },
+      {
+        "id": "introduction-to-aws-and-ec2-the-cloud-context",
+        "title": "Introduction to AWS and EC2: The Cloud Context",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "ec2-storage-types-your-options-explained",
+        "title": "EC2 Storage Types: Your Options Explained",
+        "level": 2,
+        "wordCount": 198
+      },
+      {
+        "id": "understanding-io-characteristics-the-metrics-that-matter",
+        "title": "Understanding I/O Characteristics: The Metrics That Matter",
+        "level": 2,
+        "wordCount": 142
+      },
+      {
+        "id": "instance-store-optimization-getting-maximum-performance",
+        "title": "Instance Store Optimization: Getting Maximum Performance",
+        "level": 2,
+        "wordCount": 273
+      },
+      {
+        "id": "advanced-optimization-techniques",
+        "title": "Advanced Optimization Techniques",
+        "level": 2,
+        "wordCount": 79
+      },
+      {
+        "id": "monitoring-and-measurement-knowing-your-performance",
+        "title": "Monitoring and Measurement: Knowing Your Performance",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "real-world-optimization-example-high-performance-log-processing",
+        "title": "Real-World Optimization Example: High-Performance Log Processing",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "best-practices-summary",
+        "title": "Best Practices Summary",
+        "level": 2,
+        "wordCount": 219
+      }
+    ],
+    "totalWordCount": 1530,
+    "estimatedReadingTime": 420000,
+    "title": "storage_io_optimization_with_instance_storage",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\performance_tuning_for_specific_workloads.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\performance_tuning_for_specific_workloads.md",
+    "sections": [
+      {
+        "id": "performance-tuning-for-specific-workloads-in-aws-ec2-a-complete-guide-from-first-principles",
+        "title": "Performance Tuning for Specific Workloads in AWS EC2: A Complete Guide from First Principles",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "understanding-performance-from-first-principles",
+        "title": "Understanding Performance from First Principles",
+        "level": 2,
+        "wordCount": 172
+      },
+      {
+        "id": "what-is-aws-ec2-and-how-does-it-work",
+        "title": "What is AWS EC2 and How Does It Work?",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "understanding-different-workload-types",
+        "title": "Understanding Different Workload Types",
+        "level": 2,
+        "wordCount": 256
+      },
+      {
+        "id": "the-four-pillars-of-ec2-performance",
+        "title": "The Four Pillars of EC2 Performance",
+        "level": 2,
+        "wordCount": 434
+      },
+      {
+        "id": "instance-type-selection-matching-hardware-to-workload",
+        "title": "Instance Type Selection: Matching Hardware to Workload",
+        "level": 2,
+        "wordCount": 244
+      },
+      {
+        "id": "workload-specific-tuning-strategies",
+        "title": "Workload-Specific Tuning Strategies",
+        "level": 2,
+        "wordCount": 333
+      },
+      {
+        "id": "advanced-performance-tuning-techniques",
+        "title": "Advanced Performance Tuning Techniques",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "performance-monitoring-and-troubleshooting",
+        "title": "Performance Monitoring and Troubleshooting",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "cost-performance-optimization",
+        "title": "Cost-Performance Optimization",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "conclusion-building-a-performance-tuned-system",
+        "title": "Conclusion: Building a Performance-Tuned System",
+        "level": 2,
+        "wordCount": 199
+      }
+    ],
+    "totalWordCount": 1988,
+    "estimatedReadingTime": 480000,
+    "title": "performance_tuning_for_specific_workloads",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\network_performance_optimization_techniques.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\network_performance_optimization_techniques.md",
+    "sections": [
+      {
+        "id": "network-performance-optimization-in-aws-ec2-a-complete-guide",
+        "title": "Network Performance Optimization in AWS EC2: A Complete Guide",
+        "level": 1,
+        "wordCount": 42
+      },
+      {
+        "id": "understanding-network-performance-the-foundation",
+        "title": "Understanding Network Performance: The Foundation",
+        "level": 2,
+        "wordCount": 185
+      },
+      {
+        "id": "instance-types-and-their-network-capabilities",
+        "title": "Instance Types and Their Network Capabilities",
+        "level": 2,
+        "wordCount": 241
+      },
+      {
+        "id": "enhanced-networking-the-performance-game-changer",
+        "title": "Enhanced Networking: The Performance Game Changer",
+        "level": 2,
+        "wordCount": 246
+      },
+      {
+        "id": "placement-groups-strategic-instance-positioning",
+        "title": "Placement Groups: Strategic Instance Positioning",
+        "level": 2,
+        "wordCount": 217
+      },
+      {
+        "id": "network-interface-optimization",
+        "title": "Network Interface Optimization",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "operating-system-level-optimizations",
+        "title": "Operating System Level Optimizations",
+        "level": 2,
+        "wordCount": 228
+      },
+      {
+        "id": "monitoring-and-measuring-network-performance",
+        "title": "Monitoring and Measuring Network Performance",
+        "level": 2,
+        "wordCount": 162
+      },
+      {
+        "id": "advanced-optimization-techniques",
+        "title": "Advanced Optimization Techniques",
+        "level": 2,
+        "wordCount": 141
+      },
+      {
+        "id": "troubleshooting-network-performance-issues",
+        "title": "Troubleshooting Network Performance Issues",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "cost-optimization-considerations",
+        "title": "Cost Optimization Considerations",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "putting-it-all-together-a-complete-implementation",
+        "title": "Putting It All Together: A Complete Implementation",
+        "level": 2,
+        "wordCount": 161
+      }
+    ],
+    "totalWordCount": 1946,
+    "estimatedReadingTime": 480000,
+    "title": "network_performance_optimization_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\memory_allocation_and_numa_considerations.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\memory_allocation_and_numa_considerations.md",
+    "sections": [
+      {
+        "id": "memory-allocation-and-numa-considerations-in-aws-ec2-a-complete-guide-from-first-principles",
+        "title": "Memory Allocation and NUMA Considerations in AWS EC2: A Complete Guide from First Principles",
+        "level": 1,
+        "wordCount": 45
+      },
+      {
+        "id": "understanding-memory-the-foundation",
+        "title": "Understanding Memory: The Foundation",
+        "level": 2,
+        "wordCount": 348
+      },
+      {
+        "id": "enter-numa-when-memory-gets-complicated",
+        "title": "Enter NUMA: When Memory Gets Complicated",
+        "level": 2,
+        "wordCount": 272
+      },
+      {
+        "id": "aws-ec2-numa-in-the-cloud",
+        "title": "AWS EC2: NUMA in the Cloud",
+        "level": 2,
+        "wordCount": 381
+      },
+      {
+        "id": "performance-implications-the-real-world-impact",
+        "title": "Performance Implications: The Real-World Impact",
+        "level": 2,
+        "wordCount": 234
+      },
+      {
+        "id": "advanced-numa-considerations-in-ec2",
+        "title": "Advanced NUMA Considerations in EC2",
+        "level": 2,
+        "wordCount": 328
+      },
+      {
+        "id": "monitoring-and-troubleshooting-numa-issues",
+        "title": "Monitoring and Troubleshooting NUMA Issues",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "best-practices-and-optimization-strategies",
+        "title": "Best Practices and Optimization Strategies",
+        "level": 2,
+        "wordCount": 384
+      },
+      {
+        "id": "conclusion-mastering-numa-in-aws-ec2",
+        "title": "Conclusion: Mastering NUMA in AWS EC2",
+        "level": 2,
+        "wordCount": 383
+      }
+    ],
+    "totalWordCount": 2499,
+    "estimatedReadingTime": 600000,
+    "title": "memory_allocation_and_numa_considerations",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\gpu_and_specialized_hardware_acceleration.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\gpu_and_specialized_hardware_acceleration.md",
+    "sections": [
+      {
+        "id": "gpu-and-specialized-hardware-acceleration-in-aws-ec2-from-silicon-to-cloud",
+        "title": "GPU and Specialized Hardware Acceleration in AWS EC2: From Silicon to Cloud",
+        "level": 1,
+        "wordCount": 38
+      },
+      {
+        "id": "the-foundation-why-do-we-need-specialized-hardware",
+        "title": "The Foundation: Why Do We Need Specialized Hardware?",
+        "level": 2,
+        "wordCount": 210
+      },
+      {
+        "id": "graphics-processing-units-gpus-the-parallel-revolution",
+        "title": "Graphics Processing Units (GPUs): The Parallel Revolution",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "aws-ec2-gpu-instances-cloud-scale-acceleration",
+        "title": "AWS EC2 GPU Instances: Cloud-Scale Acceleration",
+        "level": 2,
+        "wordCount": 132
+      },
+      {
+        "id": "specialized-aws-accelerators-beyond-traditional-gpus",
+        "title": "Specialized AWS Accelerators: Beyond Traditional GPUs",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "memory-and-storage-architecture-the-performance-foundation",
+        "title": "Memory and Storage Architecture: The Performance Foundation",
+        "level": 2,
+        "wordCount": 22
+      },
+      {
+        "id": "performance-optimization-getting-maximum-value",
+        "title": "Performance Optimization: Getting Maximum Value",
+        "level": 2,
+        "wordCount": 45
+      },
+      {
+        "id": "real-world-implementation-patterns",
+        "title": "Real-World Implementation Patterns",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "future-directions-and-emerging-technologies",
+        "title": "Future Directions and Emerging Technologies",
+        "level": 2,
+        "wordCount": 42
+      },
+      {
+        "id": "conclusion-choosing-the-right-acceleration-strategy",
+        "title": "Conclusion: Choosing the Right Acceleration Strategy",
+        "level": 2,
+        "wordCount": 150
+      }
+    ],
+    "totalWordCount": 868,
+    "estimatedReadingTime": 240000,
+    "title": "gpu_and_specialized_hardware_acceleration",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\cpu_optimization_techniques.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\instance_optimization_strategies\\cpu_optimization_techniques.md",
+    "sections": [
+      {
+        "id": "cpu-optimization-techniques-in-aws-ec2-from-silicon-to-cloud-performance",
+        "title": "CPU Optimization Techniques in AWS EC2: From Silicon to Cloud Performance",
+        "level": 1,
+        "wordCount": 48
+      },
+      {
+        "id": "understanding-the-cpu-the-foundation",
+        "title": "Understanding the CPU: The Foundation",
+        "level": 2,
+        "wordCount": 173
+      },
+      {
+        "id": "processor-states-the-power-management-revolution",
+        "title": "Processor States: The Power Management Revolution",
+        "level": 2,
+        "wordCount": 342
+      },
+      {
+        "id": "turbo-boost-performance-when-you-need-it",
+        "title": "Turbo Boost: Performance When You Need It",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "aws-ec2-implementation-cloud-scale-cpu-optimization",
+        "title": "AWS EC2 Implementation: Cloud-Scale CPU Optimization",
+        "level": 2,
+        "wordCount": 146
+      },
+      {
+        "id": "monitoring-and-optimizing-cpu-performance-in-ec2",
+        "title": "Monitoring and Optimizing CPU Performance in EC2",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "advanced-topics-custom-silicon-and-future-directions",
+        "title": "Advanced Topics: Custom Silicon and Future Directions",
+        "level": 2,
+        "wordCount": 90
+      },
+      {
+        "id": "putting-it-all-together-a-complete-optimization-strategy",
+        "title": "Putting It All Together: A Complete Optimization Strategy",
+        "level": 2,
+        "wordCount": 339
+      }
+    ],
+    "totalWordCount": 1345,
+    "estimatedReadingTime": 360000,
+    "title": "cpu_optimization_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\spot_instance_interruption_handling_strategies.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\spot_instance_interruption_handling_strategies.md",
+    "sections": [
+      {
+        "id": "aws-ec2-spot-instance-interruption-handling-a-complete-journey-from-first-principles",
+        "title": "AWS EC2 Spot Instance Interruption Handling: A Complete Journey from First Principles",
+        "level": 1,
+        "wordCount": 41
+      },
+      {
+        "id": "understanding-the-foundation-what-are-ec2-instances",
+        "title": "Understanding the Foundation: What Are EC2 Instances?",
+        "level": 2,
+        "wordCount": 91
+      },
+      {
+        "id": "the-economics-behind-spot-instances",
+        "title": "The Economics Behind Spot Instances",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "the-interruption-process-how-it-actually-works",
+        "title": "The Interruption Process: How It Actually Works",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "detection-strategy-1-the-metadata-endpoint-approach",
+        "title": "Detection Strategy #1: The Metadata Endpoint Approach",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "detection-strategy-2-cloudwatch-events-integration",
+        "title": "Detection Strategy #2: CloudWatch Events Integration",
+        "level": 2,
+        "wordCount": 52
+      },
+      {
+        "id": "graceful-shutdown-strategy-1-application-level-handling",
+        "title": "Graceful Shutdown Strategy #1: Application-Level Handling",
+        "level": 2,
+        "wordCount": 118
+      },
+      {
+        "id": "infrastructure-strategy-1-auto-scaling-groups-with-mixed-instance-types",
+        "title": "Infrastructure Strategy #1: Auto Scaling Groups with Mixed Instance Types",
+        "level": 2,
+        "wordCount": 153
+      },
+      {
+        "id": "advanced-strategy-predictive-interruption-management",
+        "title": "Advanced Strategy: Predictive Interruption Management",
+        "level": 2,
+        "wordCount": 85
+      },
+      {
+        "id": "complete-integration-putting-it-all-together",
+        "title": "Complete Integration: Putting It All Together",
+        "level": 2,
+        "wordCount": 20
+      },
+      {
+        "id": "key-takeaways-and-best-practices",
+        "title": "Key Takeaways and Best Practices",
+        "level": 2,
+        "wordCount": 234
+      }
+    ],
+    "totalWordCount": 1097,
+    "estimatedReadingTime": 300000,
+    "title": "spot_instance_interruption_handling_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\mixed_instance_policies_and_allocation_strategies.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\mixed_instance_policies_and_allocation_strategies.md",
+    "sections": [
+      {
+        "id": "the-foundation-understanding-ec2-instance-types",
+        "title": "The Foundation: Understanding EC2 Instance Types",
+        "level": 2,
+        "wordCount": 101
+      },
+      {
+        "id": "the-problem-that-mixed-instance-policies-solve",
+        "title": "The Problem That Mixed Instance Policies Solve",
+        "level": 2,
+        "wordCount": 77
+      },
+      {
+        "id": "what-are-mixed-instance-policies",
+        "title": "What Are Mixed Instance Policies?",
+        "level": 2,
+        "wordCount": 142
+      },
+      {
+        "id": "understanding-allocation-strategies",
+        "title": "Understanding Allocation Strategies",
+        "level": 2,
+        "wordCount": 231
+      },
+      {
+        "id": "building-a-complete-mixed-instance-policy",
+        "title": "Building a Complete Mixed Instance Policy",
+        "level": 2,
+        "wordCount": 204
+      },
+      {
+        "id": "advanced-allocation-strategy-details",
+        "title": "Advanced Allocation Strategy Details",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "real-world-implementation-example",
+        "title": "Real-World Implementation Example",
+        "level": 2,
+        "wordCount": 75
+      },
+      {
+        "id": "decision-framework-choosing-your-strategy",
+        "title": "Decision Framework: Choosing Your Strategy",
+        "level": 2,
+        "wordCount": 143
+      }
+    ],
+    "totalWordCount": 1042,
+    "estimatedReadingTime": 300000,
+    "title": "mixed_instance_policies_and_allocation_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\launch_template_versioning_best_practices.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\launch_template_versioning_best_practices.md",
+    "sections": [
+      {
+        "id": "aws-ec2-launch-template-versioning-a-complete-guide-from-first-principles",
+        "title": "AWS EC2 Launch Template Versioning: A Complete Guide from First Principles",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "understanding-the-foundation-what-is-a-launch-template",
+        "title": "Understanding the Foundation: What is a Launch Template?",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "the-core-problem-that-versioning-solves",
+        "title": "The Core Problem That Versioning Solves",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "how-launch-template-versioning-actually-works",
+        "title": "How Launch Template Versioning Actually Works",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "fundamental-best-practices-building-your-strategy",
+        "title": "Fundamental Best Practices: Building Your Strategy",
+        "level": 2,
+        "wordCount": 113
+      },
+      {
+        "id": "advanced-versioning-patterns-and-strategies",
+        "title": "Advanced Versioning Patterns and Strategies",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "operational-best-practices-in-real-world-scenarios",
+        "title": "Operational Best Practices in Real-World Scenarios",
+        "level": 2,
+        "wordCount": 47
+      },
+      {
+        "id": "security-considerations-in-versioning",
+        "title": "Security Considerations in Versioning",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "troubleshooting-common-versioning-issues",
+        "title": "Troubleshooting Common Versioning Issues",
+        "level": 2,
+        "wordCount": 44
+      },
+      {
+        "id": "putting-it-all-together-a-complete-workflow",
+        "title": "Putting It All Together: A Complete Workflow",
+        "level": 2,
+        "wordCount": 102
+      }
+    ],
+    "totalWordCount": 796,
+    "estimatedReadingTime": 240000,
+    "title": "launch_template_versioning_best_practices",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\fleet_cost_optimization_strategies.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\fleet_cost_optimization_strategies.md",
+    "sections": [
+      {
+        "id": "ec2-auto-scaling-implementation-patterns-a-deep-dive-from-first-principles",
+        "title": "EC2 Auto Scaling Implementation Patterns: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 35
+      },
+      {
+        "id": "understanding-the-core-problem",
+        "title": "Understanding the Core Problem",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "the-first-principle-elasticity",
+        "title": "The First Principle: Elasticity",
+        "level": 2,
+        "wordCount": 64
+      },
+      {
+        "id": "essential-components-the-building-blocks",
+        "title": "Essential Components: The Building Blocks",
+        "level": 2,
+        "wordCount": 222
+      },
+      {
+        "id": "implementation-patterns-from-simple-to-sophisticated",
+        "title": "Implementation Patterns: From Simple to Sophisticated",
+        "level": 2,
+        "wordCount": 167
+      },
+      {
+        "id": "advanced-implementation-patterns",
+        "title": "Advanced Implementation Patterns",
+        "level": 2,
+        "wordCount": 124
+      },
+      {
+        "id": "best-practices-and-considerations",
+        "title": "Best Practices and Considerations",
+        "level": 2,
+        "wordCount": 50
+      },
+      {
+        "id": "mobile-optimized-architecture-diagram",
+        "title": "Mobile-Optimized Architecture Diagram",
+        "level": 2,
+        "wordCount": 3
+      },
+      {
+        "id": "common-pitfalls-and-solutions",
+        "title": "Common Pitfalls and Solutions",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "cost-optimization-strategies",
+        "title": "Cost Optimization Strategies",
+        "level": 2,
+        "wordCount": 129
+      }
+    ],
+    "totalWordCount": 1006,
+    "estimatedReadingTime": 300000,
+    "title": "fleet_cost_optimization_strategies",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\capacity_reservation_management_techniques.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\capacity_reservation_management_techniques.md",
+    "sections": [
+      {
+        "id": "aws-fleet-capacity-reservation-management-a-deep-dive-from-first-principles",
+        "title": "AWS Fleet Capacity Reservation Management: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 36
+      },
+      {
+        "id": "understanding-the-foundation-what-is-capacity-and-why-does-it-matter",
+        "title": "Understanding the Foundation: What is Capacity and Why Does it Matter?",
+        "level": 2,
+        "wordCount": 140
+      },
+      {
+        "id": "first-principles-of-capacity-reservations",
+        "title": "First Principles of Capacity Reservations",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "types-of-capacity-reservations-understanding-your-options",
+        "title": "Types of Capacity Reservations: Understanding Your Options",
+        "level": 2,
+        "wordCount": 92
+      },
+      {
+        "id": "fleet-management-techniques-the-strategic-layer",
+        "title": "Fleet Management Techniques: The Strategic Layer",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "advanced-management-patterns",
+        "title": "Advanced Management Patterns",
+        "level": 2,
+        "wordCount": 46
+      },
+      {
+        "id": "cost-optimization-strategies",
+        "title": "Cost Optimization Strategies",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "monitoring-and-alerting-framework",
+        "title": "Monitoring and Alerting Framework",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "terminal-visualization-for-mobile",
+        "title": "Terminal Visualization for Mobile",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "key-takeaways-and-best-practices",
+        "title": "Key Takeaways and Best Practices",
+        "level": 2,
+        "wordCount": 185
+      }
+    ],
+    "totalWordCount": 798,
+    "estimatedReadingTime": 240000,
+    "title": "capacity_reservation_management_techniques",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\auto_scaling_implementation_patterns.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\fleet_management\\auto_scaling_implementation_patterns.md",
+    "sections": [
+      {
+        "id": "aws-fleet-cost-optimization-a-complete-guide-from-first-principles",
+        "title": "AWS Fleet Cost Optimization: A Complete Guide from First Principles",
+        "level": 1,
+        "wordCount": 37
+      },
+      {
+        "id": "understanding-aws-fleet-the-foundation",
+        "title": "Understanding AWS Fleet: The Foundation",
+        "level": 2,
+        "wordCount": 152
+      },
+      {
+        "id": "the-anatomy-of-aws-fleet-costs",
+        "title": "The Anatomy of AWS Fleet Costs",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "first-principles-of-cost-optimization",
+        "title": "First Principles of Cost Optimization",
+        "level": 2,
+        "wordCount": 132
+      },
+      {
+        "id": "strategic-cost-optimization-techniques",
+        "title": "Strategic Cost Optimization Techniques",
+        "level": 2,
+        "wordCount": 116
+      },
+      {
+        "id": "advanced-optimization-techniques",
+        "title": "Advanced Optimization Techniques",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "monitoring-and-continuous-optimization",
+        "title": "Monitoring and Continuous Optimization",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "practical-implementation-roadmap",
+        "title": "Practical Implementation Roadmap",
+        "level": 2,
+        "wordCount": 127
+      },
+      {
+        "id": "key-success-metrics",
+        "title": "Key Success Metrics",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 807,
+    "estimatedReadingTime": 240000,
+    "title": "auto_scaling_implementation_patterns",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\nitro_system_architecture_and_performance_characteristics.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\nitro_system_architecture_and_performance_characteristics.md",
+    "sections": [
+      {
+        "id": "aws-ec2-nitro-system-a-deep-dive-from-first-principles",
+        "title": "AWS EC2 Nitro System: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 43
+      },
+      {
+        "id": "understanding-the-foundation-what-is-virtualization",
+        "title": "Understanding the Foundation: What is Virtualization?",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "the-traditional-problem-software-based-virtualization-overhead",
+        "title": "The Traditional Problem: Software-Based Virtualization Overhead",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "enter-the-nitro-system-hardware-accelerated-virtualization",
+        "title": "Enter the Nitro System: Hardware-Accelerated Virtualization",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "nitro-system-architecture-the-three-pillars",
+        "title": "Nitro System Architecture: The Three Pillars",
+        "level": 2,
+        "wordCount": 235
+      },
+      {
+        "id": "performance-characteristics-where-the-magic-happens",
+        "title": "Performance Characteristics: Where the Magic Happens",
+        "level": 2,
+        "wordCount": 157
+      },
+      {
+        "id": "deep-dive-how-nitro-cards-work",
+        "title": "Deep Dive: How Nitro Cards Work",
+        "level": 2,
+        "wordCount": 130
+      },
+      {
+        "id": "memory-architecture-large-instance-support",
+        "title": "Memory Architecture: Large Instance Support",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "security-architecture-defense-in-depth",
+        "title": "Security Architecture: Defense in Depth",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "performance-comparison-real-world-impact",
+        "title": "Performance Comparison: Real-World Impact",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "instance-types-and-nitro-generations",
+        "title": "Instance Types and Nitro Generations",
+        "level": 2,
+        "wordCount": 122
+      },
+      {
+        "id": "practical-implementation-considerations",
+        "title": "Practical Implementation Considerations",
+        "level": 2,
+        "wordCount": 35
+      },
+      {
+        "id": "future-implications-and-evolution",
+        "title": "Future Implications and Evolution",
+        "level": 2,
+        "wordCount": 88
+      },
+      {
+        "id": "conclusion-the-nitro-advantage",
+        "title": "Conclusion: The Nitro Advantage",
+        "level": 2,
+        "wordCount": 127
+      }
+    ],
+    "totalWordCount": 1409,
+    "estimatedReadingTime": 360000,
+    "title": "nitro_system_architecture_and_performance_characteristics",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\instance_types_and_underlying_hardware_architecture.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\instance_types_and_underlying_hardware_architecture.md",
+    "sections": [
+      {
+        "id": "aws-ec2-instance-types-and-underlying-hardware-architecture",
+        "title": "AWS EC2 Instance Types and Underlying Hardware Architecture",
+        "level": 1,
+        "wordCount": 32
+      },
+      {
+        "id": "what-is-an-ec2-instance-at-its-core",
+        "title": "What is an EC2 Instance at Its Core?",
+        "level": 2,
+        "wordCount": 139
+      },
+      {
+        "id": "the-foundation-understanding-physical-hardware-components",
+        "title": "The Foundation: Understanding Physical Hardware Components",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "aws-ec2-instance-families-the-big-picture",
+        "title": "AWS EC2 Instance Families: The Big Picture",
+        "level": 2,
+        "wordCount": 358
+      },
+      {
+        "id": "the-underlying-hardware-architecture",
+        "title": "The Underlying Hardware Architecture",
+        "level": 2,
+        "wordCount": 390
+      },
+      {
+        "id": "choosing-the-right-instance-type-a-practical-framework",
+        "title": "Choosing the Right Instance Type: A Practical Framework",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "performance-optimization-strategies",
+        "title": "Performance Optimization Strategies",
+        "level": 2,
+        "wordCount": 30
+      },
+      {
+        "id": "cost-optimization-through-architecture-understanding",
+        "title": "Cost Optimization Through Architecture Understanding",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "monitoring-and-right-sizing",
+        "title": "Monitoring and Right-Sizing",
+        "level": 2,
+        "wordCount": 134
+      }
+    ],
+    "totalWordCount": 1324,
+    "estimatedReadingTime": 360000,
+    "title": "instance_types_and_underlying_hardware_architecture",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\instance_lifecycle_state_management.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\instance_lifecycle_state_management.md",
+    "sections": [
+      {
+        "id": "understanding-the-foundation-what-is-instance-state",
+        "title": "Understanding the Foundation: What Is Instance State?",
+        "level": 2,
+        "wordCount": 178
+      },
+      {
+        "id": "the-complete-ec2-instance-lifecycle-states",
+        "title": "The Complete EC2 Instance Lifecycle States",
+        "level": 2,
+        "wordCount": 770
+      },
+      {
+        "id": "state-transitions-the-flow-of-instance-life",
+        "title": "State Transitions: The Flow of Instance Life",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "advanced-state-management-concepts",
+        "title": "Advanced State Management Concepts",
+        "level": 2,
+        "wordCount": 69
+      },
+      {
+        "id": "best-practices-for-state-management",
+        "title": "Best Practices for State Management",
+        "level": 2,
+        "wordCount": 31
+      },
+      {
+        "id": "summary-mastering-ec2-instance-lifecycle",
+        "title": "Summary: Mastering EC2 Instance Lifecycle",
+        "level": 2,
+        "wordCount": 131
+      }
+    ],
+    "totalWordCount": 1211,
+    "estimatedReadingTime": 300000,
+    "title": "instance_lifecycle_state_management",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\hypervisor_technology_and_virtualization_implementation.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\hypervisor_technology_and_virtualization_implementation.md",
+    "sections": [
+      {
+        "id": "understanding-hypervisor-technology-and-aws-ec2-virtualization",
+        "title": "Understanding Hypervisor Technology and AWS EC2 Virtualization",
+        "level": 1,
+        "wordCount": 34
+      },
+      {
+        "id": "what-is-virtualization-starting-from-the-ground-up",
+        "title": "What is Virtualization? Starting from the Ground Up",
+        "level": 2,
+        "wordCount": 138
+      },
+      {
+        "id": "the-role-of-the-hypervisor-the-master-orchestrator",
+        "title": "The Role of the Hypervisor: The Master Orchestrator",
+        "level": 2,
+        "wordCount": 115
+      },
+      {
+        "id": "types-of-hypervisors-two-fundamental-approaches",
+        "title": "Types of Hypervisors: Two Fundamental Approaches",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "aws-ec2s-hypervisor-implementation-the-nitro-system",
+        "title": "AWS EC2's Hypervisor Implementation: The Nitro System",
+        "level": 2,
+        "wordCount": 184
+      },
+      {
+        "id": "deep-dive-how-virtual-machines-actually-work",
+        "title": "Deep Dive: How Virtual Machines Actually Work",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "aws-ec2-instance-types-and-their-hypervisor-relationship",
+        "title": "AWS EC2 Instance Types and Their Hypervisor Relationship",
+        "level": 2,
+        "wordCount": 106
+      },
+      {
+        "id": "security-in-virtualized-environments",
+        "title": "Security in Virtualized Environments",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "live-migration-moving-virtual-machines",
+        "title": "Live Migration: Moving Virtual Machines",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "networking-in-virtualized-environments",
+        "title": "Networking in Virtualized Environments",
+        "level": 2,
+        "wordCount": 32
+      },
+      {
+        "id": "storage-virtualization-in-ec2",
+        "title": "Storage Virtualization in EC2",
+        "level": 2,
+        "wordCount": 57
+      },
+      {
+        "id": "performance-considerations-and-optimizations",
+        "title": "Performance Considerations and Optimizations",
+        "level": 2,
+        "wordCount": 56
+      },
+      {
+        "id": "monitoring-and-management",
+        "title": "Monitoring and Management",
+        "level": 2,
+        "wordCount": 28
+      },
+      {
+        "id": "the-future-of-virtualization",
+        "title": "The Future of Virtualization",
+        "level": 2,
+        "wordCount": 162
+      }
+    ],
+    "totalWordCount": 1259,
+    "estimatedReadingTime": 360000,
+    "title": "hypervisor_technology_and_virtualization_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\ec2_networking_implementation.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\ec2_networking_implementation.md",
+    "sections": [
+      {
+        "id": "aws-ec2-networking-from-silicon-to-software",
+        "title": "AWS EC2 Networking: From Silicon to Software",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "understanding-the-foundation-what-is-computer-networking",
+        "title": "Understanding the Foundation: What is Computer Networking?",
+        "level": 2,
+        "wordCount": 161
+      },
+      {
+        "id": "the-traditional-server-networking-challenge",
+        "title": "The Traditional Server Networking Challenge",
+        "level": 2,
+        "wordCount": 158
+      },
+      {
+        "id": "enter-aws-ec2-the-virtualization-challenge",
+        "title": "Enter AWS EC2: The Virtualization Challenge",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "awss-first-solution-enhanced-networking-with-sr-iov",
+        "title": "AWS's First Solution: Enhanced Networking with SR-IOV",
+        "level": 2,
+        "wordCount": 120
+      },
+      {
+        "id": "the-eni-elastic-network-interface",
+        "title": "The ENI: Elastic Network Interface",
+        "level": 2,
+        "wordCount": 141
+      },
+      {
+        "id": "the-evolution-to-ena-elastic-network-adapter",
+        "title": "The Evolution to ENA: Elastic Network Adapter",
+        "level": 2,
+        "wordCount": 147
+      },
+      {
+        "id": "the-nitro-revolution-hardware-accelerated-virtualization",
+        "title": "The Nitro Revolution: Hardware-Accelerated Virtualization",
+        "level": 2,
+        "wordCount": 166
+      },
+      {
+        "id": "security-in-nitro-networking",
+        "title": "Security in Nitro Networking",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "performance-implications-real-world-impact",
+        "title": "Performance Implications: Real-World Impact",
+        "level": 2,
+        "wordCount": 15
+      },
+      {
+        "id": "advanced-nitro-features-placement-groups-and-enhanced-networking",
+        "title": "Advanced Nitro Features: Placement Groups and Enhanced Networking",
+        "level": 2,
+        "wordCount": 62
+      },
+      {
+        "id": "monitoring-and-troubleshooting-nitro-networking",
+        "title": "Monitoring and Troubleshooting Nitro Networking",
+        "level": 2,
+        "wordCount": 14
+      },
+      {
+        "id": "the-mobile-optimized-network-flow-diagram",
+        "title": "The Mobile-Optimized Network Flow Diagram",
+        "level": 2,
+        "wordCount": 5
+      },
+      {
+        "id": "key-takeaways-and-best-practices",
+        "title": "Key Takeaways and Best Practices",
+        "level": 2,
+        "wordCount": 199
+      }
+    ],
+    "totalWordCount": 1392,
+    "estimatedReadingTime": 360000,
+    "title": "ec2_networking_implementation",
+    "frontmatter": {}
+  },
+  "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\ami_internals_and_storage_backing_mechanisms.md": {
+    "path": "public\\content\\aws\\compute_services\\aws_ec2\\architecture_and_internals\\ami_internals_and_storage_backing_mechanisms.md",
+    "sections": [
+      {
+        "id": "aws-ami-internals-and-storage-backing-mechanisms-a-deep-dive-from-first-principles",
+        "title": "AWS AMI Internals and Storage Backing Mechanisms: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 53
+      },
+      {
+        "id": "what-is-an-ami-starting-from-the-ground-up",
+        "title": "What is an AMI? Starting from the Ground Up",
+        "level": 2,
+        "wordCount": 165
+      },
+      {
+        "id": "the-fundamental-storage-architecture",
+        "title": "The Fundamental Storage Architecture",
+        "level": 2,
+        "wordCount": 190
+      },
+      {
+        "id": "ebs-backed-amis-the-primary-storage-mechanism",
+        "title": "EBS-Backed AMIs: The Primary Storage Mechanism",
+        "level": 2,
+        "wordCount": 264
+      },
+      {
+        "id": "instance-store-backed-amis-the-alternative-approach",
+        "title": "Instance Store-Backed AMIs: The Alternative Approach",
+        "level": 2,
+        "wordCount": 137
+      },
+      {
+        "id": "storage-performance-characteristics",
+        "title": "Storage Performance Characteristics",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "advanced-ami-features-and-mechanisms",
+        "title": "Advanced AMI Features and Mechanisms",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "practical-implications-and-best-practices",
+        "title": "Practical Implications and Best Practices",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 1063,
+    "estimatedReadingTime": 300000,
+    "title": "ami_internals_and_storage_backing_mechanisms",
     "frontmatter": {}
   },
   "public\\content\\aws\\application_integration_services\\swf_for_human_in_the_loop_workflows.md": {

@@ -1,5 +1,10 @@
 [
   {
+    "id": "algorithms",
+    "name": "Algorithms",
+    "categories": []
+  },
+  {
     "id": "aws",
     "name": "Aws",
     "categories": [
@@ -12,6 +17,57 @@
         "id": "compute_services",
         "name": "Compute Services",
         "categories": [
+          {
+            "id": "aws_ec2",
+            "name": "Aws Ec2",
+            "categories": [
+              {
+                "id": "architecture_and_internals",
+                "name": "Architecture And Internals",
+                "categories": []
+              },
+              {
+                "id": "fleet_management",
+                "name": "Fleet Management",
+                "categories": []
+              },
+              {
+                "id": "instance_optimization_strategies",
+                "name": "Instance Optimization Strategies",
+                "categories": []
+              },
+              {
+                "id": "networking_architecture",
+                "name": "Networking Architecture",
+                "categories": []
+              },
+              {
+                "id": "operational_patterns",
+                "name": "Operational Patterns",
+                "categories": []
+              },
+              {
+                "id": "storage_integration_patterns",
+                "name": "Storage Integration Patterns",
+                "categories": []
+              }
+            ]
+          },
+          {
+            "id": "aws_ecs",
+            "name": "Aws Ecs",
+            "categories": []
+          },
+          {
+            "id": "aws_eks",
+            "name": "Aws Eks",
+            "categories": []
+          },
+          {
+            "id": "aws_lambda",
+            "name": "Aws Lambda",
+            "categories": []
+          },
           {
             "id": "overview",
             "name": "Overview",
@@ -44,6 +100,11 @@
         "id": "database_services",
         "name": "Database Services",
         "categories": [
+          {
+            "id": "aws_aurora",
+            "name": "Aws Aurora",
+            "categories": []
+          },
           {
             "id": "aws_dynamodb",
             "name": "Aws Dynamodb",
@@ -79,6 +140,11 @@
                 "categories": []
               }
             ]
+          },
+          {
+            "id": "aws_rds",
+            "name": "Aws Rds",
+            "categories": []
           },
           {
             "id": "overview",
@@ -121,6 +187,11 @@
         "id": "storage",
         "name": "Storage",
         "categories": [
+          {
+            "id": "aws_ebs",
+            "name": "Aws Ebs",
+            "categories": []
+          },
           {
             "id": "aws_s3",
             "name": "Aws S3",
@@ -188,6 +259,11 @@
       {
         "id": "layout",
         "name": "Layout",
+        "categories": []
+      },
+      {
+        "id": "modern_css",
+        "name": "Modern Css",
         "categories": []
       },
       {
@@ -838,6 +914,21 @@
         "categories": []
       },
       {
+        "id": "advanced_python_constructs",
+        "name": "Advanced Python Constructs",
+        "categories": []
+      },
+      {
+        "id": "asynchronous_programming",
+        "name": "Asynchronous Programming",
+        "categories": []
+      },
+      {
+        "id": "concurrent_programming",
+        "name": "Concurrent Programming",
+        "categories": []
+      },
+      {
         "id": "core_data_structures",
         "name": "Core Data Structures",
         "categories": []
@@ -845,6 +936,11 @@
       {
         "id": "files_and_io_operations",
         "name": "Files And Io Operations",
+        "categories": []
+      },
+      {
+        "id": "functional_programming",
+        "name": "Functional Programming",
         "categories": []
       },
       {
@@ -1063,12 +1159,27 @@
     ]
   },
   {
+    "id": "rust",
+    "name": "Rust",
+    "categories": []
+  },
+  {
     "id": "tailwind",
     "name": "Tailwind",
     "categories": [
       {
+        "id": "flexbox",
+        "name": "Flexbox",
+        "categories": []
+      },
+      {
         "id": "fundamentals",
         "name": "Fundamentals",
+        "categories": []
+      },
+      {
+        "id": "grid",
+        "name": "Grid",
         "categories": []
       },
       {

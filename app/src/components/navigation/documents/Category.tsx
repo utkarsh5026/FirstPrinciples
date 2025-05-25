@@ -1,11 +1,12 @@
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import {
   BookMarked,
   CheckCircle,
   ChevronRight,
   Clock,
-  Folder,
+  Layers,
+  Clock4,
+  Files,
 } from "lucide-react";
 import { Category as CategoryType } from "@/services/document";
 import { getIconForTech } from "@/components/shared/icons/iconMap";
@@ -45,11 +46,16 @@ const Category: React.FC<CategoryProps> = ({
       ? getIconForTech(category.name)
       : () => getTopicIcon(`${parentCategory ?? ""}>${category.name}`);
 
-  const { completedFilesCount, todoFilesCount, readFilesCount } = stats;
+  const { todoFilesCount, readFilesCount } = stats;
 
   // Get subcategories count
   const subcategoriesCount = category.categories?.length ?? 0;
   console.log(parentCategory);
+
+  // Check if this is an empty category (no files and no subcategories)
+  const isEmptyCategory =
+    (category.fileCount === 0 || category.fileCount === undefined) &&
+    subcategoriesCount === 0;
 
   return (
     <div className="my-1.5 px-1">
@@ -101,7 +107,7 @@ const Category: React.FC<CategoryProps> = ({
         <div className="flex items-center gap-1.5">
           {subcategoriesCount > 0 && (
             <div className="flex items-center  px-1.5 py-0.5 rounded-full">
-              <Folder size={12} className="text-blue-400 mr-0.5" />
+              <Layers size={12} className="text-blue-400 mr-0.5" />
               <span className="text-xs text-blue-400 font-medium">
                 {subcategoriesCount}
               </span>
@@ -126,7 +132,7 @@ const Category: React.FC<CategoryProps> = ({
             </div>
           )}
 
-          {readFilesCount > 0 && readFilesCount !== completedFilesCount && (
+          {readFilesCount > 0 && (
             <div className="flex items-center  px-1.5 py-0.5 rounded-full">
               <Clock size={12} className="text-green-200 mr-0.5" />
               <span className="text-xs text-green-200 font-medium">
@@ -135,13 +141,24 @@ const Category: React.FC<CategoryProps> = ({
             </div>
           )}
 
-          {/* Total files counter */}
-          <Badge
-            variant="secondary"
-            className="text-xs bg-secondary/40 ml-1 px-2 py-0.5 h-5 rounded-full text-muted-foreground"
-          >
-            {category.fileCount}
-          </Badge>
+          {/* Coming Soon badge for empty categories */}
+          {isEmptyCategory && (
+            <div className="flex items-center bg-amber-500/10 px-1.5 py-0.5 rounded-full">
+              <Clock4 size={12} className="text-amber-500 mr-0.5" />
+              <span className="text-xs text-amber-500 font-medium">
+                Coming Soon
+              </span>
+            </div>
+          )}
+
+          {category.files && category.files.length > 0 && (
+            <div className="flex items-center bg-secondary/40 px-1.5 py-0.5 rounded-full">
+              <Files size={12} className="text-muted-foreground mr-0.5" />
+              <span className="text-xs text-muted-foreground font-medium">
+                {category.files.length}
+              </span>
+            </div>
+          )}
         </div>
       </button>
     </div>

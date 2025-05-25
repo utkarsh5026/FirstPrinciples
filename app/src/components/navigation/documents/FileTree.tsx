@@ -99,7 +99,7 @@ const FileTree: React.FC<FileTreeProps> = memo(
         </CollapsibleTrigger>
 
         <CollapsibleContent asChild>
-          {isExpanded ? (
+          {isExpanded || category.categories === undefined ? (
             <div className="overflow-hidden pl-4">
               {category.categories?.map((subcategory) => (
                 <FileTree

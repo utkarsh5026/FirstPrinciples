@@ -19,12 +19,13 @@ import {
   SiCss3,
   SiTailwindcss,
   SiGraphql,
+  SiRust,
+  SiThealgorithms,
 } from "react-icons/si";
 import { FiFolder, FiPackage } from "react-icons/fi";
 import { FaAws } from "react-icons/fa";
 import { IconType } from "react-icons";
 
-// Map of technology/language names to their corresponding icons
 export const iconMap: Record<string, IconType> = {
   python: SiPython,
   javascript: SiJavascript,
@@ -33,6 +34,7 @@ export const iconMap: Record<string, IconType> = {
   ts: SiTypescript,
   go: SiGo,
   golang: SiGo,
+  rust: SiRust,
 
   // Frontend Frameworks/Libraries
   react: SiReact,
@@ -62,6 +64,7 @@ export const iconMap: Record<string, IconType> = {
   tailwind: SiTailwindcss,
   graphql: SiGraphql,
   design_patterns: FiPackage,
+  algorithms: SiThealgorithms,
 };
 
 /**
