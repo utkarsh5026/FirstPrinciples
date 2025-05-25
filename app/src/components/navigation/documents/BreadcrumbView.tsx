@@ -8,13 +8,12 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { ChevronRight, Home } from "lucide-react";
-import getIconForTech from "@/components/shared/icons";
 import getTopicIcon from "@/components/shared/icons/topicIcon";
 import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface BreadCrumbViewProps {
   onBreadCrubClick: (index: number) => void;
-  breadcrumbs: { id: string; name: string }[];
+  breadcrumbs: { id: string; name: string; path: string }[];
 }
 
 const BreadcrumbView: React.FC<BreadCrumbViewProps> = ({
@@ -42,17 +41,7 @@ const BreadcrumbView: React.FC<BreadCrumbViewProps> = ({
         </BreadcrumbItem>
 
         {crumbs.map((crumb, index) => {
-          // Use the app's existing icon system
-          const CrumbIcon =
-            index === 0
-              ? getIconForTech(crumb.id)
-              : () =>
-                  getTopicIcon(
-                    breadcrumbs
-                      .slice(0, index + 1)
-                      .map((c) => c.name)
-                      .join(">")
-                  );
+          const icon = getTopicIcon(crumb.path);
 
           return (
             <React.Fragment key={crumb.id}>
@@ -62,9 +51,7 @@ const BreadcrumbView: React.FC<BreadCrumbViewProps> = ({
               <BreadcrumbItem>
                 {index === breadcrumbs.length - 1 ? (
                   <BreadcrumbPage className="flex items-center cursor-pointer">
-                    <div className="mr-1.5 text-primary text-xs">
-                      <CrumbIcon size={14} />
-                    </div>
+                    <div className="mr-1.5 text-primary text-xs">{icon}</div>
                     <span className="font-medium text-xs">{crumb.name}</span>
                   </BreadcrumbPage>
                 ) : (
@@ -72,9 +59,7 @@ const BreadcrumbView: React.FC<BreadCrumbViewProps> = ({
                     onClick={() => onBreadCrubClick(index)}
                     className="flex items-center hover:text-primary cursor-pointer"
                   >
-                    <div className="mr-1.5">
-                      <CrumbIcon size={14} />
-                    </div>
+                    <div className="mr-1.5">{icon}</div>
                     <span className="text-xs">{crumb.name}</span>
                   </BreadcrumbLink>
                 )}

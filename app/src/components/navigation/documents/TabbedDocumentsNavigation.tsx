@@ -99,19 +99,22 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
     (pathSegments: string[]) => {
       setCurrentPathSegments(pathSegments);
 
-      let category: Document | null = null;
-      let currentCategories = docs;
-      for (const segment of pathSegments) {
-        const found = currentCategories.find((cat) => cat.id === segment);
-        if (found) {
-          category = found;
-          currentCategories = found.documents || [];
-        } else {
-          category = null;
-          break;
-        }
-      }
+      const findCategory = (
+        segments: string[],
+        categories: Document[]
+      ): Document | null => {
+        if (segments.length === 0) return null;
 
+        const segment = segments[0];
+        const found = categories.find((cat) => cat.id === segment);
+
+        if (!found) return null;
+        if (segments.length === 1) return found;
+
+        return findCategory(segments.slice(1), found.documents || []);
+      };
+
+      const category = findCategory(pathSegments, docs);
       setCurrentCategory(category);
     },
     [docs]
@@ -187,16 +190,16 @@ const TabbedDocumentNavigation: React.FC<TabbedDocumentNavigationProps> = ({
    * 🗺️ Generates breadcrumb trail for current location
    */
   const breadcrumbs = useMemo(() => {
-    const result: { id: string; name: string }[] = [];
+    const result: { id: string; name: string; path: string }[] = [];
 
     let currentCategories = docs;
 
     for (const segment of currentPathSegments) {
       const category = currentCategories.find((cat) => cat.id === segment);
       if (category) {
-        result.push({ id: segment, name: category.name });
+        result.push({ id: segment, name: category.name, path: category.path });
         currentCategories = category.documents || [];
-      } else result.push({ id: segment, name: segment });
+      } else result.push({ id: segment, name: segment, path: segment });
     }
 
     return result;
