@@ -272,6 +272,25 @@ const FullscreenCardView: React.FC<
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  /**
+   * 🔙 Handle browser back button to exit fullscreen
+   * When user presses browser back button, we want to exit fullscreen
+   * just like clicking the exit button
+   */
+  useEffect(() => {
+    window.history.pushState({ fullscreen: true }, "");
+
+    const handlePopState = () => {
+      exitFullScreen();
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [exitFullScreen]);
+
   return (
     <ReadingSettingsProvider>
       <div className={cn("fixed inset-0 z-50 bg-background flex flex-col")}>
