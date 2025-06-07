@@ -36,25 +36,25 @@ import {
 import { BsTree, BsDiagram3, BsGrid, BsGraphUp } from "react-icons/bs";
 import { GiStack } from "react-icons/gi";
 import { AiOutlinePartition, AiOutlineNodeIndex } from "react-icons/ai";
+import { TbNavigationSearch } from "react-icons/tb";
 import { IconMapping } from "./types";
 
 export const dataStructureMappings: IconMapping[] = [
-  // Trees
   {
     keywords: ["binary tree", "btree", "b-tree"],
     icon: (props: LucideProps) => <Binary {...props} />,
-  },
-  {
-    keywords: ["avl tree", "avl"],
-    icon: (props: LucideProps) => <BsTree {...props} />,
-    isReactIcon: true,
   },
   {
     keywords: ["red black tree", "red-black"],
     icon: (props: LucideProps) => <TreePine {...props} />,
   },
   {
-    keywords: ["binary search trees", "tree", "bst"],
+    keywords: ["binary search trees"],
+    icon: (props: LucideProps) => <TbNavigationSearch {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["tree"],
     icon: (props: LucideProps) => <BsTree {...props} />,
     isReactIcon: true,
   },
