@@ -433,6 +433,44 @@
                 }
               ],
               "totalFileSize": 0
+            },
+            {
+              "id": "tree_traversal_patterns",
+              "name": "Tree Traversal Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/boundary_traversal_of_binary_trees.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/custom_traversal_orders_for_specific_problems.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/level_order_traversal_variations.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/morris_traversal_for_constant_space.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/recursive_vs_iterative_traversal_implementations.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/threaded_binary_tree_traversals.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/tree_traversal_for_expression_evaluation.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/tree_traversal_space_and_time_complexity.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/tree_traversal_with_parent_pointers.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/vertical_and_diagonal_tree_traversals.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
           "files": [],

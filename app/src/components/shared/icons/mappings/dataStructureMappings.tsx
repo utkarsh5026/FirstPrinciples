@@ -33,13 +33,17 @@ import {
   FaSortAmountDown,
   FaRoute,
 } from "react-icons/fa";
-import { BsTree, BsDiagram3, BsGrid, BsGraphUp } from "react-icons/bs";
+import { BsTree, BsGrid, BsGraphUp } from "react-icons/bs";
 import { GiStack } from "react-icons/gi";
 import { AiOutlinePartition, AiOutlineNodeIndex } from "react-icons/ai";
 import { TbNavigationSearch } from "react-icons/tb";
 import { IconMapping } from "./types";
 
 export const dataStructureMappings: IconMapping[] = [
+  {
+    keywords: ["traversal"],
+    icon: (props: LucideProps) => <Route {...props} />,
+  },
   {
     keywords: ["binary tree", "btree", "b-tree"],
     icon: (props: LucideProps) => <Binary {...props} />,
@@ -58,11 +62,7 @@ export const dataStructureMappings: IconMapping[] = [
     icon: (props: LucideProps) => <BsTree {...props} />,
     isReactIcon: true,
   },
-  {
-    keywords: ["trie", "prefix tree"],
-    icon: (props: LucideProps) => <BsDiagram3 {...props} />,
-    isReactIcon: true,
-  },
+
   {
     keywords: ["heap", "priority queue", "binary heap"],
     icon: (props: LucideProps) => <Triangle {...props} />,

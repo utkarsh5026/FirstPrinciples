@@ -127173,6 +127173,720 @@
     "title": "api_gateway_for_restful_and_web_socket_apis",
     "frontmatter": {}
   },
+  "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\vertical_and_diagonal_tree_traversals.md": {
+    "path": "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\vertical_and_diagonal_tree_traversals.md",
+    "sections": [
+      {
+        "id": "tree-traversals-vertical-and-diagonal-from-first-principles",
+        "title": "Tree Traversals: Vertical and Diagonal - From First Principles",
+        "level": 1,
+        "wordCount": 45
+      },
+      {
+        "id": "understanding-trees-the-foundation",
+        "title": "Understanding Trees: The Foundation",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "the-coordinate-system-adding-spatial-awareness",
+        "title": "The Coordinate System: Adding Spatial Awareness",
+        "level": 2,
+        "wordCount": 96
+      },
+      {
+        "id": "vertical-tree-traversal-same-column-top-to-bottom",
+        "title": "Vertical Tree Traversal: Same Column, Top to Bottom",
+        "level": 2,
+        "wordCount": 201
+      },
+      {
+        "id": "diagonal-tree-traversal-following-the-slope",
+        "title": "Diagonal Tree Traversal: Following the Slope",
+        "level": 2,
+        "wordCount": 184
+      },
+      {
+        "id": "mobile-optimized-tree-visualization",
+        "title": "Mobile-Optimized Tree Visualization",
+        "level": 2,
+        "wordCount": 3
+      },
+      {
+        "id": "faang-interview-strategies",
+        "title": "FAANG Interview Strategies",
+        "level": 2,
+        "wordCount": 174
+      },
+      {
+        "id": "advanced-considerations",
+        "title": "Advanced Considerations",
+        "level": 2,
+        "wordCount": 178
+      }
+    ],
+    "totalWordCount": 978,
+    "estimatedReadingTime": 240000,
+    "title": "vertical_and_diagonal_tree_traversals",
+    "frontmatter": {}
+  },
+  "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\tree_traversal_with_parent_pointers.md": {
+    "path": "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\tree_traversal_with_parent_pointers.md",
+    "sections": [
+      {
+        "id": "tree-traversal-with-parent-pointers-a-deep-dive-for-faang-interviews",
+        "title": "Tree Traversal with Parent Pointers: A Deep Dive for FAANG Interviews",
+        "level": 1,
+        "wordCount": 11
+      },
+      {
+        "id": "understanding-trees-from-first-principles",
+        "title": "Understanding Trees from First Principles",
+        "level": 2,
+        "wordCount": 166
+      },
+      {
+        "id": "what-are-parent-pointers",
+        "title": "What Are Parent Pointers?",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "tree-traversal-the-foundation",
+        "title": "Tree Traversal: The Foundation",
+        "level": 2,
+        "wordCount": 72
+      },
+      {
+        "id": "how-parent-pointers-transform-traversal",
+        "title": "How Parent Pointers Transform Traversal",
+        "level": 2,
+        "wordCount": 97
+      },
+      {
+        "id": "faang-interview-patterns-with-parent-pointers",
+        "title": "FAANG Interview Patterns with Parent Pointers",
+        "level": 2,
+        "wordCount": 129
+      },
+      {
+        "id": "advanced-interview-pattern-tree-to-doubly-linked-list",
+        "title": "Advanced Interview Pattern: Tree to Doubly Linked List",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "building-trees-with-parent-pointers",
+        "title": "Building Trees with Parent Pointers",
+        "level": 2,
+        "wordCount": 18
+      },
+      {
+        "id": "complexity-analysis",
+        "title": "Complexity Analysis",
+        "level": 2,
+        "wordCount": 99
+      },
+      {
+        "id": "interview-strategy-and-tips",
+        "title": "Interview Strategy and Tips",
+        "level": 2,
+        "wordCount": 215
+      }
+    ],
+    "totalWordCount": 983,
+    "estimatedReadingTime": 240000,
+    "title": "tree_traversal_with_parent_pointers",
+    "frontmatter": {}
+  },
+  "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\tree_traversal_space_and_time_complexity.md": {
+    "path": "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\tree_traversal_space_and_time_complexity.md",
+    "sections": [
+      {
+        "id": "tree-traversal-space-and-time-complexity-a-deep-dive-from-first-principles",
+        "title": "Tree Traversal Space and Time Complexity: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 39
+      },
+      {
+        "id": "what-is-tree-traversal-starting-from-zero",
+        "title": "What is Tree Traversal? (Starting from Zero)",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "the-three-fundamental-traversal-types",
+        "title": "The Three Fundamental Traversal Types",
+        "level": 2,
+        "wordCount": 107
+      },
+      {
+        "id": "time-complexity-analysis-building-from-first-principles",
+        "title": "Time Complexity Analysis: Building from First Principles",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "space-complexity-analysis-the-deep-dive",
+        "title": "Space Complexity Analysis: The Deep Dive",
+        "level": 2,
+        "wordCount": 144
+      },
+      {
+        "id": "level-order-traversal-a-different-beast",
+        "title": "Level Order Traversal: A Different Beast",
+        "level": 2,
+        "wordCount": 65
+      },
+      {
+        "id": "faang-interview-perspective-what-really-matters",
+        "title": "FAANG Interview Perspective: What Really Matters",
+        "level": 2,
+        "wordCount": 114
+      },
+      {
+        "id": "summary-the-complete-picture",
+        "title": "Summary: The Complete Picture",
+        "level": 2,
+        "wordCount": 129
+      }
+    ],
+    "totalWordCount": 846,
+    "estimatedReadingTime": 240000,
+    "title": "tree_traversal_space_and_time_complexity",
+    "frontmatter": {}
+  },
+  "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\tree_traversal_for_expression_evaluation.md": {
+    "path": "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\tree_traversal_for_expression_evaluation.md",
+    "sections": [
+      {
+        "id": "tree-traversal-for-expression-evaluation-a-complete-faang-interview-guide",
+        "title": "Tree Traversal for Expression Evaluation: A Complete FAANG Interview Guide",
+        "level": 1,
+        "wordCount": 10
+      },
+      {
+        "id": "foundation-understanding-the-building-blocks",
+        "title": "Foundation: Understanding the Building Blocks",
+        "level": 2,
+        "wordCount": 128
+      },
+      {
+        "id": "expression-tree-fundamentals",
+        "title": "Expression Tree Fundamentals",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "the-three-fundamental-traversals",
+        "title": "The Three Fundamental Traversals",
+        "level": 2,
+        "wordCount": 170
+      },
+      {
+        "id": "expression-evaluation-using-tree-traversal",
+        "title": "Expression Evaluation Using Tree Traversal",
+        "level": 2,
+        "wordCount": 60
+      },
+      {
+        "id": "advanced-example-complex-expression-tree",
+        "title": "Advanced Example: Complex Expression Tree",
+        "level": 2,
+        "wordCount": 12
+      },
+      {
+        "id": "faang-interview-perspectives",
+        "title": "FAANG Interview Perspectives",
+        "level": 2,
+        "wordCount": 131
+      },
+      {
+        "id": "practice-problems-for-faang-interviews",
+        "title": "Practice Problems for FAANG Interviews",
+        "level": 2,
+        "wordCount": 16
+      },
+      {
+        "id": "key-takeaways-for-faang-success",
+        "title": "Key Takeaways for FAANG Success",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 725,
+    "estimatedReadingTime": 180000,
+    "title": "tree_traversal_for_expression_evaluation",
+    "frontmatter": {}
+  },
+  "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\threaded_binary_tree_traversals.md": {
+    "path": "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\threaded_binary_tree_traversals.md",
+    "sections": [
+      {
+        "id": "threaded-binary-tree-traversals-from-first-principles-to-faang-mastery",
+        "title": "Threaded Binary Tree Traversals: From First Principles to FAANG Mastery",
+        "level": 1,
+        "wordCount": 10
+      },
+      {
+        "id": "understanding-the-foundation-what-is-a-binary-tree",
+        "title": "Understanding the Foundation: What is a Binary Tree?",
+        "level": 2,
+        "wordCount": 109
+      },
+      {
+        "id": "the-traversal-challenge-why-we-need-to-visit-every-node",
+        "title": "The Traversal Challenge: Why We Need to Visit Every Node",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "the-traditional-approach-recursion-and-its-limitations",
+        "title": "The Traditional Approach: Recursion and Its Limitations",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "space-complexity-analysis-the-stack-problem",
+        "title": "Space Complexity Analysis: The Stack Problem",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "iterative-solutions-stack-based-approaches",
+        "title": "Iterative Solutions: Stack-Based Approaches",
+        "level": 2,
+        "wordCount": 100
+      },
+      {
+        "id": "enter-threaded-binary-trees-the-space-efficient-solution",
+        "title": "Enter Threaded Binary Trees: The Space-Efficient Solution",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "threading-concepts-inorder-threading",
+        "title": "Threading Concepts: Inorder Threading",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "visualizing-threaded-trees",
+        "title": "Visualizing Threaded Trees",
+        "level": 2,
+        "wordCount": 13
+      },
+      {
+        "id": "implementing-threaded-tree-construction",
+        "title": "Implementing Threaded Tree Construction",
+        "level": 2,
+        "wordCount": 71
+      },
+      {
+        "id": "the-core-algorithm-threaded-inorder-traversal",
+        "title": "The Core Algorithm: Threaded Inorder Traversal",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "finding-predecessor-and-successor",
+        "title": "Finding Predecessor and Successor",
+        "level": 2,
+        "wordCount": 38
+      },
+      {
+        "id": "faang-interview-perspective-why-this-matters",
+        "title": "FAANG Interview Perspective: Why This Matters",
+        "level": 2,
+        "wordCount": 36
+      },
+      {
+        "id": "time-and-space-complexity-analysis",
+        "title": "Time and Space Complexity Analysis",
+        "level": 2,
+        "wordCount": 103
+      },
+      {
+        "id": "advanced-concepts-preorder-and-postorder-threading",
+        "title": "Advanced Concepts: Preorder and Postorder Threading",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "interview-tips-and-common-pitfalls",
+        "title": "Interview Tips and Common Pitfalls",
+        "level": 2,
+        "wordCount": 149
+      },
+      {
+        "id": "conclusion-the-power-of-threaded-trees",
+        "title": "Conclusion: The Power of Threaded Trees",
+        "level": 2,
+        "wordCount": 128
+      }
+    ],
+    "totalWordCount": 1244,
+    "estimatedReadingTime": 300000,
+    "title": "threaded_binary_tree_traversals",
+    "frontmatter": {}
+  },
+  "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\recursive_vs_iterative_traversal_implementations.md": {
+    "path": "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\recursive_vs_iterative_traversal_implementations.md",
+    "sections": [
+      {
+        "id": "binary-tree-traversal-recursive-vs-iterative-a-deep-dive-for-faang-interviews",
+        "title": "Binary Tree Traversal: Recursive vs Iterative - A Deep Dive for FAANG Interviews",
+        "level": 1,
+        "wordCount": 29
+      },
+      {
+        "id": "what-is-a-binary-tree-first-principles",
+        "title": "What is a Binary Tree? (First Principles)",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "what-does-traversal-mean",
+        "title": "What Does \"Traversal\" Mean?",
+        "level": 2,
+        "wordCount": 117
+      },
+      {
+        "id": "recursive-approach-the-natural-way",
+        "title": "Recursive Approach: The Natural Way",
+        "level": 2,
+        "wordCount": 143
+      },
+      {
+        "id": "iterative-approach-simulating-the-call-stack",
+        "title": "Iterative Approach: Simulating the Call Stack",
+        "level": 2,
+        "wordCount": 255
+      },
+      {
+        "id": "space-and-time-complexity-analysis",
+        "title": "Space and Time Complexity Analysis",
+        "level": 2,
+        "wordCount": 95
+      },
+      {
+        "id": "when-to-use-which-approach-faang-interview-strategy",
+        "title": "When to Use Which Approach? (FAANG Interview Strategy)",
+        "level": 2,
+        "wordCount": 119
+      },
+      {
+        "id": "common-faang-interview-variations",
+        "title": "Common FAANG Interview Variations",
+        "level": 2,
+        "wordCount": 59
+      },
+      {
+        "id": "interview-tips-and-common-mistakes",
+        "title": "Interview Tips and Common Mistakes",
+        "level": 2,
+        "wordCount": 237
+      }
+    ],
+    "totalWordCount": 1190,
+    "estimatedReadingTime": 300000,
+    "title": "recursive_vs_iterative_traversal_implementations",
+    "frontmatter": {}
+  },
+  "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\morris_traversal_for_constant_space.md": {
+    "path": "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\morris_traversal_for_constant_space.md",
+    "sections": [
+      {
+        "id": "morris-traversal-mastering-space-optimal-tree-traversal-for-faang-interviews",
+        "title": "Morris Traversal: Mastering Space-Optimal Tree Traversal for FAANG Interviews",
+        "level": 1,
+        "wordCount": 37
+      },
+      {
+        "id": "building-from-first-principles-what-is-a-binary-tree",
+        "title": "🌳 Building from First Principles: What is a Binary Tree?",
+        "level": 2,
+        "wordCount": 70
+      },
+      {
+        "id": "tree-traversal-why-do-we-need-it",
+        "title": "🚶‍♂️ Tree Traversal: Why Do We Need It?",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "traditional-traversal-methods-and-their-limitations",
+        "title": "📚 Traditional Traversal Methods and Their Limitations",
+        "level": 2,
+        "wordCount": 78
+      },
+      {
+        "id": "enter-morris-traversal-the-space-optimal-solution",
+        "title": "🎯 Enter Morris Traversal: The Space-Optimal Solution",
+        "level": 2,
+        "wordCount": 63
+      },
+      {
+        "id": "the-threading-technique-core-concept",
+        "title": "🔗 The Threading Technique: Core Concept",
+        "level": 2,
+        "wordCount": 39
+      },
+      {
+        "id": "step-by-step-algorithm-breakdown",
+        "title": "🔍 Step-by-Step Algorithm Breakdown",
+        "level": 2,
+        "wordCount": 25
+      },
+      {
+        "id": "detailed-execution-example",
+        "title": "🎬 Detailed Execution Example",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "complexity-analysis",
+        "title": "📊 Complexity Analysis",
+        "level": 2,
+        "wordCount": 81
+      },
+      {
+        "id": "morris-preorder-traversal",
+        "title": "🚀 Morris Preorder Traversal",
+        "level": 2,
+        "wordCount": 41
+      },
+      {
+        "id": "faang-interview-strategies",
+        "title": "🎯 FAANG Interview Strategies",
+        "level": 2,
+        "wordCount": 105
+      },
+      {
+        "id": "practical-implementation-tips",
+        "title": "🔧 Practical Implementation Tips",
+        "level": 2,
+        "wordCount": 8
+      },
+      {
+        "id": "advanced-considerations",
+        "title": "🎓 Advanced Considerations",
+        "level": 2,
+        "wordCount": 67
+      },
+      {
+        "id": "summary-mastering-morris-for-interviews",
+        "title": "🏆 Summary: Mastering Morris for Interviews",
+        "level": 2,
+        "wordCount": 136
+      }
+    ],
+    "totalWordCount": 872,
+    "estimatedReadingTime": 240000,
+    "title": "morris_traversal_for_constant_space",
+    "frontmatter": {}
+  },
+  "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\level_order_traversal_variations.md": {
+    "path": "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\level_order_traversal_variations.md",
+    "sections": [
+      {
+        "id": "binary-tree-level-order-traversal-a-complete-guide-for-faang-interviews",
+        "title": "Binary Tree Level-Order Traversal: A Complete Guide for FAANG Interviews",
+        "level": 1,
+        "wordCount": 10
+      },
+      {
+        "id": "understanding-trees-from-first-principles",
+        "title": "Understanding Trees from First Principles",
+        "level": 2,
+        "wordCount": 104
+      },
+      {
+        "id": "what-is-level-order-traversal",
+        "title": "What is Level-Order Traversal?",
+        "level": 2,
+        "wordCount": 86
+      },
+      {
+        "id": "why-level-order-traversal-matters-in-faang-interviews",
+        "title": "Why Level-Order Traversal Matters in FAANG Interviews",
+        "level": 2,
+        "wordCount": 76
+      },
+      {
+        "id": "basic-level-order-traversal-implementation",
+        "title": "Basic Level-Order Traversal Implementation",
+        "level": 2,
+        "wordCount": 148
+      },
+      {
+        "id": "level-by-level-variations",
+        "title": "Level-by-Level Variations",
+        "level": 2,
+        "wordCount": 102
+      },
+      {
+        "id": "advanced-variations-and-patterns",
+        "title": "Advanced Variations and Patterns",
+        "level": 2,
+        "wordCount": 94
+      },
+      {
+        "id": "memory-and-time-complexity-analysis",
+        "title": "Memory and Time Complexity Analysis",
+        "level": 2,
+        "wordCount": 98
+      },
+      {
+        "id": "interview-optimization-techniques",
+        "title": "Interview Optimization Techniques",
+        "level": 2,
+        "wordCount": 23
+      },
+      {
+        "id": "common-interview-pitfalls-and-solutions",
+        "title": "Common Interview Pitfalls and Solutions",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "practice-problems-and-patterns",
+        "title": "Practice Problems and Patterns",
+        "level": 2,
+        "wordCount": 51
+      },
+      {
+        "id": "key-interview-talking-points",
+        "title": "Key Interview Talking Points",
+        "level": 2,
+        "wordCount": 156
+      }
+    ],
+    "totalWordCount": 1022,
+    "estimatedReadingTime": 300000,
+    "title": "level_order_traversal_variations",
+    "frontmatter": {}
+  },
+  "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\custom_traversal_orders_for_specific_problems.md": {
+    "path": "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\custom_traversal_orders_for_specific_problems.md",
+    "sections": [
+      {
+        "id": "custom-traversal-orders-in-binary-trees-from-first-principles-to-faang-mastery",
+        "title": "Custom Traversal Orders in Binary Trees: From First Principles to FAANG Mastery",
+        "level": 1,
+        "wordCount": 12
+      },
+      {
+        "id": "understanding-traversal-at-its-core",
+        "title": "Understanding Traversal at Its Core",
+        "level": 2,
+        "wordCount": 208
+      },
+      {
+        "id": "the-anatomy-of-custom-traversals",
+        "title": "The Anatomy of Custom Traversals",
+        "level": 2,
+        "wordCount": 516
+      },
+      {
+        "id": "problem-solving-framework-for-custom-traversals",
+        "title": "Problem-Solving Framework for Custom Traversals",
+        "level": 2,
+        "wordCount": 123
+      },
+      {
+        "id": "advanced-custom-traversal-diagonal-traversal",
+        "title": "Advanced Custom Traversal: Diagonal Traversal",
+        "level": 2,
+        "wordCount": 93
+      },
+      {
+        "id": "common-mistakes-and-how-to-avoid-them",
+        "title": "Common Mistakes and How to Avoid Them",
+        "level": 2,
+        "wordCount": 24
+      },
+      {
+        "id": "practice-problems-for-mastery",
+        "title": "Practice Problems for Mastery",
+        "level": 2,
+        "wordCount": 121
+      },
+      {
+        "id": "final-thoughts-the-faang-mindset",
+        "title": "Final Thoughts: The FAANG Mindset",
+        "level": 2,
+        "wordCount": 158
+      }
+    ],
+    "totalWordCount": 1255,
+    "estimatedReadingTime": 360000,
+    "title": "custom_traversal_orders_for_specific_problems",
+    "frontmatter": {}
+  },
+  "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\boundary_traversal_of_binary_trees.md": {
+    "path": "public\\content\\algorithms\\tree_data_structures\\tree_traversal_patterns\\boundary_traversal_of_binary_trees.md",
+    "sections": [
+      {
+        "id": "boundary-traversal-of-binary-trees-a-deep-dive-from-first-principles",
+        "title": "Boundary Traversal of Binary Trees: A Deep Dive from First Principles",
+        "level": 1,
+        "wordCount": 33
+      },
+      {
+        "id": "understanding-binary-trees-from-first-principles",
+        "title": "Understanding Binary Trees from First Principles",
+        "level": 2,
+        "wordCount": 74
+      },
+      {
+        "id": "what-is-boundary-traversal",
+        "title": "What is Boundary Traversal?",
+        "level": 2,
+        "wordCount": 125
+      },
+      {
+        "id": "breaking-down-the-problem-first-principles-approach",
+        "title": "Breaking Down the Problem: First Principles Approach",
+        "level": 2,
+        "wordCount": 136
+      },
+      {
+        "id": "complete-solution-putting-it-all-together",
+        "title": "Complete Solution: Putting It All Together",
+        "level": 2,
+        "wordCount": 19
+      },
+      {
+        "id": "detailed-example-walkthrough",
+        "title": "Detailed Example Walkthrough",
+        "level": 2,
+        "wordCount": 150
+      },
+      {
+        "id": "edge-cases-and-their-handling",
+        "title": "Edge Cases and Their Handling",
+        "level": 2,
+        "wordCount": 61
+      },
+      {
+        "id": "time-and-space-complexity-analysis",
+        "title": "Time and Space Complexity Analysis",
+        "level": 2,
+        "wordCount": 55
+      },
+      {
+        "id": "faang-interview-perspective",
+        "title": "FAANG Interview Perspective",
+        "level": 2,
+        "wordCount": 157
+      }
+    ],
+    "totalWordCount": 810,
+    "estimatedReadingTime": 240000,
+    "title": "boundary_traversal_of_binary_trees",
+    "frontmatter": {}
+  },
   "public\\content\\algorithms\\tree_data_structures\\heaps_and_priority_queues\\merge_k_sorted_arrays_using_heaps.md": {
     "path": "public\\content\\algorithms\\tree_data_structures\\heaps_and_priority_queues\\merge_k_sorted_arrays_using_heaps.md",
     "sections": [

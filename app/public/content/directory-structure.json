@@ -67,6 +67,11 @@
             "id": "heaps_and_priority_queues",
             "name": "Heaps And Priority Queues",
             "categories": []
+          },
+          {
+            "id": "tree_traversal_patterns",
+            "name": "Tree Traversal Patterns",
+            "categories": []
           }
         ]
       }
