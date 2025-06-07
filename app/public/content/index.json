@@ -3,7 +3,442 @@
     {
       "id": "algorithms",
       "name": "Algorithms",
-      "categories": [],
+      "categories": [
+        {
+          "id": "advanced_array_and_string_patterns",
+          "name": "Advanced Array And String Patterns",
+          "categories": [],
+          "files": [
+            {
+              "path": "algorithms/advanced_array_and_string_patterns/boyer_moore_majority_vote_algorithm.md"
+            },
+            {
+              "path": "algorithms/advanced_array_and_string_patterns/difference_arrays_for_range_update_operations.md"
+            },
+            {
+              "path": "algorithms/advanced_array_and_string_patterns/dutch_national_flag_algorithm_for_three_way_partitioning.md"
+            },
+            {
+              "path": "algorithms/advanced_array_and_string_patterns/edit_distance_and_string_transformation_problems.md"
+            },
+            {
+              "path": "algorithms/advanced_array_and_string_patterns/kadane_algorithm_for_maximum_subarray_problems.md"
+            },
+            {
+              "path": "algorithms/advanced_array_and_string_patterns/longest_common_subsequence_and_longest_increasing_subsequence.md"
+            },
+            {
+              "path": "algorithms/advanced_array_and_string_patterns/prefix_sum_arrays_and_range_query_optimization.md"
+            },
+            {
+              "path": "algorithms/advanced_array_and_string_patterns/regular_expression_matching_and_pattern_recognition.md"
+            },
+            {
+              "path": "algorithms/advanced_array_and_string_patterns/string_hashing_and_rolling_hash_techniques.md"
+            },
+            {
+              "path": "algorithms/advanced_array_and_string_patterns/suffix_arrays_and_their_applications.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "advanced_graph_algorithms",
+          "name": "Advanced Graph Algorithms",
+          "categories": [],
+          "files": [
+            {
+              "path": "algorithms/advanced_graph_algorithms/articulation_points_and_bridges_in_graphs.md"
+            },
+            {
+              "path": "algorithms/advanced_graph_algorithms/a_star_search_algorithm_for_informed_pathfinding.md"
+            },
+            {
+              "path": "algorithms/advanced_graph_algorithms/bellman_ford_algorithm_for_negative_weight_edges.md"
+            },
+            {
+              "path": "algorithms/advanced_graph_algorithms/floyd_warshall_algorithm_for_all_pairs_shortest_paths.md"
+            },
+            {
+              "path": "algorithms/advanced_graph_algorithms/graph_coloring_and_independent_set_problems.md"
+            },
+            {
+              "path": "algorithms/advanced_graph_algorithms/maximum_bipartite_matching_and_hungarian_algorithm.md"
+            },
+            {
+              "path": "algorithms/advanced_graph_algorithms/minimum_spanning_tree_kruskal_s_and_prim_s_algorithms.md"
+            },
+            {
+              "path": "algorithms/advanced_graph_algorithms/network_flow_algorithms_ford_fulkerson_and_edmonds_karp.md"
+            },
+            {
+              "path": "algorithms/advanced_graph_algorithms/shortest_path_algorithms.md"
+            },
+            {
+              "path": "algorithms/advanced_graph_algorithms/tarjans_algorithm_for_strongly_connected_components.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "basic_data_structures",
+          "name": "Basic Data Structures",
+          "categories": [
+            {
+              "id": "arrays_and_string_manipulation_fundamentals",
+              "name": "Arrays And String Manipulation Fundamentals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/basic_data_structures/arrays_and_string_manipulation_fundamentals/anagram_detection_and_character_frequency_analysis.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/arrays_and_string_manipulation_fundamentals/array_memory_layout_and_cache_friendly_operations.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/arrays_and_string_manipulation_fundamentals/array_operations.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/arrays_and_string_manipulation_fundamentals/array_rotation_and_cyclic_operations.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/arrays_and_string_manipulation_fundamentals/array_sorting_and_searching_in_various_scenarios.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/arrays_and_string_manipulation_fundamentals/palindrome_detection_and_generation_techniques.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/arrays_and_string_manipulation_fundamentals/sliding_window_technique_for_subarray_substring_problems.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/arrays_and_string_manipulation_fundamentals/string_manipulation.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/arrays_and_string_manipulation_fundamentals/string_matching_algorithms.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/arrays_and_string_manipulation_fundamentals/two_pointer_technique_same_direction_and_opposite_direction.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "hash_tables_and_hashing_techniques",
+              "name": "Hash Tables And Hashing Techniques",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/basic_data_structures/hash_tables_and_hashing_techniques/bloom_filters_for_space_efficient_membership_testing.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/hash_tables_and_hashing_techniques/chaining_vs_open_addressing_for_collision_handling.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/hash_tables_and_hashing_techniques/consistent_hashing_for_distributed_systems.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/hash_tables_and_hashing_techniques/hash_based_data_structures.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/hash_tables_and_hashing_techniques/hash_function_design_and_collision_resolution_strategies.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/hash_tables_and_hashing_techniques/hash_table_applications.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/hash_tables_and_hashing_techniques/hash_table_performance_characteristics.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/hash_tables_and_hashing_techniques/load_factor_optimization_and_dynamic_resizing.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/hash_tables_and_hashing_techniques/practical_hashing_considerations_and_security_implications.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/hash_tables_and_hashing_techniques/rolling_hash_for_substring_matching_and_comparison.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "linked_lists_and_pointer_manipulation",
+              "name": "Linked Lists And Pointer Manipulation",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/basic_data_structures/linked_lists_and_pointer_manipulation/circular_linked_list_patterns_and_cycle_detection.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/linked_lists_and_pointer_manipulation/detecting_and_removing_cycles_in_linked_lists.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/linked_lists_and_pointer_manipulation/doubly_linked_list_implementation_and_use_cases.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/linked_lists_and_pointer_manipulation/fast_and_slow_pointer_technique.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/linked_lists_and_pointer_manipulation/implementing_lru_cache_using_doubly_linked_lists.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/linked_lists_and_pointer_manipulation/linked_list_reversal.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/linked_lists_and_pointer_manipulation/memory_efficient_linked_list_implementations.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/linked_lists_and_pointer_manipulation/merging_sorted_linked_lists_and_intersection_finding.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/linked_lists_and_pointer_manipulation/singly_linked_list_operations.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/linked_lists_and_pointer_manipulation/skip_lists_and_their_probabilistic_properties.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "stacks_and_queues",
+              "name": "Stacks And Queues",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/basic_data_structures/stacks_and_queues/circular_queue_design_and_implementation.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/stacks_and_queues/deque_operations_and_use_cases.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/stacks_and_queues/monotonic_stack_and_queue_patterns.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/stacks_and_queues/next_greater_element_and_histogram_area_problems.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/stacks_and_queues/priority_queue_concepts_and_applications.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/stacks_and_queues/queue_based_level_order_traversals_and_bfs_implementation.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/stacks_and_queues/queue_implementation.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/stacks_and_queues/stack_applications.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/stacks_and_queues/stack_based_iterative_tree_and_graph_traversals.md"
+                },
+                {
+                  "path": "algorithms/basic_data_structures/stacks_and_queues/stack_implementation_using_arrays_and_linked_lists.md"
+                }
+              ],
+              "totalFileSize": 0
+            }
+          ],
+          "files": [],
+          "totalFileSize": 0
+        },
+        {
+          "id": "graph_representation_and_basic_algorithms",
+          "name": "Graph Representation And Basic Algorithms",
+          "categories": [],
+          "files": [
+            {
+              "path": "algorithms/graph_representation_and_basic_algorithms/bipartite_graph_detection_and_two_coloring.md"
+            },
+            {
+              "path": "algorithms/graph_representation_and_basic_algorithms/breadth_first_search.md"
+            },
+            {
+              "path": "algorithms/graph_representation_and_basic_algorithms/connected_components_and_strongly_connected_components.md"
+            },
+            {
+              "path": "algorithms/graph_representation_and_basic_algorithms/cycle_detection_in_directed_and_undirected_graphs.md"
+            },
+            {
+              "path": "algorithms/graph_representation_and_basic_algorithms/depth_first_search.md"
+            },
+            {
+              "path": "algorithms/graph_representation_and_basic_algorithms/graph_representations.md"
+            },
+            {
+              "path": "algorithms/graph_representation_and_basic_algorithms/graph_traversal_applications_and_problem_solving_patterns.md"
+            },
+            {
+              "path": "algorithms/graph_representation_and_basic_algorithms/graph_types.md"
+            },
+            {
+              "path": "algorithms/graph_representation_and_basic_algorithms/space_and_time_complexity_analysis_of_graph_algorithms.md"
+            },
+            {
+              "path": "algorithms/graph_representation_and_basic_algorithms/topological_sorting_using_dfs_and_kahns_algorithm.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "tree_data_structures",
+          "name": "Tree Data Structures",
+          "categories": [
+            {
+              "id": "advanced_tree_structures_and_algorithms",
+              "name": "Advanced Tree Structures And Algorithms",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/tree_data_structures/advanced_tree_structures_and_algorithms/advanced_tree_dp_and_tree_rerooting_techniques.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/advanced_tree_structures_and_algorithms/binary_indexed_tree.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/advanced_tree_structures_and_algorithms/centroid_decomposition_for_tree_problems.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/advanced_tree_structures_and_algorithms/heavy_light_decomposition_for_tree_queries.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/advanced_tree_structures_and_algorithms/lowest_common_ancestor_with_binary_lifting.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/advanced_tree_structures_and_algorithms/segment_trees_for_range_queries_and_updates.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/advanced_tree_structures_and_algorithms/suffix_trees_and_suffix_arrays_for_string_processing.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/advanced_tree_structures_and_algorithms/tree_diameter_and_center_finding_algorithms.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/advanced_tree_structures_and_algorithms/trie_implementation_and_string_applications.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/advanced_tree_structures_and_algorithms/union_find_with_path_compression_and_union_by_rank.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "binary_search_trees",
+              "name": "Binary Search Trees",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/tree_data_structures/binary_search_trees/binary_search_tree_operations.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_search_trees/bst_validation_and_inorder_successor_predecessor_finding.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_search_trees/b_trees_for_database_applications.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_search_trees/converting_bst_to_sorted_array_and_vice_versa.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_search_trees/optimal_bst_construction_and_dynamic_programming_approaches.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_search_trees/range_queries_and_kth_smallest_largest_element_finding.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_search_trees/red_black_trees.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_search_trees/self_balancing_trees.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_search_trees/splay_trees_and_their_self_adjusting_properties.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_search_trees/treap.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "binary_trees_foundation",
+              "name": "Binary Trees Foundation",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/tree_data_structures/binary_trees_foundation/binary_tree_construction_from_traversal_sequences.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_trees_foundation/binary_tree_properties.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_trees_foundation/binary_tree_representation.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_trees_foundation/level_order_traversal_and_zigzag_traversal_patterns.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_trees_foundation/lowest_common_ancestor_algorithms.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_trees_foundation/mirror_symmetric_tree_detection_and_creation.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_trees_foundation/path_sum_problems_and_root_to_leaf_path_analysis.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_trees_foundation/tree_isomorphism_and_subtree_matching_problems.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_trees_foundation/tree_serialization_and_deserialization_techniques.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/binary_trees_foundation/tree_traversals.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "heaps_and_priority_queues",
+              "name": "Heaps And Priority Queues",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/tree_data_structures/heaps_and_priority_queues/binary_heap_implementation.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/heaps_and_priority_queues/binomial_heaps_and_fibonacci_heaps.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/heaps_and_priority_queues/finding_kth_largest_smallest_elements_efficiently.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/heaps_and_priority_queues/heapsort_algorithm_and_its_complexity_analysis.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/heaps_and_priority_queues/heap_applications_in_graph_algorithms.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/heaps_and_priority_queues/heap_operations.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/heaps_and_priority_queues/huffman_coding_and_optimal_merge_patterns.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/heaps_and_priority_queues/k_way_merge_using_heaps.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/heaps_and_priority_queues/median_maintenance_using_two_heaps.md"
+                },
+                {
+                  "path": "algorithms/tree_data_structures/heaps_and_priority_queues/merge_k_sorted_arrays_using_heaps.md"
+                }
+              ],
+              "totalFileSize": 0
+            }
+          ],
+          "files": [],
+          "totalFileSize": 0
+        }
+      ],
       "files": [],
       "totalFileSize": 0
     },
@@ -1642,6 +2077,13 @@
           "totalFileSize": 0
         }
       ],
+      "files": [],
+      "totalFileSize": 0
+    },
+    {
+      "id": "distributed_systems",
+      "name": "Distributed Systems",
+      "categories": [],
       "files": [],
       "totalFileSize": 0
     },
@@ -6410,6 +6852,13 @@
     {
       "id": "rust",
       "name": "Rust",
+      "categories": [],
+      "files": [],
+      "totalFileSize": 0
+    },
+    {
+      "id": "system_design",
+      "name": "System Design",
       "categories": [],
       "files": [],
       "totalFileSize": 0

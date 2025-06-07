@@ -2,7 +2,75 @@
   {
     "id": "algorithms",
     "name": "Algorithms",
-    "categories": []
+    "categories": [
+      {
+        "id": "advanced_array_and_string_patterns",
+        "name": "Advanced Array And String Patterns",
+        "categories": []
+      },
+      {
+        "id": "advanced_graph_algorithms",
+        "name": "Advanced Graph Algorithms",
+        "categories": []
+      },
+      {
+        "id": "basic_data_structures",
+        "name": "Basic Data Structures",
+        "categories": [
+          {
+            "id": "arrays_and_string_manipulation_fundamentals",
+            "name": "Arrays And String Manipulation Fundamentals",
+            "categories": []
+          },
+          {
+            "id": "hash_tables_and_hashing_techniques",
+            "name": "Hash Tables And Hashing Techniques",
+            "categories": []
+          },
+          {
+            "id": "linked_lists_and_pointer_manipulation",
+            "name": "Linked Lists And Pointer Manipulation",
+            "categories": []
+          },
+          {
+            "id": "stacks_and_queues",
+            "name": "Stacks And Queues",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "graph_representation_and_basic_algorithms",
+        "name": "Graph Representation And Basic Algorithms",
+        "categories": []
+      },
+      {
+        "id": "tree_data_structures",
+        "name": "Tree Data Structures",
+        "categories": [
+          {
+            "id": "advanced_tree_structures_and_algorithms",
+            "name": "Advanced Tree Structures And Algorithms",
+            "categories": []
+          },
+          {
+            "id": "binary_search_trees",
+            "name": "Binary Search Trees",
+            "categories": []
+          },
+          {
+            "id": "binary_trees_foundation",
+            "name": "Binary Trees Foundation",
+            "categories": []
+          },
+          {
+            "id": "heaps_and_priority_queues",
+            "name": "Heaps And Priority Queues",
+            "categories": []
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "aws",
@@ -346,6 +414,11 @@
         ]
       }
     ]
+  },
+  {
+    "id": "distributed_systems",
+    "name": "Distributed Systems",
+    "categories": []
   },
   {
     "id": "docker",
@@ -1177,6 +1250,11 @@
   {
     "id": "rust",
     "name": "Rust",
+    "categories": []
+  },
+  {
+    "id": "system_design",
+    "name": "System Design",
     "categories": []
   },
   {

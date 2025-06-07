@@ -46,6 +46,31 @@ import {
   LayoutDashboard,
   BellRing,
   CloudAlert,
+  TreePine,
+  Binary,
+  Network,
+  Layers,
+  Users,
+  Hash,
+  Triangle,
+  FileText,
+  Shuffle,
+  ArrowUpDown,
+  Search,
+  Target,
+  Route,
+  Zap,
+  Brain,
+  Calculator,
+  TrendingUp,
+  Minimize2,
+  Maximize2,
+  RotateCcw,
+  Split,
+  Merge,
+  ChevronDown,
+  Box,
+  Grid3x3,
 } from "lucide-react";
 
 import {
@@ -56,6 +81,10 @@ import {
   FaInfinity,
   FaStream,
   FaRegSave,
+  FaSort,
+  FaSortAmountDown,
+  FaProjectDiagram,
+  FaRoute,
 } from "react-icons/fa";
 
 import {
@@ -87,7 +116,14 @@ import { PiFunctionFill } from "react-icons/pi";
 
 import { GrTest, GrUserWorker } from "react-icons/gr";
 import { IoIosGitNetwork, IoIosRefresh } from "react-icons/io";
-import { BsCompass, BsWindow } from "react-icons/bs";
+import {
+  BsCompass,
+  BsWindow,
+  BsTree,
+  BsGrid,
+  BsGraphUp,
+  BsDiagram3,
+} from "react-icons/bs";
 
 import {
   MdApi,
@@ -122,9 +158,12 @@ import {
   BiCodeCurly,
   BiGitRepoForked,
 } from "react-icons/bi";
+import { GiStack } from "react-icons/gi";
 
 import { ImConnection } from "react-icons/im";
 import getIconForTech from "./iconMap";
+
+import { AiOutlinePartition, AiOutlineNodeIndex } from "react-icons/ai";
 
 type IconMapping = {
   keywords: string[];
@@ -650,6 +689,219 @@ const fallbackMappings: IconMapping[] = [
   { keywords: ["client"], icon: (props) => <AppWindow {...props} /> },
 ];
 
+const dataStructureMappings: IconMapping[] = [
+  // Trees
+  {
+    keywords: ["binary tree", "btree", "b-tree"],
+    icon: (props) => <Binary {...props} />,
+  },
+  {
+    keywords: ["avl tree", "avl"],
+    icon: (props) => <BsTree {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["red black tree", "red-black"],
+    icon: (props) => <TreePine {...props} />,
+  },
+  {
+    keywords: ["binary search trees", "tree", "bst"],
+    icon: (props) => <BsTree {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["trie", "prefix tree"],
+    icon: (props) => <BsDiagram3 {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["heap", "priority queue", "binary heap"],
+    icon: (props) => <Triangle {...props} />,
+  },
+
+  // Linear Data Structures
+  {
+    keywords: ["array", "dynamic array", "vector"],
+    icon: (props) => <Grid3x3 {...props} />,
+  },
+  {
+    keywords: ["linked list", "doubly linked", "singly linked"],
+    icon: (props) => <GitCommit {...props} />,
+  },
+  {
+    keywords: ["stack", "lifo"],
+    icon: (props) => <GiStack {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["queue", "fifo", "circular queue", "deque"],
+    icon: (props) => <Users {...props} />,
+  },
+
+  {
+    keywords: ["hash table", "hash map", "dictionary"],
+    icon: (props) => <Hash {...props} />,
+  },
+  {
+    keywords: ["set", "hash set"],
+    icon: (props) => <Box {...props} />,
+  },
+
+  {
+    keywords: ["graph", "directed graph", "undirected graph"],
+    icon: (props) => <Network {...props} />,
+  },
+  {
+    keywords: ["adjacency list", "adjacency matrix"],
+    icon: (props) => <FaProjectDiagram {...props} />,
+    isReactIcon: true,
+  },
+
+  {
+    keywords: ["matrix", "2d array", "grid"],
+    icon: (props) => <BsGrid {...props} />,
+    isReactIcon: true,
+  },
+
+  // Advanced Structures
+  {
+    keywords: ["segment tree", "fenwick tree", "bit"],
+    icon: (props) => <AiOutlinePartition {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["union find", "disjoint set"],
+    icon: (props) => <Merge {...props} />,
+  },
+
+  {
+    keywords: ["dynamic programming", "dp", "memoization"],
+    icon: (props) => <Calculator {...props} />,
+  },
+  {
+    keywords: ["knapsack", "longest common subsequence", "lcs"],
+    icon: (props) => <TrendingUp {...props} />,
+  },
+
+  {
+    keywords: ["greedy", "greedy algorithm"],
+    icon: (props) => <Target {...props} />,
+  },
+  {
+    keywords: ["activity selection", "huffman coding"],
+    icon: (props) => <Zap {...props} />,
+  },
+
+  // Divide and Conquer
+  {
+    keywords: ["divide and conquer", "merge sort", "quick sort"],
+    icon: (props) => <Split {...props} />,
+  },
+
+  // Sorting Algorithms
+  {
+    keywords: ["bubble sort", "selection sort", "insertion sort"],
+    icon: (props) => <ArrowUpDown {...props} />,
+  },
+  {
+    keywords: ["heap sort", "radix sort", "counting sort"],
+    icon: (props) => <FaSort {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["sort", "sorting"],
+    icon: (props) => <FaSortAmountDown {...props} />,
+    isReactIcon: true,
+  },
+
+  // Searching Algorithms
+  {
+    keywords: ["binary search", "linear search"],
+    icon: (props) => <Search {...props} />,
+  },
+  {
+    keywords: ["depth first search", "dfs"],
+    icon: (props) => <ChevronDown {...props} />,
+  },
+  {
+    keywords: ["breadth first search", "bfs"],
+    icon: (props) => <Layers {...props} />,
+  },
+
+  // Graph Algorithms
+  {
+    keywords: ["dijkstra", "shortest path"],
+    icon: (props) => <Route {...props} />,
+  },
+  {
+    keywords: ["bellman ford", "floyd warshall"],
+    icon: (props) => <FaRoute {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["minimum spanning tree", "mst", "kruskal", "prim"],
+    icon: (props) => <BsGraphUp {...props} />,
+    isReactIcon: true,
+  },
+  {
+    keywords: ["topological sort", "cycle detection"],
+    icon: (props) => <AiOutlineNodeIndex {...props} />,
+    isReactIcon: true,
+  },
+
+  // Backtracking
+  {
+    keywords: ["backtracking", "n queens", "sudoku"],
+    icon: (props) => <RotateCcw {...props} />,
+  },
+
+  // String Algorithms
+  {
+    keywords: ["string matching", "kmp", "rabin karp"],
+    icon: (props) => <FileText {...props} />,
+  },
+  {
+    keywords: ["edit distance", "levenshtein"],
+    icon: (props) => <Shuffle {...props} />,
+  },
+
+  // Recursion
+  {
+    keywords: ["recursion", "recursive"],
+    icon: (props) => <RotateCcw {...props} />,
+  },
+
+  // Mathematical Algorithms
+  {
+    keywords: ["prime", "gcd", "lcm", "modular arithmetic"],
+    icon: (props) => <Calculator {...props} />,
+  },
+  {
+    keywords: ["fibonacci", "factorial"],
+    icon: (props) => <TrendingUp {...props} />,
+  },
+
+  // Optimization
+  {
+    keywords: ["optimization", "minimize", "maximize"],
+    icon: (props) => <Minimize2 {...props} />,
+  },
+  {
+    keywords: ["two pointer", "sliding window"],
+    icon: (props) => <Maximize2 {...props} />,
+  },
+
+  // Advanced Algorithms
+  {
+    keywords: ["machine learning", "ai algorithm"],
+    icon: (props) => <Brain {...props} />,
+  },
+  {
+    keywords: ["bit manipulation", "bitwise"],
+    icon: (props) => <Binary {...props} />,
+  },
+];
+
 const allMappings = [
   {
     keywords: ["aws", "amazon"],
@@ -690,6 +942,10 @@ const allMappings = [
   {
     keywords: ["tailwind", "utility", "css framework"],
     mappings: tailwindMappings,
+  },
+  {
+    keywords: ["data structures", "algorithms"],
+    mappings: dataStructureMappings,
   },
 ];
 
