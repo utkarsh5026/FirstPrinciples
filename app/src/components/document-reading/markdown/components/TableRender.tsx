@@ -18,7 +18,7 @@ const TableRender: React.FC<TableRenderProps> = ({ type, props }) => {
   switch (type) {
     case "table":
       return (
-        <div className="my-6 overflow-x-auto p-2 rounded-lg">
+        <div className="my-6 overflow-x-auto p-2 rounded-lg no-swipe">
           <table
             {...(props as React.ComponentPropsWithoutRef<"table">)}
             className="min-w-full divide-y divide-[#303030] border-separate border-spacing-0 overflow-hidden rounded-2xl"

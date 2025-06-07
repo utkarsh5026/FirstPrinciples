@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/document-reading/markdown/MarkdownRenderer";
-import { useSwipeGesture } from "@/hooks/device/use-swipe-gesture";
+import { useSwipeable } from "react-swipeable";
 import CardProgress from "./CardProgress";
 import {
   Menu,
@@ -103,22 +103,34 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   };
 
   /**
-   * 👆 Makes swiping work like magic for touch devices!
+   * 👆 React-swipeable handlers for touch gestures
    * Swipe left to go forward, right to go back
    */
-  useSwipeGesture({
-    targetRef: scrollRef as React.RefObject<HTMLElement>,
-    threshold: 50,
-    onSwipeLeft: () => {
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: (eventData) => {
+      if (eventData.event.target instanceof Element) {
+        const target = eventData.event.target.closest(".no-swipe");
+        if (target) return;
+      }
+
       if (currentIndex < sections.length - 1) {
         changeSection(currentIndex + 1);
       }
     },
-    onSwipeRight: () => {
+    onSwipedRight: (eventData) => {
+      // Check if target or any parent has no-swipe class
+      if (eventData.event.target instanceof Element) {
+        const target = eventData.event.target.closest(".no-swipe");
+        if (target) return;
+      }
+
       if (currentIndex > 0) {
         changeSection(currentIndex - 1);
       }
     },
+    trackMouse: true,
+    delta: 50,
+    preventScrollOnSwipe: true,
   });
 
   /**
@@ -164,9 +176,8 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
 
   return (
     <>
-      {/* Main content area */}
       <div
-        ref={scrollRef}
+        {...swipeHandlers}
         className={cn(
           "h-full overflow-y-auto pb-16",
           isTransitioning ? "opacity-0" : "opacity-100",
