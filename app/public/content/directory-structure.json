@@ -4,14 +4,35 @@
     "name": "Algorithms",
     "categories": [
       {
-        "id": "advanced_array_and_string_patterns",
-        "name": "Advanced Array And String Patterns",
-        "categories": []
-      },
-      {
-        "id": "advanced_graph_algorithms",
-        "name": "Advanced Graph Algorithms",
-        "categories": []
+        "id": "algorithm_design_paradigms",
+        "name": "Algorithm Design Paradigms",
+        "categories": [
+          {
+            "id": "advanced_dynamic_programming_patterns",
+            "name": "Advanced Dynamic Programming Patterns",
+            "categories": []
+          },
+          {
+            "id": "backtracking_and_recursive_problem_solving",
+            "name": "Backtracking And Recursive Problem Solving",
+            "categories": []
+          },
+          {
+            "id": "divide_and_conquer_strategies",
+            "name": "Divide And Conquer Strategies",
+            "categories": []
+          },
+          {
+            "id": "dynamic_programming_fundamentals",
+            "name": "Dynamic Programming Fundamentals",
+            "categories": []
+          },
+          {
+            "id": "greedy_algorithms_and_problem_solving",
+            "name": "Greedy Algorithms And Problem Solving",
+            "categories": []
+          }
+        ]
       },
       {
         "id": "basic_data_structures",
@@ -40,9 +61,41 @@
         ]
       },
       {
-        "id": "graph_representation_and_basic_algorithms",
-        "name": "Graph Representation And Basic Algorithms",
-        "categories": []
+        "id": "graph_data_structures",
+        "name": "Graph Data Structures",
+        "categories": [
+          {
+            "id": "advanced_graph_algorithms",
+            "name": "Advanced Graph Algorithms",
+            "categories": []
+          },
+          {
+            "id": "representation_and_basic_algorithms",
+            "name": "Representation And Basic Algorithms",
+            "categories": []
+          },
+          {
+            "id": "traversal_patterns",
+            "name": "Traversal Patterns",
+            "categories": []
+          }
+        ]
+      },
+      {
+        "id": "problem_patterns",
+        "name": "Problem Patterns",
+        "categories": [
+          {
+            "id": "advanced_array_and_string_patterns",
+            "name": "Advanced Array And String Patterns",
+            "categories": []
+          },
+          {
+            "id": "two_pointers_pattern",
+            "name": "Two Pointers Pattern",
+            "categories": []
+          }
+        ]
       },
       {
         "id": "tree_data_structures",
@@ -69,8 +122,8 @@
             "categories": []
           },
           {
-            "id": "tree_traversal_patterns",
-            "name": "Tree Traversal Patterns",
+            "id": "traversal_patterns",
+            "name": "Traversal Patterns",
             "categories": []
           }
         ]

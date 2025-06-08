@@ -5,79 +5,201 @@
       "name": "Algorithms",
       "categories": [
         {
-          "id": "advanced_array_and_string_patterns",
-          "name": "Advanced Array And String Patterns",
-          "categories": [],
-          "files": [
+          "id": "algorithm_design_paradigms",
+          "name": "Algorithm Design Paradigms",
+          "categories": [
             {
-              "path": "algorithms/advanced_array_and_string_patterns/boyer_moore_majority_vote_algorithm.md"
+              "id": "advanced_dynamic_programming_patterns",
+              "name": "Advanced Dynamic Programming Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/algorithm_design_paradigms/advanced_dynamic_programming_patterns/advanced_optimization.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/advanced_dynamic_programming_patterns/digit_dp_for_number_based_problems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/advanced_dynamic_programming_patterns/dp_on_graphs.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/advanced_dynamic_programming_patterns/dp_problem_identification_and_solution_design_strategies.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/advanced_dynamic_programming_patterns/dp_with_bitmasks_for_subset_and_permutation_problems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/advanced_dynamic_programming_patterns/dp_with_data_structures.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/advanced_dynamic_programming_patterns/game_theory_dp.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/advanced_dynamic_programming_patterns/interval_dp.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/advanced_dynamic_programming_patterns/multi_dimensional_dp_and_state_space_optimization.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/advanced_dynamic_programming_patterns/probability_dp_and_expected_value_calculations.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "algorithms/advanced_array_and_string_patterns/difference_arrays_for_range_update_operations.md"
+              "id": "backtracking_and_recursive_problem_solving",
+              "name": "Backtracking And Recursive Problem Solving",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/algorithm_design_paradigms/backtracking_and_recursive_problem_solving/constraint_satisfaction_problems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/backtracking_and_recursive_problem_solving/converting_backtracking_to_iterative_solutions.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/backtracking_and_recursive_problem_solving/graph_coloring_and_hamiltonian_path_problems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/backtracking_and_recursive_problem_solving/n_queens_problem_and_constraint_satisfaction.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/backtracking_and_recursive_problem_solving/permutations_and_combinations_generation.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/backtracking_and_recursive_problem_solving/pruning_techniques_and_optimization_strategies.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/backtracking_and_recursive_problem_solving/subset_generation_and_power_set_problems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/backtracking_and_recursive_problem_solving/sudoku_solver_and_puzzle_solving_techniques.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/backtracking_and_recursive_problem_solving/understanding_backtracking_algorithm_design.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/backtracking_and_recursive_problem_solving/word_search_and_path_finding_in_grids.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "algorithms/advanced_array_and_string_patterns/dutch_national_flag_algorithm_for_three_way_partitioning.md"
+              "id": "divide_and_conquer_strategies",
+              "name": "Divide And Conquer Strategies",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/algorithm_design_paradigms/divide_and_conquer_strategies/binary_search_and_its_variations.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/divide_and_conquer_strategies/closest_pair_of_points_problem.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/divide_and_conquer_strategies/divide_and_conquer_vs_dynamic_programming_trade_offs.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/divide_and_conquer_strategies/finding_maximum_subarray_using_divide_and_conquer.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/divide_and_conquer_strategies/karatsuba_algorithm_for_fast_integer_multiplication.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/divide_and_conquer_strategies/master_theorem_application_for_complexity_analysis.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/divide_and_conquer_strategies/merge_sort_and_its_applications_beyond_sorting.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/divide_and_conquer_strategies/quick_sort_and_randomized_algorithms.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/divide_and_conquer_strategies/strassens_matrix_multiplication_algorithm.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/divide_and_conquer_strategies/the_divide_and_conquer_paradigm.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "algorithms/advanced_array_and_string_patterns/edit_distance_and_string_transformation_problems.md"
+              "id": "dynamic_programming_fundamentals",
+              "name": "Dynamic Programming Fundamentals",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/algorithm_design_paradigms/dynamic_programming_fundamentals/1d_dp_problems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/dynamic_programming_fundamentals/2d_dp_problems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/dynamic_programming_fundamentals/array_dp.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/dynamic_programming_fundamentals/dp_on_trees.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/dynamic_programming_fundamentals/dp_optimization_techniques.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/dynamic_programming_fundamentals/knapsack_problems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/dynamic_programming_fundamentals/memoization_vs_tabulation_approaches.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/dynamic_programming_fundamentals/string_dp.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/dynamic_programming_fundamentals/understanding_optimal_substructure_and_overlapping_subproblems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/dynamic_programming_fundamentals/when_and_how_to_apply_dp.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "algorithms/advanced_array_and_string_patterns/kadane_algorithm_for_maximum_subarray_problems.md"
-            },
-            {
-              "path": "algorithms/advanced_array_and_string_patterns/longest_common_subsequence_and_longest_increasing_subsequence.md"
-            },
-            {
-              "path": "algorithms/advanced_array_and_string_patterns/prefix_sum_arrays_and_range_query_optimization.md"
-            },
-            {
-              "path": "algorithms/advanced_array_and_string_patterns/regular_expression_matching_and_pattern_recognition.md"
-            },
-            {
-              "path": "algorithms/advanced_array_and_string_patterns/string_hashing_and_rolling_hash_techniques.md"
-            },
-            {
-              "path": "algorithms/advanced_array_and_string_patterns/suffix_arrays_and_their_applications.md"
+              "id": "greedy_algorithms_and_problem_solving",
+              "name": "Greedy Algorithms And Problem Solving",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/algorithm_design_paradigms/greedy_algorithms_and_problem_solving/activity_selection_and_interval_scheduling_problems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/greedy_algorithms_and_problem_solving/common_greedy_algorithm_patterns_and_their_applications.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/greedy_algorithms_and_problem_solving/fractional_knapsack_and_job_scheduling_problems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/greedy_algorithms_and_problem_solving/gas_station_and_jump_game_problem_patterns.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/greedy_algorithms_and_problem_solving/greedy_algorithms_for_array_and_string_problems.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/greedy_algorithms_and_problem_solving/huffman_coding_and_optimal_merge_patterns.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/greedy_algorithms_and_problem_solving/minimum_spanning_tree_algorithms_as_greedy_approaches.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/greedy_algorithms_and_problem_solving/proving_correctness_of_greedy_algorithms.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/greedy_algorithms_and_problem_solving/understanding_greedy_choice_property_and_optimal_substructure.md"
+                },
+                {
+                  "path": "algorithms/algorithm_design_paradigms/greedy_algorithms_and_problem_solving/understanding_when_greedy_works_vs_when_dp_is_needed.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
-          "totalFileSize": 0
-        },
-        {
-          "id": "advanced_graph_algorithms",
-          "name": "Advanced Graph Algorithms",
-          "categories": [],
-          "files": [
-            {
-              "path": "algorithms/advanced_graph_algorithms/articulation_points_and_bridges_in_graphs.md"
-            },
-            {
-              "path": "algorithms/advanced_graph_algorithms/a_star_search_algorithm_for_informed_pathfinding.md"
-            },
-            {
-              "path": "algorithms/advanced_graph_algorithms/bellman_ford_algorithm_for_negative_weight_edges.md"
-            },
-            {
-              "path": "algorithms/advanced_graph_algorithms/floyd_warshall_algorithm_for_all_pairs_shortest_paths.md"
-            },
-            {
-              "path": "algorithms/advanced_graph_algorithms/graph_coloring_and_independent_set_problems.md"
-            },
-            {
-              "path": "algorithms/advanced_graph_algorithms/maximum_bipartite_matching_and_hungarian_algorithm.md"
-            },
-            {
-              "path": "algorithms/advanced_graph_algorithms/minimum_spanning_tree_kruskal_s_and_prim_s_algorithms.md"
-            },
-            {
-              "path": "algorithms/advanced_graph_algorithms/network_flow_algorithms_ford_fulkerson_and_edmonds_karp.md"
-            },
-            {
-              "path": "algorithms/advanced_graph_algorithms/shortest_path_algorithms.md"
-            },
-            {
-              "path": "algorithms/advanced_graph_algorithms/tarjans_algorithm_for_strongly_connected_components.md"
-            }
-          ],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -241,41 +363,178 @@
           "totalFileSize": 0
         },
         {
-          "id": "graph_representation_and_basic_algorithms",
-          "name": "Graph Representation And Basic Algorithms",
-          "categories": [],
-          "files": [
+          "id": "graph_data_structures",
+          "name": "Graph Data Structures",
+          "categories": [
             {
-              "path": "algorithms/graph_representation_and_basic_algorithms/bipartite_graph_detection_and_two_coloring.md"
+              "id": "advanced_graph_algorithms",
+              "name": "Advanced Graph Algorithms",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/graph_data_structures/advanced_graph_algorithms/articulation_points_and_bridges_in_graphs.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/advanced_graph_algorithms/a_star_search_algorithm_for_informed_pathfinding.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/advanced_graph_algorithms/bellman_ford_algorithm_for_negative_weight_edges.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/advanced_graph_algorithms/floyd_warshall_algorithm_for_all_pairs_shortest_paths.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/advanced_graph_algorithms/graph_coloring_and_independent_set_problems.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/advanced_graph_algorithms/maximum_bipartite_matching_and_hungarian_algorithm.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/advanced_graph_algorithms/minimum_spanning_tree_kruskal_s_and_prim_s_algorithms.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/advanced_graph_algorithms/network_flow_algorithms_ford_fulkerson_and_edmonds_karp.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/advanced_graph_algorithms/shortest_path_algorithms.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/advanced_graph_algorithms/tarjans_algorithm_for_strongly_connected_components.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "algorithms/graph_representation_and_basic_algorithms/breadth_first_search.md"
+              "id": "representation_and_basic_algorithms",
+              "name": "Representation And Basic Algorithms",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/graph_data_structures/representation_and_basic_algorithms/bipartite_graph_detection_and_two_coloring.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/representation_and_basic_algorithms/breadth_first_search.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/representation_and_basic_algorithms/connected_components_and_strongly_connected_components.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/representation_and_basic_algorithms/cycle_detection_in_directed_and_undirected_graphs.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/representation_and_basic_algorithms/depth_first_search.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/representation_and_basic_algorithms/graph_representations.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/representation_and_basic_algorithms/graph_traversal_applications_and_problem_solving_patterns.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/representation_and_basic_algorithms/graph_types.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/representation_and_basic_algorithms/space_and_time_complexity_analysis_of_graph_algorithms.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/representation_and_basic_algorithms/topological_sorting_using_dfs_and_kahns_algorithm.md"
+                }
+              ],
+              "totalFileSize": 0
             },
             {
-              "path": "algorithms/graph_representation_and_basic_algorithms/connected_components_and_strongly_connected_components.md"
-            },
-            {
-              "path": "algorithms/graph_representation_and_basic_algorithms/cycle_detection_in_directed_and_undirected_graphs.md"
-            },
-            {
-              "path": "algorithms/graph_representation_and_basic_algorithms/depth_first_search.md"
-            },
-            {
-              "path": "algorithms/graph_representation_and_basic_algorithms/graph_representations.md"
-            },
-            {
-              "path": "algorithms/graph_representation_and_basic_algorithms/graph_traversal_applications_and_problem_solving_patterns.md"
-            },
-            {
-              "path": "algorithms/graph_representation_and_basic_algorithms/graph_types.md"
-            },
-            {
-              "path": "algorithms/graph_representation_and_basic_algorithms/space_and_time_complexity_analysis_of_graph_algorithms.md"
-            },
-            {
-              "path": "algorithms/graph_representation_and_basic_algorithms/topological_sorting_using_dfs_and_kahns_algorithm.md"
+              "id": "traversal_patterns",
+              "name": "Traversal Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/graph_data_structures/traversal_patterns/bfs_dfs_for_cycle_detection.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/traversal_patterns/bfs_for_shortest_path_in_unweighted_graphs.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/traversal_patterns/bidirectional_search_optimization.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/traversal_patterns/dfs_for_path_finding_and_connectivity.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/traversal_patterns/dfs_with_memoization_for_dp_on_trees.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/traversal_patterns/graph_traversal_complexity_optimization.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/traversal_patterns/graph_traversal_with_visited_state_management.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/traversal_patterns/modified_dfs_for_specific_applications.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/traversal_patterns/multi_source_bfs_for_optimization.md"
+                },
+                {
+                  "path": "algorithms/graph_data_structures/traversal_patterns/traversal_for_topological_sorting.md"
+                }
+              ],
+              "totalFileSize": 0
             }
           ],
+          "files": [],
+          "totalFileSize": 0
+        },
+        {
+          "id": "problem_patterns",
+          "name": "Problem Patterns",
+          "categories": [
+            {
+              "id": "advanced_array_and_string_patterns",
+              "name": "Advanced Array And String Patterns",
+              "categories": [],
+              "files": [
+                {
+                  "path": "algorithms/problem_patterns/advanced_array_and_string_patterns/boyer_moore_majority_vote_algorithm.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/advanced_array_and_string_patterns/difference_arrays_for_range_update_operations.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/advanced_array_and_string_patterns/dutch_national_flag_algorithm_for_three_way_partitioning.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/advanced_array_and_string_patterns/edit_distance_and_string_transformation_problems.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/advanced_array_and_string_patterns/kadane_algorithm_for_maximum_subarray_problems.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/advanced_array_and_string_patterns/longest_common_subsequence_and_longest_increasing_subsequence.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/advanced_array_and_string_patterns/prefix_sum_arrays_and_range_query_optimization.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/advanced_array_and_string_patterns/regular_expression_matching_and_pattern_recognition.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/advanced_array_and_string_patterns/string_hashing_and_rolling_hash_techniques.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/advanced_array_and_string_patterns/suffix_arrays_and_their_applications.md"
+                }
+              ],
+              "totalFileSize": 0
+            },
+            {
+              "id": "two_pointers_pattern",
+              "name": "Two Pointers Pattern",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            }
+          ],
+          "files": [],
           "totalFileSize": 0
         },
         {
@@ -435,39 +694,39 @@
               "totalFileSize": 0
             },
             {
-              "id": "tree_traversal_patterns",
-              "name": "Tree Traversal Patterns",
+              "id": "traversal_patterns",
+              "name": "Traversal Patterns",
               "categories": [],
               "files": [
                 {
-                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/boundary_traversal_of_binary_trees.md"
+                  "path": "algorithms/tree_data_structures/traversal_patterns/boundary_traversal_of_binary_trees.md"
                 },
                 {
-                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/custom_traversal_orders_for_specific_problems.md"
+                  "path": "algorithms/tree_data_structures/traversal_patterns/custom_traversal_orders_for_specific_problems.md"
                 },
                 {
-                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/level_order_traversal_variations.md"
+                  "path": "algorithms/tree_data_structures/traversal_patterns/level_order_traversal_variations.md"
                 },
                 {
-                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/morris_traversal_for_constant_space.md"
+                  "path": "algorithms/tree_data_structures/traversal_patterns/morris_traversal_for_constant_space.md"
                 },
                 {
-                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/recursive_vs_iterative_traversal_implementations.md"
+                  "path": "algorithms/tree_data_structures/traversal_patterns/recursive_vs_iterative_traversal_implementations.md"
                 },
                 {
-                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/threaded_binary_tree_traversals.md"
+                  "path": "algorithms/tree_data_structures/traversal_patterns/threaded_binary_tree_traversals.md"
                 },
                 {
-                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/tree_traversal_for_expression_evaluation.md"
+                  "path": "algorithms/tree_data_structures/traversal_patterns/tree_traversal_for_expression_evaluation.md"
                 },
                 {
-                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/tree_traversal_space_and_time_complexity.md"
+                  "path": "algorithms/tree_data_structures/traversal_patterns/tree_traversal_space_and_time_complexity.md"
                 },
                 {
-                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/tree_traversal_with_parent_pointers.md"
+                  "path": "algorithms/tree_data_structures/traversal_patterns/tree_traversal_with_parent_pointers.md"
                 },
                 {
-                  "path": "algorithms/tree_data_structures/tree_traversal_patterns/vertical_and_diagonal_tree_traversals.md"
+                  "path": "algorithms/tree_data_structures/traversal_patterns/vertical_and_diagonal_tree_traversals.md"
                 }
               ],
               "totalFileSize": 0
