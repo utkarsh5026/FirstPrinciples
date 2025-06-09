@@ -12,7 +12,17 @@ export type FontFamily =
   | "lora"
   | "pt-serif"
   | "open-sans"
-  | "cascadia-code";
+  | "cascadia-code"
+  | "atkinson-hyperlegible"
+  | "source-sans-pro"
+  | "nunito-sans"
+  | "ibm-plex-sans"
+  | "crimson-text"
+  | "spectral"
+  | "eb-garamond"
+  | "bitter"
+  | "vollkorn"
+  | "literata";
 
 export interface ReadingSettings {
   fontFamily: FontFamily;

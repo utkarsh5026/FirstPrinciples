@@ -82,6 +82,66 @@ const fontOptions: FontOption[] = [
     description: "Transitional serif",
     category: "serif",
   },
+  {
+    value: "atkinson-hyperlegible",
+    label: "Atkinson Hyperlegible",
+    description: "Designed for maximum readability and accessibility",
+    category: "sans-serif",
+  },
+  {
+    value: "source-sans-pro",
+    label: "Source Sans Pro",
+    description: "Adobe's font optimized for UI and long reading",
+    category: "sans-serif",
+  },
+  {
+    value: "nunito-sans",
+    label: "Nunito Sans",
+    description: "Rounded, friendly font excellent for long text",
+    category: "sans-serif",
+  },
+  {
+    value: "ibm-plex-sans",
+    label: "IBM Plex Sans",
+    description: "Corporate-grade font designed for extended reading",
+    category: "sans-serif",
+  },
+  {
+    value: "crimson-text",
+    label: "Crimson Text",
+    description: "Inspired by old-style book typography",
+    category: "serif",
+  },
+  {
+    value: "spectral",
+    label: "Spectral",
+    description: "Google's font optimized for screen reading",
+    category: "serif",
+  },
+  {
+    value: "eb-garamond",
+    label: "EB Garamond",
+    description: "Classic Garamond revival, perfect for books",
+    category: "serif",
+  },
+  {
+    value: "bitter",
+    label: "Bitter",
+    description: "Slab serif with excellent readability",
+    category: "serif",
+  },
+  {
+    value: "vollkorn",
+    label: "Vollkorn",
+    description: "Designed specifically for bread text reading",
+    category: "serif",
+  },
+  {
+    value: "literata",
+    label: "Literata",
+    description: "Google Play Books' reading font",
+    category: "serif",
+  },
 ];
 
 const fontCategories = {
@@ -123,6 +183,36 @@ const getFontCss = (font: FontFamily): React.CSSProperties => {
       break;
     case "open-sans":
       fontFamily = '"Open Sans", sans-serif';
+      break;
+    case "atkinson-hyperlegible":
+      fontFamily = '"Atkinson Hyperlegible", sans-serif';
+      break;
+    case "source-sans-pro":
+      fontFamily = '"Source Sans Pro", sans-serif';
+      break;
+    case "nunito-sans":
+      fontFamily = '"Nunito Sans", sans-serif';
+      break;
+    case "ibm-plex-sans":
+      fontFamily = '"IBM Plex Sans", sans-serif';
+      break;
+    case "crimson-text":
+      fontFamily = '"Crimson Text", serif';
+      break;
+    case "spectral":
+      fontFamily = '"Spectral", serif';
+      break;
+    case "eb-garamond":
+      fontFamily = '"EB Garamond", serif';
+      break;
+    case "bitter":
+      fontFamily = '"Bitter", serif';
+      break;
+    case "vollkorn":
+      fontFamily = '"Vollkorn", serif';
+      break;
+    case "literata":
+      fontFamily = '"Literata", serif';
       break;
     default:
       fontFamily = "inherit";
