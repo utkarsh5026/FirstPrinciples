@@ -11,7 +11,7 @@ const StartReadingButton: React.FC<StartReadingButtonProps> = ({
 }) => {
   return (
     <motion.div
-      className="mt-8 flex justify-center"
+      className="mt-4 sm:mt-6 md:mt-8 flex justify-center px-4 sm:px-6"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4, duration: 0.5 }}
@@ -19,11 +19,11 @@ const StartReadingButton: React.FC<StartReadingButtonProps> = ({
       <motion.div
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="w-full sm:w-auto"
+        className="w-full sm:w-auto max-w-sm sm:max-w-none"
       >
         <Button
           onClick={startReading}
-          className="relative overflow-hidden group w-full sm:w-auto px-8 py-6 h-auto rounded-2xl bg-primary/60 hover:bg-primary/30 transition-colors shadow-2xl shadow-primary/40 cursor-pointer perspective-dramatic"
+          className="relative overflow-hidden group w-full sm:w-auto px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 h-auto rounded-2xl bg-primary/60 hover:bg-primary/30 transition-colors shadow-lg sm:shadow-xl md:shadow-2xl shadow-primary/40 cursor-pointer perspective-dramatic text-sm sm:text-base touch-manipulation"
         >
           {/* Enhanced button shine effect */}
           <motion.div
@@ -48,7 +48,7 @@ const StartReadingButton: React.FC<StartReadingButtonProps> = ({
           {/* Button content */}
           <div className="relative flex items-center justify-center">
             <motion.span
-              className="mr-2 h-5 w-5"
+              className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5"
               animate={{ rotate: [0, 5, 0, -5], scale: [1, 1.1, 1] }}
               transition={{
                 repeat: Infinity,
@@ -56,11 +56,13 @@ const StartReadingButton: React.FC<StartReadingButtonProps> = ({
                 ease: "linear",
               }}
             >
-              <Sparkles className="mr-2 h-5 w-5" />
+              <Sparkles className="h-4 w-4 sm:h-5 sm:w-5" />
             </motion.span>
-            <span className="text-base font-medium">Start Reading</span>
+            <span className="text-sm sm:text-base font-medium">
+              Start Reading
+            </span>
             <motion.div
-              className="ml-2"
+              className="ml-1.5 sm:ml-2"
               animate={{ x: [0, 4, 0] }}
               transition={{
                 repeat: Infinity,
@@ -68,7 +70,7 @@ const StartReadingButton: React.FC<StartReadingButtonProps> = ({
                 ease: "easeInOut",
               }}
             >
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
             </motion.div>
           </div>
         </Button>
