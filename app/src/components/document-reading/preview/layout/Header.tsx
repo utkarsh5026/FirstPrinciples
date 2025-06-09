@@ -77,21 +77,6 @@ const Header: React.FC<HeaderProps> = ({
             </div>
           )}
         </div>
-
-        {/* Mobile Stats */}
-        {isMobile && (
-          <div className="flex items-center gap-3 text-xs text-muted-foreground">
-            <div className="flex items-center">
-              <Clock className="h-3 w-3 mr-1" />
-              <span>{estimatedReadTime} min</span>
-            </div>
-            <div className="w-1 h-1 rounded-full bg-muted-foreground/40"></div>
-            <div className="flex items-center">
-              <LayoutList className="h-3 w-3 mr-1" />
-              <span>{totalSections} sections</span>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Title */}
