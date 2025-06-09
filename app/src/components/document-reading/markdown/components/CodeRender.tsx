@@ -95,11 +95,8 @@ const CodeRender: React.FC<CodeRenderProps> = ({
       </code>
     </span>
   ) : (
-    <div
-      ref={codeRef}
-      className="my-6 rounded-2xl border border-[#222222] relative font-fira-code no-swipe"
-    >
-      <div className="bg-[#1c1c1c] text-gray-400 px-4 py-2 text-sm font-bold border-b border-[#222222] flex justify-between items-center">
+    <div ref={codeRef} className="my-6 relative font-fira-code no-swipe">
+      <div className="bg-[#1c1c1c] text-gray-400 px-4 py-2 text-sm font-bold border-b border-[#222222] flex justify-between items-center rounded-t-2xl">
         <span>{language || "code"}</span>
         <button
           onClick={copyToClipboard}
@@ -114,7 +111,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
       </div>
 
       <div
-        className="overflow-x-auto overflow-y-hidden 
+        className="overflow-x-auto overflow-y-hidden
                    [&::-webkit-scrollbar]:h-2 
                    [&::-webkit-scrollbar-track]:bg-[#0f0f0f] 
                    [&::-webkit-scrollbar-track]:rounded-full 
