@@ -14,6 +14,16 @@ export const fontFamilyMap: Record<FontFamily, string> = {
   "pt-serif": '"PT Serif", serif',
   "open-sans": '"Open Sans", sans-serif',
   "cascadia-code": '"Cascadia Code", monospace',
+  "atkinson-hyperlegible": '"Atkinson Hyperlegible", sans-serif',
+  "source-sans-pro": '"Source Sans Pro", sans-serif',
+  "nunito-sans": '"Nunito Sans", sans-serif',
+  "ibm-plex-sans": '"IBM Plex Sans", sans-serif',
+  "crimson-text": '"Crimson Text", serif',
+  spectral: '"Spectral", serif',
+  "eb-garamond": '"EB Garamond", serif',
+  bitter: '"Bitter", serif',
+  vollkorn: '"Vollkorn", serif',
+  literata: '"Literata", serif',
 };
 
 export interface ReadingSettingsContextType {

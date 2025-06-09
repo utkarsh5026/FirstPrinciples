@@ -565,14 +565,76 @@
               "id": "sliding_window_technique",
               "name": "Sliding Window Technique",
               "categories": [],
-              "files": [],
+              "files": [
+                {
+                  "path": "algorithms/problem_patterns/sliding_window_technique/fixed_size_sliding_window_problems.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/sliding_window_technique/maximum_minimum_in_sliding_window.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/sliding_window_technique/multi_dimensional_sliding_windows.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/sliding_window_technique/sliding_window_for_array_problems.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/sliding_window_technique/sliding_window_for_streaming_data.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/sliding_window_technique/sliding_window_for_substring_problems.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/sliding_window_technique/sliding_window_maximum_using_deque.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/sliding_window_technique/sliding_window_time_complexity_analysis.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/sliding_window_technique/sliding_window_with_hash_maps.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/sliding_window_technique/variable_size_sliding_window_optimization.md"
+                }
+              ],
               "totalFileSize": 0
             },
             {
               "id": "two_pointers_pattern",
               "name": "Two Pointers Pattern",
               "categories": [],
-              "files": [],
+              "files": [
+                {
+                  "path": "algorithms/problem_patterns/two_pointers_pattern/fast_and_slow_pointers_for_cycle_detection.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/two_pointers_pattern/multiple_pointers_for_k_sum_generalizations.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/two_pointers_pattern/opposite_direction_two_pointers_for_pair_finding.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/two_pointers_pattern/same_direction_two_pointers_for_subarray_problems.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/two_pointers_pattern/three_pointers_for_three_sum_problems.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/two_pointers_pattern/time_complexity_optimization_using_two_pointers.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/two_pointers_pattern/two_pointers_for_container_water_problems.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/two_pointers_pattern/two_pointers_for_merge_operations.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/two_pointers_pattern/two_pointers_for_palindrome_checking.md"
+                },
+                {
+                  "path": "algorithms/problem_patterns/two_pointers_pattern/two_pointers_in_sorted_arrays.md"
+                }
+              ],
               "totalFileSize": 0
             }
           ],

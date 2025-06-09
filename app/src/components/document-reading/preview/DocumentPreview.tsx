@@ -41,7 +41,6 @@ const DocumentPreview: React.FC = () => {
     totalWords: 0,
     totalTime: 0,
   });
-  const [lastReadingTime, setLastReadingTime] = useState<number | null>(null);
   const readingStartTimeRef = useRef<number | null>(null);
 
   const { documentPath = "" } = useParams<{ documentPath: string }>();
@@ -62,27 +61,7 @@ const DocumentPreview: React.FC = () => {
 
   console.log(sectionData, "Section data");
 
-  const { addToHistory, getDocumentHistory, updateReadingTime } =
-    useReadingHistory();
-  /**
-   * ⏱️ Load previous reading time from history
-   */
-  useEffect(() => {
-    if (!documentPath) return;
-
-    const loadPreviousReadingTime = async () => {
-      try {
-        const docHistory = await getDocumentHistory(documentPath);
-        if (docHistory && docHistory.timeSpent > 0) {
-          setLastReadingTime(docHistory.timeSpent);
-        }
-      } catch (error) {
-        console.error("Failed to load previous reading time:", error);
-      }
-    };
-
-    loadPreviousReadingTime();
-  }, [documentPath, getDocumentHistory]);
+  const { addToHistory, updateReadingTime } = useReadingHistory();
 
   /**
    * 🚀 Start tracking reading time when entering fullscreen
@@ -122,7 +101,6 @@ const DocumentPreview: React.FC = () => {
     });
 
     await updateReadingTime(documentPath, documentTitle, timeSpent);
-    setLastReadingTime((prev) => (prev ?? 0) + timeSpent);
 
     readingStartTimeRef.current = null;
 
@@ -191,14 +169,8 @@ const DocumentPreview: React.FC = () => {
                     estimatedReadTime={parseInt(
                       formattedReadTime.split(":")[0]
                     )}
-                    lastUpdatedFormatted={new Date().toLocaleDateString()}
                     readSections={sectionData.completedSectionIds}
                     loading={loading}
-                    lastReadingTime={
-                      lastReadingTime
-                        ? formatTimeInMs(lastReadingTime)
-                        : "Not read yet"
-                    }
                   />
                 </div>
               </AnimatePresence>
