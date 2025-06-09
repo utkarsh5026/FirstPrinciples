@@ -2,15 +2,17 @@ import React, { memo } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
-import LinkRender from "./components/LinkRender";
-import HeadingRender from "./components/HeadingRender";
-import ParagraphRender from "./components/ParagraphRender";
-import ListRender from "./components/ListRender";
-import BlockquoteRender from "./components/BlockRender";
-import CodeRender from "./components/CodeRender";
-import TableRender from "./components/TableRender";
-import HorizontalRuleRender from "./components/HorizontalRuleRender";
-import ImageRender from "./components/ImageRender";
+import {
+  BlockquoteRender,
+  CodeRender,
+  HeadingRender,
+  ImageRender,
+  LinkRender,
+  ListRender,
+  ParagraphRender,
+  TableRender,
+  HorizontalRuleRender,
+} from "./components";
 
 interface CustomMarkdownRendererProps {
   markdown: string;
