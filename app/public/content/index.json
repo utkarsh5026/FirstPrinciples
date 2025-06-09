@@ -527,6 +527,48 @@
               "totalFileSize": 0
             },
             {
+              "id": "binary_search_variations",
+              "name": "Binary Search Variations",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
+              "id": "bit_manipulation_patterns",
+              "name": "Bit Manipulation Patterns",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
+              "id": "interval_and_range_problems",
+              "name": "Interval And Range Problems",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
+              "id": "matrix_and_2d_array_problems",
+              "name": "Matrix And 2d Array Problems",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
+              "id": "palindrome_and_string_matching",
+              "name": "Palindrome And String Matching",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
+              "id": "sliding_window_technique",
+              "name": "Sliding Window Technique",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
               "id": "two_pointers_pattern",
               "name": "Two Pointers Pattern",
               "categories": [],

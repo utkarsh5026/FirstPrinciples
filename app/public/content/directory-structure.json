@@ -91,6 +91,36 @@
             "categories": []
           },
           {
+            "id": "binary_search_variations",
+            "name": "Binary Search Variations",
+            "categories": []
+          },
+          {
+            "id": "bit_manipulation_patterns",
+            "name": "Bit Manipulation Patterns",
+            "categories": []
+          },
+          {
+            "id": "interval_and_range_problems",
+            "name": "Interval And Range Problems",
+            "categories": []
+          },
+          {
+            "id": "matrix_and_2d_array_problems",
+            "name": "Matrix And 2d Array Problems",
+            "categories": []
+          },
+          {
+            "id": "palindrome_and_string_matching",
+            "name": "Palindrome And String Matching",
+            "categories": []
+          },
+          {
+            "id": "sliding_window_technique",
+            "name": "Sliding Window Technique",
+            "categories": []
+          },
+          {
             "id": "two_pointers_pattern",
             "name": "Two Pointers Pattern",
             "categories": []
