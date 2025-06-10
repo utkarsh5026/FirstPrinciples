@@ -26,15 +26,15 @@ const ReadingItem = ({ item, onFileSelect }: ReadingItemProps) => {
     >
       <motion.button
         className={cn(
-          // Base card styling with modern glass morphism
+          // Base card styling with theme-based glass morphism
           "w-full p-6 rounded-3xl transition-all duration-300 ease-out",
-          "bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl",
-          "border border-gray-200/30 dark:border-gray-700/30",
-          "shadow-lg shadow-gray-200/10 dark:shadow-gray-900/20",
-          "hover:shadow-xl hover:shadow-gray-200/20 dark:hover:shadow-gray-900/30",
-          "hover:border-gray-300/50 dark:hover:border-gray-600/50",
-          "hover:bg-white/90 dark:hover:bg-gray-800/60",
-          "text-left focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+          "bg-card/80 backdrop-blur-xl",
+          "border border-border/30",
+          "shadow-lg",
+          "hover:shadow-xl",
+          "hover:border-border/50",
+          "hover:bg-card/90",
+          "text-left focus:outline-none focus:ring-2 focus:ring-primary/20"
         )}
         onClick={() => onFileSelect(item.path)}
         whileHover={{ scale: 1.02 }}
@@ -46,15 +46,12 @@ const ReadingItem = ({ item, onFileSelect }: ReadingItemProps) => {
           <div
             className={cn(
               "flex-shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center",
-              "bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30",
-              "border border-blue-200/50 dark:border-blue-700/50",
+              "bg-primary/10 backdrop-blur-sm",
+              "border border-primary/20",
               "group-hover:scale-110 transition-transform duration-300"
             )}
           >
-            <CategoryIcon
-              size={20}
-              className="text-blue-600 dark:text-blue-400"
-            />
+            <CategoryIcon size={20} className="text-primary" />
           </div>
 
           <div className="flex-1 min-w-0">
@@ -62,20 +59,20 @@ const ReadingItem = ({ item, onFileSelect }: ReadingItemProps) => {
             <h3
               className={cn(
                 "font-semibold text-base leading-relaxed mb-2",
-                "text-gray-900 dark:text-gray-100",
-                "group-hover:text-blue-600 dark:group-hover:text-blue-400",
+                "text-foreground",
+                "group-hover:text-primary",
                 "transition-colors duration-200"
               )}
             >
               {item.title}
             </h3>
 
-            {/* Last read timestamp */}
-            <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+            {/* Last read timestamp using theme muted colors */}
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <div
                 className={cn(
                   "w-5 h-5 rounded-lg flex items-center justify-center",
-                  "bg-gray-100 dark:bg-gray-800/50"
+                  "bg-muted/50"
                 )}
               >
                 <Clock size={12} strokeWidth={2} />
@@ -162,9 +159,9 @@ const ReadingItem = ({ item, onFileSelect }: ReadingItemProps) => {
           </motion.div>
         </div>
 
-        {/* Subtle hover indicator */}
+        {/* Subtle hover indicator using theme primary color */}
         <motion.div
-          className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          className="absolute inset-0 rounded-3xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           initial={false}
         />
       </motion.button>

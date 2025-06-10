@@ -41,7 +41,8 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, handleHomeClick }) => {
             "hover:bg-muted/80",
             "text-muted-foreground hover:text-foreground",
             "transition-all duration-200 ease-out",
-            "border border-border/30"
+            "border border-border/30",
+            "cursor-pointer"
           )}
           onClick={() => setSidebarOpen(false)}
           whileHover={{ scale: 1.05 }}
