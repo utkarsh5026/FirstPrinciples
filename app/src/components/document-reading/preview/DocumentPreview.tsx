@@ -260,7 +260,7 @@ const DocumentPreview: React.FC = () => {
         />
 
         <div className="flex flex-col items-center justify-center w-full flex-1">
-          {(canNavigatePrevious || canNavigateNext) && (
+          {(canNavigatePrevious || canNavigateNext) && isMobile && (
             <motion.div
               className="text-center mb-4"
               initial={{ opacity: 0, y: -10 }}
@@ -284,7 +284,7 @@ const DocumentPreview: React.FC = () => {
               </div>
             </motion.div>
           )}
-          <div className="bg-card/90 backdrop-blur-md rounded-3xl border border-border/30 overflow-hidden relative shadow-lg">
+          <div className="bg-card/90 backdrop-blur-md rounded-3xl border border-border/30 overflow-hidden relative shadow-lg w-full">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-80" />
             <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-70" />
             <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-70" />
