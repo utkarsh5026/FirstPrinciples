@@ -1,5 +1,6 @@
 export type ThemeOption = {
   name: string;
+  category: string;
   background: string;
   foreground: string;
   primary: string;
@@ -17,6 +18,7 @@ export type ThemeOption = {
 export const themes: ThemeOption[] = [
   {
     name: "Midnight Blue",
+    category: "Dark",
     background: "#0f1218",
     foreground: "#e2e8f0",
     primary: "#3b82f6",
@@ -32,6 +34,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Deep Space",
+    category: "Dark",
     background: "#10101e",
     foreground: "#e2e8f0",
     primary: "#8b5cf6",
@@ -47,6 +50,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Dark Charcoal",
+    category: "Dark",
     background: "#121212",
     foreground: "#e2e8f0",
     primary: "#64748b",
@@ -62,6 +66,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Obsidian",
+    category: "Dark",
     background: "#0f0f0f",
     foreground: "#d4d4d8",
     primary: "#22c55e",
@@ -77,6 +82,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Stealth",
+    category: "Dark",
     background: "#131313",
     foreground: "#e5e5e5",
     primary: "#60a5fa",
@@ -92,6 +98,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Deep Forest",
+    category: "Nature",
     background: "#0c130d",
     foreground: "#d5e8d8",
     primary: "#059669",
@@ -107,6 +114,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Simple Dark",
+    category: "Dark",
     background: "#121212",
     foreground: "#ffffff",
     primary: "#4f46e5",
@@ -122,6 +130,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Monochrome",
+    category: "Dark",
     background: "#0a0a0a",
     foreground: "#e0e0e0",
     primary: "#a3a3a3",
@@ -137,6 +146,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Midnight Zen",
+    category: "Dark",
     background: "#121923",
     foreground: "#e2e7ef",
     primary: "#a599e9",
@@ -152,6 +162,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Forest Dark",
+    category: "Nature",
     background: "#131a17",
     foreground: "#e0e9e4",
     primary: "#7eb8a0",
@@ -167,6 +178,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Mocha",
+    category: "Warm",
     background: "#1a1614",
     foreground: "#e8e1d9",
     primary: "#d3a976",
@@ -182,6 +194,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Graphite",
+    category: "Dark",
     background: "#131517",
     foreground: "#e2e4e8",
     primary: "#8ab4d8",
@@ -197,6 +210,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Twilight",
+    category: "Vibrant",
     background: "#15131e",
     foreground: "#e4e2ec",
     primary: "#f0a387",
@@ -212,6 +226,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Oceanic",
+    category: "Nature",
     background: "#0e1b1f",
     foreground: "#dde7e9",
     primary: "#65b6c2",
@@ -227,6 +242,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Dark Sepia",
+    category: "Warm",
     background: "#191715",
     foreground: "#e5e0d7",
     primary: "#c2966a",
@@ -242,6 +258,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Amber Glow",
+    category: "Vibrant",
     background: "#0e0d0c",
     foreground: "#f3f0e9",
     primary: "#ff9e64",
@@ -257,6 +274,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Synthwave Sunset",
+    category: "Vibrant",
     background: "#100720",
     foreground: "#eee6f5",
     primary: "#fc61ff",
@@ -272,6 +290,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Glacier Blue",
+    category: "Nature",
     background: "#0c1419",
     foreground: "#e8eff3",
     primary: "#5ccfe6",
@@ -287,6 +306,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Neo Tokyo",
+    category: "Vibrant",
     background: "#0f0a0c",
     foreground: "#f0e3e6",
     primary: "#ff3d5e",
@@ -302,6 +322,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Emerald Depth",
+    category: "Nature",
     background: "#0b1512",
     foreground: "#e5efed",
     primary: "#26c281",
@@ -317,6 +338,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Cyberpunk Night",
+    category: "Vibrant",
     background: "#0d0d15",
     foreground: "#eeeef9",
     primary: "#ff7edb",
@@ -332,6 +354,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Cosmic Void",
+    category: "Dark",
     background: "#070b14",
     foreground: "#dfecfd",
     primary: "#4dadff",
@@ -347,6 +370,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Aurora Borealis",
+    category: "Nature",
     background: "#0a0e17",
     foreground: "#e2eaf2",
     primary: "#64d9ef",
@@ -362,6 +386,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Matrix Code",
+    category: "Developer",
     background: "#0d0d0d",
     foreground: "#dbfcdb",
     primary: "#00ff41",
@@ -377,6 +402,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Lavender Dreams",
+    category: "Vibrant",
     background: "#191627",
     foreground: "#f0ebfa",
     primary: "#b388ff",
@@ -392,6 +418,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Python Zen",
+    category: "Developer",
     background: "#1a212e",
     foreground: "#e5e9f0",
     primary: "#5e81ac",
@@ -407,6 +434,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Go Blue",
+    category: "Developer",
     background: "#0e1621",
     foreground: "#e8eaed",
     primary: "#00ADD8",
@@ -422,6 +450,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "GitHub Dark",
+    category: "Developer",
     background: "#0d1117",
     foreground: "#c9d1d9",
     primary: "#58a6ff",
@@ -437,6 +466,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Rust Orange",
+    category: "Developer",
     background: "#161616",
     foreground: "#eeeeee",
     primary: "#f74c00",
@@ -452,6 +482,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "VSCode Night",
+    category: "Developer",
     background: "#1e1e1e",
     foreground: "#d4d4d4",
     primary: "#569cd6",
@@ -467,6 +498,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Terminal Green",
+    category: "Developer",
     background: "#0c0c0c",
     foreground: "#e0e0e0",
     primary: "#4af626",
@@ -482,6 +514,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Syntax Highlight",
+    category: "Developer",
     background: "#1e1e1e",
     foreground: "#f8f8f2",
     primary: "#ff79c6",
@@ -497,6 +530,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Ocean Breeze",
+    category: "Nature",
     background: "#0e1c22",
     foreground: "#edf4f7",
     primary: "#64b5cd",
@@ -512,6 +546,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Midnight Plum",
+    category: "Vibrant",
     background: "#141319",
     foreground: "#f5f1f8",
     primary: "#9c77b8",
@@ -527,6 +562,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Succulent Garden",
+    category: "Nature",
     background: "#1a211d",
     foreground: "#f0f5f3",
     primary: "#7acca6",
@@ -542,6 +578,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Cherry Blossom",
+    category: "Vibrant",
     background: "#1a1520",
     foreground: "#f8eef3",
     primary: "#f0a9b8",
@@ -557,6 +594,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Peacock Feather",
+    category: "Nature",
     background: "#0d192b",
     foreground: "#f1f6fc",
     primary: "#45b7cd",
@@ -572,6 +610,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Amethyst Glow",
+    category: "Vibrant",
     background: "#1e1033",
     foreground: "#f2ebf9",
     primary: "#c792ea",
@@ -587,6 +626,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Coral Reef",
+    category: "Nature",
     background: "#0f2231",
     foreground: "#f0f5f9",
     primary: "#ff8080",
@@ -602,6 +642,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Mint Chocolate",
+    category: "Nature",
     background: "#191a19",
     foreground: "#e8f3ef",
     primary: "#4cd6a0",
@@ -617,6 +658,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Rose Gold",
+    category: "Warm",
     background: "#1a1517",
     foreground: "#f8eef1",
     primary: "#f2c9b5",
@@ -632,6 +674,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Classic Light",
+    category: "Light",
     background: "#ffffff",
     foreground: "#1f2937",
     primary: "#3b82f6",
@@ -647,6 +690,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Soft Gray",
+    category: "Light",
     background: "#f8fafc",
     foreground: "#334155",
     primary: "#6366f1",
@@ -662,6 +706,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Warm Cream",
+    category: "Light",
     background: "#fefbf7",
     foreground: "#44403c",
     primary: "#ea580c",
@@ -677,6 +722,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Fresh Mint",
+    category: "Light",
     background: "#f0fdf4",
     foreground: "#14532d",
     primary: "#16a34a",
@@ -692,6 +738,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Ocean Breeze Light",
+    category: "Light",
     background: "#f0f9ff",
     foreground: "#0c4a6e",
     primary: "#0ea5e9",
@@ -707,6 +754,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Lavender Light",
+    category: "Light",
     background: "#faf5ff",
     foreground: "#581c87",
     primary: "#a855f7",
@@ -722,6 +770,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Sunrise",
+    category: "Light",
     background: "#fff7ed",
     foreground: "#9a3412",
     primary: "#f97316",
@@ -737,6 +786,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Cherry Blossom Light",
+    category: "Light",
     background: "#fdf2f8",
     foreground: "#831843",
     primary: "#ec4899",
@@ -752,6 +802,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Forest Light",
+    category: "Light",
     background: "#f6fdf9",
     foreground: "#14532d",
     primary: "#059669",
@@ -767,6 +818,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Arctic White",
+    category: "Light",
     background: "#f8fafc",
     foreground: "#0f172a",
     primary: "#0f766e",
@@ -782,6 +834,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Peachy Keen",
+    category: "Light",
     background: "#fef2f2",
     foreground: "#7f1d1d",
     primary: "#dc2626",
@@ -797,6 +850,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Golden Hour",
+    category: "Light",
     background: "#fffbeb",
     foreground: "#78350f",
     primary: "#d97706",
@@ -812,6 +866,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Paper White",
+    category: "Light",
     background: "#ffffff",
     foreground: "#374151",
     primary: "#4f46e5",
@@ -827,6 +882,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Sage Green",
+    category: "Light",
     background: "#f6f7f4",
     foreground: "#365314",
     primary: "#65a30d",
@@ -842,6 +898,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Powder Blue",
+    category: "Light",
     background: "#f0f9ff",
     foreground: "#0c4a6e",
     primary: "#0284c7",
@@ -857,6 +914,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Vanilla Cream",
+    category: "Light",
     background: "#fffef7",
     foreground: "#451a03",
     primary: "#a16207",
@@ -872,6 +930,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Cotton Candy",
+    category: "Light",
     background: "#fdf4ff",
     foreground: "#701a75",
     primary: "#c026d3",
@@ -887,6 +946,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Soft Coral",
+    category: "Light",
     background: "#fff5f5",
     foreground: "#7c2d12",
     primary: "#f56565",
@@ -902,6 +962,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Misty Morning",
+    category: "Light",
     background: "#f1f5f9",
     foreground: "#1e293b",
     primary: "#475569",
@@ -914,5 +975,38 @@ export const themes: ThemeOption[] = [
     mutedForeground: "#64748b",
     accentForeground: "#1e293b",
     popoverForeground: "#1e293b",
+  },
+];
+
+export const themeCategories = [
+  {
+    name: "Dark",
+    icon: "🌙",
+    description: "Deep, comfortable themes for extended use",
+  },
+  {
+    name: "Light",
+    icon: "☀️",
+    description: "Bright, clean themes for daytime use",
+  },
+  {
+    name: "Nature",
+    icon: "🌿",
+    description: "Earth-inspired themes with natural colors",
+  },
+  {
+    name: "Developer",
+    icon: "💻",
+    description: "Code-friendly themes inspired by popular editors",
+  },
+  {
+    name: "Vibrant",
+    icon: "🎨",
+    description: "Colorful, energetic themes for creative work",
+  },
+  {
+    name: "Warm",
+    icon: "🔥",
+    description: "Cozy, warm-toned themes for comfort",
   },
 ];
