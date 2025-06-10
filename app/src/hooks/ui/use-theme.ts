@@ -22,18 +22,30 @@ export const useTheme = () => {
     root.style.setProperty("--background", currentTheme.background);
     root.style.setProperty("--foreground", currentTheme.foreground);
     root.style.setProperty("--primary", currentTheme.primary);
-    root.style.setProperty("--primary-foreground", "#ffffff");
+    root.style.setProperty(
+      "--primary-foreground",
+      currentTheme.primaryForeground
+    );
     root.style.setProperty("--secondary", currentTheme.secondary);
-    root.style.setProperty("--secondary-foreground", currentTheme.foreground);
+    root.style.setProperty(
+      "--secondary-foreground",
+      currentTheme.secondaryForeground
+    );
     root.style.setProperty("--border", currentTheme.border);
     root.style.setProperty("--card", currentTheme.cardBg);
-    root.style.setProperty("--card-foreground", currentTheme.foreground);
+    root.style.setProperty("--card-foreground", currentTheme.cardForeground);
     root.style.setProperty("--muted", currentTheme.secondary);
-    root.style.setProperty("--muted-foreground", "#94a3b8");
+    root.style.setProperty("--muted-foreground", currentTheme.mutedForeground);
     root.style.setProperty("--accent", currentTheme.secondary);
-    root.style.setProperty("--accent-foreground", currentTheme.foreground);
+    root.style.setProperty(
+      "--accent-foreground",
+      currentTheme.accentForeground
+    );
     root.style.setProperty("--popover", currentTheme.cardBg);
-    root.style.setProperty("--popover-foreground", currentTheme.foreground);
+    root.style.setProperty(
+      "--popover-foreground",
+      currentTheme.popoverForeground
+    );
   }, [currentTheme]);
 
   return {
