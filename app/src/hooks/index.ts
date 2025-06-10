@@ -14,6 +14,7 @@ import { useDocument } from "./document/use-document";
 import { useToggle } from "./utils/use-toggle";
 import { useAsync } from "./utils/use-async";
 import { useLocalStorage } from "./utils/use-local-storage";
+import { useDocumentNavigation } from "./document/use-document-navigation";
 
 export {
   useCategoryMetrics,
@@ -30,4 +31,5 @@ export {
   useToggle,
   useAsync,
   useLocalStorage,
+  useDocumentNavigation,
 };

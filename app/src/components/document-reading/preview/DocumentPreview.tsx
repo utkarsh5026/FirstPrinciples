@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useSwipeable } from "react-swipeable";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import FullScreenCardView from "@/components/document-reading/fullscreen/FullScreenCardView";
 import getIconForTech from "@/components/shared/icons";
 import { DetailPanel, Header, StartReadingButton } from "./layout";
@@ -11,15 +13,15 @@ import {
 } from "./utils";
 import { formatTimeInMs } from "@/utils/time";
 import { estimateWordsRead } from "@/services/analytics/word-count-estimation";
-import { useDocument, useReadingHistory } from "@/hooks";
+import {
+  useDocument,
+  useReadingHistory,
+  useDocumentNavigation,
+  useMobile,
+} from "@/hooks";
 import { useParams } from "react-router-dom";
+import { cn } from "@/lib/utils";
 
-/**
- * 📄✨ DocumentPreview
- *
- * A beautiful document preview component that displays information about the selected document
- * in an elegant card format with sophisticated animations and visual effects.
- */
 /**
  * 📄✨ DocumentPreview
  *
@@ -30,6 +32,7 @@ import { useParams } from "react-router-dom";
  * 📊 Shows document metrics like word count, reading time, and completion status
  * 🔄 Handles transitions between preview and fullscreen reading modes
  * 📝 Saves reading progress and session data for future visits
+ * 👆 Supports swipe gestures for navigation between documents
  */
 const DocumentPreview: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -42,8 +45,19 @@ const DocumentPreview: React.FC = () => {
     totalTime: 0,
   });
   const readingStartTimeRef = useRef<number | null>(null);
+  const { isMobile } = useMobile();
 
   const { documentPath = "" } = useParams<{ documentPath: string }>();
+
+  // Document navigation hook
+  const {
+    navigateToPrevious,
+    navigateToNext,
+    canNavigatePrevious,
+    canNavigateNext,
+    previousDocument,
+    nextDocument,
+  } = useDocumentNavigation(documentPath);
 
   const {
     loading,
@@ -59,9 +73,29 @@ const DocumentPreview: React.FC = () => {
     resetSessionStatus,
   } = useDocument(documentPath);
 
-  console.log(sectionData, "Section data");
-
   const { addToHistory, updateReadingTime } = useReadingHistory();
+
+  /**
+   * 👆 React-swipeable handlers for document navigation
+   */
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      // Swipe left = next document
+      if (canNavigateNext && !isFullscreen) {
+        navigateToNext();
+      }
+    },
+    onSwipedRight: () => {
+      // Swipe right = previous document
+      if (canNavigatePrevious && !isFullscreen) {
+        navigateToPrevious();
+      }
+    },
+    trackMouse: true,
+    delta: 100,
+    preventScrollOnSwipe: false,
+    trackTouch: true,
+  });
 
   /**
    * 🚀 Start tracking reading time when entering fullscreen
@@ -142,43 +176,136 @@ const DocumentPreview: React.FC = () => {
 
   return (
     <AnimatePresence mode="wait">
-      <div className="w-full mx-auto max-w-4xl mb-8 font-cascadia-code px-4 sm:px-6">
-        <div className="bg-card/90 backdrop-blur-md rounded-3xl border border-border/30 overflow-hidden relative shadow-lg">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-80" />
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-70" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-70" />
+      <div
+        {...swipeHandlers}
+        className="w-full mx-auto max-w-6xl mb-8 font-cascadia-code px-4 sm:px-6 relative flex flex-row items-center justify-center"
+      >
+        {/* Left Navigation Button */}
+        {canNavigatePrevious && !isMobile && (
+          <div className="flex flex-col items-center justify-center ">
+            <motion.button
+              onClick={navigateToPrevious}
+              className={cn(
+                " z-20 group cursor-pointer",
+                // Mobile: circular button
+                "w-12 h-12 rounded-full md:rounded-2xl",
+                // Desktop: expanded button with text
+                "md:w-auto md:h-auto md:px-4 md:py-3 md:-translate-x-4",
+                "border border-border/30 bg-card/80 backdrop-blur-sm hover:bg-card",
+                "transition-all duration-300 hover:border-primary/30 hover:shadow-lg",
+                "flex items-center justify-center md:justify-start gap-2",
+                "hover:scale-110 active:scale-95 md:hover:scale-105"
+              )}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ChevronLeft className="h-5 w-5 text-primary group-hover:text-primary/80 flex-shrink-0" />
+              <div className="hidden md:block text-left min-w-0">
+                <p className="text-xs text-muted-foreground">Previous</p>
+                <p className="text-sm font-medium text-foreground truncate max-w-[160px]">
+                  {previousDocument?.title ?? "Previous Document"}
+                </p>
+              </div>
+            </motion.button>
+          </div>
+        )}
 
-          <div className="relative z-10">
-            <Header
-              categoryIcon={
-                <CategoryIcon className="h-5 w-5 mr-1.5 text-primary/90" />
-              }
-              category={category}
-              estimatedReadTime={formattedReadTime}
-              totalSections={totalSections}
-              documentTitle={documentTitle}
-            />
+        <div className="flex flex-col items-center justify-center w-full flex-1">
+          {(canNavigatePrevious || canNavigateNext) && (
+            <motion.div
+              className="text-center mb-4"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/20 border border-border/10">
+                <motion.div
+                  animate={{ x: [-1, 1, -1] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  👆
+                </motion.div>
+                <span className="text-xs text-muted-foreground">
+                  Swipe to navigate
+                </span>
+              </div>
+            </motion.div>
+          )}
+          <div className="bg-card/90 backdrop-blur-md rounded-3xl border border-border/30 overflow-hidden relative shadow-lg">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-80" />
+            <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-70" />
+            <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-70" />
 
-            {/* Main content area */}
-            <div className="px-6 sm:px-8 pb-8">
-              <AnimatePresence mode="wait">
-                <div className="space-y-6 min-h-[200px]">
-                  <DetailPanel
-                    totalSections={sectionData.sectionsContent.length}
-                    wordCount={totalWords}
-                    estimatedReadTime={parseInt(
-                      formattedReadTime.split(":")[0]
-                    )}
-                    readSections={sectionData.completedSectionIds}
-                    loading={loading}
-                  />
-                </div>
-              </AnimatePresence>
+            <div className="relative z-10">
+              <Header
+                categoryIcon={
+                  <CategoryIcon className="h-5 w-5 mr-1.5 text-primary/90" />
+                }
+                category={category}
+                estimatedReadTime={formattedReadTime}
+                totalSections={totalSections}
+                documentTitle={documentTitle}
+              />
 
-              <StartReadingButton startReading={startReading} />
+              {/* Main content area */}
+              <div className="px-6 sm:px-8 pb-8">
+                <AnimatePresence mode="wait">
+                  <div className="space-y-6 min-h-[200px]">
+                    <DetailPanel
+                      totalSections={sectionData.sectionsContent.length}
+                      wordCount={totalWords}
+                      estimatedReadTime={parseInt(
+                        formattedReadTime.split(":")[0]
+                      )}
+                      readSections={sectionData.completedSectionIds}
+                      loading={loading}
+                    />
+                  </div>
+                </AnimatePresence>
+
+                <StartReadingButton startReading={startReading} />
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Right Navigation Button */}
+        {canNavigateNext && !isMobile && (
+          <div className="flex flex-col items-center justify-center">
+            <motion.button
+              onClick={navigateToNext}
+              className={cn(
+                "z-20 group cursor-pointer",
+                // Mobile: circular button
+                "w-12 h-12 rounded-full md:rounded-2xl",
+                // Desktop: expanded button with text
+                "md:w-auto md:h-auto md:px-4 md:py-3 md:translate-x-4",
+                "border border-border/30 bg-card/80 backdrop-blur-sm hover:bg-card",
+                "transition-all duration-300 hover:border-primary/30 hover:shadow-lg",
+                "flex items-center justify-center md:justify-end gap-2",
+                "hover:scale-110 active:scale-95 md:hover:scale-105"
+              )}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="hidden md:block text-right min-w-0">
+                <p className="text-xs text-muted-foreground">Next</p>
+                <p className="text-sm font-medium text-foreground truncate max-w-[160px]">
+                  {nextDocument?.title ?? "Next Document"}
+                </p>
+              </div>
+              <ChevronRight className="h-5 w-5 text-primary group-hover:text-primary/80 flex-shrink-0" />
+            </motion.button>
+          </div>
+        )}
+
+        {/* Main Document Card */}
       </div>
 
       <ReadingSessionDialog
