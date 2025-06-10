@@ -18,7 +18,7 @@ export type ThemeOption = {
 export const themes: ThemeOption[] = [
   {
     name: "Midnight Blue",
-    category: "Dark",
+    category: "Professional Dark",
     background: "#0f1218",
     foreground: "#e2e8f0",
     primary: "#3b82f6",
@@ -34,7 +34,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Deep Space",
-    category: "Dark",
+    category: "Cosmic",
     background: "#10101e",
     foreground: "#e2e8f0",
     primary: "#8b5cf6",
@@ -50,7 +50,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Dark Charcoal",
-    category: "Dark",
+    category: "Minimal Dark",
     background: "#121212",
     foreground: "#e2e8f0",
     primary: "#64748b",
@@ -66,7 +66,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Obsidian",
-    category: "Dark",
+    category: "Minimal Dark",
     background: "#0f0f0f",
     foreground: "#d4d4d8",
     primary: "#22c55e",
@@ -82,7 +82,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Stealth",
-    category: "Dark",
+    category: "Professional Dark",
     background: "#131313",
     foreground: "#e5e5e5",
     primary: "#60a5fa",
@@ -114,7 +114,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Simple Dark",
-    category: "Dark",
+    category: "Minimal Dark",
     background: "#121212",
     foreground: "#ffffff",
     primary: "#4f46e5",
@@ -130,7 +130,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Monochrome",
-    category: "Dark",
+    category: "High Contrast",
     background: "#0a0a0a",
     foreground: "#e0e0e0",
     primary: "#a3a3a3",
@@ -146,7 +146,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Midnight Zen",
-    category: "Dark",
+    category: "Zen & Focus",
     background: "#121923",
     foreground: "#e2e7ef",
     primary: "#a599e9",
@@ -178,7 +178,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Mocha",
-    category: "Warm",
+    category: "Warm & Cozy",
     background: "#1a1614",
     foreground: "#e8e1d9",
     primary: "#d3a976",
@@ -194,7 +194,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Graphite",
-    category: "Dark",
+    category: "Professional Dark",
     background: "#131517",
     foreground: "#e2e4e8",
     primary: "#8ab4d8",
@@ -210,7 +210,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Twilight",
-    category: "Vibrant",
+    category: "Artistic",
     background: "#15131e",
     foreground: "#e4e2ec",
     primary: "#f0a387",
@@ -242,7 +242,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Dark Sepia",
-    category: "Warm",
+    category: "Warm & Cozy",
     background: "#191715",
     foreground: "#e5e0d7",
     primary: "#c2966a",
@@ -258,7 +258,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Amber Glow",
-    category: "Vibrant",
+    category: "Neon & Glow",
     background: "#0e0d0c",
     foreground: "#f3f0e9",
     primary: "#ff9e64",
@@ -274,7 +274,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Synthwave Sunset",
-    category: "Vibrant",
+    category: "Retro & Synthwave",
     background: "#100720",
     foreground: "#eee6f5",
     primary: "#fc61ff",
@@ -290,7 +290,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Glacier Blue",
-    category: "Nature",
+    category: "Cool & Crisp",
     background: "#0c1419",
     foreground: "#e8eff3",
     primary: "#5ccfe6",
@@ -306,7 +306,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Neo Tokyo",
-    category: "Vibrant",
+    category: "Retro & Synthwave",
     background: "#0f0a0c",
     foreground: "#f0e3e6",
     primary: "#ff3d5e",
@@ -338,7 +338,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Cyberpunk Night",
-    category: "Vibrant",
+    category: "Gaming & Futuristic",
     background: "#0d0d15",
     foreground: "#eeeef9",
     primary: "#ff7edb",
@@ -354,7 +354,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Cosmic Void",
-    category: "Dark",
+    category: "Cosmic",
     background: "#070b14",
     foreground: "#dfecfd",
     primary: "#4dadff",
@@ -370,7 +370,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Aurora Borealis",
-    category: "Nature",
+    category: "Cosmic",
     background: "#0a0e17",
     foreground: "#e2eaf2",
     primary: "#64d9ef",
@@ -402,7 +402,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Lavender Dreams",
-    category: "Vibrant",
+    category: "Artistic",
     background: "#191627",
     foreground: "#f0ebfa",
     primary: "#b388ff",
@@ -546,7 +546,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Midnight Plum",
-    category: "Vibrant",
+    category: "Artistic",
     background: "#141319",
     foreground: "#f5f1f8",
     primary: "#9c77b8",
@@ -578,7 +578,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Cherry Blossom",
-    category: "Vibrant",
+    category: "Artistic",
     background: "#1a1520",
     foreground: "#f8eef3",
     primary: "#f0a9b8",
@@ -610,7 +610,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Amethyst Glow",
-    category: "Vibrant",
+    category: "Neon & Glow",
     background: "#1e1033",
     foreground: "#f2ebf9",
     primary: "#c792ea",
@@ -658,7 +658,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Rose Gold",
-    category: "Warm",
+    category: "Warm & Cozy",
     background: "#1a1517",
     foreground: "#f8eef1",
     primary: "#f2c9b5",
@@ -674,7 +674,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Classic Light",
-    category: "Light",
+    category: "Professional Light",
     background: "#ffffff",
     foreground: "#1f2937",
     primary: "#3b82f6",
@@ -690,7 +690,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Soft Gray",
-    category: "Light",
+    category: "Minimal Light",
     background: "#f8fafc",
     foreground: "#334155",
     primary: "#6366f1",
@@ -706,7 +706,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Warm Cream",
-    category: "Light",
+    category: "Warm & Cozy",
     background: "#fefbf7",
     foreground: "#44403c",
     primary: "#ea580c",
@@ -722,7 +722,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Fresh Mint",
-    category: "Light",
+    category: "Cool & Crisp",
     background: "#f0fdf4",
     foreground: "#14532d",
     primary: "#16a34a",
@@ -738,7 +738,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Ocean Breeze Light",
-    category: "Light",
+    category: "Cool & Crisp",
     background: "#f0f9ff",
     foreground: "#0c4a6e",
     primary: "#0ea5e9",
@@ -754,7 +754,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Lavender Light",
-    category: "Light",
+    category: "Pastel & Soft",
     background: "#faf5ff",
     foreground: "#581c87",
     primary: "#a855f7",
@@ -770,7 +770,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Sunrise",
-    category: "Light",
+    category: "Energetic & Bright",
     background: "#fff7ed",
     foreground: "#9a3412",
     primary: "#f97316",
@@ -786,7 +786,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Cherry Blossom Light",
-    category: "Light",
+    category: "Pastel & Soft",
     background: "#fdf2f8",
     foreground: "#831843",
     primary: "#ec4899",
@@ -802,7 +802,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Forest Light",
-    category: "Light",
+    category: "Nature",
     background: "#f6fdf9",
     foreground: "#14532d",
     primary: "#059669",
@@ -818,7 +818,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Arctic White",
-    category: "Light",
+    category: "High Contrast",
     background: "#f8fafc",
     foreground: "#0f172a",
     primary: "#0f766e",
@@ -834,7 +834,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Peachy Keen",
-    category: "Light",
+    category: "Pastel & Soft",
     background: "#fef2f2",
     foreground: "#7f1d1d",
     primary: "#dc2626",
@@ -850,7 +850,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Golden Hour",
-    category: "Light",
+    category: "Energetic & Bright",
     background: "#fffbeb",
     foreground: "#78350f",
     primary: "#d97706",
@@ -866,7 +866,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Paper White",
-    category: "Light",
+    category: "Professional Light",
     background: "#ffffff",
     foreground: "#374151",
     primary: "#4f46e5",
@@ -882,7 +882,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Sage Green",
-    category: "Light",
+    category: "Zen & Focus",
     background: "#f6f7f4",
     foreground: "#365314",
     primary: "#65a30d",
@@ -898,7 +898,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Powder Blue",
-    category: "Light",
+    category: "Cool & Crisp",
     background: "#f0f9ff",
     foreground: "#0c4a6e",
     primary: "#0284c7",
@@ -914,7 +914,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Vanilla Cream",
-    category: "Light",
+    category: "Warm & Cozy",
     background: "#fffef7",
     foreground: "#451a03",
     primary: "#a16207",
@@ -930,7 +930,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Cotton Candy",
-    category: "Light",
+    category: "Pastel & Soft",
     background: "#fdf4ff",
     foreground: "#701a75",
     primary: "#c026d3",
@@ -946,7 +946,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Soft Coral",
-    category: "Light",
+    category: "Pastel & Soft",
     background: "#fff5f5",
     foreground: "#7c2d12",
     primary: "#f56565",
@@ -962,7 +962,7 @@ export const themes: ThemeOption[] = [
   },
   {
     name: "Misty Morning",
-    category: "Light",
+    category: "Minimal Light",
     background: "#f1f5f9",
     foreground: "#1e293b",
     primary: "#475569",
@@ -980,19 +980,14 @@ export const themes: ThemeOption[] = [
 
 export const themeCategories = [
   {
-    name: "Dark",
-    icon: "🌙",
-    description: "Deep, comfortable themes for extended use",
+    name: "Professional Dark",
+    icon: "💼",
+    description: "Sleek, polished themes for work environments",
   },
   {
-    name: "Light",
-    icon: "☀️",
-    description: "Bright, clean themes for daytime use",
-  },
-  {
-    name: "Nature",
-    icon: "🌿",
-    description: "Earth-inspired themes with natural colors",
+    name: "Professional Light",
+    icon: "🏢",
+    description: "Clean, business-friendly light themes",
   },
   {
     name: "Developer",
@@ -1000,13 +995,73 @@ export const themeCategories = [
     description: "Code-friendly themes inspired by popular editors",
   },
   {
-    name: "Vibrant",
-    icon: "🎨",
-    description: "Colorful, energetic themes for creative work",
+    name: "Minimal Dark",
+    icon: "🌚",
+    description: "Clean, distraction-free dark themes",
   },
   {
-    name: "Warm",
+    name: "Minimal Light",
+    icon: "⚪",
+    description: "Simple, uncluttered light themes",
+  },
+  {
+    name: "Nature",
+    icon: "🌿",
+    description: "Earth-inspired themes with natural colors",
+  },
+  {
+    name: "Cosmic",
+    icon: "🌌",
+    description: "Space and galaxy-inspired themes",
+  },
+  {
+    name: "Retro & Synthwave",
+    icon: "🕹️",
+    description: "80s-inspired neon and retro themes",
+  },
+  {
+    name: "Gaming & Futuristic",
+    icon: "🎮",
+    description: "Cyberpunk and futuristic gaming themes",
+  },
+  {
+    name: "Artistic",
+    icon: "🎨",
+    description: "Creative, expressive themes for artists",
+  },
+  {
+    name: "Zen & Focus",
+    icon: "🧘",
+    description: "Calming themes designed for concentration",
+  },
+  {
+    name: "Warm & Cozy",
     icon: "🔥",
-    description: "Cozy, warm-toned themes for comfort",
+    description: "Comfortable, warm-toned themes",
+  },
+  {
+    name: "Cool & Crisp",
+    icon: "❄️",
+    description: "Fresh, cool-toned themes",
+  },
+  {
+    name: "Neon & Glow",
+    icon: "✨",
+    description: "Bright, glowing accent themes",
+  },
+  {
+    name: "Pastel & Soft",
+    icon: "🌸",
+    description: "Gentle, soft-colored themes",
+  },
+  {
+    name: "Energetic & Bright",
+    icon: "⚡",
+    description: "Vibrant, energizing themes",
+  },
+  {
+    name: "High Contrast",
+    icon: "⚫",
+    description: "Bold, high-contrast themes for accessibility",
   },
 ];
