@@ -168,7 +168,7 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
                   >
                     {/* Enhanced Category Header */}
                     <CollapsibleTrigger asChild>
-                      <button className="flex items-center gap-2 sm:gap-3 w-full px-2 sm:px-3 py-2.5 sm:py-3 rounded-xl hover:bg-secondary/50 transition-all duration-200 group">
+                      <button className="flex items-center gap-2 sm:gap-3 w-full px-2 sm:px-3 py-2.5 sm:py-3 rounded-xl hover:bg-secondary/50 transition-all duration-200 group font-cascadia-code">
                         <span className="text-base sm:text-lg">
                           {category.icon}
                         </span>

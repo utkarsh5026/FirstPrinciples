@@ -1,21 +1,32 @@
 import React, { useState } from "react";
 import { useTheme } from "@/hooks/ui/use-theme";
-import { themes, ThemeOption as ThemeOptionType } from "@/theme/themes";
+import {
+  themes,
+  ThemeOption as ThemeOptionType,
+  themeCategories as themeCategoryDefinitions,
+} from "@/theme/themes";
 import { Palette, ChevronDown, ChevronUp } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeOption from "@/components/shared/theme/ThemeOption";
 
-const themeCategories = [
-  { name: "Dark", themes: themes.slice(0, 7) },
-  { name: "Modern", themes: themes.slice(7, 14) },
-  { name: "Nature", themes: themes.slice(14, 21) },
-  { name: "Vibrant", themes: themes.slice(21, 28) },
-  { name: "Minimal", themes: themes.slice(28) },
-];
+// Group themes by their actual category property
+const themeCategories = themeCategoryDefinitions
+  .map((categoryDef) => ({
+    name: categoryDef.name,
+    icon: categoryDef.icon,
+    description: categoryDef.description,
+    themes: themes.filter((theme) => theme.category === categoryDef.name),
+  }))
+  .filter((category) => category.themes.length > 0); // Only include categories that have themes
 
 interface ThemeCategoryProps {
-  category: { name: string; themes: ThemeOptionType[] };
+  category: {
+    name: string;
+    icon: string;
+    description: string;
+    themes: ThemeOptionType[];
+  };
   currentTheme: ThemeOptionType;
   setTheme: (theme: ThemeOptionType) => void;
 }
@@ -35,7 +46,10 @@ const ThemeCategory: React.FC<ThemeCategoryProps> = ({
         className="w-full flex items-center justify-between px-2 py-1.5 rounded-md hover:bg-secondary/20 transition-colors"
         onClick={() => setExpanded(!expanded)}
       >
-        <span className="font-medium text-sm">{category.name}</span>
+        <div className="flex items-center gap-2">
+          <span>{category.icon}</span>
+          <span className="font-medium text-sm">{category.name}</span>
+        </div>
         {expanded ? (
           <ChevronUp className="h-4 w-4 text-muted-foreground" />
         ) : (
