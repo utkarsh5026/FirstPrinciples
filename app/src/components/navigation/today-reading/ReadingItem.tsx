@@ -1,4 +1,4 @@
-import { Clock, TrendingUp } from "lucide-react";
+import { Clock } from "lucide-react";
 import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { formatTimeAgo } from "@/utils/time";
 import { getIconForTech } from "@/components/shared/icons/iconMap";
@@ -13,8 +13,6 @@ interface ReadingItemProps {
 const ReadingItem = ({ item, onFileSelect }: ReadingItemProps) => {
   const category = item.path.split("/")[0];
   const CategoryIcon = getIconForTech(category);
-  const timeSpentMinutes = Math.round(item.timeSpent / 60000);
-  const completedSections = item.completedSectionIndices?.length || 0;
 
   return (
     <motion.div
@@ -84,82 +82,6 @@ const ReadingItem = ({ item, onFileSelect }: ReadingItemProps) => {
           </div>
         </div>
 
-        {/* Modern stats grid */}
-        <div className="grid grid-cols-2 gap-4">
-          {/* Time spent card */}
-          <motion.div
-            className={cn(
-              "relative overflow-hidden rounded-2xl p-4",
-              "bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20",
-              "border border-green-200/50 dark:border-green-700/50",
-              "group-hover:shadow-md transition-all duration-300"
-            )}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          >
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-0 right-0 w-8 h-8 rounded-full bg-green-200 dark:bg-green-800 transform translate-x-2 -translate-y-2" />
-              <div className="absolute bottom-0 left-0 w-6 h-6 rounded-full bg-emerald-200 dark:bg-emerald-800 transform -translate-x-1 translate-y-1" />
-            </div>
-
-            <div className="relative">
-              <div className="flex items-center gap-2 mb-1">
-                <TrendingUp
-                  size={14}
-                  className="text-green-600 dark:text-green-400"
-                  strokeWidth={2.5}
-                />
-                <span className="text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-wide">
-                  Time Spent
-                </span>
-              </div>
-              <div className="text-xl font-bold text-green-700 dark:text-green-300">
-                {timeSpentMinutes}
-                <span className="text-sm font-medium text-green-600 dark:text-green-400 ml-1">
-                  min
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Sections completed card */}
-          <motion.div
-            className={cn(
-              "relative overflow-hidden rounded-2xl p-4",
-              "bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20",
-              "border border-purple-200/50 dark:border-purple-700/50",
-              "group-hover:shadow-md transition-all duration-300"
-            )}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          >
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-0 left-0 w-6 h-6 rounded-full bg-purple-200 dark:bg-purple-800 transform -translate-x-1 -translate-y-1" />
-              <div className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-violet-200 dark:bg-violet-800 transform translate-x-2 translate-y-2" />
-            </div>
-
-            <div className="relative">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-3.5 h-3.5 rounded-full bg-purple-500 flex items-center justify-center">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                </div>
-                <span className="text-xs font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wide">
-                  Progress
-                </span>
-              </div>
-              <div className="text-xl font-bold text-purple-700 dark:text-purple-300">
-                {completedSections}
-                <span className="text-sm font-medium text-purple-600 dark:text-purple-400 ml-1">
-                  sections
-                </span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Subtle hover indicator using theme primary color */}
         <motion.div
           className="absolute inset-0 rounded-3xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           initial={false}
