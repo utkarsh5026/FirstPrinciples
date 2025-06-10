@@ -8,7 +8,6 @@ interface ThemeOptionProps {
   isActive: boolean;
   onSelect: () => void;
   showCategory?: boolean;
-  variant?: "compact" | "detailed";
 }
 
 /**
@@ -19,70 +18,11 @@ const ThemeOption: React.FC<ThemeOptionProps> = ({
   isActive,
   onSelect,
   showCategory = false,
-  variant = "compact",
 }) => {
-  if (variant === "detailed") {
-    return (
-      <button
-        className={cn(
-          "group relative overflow-hidden rounded-2xl border transition-all duration-200 font-cascadia-code",
-          "hover:scale-[1.02] hover:shadow-lg",
-          isActive
-            ? "border-primary ring-2 ring-primary/20 bg-primary/8"
-            : "border-border hover:border-primary/50 hover:shadow-md"
-        )}
-        onClick={onSelect}
-      >
-        {/* Enhanced color preview */}
-        <div
-          className="h-12 sm:h-16 w-full relative"
-          style={{
-            background: `linear-gradient(135deg, ${theme.background} 0%, ${theme.primary} 100%)`,
-          }}
-        >
-          {/* Subtle overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-        </div>
-
-        {/* Content with better spacing */}
-        <div className="p-2 sm:p-3 space-y-1 sm:space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="font-medium text-xs sm:text-sm text-foreground truncate pr-2">
-              {theme.name}
-            </span>
-            {isActive && (
-              <div className="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-primary shrink-0">
-                <FiCheck className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary-foreground" />
-              </div>
-            )}
-          </div>
-
-          {showCategory && (
-            <span className="inline-block px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs rounded-md bg-secondary/70 text-secondary-foreground font-medium">
-              {theme.category}
-            </span>
-          )}
-        </div>
-
-        {/* Enhanced color swatches */}
-        <div className="absolute top-1.5 sm:top-2 right-1.5 sm:right-2 flex gap-0.5 sm:gap-1">
-          <div
-            className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full border border-white/60 shadow-sm"
-            style={{ backgroundColor: theme.primary }}
-          />
-          <div
-            className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full border border-white/60 shadow-sm"
-            style={{ backgroundColor: theme.secondary }}
-          />
-        </div>
-      </button>
-    );
-  }
-
   return (
     <button
       className={cn(
-        "flex items-center w-full rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 text-left transition-all duration-200",
+        "flex items-center w-full rounded-2xl py-2.5 sm:py-3 px-3 sm:px-4 text-left transition-all duration-200",
         "hover:scale-[1.01] group font-cascadia-code",
         isActive
           ? "bg-primary/10 border border-primary/30 shadow-sm"

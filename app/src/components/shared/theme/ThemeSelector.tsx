@@ -17,14 +17,7 @@ import {
   themes,
   themeCategories,
 } from "@/theme/themes";
-import {
-  Palette,
-  Grid3X3,
-  List,
-  Search,
-  ChevronDown,
-  ChevronRight,
-} from "lucide-react";
+import { Palette, Search, ChevronDown, ChevronRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import ThemeOption from "./ThemeOption";
 
@@ -42,7 +35,6 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
   onThemeChange,
   className,
 }) => {
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [searchQuery, setSearchQuery] = useState("");
   const [openCategories, setOpenCategories] = useState<Set<string>>(
     new Set(["Dark", "Light"])
@@ -96,7 +88,7 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
 
       <DropdownMenuContent
         align="end"
-        className="w-[min(480px,calc(100vw-2rem))] p-4 sm:p-6 bg-card border-border rounded-2xl shadow-xl"
+        className="w-[min(480px,calc(100vw-2rem))] p-4 sm:p-6 bg-card border-border rounded-2xl shadow-xl font-cascadia-code"
       >
         {/* Modern Header */}
         <div className="flex items-center justify-between mb-4 sm:mb-6">
@@ -107,20 +99,6 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
             <p className="text-xs sm:text-sm text-muted-foreground mt-1">
               Personalize your experience
             </p>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 rounded-lg"
-              onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
-            >
-              {viewMode === "grid" ? (
-                <List className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-              ) : (
-                <Grid3X3 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-              )}
-            </Button>
           </div>
         </div>
 
@@ -193,23 +171,13 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
 
                     {/* Enhanced Category Content */}
                     <CollapsibleContent className="mt-2 sm:mt-3">
-                      <div
-                        className={cn(
-                          "pl-2 sm:pl-4",
-                          viewMode === "grid"
-                            ? "grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3"
-                            : "space-y-2"
-                        )}
-                      >
+                      <div className={cn("pl-2 sm:pl-4")}>
                         {categoryThemes.map((theme) => (
                           <ThemeOption
                             key={theme.name}
                             theme={theme}
                             isActive={theme.name === currentTheme}
                             onSelect={() => onThemeChange(theme)}
-                            variant={
-                              viewMode === "grid" ? "detailed" : "compact"
-                            }
                             showCategory={false}
                           />
                         ))}
@@ -226,21 +194,14 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
             value="popular"
             className="max-h-80 sm:max-h-96 overflow-y-auto pr-1 sm:pr-2"
           >
-            <div
-              className={cn(
-                viewMode === "grid"
-                  ? "grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
-                  : "space-y-2 sm:space-y-3"
-              )}
-            >
+            <div className={cn("space-y-2")}>
               {popularThemes.map((theme) => (
                 <ThemeOption
                   key={theme.name}
                   theme={theme}
                   isActive={theme.name === currentTheme}
                   onSelect={() => onThemeChange(theme)}
-                  variant={viewMode === "grid" ? "detailed" : "compact"}
-                  showCategory={viewMode === "list"}
+                  showCategory={true}
                 />
               ))}
             </div>
@@ -261,21 +222,14 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
 
             {/* All Themes List */}
             <div className="max-h-72 sm:max-h-80 overflow-y-auto p-4">
-              <div
-                className={cn(
-                  viewMode === "grid"
-                    ? "grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
-                    : "space-y-2"
-                )}
-              >
+              <div className={cn("space-y-2")}>
                 {filteredThemes.map((theme) => (
                   <ThemeOption
                     key={theme.name}
                     theme={theme}
                     isActive={theme.name === currentTheme}
                     onSelect={() => onThemeChange(theme)}
-                    variant={viewMode === "grid" ? "detailed" : "compact"}
-                    showCategory={viewMode === "list"}
+                    showCategory={true}
                   />
                 ))}
               </div>
