@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { Copy, ChevronDown, ChevronRight, Palette } from "lucide-react";
+import { Copy, ChevronDown, ChevronRight, Palette, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import getTopicIcon from "@/components/shared/icons/topicIcon";
 import {
@@ -119,11 +119,8 @@ const CodeRender: React.FC<CodeRenderProps> = ({
     </span>
   ) : (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div
-        ref={codeRef}
-        className="my-4 sm:my-6 relative font-fira-code no-swipe"
-      >
-        <div className="bg-[#1c1c1c] text-gray-400 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-bold border-b border-[#222222] flex justify-between items-center rounded-t-2xl">
+      <div ref={codeRef} className="my-8 relative font-fira-code no-swipe">
+        <div className="bg-[#1c1c1c] text-gray-400 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-bold border-b border-[#222222] flex justify-between items-center rounded-t-xl sm:rounded-t-2xl">
           <span className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
             <span className="flex-shrink-0">
               {getTopicIcon(language || "code")}
@@ -179,20 +176,6 @@ const CodeRender: React.FC<CodeRenderProps> = ({
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <button
-              onClick={copyToClipboard}
-              className="p-2 sm:p-1 rounded hover:bg-[#252525] transition-colors min-h-[44px] sm:min-h-auto"
-              aria-label={copied ? "Copied!" : "Copy code"}
-            >
-              <Copy
-                size={18}
-                className={cn(
-                  "sm:w-4 sm:h-4",
-                  copied ? "text-gray-200" : "text-gray-500"
-                )}
-              />
-            </button>
-
             <CollapsibleTrigger asChild>
               <button
                 className="p-2 sm:p-1 rounded hover:bg-[#252525] transition-colors min-h-[44px] sm:min-h-auto"
@@ -215,56 +198,93 @@ const CodeRender: React.FC<CodeRenderProps> = ({
         </div>
 
         <CollapsibleContent className="data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
-          <div
-            className="overflow-x-auto overflow-y-hidden rounded-b-2xl shadow-md shadow-background/50
-                       [&::-webkit-scrollbar]:h-2 sm:[&::-webkit-scrollbar]:h-2
-                       [&::-webkit-scrollbar-track]:bg-[#0f0f0f] 
-                       [&::-webkit-scrollbar-track]:rounded-full 
-                       [&::-webkit-scrollbar-track]:border-t 
-                       [&::-webkit-scrollbar-track]:border-[#222222]
-                       [&::-webkit-scrollbar-thumb]:bg-gradient-to-r 
-                       [&::-webkit-scrollbar-thumb]:from-[#404040] 
-                       [&::-webkit-scrollbar-thumb]:to-[#505050] 
-                       [&::-webkit-scrollbar-thumb]:rounded-full 
-                       [&::-webkit-scrollbar-thumb]:border 
-                       [&::-webkit-scrollbar-thumb]:border-[#2a2a2a]
-                       [&::-webkit-scrollbar-thumb:hover]:from-[#555555] 
-                       [&::-webkit-scrollbar-thumb:hover]:to-[#666666]
-                       [&::-webkit-scrollbar-thumb:hover]:border-[#777777]
-                       [&::-webkit-scrollbar-thumb:active]:from-[#666666] 
-                       [&::-webkit-scrollbar-thumb:active]:to-[#777777]"
-            style={{
-              scrollbarWidth: "thin",
-              scrollbarColor: "#505050 #0f0f0f",
-            }}
-          >
-            <SyntaxHighlighter
-              language={language || "text"}
-              customStyle={{
-                margin: 0,
-                padding: window.innerWidth < 640 ? "0.75rem" : "1rem",
-                backgroundColor: "transparent",
-                fontSize: window.innerWidth < 640 ? "0.8rem" : "0.875rem",
-                lineHeight: window.innerWidth < 640 ? 1.5 : 1.6,
-                minWidth: "100%",
-                width: "max-content",
-              }}
-              useInlineStyles={true}
-              codeTagProps={{
-                style: {
-                  backgroundColor: "transparent",
-                  fontFamily: "Source Code Pro, monospace",
-                  whiteSpace: "pre",
-                  fontSize: "inherit",
-                },
-              }}
-              {...props}
-              style={getCurrentThemeStyle()}
+          <div className="relative">
+            <button
+              onClick={copyToClipboard}
+              className={cn(
+                "absolute top-3 right-3 z-10 p-2  transition-all duration-300 ease-in-out rounded-2xl",
+                "hover:bg-black/20 backdrop-blur-sm border border-white/10",
+                "min-h-[44px] sm:min-h-auto sm:p-2",
+                copied
+                  ? "bg-green-500/20 border-green-400/30 scale-110"
+                  : "bg-black/40 hover:bg-black/60"
+              )}
+              aria-label={copied ? "Copied!" : "Copy code"}
             >
-              {typeof children === "string"
-                ? children.replace(/\n$/, "")
-                : React.Children.toArray(children).join("")}
-            </SyntaxHighlighter>
+              <div className="relative">
+                <Copy
+                  size={16}
+                  className={cn(
+                    "transition-all duration-300 ease-in-out",
+                    copied
+                      ? "opacity-0 scale-0 rotate-90"
+                      : "opacity-100 scale-100 rotate-0 text-gray-300 hover:text-white"
+                  )}
+                />
+                <Check
+                  size={16}
+                  className={cn(
+                    "absolute inset-0 transition-all duration-300 ease-in-out text-green-400",
+                    copied
+                      ? "opacity-100 scale-100 rotate-0"
+                      : "opacity-0 scale-0 -rotate-90"
+                  )}
+                />
+              </div>
+            </button>
+
+            <div
+              className="overflow-x-auto overflow-y-hidden rounded-b-2xl shadow-md shadow-background/50
+                         [&::-webkit-scrollbar]:h-2 sm:[&::-webkit-scrollbar]:h-2
+                         [&::-webkit-scrollbar-track]:bg-[#0f0f0f] 
+                         [&::-webkit-scrollbar-track]:rounded-full 
+                         [&::-webkit-scrollbar-track]:border-t 
+                         [&::-webkit-scrollbar-track]:border-[#222222]
+                         [&::-webkit-scrollbar-thumb]:bg-gradient-to-r 
+                         [&::-webkit-scrollbar-thumb]:from-[#404040] 
+                         [&::-webkit-scrollbar-thumb]:to-[#505050] 
+                         [&::-webkit-scrollbar-thumb]:rounded-full 
+                         [&::-webkit-scrollbar-thumb]:border 
+                         [&::-webkit-scrollbar-thumb]:border-[#2a2a2a]
+                         [&::-webkit-scrollbar-thumb:hover]:from-[#555555] 
+                         [&::-webkit-scrollbar-thumb:hover]:to-[#666666]
+                         [&::-webkit-scrollbar-thumb:hover]:border-[#777777]
+                         [&::-webkit-scrollbar-thumb:active]:from-[#666666] 
+                         [&::-webkit-scrollbar-thumb:active]:to-[#777777]"
+              style={{
+                scrollbarWidth: "thin",
+                scrollbarColor: "#505050 #0f0f0f",
+              }}
+            >
+              <SyntaxHighlighter
+                language={language || "text"}
+                customStyle={{
+                  margin: 0,
+                  padding: window.innerWidth < 640 ? "0.75rem" : "1rem",
+                  paddingTop: window.innerWidth < 640 ? "3rem" : "3.5rem",
+                  backgroundColor: "transparent",
+                  fontSize: window.innerWidth < 640 ? "0.8rem" : "0.875rem",
+                  lineHeight: window.innerWidth < 640 ? 1.5 : 1.6,
+                  minWidth: "100%",
+                  width: "max-content",
+                }}
+                useInlineStyles={true}
+                codeTagProps={{
+                  style: {
+                    backgroundColor: "transparent",
+                    fontFamily: "Source Code Pro, monospace",
+                    whiteSpace: "pre",
+                    fontSize: "inherit",
+                  },
+                }}
+                {...props}
+                style={getCurrentThemeStyle()}
+              >
+                {typeof children === "string"
+                  ? children.replace(/\n$/, "")
+                  : React.Children.toArray(children).join("")}
+              </SyntaxHighlighter>
+            </div>
           </div>
         </CollapsibleContent>
       </div>
