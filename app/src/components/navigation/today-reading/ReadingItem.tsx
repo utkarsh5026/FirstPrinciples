@@ -16,74 +16,95 @@ const ReadingItem = ({ item, onFileSelect }: ReadingItemProps) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      whileHover={{ y: -2 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      whileHover={{ y: -1 }}
       className="group"
     >
       <motion.button
         className={cn(
-          // Base card styling with theme-based glass morphism
-          "w-full p-6 rounded-3xl transition-all duration-300 ease-out",
+          // Base card styling with responsive design
+          "w-full p-3 sm:p-4 md:p-6 rounded-2xl sm:rounded-3xl",
+          "transition-all duration-200 ease-out",
           "bg-card/80 backdrop-blur-xl",
           "border border-border/30",
-          "shadow-lg",
-          "hover:shadow-xl",
+          "shadow-md hover:shadow-lg",
           "hover:border-border/50",
           "hover:bg-card/90",
-          "text-left focus:outline-none focus:ring-2 focus:ring-primary/20"
+          "text-left focus:outline-none focus:ring-2 focus:ring-primary/20",
+          "min-h-[72px] sm:min-h-[80px]", // Ensure touch-friendly height
+          "active:scale-[0.98] sm:active:scale-[0.99]" // Different scale for mobile
         )}
         onClick={() => onFileSelect(item.path)}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+        whileHover={{ scale: 1.01 }} // Reduced scale for mobile
+        whileTap={{ scale: 0.97 }}
       >
-        {/* Header section with icon and title */}
-        <div className="flex items-start gap-4 mb-6">
-          {/* Modern category icon */}
+        {/* Header section with responsive layout */}
+        <div className="flex items-start gap-3 sm:gap-4">
+          {/* Responsive category icon */}
           <div
             className={cn(
-              "flex-shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center",
+              "flex-shrink-0 rounded-xl sm:rounded-2xl flex items-center justify-center",
+              "w-10 h-10 sm:w-12 sm:h-12", // Responsive icon container
               "bg-primary/10 backdrop-blur-sm",
               "border border-primary/20",
-              "group-hover:scale-110 transition-transform duration-300"
+              "group-hover:scale-105 sm:group-hover:scale-110",
+              "transition-transform duration-200"
             )}
           >
-            <CategoryIcon size={20} className="text-primary" />
+            <CategoryIcon
+              size={16}
+              className="text-primary sm:w-5 sm:h-5" // Responsive icon size
+            />
           </div>
 
           <div className="flex-1 min-w-0">
-            {/* Document title */}
+            {/* Document title with responsive typography */}
             <h3
               className={cn(
-                "font-semibold text-base leading-relaxed mb-2",
+                "font-semibold leading-relaxed mb-1.5 sm:mb-2",
+                "text-sm sm:text-base", // Responsive text size
                 "text-foreground",
                 "group-hover:text-primary",
-                "transition-colors duration-200"
+                "transition-colors duration-200",
+                "break-words hyphens-auto", // Ensure text wraps properly
+                "line-clamp-2 sm:line-clamp-1" // Limit lines on mobile
               )}
             >
               {item.title}
             </h3>
 
-            {/* Last read timestamp using theme muted colors */}
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            {/* Last read timestamp with responsive design */}
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <div
                 className={cn(
-                  "w-5 h-5 rounded-lg flex items-center justify-center",
+                  "flex-shrink-0 rounded-lg flex items-center justify-center",
+                  "w-4 h-4 sm:w-5 sm:h-5", // Responsive clock container
                   "bg-muted/50"
                 )}
               >
-                <Clock size={12} strokeWidth={2} />
+                <Clock
+                  size={10}
+                  strokeWidth={2}
+                  className="sm:w-3 sm:h-3" // Responsive clock icon
+                />
               </div>
-              <span className="font-medium">
+              <span className="font-medium text-xs sm:text-sm text-muted-foreground">
                 {formatTimeAgo(item.lastReadAt)}
               </span>
             </div>
           </div>
         </div>
 
+        {/* Hover overlay with reduced opacity on mobile */}
         <motion.div
-          className="absolute inset-0 rounded-3xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          className={cn(
+            "absolute inset-0 bg-primary/5 opacity-0",
+            "rounded-2xl sm:rounded-3xl",
+            "group-hover:opacity-100 transition-opacity duration-200",
+            "pointer-events-none"
+          )}
           initial={false}
         />
       </motion.button>
