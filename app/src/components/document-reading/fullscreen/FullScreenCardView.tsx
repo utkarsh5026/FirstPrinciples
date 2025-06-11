@@ -245,7 +245,13 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
         )}
         ref={scrollRef}
       >
-        <div {...swipeHandlers}>
+        <div
+          {...swipeHandlers}
+          onDoubleClick={() => {
+            setIsControlsVisible(true);
+            resetControlsTimeout();
+          }}
+        >
           <div className="px-6 md:px-12 lg:px-20 xl:px-32 py-20 md:py-24">
             <div className="max-w-2xl mx-auto">
               <div
