@@ -243,9 +243,10 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
             setIsControlsVisible(true);
             resetControlsTimeout();
           }}
+          className="h-full"
         >
-          <div className="px-6 md:px-12 lg:px-20 xl:px-32 py-20 md:py-24">
-            <div className="max-w-2xl mx-auto">
+          <div className="px-6 md:px-12 lg:px-20 xl:px-32 py-20 md:py-24 h-auto">
+            <div className="max-w-2xl mx-auto rounded-2xl">
               <div
                 key={currentIndex}
                 className="prose prose-lg prose-invert max-w-none"
