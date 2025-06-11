@@ -164,7 +164,7 @@ const DocumentPreview: React.FC = () => {
     );
   }
 
-  if (loading) return <LoadingScreen />;
+  if (loading) return <LoadingScreen documentPath={documentPath} />;
   if (error) return <ErrorLoadingDocument error={error} />;
   if (!documentPath) return <NoFileSelectedYet />;
 
