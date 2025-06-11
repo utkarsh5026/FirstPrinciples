@@ -233,7 +233,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
         <CollapsibleContent className="data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
           <div className="relative">
             <div
-              className="overflow-x-auto overflow-y-hidden rounded-b-2xl shadow-md shadow-background/50
+              className="overflow-x-auto overflow-y-hidden rounded-b-2xl sm:shadow-md sm:shadow-background/50
                          [&::-webkit-scrollbar]:h-2 sm:[&::-webkit-scrollbar]:h-2
                          [&::-webkit-scrollbar-track]:bg-[#0f0f0f] 
                          [&::-webkit-scrollbar-track]:rounded-full 
