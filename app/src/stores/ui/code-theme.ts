@@ -26,7 +26,6 @@ import {
   coldarkCold,
 } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-// Define available themes with categories (only using themes that actually exist)
 export const codeThemes = {
   "Dark Themes": {
     oneDark: { name: "One Dark", style: oneDark },
@@ -62,7 +61,6 @@ export const codeThemes = {
   },
 } as const;
 
-// Create a type for all theme keys
 export type ThemeKey = {
   [K in keyof typeof codeThemes]: keyof (typeof codeThemes)[K];
 }[keyof typeof codeThemes];

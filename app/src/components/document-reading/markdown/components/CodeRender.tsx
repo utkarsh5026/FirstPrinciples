@@ -23,15 +23,15 @@ interface CodeRenderProps extends React.ComponentPropsWithoutRef<"code"> {
 }
 
 const getHeadingCodeStyle = (headingLevel: number | null) => {
-  if (!headingLevel) return "text-sm";
+  if (!headingLevel) return "text-sm sm:text-base";
   const sizes = {
-    1: "text-3xl",
-    2: "text-2xl",
-    3: "text-xl",
+    1: "text-xl sm:text-3xl",
+    2: "text-lg sm:text-2xl",
+    3: "text-base sm:text-xl",
   };
   return `${
     sizes[headingLevel as keyof typeof sizes]
-  } mx-2  bg-primary/10 rounded-2xl`;
+  } mx-1 sm:mx-2 px-2 py-1 bg-primary/10 rounded-xl sm:rounded-2xl`;
 };
 
 /**
@@ -110,7 +110,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
     <span ref={codeRef}>
       <code
         className={cn(
-          "px-2 py-1 text-primary font-cascadia-code",
+          "px-2 py-1 text-primary font-cascadia-code break-words",
           getHeadingCodeStyle(headingLevel)
         )}
       >
@@ -119,34 +119,44 @@ const CodeRender: React.FC<CodeRenderProps> = ({
     </span>
   ) : (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div ref={codeRef} className="my-6 relative font-fira-code no-swipe">
-        <div className="bg-[#1c1c1c] text-gray-400 px-4 py-2 text-sm font-bold border-b border-[#222222] flex justify-between items-center rounded-t-2xl">
-          <span className="flex items-center gap-2">
-            {getTopicIcon(language || "code")}
-            <span>{language || "code"}</span>
+      <div
+        ref={codeRef}
+        className="my-4 sm:my-6 relative font-fira-code no-swipe"
+      >
+        <div className="bg-[#1c1c1c] text-gray-400 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-bold border-b border-[#222222] flex justify-between items-center rounded-t-xl sm:rounded-t-2xl">
+          <span className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
+            <span className="flex-shrink-0">
+              {getTopicIcon(language || "code")}
+            </span>
+            <span className="truncate text-xs sm:text-sm">
+              {language || "code"}
+            </span>
           </span>
-          <div className="flex items-center gap-2">
+
+          <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
-                  className="p-1 rounded hover:bg-[#252525] transition-colors flex items-center gap-1"
+                  className="p-2 sm:p-1 rounded hover:bg-[#252525] transition-colors flex items-center gap-1 min-h-[44px] sm:min-h-auto"
                   aria-label="Select theme"
                 >
-                  <Palette size={16} className="text-gray-500" />
+                  <Palette size={18} className="text-gray-500 sm:w-4 sm:h-4" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align="end"
-                className="w-48 max-h-64 overflow-y-auto bg-card rounded-2xl font-fira-code"
+                side="bottom"
+                sideOffset={8}
+                className="w-52 sm:w-48 max-h-64 overflow-y-auto bg-card rounded-xl sm:rounded-2xl font-fira-code mr-2 sm:mr-0"
               >
-                <DropdownMenuLabel className="text-xs text-muted-foreground">
+                <DropdownMenuLabel className="text-xs text-muted-foreground px-3 py-2">
                   Current: {getCurrentThemeName()}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {Object.entries(getThemesByCategory()).map(
                   ([category, themes]) => (
                     <React.Fragment key={category}>
-                      <DropdownMenuLabel className="text-xs font-medium text-muted-foreground px-2 py-1.5">
+                      <DropdownMenuLabel className="text-xs font-medium text-muted-foreground px-3 py-2">
                         {category}
                       </DropdownMenuLabel>
                       {Object.entries(themes).map(([themeKey, theme]) => (
@@ -154,7 +164,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
                           key={themeKey}
                           onClick={() => setTheme(themeKey as ThemeKey)}
                           className={cn(
-                            "cursor-pointer text-sm",
+                            "cursor-pointer text-sm py-2.5 sm:py-2",
                             selectedTheme === themeKey &&
                               "bg-accent text-accent-foreground"
                           )}
@@ -168,25 +178,36 @@ const CodeRender: React.FC<CodeRenderProps> = ({
                 )}
               </DropdownMenuContent>
             </DropdownMenu>
+
             <button
               onClick={copyToClipboard}
-              className="p-1 rounded hover:bg-[#252525] transition-colors"
+              className="p-2 sm:p-1 rounded hover:bg-[#252525] transition-colors min-h-[44px] sm:min-h-auto"
               aria-label={copied ? "Copied!" : "Copy code"}
             >
               <Copy
-                size={16}
-                className={copied ? "text-gray-200" : "text-gray-500"}
+                size={18}
+                className={cn(
+                  "sm:w-4 sm:h-4",
+                  copied ? "text-gray-200" : "text-gray-500"
+                )}
               />
             </button>
+
             <CollapsibleTrigger asChild>
               <button
-                className="p-1 rounded hover:bg-[#252525] transition-colors"
+                className="p-2 sm:p-1 rounded hover:bg-[#252525] transition-colors min-h-[44px] sm:min-h-auto"
                 aria-label={isOpen ? "Collapse code" : "Expand code"}
               >
                 {isOpen ? (
-                  <ChevronDown size={16} className="text-gray-500" />
+                  <ChevronDown
+                    size={18}
+                    className="text-gray-500 sm:w-4 sm:h-4"
+                  />
                 ) : (
-                  <ChevronRight size={16} className="text-gray-500" />
+                  <ChevronRight
+                    size={18}
+                    className="text-gray-500 sm:w-4 sm:h-4"
+                  />
                 )}
               </button>
             </CollapsibleTrigger>
@@ -196,7 +217,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
         <CollapsibleContent className="data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
           <div
             className="overflow-x-auto overflow-y-hidden
-                       [&::-webkit-scrollbar]:h-2 
+                       [&::-webkit-scrollbar]:h-2 sm:[&::-webkit-scrollbar]:h-2
                        [&::-webkit-scrollbar-track]:bg-[#0f0f0f] 
                        [&::-webkit-scrollbar-track]:rounded-full 
                        [&::-webkit-scrollbar-track]:border-t 
@@ -221,10 +242,10 @@ const CodeRender: React.FC<CodeRenderProps> = ({
               language={language || "text"}
               customStyle={{
                 margin: 0,
-                padding: "1rem",
+                padding: window.innerWidth < 640 ? "0.75rem" : "1rem",
                 backgroundColor: "transparent",
-                fontSize: "0.875rem",
-                lineHeight: 1.6,
+                fontSize: window.innerWidth < 640 ? "0.8rem" : "0.875rem",
+                lineHeight: window.innerWidth < 640 ? 1.5 : 1.6,
                 minWidth: "100%",
                 width: "max-content",
               }}
@@ -234,6 +255,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
                   backgroundColor: "transparent",
                   fontFamily: "Source Code Pro, monospace",
                   whiteSpace: "pre",
+                  fontSize: "inherit",
                 },
               }}
               {...props}
