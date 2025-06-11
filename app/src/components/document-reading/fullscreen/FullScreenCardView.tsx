@@ -1,22 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/document-reading/markdown/MarkdownRenderer";
-import { useSwipeable } from "react-swipeable";
-import CardProgress from "./CardProgress";
-import {
-  Menu,
-  ArrowLeft,
-  ChevronRight,
-  ChevronLeft,
-  Settings,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionsSheet from "./sidebar/SectionsSheet";
 import useMobile from "@/hooks/device/use-mobile";
 import ReadingSettingsSheet from "./settings/ReadingSettingsSheet";
 import { ReadingSettingsProvider } from "./context/ReadingSettingsProvider";
 import { useReadingSettings, fontFamilyMap } from "./context/ReadingContext";
-import { MarkdownSection } from "@/services/section/parsing";
+import type { MarkdownSection } from "@/services/section/parsing";
+import {
+  Header,
+  NavigationControls,
+  DesktopProgressIndicator,
+} from "./components";
+import { useSwipeable } from "react-swipeable";
 
 interface FullscreenCardViewProps {
   onExit: () => Promise<void>;
@@ -26,6 +23,7 @@ interface FullscreenCardViewProps {
   readSections: Set<number>;
   markdown: string;
 }
+
 interface FullscreenCardContentProps extends FullscreenCardViewProps {
   settingsOpen: boolean;
   setSettingsOpen: (open: boolean) => void;
@@ -47,13 +45,93 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isControlsVisible, setIsControlsVisible] = useState(true);
   const { isMobile } = useMobile();
+  const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const startTimeRef = useRef<number>(Date.now());
   const { settings } = useReadingSettings();
 
   const initializedRef = useRef(false);
+
+  /**
+   * 🔄 Smoothly transitions to a new section with a nice fade effect
+   * Tracks reading time and updates analytics too! 📊
+   */
+  const changeSection = useCallback(
+    async (newIndex: number) => {
+      await onExit();
+
+      setIsTransitioning(true);
+
+      setTimeout(async () => {
+        setCurrentIndex(newIndex);
+        setIsTransitioning(false);
+        await onChangeSection(newIndex);
+        startTimeRef.current = Date.now();
+      }, 200);
+    },
+    [onExit, onChangeSection]
+  );
+
+  const goToNext = useCallback(() => {
+    if (currentIndex < sections.length - 1) {
+      changeSection(currentIndex + 1);
+    }
+  }, [currentIndex, sections.length, changeSection]);
+
+  const goToPrevious = useCallback(() => {
+    if (currentIndex > 0) {
+      changeSection(currentIndex - 1);
+    }
+  }, [currentIndex, changeSection]);
+
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      goToNext();
+      handleInteraction();
+    },
+    onSwipedRight: () => {
+      goToPrevious();
+      handleInteraction();
+    },
+    delta: 10,
+    preventScrollOnSwipe: true,
+    trackTouch: true,
+    trackMouse: true,
+  });
+
+  const resetControlsTimeout = useCallback(() => {
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
+    }
+
+    setIsControlsVisible(true);
+
+    controlsTimeoutRef.current = setTimeout(() => {
+      setIsControlsVisible(false);
+    }, 2000);
+  }, []);
+
+  const handleInteraction = useCallback(() => {
+    resetControlsTimeout();
+  }, [resetControlsTimeout]);
+
+  const handleContentTap = useCallback(
+    (e: React.MouseEvent) => {
+      if (
+        (e.target as HTMLElement).tagName === "BUTTON" ||
+        (e.target as HTMLElement).closest("button")
+      ) {
+        return;
+      }
+
+      setIsControlsVisible(!isControlsVisible);
+      resetControlsTimeout();
+    },
+    [isControlsVisible, resetControlsTimeout]
+  );
 
   /**
    * 📚 Initializes the reading when the markdown is loaded
@@ -86,54 +164,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   }, [onExit]);
 
   /**
-   * 🔄 Smoothly transitions to a new section with a nice fade effect
-   * Tracks reading time and updates analytics too! 📊
-   */
-  const changeSection = async (newIndex: number) => {
-    await onExit();
-
-    setIsTransitioning(true);
-
-    setTimeout(async () => {
-      setCurrentIndex(newIndex);
-      setIsTransitioning(false);
-      await onChangeSection(newIndex);
-      startTimeRef.current = Date.now();
-    }, 200);
-  };
-
-  /**
-   * 👆 React-swipeable handlers for touch gestures
-   * Swipe left to go forward, right to go back
-   */
-  const swipeHandlers = useSwipeable({
-    onSwipedLeft: (eventData) => {
-      if (eventData.event.target instanceof Element) {
-        const target = eventData.event.target.closest(".no-swipe");
-        if (target) return;
-      }
-
-      if (currentIndex < sections.length - 1) {
-        changeSection(currentIndex + 1);
-      }
-    },
-    onSwipedRight: (eventData) => {
-      // Check if target or any parent has no-swipe class
-      if (eventData.event.target instanceof Element) {
-        const target = eventData.event.target.closest(".no-swipe");
-        if (target) return;
-      }
-
-      if (currentIndex > 0) {
-        changeSection(currentIndex - 1);
-      }
-    },
-    trackMouse: true,
-    delta: 50,
-    preventScrollOnSwipe: true,
-  });
-
-  /**
    * 📜 Scrolls back to the top when changing sections
    * No one likes starting in the middle! 😉
    */
@@ -142,25 +172,46 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   }, [currentIndex]);
 
   /**
-   * ⬅️ Go to previous section with a smooth transition
-   */
-  const handlePrevCard = () => {
-    if (currentIndex > 0) changeSection(currentIndex - 1);
-  };
-
-  /**
-   * ➡️ Go to next section with a smooth transition
-   */
-  const handleNextCard = () => {
-    if (currentIndex < sections.length - 1) changeSection(currentIndex + 1);
-  };
-
-  /**
    * 🎯 Jump directly to a specific section
    */
   const handleSelectCard = (index: number) => {
     if (index !== currentIndex) changeSection(index);
   };
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "ArrowLeft":
+        case "ArrowUp":
+          goToPrevious();
+          handleInteraction();
+          break;
+        case "ArrowRight":
+        case "ArrowDown":
+        case " ":
+          e.preventDefault();
+          goToNext();
+          handleInteraction();
+          break;
+        case "Escape":
+          setIsControlsVisible(false);
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [goToNext, goToPrevious, handleInteraction, isControlsVisible]);
+
+  useEffect(() => {
+    resetControlsTimeout();
+    return () => {
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+    };
+  }, [resetControlsTimeout]);
+
   const currentSection = getSection(currentIndex);
 
   if (sections.length === 0 || !currentSection) {
@@ -177,63 +228,155 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   return (
     <>
       <div
-        {...swipeHandlers}
         className={cn(
-          "h-full overflow-y-auto pb-16",
+          "h-full overflow-y-auto",
           isTransitioning ? "opacity-0" : "opacity-100",
           "transition-opacity duration-200"
         )}
+        {...swipeHandlers}
+        onMouseMove={handleInteraction}
+        onTouchStart={handleInteraction}
+        onClick={handleContentTap}
       >
-        <div className="max-w-2xl mx-auto p-4">
-          <div className="prose prose-invert max-w-none w-full break-words">
-            <CustomMarkdownRenderer
-              markdown={currentSection.content}
-              className="fullscreen-card-content"
-              fontFamily={fontFamily}
-            />
+        <div
+          className="px-6 md:px-12 lg:px-20 xl:px-32 py-20 md:py-24"
+          ref={scrollRef}
+        >
+          <div className="max-w-2xl mx-auto">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -30, filter: "blur(10px)" }}
+                transition={{
+                  duration: 0.6,
+                  ease: [0.23, 1, 0.32, 1],
+                }}
+                className="prose prose-lg prose-invert max-w-none"
+              >
+                <CustomMarkdownRenderer
+                  markdown={currentSection.content}
+                  className="fullscreen-card-content leading-relaxed"
+                  fontFamily={fontFamily}
+                />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
 
-      {/* Navigation Footer */}
-      <div className="sticky bottom-0 border-t border-border bg-card/50 backdrop-blur-sm p-4">
-        <div className="max-w-md mx-auto">
-          <CardProgress
-            currentIndex={currentIndex}
-            totalCards={sections.length}
-            onSelectCard={handleSelectCard}
-            className="mb-2"
+      {/* Header */}
+      <Header
+        onExit={() => {}}
+        onSettings={() => {
+          setSettingsOpen(true);
+          handleInteraction();
+        }}
+        onMenu={() => {
+          setMenuOpen(true);
+          handleInteraction();
+        }}
+        isVisible={isControlsVisible}
+      />
+
+      {/* Navigation controls for mobile */}
+      <NavigationControls
+        currentIndex={currentIndex}
+        total={sections.length}
+        onPrevious={() => {
+          goToPrevious();
+          handleInteraction();
+        }}
+        onNext={() => {
+          goToNext();
+          handleInteraction();
+        }}
+        isVisible={isControlsVisible && isMobile}
+      />
+
+      {/* Desktop side progress */}
+      <DesktopProgressIndicator
+        currentIndex={currentIndex}
+        total={sections.length}
+        onSelectSection={(index) => {
+          handleSelectCard(index);
+          handleInteraction();
+        }}
+      />
+
+      {/* Swipe hint indicators for mobile */}
+      <div className="absolute inset-y-0 left-0 w-20 z-30 pointer-events-none lg:hidden">
+        <div className="h-full flex items-center justify-center">
+          <motion.div
+            className="w-1 h-16 bg-gradient-to-b from-transparent via-white/10 to-transparent rounded-full"
+            animate={{ opacity: [0.3, 0.7, 0.3] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           />
-
-          {!isMobile && (
-            <div className="flex justify-between mt-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handlePrevCard}
-                disabled={currentIndex === 0}
-                className="h-9 gap-1 rounded-full font-cascadia-code cursor-pointer"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                <span className="sr-only sm:not-sr-only">Previous</span>
-              </Button>
-
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleNextCard}
-                disabled={currentIndex === sections.length - 1}
-                className="h-9 gap-1 rounded-full font-cascadia-code cursor-pointer"
-              >
-                <span className="sr-only sm:not-sr-only">Next</span>
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
-          )}
         </div>
       </div>
 
-      {/* Sections Menu Sheet with read sections */}
+      <div className="absolute inset-y-0 right-0 w-20 z-30 pointer-events-none lg:hidden">
+        <div className="h-full flex items-center justify-center">
+          <motion.div
+            className="w-1 h-16 bg-gradient-to-b from-transparent via-white/10 to-transparent rounded-full"
+            animate={{ opacity: [0.3, 0.7, 0.3] }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1.5,
+            }}
+          />
+        </div>
+      </div>
+
+      {/* First-time user hint */}
+      <AnimatePresence>
+        {currentIndex === 0 && isControlsVisible && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ delay: 3, duration: 0.6 }}
+            className="absolute bottom-32 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-lg rounded-2xl px-6 py-3 pointer-events-none lg:hidden border border-white/10"
+          >
+            <p className="text-sm text-white/90 flex items-center gap-3 font-medium">
+              <motion.span
+                animate={{ x: [0, 5, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                👆
+              </motion.span>
+              Swipe to navigate • Tap to toggle controls
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Desktop keyboard hint */}
+      <AnimatePresence>
+        {currentIndex === 0 && isControlsVisible && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ delay: 4, duration: 0.6 }}
+            className="hidden lg:block absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-lg rounded-2xl px-6 py-3 pointer-events-none border border-white/10"
+          >
+            <p className="text-sm text-white/90 flex items-center gap-4 font-medium">
+              <span>← → Arrow keys to navigate</span>
+              <span>•</span>
+              <span>ESC to toggle controls</span>
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <SectionsSheet
         currentIndex={currentIndex}
         handleSelectCard={handleSelectCard}
@@ -243,24 +386,9 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
         readSections={readSections}
       />
 
-      {/* Reading Settings Sheet */}
       <ReadingSettingsSheet
         open={settingsOpen}
         onOpenChange={setSettingsOpen}
-      />
-
-      {/* Touch swipe indicators (hidden visually but help with touch areas) */}
-      <button
-        className="absolute top-1/2 left-0 h-1/3 w-10 -translate-y-1/2 z-10 opacity-0"
-        onClick={handlePrevCard}
-        title="Previous"
-        disabled={currentIndex === 0}
-      />
-      <button
-        className="absolute top-1/2 right-0 h-1/3 w-10 -translate-y-1/2 z-10 opacity-0"
-        onClick={handleNextCard}
-        title="Next"
-        disabled={currentIndex === sections.length - 1}
       />
     </>
   );
@@ -304,41 +432,7 @@ const FullscreenCardView: React.FC<
 
   return (
     <ReadingSettingsProvider>
-      <div className={cn("fixed inset-0 z-50 bg-background flex flex-col")}>
-        {/* Header */}
-        <div className="sticky top-0 z-20 flex items-center justify-between p-4 border-b border-border bg-card/50 backdrop-blur-sm">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={exitFullScreen}
-            className="h-8 w-8"
-            aria-label="Exit fullscreen"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </Button>
-
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setSettingsOpen(true)}
-              className="h-8 w-8"
-              aria-label="Open settings"
-            >
-              <Settings className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setMenuOpen(true)}
-              className="h-8 w-8"
-              aria-label="Open sections menu"
-            >
-              <Menu className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-
+      <div className="fixed inset-0 z-50 bg-background text-foreground overflow-hidden">
         {/* Content Area */}
         <FullscreenCardContent
           markdown={markdown}
