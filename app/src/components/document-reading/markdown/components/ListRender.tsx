@@ -8,15 +8,31 @@ type ListProps =
 /**
  * ListRender Component
  *
- * Renders unordered lists, ordered lists, and list items with consistent styling.
+ * Renders lists with responsive spacing and typography optimized for mobile devices.
+ * Features adaptive margins, padding, and text sizing for improved readability.
  */
 const ListRender: React.FC<ListProps> = ({ type, props }) => {
   if (type === "ul") {
-    return <ul {...props} className="my-4 ml-6 list-disc space-y-2" />;
+    return (
+      <ul
+        {...props}
+        className="my-3 xs:my-4 sm:my-5 ml-4 xs:ml-5 sm:ml-6 list-disc space-y-1 xs:space-y-1.5 sm:space-y-2 text-sm xs:text-base sm:text-lg"
+      />
+    );
   } else if (type === "ol") {
-    return <ol {...props} className="my-4 ml-6 list-decimal space-y-2" />;
+    return (
+      <ol
+        {...props}
+        className="my-3 xs:my-4 sm:my-5 ml-4 xs:ml-5 sm:ml-6 list-decimal space-y-1 xs:space-y-1.5 sm:space-y-2 text-sm xs:text-base sm:text-lg"
+      />
+    );
   } else {
-    return <li {...props} className="pl-1 leading-7 text-gray-300" />;
+    return (
+      <li
+        {...props}
+        className="pl-0.5 xs:pl-1 sm:pl-1 leading-6 xs:leading-7 sm:leading-8 text-gray-300 break-words text-pretty"
+      />
+    );
   }
 };
 
