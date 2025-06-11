@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/document-reading/markdown/MarkdownRenderer";
-import { motion, AnimatePresence } from "framer-motion";
 import SectionsSheet from "./sidebar/SectionsSheet";
-import useMobile from "@/hooks/device/use-mobile";
 import ReadingSettingsSheet from "./settings/ReadingSettingsSheet";
 import { ReadingSettingsProvider } from "./context/ReadingSettingsProvider";
 import { useReadingSettings, fontFamilyMap } from "./context/ReadingContext";
@@ -46,7 +44,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isControlsVisible, setIsControlsVisible] = useState(true);
-  const { isMobile } = useMobile();
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -293,7 +290,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
           goToNext();
           handleInteraction();
         }}
-        isVisible={isControlsVisible && isMobile}
+        isVisible={isControlsVisible}
       />
 
       {/* Desktop side progress */}
@@ -307,76 +304,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
       />
 
       {/* Swipe hint indicators for mobile */}
-      <div className="absolute inset-y-0 left-0 w-20 z-30 pointer-events-none lg:hidden">
-        <div className="h-full flex items-center justify-center">
-          <motion.div
-            className="w-1 h-16 bg-gradient-to-b from-transparent via-white/10 to-transparent rounded-full"
-            animate={{ opacity: [0.3, 0.7, 0.3] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-      </div>
-
-      <div className="absolute inset-y-0 right-0 w-20 z-30 pointer-events-none lg:hidden">
-        <div className="h-full flex items-center justify-center">
-          <motion.div
-            className="w-1 h-16 bg-gradient-to-b from-transparent via-white/10 to-transparent rounded-full"
-            animate={{ opacity: [0.3, 0.7, 0.3] }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.5,
-            }}
-          />
-        </div>
-      </div>
-
-      {/* First-time user hint */}
-      <AnimatePresence>
-        {currentIndex === 0 && isControlsVisible && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ delay: 3, duration: 0.6 }}
-            className="absolute bottom-32 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-lg rounded-2xl px-6 py-3 pointer-events-none lg:hidden border border-white/10"
-          >
-            <p className="text-sm text-white/90 flex items-center gap-3 font-medium">
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                👆
-              </motion.span>
-              Swipe to navigate • Tap to toggle controls
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Desktop keyboard hint */}
-      <AnimatePresence>
-        {currentIndex === 0 && isControlsVisible && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ delay: 4, duration: 0.6 }}
-            className="hidden lg:block absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-lg rounded-2xl px-6 py-3 pointer-events-none border border-white/10"
-          >
-            <p className="text-sm text-white/90 flex items-center gap-4 font-medium">
-              <span>← → Arrow keys to navigate</span>
-              <span>•</span>
-              <span>ESC to toggle controls</span>
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <SectionsSheet
         currentIndex={currentIndex}
