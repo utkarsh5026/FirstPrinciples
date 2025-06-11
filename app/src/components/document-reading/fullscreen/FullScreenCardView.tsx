@@ -248,25 +248,16 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
         <div {...swipeHandlers}>
           <div className="px-6 md:px-12 lg:px-20 xl:px-32 py-20 md:py-24">
             <div className="max-w-2xl mx-auto">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentIndex}
-                  initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -30, filter: "blur(10px)" }}
-                  transition={{
-                    duration: 0.6,
-                    ease: [0.23, 1, 0.32, 1],
-                  }}
-                  className="prose prose-lg prose-invert max-w-none"
-                >
-                  <CustomMarkdownRenderer
-                    markdown={currentSection.content}
-                    className="fullscreen-card-content leading-relaxed"
-                    fontFamily={fontFamily}
-                  />
-                </motion.div>
-              </AnimatePresence>
+              <div
+                key={currentIndex}
+                className="prose prose-lg prose-invert max-w-none"
+              >
+                <CustomMarkdownRenderer
+                  markdown={currentSection.content}
+                  className="fullscreen-card-content leading-relaxed"
+                  fontFamily={fontFamily}
+                />
+              </div>
             </div>
           </div>
         </div>
