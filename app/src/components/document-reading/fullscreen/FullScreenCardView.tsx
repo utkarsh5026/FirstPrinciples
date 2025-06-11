@@ -126,8 +126,8 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   // 🖱️ Handle mouse movement to show controls when hovering at top
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
-      // Show controls when mouse is within 80px of the top
-      if (e.clientY <= 80) {
+      // Show controls when mouse is within 80px of the top or bottom
+      if (e.clientY <= 80 || e.clientY >= window.innerHeight - 80) {
         handleInteraction();
       }
     },

@@ -25,6 +25,7 @@ import {
 import { FiFolder, FiPackage } from "react-icons/fi";
 import { FaAws, FaJava } from "react-icons/fa";
 import { IconType } from "react-icons";
+import { Code } from "lucide-react";
 
 export const iconMap: Record<string, IconType> = {
   python: SiPython,
@@ -77,7 +78,7 @@ export const getIconForTech = (name?: string): IconType => {
   if (!name) return FiFolder;
 
   const normalizedName = name.split(" ").join("_").toLowerCase().trim();
-  return iconMap[normalizedName] || FiFolder;
+  return iconMap[normalizedName] || Code;
 };
 
 export default getIconForTech;
