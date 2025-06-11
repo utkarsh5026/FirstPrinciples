@@ -27,6 +27,7 @@ interface FullscreenCardContentProps extends FullscreenCardViewProps {
   setSettingsOpen: (open: boolean) => void;
   menuOpen: boolean;
   setMenuOpen: (open: boolean) => void;
+  exitFullScreen: () => void;
 }
 
 const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
@@ -34,6 +35,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   setSettingsOpen,
   menuOpen,
   setMenuOpen,
+  exitFullScreen,
   onExit,
   onChangeSection,
   sections,
@@ -266,7 +268,9 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
 
       {/* Header */}
       <Header
-        onExit={() => {}}
+        onExit={() => {
+          exitFullScreen();
+        }}
         onSettings={() => {
           setSettingsOpen(true);
           handleInteraction();
@@ -373,6 +377,7 @@ const FullscreenCardView: React.FC<
           sections={sections}
           getSection={getSection}
           readSections={readSections}
+          exitFullScreen={exitFullScreen}
         />
       </div>
     </ReadingSettingsProvider>
