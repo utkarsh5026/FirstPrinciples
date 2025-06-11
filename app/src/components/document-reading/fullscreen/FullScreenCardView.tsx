@@ -121,21 +121,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
     resetControlsTimeout();
   }, [resetControlsTimeout]);
 
-  const handleContentTap = useCallback(
-    (e: React.MouseEvent) => {
-      if (
-        (e.target as HTMLElement).tagName === "BUTTON" ||
-        (e.target as HTMLElement).closest("button")
-      ) {
-        return;
-      }
-
-      setIsControlsVisible(!isControlsVisible);
-      resetControlsTimeout();
-    },
-    [isControlsVisible, resetControlsTimeout]
-  );
-
   /**
    * 📚 Initializes the reading when the markdown is loaded
    */
@@ -260,12 +245,8 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
         )}
         ref={scrollRef}
       >
-        <div
-          {...swipeHandlers}
-          onTouchStart={handleInteraction}
-          onClick={handleContentTap}
-        >
-          <div className="px-6 md:px-12 lg:px-20 xl:px-32 py-20 md:py-24 border-2">
+        <div {...swipeHandlers}>
+          <div className="px-6 md:px-12 lg:px-20 xl:px-32 py-20 md:py-24">
             <div className="max-w-2xl mx-auto">
               <AnimatePresence mode="wait">
                 <motion.div
