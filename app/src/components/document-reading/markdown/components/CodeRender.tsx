@@ -177,6 +177,38 @@ const CodeRender: React.FC<CodeRenderProps> = ({
               </DropdownMenuContent>
             </DropdownMenu>
 
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={copyToClipboard}
+              className={cn(
+                " p-2  transition-all duration-300 ease-in-out rounded-2xl",
+                "hover:bg-background/50 backdrop-blur-sm border-none"
+              )}
+              aria-label={copied ? "Copied!" : "Copy code"}
+            >
+              <div className="relative text-xs sm:text-sm">
+                <Copy
+                  size={16}
+                  className={cn(
+                    "transition-all duration-300 ease-in-out",
+                    copied
+                      ? "opacity-0 scale-0 rotate-90"
+                      : "opacity-100 scale-100 rotate-0 text-gray-300 hover:text-white"
+                  )}
+                />
+                <Check
+                  size={16}
+                  className={cn(
+                    "absolute inset-0 transition-all duration-300 ease-in-out text-green-400",
+                    copied
+                      ? "opacity-100 scale-100 rotate-0"
+                      : "opacity-0 scale-0 -rotate-90"
+                  )}
+                />
+              </div>
+            </Button>
+
             <CollapsibleTrigger asChild>
               <button
                 className="p-2 sm:p-1 rounded hover:bg-[#252525] transition-colors min-h-[44px] sm:min-h-auto"
@@ -200,38 +232,6 @@ const CodeRender: React.FC<CodeRenderProps> = ({
 
         <CollapsibleContent className="data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
           <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={copyToClipboard}
-              className={cn(
-                "absolute top-3 right-3 z-10 p-2  transition-all duration-300 ease-in-out rounded-2xl",
-                "hover:bg-background/50 backdrop-blur-sm border-none"
-              )}
-              aria-label={copied ? "Copied!" : "Copy code"}
-            >
-              <div className="relative">
-                <Copy
-                  size={16}
-                  className={cn(
-                    "transition-all duration-300 ease-in-out",
-                    copied
-                      ? "opacity-0 scale-0 rotate-90"
-                      : "opacity-100 scale-100 rotate-0 text-gray-300 hover:text-white"
-                  )}
-                />
-                <Check
-                  size={16}
-                  className={cn(
-                    "absolute inset-0 transition-all duration-300 ease-in-out text-green-400",
-                    copied
-                      ? "opacity-100 scale-100 rotate-0"
-                      : "opacity-0 scale-0 -rotate-90"
-                  )}
-                />
-              </div>
-            </Button>
-
             <div
               className="overflow-x-auto overflow-y-hidden rounded-b-2xl shadow-md shadow-background/50
                          [&::-webkit-scrollbar]:h-2 sm:[&::-webkit-scrollbar]:h-2
