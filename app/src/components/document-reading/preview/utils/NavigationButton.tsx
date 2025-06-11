@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Folder, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import getTopicIcon from "@/components/shared/icons/topicIcon";
 import { fromSnakeToTitleCase } from "@/utils/string";
+import { useState } from "react";
 
 interface NavigationButtonProps {
   direction: "previous" | "next";
@@ -12,6 +13,82 @@ interface NavigationButtonProps {
   isMobile: boolean;
 }
 
+interface TreeNode {
+  name: string;
+  pathSoFar: string;
+  type: "folder" | "file";
+  icon?: React.ComponentType<{ size?: number; className?: string }>;
+  children?: TreeNode[];
+  depth: number;
+}
+
+const buildDirectoryTree = (path: string): TreeNode => {
+  const segments = path.split("/").filter(Boolean);
+
+  const buildNode = (segmentIndex: number): TreeNode => {
+    const segment = segments[segmentIndex];
+    const isFile = segmentIndex === segments.length - 1;
+    const pathSoFar = segments.slice(0, segmentIndex + 1).join("/");
+
+    const node: TreeNode = {
+      name: segment,
+      pathSoFar: pathSoFar,
+      type: isFile ? "file" : "folder",
+      icon: isFile ? FileText : () => getTopicIcon(pathSoFar),
+      depth: segmentIndex,
+      children:
+        segmentIndex < segments.length - 1
+          ? [buildNode(segmentIndex + 1)]
+          : undefined,
+    };
+
+    return node;
+  };
+
+  return buildNode(0);
+};
+
+const TreeItem: React.FC<{ node: TreeNode }> = ({ node }) => {
+  const Icon = node.icon || (node.type === "folder" ? Folder : FileText);
+
+  return (
+    <div className="space-y-1">
+      <div
+        className="flex items-center gap-2 py-1.5 px-2 rounded-lg hover:bg-primary/5 transition-colors duration-200"
+        style={{ marginLeft: `${node.depth * 16}px` }}
+      >
+        <div className="flex-shrink-0">
+          <Icon
+            size={14}
+            className={`transition-colors duration-200 ${
+              node.type === "folder" ? "text-primary/80" : "text-emerald-500"
+            }`}
+          />
+        </div>
+        <span
+          className={`text-xs font-medium transition-colors duration-200 ${
+            node.type === "folder" ? "text-foreground/80" : "text-primary/90"
+          }`}
+        >
+          {fromSnakeToTitleCase(node.name)}
+        </span>
+        {node.type === "file" && (
+          <div className="ml-auto">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          </div>
+        )}
+      </div>
+      {node.children && (
+        <div>
+          {node.children.map((child, index) => (
+            <TreeItem key={`${child.name}-${index}`} node={child} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const NavigationButton: React.FC<NavigationButtonProps> = ({
   direction,
   onClick,
@@ -19,6 +96,8 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({
   canNavigate,
   isMobile,
 }) => {
+  const [isHovering, setIsHovering] = useState(false);
+
   if (!canNavigate || isMobile) return null;
 
   const isPrevious = direction === "previous";
@@ -40,10 +119,17 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({
     ? getDocumentCategory(document.path)
     : "";
 
+  // Build directory tree for hover effect
+  const directoryTree = document?.path
+    ? buildDirectoryTree(document.path)
+    : null;
+
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center relative">
       <motion.button
         onClick={onClick}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
         className={cn(
           "z-20 group cursor-pointer relative overflow-hidden",
           // Enhanced glassmorphism styling
@@ -120,6 +206,50 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({
           )}
         </div>
       </motion.button>
+
+      {/* Directory Tree Hover Effect */}
+      {isHovering && directoryTree && (
+        <motion.div
+          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
+          className={cn(
+            "absolute top-full mt-4 z-30",
+            "w-80 max-w-sm",
+            // Glassmorphism styling
+            "backdrop-blur-xl bg-gradient-to-br from-card/90 via-card/80 to-card/90",
+            "dark:from-card/90 dark:via-card/80 dark:to-card/90",
+            "border border-border/40 shadow-2xl shadow-black/10 dark:shadow-black/25",
+            "rounded-2xl p-4",
+            // Positioning
+            isPrevious ? "left-0" : "right-0"
+          )}
+        >
+          {/* Header */}
+          <div className="flex items-center gap-2 mb-3 pb-2 border-b border-border/30">
+            <div className="w-2 h-2 rounded-full bg-primary/60" />
+            <span className="text-xs font-semibold text-foreground/90">
+              Document Path
+            </span>
+          </div>
+
+          {/* Tree Content */}
+          <div className="max-h-64 overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border/40">
+            <TreeItem node={directoryTree} />
+          </div>
+
+          {/* Arrow pointer */}
+          <div
+            className={cn(
+              "absolute -top-2 w-4 h-4 rotate-45",
+              "bg-gradient-to-br from-card/90 to-card/80",
+              "border-l border-t border-border/40",
+              isPrevious ? "left-8" : "right-8"
+            )}
+          />
+        </motion.div>
+      )}
     </div>
   );
 };
