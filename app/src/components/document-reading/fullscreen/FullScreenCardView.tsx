@@ -55,6 +55,9 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
 
   const initializedRef = useRef(false);
 
+  // Add this state to track scroll direction
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   /**
    * 🔄 Smoothly transitions to a new section with a nice fade effect
    * Tracks reading time and updates analytics too! 📊
@@ -212,6 +215,28 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
     };
   }, [resetControlsTimeout]);
 
+  const handleScroll = useCallback(() => {
+    if (!scrollRef.current) return;
+
+    const currentScrollY = scrollRef.current.scrollTop;
+    if (currentScrollY < lastScrollY) {
+      handleInteraction();
+    } else {
+      setIsControlsVisible(false);
+    }
+
+    setLastScrollY(currentScrollY);
+  }, [lastScrollY, handleInteraction]);
+
+  // Add scroll listener in useEffect
+  useEffect(() => {
+    const scrollElement = scrollRef.current;
+    if (!scrollElement) return;
+
+    scrollElement.addEventListener("scroll", handleScroll);
+    return () => scrollElement.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
   const currentSection = getSection(currentIndex);
 
   if (sections.length === 0 || !currentSection) {
@@ -233,34 +258,35 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
           isTransitioning ? "opacity-0" : "opacity-100",
           "transition-opacity duration-200"
         )}
-        {...swipeHandlers}
-        onTouchStart={handleInteraction}
-        onClick={handleContentTap}
+        ref={scrollRef}
       >
         <div
-          className="px-6 md:px-12 lg:px-20 xl:px-32 py-20 md:py-24"
-          ref={scrollRef}
+          {...swipeHandlers}
+          onTouchStart={handleInteraction}
+          onClick={handleContentTap}
         >
-          <div className="max-w-2xl mx-auto">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -30, filter: "blur(10px)" }}
-                transition={{
-                  duration: 0.6,
-                  ease: [0.23, 1, 0.32, 1],
-                }}
-                className="prose prose-lg prose-invert max-w-none"
-              >
-                <CustomMarkdownRenderer
-                  markdown={currentSection.content}
-                  className="fullscreen-card-content leading-relaxed"
-                  fontFamily={fontFamily}
-                />
-              </motion.div>
-            </AnimatePresence>
+          <div className="px-6 md:px-12 lg:px-20 xl:px-32 py-20 md:py-24 border-2">
+            <div className="max-w-2xl mx-auto">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -30, filter: "blur(10px)" }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.23, 1, 0.32, 1],
+                  }}
+                  className="prose prose-lg prose-invert max-w-none"
+                >
+                  <CustomMarkdownRenderer
+                    markdown={currentSection.content}
+                    className="fullscreen-card-content leading-relaxed"
+                    fontFamily={fontFamily}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </div>
