@@ -6049,6 +6049,41 @@
           "totalFileSize": 0
         },
         {
+          "id": "network_and_internet",
+          "name": "Network And Internet",
+          "categories": [],
+          "files": [
+            {
+              "path": "python/network_and_internet/email_handling_and_mime_message_processing.md"
+            },
+            {
+              "path": "python/network_and_internet/protocol_specific_client_implementations.md"
+            },
+            {
+              "path": "python/network_and_internet/socket_module_low_level_network_interface.md"
+            },
+            {
+              "path": "python/network_and_internet/understanding_asynchronous_network_programming.md"
+            },
+            {
+              "path": "python/network_and_internet/understanding_encoding_and_internationalization_in_network_programming.md"
+            },
+            {
+              "path": "python/network_and_internet/understanding_http_protocol_implementation_in_python.md"
+            },
+            {
+              "path": "python/network_and_internet/understanding_network_programming_concepts_and_protocols.md"
+            },
+            {
+              "path": "python/network_and_internet/understanding_network_security_considerations.md"
+            },
+            {
+              "path": "python/network_and_internet/url_handling_and_http_client_functionality.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
           "id": "oops",
           "name": "Oops",
           "categories": [],

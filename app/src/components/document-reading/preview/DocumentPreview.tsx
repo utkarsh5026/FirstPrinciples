@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import FullScreenCardView from "@/components/document-reading/fullscreen/FullScreenCardView";
 import getIconForTech from "@/components/shared/icons";
 import { DetailPanel, Header, StartReadingButton } from "./layout";
@@ -10,6 +9,7 @@ import {
   ErrorLoadingDocument,
   NoFileSelectedYet,
   ReadingSessionDialog,
+  NavigationButton,
 } from "./utils";
 import { formatTimeInMs } from "@/utils/time";
 import { estimateWordsRead } from "@/services/analytics/word-count-estimation";
@@ -20,77 +20,6 @@ import {
   useMobile,
 } from "@/hooks";
 import { useParams } from "react-router-dom";
-import { cn } from "@/lib/utils";
-
-/**
- * 🧭 NavigationButton
- *
- * Reusable navigation button component for previous/next document navigation
- */
-interface NavigationButtonProps {
-  direction: "previous" | "next";
-  onClick: () => void;
-  document?: { title: string } | null;
-  canNavigate: boolean;
-  isMobile: boolean;
-}
-
-const NavigationButton: React.FC<NavigationButtonProps> = ({
-  direction,
-  onClick,
-  document,
-  canNavigate,
-  isMobile,
-}) => {
-  if (!canNavigate || isMobile) return null;
-
-  const isPrevious = direction === "previous";
-  const Icon = isPrevious ? ChevronLeft : ChevronRight;
-  const label = isPrevious ? "Previous" : "Next";
-  const defaultTitle = isPrevious ? "Previous Document" : "Next Document";
-
-  return (
-    <div className="flex flex-col items-center justify-center">
-      <motion.button
-        onClick={onClick}
-        className={cn(
-          "z-20 group cursor-pointer",
-          // Mobile: circular button
-          "w-12 h-12 rounded-full md:rounded-2xl",
-          // Desktop: expanded button with text
-          "md:w-auto md:h-auto md:px-4 md:py-3",
-          isPrevious ? "md:-translate-x-4" : "md:translate-x-4",
-          "border border-border/30 bg-card/80 backdrop-blur-sm hover:bg-card",
-          "transition-all duration-300 hover:border-primary/30 hover:shadow-lg",
-          "flex items-center justify-center gap-2",
-          isPrevious ? "md:justify-start" : "md:justify-end",
-          "hover:scale-110 active:scale-95 md:hover:scale-105"
-        )}
-        initial={{ opacity: 0, x: isPrevious ? -20 : 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        {isPrevious && (
-          <Icon className="h-5 w-5 text-primary group-hover:text-primary/80 flex-shrink-0" />
-        )}
-        <div
-          className={cn(
-            "hidden md:block min-w-0",
-            isPrevious ? "text-left" : "text-right"
-          )}
-        >
-          <p className="text-xs text-muted-foreground">{label}</p>
-          <p className="text-sm font-medium text-foreground truncate max-w-[160px]">
-            {document?.title ?? defaultTitle}
-          </p>
-        </div>
-        {!isPrevious && (
-          <Icon className="h-5 w-5 text-primary group-hover:text-primary/80 flex-shrink-0" />
-        )}
-      </motion.button>
-    </div>
-  );
-};
 
 /**
  * 📄✨ DocumentPreview
@@ -250,11 +179,18 @@ const DocumentPreview: React.FC = () => {
         {...swipeHandlers}
         className="w-full mx-auto max-w-6xl mb-8 font-cascadia-code px-4 sm:px-6 relative flex flex-row items-center justify-center"
       >
-        {/* Navigation Buttons - Now DRY! */}
+        {/* Navigation Buttons - Enhanced with context and glassmorphism */}
         <NavigationButton
           direction="previous"
           onClick={navigateToPrevious}
-          document={previousDocument}
+          document={
+            previousDocument
+              ? {
+                  title: previousDocument.title,
+                  path: previousDocument.path,
+                }
+              : null
+          }
           canNavigate={canNavigatePrevious}
           isMobile={isMobile}
         />
@@ -325,7 +261,14 @@ const DocumentPreview: React.FC = () => {
         <NavigationButton
           direction="next"
           onClick={navigateToNext}
-          document={nextDocument}
+          document={
+            nextDocument
+              ? {
+                  title: nextDocument.title,
+                  path: nextDocument.path,
+                }
+              : null
+          }
           canNavigate={canNavigateNext}
           isMobile={isMobile}
         />
