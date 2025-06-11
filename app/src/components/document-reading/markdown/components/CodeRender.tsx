@@ -16,6 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useCodeThemeStore, type ThemeKey } from "@/stores/ui/code-theme";
 import { Button } from "@/components/ui/button";
 
@@ -232,29 +233,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
 
         <CollapsibleContent className="data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
           <div className="relative">
-            <div
-              className="overflow-x-auto overflow-y-hidden rounded-b-2xl sm:shadow-md sm:shadow-background/50
-                         [&::-webkit-scrollbar]:h-2 sm:[&::-webkit-scrollbar]:h-2
-                         [&::-webkit-scrollbar-track]:bg-[#0f0f0f] 
-                         [&::-webkit-scrollbar-track]:rounded-full 
-                         [&::-webkit-scrollbar-track]:border-t 
-                         [&::-webkit-scrollbar-track]:border-[#222222]
-                         [&::-webkit-scrollbar-thumb]:bg-gradient-to-r 
-                         [&::-webkit-scrollbar-thumb]:from-[#404040] 
-                         [&::-webkit-scrollbar-thumb]:to-[#505050] 
-                         [&::-webkit-scrollbar-thumb]:rounded-full 
-                         [&::-webkit-scrollbar-thumb]:border 
-                         [&::-webkit-scrollbar-thumb]:border-[#2a2a2a]
-                         [&::-webkit-scrollbar-thumb:hover]:from-[#555555] 
-                         [&::-webkit-scrollbar-thumb:hover]:to-[#666666]
-                         [&::-webkit-scrollbar-thumb:hover]:border-[#777777]
-                         [&::-webkit-scrollbar-thumb:active]:from-[#666666] 
-                         [&::-webkit-scrollbar-thumb:active]:to-[#777777]"
-              style={{
-                scrollbarWidth: "thin",
-                scrollbarColor: "#505050 #0f0f0f",
-              }}
-            >
+            <ScrollArea className="rounded-b-2xl sm:shadow-md sm:shadow-background/50">
               <SyntaxHighlighter
                 language={language || "text"}
                 customStyle={{
@@ -283,7 +262,8 @@ const CodeRender: React.FC<CodeRenderProps> = ({
                   ? children.replace(/\n$/, "")
                   : React.Children.toArray(children).join("")}
               </SyntaxHighlighter>
-            </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
           </div>
         </CollapsibleContent>
       </div>
