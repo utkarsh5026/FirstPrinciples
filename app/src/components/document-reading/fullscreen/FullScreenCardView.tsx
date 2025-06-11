@@ -54,9 +54,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
 
   const initializedRef = useRef(false);
 
-  // Add this state to track scroll direction
-  const [lastScrollY, setLastScrollY] = useState(0);
-
   /**
    * 🔄 Smoothly transitions to a new section with a nice fade effect
    * Tracks reading time and updates analytics too! 📊
@@ -197,28 +194,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
     };
   }, [resetControlsTimeout]);
 
-  const handleScroll = useCallback(() => {
-    if (!scrollRef.current) return;
-
-    const currentScrollY = scrollRef.current.scrollTop;
-    if (currentScrollY < lastScrollY) {
-      handleInteraction();
-    } else {
-      setIsControlsVisible(false);
-    }
-
-    setLastScrollY(currentScrollY);
-  }, [lastScrollY, handleInteraction]);
-
-  // Add scroll listener in useEffect
-  useEffect(() => {
-    const scrollElement = scrollRef.current;
-    if (!scrollElement) return;
-
-    scrollElement.addEventListener("scroll", handleScroll);
-    return () => scrollElement.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-
   const currentSection = getSection(currentIndex);
 
   if (sections.length === 0 || !currentSection) {
@@ -301,10 +276,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
       <DesktopProgressIndicator
         currentIndex={currentIndex}
         total={sections.length}
-        onSelectSection={(index) => {
-          handleSelectCard(index);
-          handleInteraction();
-        }}
+        onSelectSection={(index) => handleSelectCard(index)}
       />
 
       {/* Swipe hint indicators for mobile */}
