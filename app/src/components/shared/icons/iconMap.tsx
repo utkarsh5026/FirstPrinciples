@@ -23,7 +23,7 @@ import {
   SiThealgorithms,
 } from "react-icons/si";
 import { FiFolder, FiPackage } from "react-icons/fi";
-import { FaAws } from "react-icons/fa";
+import { FaAws, FaJava } from "react-icons/fa";
 import { IconType } from "react-icons";
 
 export const iconMap: Record<string, IconType> = {
@@ -35,6 +35,7 @@ export const iconMap: Record<string, IconType> = {
   go: SiGo,
   golang: SiGo,
   rust: SiRust,
+  java: FaJava,
 
   // Frontend Frameworks/Libraries
   react: SiReact,
