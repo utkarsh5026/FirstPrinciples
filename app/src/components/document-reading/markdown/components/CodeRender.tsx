@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { Copy } from "lucide-react";
+import { Copy, ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import getTopicIcon from "@/components/shared/icons/topicIcon";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 interface CodeRenderProps extends React.ComponentPropsWithoutRef<"code"> {
   inline?: boolean;
@@ -32,6 +38,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
   ...props
 }) => {
   const [copied, setCopied] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const match = /language-(\w+)/.exec(className ?? "");
   const language = match ? match[1] : "";
 
@@ -95,85 +102,106 @@ const CodeRender: React.FC<CodeRenderProps> = ({
       </code>
     </span>
   ) : (
-    <div ref={codeRef} className="my-6 relative font-fira-code no-swipe">
-      <div className="bg-[#1c1c1c] text-gray-400 px-4 py-2 text-sm font-bold border-b border-[#222222] flex justify-between items-center rounded-t-2xl">
-        <span>{language || "code"}</span>
-        <button
-          onClick={copyToClipboard}
-          className="p-1 rounded hover:bg-[#252525] transition-colors"
-          aria-label={copied ? "Copied!" : "Copy code"}
-        >
-          <Copy
-            size={16}
-            className={copied ? "text-gray-200" : "text-gray-500"}
-          />
-        </button>
-      </div>
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <div ref={codeRef} className="my-6 relative font-fira-code no-swipe">
+        <div className="bg-[#1c1c1c] text-gray-400 px-4 py-2 text-sm font-bold border-b border-[#222222] flex justify-between items-center rounded-t-2xl">
+          <span className="flex items-center gap-2">
+            {getTopicIcon(language || "code")}
+            <span>{language || "code"}</span>
+          </span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={copyToClipboard}
+              className="p-1 rounded hover:bg-[#252525] transition-colors"
+              aria-label={copied ? "Copied!" : "Copy code"}
+            >
+              <Copy
+                size={16}
+                className={copied ? "text-gray-200" : "text-gray-500"}
+              />
+            </button>
+            <CollapsibleTrigger asChild>
+              <button
+                className="p-1 rounded hover:bg-[#252525] transition-colors"
+                aria-label={isOpen ? "Collapse code" : "Expand code"}
+              >
+                {isOpen ? (
+                  <ChevronDown size={16} className="text-gray-500" />
+                ) : (
+                  <ChevronRight size={16} className="text-gray-500" />
+                )}
+              </button>
+            </CollapsibleTrigger>
+          </div>
+        </div>
 
-      <div
-        className="overflow-x-auto overflow-y-hidden
-                   [&::-webkit-scrollbar]:h-2 
-                   [&::-webkit-scrollbar-track]:bg-[#0f0f0f] 
-                   [&::-webkit-scrollbar-track]:rounded-full 
-                   [&::-webkit-scrollbar-track]:border-t 
-                   [&::-webkit-scrollbar-track]:border-[#222222]
-                   [&::-webkit-scrollbar-thumb]:bg-gradient-to-r 
-                   [&::-webkit-scrollbar-thumb]:from-[#404040] 
-                   [&::-webkit-scrollbar-thumb]:to-[#505050] 
-                   [&::-webkit-scrollbar-thumb]:rounded-full 
-                   [&::-webkit-scrollbar-thumb]:border 
-                   [&::-webkit-scrollbar-thumb]:border-[#2a2a2a]
-                   [&::-webkit-scrollbar-thumb:hover]:from-[#555555] 
-                   [&::-webkit-scrollbar-thumb:hover]:to-[#666666]
-                   [&::-webkit-scrollbar-thumb:hover]:border-[#777777]
-                   [&::-webkit-scrollbar-thumb:active]:from-[#666666] 
-                   [&::-webkit-scrollbar-thumb:active]:to-[#777777]"
-        style={{
-          scrollbarWidth: "thin",
-          scrollbarColor: "#505050 #0f0f0f",
-        }}
-      >
-        <SyntaxHighlighter
-          language={language || "text"}
-          customStyle={{
-            margin: 0,
-            padding: "1rem",
-            backgroundColor: "#1a1a1a",
-            fontSize: "0.875rem",
-            lineHeight: 1.6,
-            minWidth: "100%",
-            width: "max-content",
-          }}
-          useInlineStyles={true}
-          codeTagProps={{
-            style: {
-              backgroundColor: "transparent",
-              fontFamily: "Source Code Pro, monospace",
-              whiteSpace: "pre",
-            },
-          }}
-          {...props}
-          style={{
-            ...oneDark,
-            'pre[class*="language-"]': {
-              ...oneDark['pre[class*="language-"]'],
-              background: "transparent",
-              overflow: "visible",
-              margin: 0,
-            },
-            'code[class*="language-"]': {
-              ...oneDark['code[class*="language-"]'],
-              background: "transparent",
-              whiteSpace: "pre",
-            },
-          }}
-        >
-          {typeof children === "string"
-            ? children.replace(/\n$/, "")
-            : React.Children.toArray(children).join("")}
-        </SyntaxHighlighter>
+        <CollapsibleContent className="data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
+          <div
+            className="overflow-x-auto overflow-y-hidden
+                       [&::-webkit-scrollbar]:h-2 
+                       [&::-webkit-scrollbar-track]:bg-[#0f0f0f] 
+                       [&::-webkit-scrollbar-track]:rounded-full 
+                       [&::-webkit-scrollbar-track]:border-t 
+                       [&::-webkit-scrollbar-track]:border-[#222222]
+                       [&::-webkit-scrollbar-thumb]:bg-gradient-to-r 
+                       [&::-webkit-scrollbar-thumb]:from-[#404040] 
+                       [&::-webkit-scrollbar-thumb]:to-[#505050] 
+                       [&::-webkit-scrollbar-thumb]:rounded-full 
+                       [&::-webkit-scrollbar-thumb]:border 
+                       [&::-webkit-scrollbar-thumb]:border-[#2a2a2a]
+                       [&::-webkit-scrollbar-thumb:hover]:from-[#555555] 
+                       [&::-webkit-scrollbar-thumb:hover]:to-[#666666]
+                       [&::-webkit-scrollbar-thumb:hover]:border-[#777777]
+                       [&::-webkit-scrollbar-thumb:active]:from-[#666666] 
+                       [&::-webkit-scrollbar-thumb:active]:to-[#777777]"
+            style={{
+              scrollbarWidth: "thin",
+              scrollbarColor: "#505050 #0f0f0f",
+            }}
+          >
+            <SyntaxHighlighter
+              language={language || "text"}
+              customStyle={{
+                margin: 0,
+                padding: "1rem",
+                backgroundColor: "#1a1a1a",
+                fontSize: "0.875rem",
+                lineHeight: 1.6,
+                minWidth: "100%",
+                width: "max-content",
+              }}
+              useInlineStyles={true}
+              codeTagProps={{
+                style: {
+                  backgroundColor: "transparent",
+                  fontFamily: "Source Code Pro, monospace",
+                  whiteSpace: "pre",
+                },
+              }}
+              {...props}
+              style={{
+                ...oneDark,
+                'pre[class*="language-"]': {
+                  ...oneDark['pre[class*="language-"]'],
+                  background: "transparent",
+                  overflow: "visible",
+                  margin: 0,
+                },
+                'code[class*="language-"]': {
+                  ...oneDark['code[class*="language-"]'],
+                  background: "transparent",
+                  whiteSpace: "pre",
+                },
+              }}
+            >
+              {typeof children === "string"
+                ? children.replace(/\n$/, "")
+                : React.Children.toArray(children).join("")}
+            </SyntaxHighlighter>
+          </div>
+        </CollapsibleContent>
       </div>
-    </div>
+    </Collapsible>
   );
 };
 
