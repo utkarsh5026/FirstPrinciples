@@ -93,11 +93,9 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {
       goToNext();
-      handleInteraction();
     },
     onSwipedRight: () => {
       goToPrevious();
-      handleInteraction();
     },
     delta: 10,
     preventScrollOnSwipe: true,
