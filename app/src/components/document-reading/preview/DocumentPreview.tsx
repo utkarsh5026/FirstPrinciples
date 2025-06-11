@@ -165,7 +165,8 @@ const DocumentPreview: React.FC = () => {
   }
 
   if (loading) return <LoadingScreen documentPath={documentPath} />;
-  if (error) return <ErrorLoadingDocument error={error} />;
+  if (error)
+    return <ErrorLoadingDocument error={error} documentPath={documentPath} />;
   if (!documentPath) return <NoFileSelectedYet />;
 
   const { totalWords, totalTime, totalSections } = metrics;
