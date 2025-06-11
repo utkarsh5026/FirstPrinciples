@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { Copy, ChevronDown, ChevronRight } from "lucide-react";
+import { Copy, ChevronDown, ChevronRight, Palette } from "lucide-react";
 import { cn } from "@/lib/utils";
 import getTopicIcon from "@/components/shared/icons/topicIcon";
 import {
@@ -9,6 +8,15 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
+} from "@/components/ui/dropdown-menu";
+import { useCodeThemeStore, type ThemeKey } from "@/stores/ui/code-theme";
 
 interface CodeRenderProps extends React.ComponentPropsWithoutRef<"code"> {
   inline?: boolean;
@@ -41,6 +49,14 @@ const CodeRender: React.FC<CodeRenderProps> = ({
   const [isOpen, setIsOpen] = useState(true);
   const match = /language-(\w+)/.exec(className ?? "");
   const language = match ? match[1] : "";
+
+  const {
+    selectedTheme,
+    setTheme,
+    getCurrentThemeStyle,
+    getCurrentThemeName,
+    getThemesByCategory,
+  } = useCodeThemeStore();
 
   const codeRef = React.useRef<HTMLDivElement>(null);
   const [isInTableCell, setIsInTableCell] = useState(false);
@@ -110,6 +126,48 @@ const CodeRender: React.FC<CodeRenderProps> = ({
             <span>{language || "code"}</span>
           </span>
           <div className="flex items-center gap-2">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className="p-1 rounded hover:bg-[#252525] transition-colors flex items-center gap-1"
+                  aria-label="Select theme"
+                >
+                  <Palette size={16} className="text-gray-500" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="end"
+                className="w-48 max-h-64 overflow-y-auto bg-card rounded-2xl font-fira-code"
+              >
+                <DropdownMenuLabel className="text-xs text-muted-foreground">
+                  Current: {getCurrentThemeName()}
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {Object.entries(getThemesByCategory()).map(
+                  ([category, themes]) => (
+                    <React.Fragment key={category}>
+                      <DropdownMenuLabel className="text-xs font-medium text-muted-foreground px-2 py-1.5">
+                        {category}
+                      </DropdownMenuLabel>
+                      {Object.entries(themes).map(([themeKey, theme]) => (
+                        <DropdownMenuItem
+                          key={themeKey}
+                          onClick={() => setTheme(themeKey as ThemeKey)}
+                          className={cn(
+                            "cursor-pointer text-sm",
+                            selectedTheme === themeKey &&
+                              "bg-accent text-accent-foreground"
+                          )}
+                        >
+                          {theme.name}
+                        </DropdownMenuItem>
+                      ))}
+                      <DropdownMenuSeparator />
+                    </React.Fragment>
+                  )
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <button
               onClick={copyToClipboard}
               className="p-1 rounded hover:bg-[#252525] transition-colors"
@@ -164,7 +222,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
               customStyle={{
                 margin: 0,
                 padding: "1rem",
-                backgroundColor: "#1a1a1a",
+                backgroundColor: "transparent",
                 fontSize: "0.875rem",
                 lineHeight: 1.6,
                 minWidth: "100%",
@@ -179,20 +237,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
                 },
               }}
               {...props}
-              style={{
-                ...oneDark,
-                'pre[class*="language-"]': {
-                  ...oneDark['pre[class*="language-"]'],
-                  background: "transparent",
-                  overflow: "visible",
-                  margin: 0,
-                },
-                'code[class*="language-"]': {
-                  ...oneDark['code[class*="language-"]'],
-                  background: "transparent",
-                  whiteSpace: "pre",
-                },
-              }}
+              style={getCurrentThemeStyle()}
             >
               {typeof children === "string"
                 ? children.replace(/\n$/, "")
