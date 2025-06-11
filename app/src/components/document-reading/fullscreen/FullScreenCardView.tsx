@@ -234,7 +234,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
           "transition-opacity duration-200"
         )}
         {...swipeHandlers}
-        onMouseMove={handleInteraction}
         onTouchStart={handleInteraction}
         onClick={handleContentTap}
       >
