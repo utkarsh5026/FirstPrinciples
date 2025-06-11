@@ -115,6 +115,17 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
     resetControlsTimeout();
   }, [resetControlsTimeout]);
 
+  // 🖱️ Handle mouse movement to show controls when hovering at top
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      // Show controls when mouse is within 80px of the top
+      if (e.clientY <= 80) {
+        handleInteraction();
+      }
+    },
+    [handleInteraction]
+  );
+
   /**
    * 📚 Initializes the reading when the markdown is loaded
    */
@@ -193,6 +204,15 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
       }
     };
   }, [resetControlsTimeout]);
+
+  // Add mouse movement listener for hover-at-top functionality
+  useEffect(() => {
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [handleMouseMove]);
 
   const currentSection = getSection(currentIndex);
 
