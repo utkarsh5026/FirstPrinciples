@@ -87,10 +87,18 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
   }, [currentIndex, changeSection]);
 
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: () => {
+    onSwipedLeft: (eventData) => {
+      if (eventData.event.target instanceof Element) {
+        const target = eventData.event.target.closest(".no-swipe");
+        if (target) return;
+      }
       goToNext();
     },
-    onSwipedRight: () => {
+    onSwipedRight: (eventData) => {
+      if (eventData.event.target instanceof Element) {
+        const target = eventData.event.target.closest(".no-swipe");
+        if (target) return;
+      }
       goToPrevious();
     },
     delta: 10,
@@ -231,7 +239,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
     <>
       <div
         className={cn(
-          "h-full overflow-y-auto",
+          "h-full overflow-y-auto bg-card",
           isTransitioning ? "opacity-0" : "opacity-100",
           "transition-opacity duration-200"
         )}
