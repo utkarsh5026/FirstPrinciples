@@ -17,6 +17,7 @@ import {
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { useCodeThemeStore, type ThemeKey } from "@/stores/ui/code-theme";
+import { Button } from "@/components/ui/button";
 
 interface CodeRenderProps extends React.ComponentPropsWithoutRef<"code"> {
   inline?: boolean;
@@ -199,15 +200,13 @@ const CodeRender: React.FC<CodeRenderProps> = ({
 
         <CollapsibleContent className="data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
           <div className="relative">
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={copyToClipboard}
               className={cn(
                 "absolute top-3 right-3 z-10 p-2  transition-all duration-300 ease-in-out rounded-2xl",
-                "hover:bg-black/20 backdrop-blur-sm border border-white/10",
-                "min-h-[44px] sm:min-h-auto sm:p-2",
-                copied
-                  ? "bg-green-500/20 border-green-400/30 scale-110"
-                  : "bg-black/40 hover:bg-black/60"
+                "hover:bg-background/50 backdrop-blur-sm border-none"
               )}
               aria-label={copied ? "Copied!" : "Copy code"}
             >
@@ -231,7 +230,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
                   )}
                 />
               </div>
-            </button>
+            </Button>
 
             <div
               className="overflow-x-auto overflow-y-hidden rounded-b-2xl shadow-md shadow-background/50
