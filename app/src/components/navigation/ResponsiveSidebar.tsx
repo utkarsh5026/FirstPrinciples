@@ -92,7 +92,7 @@ const ResponsiveSidebar: React.FC<ResponsiveSidebarProps> = ({
     <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
       <SheetContent
         side="left"
-        className="p-0 h-full border-r-0 inset-0 max-w-none w-screen sm:max-w-md bg-gradient-to-b from-card to-background shadow-xl flex flex-col"
+        className="p-0 h-full border-r-0 inset-0 max-w-none w-screen sm:max-w-2xl bg-gradient-to-b from-card to-background shadow-xl flex flex-col"
       >
         <SheetHeader className="p-0">
           <Header
