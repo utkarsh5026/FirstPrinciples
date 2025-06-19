@@ -341,6 +341,48 @@
         "categories": []
       },
       {
+        "id": "networking_and_content_delivery",
+        "name": "Networking And Content Delivery",
+        "categories": [
+          {
+            "id": "amazon_api_gateway",
+            "name": "Amazon Api Gateway",
+            "categories": [
+              {
+                "id": "fundamentals_and_architecture",
+                "name": "Fundamentals And Architecture",
+                "categories": []
+              },
+              {
+                "id": "integration_patterns",
+                "name": "Integration Patterns",
+                "categories": []
+              },
+              {
+                "id": "monitoring_and_analytics",
+                "name": "Monitoring And Analytics",
+                "categories": []
+              },
+              {
+                "id": "performance_and_optimization",
+                "name": "Performance And Optimization",
+                "categories": []
+              },
+              {
+                "id": "security_implementation",
+                "name": "Security Implementation",
+                "categories": []
+              }
+            ]
+          },
+          {
+            "id": "amazon_vpc",
+            "name": "Amazon Vpc",
+            "categories": []
+          }
+        ]
+      },
+      {
         "id": "networking_in_aws",
         "name": "Networking In Aws",
         "categories": []

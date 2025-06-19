@@ -1653,6 +1653,83 @@
           "totalFileSize": 0
         },
         {
+          "id": "networking_and_content_delivery",
+          "name": "Networking And Content Delivery",
+          "categories": [
+            {
+              "id": "amazon_api_gateway",
+              "name": "Amazon Api Gateway",
+              "categories": [
+                {
+                  "id": "fundamentals_and_architecture",
+                  "name": "Fundamentals And Architecture",
+                  "categories": [],
+                  "files": [
+                    {
+                      "path": "aws/networking_and_content_delivery/amazon_api_gateway/fundamentals_and_architecture/api_documentation_and_sdk_generation.md"
+                    },
+                    {
+                      "path": "aws/networking_and_content_delivery/amazon_api_gateway/fundamentals_and_architecture/api_gateway_stages_and_deployment_strategies.md"
+                    },
+                    {
+                      "path": "aws/networking_and_content_delivery/amazon_api_gateway/fundamentals_and_architecture/cors_configuration_and_cross_origin_considerations.md"
+                    },
+                    {
+                      "path": "aws/networking_and_content_delivery/amazon_api_gateway/fundamentals_and_architecture/request_response_transformation_and_mapping.md"
+                    },
+                    {
+                      "path": "aws/networking_and_content_delivery/amazon_api_gateway/fundamentals_and_architecture/rest_vs_http_vs_web_socket.md"
+                    },
+                    {
+                      "path": "aws/networking_and_content_delivery/amazon_api_gateway/fundamentals_and_architecture/throttling_and_rate_limiting_implementation.md"
+                    }
+                  ],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "integration_patterns",
+                  "name": "Integration Patterns",
+                  "categories": [],
+                  "files": [],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "monitoring_and_analytics",
+                  "name": "Monitoring And Analytics",
+                  "categories": [],
+                  "files": [],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "performance_and_optimization",
+                  "name": "Performance And Optimization",
+                  "categories": [],
+                  "files": [],
+                  "totalFileSize": 0
+                },
+                {
+                  "id": "security_implementation",
+                  "name": "Security Implementation",
+                  "categories": [],
+                  "files": [],
+                  "totalFileSize": 0
+                }
+              ],
+              "files": [],
+              "totalFileSize": 0
+            },
+            {
+              "id": "amazon_vpc",
+              "name": "Amazon Vpc",
+              "categories": [],
+              "files": [],
+              "totalFileSize": 0
+            }
+          ],
+          "files": [],
+          "totalFileSize": 0
+        },
+        {
           "id": "networking_in_aws",
           "name": "Networking In Aws",
           "categories": [],
