@@ -54,6 +54,8 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
 
   const initializedRef = useRef(false);
 
+  console.log("isControlsVisible", isControlsVisible);
+
   /**
    * 🔄 Smoothly transitions to a new section with a nice fade effect
    * Tracks reading time and updates analytics too! 📊
@@ -128,6 +130,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
     (e: MouseEvent) => {
       // Show controls when mouse is within 80px of the top or bottom
       if (e.clientY <= 80 || e.clientY >= window.innerHeight - 80) {
+        console.log("handleMouseMove");
         handleInteraction();
       }
     },
@@ -241,7 +244,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
         className={cn(
           "h-full overflow-y-auto bg-card",
           isTransitioning ? "opacity-0" : "opacity-100",
-          "transition-opacity duration-200"
+          "transition-opacity duration-200 "
         )}
         ref={scrollRef}
       >
