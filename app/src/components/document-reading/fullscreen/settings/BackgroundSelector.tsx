@@ -84,7 +84,7 @@ const BackgroundSelector: React.FC = () => {
       { value: "#0f0b2a", label: "Night Sky", color: "#0f0b2a" },
       { value: "#14181f", label: "Midnight", color: "#14181f" },
     ],
-    []
+    [currentTheme.background]
   );
 
   return (
