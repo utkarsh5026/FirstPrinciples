@@ -8,7 +8,7 @@ import React from "react";
 const HorizontalRuleRender: React.FC<React.ComponentPropsWithoutRef<"hr">> = (
   props
 ) => {
-  return <hr {...props} className="my-8 border-t border-[#222222]" />;
+  return <hr {...props} className="my-8 border-t border-border" />;
 };
 
 export default HorizontalRuleRender;

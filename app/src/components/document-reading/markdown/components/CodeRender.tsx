@@ -195,7 +195,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
                     "transition-all duration-300 ease-in-out",
                     copied
                       ? "opacity-0 scale-0 rotate-90"
-                      : "opacity-100 scale-100 rotate-0 text-gray-300 hover:text-white"
+                      : "opacity-100 scale-100 rotate-0 text-foreground hover:text-white"
                   )}
                 />
                 <Check
