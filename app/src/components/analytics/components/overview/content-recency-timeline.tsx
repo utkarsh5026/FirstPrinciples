@@ -155,7 +155,6 @@ export const ContentRecencyTimeline: React.FC = () => {
     };
   }, [categoryBreakdown, history, fileMap]);
 
-  // Loading state
   if (!recencyData) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -189,38 +188,6 @@ export const ContentRecencyTimeline: React.FC = () => {
     );
   }
 
-  // Get status label
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case "fresh":
-        return "Recently reviewed";
-      case "recent":
-        return "Review soon";
-      case "stale":
-        return "Review needed";
-      case "overdue":
-        return "Overdue for review";
-      default:
-        return "Unknown";
-    }
-  };
-
-  // Get background color based on status
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "fresh":
-        return "text-green-500";
-      case "recent":
-        return "text-blue-500";
-      case "stale":
-        return "text-amber-500";
-      case "overdue":
-        return "text-red-500";
-      default:
-        return "text-muted-foreground";
-    }
-  };
-
   return (
     <CardContainer
       title="Content Recency Timeline"
@@ -240,7 +207,7 @@ export const ContentRecencyTimeline: React.FC = () => {
       ]}
     >
       {/* Timeline */}
-      <ScrollArea className="flex-1">
+      <ScrollArea className="flex-1 max-h-[200px] sm:max-h-[250px] md:max-h-[300px] lg:max-h-[350px]">
         <div className="space-y-3">
           {recencyData.categories.map((cat, index) => {
             const Icon = getIconForTech(cat.category);
@@ -352,6 +319,38 @@ export const ContentRecencyTimeline: React.FC = () => {
       </div>
     </CardContainer>
   );
+};
+
+// Get status label
+const getStatusLabel = (status: string) => {
+  switch (status) {
+    case "fresh":
+      return "Recently reviewed";
+    case "recent":
+      return "Review soon";
+    case "stale":
+      return "Review needed";
+    case "overdue":
+      return "Overdue for review";
+    default:
+      return "Unknown";
+  }
+};
+
+// Get background color based on status
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case "fresh":
+      return "text-green-500";
+    case "recent":
+      return "text-blue-500";
+    case "stale":
+      return "text-amber-500";
+    case "overdue":
+      return "text-red-500";
+    default:
+      return "text-muted-foreground";
+  }
 };
 
 export default ContentRecencyTimeline;
