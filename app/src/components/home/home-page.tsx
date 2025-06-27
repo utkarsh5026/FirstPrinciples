@@ -48,7 +48,7 @@ const TodoList = lazy(() =>
 );
 
 const AnalyticsView = lazy(() =>
-  import("@/components/analytics/AnalyticsView").catch((error) => {
+  import("@/components/analytics/analytics-view").catch((error) => {
     console.error("Failed to load AnalyticsView component:", error);
     return { default: () => <FallbackComponent name="Analytics" /> };
   })

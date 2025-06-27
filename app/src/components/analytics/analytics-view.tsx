@@ -1,5 +1,5 @@
 import React from "react";
-import AnalyticsPage from "./AnalyticsPage";
+import AnalyticsPage from "./analytics-page";
 import type { FileMetadata } from "@/services/document";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Info } from "lucide-react";
@@ -28,7 +28,7 @@ const AnalyticsView: React.FC<AnalyticsViewProps> = ({
     <div className="space-y-6">
       {/* Info message that appears for first-time users */}
       {showInfo && (
-        <Alert className="bg-primary/5 border-primary/20">
+        <Alert className="bg-primary/5 border-primary/20 rounded-2xl">
           <Info className="h-4 w-4 text-primary" />
           <AlertTitle className="text-sm font-medium">
             Reading Analytics
@@ -41,7 +41,7 @@ const AnalyticsView: React.FC<AnalyticsViewProps> = ({
           <Button
             variant="ghost"
             size="sm"
-            className="mt-2 h-8 text-xs text-primary"
+            className="m-2 h-8 text-xs text-primary"
             onClick={() => setShowInfo(false)}
           >
             Got it
@@ -64,7 +64,7 @@ const AnalyticsView: React.FC<AnalyticsViewProps> = ({
             start reading documents. Try reading a few to see your progress!
           </p>
           <Button
-            className="bg-primary/10 text-primary hover:bg-primary/20"
+            className="bg-primary/10 text-primary hover:bg-primary/20 rounded-2xl"
             onClick={() => {
               // Find the first document to suggest
               if (availableDocuments.length > 0) {

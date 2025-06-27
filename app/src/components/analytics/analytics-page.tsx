@@ -25,27 +25,7 @@ const tabs = [
   },
 ];
 
-/**
- * AnalyticsPage Component
- *
- * A comprehensive analytics dashboard that displays user reading statistics,
- * achievements, activity patterns, and content insights.
- *
- * The component is organized into multiple tabs:
- * - Overview: General statistics and summary of user activity
- * - Activity: Detailed breakdown of reading patterns over time
- * - Achievements: User accomplishments and progress
- * - Insights: In-depth analysis of reading habits
- * - Deep: Category-specific insights and document recommendations
- *
- * @param {FileMetadata[]} availableDocuments - List of all available documents in the system
- * @param {Function} onSelectDocument - Callback function when a document is selected
- */
 const AnalyticsPage: React.FC = () => {
-  /**
-  /**
-   * Controls which analytics tab is currently active
-   */
   const [activeTab, setActiveTab] = useState<string>("overview");
 
   return (
