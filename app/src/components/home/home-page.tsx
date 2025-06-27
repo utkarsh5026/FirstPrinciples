@@ -26,9 +26,8 @@ import { Card } from "@/components/ui/card";
 import { type Category, getCategories } from "@/services/document";
 import { useDocumentList } from "@/hooks";
 
-// Use React.lazy with error handling for each component
 const Overview = lazy(() =>
-  import("@/components/home/overview/Overview").catch((error) => {
+  import("@/components/home/overview/overview").catch((error) => {
     console.error("Failed to load Overview component:", error);
     return { default: () => <FallbackComponent name="Overview" /> };
   })

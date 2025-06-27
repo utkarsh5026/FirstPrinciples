@@ -1,12 +1,13 @@
-import React from "react";
+import { useEffect, useState, useMemo } from "react";
 import { motion, type Variants } from "framer-motion";
 import { BookCopy, Flame, Clock, Trophy, Sparkles } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { useTheme } from "@/hooks/ui/use-theme";
 import { formatNumber } from "@/components/analytics/utils";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
-import { useSectionStore } from "@/stores";
 import { formatTimeInMs } from "@/utils/time";
+import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
+import { useReadingHistory } from "@/hooks";
 
 interface StatsCardsProps {
   nextMilestone: { target: number; progress: number };
@@ -19,24 +20,25 @@ interface StatsCardsProps {
  * Features elegant animations, responsive design, and clear visual hierarchy.
  */
 const StatsCards: React.FC<StatsCardsProps> = ({ nextMilestone }) => {
-  const [todayTimeSpent, setTodayTimeSpent] = React.useState(0);
-  const { totalWordsRead, totalTimeSpent, streak, documents } =
-    useGlobalMetrics();
-  const calculateTodayTimeSpent = useSectionStore(
-    (state) => state.getTimeSpentOnDay
-  );
+  const [todayTimeSpent, setTodayTimeSpent] = useState(0);
+  const { history } = useReadingHistory();
+  const { totalWordsRead, streak, documents } = useGlobalMetrics();
   const { currentTheme } = useTheme();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchTodayTimeSpent = async () => {
       const today = new Date();
-      const timeSpent = await calculateTodayTimeSpent(today);
+      const timeSpent = getTimeSpentOnDay(today, history);
       setTodayTimeSpent(timeSpent);
     };
     fetchTodayTimeSpent();
-  }, [calculateTodayTimeSpent]);
+  }, [history]);
 
-  // Animation variants for staggered animation
+  const totalTimeSpent = useMemo(
+    () => history.reduce((total, reading) => total + reading.timeSpent, 0),
+    [history]
+  );
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -88,7 +90,6 @@ const StatsCards: React.FC<StatsCardsProps> = ({ nextMilestone }) => {
         accentColor="#FF5757"
       />
 
-      {/* Reading Time */}
       <StatCard
         variants={itemVariants}
         icon={<Clock className="h-4 w-4" />}
@@ -209,6 +210,21 @@ const StatCard: React.FC<StatCardProps> = ({
       />
     </motion.div>
   );
+};
+
+const getTimeSpentOnDay = (date: Date, readings: ReadingHistoryItem[]) => {
+  const startOfDay = new Date(date);
+  startOfDay.setHours(0, 0, 0, 0);
+
+  const endOfDay = new Date(date);
+  endOfDay.setHours(23, 59, 59, 999);
+
+  return readings
+    .filter((reading) => {
+      const readDate = new Date(reading.lastReadAt);
+      return readDate >= startOfDay && readDate <= endOfDay;
+    })
+    .reduce((total, reading) => total + reading.timeSpent, 0);
 };
 
 export default StatsCards;
