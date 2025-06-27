@@ -1,7 +1,7 @@
 import React from "react";
 import ReadingProgress from "./ReadingProgress";
 import Activity from "./Activity";
-import HeatMapView from "../timeline/HeatMapView";
+import HeatMapView from "../timeline/heat-map";
 import CategoryCoverageMap from "@/components/shared/visualizations/category-coverage/category-coverage";
 import { useReadingHistory } from "@/hooks";
 import {

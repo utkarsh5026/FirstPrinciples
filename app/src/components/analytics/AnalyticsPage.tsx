@@ -8,7 +8,7 @@ import {
 
 import Insights from "./components/insights";
 import AnalyticsOverview from "./components/overview/AnnalyticsOverview";
-import ReadingTimeline from "./components/timeline/ReadingTimeline";
+import ReadingTimeline from "./components/timeline/reading-timeline";
 
 const tabs = [
   {

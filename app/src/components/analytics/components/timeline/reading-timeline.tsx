@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from "react";
 import { Calendar, Filter, BookOpen, Crosshair } from "lucide-react";
-import HeatmapView from "./HeatMapView";
-import GitHubStyleHeatmap from "./GithubHeatMap";
-import CategoriesView from "./Categories";
-import DocumentsView from "./Documents";
+import HeatmapView from "./heat-map";
+import GitHubStyleHeatmap from "./github-heatmap";
+import CategoriesView from "./categories";
+import DocumentsView from "./documents";
 import { type TimeRange, getStartDate } from "@/utils/time";
 import { useCategoryStore, useHistoryStore } from "@/stores";
 import CardContainer from "@/components/shared/container/CardContainer";
