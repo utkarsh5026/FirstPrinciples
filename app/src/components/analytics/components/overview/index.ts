@@ -1,3 +1,3 @@
-import AnalyticsOverview from "./AnnalyticsOverview";
+import AnalyticsOverview from "./analytics-overview";
 
 export default AnalyticsOverview;

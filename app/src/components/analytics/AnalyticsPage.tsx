@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 import Insights from "./components/insights";
-import AnalyticsOverview from "./components/overview/AnnalyticsOverview";
+import AnalyticsOverview from "./components/overview/analytics-overview";
 import ReadingTimeline from "./components/timeline/reading-timeline";
 
 const tabs = [
