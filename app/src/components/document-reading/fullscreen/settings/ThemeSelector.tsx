@@ -8,7 +8,7 @@ import {
 import { Palette, ChevronDown, ChevronUp } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeOption from "@/components/shared/theme/ThemeOption";
+import ThemeOption from "@/components/shared/theme/theme-option";
 
 // Group themes by their actual category property
 const themeCategories = themeCategoryDefinitions
