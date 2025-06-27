@@ -4,26 +4,24 @@ import { Calendar, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useCategoryStore } from "@/stores";
 import { useReadingHistory, useDocumentList } from "@/hooks";
 import { formatRelativeTime } from "@/utils/time";
 import CardContainer from "@/components/shared/container/card-container";
 import getIconForTech from "@/components/shared/icons";
 
-/**
- * ContentRecencyTimeline Component
- *
- * Visualizes how recently different content areas have been revisited, helping
- * users implement spaced repetition principles by suggesting content that needs review.
- *
- * Features:
- * - Timeline showing when each category was last accessed
- * - Color coding based on recency (fading colors for older access)
- * - Review recommendations based on optimal intervals
- * - Mobile-optimized visualization and interactions
- * - Detailed recency metrics for each category
- */
+type CategoryItem = {
+  category: string;
+  displayName: string;
+  lastAccessed: number;
+  daysSinceAccess: number;
+  status: "fresh" | "recent" | "stale" | "overdue";
+  documentsInCategory: number;
+  readDocuments: number;
+  completionPercentage: number;
+};
+
 export const ContentRecencyTimeline: React.FC = () => {
   const categoryBreakdown = useCategoryStore(
     (state) => state.categoryBreakdown
@@ -206,99 +204,23 @@ export const ContentRecencyTimeline: React.FC = () => {
         },
       ]}
     >
-      {/* Timeline */}
-      <ScrollArea className="flex-1 max-h-[200px] sm:max-h-[250px] md:max-h-[300px] lg:max-h-[350px]">
+      <ScrollArea className="flex-1 max-h-[200px] sm:max-h-[250px] md:max-h-[300px] lg:max-h-[350px] overflow-y-auto">
         <div className="space-y-3">
           {recencyData.categories.map((cat, index) => {
             const Icon = getIconForTech(cat.category);
             return (
-              <motion.div
+              <CategoryItem
                 key={cat.category}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className={cn(
-                  "border border-border rounded-2xl p-3 transition-all"
-                )}
-              >
-                <div className="flex justify-between items-start">
-                  <div className="flex items-start gap-2">
-                    <div className="mt-0.5">
-                      <Icon
-                        className={cn("h-4 w-4", getStatusColor(cat.status))}
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-medium">{cat.displayName}</h4>
-                      <p className="text-xs text-muted-foreground mt-0.5">
-                        {cat.lastAccessed > 0
-                          ? `Last accessed: ${formatRelativeTime(
-                              cat.lastAccessed
-                            )}`
-                          : "Never accessed"}
-                      </p>
-                    </div>
-                  </div>
-
-                  <Badge
-                    variant="outline"
-                    className={cn(
-                      "text-xs",
-                      cat.status === "fresh"
-                        ? "text-green-500"
-                        : cat.status === "recent"
-                        ? "text-blue-500"
-                        : cat.status === "stale"
-                        ? "text-amber-500"
-                        : "text-red-500"
-                    )}
-                  >
-                    {getStatusLabel(cat.status)}
-                  </Badge>
-                </div>
-
-                <div className="mt-2">
-                  <div className="flex justify-between text-xs mb-1">
-                    <span className="text-muted-foreground">Completion</span>
-                    <span className="font-medium">
-                      {cat.completionPercentage}%
-                    </span>
-                  </div>
-                  <Progress
-                    value={cat.completionPercentage}
-                    className="h-1.5"
-                  />
-                </div>
-
-                <div className="mt-2 flex flex-wrap gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    {cat.readDocuments} of {cat.documentsInCategory} documents
-                  </Badge>
-
-                  {cat.status !== "fresh" && (
-                    <Badge
-                      variant="outline"
-                      className={cn(
-                        "text-xs",
-                        cat.status === "recent"
-                          ? "text-blue-500"
-                          : cat.status === "stale"
-                          ? "text-amber-500"
-                          : "text-red-500"
-                      )}
-                    >
-                      <RefreshCw className="h-3 w-3 mr-1" />
-                      Review recommended
-                    </Badge>
-                  )}
-                </div>
-              </motion.div>
+                cat={cat}
+                index={index}
+                Icon={Icon}
+              />
             );
           })}
         </div>
+        <ScrollBar orientation="vertical" />
       </ScrollArea>
 
-      {/* Legend */}
       <div className="mt-2 border-t border-border/30 pt-2 grid grid-cols-2 gap-x-4 gap-y-1">
         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <div className="w-2 h-2 rounded-full bg-green-500"></div>
@@ -321,7 +243,85 @@ export const ContentRecencyTimeline: React.FC = () => {
   );
 };
 
-// Get status label
+interface CategoryItemProps {
+  cat: CategoryItem;
+  index: number;
+  Icon: React.ElementType;
+}
+const CategoryItem: React.FC<CategoryItemProps> = ({ cat, index, Icon }) => {
+  return (
+    <motion.div
+      key={cat.category}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: index * 0.05 }}
+      className={cn("border border-border rounded-2xl p-3 transition-all")}
+    >
+      <div className="flex justify-between items-start">
+        <div className="flex items-start gap-2">
+          <div className="mt-0.5">
+            <Icon className={cn("h-4 w-4", getStatusColor(cat.status))} />
+          </div>
+          <div>
+            <h4 className="text-sm font-medium">{cat.displayName}</h4>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              {cat.lastAccessed > 0
+                ? `Last accessed: ${formatRelativeTime(cat.lastAccessed)}`
+                : "Never accessed"}
+            </p>
+          </div>
+        </div>
+
+        <Badge
+          variant="outline"
+          className={cn(
+            "text-xs",
+            cat.status === "fresh"
+              ? "text-green-500"
+              : cat.status === "recent"
+              ? "text-blue-500"
+              : cat.status === "stale"
+              ? "text-amber-500"
+              : "text-red-500"
+          )}
+        >
+          {getStatusLabel(cat.status)}
+        </Badge>
+      </div>
+
+      <div className="mt-2">
+        <div className="flex justify-between text-xs mb-1">
+          <span className="text-muted-foreground">Completion</span>
+          <span className="font-medium">{cat.completionPercentage}%</span>
+        </div>
+        <Progress value={cat.completionPercentage} className="h-1.5" />
+      </div>
+
+      <div className="mt-2 flex flex-wrap gap-2">
+        <Badge variant="outline" className="text-xs">
+          {cat.readDocuments} of {cat.documentsInCategory} documents
+        </Badge>
+
+        {cat.status !== "fresh" && (
+          <Badge
+            variant="outline"
+            className={cn(
+              "text-xs",
+              cat.status === "recent"
+                ? "text-blue-500"
+                : cat.status === "stale"
+                ? "text-amber-500"
+                : "text-red-500"
+            )}
+          >
+            <RefreshCw className="h-3 w-3 mr-1" />
+            Review recommended
+          </Badge>
+        )}
+      </div>
+    </motion.div>
+  );
+};
 const getStatusLabel = (status: string) => {
   switch (status) {
     case "fresh":
@@ -337,7 +337,6 @@ const getStatusLabel = (status: string) => {
   }
 };
 
-// Get background color based on status
 const getStatusColor = (status: string) => {
   switch (status) {
     case "fresh":
