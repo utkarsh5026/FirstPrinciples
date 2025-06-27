@@ -1,7 +1,7 @@
 import React from "react";
 import { BookMarked, ListTodo, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTabContext } from "@/components/home/context/TabContext";
+import { useTabContext } from "@/components/home/context/tab-context";
 import getIconForTech from "@/components/shared/icons";
 import { useReadingList } from "@/hooks";
 import { formatDate } from "@/components/home/utils";

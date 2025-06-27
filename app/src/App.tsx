@@ -4,7 +4,7 @@ import ResponsiveSidebar from "@/components/navigation/ResponsiveSidebar";
 import LoadingAnimation from "@/components/utils/init/LoadingAnimation";
 import AppHeader from "@/components/layout/app-header";
 import AppWrapper from "@/components/utils/welcome/Wrapper";
-import { TabProvider } from "@/components/home/context/TabProvider";
+import { TabProvider } from "@/components/home/context/tab-provider";
 import { useInit } from "./stores";
 import { useTheme } from "@/hooks/ui/use-theme";
 

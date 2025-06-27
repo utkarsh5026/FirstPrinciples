@@ -3,7 +3,7 @@ import { Clock, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import getIconForTech from "@/components/shared/icons";
-import { useTabContext } from "@/components/home/context/TabContext";
+import { useTabContext } from "@/components/home/context/tab-context";
 import { useHistoryStore } from "@/stores";
 import { formatDate } from "@/components/home/utils";
 import CardContainer from "@/components/shared/container/card-container";

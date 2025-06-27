@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import Hero from "./hero-section";
 import FileSelectionDialog from "@/components/features/todo/add-todo-modal";
-import { useTabContext, TabType } from "./context/TabContext";
+import { useTabContext, TabType } from "./context/tab-context";
 import { useInit, useDocumentStore } from "@/stores";
 import MobileOptimizedTabs from "./mobile-tabs";
 import {

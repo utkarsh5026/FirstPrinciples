@@ -1,5 +1,5 @@
 import React, { useState, ReactNode, useMemo } from "react";
-import { TabContext, TabType } from "./TabContext";
+import { TabContext, TabType } from "./tab-context";
 import { useSwipeable } from "react-swipeable";
 
 interface TabProviderProps {
