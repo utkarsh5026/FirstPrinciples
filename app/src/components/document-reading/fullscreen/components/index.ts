@@ -1,9 +1,9 @@
-import Header from "./Header";
-import NavigationControls from "./NavigationControls";
+import Header from "./content-header";
+import NavigationControls from "./navigation-controls";
 import {
   MobileProgressIndicator,
   DesktopProgressIndicator,
-} from "./ProgressIndicator";
+} from "./progress-indicator";
 
 export {
   Header,
