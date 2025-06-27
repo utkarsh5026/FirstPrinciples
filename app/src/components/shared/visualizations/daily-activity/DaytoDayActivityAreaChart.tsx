@@ -8,7 +8,7 @@ import {
   CartesianGrid,
   ReferenceLine,
 } from "recharts";
-import ChartContainer from "@/components/shared/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/chart-container";
 import {
   ChartContainer as ChartContainerUI,
   ChartTooltip,

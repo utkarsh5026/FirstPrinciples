@@ -11,7 +11,7 @@ import {
   ChartContainer as ChartContainerUI,
   ChartTooltip,
 } from "@/components/ui/chart";
-import ChartContainer from "@/components/shared/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/chart-container";
 import { Clock, Clipboard, Book } from "lucide-react";
 import { motion } from "framer-motion";
 import type { HourlyActivity } from "@/services/analytics/activity-analyzer";

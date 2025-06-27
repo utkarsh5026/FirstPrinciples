@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { generateThemeColors } from "@/utils/colors";
-import ChartContainer from "@/components/shared/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/chart-container";
 import { ChartContainer as ChartContainerUI } from "@/components/ui/chart";
 import type { WeeklyActivity } from "@/services/analytics/activity-analyzer";
 import { useWeekilyActivityMetrcis } from "@/hooks";

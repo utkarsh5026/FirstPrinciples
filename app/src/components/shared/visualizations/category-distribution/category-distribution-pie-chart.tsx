@@ -19,7 +19,7 @@ import {
 import getIconForTech from "@/components/shared/icons";
 import { generateThemeColors } from "@/utils/colors";
 import { fromSnakeToTitleCase } from "@/utils/string";
-import ChartContainer from "@/components/shared/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/chart-container";
 import useChartTooltip from "@/components/shared/chart/tooltip/use-chart-tooltip";
 import type { CategoryMetrics } from "@/hooks/analytics/use-category-metrics";
 import ActivePieShape from "./active-pie-shape";

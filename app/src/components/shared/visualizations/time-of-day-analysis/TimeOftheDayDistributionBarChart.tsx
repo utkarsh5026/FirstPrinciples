@@ -1,6 +1,6 @@
 import { useTheme } from "@/hooks/ui/use-theme";
 import { Bar, BarChart, XAxis, YAxis, Cell } from "recharts";
-import ChartContainer from "@/components/shared/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/chart-container";
 import {
   ChartContainer as ChartContainerUI,
   ChartTooltip,

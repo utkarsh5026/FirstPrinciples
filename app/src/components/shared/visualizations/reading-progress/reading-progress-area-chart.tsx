@@ -24,7 +24,7 @@ import {
   ChartTooltip,
   ChartLegend,
 } from "@/components/ui/chart";
-import ChartContainer from "@/components/shared/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/chart-container";
 import useChartTooltip from "@/components/shared/chart/tooltip/use-chart-tooltip";
 
 interface ProgressOverTimeProps {

@@ -14,7 +14,7 @@ import {
   ChartContainer as ChartContainerUI,
   ChartTooltip,
 } from "@/components/ui/chart";
-import ChartContainer from "@/components/shared/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/chart-container";
 import { BarChart2, BookOpen, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 import useChartTooltip from "@/components/shared/chart/tooltip/use-chart-tooltip";

@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import useMobile from "@/hooks/device/use-mobile";
 import { useTheme } from "@/hooks/ui/use-theme";
 import { ChartArea, Activity, TrendingUp } from "lucide-react";
-import ChartContainer from "@/components/shared/chart/ChartContainer";
+import ChartContainer from "@/components/shared/chart/chart-container";
 import {
   ChartContainer as ChartContainerBase,
   ChartTooltip,
