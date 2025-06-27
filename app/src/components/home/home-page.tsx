@@ -11,7 +11,7 @@ import {
   RefreshCcw,
 } from "lucide-react";
 import Hero from "./hero-section";
-import FileSelectionDialog from "@/components/todo/add-todo-modal";
+import FileSelectionDialog from "@/components/features/todo/add-todo-modal";
 import { useTabContext, TabType } from "./context/TabContext";
 import { useInit, useDocumentStore } from "@/stores";
 import MobileOptimizedTabs from "./mobile-tabs";
@@ -34,14 +34,14 @@ const Overview = lazy(() =>
 );
 
 const History = lazy(() =>
-  import("@/components/history").catch((error) => {
+  import("@/components/features/history").catch((error) => {
     console.error("Failed to load History component:", error);
     return { default: () => <FallbackComponent name="History" /> };
   })
 );
 
 const TodoList = lazy(() =>
-  import("@/components/todo/todo-list").catch((error) => {
+  import("@/components/features/todo/todo-list").catch((error) => {
     console.error("Failed to load TodoList component:", error);
     return { default: () => <FallbackComponent name="Reading List" /> };
   })

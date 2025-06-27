@@ -6,7 +6,7 @@ import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import styles from "./css/TodoItem.module.css";
 import { generateArrayWithUniqueIds } from "@/utils/array";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 const sparkles = generateArrayWithUniqueIds(8);
 const confetti = generateArrayWithUniqueIds(10);
