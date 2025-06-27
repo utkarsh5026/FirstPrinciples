@@ -2,7 +2,7 @@ import { useWeekilyActivityMetrcis } from "@/hooks";
 import type { WeeklyActivity } from "@/services/analytics/activity-analyzer";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { useState, useEffect } from "react";
-import WeeklyReadingPatternBarChart from "./WeeklyReadingPatternBarChart";
+import WeeklyReadingPatternBarChart from "./reading-pattern-bar-chart";
 import CardContainer from "@/components/shared/container/CardContainer";
 import { BarChart2Icon } from "lucide-react";
 

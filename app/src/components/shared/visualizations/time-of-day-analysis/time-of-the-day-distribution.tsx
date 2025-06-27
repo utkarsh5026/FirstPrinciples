@@ -1,11 +1,11 @@
 import CardContainer from "@/components/shared/container/CardContainer";
 import { Clock, Moon, Coffee, Sun, Lightbulb, Book } from "lucide-react";
-import TimeOfTheDayDistributionBarChart from "./TimeOftheDayDistributionBarChart";
+import TimeOfTheDayDistributionBarChart from "./time-of-the-day-bar-chart";
 import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { useState, useEffect, useMemo } from "react";
 import type { HourlyActivity } from "@/services/analytics/activity-analyzer";
-import HourOftheDayDistributionAreaChart from "./HourOftheDayDistributionAreaChart";
+import HourOftheDayDistributionAreaChart from "./hour-of-the-day-area-chart";
 import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface TimeOfTheDayDistributionProps {
