@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Folder, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
-import getTopicIcon from "@/components/shared/icons/topicIcon";
+import getTopicIcon from "@/components/shared/icons/topic-icon";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { useState } from "react";
 

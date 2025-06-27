@@ -24,7 +24,7 @@ import {
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { fromSnakeToTitleCase } from "@/utils/string";
-import getTopicIcon from "@/components/shared/icons/topicIcon";
+import getTopicIcon from "@/components/shared/icons/topic-icon";
 import { Document } from "@/stores/document/document-store";
 
 interface CategoryInsightsDialogProps {

@@ -18,7 +18,7 @@ import {
   LayoutList,
 } from "lucide-react";
 import { TimeRange } from "@/utils/time";
-import getIconForTech from "@/components/shared/icons/iconMap";
+import getIconForTech from "@/components/shared/icons/icon-map";
 import { fromSnakeToTitleCase } from "@/utils/string";
 
 // Type definitions for the filter options

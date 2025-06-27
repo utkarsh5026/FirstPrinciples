@@ -1,7 +1,7 @@
 import React from "react";
 import { FileMetadata } from "@/services/document";
 import { motion } from "framer-motion";
-import { getIconForTech } from "@/components/shared/icons/iconMap";
+import { getIconForTech } from "@/components/shared/icons/icon-map";
 import Category from "./Category";
 import CategoryFile from "./CategoryFile";
 import type { Document } from "@/stores/document/document-store";

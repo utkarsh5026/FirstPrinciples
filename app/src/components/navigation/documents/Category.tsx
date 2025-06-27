@@ -8,8 +8,8 @@ import {
   Files,
   Info,
 } from "lucide-react";
-import { getIconForTech } from "@/components/shared/icons/iconMap";
-import getTopicIcon from "@/components/shared/icons/topicIcon";
+import { getIconForTech } from "@/components/shared/icons/icon-map";
+import getTopicIcon from "@/components/shared/icons/topic-icon";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import CategoryInsightsDialog from "@/components/navigation/insights/CategoryInsightsDialog";
 import { Document } from "@/stores/document/document-store";

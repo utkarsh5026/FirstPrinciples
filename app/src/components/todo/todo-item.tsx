@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Calendar, Circle, CheckCheck, DeleteIcon } from "lucide-react";
-import getIconForTech from "@/components/shared/icons/iconMap";
+import getIconForTech from "@/components/shared/icons/icon-map";
 import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import styles from "./css/TodoItem.module.css";

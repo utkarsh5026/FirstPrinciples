@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
-import getIconForTech from "@/components/shared/icons/iconMap";
+import getIconForTech from "@/components/shared/icons/icon-map";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { formatDate } from "@/components/home/utils";
 import useMobile from "@/hooks/device/use-mobile";

@@ -1,7 +1,7 @@
 import { Clock } from "lucide-react";
 import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import { formatTimeAgo } from "@/utils/time";
-import { getIconForTech } from "@/components/shared/icons/iconMap";
+import { getIconForTech } from "@/components/shared/icons/icon-map";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 

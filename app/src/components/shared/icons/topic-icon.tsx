@@ -1,6 +1,6 @@
 import React from "react";
 import { Code2 } from "lucide-react";
-import getIconForTech from "./iconMap";
+import getIconForTech from "./icon-map";
 import {
   reactMappings,
   cssMappings,

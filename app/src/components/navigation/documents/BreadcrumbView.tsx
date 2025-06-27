@@ -8,7 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { ChevronRight, Home } from "lucide-react";
-import getTopicIcon from "@/components/shared/icons/topicIcon";
+import getTopicIcon from "@/components/shared/icons/topic-icon";
 import { fromSnakeToTitleCase } from "@/utils/string";
 
 interface BreadCrumbViewProps {

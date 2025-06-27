@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import CategoryFile from "../documents/CategoryFile";
 import type { CurrentCategory } from "../hooks/use-navigate";
-import getIconForTech from "@/components/shared/icons/iconMap";
+import getIconForTech from "@/components/shared/icons/icon-map";
 import { motion } from "framer-motion";
 
 interface CurrentlyReadingProps {
