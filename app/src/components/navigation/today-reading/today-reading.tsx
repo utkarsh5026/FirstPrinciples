@@ -2,7 +2,7 @@ import { BookMarked, Calendar, BarChart, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import { useReadingHistory } from "@/hooks";
 import { useMemo } from "react";
-import ReadingItem from "./ReadingItem";
+import ReadingItem from "./reading-item";
 import {
   CategoryDistribution,
   TimeOfTheDayDistribution,
