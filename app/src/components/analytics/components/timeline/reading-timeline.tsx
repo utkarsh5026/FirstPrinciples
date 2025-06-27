@@ -6,7 +6,7 @@ import CategoriesView from "./categories";
 import DocumentsView from "./documents";
 import { type TimeRange, getStartDate } from "@/utils/time";
 import { useCategoryStore, useHistoryStore } from "@/stores";
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 import TimeRangeSelect from "@/components/utils/select/TimeRangeSelect";
 import CategorySelect from "@/components/utils/select/CategorySelect";
 

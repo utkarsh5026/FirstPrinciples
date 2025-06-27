@@ -1,7 +1,7 @@
 import { useTheme } from "@/hooks/ui/use-theme";
 import { motion } from "framer-motion";
 import { LayoutList } from "lucide-react";
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 import useMobile from "@/hooks/device/use-mobile";
 
 interface DocumentStructurePanelProps {

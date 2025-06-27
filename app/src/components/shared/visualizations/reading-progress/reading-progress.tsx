@@ -1,4 +1,4 @@
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 import type { MonthlyDocumentCounts } from "@/services/analytics/heatmap-generator";
 import { useHeatmapStore } from "@/stores";
 import { TrendingUp } from "lucide-react";

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 import { useReadingList } from "@/hooks";
 import { BookOpen, Plus, BookMarked, CheckCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";

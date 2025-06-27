@@ -1,6 +1,6 @@
 import CardContainer, {
   type CardContainerProps,
-} from "@/components/shared/container/CardContainer";
+} from "@/components/shared/container/card-container";
 import {
   Select,
   SelectContent,

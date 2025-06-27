@@ -1,5 +1,5 @@
 import { CheckCircle2, ListTodo } from "lucide-react";
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 import { Progress } from "@/components/ui/progress";
 
 interface TodoHeaderProps {

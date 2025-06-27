@@ -1,4 +1,4 @@
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 import { Clock, Moon, Coffee, Sun, Lightbulb, Book } from "lucide-react";
 import TimeOfTheDayDistributionBarChart from "./time-of-the-day-bar-chart";
 import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";

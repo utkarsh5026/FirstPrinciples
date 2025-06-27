@@ -23,7 +23,7 @@ import useMobile from "@/hooks/device/use-mobile";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { format } from "date-fns";
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 import ChartContainer from "@/components/shared/chart/chart-container";
 import {
   ChartContainer as ChartContainerUI,

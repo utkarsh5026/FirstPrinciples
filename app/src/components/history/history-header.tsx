@@ -6,7 +6,7 @@ import {
   Award,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 
 interface HistoryHeaderProps {
   timeStats: {

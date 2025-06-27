@@ -8,7 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useCategoryStore } from "@/stores";
 import { useReadingHistory, useDocumentList } from "@/hooks";
 import { formatRelativeTime } from "@/utils/time";
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 import getIconForTech from "@/components/shared/icons";
 
 /**

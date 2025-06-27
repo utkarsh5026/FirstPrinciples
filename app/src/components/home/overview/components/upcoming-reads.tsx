@@ -5,7 +5,7 @@ import { useTabContext } from "@/components/home/context/TabContext";
 import getIconForTech from "@/components/shared/icons";
 import { useReadingList } from "@/hooks";
 import { formatDate } from "@/components/home/utils";
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 
 interface UpcomingReadsProps {
   handleSelectDocument: (path: string, title: string) => void;

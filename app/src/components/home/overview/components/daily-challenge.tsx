@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { useTheme } from "@/hooks/ui/use-theme";
 import Confetti from "react-confetti";
 import { useReadingHistory } from "@/hooks";
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 
 /**
  * 🎯 DailyChallenge

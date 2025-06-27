@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
-import CardContainer from "@/components/shared/container/CardContainer";
+import CardContainer from "@/components/shared/container/card-container";
 import { Calendar, Filter, CalendarDays, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
