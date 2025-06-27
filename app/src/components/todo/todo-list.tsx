@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { ReadingTodoItem } from "@/services/reading/reading-list-service";
-import TodoHeader from "./TodoHeader";
-import EmptyList from "./EmptyList";
-import CategoryGroup from "./CategoryGroup";
+import TodoHeader from "./todo-header";
+import EmptyList from "./empty-list";
+import CategoryGroup from "./category-group";
 
 interface ReadingTodoProps {
   handleSelectDocument: (path: string, title: string) => void;

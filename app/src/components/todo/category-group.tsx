@@ -7,7 +7,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import TodoItem from "./TodoItem";
+import TodoItem from "./todo-item";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import getIconForTech from "@/components/shared/icons";
 

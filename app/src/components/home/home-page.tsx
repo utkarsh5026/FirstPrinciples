@@ -11,7 +11,7 @@ import {
   RefreshCcw,
 } from "lucide-react";
 import Hero from "./hero";
-import FileSelectionDialog from "@/components/todo/AddTodoModal";
+import FileSelectionDialog from "@/components/todo/add-todo-modal";
 import { useTabContext, TabType } from "./context/TabContext";
 import { useInit, useDocumentStore } from "@/stores";
 import MobileOptimizedTabs from "./mobile-tabs";
@@ -41,7 +41,7 @@ const History = lazy(() =>
 );
 
 const TodoList = lazy(() =>
-  import("@/components/todo/TodoList").catch((error) => {
+  import("@/components/todo/todo-list").catch((error) => {
     console.error("Failed to load TodoList component:", error);
     return { default: () => <FallbackComponent name="Reading List" /> };
   })
