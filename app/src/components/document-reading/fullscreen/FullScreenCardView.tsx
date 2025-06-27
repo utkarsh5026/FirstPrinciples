@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/document-reading/markdown/MarkdownRenderer";
 import SectionsSheet from "./sidebar/sections-sheet";
-import ReadingSettingsSheet from "./settings/ReadingSettingsSheet";
+import ReadingSettingsSheet from "./settings/reading-settings";
 import { ReadingSettingsProvider } from "./context/reading-settings-provider";
 import { useReadingSettings, fontFamilyMap } from "./context/reading-context";
 import type { MarkdownSection } from "@/services/section/parsing";
