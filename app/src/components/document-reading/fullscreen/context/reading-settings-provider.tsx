@@ -3,7 +3,7 @@ import { useReadingSettingsStore } from "@/stores/ui/reading-settings-store";
 import {
   ReadingSettingsContext,
   type ReadingSettingsContextType,
-} from "./ReadingContext";
+} from "./reading-context";
 
 interface ReadingSettingsProviderProps {
   children: ReactNode;

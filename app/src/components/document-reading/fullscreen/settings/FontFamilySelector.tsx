@@ -1,5 +1,5 @@
 import React from "react";
-import { useReadingSettings } from "../context/ReadingContext";
+import { useReadingSettings } from "../context/reading-context";
 import { FontFamily } from "@/stores/ui/reading-settings-store";
 import { Check, Type } from "lucide-react";
 import { cn } from "@/lib/utils";

@@ -3,8 +3,8 @@ import { cn } from "@/lib/utils";
 import CustomMarkdownRenderer from "@/components/document-reading/markdown/MarkdownRenderer";
 import SectionsSheet from "./sidebar/sections-sheet";
 import ReadingSettingsSheet from "./settings/ReadingSettingsSheet";
-import { ReadingSettingsProvider } from "./context/ReadingSettingsProvider";
-import { useReadingSettings, fontFamilyMap } from "./context/ReadingContext";
+import { ReadingSettingsProvider } from "./context/reading-settings-provider";
+import { useReadingSettings, fontFamilyMap } from "./context/reading-context";
 import type { MarkdownSection } from "@/services/section/parsing";
 import {
   Header,

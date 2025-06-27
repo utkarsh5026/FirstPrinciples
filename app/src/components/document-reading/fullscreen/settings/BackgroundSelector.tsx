@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useReadingSettings } from "../context/ReadingContext";
+import { useReadingSettings } from "../context/reading-context";
 import { Check, Paintbrush, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/hooks";
