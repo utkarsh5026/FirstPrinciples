@@ -35,7 +35,8 @@ const StatsCards: React.FC<StatsCardsProps> = ({ nextMilestone }) => {
   }, [history]);
 
   const totalTimeSpent = useMemo(
-    () => history.reduce((total, reading) => total + reading.timeSpent, 0),
+    () =>
+      history.reduce((total, reading) => total + (reading.timeSpent || 0), 0),
     [history]
   );
 
