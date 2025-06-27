@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import HomePage from "@/components/home/HomePage";
+import HomePage from "@/components/home/home-page";
 import DocumentPreview from "@/components/document-reading/preview/DocumentPreview";
 import ErrorBoundary from "@/components/utils/error/ErrorBoundary";
 

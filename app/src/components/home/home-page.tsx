@@ -10,17 +10,17 @@ import {
   BarChart,
   RefreshCcw,
 } from "lucide-react";
-import Hero from "./Hero";
+import Hero from "./hero";
 import FileSelectionDialog from "@/components/todo/AddTodoModal";
 import { useTabContext, TabType } from "./context/TabContext";
 import { useInit, useDocumentStore } from "@/stores";
-import MobileOptimizedTabs from "./MobileOptimizedTabs";
+import MobileOptimizedTabs from "./mobile-tabs";
 import {
   OverviewTabLoader,
   HistoryTabLoader,
   TodoListLoader,
   AnalyticsTabLoader,
-} from "./TabLoaders";
+} from "./tab-loaders";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { type Category, getCategories } from "@/services/document";
