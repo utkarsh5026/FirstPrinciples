@@ -1,10 +1,10 @@
-export { reactMappings } from "./reactMappings";
-export { cssMappings } from "./cssMappings";
-export { javascriptMappings } from "./javascriptMappings";
-export { typescriptMappings } from "./typescriptMappings";
-export { nodejsMappings } from "./nodejsMappings";
-export { awsMappings } from "./awsMappings";
-export { dataStructureMappings } from "./dataStructureMappings";
+export { reactMappings } from "./react-mappings";
+export { cssMappings } from "./css-mappings";
+export { javascriptMappings } from "./js-mappings";
+export { typescriptMappings } from "./ts-mappings";
+export { nodejsMappings } from "./nodejs-mappings";
+export { awsMappings } from "./aws-mappings";
+export { dataStructureMappings } from "./dsa-mappings";
 export {
   generalConceptMappings,
   goMappings,
@@ -14,6 +14,6 @@ export {
   redisMappings,
   tailwindMappings,
   fallbackMappings,
-} from "./generalMappings";
+} from "./general-mappings";
 export type { IconMapping } from "./types";
 export { getIconProps, getReactIconStyle } from "./types";
