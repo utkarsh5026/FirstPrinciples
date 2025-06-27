@@ -2,7 +2,7 @@ import CardContainer from "@/components/shared/container/CardContainer";
 import type { MonthlyDocumentCounts } from "@/services/analytics/heatmap-generator";
 import { useHeatmapStore } from "@/stores";
 import { TrendingUp } from "lucide-react";
-import ReadingProgressAreaChart from "./ReadingProgressAreaChart";
+import ReadingProgressAreaChart from "./reading-progress-area-chart";
 import { useState, useEffect, useMemo } from "react";
 import { formatRelativeTime } from "@/utils/time";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
