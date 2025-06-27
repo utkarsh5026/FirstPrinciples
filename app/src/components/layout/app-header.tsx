@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { useTheme } from "@/hooks/ui/use-theme";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, Home } from "lucide-react";
+import { Menu } from "lucide-react";
 import ThemeSelector from "@/components/shared/theme/theme-selector";
+import { FaGithub } from "react-icons/fa";
+import FirstPrinciplesLogo from "./logo";
 
 interface AppHeaderProps {
   toggleSidebar: () => void;
@@ -11,18 +13,6 @@ interface AppHeaderProps {
   className?: string;
 }
 
-/**
- * AppHeader component provides a responsive navigation header with sidebar toggle
- * and theme selector positioned at opposite ends of the screen.
- *
- * This component is optimized for both mobile and desktop views, with appropriate
- * spacing and button sizes for different screen sizes.
- *
- * @param {Object} props - Component properties
- * @param {Function} props.toggleSidebar - Function to toggle the sidebar visibility
- * @param {Function} props.onNavigateHome - Function to navigate to the home page
- * @param {string} props.className - Optional additional CSS classes
- */
 const AppHeader: React.FC<AppHeaderProps> = ({
   toggleSidebar,
   onNavigateHome,
@@ -76,7 +66,6 @@ const AppHeader: React.FC<AppHeaderProps> = ({
         className
       )}
     >
-      {/* Left side - Menu button */}
       <div className="flex items-center gap-2">
         <Button
           variant="ghost"
@@ -88,27 +77,31 @@ const AppHeader: React.FC<AppHeaderProps> = ({
           <Menu className="h-5 w-5" />
         </Button>
 
-        {/* Home button - visible on larger screens */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={onNavigateHome}
-          className="hidden md:flex items-center h-9 gap-1.5"
-        >
-          <Home className="h-4 w-4" />
-          <span className="font-cascadia-code">Home</span>
-        </Button>
+        <FirstPrinciplesLogo onClick={onNavigateHome} />
       </div>
 
-      {/* App title - center on mobile, left on desktop */}
       <div className="absolute left-1/2 transform -translate-x-1/2 md:static md:translate-x-0 md:hidden">
         <h1 className="text-sm font-medium text-foreground/80 font-cascadia-code">
-          First Principles
+          🥇 First Principles
         </h1>
       </div>
 
       {/* Right side - Theme selector */}
-      <div>
+      <div className="flex items-center gap-4 font-cascadia-code">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="gap-2 hover:bg-transparent rounded-full hover:text-primary hover:border-primary cursor-pointer hover:scale-105 transition-all duration-300"
+          onClick={() =>
+            window.open(
+              "https://github.com/utkarsh5026/FirstPrinciples",
+              "_blank"
+            )
+          }
+        >
+          <FaGithub className="w-4 h-4" />
+          <span className="hidden md:inline">GitHub</span>
+        </Button>
         <ThemeSelector
           currentTheme={currentTheme.name}
           onThemeChange={setTheme}
@@ -117,4 +110,5 @@ const AppHeader: React.FC<AppHeaderProps> = ({
     </header>
   );
 };
+
 export default AppHeader;
