@@ -39,6 +39,8 @@ const StatsCards: React.FC<StatsCardsProps> = ({ nextMilestone }) => {
     [history]
   );
 
+  console.log(todayTimeSpent, totalTimeSpent);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
