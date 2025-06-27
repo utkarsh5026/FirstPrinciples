@@ -18,12 +18,12 @@ import {
 } from "@/services/document/document-loader";
 import useMobile from "@/hooks/device/use-mobile";
 
-import Loading from "./Loading";
+import Loading from "./loading-screen";
 import useInsights from "../../../insights/useInsights";
-import Summary from "./Summary";
-import Hierarchy from "./Hierarchy";
-import EnhancedDistribution from "./Distribution";
-import RadialBarChart from "./CategoryRadialChart";
+import Summary from "./catgory-summary";
+import Hierarchy from "./category-hierarchy";
+import EnhancedDistribution from "./category-distribution";
+import RadialBarChart from "./category-radial-chart";
 
 interface CategoryInsightsProps {
   readingHistory: ReadingHistoryItem[];
