@@ -2,12 +2,12 @@ import { PieChart, BookOpen } from "lucide-react";
 import CardContainer, {
   CardContainerInsight,
 } from "@/components/shared/container/CardContainer";
-import CategoryDistributionPieChart from "./CategoryDistributionPieChart";
+import CategoryDistributionPieChart from "./category-distribution-pie-chart";
 import { useCategoryMetrics, useDocumentList } from "@/hooks";
 import { memo, useEffect, useMemo, useState } from "react";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
-import type { CategoryBreakdown } from "@/stores/analytics/category-store"
-import CategoryHorizontalBarChart from "./CategoryHorizontalBarChart";
+import type { CategoryBreakdown } from "@/stores/analytics/category-store";
+import CategoryHorizontalBarChart from "./category-horizontal-bar-chart";
 
 interface CategoryBreakDownProps {
   history: ReadingHistoryItem[];
