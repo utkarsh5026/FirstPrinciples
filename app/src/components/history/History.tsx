@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import FilterPopover from "@/components/utils/filter/FilterPopover";
 import { TimeRange } from "@/utils/time";
-import HistoryHeader from "./HistoryHeader";
+import HistoryHeader from "./history-header";
 import { useReadingHistory } from "@/hooks";
-import VirtualizedHistoryView from "./VirtualizedHistoryView";
+import VirtualizedHistoryView from "./virtual-history-view";
 
 interface HistoryProps {
   handleSelectDocument: (path: string, title: string) => void;

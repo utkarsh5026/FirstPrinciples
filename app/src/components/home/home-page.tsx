@@ -34,7 +34,7 @@ const Overview = lazy(() =>
 );
 
 const History = lazy(() =>
-  import("@/components/history/History").catch((error) => {
+  import("@/components/history/history").catch((error) => {
     console.error("Failed to load History component:", error);
     return { default: () => <FallbackComponent name="History" /> };
   })
