@@ -37,6 +37,7 @@ import { useCodeThemeStore, type ThemeKey } from "@/stores/ui/code-theme";
 import { Button } from "@/components/ui/button";
 import { downloadAsFile, downloadAsImage } from "@/utils/download";
 import { Badge } from "@/components/ui/badge";
+import { useMobile } from "@/hooks";
 
 interface CodeRenderProps extends React.ComponentPropsWithoutRef<"code"> {
   inline?: boolean;
@@ -247,6 +248,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
   const [isOpen, setIsOpen] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [downloading, setDownloading] = useState<"image" | "file" | null>(null);
+  const { isMobile } = useMobile();
 
   const match = /language-(\w+)/.exec(className ?? "");
   const language = match ? match[1] : "";
@@ -416,15 +418,17 @@ const CodeRender: React.FC<CodeRenderProps> = ({
             </Button>
 
             {/* Expand to Dialog Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-8 px-2 cursor-pointer"
-              aria-label="Open in dialog"
-              onClick={() => setDialogOpen(true)}
-            >
-              <Maximize2 size={14} />
-            </Button>
+            {!isMobile && (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-8 px-2 cursor-pointer"
+                aria-label="Open in dialog"
+                onClick={() => setDialogOpen(true)}
+              >
+                <Maximize2 size={14} />
+              </Button>
+            )}
 
             {/* Collapse Toggle */}
             <CollapsibleTrigger asChild>
