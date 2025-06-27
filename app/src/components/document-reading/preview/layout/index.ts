@@ -1,5 +1,5 @@
-import DetailPanel from "./DetailPanel";
-import Header from "./Header";
-import StartReadingButton from "./StartReadingButton";
+import DetailPanel from "./detail-panel";
+import Header from "./header";
+import StartReadingButton from "./start-reading-button";
 
 export { DetailPanel, Header, StartReadingButton };
