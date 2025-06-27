@@ -10,7 +10,7 @@ import {
   BarChart,
   RefreshCcw,
 } from "lucide-react";
-import Hero from "./hero";
+import Hero from "./hero-section";
 import FileSelectionDialog from "@/components/todo/add-todo-modal";
 import { useTabContext, TabType } from "./context/TabContext";
 import { useInit, useDocumentStore } from "@/stores";
@@ -27,14 +27,14 @@ import { type Category, getCategories } from "@/services/document";
 import { useDocumentList } from "@/hooks";
 
 const Overview = lazy(() =>
-  import("@/components/home/overview/overview").catch((error) => {
+  import("@/components/home/overview/home-overview").catch((error) => {
     console.error("Failed to load Overview component:", error);
     return { default: () => <FallbackComponent name="Overview" /> };
   })
 );
 
 const History = lazy(() =>
-  import("@/components/history/history").catch((error) => {
+  import("@/components/history").catch((error) => {
     console.error("Failed to load History component:", error);
     return { default: () => <FallbackComponent name="History" /> };
   })
