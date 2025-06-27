@@ -4,7 +4,7 @@ import { LucideIcon } from "lucide-react";
 import ChartTooltip, {
   TooltipSectionData,
   TooltipFooterData,
-} from "@/components/shared/chart/tooltip/ChartTooltip";
+} from "@/components/shared/chart/tooltip/chart-tooltip";
 
 export type ChartTooltipPayload = {
   value?: any;

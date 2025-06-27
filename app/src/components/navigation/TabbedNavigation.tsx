@@ -2,12 +2,12 @@ import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { BookOpen, FolderTree } from "lucide-react";
-import CurrentlyReading from "./currenty-reading/CurrentlyReading";
+import CurrentlyReading from "./currenty-reading/currently-reading";
 import DocumentTree from "./documents/DocumentTree";
 import { CurrentCategory } from "./hooks/use-navigate";
 import type { Document } from "@/stores/document/document-store";
 import { motion } from "framer-motion";
-import TodayReading from "./today-reading/TodayReading";
+import TodayReading from "./today-reading/today-reading";
 
 interface TabbedNavigationProps {
   currentCategory: CurrentCategory | null;

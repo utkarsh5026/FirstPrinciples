@@ -3,11 +3,11 @@ import { Zap, Activity } from "lucide-react";
 import { useTheme } from "@/hooks/ui/use-theme";
 import type { FileMetadata } from "@/services/document";
 
-import StatsCards from "./components/StatsCards";
-import RecentActivity from "./components/RecentActivity";
-import RecommendedReads from "./components/RecommendedReads";
-import UpcomingReads from "./components/UpcomingReads";
-import DailyChallenge from "./components/DailyChallenge";
+import StatsCards from "./components/stats-cards";
+import RecentActivity from "./components/recent-activity";
+import RecommendedReads from "./components/recommended-reads";
+import UpcomingReads from "./components/upcoming-reads";
+import DailyChallenge from "./components/daily-challenge";
 import {
   WeeklyReadingPattern,
   CategoryDistribution,
