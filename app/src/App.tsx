@@ -3,7 +3,7 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import ResponsiveSidebar from "@/components/navigation/ResponsiveSidebar";
 import LoadingAnimation from "@/components/utils/init/LoadingAnimation";
 import AppHeader from "@/components/layout/app-header";
-import AppWrapper from "@/components/utils/welcome/Wrapper";
+import AppWrapper from "@/components/utils/welcome/app-wrapper";
 import { TabProvider } from "@/components/home/context/tab-provider";
 import { useInit } from "./stores";
 import { useTheme } from "@/hooks/ui/use-theme";

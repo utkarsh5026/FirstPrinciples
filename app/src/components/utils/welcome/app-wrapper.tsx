@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import OnboardingPage from "./Onboarding";
+import OnboardingPage from "./welcome-onboarding";
 import { motion, AnimatePresence } from "framer-motion";
 import { useOnboarding } from "./useOnboarding";
 import LoadingAnimation from "@/components/utils/init/LoadingAnimation";
@@ -14,10 +14,8 @@ interface AppWrapperProps {
  * including loading states and the onboarding experience for first-time users.
  */
 const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
-  // State for initial app loading
   const [isLoading, setIsLoading] = useState(true);
 
-  // Custom hook for onboarding state management
   const { showOnboarding, completeOnboarding } = useOnboarding();
 
   // Simulate initial app loading
