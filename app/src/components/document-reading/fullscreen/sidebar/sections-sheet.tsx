@@ -91,7 +91,6 @@ const SectionsSheet: React.FC<SectionsSheetProps> = ({
                 progressPercentage={progressPercentage}
                 readSectionsIndexes={readSections}
                 sections={sectionsWithIds}
-                currentIndex={currentIndex}
               />
             )}
           </div>
