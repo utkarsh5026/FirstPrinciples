@@ -139,7 +139,7 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({ onComplete }) => {
       />
 
       <div className="container max-w-6xl mx-auto px-4 py-12 md:py-20 relative z-10">
-        <WelcomeHeader />
+        <WelcomeHeader onGetStarted={handleComplete} />
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"

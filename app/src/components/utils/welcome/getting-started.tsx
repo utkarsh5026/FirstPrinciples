@@ -70,14 +70,14 @@ const GettingStarted = () => {
           {gettingStartedSteps.map((step, index) => (
             <motion.div
               key={step.title}
-              className="flex items-start p-4 rounded-xl bg-card/40 border border-primary/10 hover:border-primary/30 transition-all duration-300 group"
+              className="flex items-start p-4 rounded-2xl bg-card/40 border border-primary/10 hover:border-primary/30 transition-all duration-300 group"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1.4 + index * 0.1, duration: 0.5 }}
               whileHover={{ scale: 1.02, y: -2 }}
             >
               <motion.div
-                className="flex-shrink-0 p-2 rounded-lg mr-4"
+                className="flex-shrink-0 p-2 rounded-2xl mr-4"
                 style={{ backgroundColor: `${step.color}20` }}
                 whileHover={{ scale: 1.1 }}
               >

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { ThemeOption, themes } from "@/theme/themes";
 
-const defaultTheme = themes[0];
+const defaultTheme = themes[1];
 
 interface ThemeState {
   currentTheme: ThemeOption;
