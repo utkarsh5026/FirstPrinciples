@@ -4,7 +4,7 @@ import CardContainer from "@/components/shared/container/card-container";
 import { Calendar, Filter, CalendarDays, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import FilterPopover from "@/components/utils/filter/FilterPopover";
+import FilterPopover from "@/components/utils/filter/filter-popover";
 import { TimeRange } from "@/utils/time";
 import HistoryHeader from "./history-header";
 import { useReadingHistory } from "@/hooks";
