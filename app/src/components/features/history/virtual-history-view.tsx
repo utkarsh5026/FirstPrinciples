@@ -102,14 +102,15 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
     return items;
   }, [groupedHistoryItems]);
 
-  // Setup virtualizer
   const rowVirtualizer = useVirtualizer({
     count: flattenedItems.length,
     getScrollElement: () => parentRef.current,
     estimateSize: useCallback(
       (index) => {
         const item = flattenedItems[index];
-        return item.type === "header" ? 48 : 68;
+        // Header: 32px content + 16px padding + 8px margin = 56px
+        // Item: 56px content + 24px padding + 8px margin = 88px
+        return item.type === "header" ? 56 : 88;
       },
       [flattenedItems]
     ),
@@ -126,37 +127,39 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
     const isRecent = Date.now() - item.lastReadAt < 24 * 60 * 60 * 1000;
 
     return (
-      <div
-        className="group border border-border/50 hover:border-border hover:bg-muted/30 
-                  rounded-2xl p-3 cursor-pointer transition-all duration-200 ease-out m-4"
-        onClick={() => handleSelectDocument(item.path, item.title)}
-      >
-        <div className="flex items-center">
-          <div
-            className="h-8 w-8 rounded-md bg-muted flex items-center justify-center mr-3 flex-shrink-0 
-                         group-hover:bg-primary/10 transition-colors"
-          >
-            <CategoryIcon className="h-4 w-4 text-muted-foreground group-hover:text-primary" />
-          </div>
-
-          <div className="min-w-0 flex-1">
-            <h4 className="font-medium text-sm text-foreground truncate mb-1">
-              {title}
-            </h4>
-            <div className="flex items-center text-xs text-muted-foreground gap-3">
-              <span className="flex items-center">
-                <Calendar className="h-3 w-3 mr-1" />
-                {formatDate(item.lastReadAt)}
-              </span>
-              <Badge variant="secondary" className="text-xs h-5 rounded-md">
-                {fromSnakeToTitleCase(category)}
-              </Badge>
+      <div className="px-4 pb-2">
+        <div
+          className="group border border-border/50 hover:border-border hover:bg-muted/30 
+                    rounded-lg p-3 cursor-pointer transition-all duration-200 ease-out"
+          onClick={() => handleSelectDocument(item.path, item.title)}
+        >
+          <div className="flex items-center">
+            <div
+              className="h-8 w-8 rounded-md bg-muted flex items-center justify-center mr-3 flex-shrink-0 
+                           group-hover:bg-primary/10 transition-colors"
+            >
+              <CategoryIcon className="h-4 w-4 text-muted-foreground group-hover:text-primary" />
             </div>
-          </div>
 
-          {isRecent && (
-            <div className="ml-3 w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
-          )}
+            <div className="min-w-0 flex-1">
+              <h4 className="font-medium text-sm text-foreground truncate mb-1">
+                {title}
+              </h4>
+              <div className="flex items-center text-xs text-muted-foreground gap-3">
+                <span className="flex items-center">
+                  <Calendar className="h-3 w-3 mr-1" />
+                  {formatDate(item.lastReadAt)}
+                </span>
+                <Badge variant="secondary" className="text-xs h-5 rounded-md">
+                  {fromSnakeToTitleCase(category)}
+                </Badge>
+              </div>
+            </div>
+
+            {isRecent && (
+              <div className="ml-3 w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
+            )}
+          </div>
         </div>
       </div>
     );
@@ -164,18 +167,20 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
 
   const renderDateHeader = (displayDate: string) => {
     return (
-      <div className="flex items-center py-2 mb-1">
-        <h3 className="text-sm font-medium text-foreground/80">
-          {displayDate}
-        </h3>
-        <div className="h-px flex-grow bg-border/30 ml-3"></div>
+      <div className="px-4 pb-2">
+        <div className="flex items-center py-2">
+          <h3 className="text-sm font-medium text-foreground/80">
+            {displayDate}
+          </h3>
+          <div className="h-px flex-grow bg-border/30 ml-3"></div>
+        </div>
       </div>
     );
   };
 
   const renderSkeleton = () => {
     return (
-      <div className="space-y-3">
+      <div className="space-y-2 px-4">
         {Array.from({ length: 5 }).map((_, i) => (
           <div key={i} className="border rounded-lg p-3 flex items-center">
             <Skeleton className="h-8 w-8 rounded-md mr-3" />
@@ -212,7 +217,7 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
   return (
     <div className="w-full">
       {/* Simple header with count */}
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-6 flex items-center justify-between">
         <h2 className="text-lg font-semibold">Reading History</h2>
         <div className="text-sm text-muted-foreground">
           {filteredHistory.length}{" "}
@@ -260,7 +265,7 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
               }}
             >
               <div
-                className="relative w-full p-4"
+                className="relative w-full"
                 style={{
                   height: `${rowVirtualizer.getTotalSize()}px`,
                 }}
@@ -268,7 +273,7 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
                 {rowVirtualizer.getVirtualItems().map((virtualRow) => (
                   <div
                     key={virtualRow.index}
-                    className="absolute top-0 left-0 w-full px-4"
+                    className="absolute top-0 left-0 w-full"
                     style={{
                       height: `${virtualRow.size}px`,
                       transform: `translateY(${virtualRow.start}px)`,
