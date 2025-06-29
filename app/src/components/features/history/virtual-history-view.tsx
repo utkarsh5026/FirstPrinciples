@@ -1,16 +1,14 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useMemo, useCallback } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, BookOpen, LayoutList, Search } from "lucide-react";
+import { Calendar, BookOpen, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ReadingHistoryItem } from "@/services/reading/reading-history-service";
 import getIconForTech from "@/components/shared/icons/icon-map";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import { formatDate } from "@/components/home/utils";
-import useMobile from "@/hooks/device/use-mobile";
 
 interface VirtualizedHistoryViewProps {
   filteredHistory: ReadingHistoryItem[];
@@ -38,18 +36,14 @@ const formatDisplayDate = (date: Date): string => {
   }
 };
 
-type HistoryViewType = "list" | "grid" | "timeline";
-
 /**
- * VirtualizedHistoryView - An optimized component for displaying large history datasets
+ * VirtualizedHistoryView - A minimalist component for displaying reading history
  *
  * Features:
- * - Virtualized rendering for handling large amounts of data efficiently
- * - Multiple view options: List, Grid, and Timeline
- * - Responsive design for both mobile and desktop
- * - Smooth animations and transitions
- * - Grouped display by date for better organization
- * - Progressive loading indicators
+ * - Virtualized rendering for performance with large datasets
+ * - Clean, minimal design
+ * - Grouped display by date
+ * - Smooth animations
  */
 const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
   filteredHistory,
@@ -57,8 +51,6 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
   isLoading = false,
 }) => {
   const parentRef = React.useRef<HTMLDivElement>(null);
-  const { isMobile } = useMobile();
-  const [viewType, setViewType] = useState<HistoryViewType>("list");
 
   const groupedHistoryItems = useMemo(() => {
     const grouped: Record<string, ReadingHistoryItem[]> = {};
@@ -117,169 +109,76 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
     estimateSize: useCallback(
       (index) => {
         const item = flattenedItems[index];
-        if (item.type === "header") {
-          return 60;
-        }
-        return viewType === "grid" ? (isMobile ? 140 : 180) : 90;
+        return item.type === "header" ? 48 : 68;
       },
-      [flattenedItems, viewType, isMobile]
+      [flattenedItems]
     ),
     overscan: 10,
   });
 
-  const renderListItem = (item: ReadingHistoryItem, animate = true) => {
+  const renderListItem = (item: ReadingHistoryItem) => {
     const category = item.path.split("/")[0] || "uncategorized";
     const CategoryIcon = getIconForTech(category);
     const title = fromSnakeToTitleCase(
       item.path.split("/").pop()?.replace(".md", "") ?? ""
     );
 
-    // Calculate how recent the read was
     const isRecent = Date.now() - item.lastReadAt < 24 * 60 * 60 * 1000;
 
-    const itemContent = (
+    return (
       <div
-        className="border border-primary/10 hover:border-primary/30 hover:bg-primary/5 
-                  rounded-2xl p-3 cursor-pointer transition-colors h-full"
+        className="group border border-border/50 hover:border-border hover:bg-muted/30 
+                  rounded-2xl p-3 cursor-pointer transition-all duration-200 ease-out m-4"
         onClick={() => handleSelectDocument(item.path, item.title)}
       >
-        <div className="flex items-center h-full">
-          <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center mr-3 flex-shrink-0">
-            <CategoryIcon className="h-4 w-4 text-primary" />
+        <div className="flex items-center">
+          <div
+            className="h-8 w-8 rounded-md bg-muted flex items-center justify-center mr-3 flex-shrink-0 
+                         group-hover:bg-primary/10 transition-colors"
+          >
+            <CategoryIcon className="h-4 w-4 text-muted-foreground group-hover:text-primary" />
           </div>
 
           <div className="min-w-0 flex-1">
-            <h4 className="font-medium text-sm truncate">{title}</h4>
-            <div className="flex items-center text-xs text-muted-foreground mt-1 flex-wrap gap-x-3">
+            <h4 className="font-medium text-sm text-foreground truncate mb-1">
+              {title}
+            </h4>
+            <div className="flex items-center text-xs text-muted-foreground gap-3">
               <span className="flex items-center">
                 <Calendar className="h-3 w-3 mr-1" />
                 {formatDate(item.lastReadAt)}
               </span>
-              <Badge className="text-[10px] h-4 bg-primary/10 text-primary/80 hover:bg-primary/20 rounded-full">
+              <Badge variant="secondary" className="text-xs h-5 rounded-md">
                 {fromSnakeToTitleCase(category)}
               </Badge>
             </div>
           </div>
 
           {isRecent && (
-            <div className="ml-2 w-2 h-2 rounded-full bg-green-500" />
+            <div className="ml-3 w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
           )}
         </div>
       </div>
     );
-
-    if (!animate) return itemContent;
-
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 5 }}
-        animate={{ opacity: 1, y: 0 }}
-        whileHover={{ y: -1, transition: { duration: 0.2 } }}
-        className="w-full"
-      >
-        {itemContent}
-      </motion.div>
-    );
   };
 
-  const renderTimelineItem = (item: ReadingHistoryItem, animate = true) => {
-    const category = item.path.split("/")[0] || "uncategorized";
-    const CategoryIcon = getIconForTech(category);
-    const title = fromSnakeToTitleCase(
-      item.path.split("/").pop()?.replace(".md", "") ?? ""
-    );
-
-    const timelineItemContent = (
-      <div
-        className="border border-primary/10 hover:border-primary/30 hover:bg-primary/5 rounded-2xl 
-                  flex items-center cursor-pointer p-3 ml-5"
-        onClick={() => handleSelectDocument(item.path, item.title)}
-      >
-        <CategoryIcon className="h-4 w-4 text-primary mr-2" />
-        <span className="text-xs truncate">{title}</span>
-        <span className="ml-auto text-xs text-muted-foreground">
-          {new Date(item.lastReadAt).toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
-        </span>
+  const renderDateHeader = (displayDate: string) => {
+    return (
+      <div className="flex items-center py-2 mb-1">
+        <h3 className="text-sm font-medium text-foreground/80">
+          {displayDate}
+        </h3>
+        <div className="h-px flex-grow bg-border/30 ml-3"></div>
       </div>
     );
-
-    if (!animate) return timelineItemContent;
-
-    return (
-      <motion.div
-        initial={{ opacity: 0, x: 5 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="w-full relative"
-      >
-        {timelineItemContent}
-      </motion.div>
-    );
   };
 
-  const renderDateHeader = (displayDate: string, animate = true) => {
-    const headerContent =
-      viewType === "timeline" ? (
-        <div className="flex items-center mb-2 mt-4 ml-2">
-          <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center z-10 mr-3">
-            <Calendar className="h-4 w-4 text-primary" />
-          </div>
-          <h3 className="text-base font-medium text-primary/90">
-            {displayDate}
-          </h3>
-        </div>
-      ) : (
-        <div className="flex items-center mb-2 mt-4">
-          <Badge
-            variant="outline"
-            className="mr-2 bg-primary/5 text-primary border-primary/20"
-          >
-            <Calendar className="h-3 w-3 mr-1" />
-            {displayDate}
-          </Badge>
-          <div className="h-px flex-grow bg-primary/10"></div>
-        </div>
-      );
-
-    if (!animate) return headerContent;
-
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: -5 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full sticky top-0 z-10 bg-background/80 backdrop-blur-sm py-1"
-      >
-        {headerContent}
-      </motion.div>
-    );
-  };
-
-  // Loading skeletons for items
   const renderSkeleton = () => {
-    return viewType === "grid" ? (
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="rounded-2xl border p-3 h-36">
-            <div className="flex justify-between mb-3">
-              <Skeleton className="h-8 w-8 rounded-full" />
-              <Skeleton className="h-3 w-12" />
-            </div>
-            <Skeleton className="h-4 w-full mb-2" />
-            <Skeleton className="h-4 w-3/4 mb-3" />
-            <div className="flex justify-between mt-auto">
-              <Skeleton className="h-4 w-16" />
-              <Skeleton className="h-4 w-16" />
-            </div>
-          </div>
-        ))}
-      </div>
-    ) : (
+    return (
       <div className="space-y-3">
         {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} className="border rounded-2xl p-3 flex items-center">
-            <Skeleton className="h-9 w-9 rounded-full mr-3" />
+          <div key={i} className="border rounded-lg p-3 flex items-center">
+            <Skeleton className="h-8 w-8 rounded-md mr-3" />
             <div className="flex-1">
               <Skeleton className="h-4 w-3/4 mb-2" />
               <div className="flex gap-3">
@@ -299,14 +198,9 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
     const item = flattenedItems[virtualRow.index];
 
     if (item.type === "header") {
-      return renderDateHeader(item.displayDate!, false);
+      return renderDateHeader(item.displayDate!);
     } else if (item.type === "item") {
-      switch (viewType) {
-        case "timeline":
-          return renderTimelineItem(item.item!, false);
-        default:
-          return renderListItem(item.item!, false);
-      }
+      return renderListItem(item.item!);
     }
     return null;
   };
@@ -317,31 +211,10 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
 
   return (
     <div className="w-full">
+      {/* Simple header with count */}
       <div className="mb-4 flex items-center justify-between">
-        <Tabs
-          value={viewType}
-          onValueChange={(v) => setViewType(v as HistoryViewType)}
-          className="mr-auto"
-        >
-          <TabsList className="bg-secondary/20 rounded-2xl h-8">
-            <TabsTrigger
-              value="list"
-              className="h-6 text-xs rounded-2xl data-[state=active]:bg-primary/10"
-            >
-              <LayoutList className="h-3.5 w-3.5 mr-1.5" />
-              <span className={isMobile ? "hidden" : "inline"}>List</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="timeline"
-              className="h-6 text-xs rounded-2xl data-[state=active]:bg-primary/10"
-            >
-              <Calendar className="h-3.5 w-3.5 mr-1.5" />
-              <span className={isMobile ? "hidden" : "inline"}>Timeline</span>
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
-
-        <div className="text-xs text-muted-foreground ml-2">
+        <h2 className="text-lg font-semibold">Reading History</h2>
+        <div className="text-sm text-muted-foreground">
           {filteredHistory.length}{" "}
           {filteredHistory.length === 1 ? "item" : "items"}
         </div>
@@ -354,40 +227,31 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="py-12 text-center"
+            className="py-16 text-center"
           >
-            <Search className="h-10 w-10 mx-auto mb-3 text-primary/30" />
-            <h3 className="text-base font-medium">No history items found</h3>
-            <p className="text-sm text-muted-foreground mt-1 mb-4">
+            <Search className="h-12 w-12 mx-auto mb-4 text-muted-foreground/40" />
+            <h3 className="text-lg font-medium mb-2">No history items found</h3>
+            <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto">
               Your reading history will appear here once you start reading
               documents
             </p>
-            <Button
-              variant="outline"
-              size="sm"
-              className="rounded-full border-primary/30 bg-primary/5"
-            >
-              <BookOpen className="h-4 w-4 mr-1.5" />
+            <Button variant="outline" size="sm" className="rounded-lg">
+              <BookOpen className="h-4 w-4 mr-2" />
               Start Reading
             </Button>
           </motion.div>
         ) : (
           <motion.div
-            key={viewType}
+            key="history-list"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="w-full"
           >
-            {viewType === "timeline" && (
-              <div className="absolute left-4 top-20 bottom-0 w-0.5 bg-primary/10 z-0"></div>
-            )}
-
-            {/* Virtualized content container */}
             <div
               ref={parentRef}
-              className="overflow-auto max-h-[70vh] relative"
+              className="overflow-auto rounded-2xl border-none bg-transparent"
               style={{
                 height: `${Math.min(
                   700,
@@ -395,52 +259,24 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
                 )}px`,
               }}
             >
-              {/* Virtualized items */}
               <div
-                className="relative w-full"
+                className="relative w-full p-4"
                 style={{
                   height: `${rowVirtualizer.getTotalSize()}px`,
                 }}
               >
-                {viewType === "grid" ? (
+                {rowVirtualizer.getVirtualItems().map((virtualRow) => (
                   <div
-                    className="absolute top-0 left-0 right-0"
+                    key={virtualRow.index}
+                    className="absolute top-0 left-0 w-full px-4"
                     style={{
-                      transform: `translateY(${
-                        rowVirtualizer.getVirtualItems()[0]?.start ?? 0
-                      }px)`,
+                      height: `${virtualRow.size}px`,
+                      transform: `translateY(${virtualRow.start}px)`,
                     }}
                   >
-                    {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-                      const item = flattenedItems[virtualRow.index];
-
-                      if (item.type === "header") {
-                        return (
-                          <div
-                            key={`header-${virtualRow.index}`}
-                            style={{ height: virtualRow.size }}
-                          >
-                            {renderDateHeader(item.displayDate!, false)}
-                          </div>
-                        );
-                      }
-                      return null;
-                    })}
+                    {renderVirtualItem(virtualRow)}
                   </div>
-                ) : (
-                  rowVirtualizer.getVirtualItems().map((virtualRow) => (
-                    <div
-                      key={virtualRow.index}
-                      className="absolute top-0 left-0 w-full"
-                      style={{
-                        height: `${virtualRow.size}px`,
-                        transform: `translateY(${virtualRow.start}px)`,
-                      }}
-                    >
-                      <div className="p-1">{renderVirtualItem(virtualRow)}</div>
-                    </div>
-                  ))
-                )}
+                ))}
               </div>
             </div>
           </motion.div>
