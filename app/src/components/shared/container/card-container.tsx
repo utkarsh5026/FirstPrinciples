@@ -19,7 +19,7 @@ import {
   useInsightTheme,
   type Color,
   type Variant,
-} from "./useContainer";
+} from "./use-container";
 import styles from "./container.module.css";
 
 export type CardContainerInsight = {
