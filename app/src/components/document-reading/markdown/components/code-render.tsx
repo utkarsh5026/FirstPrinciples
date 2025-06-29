@@ -26,24 +26,22 @@ import {
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogOverlay,
-} from "@/components/ui/dialog";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useCodeThemeStore, type ThemeKey } from "@/stores/ui/code-theme";
 import { Button } from "@/components/ui/button";
 import { downloadAsFile, downloadAsImage } from "@/utils/download";
 import { Badge } from "@/components/ui/badge";
-import { useMobile } from "@/hooks";
 
 interface CodeRenderProps extends React.ComponentPropsWithoutRef<"code"> {
   inline?: boolean;
 }
 
-interface CodePreviewDialogProps {
+interface CodePreviewDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   language: string;
@@ -53,7 +51,7 @@ interface CodePreviewDialogProps {
   downloading: "image" | "file" | null;
   onCopy: () => void;
   copied: boolean;
-  dialogCodeRef: React.RefObject<HTMLDivElement | null>;
+  drawerCodeRef: React.RefObject<HTMLDivElement | null>;
   themeStyle: Record<string, React.CSSProperties>;
   props?: React.ComponentPropsWithoutRef<typeof SyntaxHighlighter>;
 }
@@ -71,12 +69,12 @@ const getHeadingCodeStyle = (headingLevel: number | null) => {
 };
 
 /**
- * Code Preview Dialog Component
+ * Code Preview Drawer Component
  *
- * A full-screen dialog for better code inspection with download capabilities
+ * A bottom drawer for better code inspection with download capabilities
  * and theme customization.
  */
-const CodePreviewDialog: React.FC<CodePreviewDialogProps> = ({
+const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
   open,
   onOpenChange,
   language,
@@ -86,22 +84,24 @@ const CodePreviewDialog: React.FC<CodePreviewDialogProps> = ({
   downloading,
   onCopy,
   copied,
-  dialogCodeRef,
+  drawerCodeRef,
   props,
   themeStyle,
 }) => {
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[98vw] w-[98vw] sm:max-w-[95vw] sm:w-[95vw] xl:max-w-[90vw] xl:w-[90vw] 2xl:max-w-[85vw] 2xl:w-[85vw] h-[95vh] sm:h-[90vh] p-0 font-cascadia-code rounded-2xl sm:rounded-3xl border-none shadow-2xl shadow-black/20 overflow-y-auto">
-        <DialogHeader className="relative px-3 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-6 border-b border-border/50 bg-gradient-to-r from-card/80 via-card/60 to-card/40 backdrop-blur-xl rounded-t-2xl sm:rounded-t-3xl">
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent
+        side="bottom"
+        className="h-[85vh] sm:h-[90vh] p-0 font-cascadia-code rounded-t-3xl border-none shadow-2xl shadow-black/20 overflow-hidden"
+      >
+        <SheetHeader className="relative px-3 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-6 border-b border-border/50 bg-gradient-to-r from-card/80 via-card/60 to-card/40 backdrop-blur-xl">
           {/* Subtle gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 rounded-t-2xl sm:rounded-t-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
 
           <div className="relative flex items-center justify-between gap-2">
             <div className="flex items-center flex-1 min-w-0">
-              {/* Mobile: Smaller icon, Desktop: Original size */}
+              {/* Icon with subtle glow effect */}
               <div className="relative flex-shrink-0">
-                {/* Icon with subtle glow effect */}
                 <div className="absolute inset-0 bg-primary/20 blur-lg rounded-full" />
                 <div className="relative p-2 sm:p-3 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl sm:rounded-2xl border border-primary/20 backdrop-blur-sm">
                   {(() => {
@@ -114,9 +114,9 @@ const CodePreviewDialog: React.FC<CodePreviewDialogProps> = ({
               </div>
 
               <div className="ml-3 sm:ml-4 space-y-0.5 sm:space-y-1 min-w-0 flex-1">
-                <DialogTitle className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent truncate">
+                <SheetTitle className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent truncate">
                   Code Preview
-                </DialogTitle>
+                </SheetTitle>
                 <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
                   <Badge
                     variant="outline"
@@ -132,10 +132,10 @@ const CodePreviewDialog: React.FC<CodePreviewDialogProps> = ({
               </div>
             </div>
 
-            {/* Enhanced Action Buttons - More compact on mobile */}
+            {/* Enhanced Action Buttons */}
             <div className="flex items-center gap-1 sm:gap-3 flex-shrink-0">
               <div className="flex items-center gap-0.5 sm:gap-2 p-1 bg-card/50 rounded-xl sm:rounded-2xl border border-border/50 backdrop-blur-sm">
-                {/* Theme Selector - Hidden on very small screens */}
+                {/* Theme Selector */}
                 <div className="hidden xs:block">
                   <ThemeSelector />
                 </div>
@@ -202,13 +202,16 @@ const CodePreviewDialog: React.FC<CodePreviewDialogProps> = ({
               </div>
             </div>
           </div>
-        </DialogHeader>
+        </SheetHeader>
 
         <div className="flex-1 p-3 sm:p-4 lg:p-6 relative overflow-hidden">
-          <ScrollArea className="relative max-h-[calc(95vh-120px)] sm:max-h-[calc(90vh-140px)] lg:max-h-[calc(90vh-180px)] rounded-xl sm:rounded-2xl border border-border/30 z-20 overflow-hidden">
+          {/* Drag indicator */}
+          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-muted-foreground/30 rounded-full mb-4" />
+
+          <ScrollArea className="relative h-[calc(85vh-120px)] sm:h-[calc(90vh-140px)] lg:h-[calc(90vh-180px)] rounded-xl sm:rounded-2xl border border-border/30 overflow-hidden mt-4">
             <CodeDisplay
-              isDialog
-              ref={dialogCodeRef}
+              isDrawer
+              ref={drawerCodeRef}
               themeStyle={themeStyle}
               language={language}
               codeContent={codeContent}
@@ -218,22 +221,20 @@ const CodePreviewDialog: React.FC<CodePreviewDialogProps> = ({
             <ScrollBar orientation="vertical" className="bg-muted/50" />
           </ScrollArea>
         </div>
-      </DialogContent>
-
-      <DialogOverlay className="bg-black/40 backdrop-blur-sm" />
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 };
 
 /**
- * Enhanced CodeRender Component with Dialog View
+ * Enhanced CodeRender Component with Drawer View
  *
  * This component provides a comprehensive code rendering solution with:
  * - Syntax highlighting using Prism
  * - Theme customization with real-time preview
  * - Copy functionality with visual feedback
  * - Collapsible code blocks for space efficiency
- * - Full-screen dialog view for better code inspection
+ * - Bottom drawer view for better code inspection
  * - Download capabilities (as image or code file)
  * - Responsive design for mobile and desktop
  * - Smart detection of inline vs block code
@@ -246,16 +247,15 @@ const CodeRender: React.FC<CodeRenderProps> = ({
 }) => {
   const [copied, setCopied] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [downloading, setDownloading] = useState<"image" | "file" | null>(null);
-  const { isMobile } = useMobile();
 
   const match = /language-(\w+)/.exec(className ?? "");
   const language = match ? match[1] : "";
   const { getCurrentThemeStyle } = useCodeThemeStore();
 
   const codeRef = useRef<HTMLDivElement>(null);
-  const dialogCodeRef = useRef<HTMLDivElement | null>(null);
+  const drawerCodeRef = useRef<HTMLDivElement | null>(null);
 
   const [isInTableCell, setIsInTableCell] = useState(false);
   const [headingLevel, setHeadingLevel] = useState<number | null>(null);
@@ -305,6 +305,10 @@ const CodeRender: React.FC<CodeRenderProps> = ({
     !codeContent.includes("\n") &&
     codeContent.length < 25;
 
+  const isLargeCode =
+    typeof codeContent === "string" &&
+    (codeContent.split("\n").length > 20 || codeContent.length > 500);
+
   /**
    * Copy to Clipboard Functionality
    *
@@ -329,8 +333,8 @@ const CodeRender: React.FC<CodeRenderProps> = ({
    */
   const handleDownloadAsImage = () => {
     setDownloading("image");
-    if (dialogCodeRef.current) {
-      downloadAsImage(dialogCodeRef.current, language).then(() => {
+    if (drawerCodeRef.current) {
+      downloadAsImage(drawerCodeRef.current, language).then(() => {
         setDownloading(null);
       });
     } else {
@@ -383,6 +387,14 @@ const CodeRender: React.FC<CodeRenderProps> = ({
                 return <IconComponent className="w-4 h-4" />;
               })()}
             </span>
+            {isLargeCode && (
+              <Badge
+                variant="outline"
+                className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-none rounded-full"
+              >
+                {codeContent.split("\n").length} lines
+              </Badge>
+            )}
           </div>
 
           {/* Header Actions */}
@@ -417,14 +429,14 @@ const CodeRender: React.FC<CodeRenderProps> = ({
               </div>
             </Button>
 
-            {/* Expand to Dialog Button */}
-            {!isMobile && (
+            {/* Expand to Drawer Button - Show for large code blocks */}
+            {isLargeCode && (
               <Button
                 variant="ghost"
                 size="sm"
                 className="h-8 px-2 cursor-pointer"
-                aria-label="Open in dialog"
-                onClick={() => setDialogOpen(true)}
+                aria-label="Open in drawer"
+                onClick={() => setDrawerOpen(true)}
               >
                 <Maximize2 size={14} />
               </Button>
@@ -449,20 +461,50 @@ const CodeRender: React.FC<CodeRenderProps> = ({
         </div>
 
         {/* Collapsible Code Content */}
-        <CollapsibleContent className="data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
-          <CodeDisplay
-            language={language}
-            codeContent={codeContent}
-            themeStyle={getCurrentThemeStyle()}
-            props={{ ...props }}
-          />
+        <CollapsibleContent className="data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down rounded-2xl">
+          {isLargeCode ? (
+            /* Preview for large code blocks */
+            <div
+              className="relative cursor-pointer group"
+              onClick={() => setDrawerOpen(true)}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="bg-background/90 backdrop-blur-sm border-primary/20 hover:bg-primary/10 rounded-2xl"
+                >
+                  <Maximize2 className="w-4 h-4 mr-2" />
+                  View Full Code
+                </Button>
+              </div>
+              <div className="overflow-hidden relative max-h-[300px] rounded-2xl">
+                <CodeDisplay
+                  language={language}
+                  codeContent={codeContent}
+                  themeStyle={getCurrentThemeStyle()}
+                  props={{ ...props }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />
+              </div>
+            </div>
+          ) : (
+            /* Regular code display for smaller blocks */
+            <CodeDisplay
+              language={language}
+              codeContent={codeContent}
+              themeStyle={getCurrentThemeStyle()}
+              props={{ ...props }}
+            />
+          )}
         </CollapsibleContent>
       </div>
 
-      {/* Code Preview Dialog */}
-      <CodePreviewDialog
-        open={dialogOpen}
-        onOpenChange={setDialogOpen}
+      {/* Code Preview Drawer */}
+      <CodePreviewDrawer
+        open={drawerOpen}
+        onOpenChange={setDrawerOpen}
         language={language}
         codeContent={codeContent}
         onDownloadAsImage={handleDownloadAsImage}
@@ -470,7 +512,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
         downloading={downloading}
         onCopy={copyToClipboard}
         copied={copied}
-        dialogCodeRef={dialogCodeRef}
+        drawerCodeRef={drawerCodeRef}
         props={props}
         themeStyle={getCurrentThemeStyle()}
       />
@@ -548,7 +590,7 @@ const ThemeSelector = ({
 };
 
 interface CodeDisplayProps {
-  isDialog?: boolean;
+  isDrawer?: boolean;
   ref?: React.RefObject<HTMLDivElement | null>;
   language: string;
   codeContent: string;
@@ -557,7 +599,7 @@ interface CodeDisplayProps {
 }
 
 const CodeDisplay: React.FC<CodeDisplayProps> = ({
-  isDialog = false,
+  isDrawer = false,
   ref,
   language,
   codeContent,
@@ -565,7 +607,7 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({
   themeStyle,
 }) => {
   const getPadding = () => {
-    if (isDialog) {
+    if (isDrawer) {
       if (window.innerWidth >= 1536) return "3rem";
       if (window.innerWidth >= 1280) return "2.5rem";
       if (window.innerWidth >= 1024) return "2rem";
@@ -575,7 +617,7 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({
   };
 
   const getFontSize = () => {
-    if (isDialog) {
+    if (isDrawer) {
       if (window.innerWidth >= 1536) return "1.1rem";
       if (window.innerWidth >= 1280) return "1.05rem";
       if (window.innerWidth >= 1024) return "1rem";
@@ -585,7 +627,7 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({
   };
 
   const getLineHeight = () => {
-    if (isDialog) {
+    if (isDrawer) {
       return window.innerWidth >= 1024 ? 1.8 : 1.7;
     }
     return window.innerWidth < 640 ? 1.5 : 1.6;
@@ -594,12 +636,12 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({
   return (
     <div
       ref={ref}
-      className={cn(isDialog && "relative code-capture-container")}
+      className={cn(isDrawer && "relative code-capture-container")}
     >
       <ScrollArea
         className={cn(
           "rounded-b-2xl border-none",
-          isDialog &&
+          isDrawer &&
             "max-h-[70vh] lg:max-h-[75vh] xl:max-h-[80vh] code-scroll-area"
         )}
       >
