@@ -210,15 +210,6 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
 
   return (
     <div className="w-full">
-      {/* Simple header with count */}
-      <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-lg font-semibold">Reading History</h2>
-        <div className="text-sm text-muted-foreground">
-          {filteredHistory.length}{" "}
-          {filteredHistory.length === 1 ? "item" : "items"}
-        </div>
-      </div>
-
       <AnimatePresence mode="wait">
         {filteredHistory.length === 0 ? (
           <motion.div
