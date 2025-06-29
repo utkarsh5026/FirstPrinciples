@@ -9,6 +9,7 @@ import {
   Maximize2,
   Image,
   FileText,
+  WrapText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import getIconForTech from "@/components/shared/icons/";
@@ -34,6 +35,7 @@ import {
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useCodeThemeStore, type ThemeKey } from "@/stores/ui/code-theme";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import { downloadAsFile, downloadAsImage } from "@/utils/download";
 import { Badge } from "@/components/ui/badge";
 
@@ -88,6 +90,8 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
   props,
   themeStyle,
 }) => {
+  const [lineWrap, setLineWrap] = useState(false);
+
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
@@ -135,6 +139,23 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
             {/* Enhanced Action Buttons */}
             <div className="flex items-center gap-1 sm:gap-3 flex-shrink-0">
               <div className="flex items-center gap-0.5 sm:gap-2 p-1 bg-card/50 rounded-xl sm:rounded-2xl border border-border/50 backdrop-blur-sm">
+                {/* Line Wrap Toggle */}
+                <div className="flex items-center gap-1.5 px-2 py-1">
+                  <WrapText className="w-3.5 h-3.5 text-muted-foreground" />
+                  <Switch
+                    checked={lineWrap}
+                    onCheckedChange={setLineWrap}
+                    className="scale-75 sm:scale-100"
+                    aria-label="Toggle line wrap"
+                  />
+                  <span className="text-xs text-muted-foreground hidden sm:inline">
+                    Wrap
+                  </span>
+                </div>
+
+                {/* Separator */}
+                <div className="w-px h-6 bg-border/50" />
+
                 {/* Theme Selector */}
                 <div className="hidden xs:block">
                   <ThemeSelector />
@@ -215,6 +236,7 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
               themeStyle={themeStyle}
               language={language}
               codeContent={codeContent}
+              lineWrap={lineWrap}
               props={{ ...props }}
             />
             <ScrollBar orientation="horizontal" className="bg-muted/50" />
@@ -596,6 +618,7 @@ interface CodeDisplayProps {
   codeContent: string;
   props?: React.ComponentPropsWithoutRef<typeof SyntaxHighlighter>;
   themeStyle: Record<string, React.CSSProperties>;
+  lineWrap?: boolean;
 }
 
 const CodeDisplay: React.FC<CodeDisplayProps> = ({
@@ -605,6 +628,7 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({
   codeContent,
   props,
   themeStyle,
+  lineWrap = false,
 }) => {
   const getPadding = () => {
     if (isDrawer) {
@@ -653,24 +677,27 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({
             fontSize: getFontSize(),
             lineHeight: getLineHeight(),
             minWidth: "100%",
-            width: "max-content",
+            width: lineWrap ? "100%" : "max-content",
             backgroundColor: "transparent",
             border: "none",
-            // These properties help with image capture
-            maxWidth: "none",
-            whiteSpace: "pre",
-            wordWrap: "normal",
+            // These properties help with image capture and line wrapping
+            maxWidth: lineWrap ? "100%" : "none",
+            whiteSpace: lineWrap ? "pre-wrap" : "pre",
+            wordWrap: lineWrap ? "break-word" : "normal",
             overflow: "visible",
+            wordBreak: lineWrap ? "break-word" : "normal",
           }}
           useInlineStyles={true}
           codeTagProps={{
             style: {
               backgroundColor: "transparent",
               fontFamily: "Source Code Pro, monospace",
-              whiteSpace: "pre",
+              whiteSpace: lineWrap ? "pre-wrap" : "pre",
               fontSize: "inherit",
               overflow: "visible",
-              maxWidth: "none",
+              maxWidth: lineWrap ? "100%" : "none",
+              wordWrap: lineWrap ? "break-word" : "normal",
+              wordBreak: lineWrap ? "break-word" : "normal",
             },
           }}
           {...props}
@@ -681,14 +708,20 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({
               backgroundColor: "transparent",
               background: "transparent",
               overflow: "visible",
-              maxWidth: "none",
+              maxWidth: lineWrap ? "100%" : "none",
+              whiteSpace: lineWrap ? "pre-wrap" : "pre",
+              wordWrap: lineWrap ? "break-word" : "normal",
+              wordBreak: lineWrap ? "break-word" : "normal",
             },
             'pre[class*="language-"]': {
               ...themeStyle['pre[class*="language-"]'],
               backgroundColor: "transparent",
               background: "transparent",
               overflow: "visible",
-              maxWidth: "none",
+              maxWidth: lineWrap ? "100%" : "none",
+              whiteSpace: lineWrap ? "pre-wrap" : "pre",
+              wordWrap: lineWrap ? "break-word" : "normal",
+              wordBreak: lineWrap ? "break-word" : "normal",
             },
           }}
         >
