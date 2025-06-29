@@ -124,13 +124,11 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
       item.path.split("/").pop()?.replace(".md", "") ?? ""
     );
 
-    const isRecent = Date.now() - item.lastReadAt < 24 * 60 * 60 * 1000;
-
     return (
       <div className="px-4 pb-2">
         <div
-          className="group border border-border/50 hover:border-border hover:bg-muted/30 
-                    rounded-lg p-3 cursor-pointer transition-all duration-200 ease-out"
+          className="group border-none hover:border-border hover:bg-muted/30 
+                    rounded-2xl p-3 cursor-pointer transition-all duration-200 ease-out"
           onClick={() => handleSelectDocument(item.path, item.title)}
         >
           <div className="flex items-center">
@@ -150,15 +148,11 @@ const VirtualizedHistoryView: React.FC<VirtualizedHistoryViewProps> = ({
                   <Calendar className="h-3 w-3 mr-1" />
                   {formatDate(item.lastReadAt)}
                 </span>
-                <Badge variant="secondary" className="text-xs h-5 rounded-md">
+                <Badge variant="secondary" className="text-xs h-5 rounded-2xl">
                   {fromSnakeToTitleCase(category)}
                 </Badge>
               </div>
             </div>
-
-            {isRecent && (
-              <div className="ml-3 w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
-            )}
           </div>
         </div>
       </div>
