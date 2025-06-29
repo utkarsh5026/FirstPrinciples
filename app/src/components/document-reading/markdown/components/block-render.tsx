@@ -25,7 +25,7 @@ const BlockquoteRender: React.FC<
         "leading-7 xs:leading-8 sm:leading-9 lg:leading-10",
         "text-pretty break-words",
         "rounded-2xl xs:rounded-2xl sm:rounded-3xl",
-        "font-medium",
+        "font-normal",
         "tracking-normal xs:tracking-wide",
         "shadow-sm",
         "transition-all duration-200",
