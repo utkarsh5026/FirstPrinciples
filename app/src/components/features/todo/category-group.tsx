@@ -77,7 +77,7 @@ const CategoryGroup: React.FC<CategoryGroupProps> = ({
                 </Badge>
               </CollapsibleTrigger>
 
-              <CollapsibleContent className="bg-background/50 border-none">
+              <CollapsibleContent className="bg-transparent border-none">
                 <div className="p-2 space-y-2">
                   <AnimatePresence>
                     {items.map((item) => (

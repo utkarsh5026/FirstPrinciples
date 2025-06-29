@@ -25,7 +25,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
   return (
     <div
       className={cn(
-        "group flex items-start gap-3 p-3 rounded-2xl border-none transition-colors",
+        "group flex items-start gap-3 p-3 rounded-2xl border-none transition-colors bg-transparent",
         completed
           ? "bg-muted/30 border-muted"
           : "bg-background border-border hover:bg-muted/20 hover:border-border"
@@ -35,9 +35,9 @@ const TodoItem: React.FC<TodoItemProps> = ({
       <button
         onClick={toggleCompletion}
         className={cn(
-          "mt-0.5 h-5 w-5 rounded-full border-2 flex items-center justify-center transition-all",
+          "mt-0.5 h-5 w-5 rounded-full border-2 flex items-center justify-center transition-all bg-transparent",
           completed
-            ? "bg-primary border-primary text-primary-foreground"
+            ? "bg-primary border-primary text-primary-foreground hover:bg-primary/10"
             : "border-muted-foreground/30 hover:border-primary hover:bg-primary/10"
         )}
       >
