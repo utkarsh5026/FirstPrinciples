@@ -47,10 +47,10 @@ COUNTING COMPLEXITY EXPLOSION
 
 4 items: A,B,C,D
 ┌───────────────────────────────────────────────┐
-│ ABCD ABDC ACBD ACDB ADBC ADCB                │
-│ BACD BADC BCAD BCDA BDAC BDCA                │  ← 24 arrangements
-│ CABD CADB CBAD CBDA CDAB CDBA                │
-│ DABC DACB DBAC DBCA DCAB DCBA                │
+│ ABCD ABDC ACBD ACDB ADBC ADCB                 │
+│ BACD BADC BCAD BCDA BDAC BDCA                 │  ← 24 arrangements
+│ CABD CADB CBAD CBDA CDAB CDBA                 │
+│ DABC DACB DBAC DBCA DCAB DCBA                 │
 └───────────────────────────────────────────────┘
 
 10 items: 3,628,800 arrangements 
