@@ -17,7 +17,7 @@ const HeadingRender: React.FC<HeadingRenderProps> = ({ level, ...props }) => {
   const headingStyles = {
     1: [
       "text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-4xl",
-      "font-bold",
+      "font-extrabold",
       "mt-8 xs:mt-10 sm:mt-12 lg:mt-16",
       "mb-4 xs:mb-5 sm:mb-6 lg:mb-8",
       "leading-tight xs:leading-tight sm:leading-tight lg:leading-none",
@@ -26,7 +26,7 @@ const HeadingRender: React.FC<HeadingRenderProps> = ({ level, ...props }) => {
 
     2: [
       "text-lg xs:text-xl sm:text-2xl lg:text-3xl xl:text-3xl",
-      "font-semibold",
+      "font-bold",
       "mt-7 xs:mt-8 sm:mt-10 lg:mt-12",
       "mb-3 xs:mb-4 sm:mb-5 lg:mb-6",
       "leading-tight xs:leading-tight sm:leading-normal lg:leading-tight",
@@ -35,7 +35,7 @@ const HeadingRender: React.FC<HeadingRenderProps> = ({ level, ...props }) => {
 
     3: [
       "text-base xs:text-lg sm:text-xl lg:text-2xl xl:text-2xl",
-      "font-medium",
+      "font-semibold",
       "mt-6 xs:mt-7 sm:mt-8 lg:mt-10",
       "mb-3 xs:mb-3 sm:mb-4 lg:mb-5",
       "leading-normal xs:leading-normal sm:leading-relaxed",
