@@ -1,18 +1,7 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
-import {
-  Copy,
-  ChevronDown,
-  ChevronRight,
-  Check,
-  Maximize2,
-} from "lucide-react";
+import { Copy, Check, Maximize2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import getIconForTech from "@/components/shared/icons/";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 import { useCodeThemeStore } from "@/stores/ui/code-theme";
 import { Button } from "@/components/ui/button";
 import { downloadAsFile, downloadAsImage } from "@/utils/download";
@@ -43,7 +32,6 @@ const CodeRender: React.FC<CodeRenderProps> = ({
   ...props
 }) => {
   const [copied, setCopied] = useState(false);
-  const [isOpen, setIsOpen] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [downloading, setDownloading] = useState<"image" | "file" | null>(null);
 
@@ -169,128 +157,115 @@ const CodeRender: React.FC<CodeRenderProps> = ({
   }
 
   return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div
-        ref={codeRef}
-        className="my-8 relative font-fira-code no-swipe shadow-background/50 rounded-2xl border-none"
-      >
-        <div className="bg-card text-muted-foreground px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-bold border-b border-border flex justify-between items-center rounded-t-2xl">
-          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
-            <span className="flex-shrink-0">
-              {(() => {
-                const IconComponent = getIconForTech(language || "code");
-                return <IconComponent className="w-4 h-4" />;
-              })()}
-            </span>
-            {isLargeCode && (
-              <Badge
-                variant="outline"
-                className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-none rounded-full"
-              >
-                {codeContent.split("\n").length} lines
-              </Badge>
-            )}
-          </div>
-
-          {/* Header Actions */}
-          <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-            {/* Copy Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={copyToClipboard}
-              className="h-8 px-2 transition-all duration-300 cursor-pointer"
-              aria-label={copied ? "Copied!" : "Copy code"}
+    <div
+      ref={codeRef}
+      className="my-8 relative font-fira-code no-swipe shadow-background/50 rounded-2xl border-none"
+    >
+      <div className="bg-card text-muted-foreground px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-bold border-b border-border flex justify-between items-center rounded-t-2xl">
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
+          <span className="flex-shrink-0">
+            {(() => {
+              const IconComponent = getIconForTech(language || "code");
+              return (
+                <span className="flex items-center gap-1">
+                  <IconComponent className="w-4 h-4" />
+                  <span className="hidden sm:inline">{language}</span>
+                </span>
+              );
+            })()}
+          </span>
+          {isLargeCode && (
+            <Badge
+              variant="outline"
+              className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-none rounded-full"
             >
-              <div className="relative">
-                <Copy
-                  size={14}
-                  className={cn(
-                    "transition-all duration-300",
-                    copied
-                      ? "opacity-0 scale-0 rotate-90"
-                      : "opacity-100 scale-100 rotate-0"
-                  )}
-                />
-                <Check
-                  size={14}
-                  className={cn(
-                    "absolute inset-0 transition-all duration-300 text-green-400",
-                    copied
-                      ? "opacity-100 scale-100 rotate-0"
-                      : "opacity-0 scale-0 -rotate-90"
-                  )}
-                />
-              </div>
-            </Button>
+              {codeContent.split("\n").length} lines
+            </Badge>
+          )}
+        </div>
 
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-8 px-2 cursor-pointer"
-              aria-label="Open in drawer"
-              onClick={() => setDrawerOpen(true)}
-            >
-              <Maximize2 size={14} />
-            </Button>
+        {/* Header Actions */}
+        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+          {/* Copy Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={copyToClipboard}
+            className="h-8 px-2 transition-all duration-300 cursor-pointer"
+            aria-label={copied ? "Copied!" : "Copy code"}
+          >
+            <div className="relative">
+              <Copy
+                size={14}
+                className={cn(
+                  "transition-all duration-300",
+                  copied
+                    ? "opacity-0 scale-0 rotate-90"
+                    : "opacity-100 scale-100 rotate-0"
+                )}
+              />
+              <Check
+                size={14}
+                className={cn(
+                  "absolute inset-0 transition-all duration-300 text-green-400",
+                  copied
+                    ? "opacity-100 scale-100 rotate-0"
+                    : "opacity-0 scale-0 -rotate-90"
+                )}
+              />
+            </div>
+          </Button>
 
-            {/* Collapse Toggle */}
-            <CollapsibleTrigger asChild>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-8 px-2 cursor-pointer"
+            aria-label="Open in drawer"
+            onClick={() => setDrawerOpen(true)}
+          >
+            <Maximize2 size={14} />
+          </Button>
+        </div>
+      </div>
+
+      {/* Code Content - Remove CollapsibleContent wrapper */}
+      <div className="rounded-2xl">
+        {isLargeCode ? (
+          /* Preview for large code blocks */
+          <div
+            className="relative cursor-pointer group"
+            onClick={() => setDrawerOpen(true)}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-8 px-2 cursor-pointer"
-                aria-label={isOpen ? "Collapse code" : "Expand code"}
+                className="bg-background/90 backdrop-blur-sm border-primary/20 hover:bg-primary/10 rounded-2xl"
               >
-                {isOpen ? (
-                  <ChevronDown size={14} />
-                ) : (
-                  <ChevronRight size={14} />
-                )}
+                <Maximize2 className="w-4 h-4 mr-2" />
+                View Full Code
               </Button>
-            </CollapsibleTrigger>
-          </div>
-        </div>
-
-        {/* Collapsible Code Content */}
-        <CollapsibleContent className="data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down rounded-2xl">
-          {isLargeCode ? (
-            /* Preview for large code blocks */
-            <div
-              className="relative cursor-pointer group"
-              onClick={() => setDrawerOpen(true)}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="bg-background/90 backdrop-blur-sm border-primary/20 hover:bg-primary/10 rounded-2xl"
-                >
-                  <Maximize2 className="w-4 h-4 mr-2" />
-                  View Full Code
-                </Button>
-              </div>
-              <div className="overflow-hidden relative max-h-[300px] rounded-2xl">
-                <CodeDisplay
-                  language={language}
-                  codeContent={codeContent}
-                  themeStyle={getCurrentThemeStyle()}
-                  props={{ ...props }}
-                />
-                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />
-              </div>
             </div>
-          ) : (
-            /* Regular code display for smaller blocks */
-            <CodeDisplay
-              language={language}
-              codeContent={codeContent}
-              themeStyle={getCurrentThemeStyle()}
-              props={{ ...props }}
-            />
-          )}
-        </CollapsibleContent>
+            <div className="overflow-hidden relative max-h-[300px] rounded-2xl">
+              <CodeDisplay
+                language={language}
+                codeContent={codeContent}
+                themeStyle={getCurrentThemeStyle()}
+                props={{ ...props }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />
+            </div>
+          </div>
+        ) : (
+          /* Regular code display for smaller blocks */
+          <CodeDisplay
+            language={language}
+            codeContent={codeContent}
+            themeStyle={getCurrentThemeStyle()}
+            props={{ ...props }}
+          />
+        )}
       </div>
 
       {/* Code Preview Drawer */}
@@ -308,7 +283,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
         props={props}
         themeStyle={getCurrentThemeStyle()}
       />
-    </Collapsible>
+    </div>
   );
 };
 

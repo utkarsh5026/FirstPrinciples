@@ -40,6 +40,8 @@ export const iconMap: Record<string, IconType> = {
 
   // Frontend Frameworks/Libraries
   react: SiReact,
+  jsx: SiReact,
+  tsx: SiTypescript,
 
   nodejs: SiNodedotjs,
   express: SiExpress,
