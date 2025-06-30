@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
-import CustomMarkdownRenderer from "@/components/document-reading/markdown/markdown-renderer";
+import { MarkdownRenderer } from "@/components/features/markdown-render";
 import SectionsSheet from "./sidebar/sections-sheet";
 import ReadingSettingsSheet from "./settings/reading-settings";
 import { ReadingSettingsProvider } from "./context/reading-settings-provider";
@@ -262,7 +262,7 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
                 key={currentIndex}
                 className="prose prose-lg prose-invert max-w-none"
               >
-                <CustomMarkdownRenderer
+                <MarkdownRenderer
                   markdown={currentSection.content}
                   className="fullscreen-card-content leading-relaxed"
                   fontFamily={fontFamily}
