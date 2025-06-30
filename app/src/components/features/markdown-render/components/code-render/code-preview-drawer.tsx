@@ -7,8 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { ActionButton } from "./action-button";
 import ThemeSelector from "./theme-selector";
+import CodeSettingsMenu from "./code-settings-menu";
 import CodeDisplay from "./code-display";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { useCodeSettingsStore } from "@/stores/ui/code-settings";
 
 interface CodePreviewDrawerProps {
   open: boolean;
@@ -28,8 +30,8 @@ interface CodePreviewDrawerProps {
 /**
  * Code Preview Drawer Component
  *
- * A bottom drawer for better code inspection with download capabilities
- * and theme customization.
+ * A bottom drawer for better code inspection with download capabilities,
+ * theme customization, and comprehensive display settings.
  */
 const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
   open,
@@ -46,6 +48,7 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
   themeStyle,
 }) => {
   const [lineWrap, setLineWrap] = useState(false);
+  const { settings } = useCodeSettingsStore();
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange} direction="bottom">
@@ -72,32 +75,42 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
 
                 <ThemeSelector />
 
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={onCopy}
-                  className="gap-1 sm:gap-2 hover:bg-primary/10 hover:text-primary transition-all duration-200 rounded-xl sm:rounded-2xl cursor-pointer h-8 px-2 sm:px-3"
-                >
-                  <div className="relative">
-                    <Copy
-                      className={cn(
-                        "w-3.5 h-3.5 sm:w-4 sm:h-4 transition-all duration-300",
-                        copied
-                          ? "opacity-0 scale-0 rotate-90"
-                          : "opacity-100 scale-100 rotate-0"
-                      )}
-                    />
-                    <Check
-                      className={cn(
-                        "absolute inset-0 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-all duration-300",
-                        copied
-                          ? "opacity-100 scale-100 rotate-0 text-green-600"
-                          : "opacity-0 scale-0 -rotate-90"
-                      )}
-                    />
-                  </div>
-                  <span className="hidden md:inline">Copy</span>
-                </Button>
+                <div className="w-px h-6 bg-border/50" />
+
+                <CodeSettingsMenu />
+
+                {settings.showCopyButton && (
+                  <>
+                    <div className="w-px h-6 bg-border/50" />
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={onCopy}
+                      className="gap-1 sm:gap-2 hover:bg-primary/10 hover:text-primary transition-all duration-200 rounded-xl sm:rounded-2xl cursor-pointer h-8 px-2 sm:px-3"
+                    >
+                      <div className="relative">
+                        <Copy
+                          className={cn(
+                            "w-3.5 h-3.5 sm:w-4 sm:h-4 transition-all duration-300",
+                            copied
+                              ? "opacity-0 scale-0 rotate-90"
+                              : "opacity-100 scale-100 rotate-0"
+                          )}
+                        />
+                        <Check
+                          className={cn(
+                            "absolute inset-0 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-all duration-300",
+                            copied
+                              ? "opacity-100 scale-100 rotate-0 text-green-600"
+                              : "opacity-0 scale-0 -rotate-90"
+                          )}
+                        />
+                      </div>
+                      <span className="hidden md:inline">Copy</span>
+                    </Button>
+                  </>
+                )}
+
                 <ActionButton
                   icon={Image}
                   label="Image"
