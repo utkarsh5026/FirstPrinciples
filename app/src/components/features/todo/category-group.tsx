@@ -61,7 +61,7 @@ const CategoryGroup: React.FC<CategoryGroupProps> = ({
               key={categoryParentKey}
               open={isExpanded}
               onOpenChange={() => toggleExpandParent(categoryParentKey)}
-              className="border border-border/50 rounded-2xl overflow-hidden"
+              className="border-none rounded-2xl overflow-hidden"
             >
               <CollapsibleTrigger className="flex items-center justify-between w-full p-2.5 text-sm font-medium bg-secondary/5 hover:bg-secondary/10 transition-colors rounded-2xl">
                 <div className="flex items-center">
@@ -77,7 +77,7 @@ const CategoryGroup: React.FC<CategoryGroupProps> = ({
                 </Badge>
               </CollapsibleTrigger>
 
-              <CollapsibleContent className="bg-background/50">
+              <CollapsibleContent className="bg-transparent border-none">
                 <div className="p-2 space-y-2">
                   <AnimatePresence>
                     {items.map((item) => (

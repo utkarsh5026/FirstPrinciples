@@ -6,7 +6,7 @@ import ReadingProgressAreaChart from "./reading-progress-area-chart";
 import { useState, useEffect, useMemo } from "react";
 import { formatRelativeTime } from "@/utils/time";
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
-import type { Color } from "@/components/shared/container/useContainer";
+import type { Color } from "@/components/shared/container/use-container";
 
 interface ReadingProgressProps {
   history: ReadingHistoryItem[];

@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import TabbedDocumentNavigation from "./TabbedDocumentsNavigation";
+import TabbedDocumentNavigation from "./tabbed-document-navigation";
 import type { Document } from "@/stores/document/document-store";
 
 interface DocumentTreeProps {

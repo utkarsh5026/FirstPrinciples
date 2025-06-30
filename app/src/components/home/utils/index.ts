@@ -16,7 +16,7 @@ export const formatDate = (timestamp: number) => {
 
   // If today, show time
   if (date.toDateString() === now.toDateString()) {
-    return `Today at ${date.toLocaleTimeString([], {
+    return `${date.toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
     })}`;

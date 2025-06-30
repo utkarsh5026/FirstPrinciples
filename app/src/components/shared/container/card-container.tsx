@@ -19,7 +19,7 @@ import {
   useInsightTheme,
   type Color,
   type Variant,
-} from "./useContainer";
+} from "./use-container";
 import styles from "./container.module.css";
 
 export type CardContainerInsight = {
@@ -47,22 +47,6 @@ export interface CardContainerProps {
   compact?: boolean;
 }
 
-/**
- * EnhancedInsightCard - An improved analytics visualization component
- *
- * This component creates a beautiful, interactive card layout for different analytics
- * visualizations, with smooth animations, informative tooltips, and mobile optimization.
- *
- * Features:
- * - Scroll-triggered animations with customizable delays
- * - Interactive hover effects and tooltips
- * - Theming with different color variants
- * - Detailed insights with individual icons and tooltips
- * - Mobile-optimized layout and interactions
- * - Optional footer section
- * - Optional header action element in the top-right corner
- * - Stunning visual effects and micro-interactions
- */
 const CardContainer: React.FC<CardContainerProps> = ({
   title,
   description,
@@ -88,9 +72,8 @@ const CardContainer: React.FC<CardContainerProps> = ({
     handleMouseLeave,
   } = useContainerAnimation(delay);
 
-  const { gradient, iconColor } = useInsightTheme(baseColor, variant);
+  const { iconColor } = useInsightTheme(baseColor, variant);
 
-  // Determine if card is clickable
   const isClickable = !!onCardClick;
 
   return (
@@ -105,38 +88,32 @@ const CardContainer: React.FC<CardContainerProps> = ({
     >
       <Card
         className={cn(
-          "overflow-auto border-primary/10 h-full shadow-sm transition-all duration-300 rounded-2xl",
-          "relative bg-gradient-to-br",
-          gradient,
+          "overflow-auto h-full transition-all duration-300 rounded-2xl",
+          "bg-card/50 border-none shadow-sm",
           className,
-          styles["insight-card"],
-          isClickable && "cursor-pointer hover:ring-1 hover:ring-primary/20"
+          isClickable && "cursor-pointer hover:ring-1 hover:ring-primary/10"
         )}
         onClick={onCardClick}
       >
         <motion.div variants={animationStates.header}>
           <CardHeader className="pb-2 relative">
-            {/* Beautiful subtle pattern overlay */}
-            <div
-              className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.15)_1px,transparent_0)]"
-              style={{ backgroundSize: "16px 16px" }}
-            ></div>
-
             <div className="flex items-center justify-between relative z-10">
               <div className="flex items-center space-y-0">
                 <div className="flex items-center space-x-2">
                   {Icon && (
                     <div
                       className={cn(
-                        "mr-2 p-1.5 rounded-full bg-background/90 shadow-sm",
+                        "mr-2 p-1.5 rounded-lg bg-muted/50 border border-border/30",
                         iconColor,
-                        styles["icon-pulse"]
+                        styles["icon-pulse"],
+                        // Subtle hover effect
+                        "transition-colors duration-200 hover:bg-muted/70"
                       )}
                     >
                       <Icon className="h-3.5 w-3.5" />
                     </div>
                   )}
-                  <CardTitle className="text-sm font-medium flex items-center">
+                  <CardTitle className="text-sm font-medium flex items-center text-card-foreground">
                     {title}
 
                     {infoTooltip && (
@@ -144,7 +121,7 @@ const CardContainer: React.FC<CardContainerProps> = ({
                         <TooltipTrigger asChild>
                           <motion.div
                             className={cn(
-                              "ml-2 opacity-40 hover:opacity-100 cursor-help transition-opacity",
+                              "ml-2 opacity-50 hover:opacity-100 cursor-help transition-opacity",
                               styles["info-icon"]
                             )}
                             whileHover={{
@@ -153,14 +130,16 @@ const CardContainer: React.FC<CardContainerProps> = ({
                             }}
                             transition={{ duration: 0.5 }}
                           >
-                            <Info className="h-3.5 w-3.5 text-foreground" />
+                            <Info className="h-3.5 w-3.5 text-muted-foreground" />
                           </motion.div>
                         </TooltipTrigger>
                         <TooltipContent
                           side="top"
-                          className="max-w-xs bg-card/95 backdrop-blur-sm border border-border/40 shadow-lg p-3 rounded-xl"
+                          className="max-w-xs bg-popover border border-border shadow-lg p-3 rounded-lg"
                         >
-                          <p className="text-xs">{infoTooltip}</p>
+                          <p className="text-xs text-popover-foreground">
+                            {infoTooltip}
+                          </p>
                         </TooltipContent>
                       </Tooltip>
                     )}
@@ -168,7 +147,7 @@ const CardContainer: React.FC<CardContainerProps> = ({
                 </div>
               </div>
 
-              {/* Header action area - NEW */}
+              {/* Header action area */}
               {headerAction && (
                 <motion.div
                   variants={animationStates.headerAction}
@@ -181,7 +160,6 @@ const CardContainer: React.FC<CardContainerProps> = ({
                 </motion.div>
               )}
 
-              {/* Clickable card indicator */}
               {isClickable && !headerAction && (
                 <motion.div
                   className="ml-auto"
@@ -193,16 +171,16 @@ const CardContainer: React.FC<CardContainerProps> = ({
               )}
             </div>
 
-            {/* Description rendered below title */}
+            {/* Description */}
             {description && (
-              <CardDescription className="text-xs mt-1">
+              <CardDescription className="text-xs mt-1 text-muted-foreground">
                 {description}
               </CardDescription>
             )}
 
-            {/* Insights badges with improved styling */}
+            {/* Modern insights badges */}
             {!compact && insights && insights.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-2">
+              <div className="flex flex-wrap gap-2 mt-3">
                 {insights.map((insight, idx) => {
                   const InsightIcon = insight.icon;
 
@@ -211,10 +189,11 @@ const CardContainer: React.FC<CardContainerProps> = ({
                       key={insight.label}
                       variants={animationStates.insight(idx)}
                       className={cn(
-                        "text-xs py-1 px-3 rounded-full flex items-center gap-1.5 border border-border/40",
+                        "text-xs py-1.5 px-3 rounded-2xl flex items-center gap-1.5",
+                        "border transition-all duration-200",
                         insight.highlight
-                          ? "bg-primary/10 text-primary-foreground font-medium"
-                          : "bg-secondary/40 text-secondary-foreground",
+                          ? "bg-primary/10 border-primary/20 text-primary-foreground font-medium"
+                          : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/50",
                         styles["insight-badge"]
                       )}
                     >
@@ -232,14 +211,16 @@ const CardContainer: React.FC<CardContainerProps> = ({
                         />
                       )}
                       <span
-                        className={cn(insight.highlight ? "font-medium" : "")}
+                        className={cn(
+                          insight.highlight ? "font-medium text-foreground" : ""
+                        )}
                       >
                         {insight.label}:
                       </span>
                       <span
                         className={cn(
                           "font-medium",
-                          insight.highlight ? "text-primary" : ""
+                          insight.highlight ? "text-primary" : "text-foreground"
                         )}
                       >
                         {insight.value}
@@ -249,17 +230,19 @@ const CardContainer: React.FC<CardContainerProps> = ({
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <motion.div
-                              className="opacity-40 hover:opacity-100 cursor-help"
+                              className="opacity-50 hover:opacity-100 cursor-help transition-opacity"
                               whileHover={{ scale: 1.2 }}
                             >
-                              <Info className="h-2.5 w-2.5 text-foreground" />
+                              <Info className="h-2.5 w-2.5 text-muted-foreground" />
                             </motion.div>
                           </TooltipTrigger>
                           <TooltipContent
                             side="top"
-                            className="text-xs max-w-xs bg-card/95 backdrop-blur-sm border border-border/40"
+                            className="text-xs max-w-xs bg-popover border border-border"
                           >
-                            {insight.tooltip}
+                            <p className="text-popover-foreground">
+                              {insight.tooltip}
+                            </p>
                           </TooltipContent>
                         </Tooltip>
                       )}
@@ -273,18 +256,13 @@ const CardContainer: React.FC<CardContainerProps> = ({
 
         <motion.div variants={animationStates.content}>
           <CardContent className={cn("pt-0 relative", !insights && "pt-2")}>
-            {/* Inner shadow to add depth to the chart area */}
-            <div
-              className="absolute inset-0 pointer-events-none rounded-xl"
-              style={{ boxShadow: "inset 0 2px 4px rgba(0,0,0,0.05)" }}
-            ></div>
             <div className="relative z-10">{children}</div>
           </CardContent>
         </motion.div>
 
         {footer && (
           <motion.div variants={animationStates.footer}>
-            <CardFooter className="px-6 py-3 border-t border-border/20 bg-secondary/10 backdrop-blur-sm font-cascadia-code">
+            <CardFooter className="px-6 py-3 border-t border-border/40 bg-muted/20 backdrop-blur-sm font-cascadia-code">
               {footer}
             </CardFooter>
           </motion.div>

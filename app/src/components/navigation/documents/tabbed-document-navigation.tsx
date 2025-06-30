@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import FileTree from "./FileTree";
-import FlatDirectoryView from "./FlatDirectoryView";
+import FileTree from "./file-tree";
+import FlatDirectoryView from "./flat-directory-view";
 import { FolderTree, LayoutGrid } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import BreadcrumbView from "./BreadcrumbView";
+import BreadcrumbView from "./breadcrumb-view";
 import { useLocalStorage, useMobile, useDocumentList } from "@/hooks";
 import { useSwipeable } from "react-swipeable";
 import type { Document } from "@/stores/document/document-store";

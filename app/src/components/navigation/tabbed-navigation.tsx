@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { BookOpen, FolderTree } from "lucide-react";
 import CurrentlyReading from "./currenty-reading/currently-reading";
-import DocumentTree from "./documents/DocumentTree";
+import DocumentTree from "./documents/document-tree";
 import { CurrentCategory } from "./hooks/use-navigate";
 import type { Document } from "@/stores/document/document-store";
 import { motion } from "framer-motion";
