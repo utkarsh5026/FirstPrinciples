@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
-import CustomMarkdownRenderer from "@/components/document-reading/markdown/markdown-renderer";
+import CustomMarkdownRenderer from "@/components/features/markdown-render/markdown-renderer";
 import SectionsSheet from "./sidebar/sections-sheet";
 import ReadingSettingsSheet from "./settings/reading-settings";
 import { ReadingSettingsProvider } from "./context/reading-settings-provider";
