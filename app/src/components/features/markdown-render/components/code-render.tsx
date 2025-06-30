@@ -639,12 +639,12 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({
 
   const getFontSize = () => {
     if (isDrawer) {
-      if (window.innerWidth >= 1536) return "1.1rem";
-      if (window.innerWidth >= 1280) return "1.05rem";
-      if (window.innerWidth >= 1024) return "1rem";
-      return "0.95rem";
+      if (window.innerWidth >= 1536) return "0.95rem";
+      if (window.innerWidth >= 1280) return "0.9rem";
+      if (window.innerWidth >= 1024) return "0.85rem";
+      return "0.8rem";
     }
-    return window.innerWidth < 640 ? "0.8rem" : "0.875rem";
+    return window.innerWidth < 640 ? "0.7rem" : "0.75rem";
   };
 
   const getLineHeight = () => {
