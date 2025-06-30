@@ -96,47 +96,15 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
     <Drawer open={open} onOpenChange={onOpenChange} direction="bottom">
       <DrawerContent className="h-[85vh] sm:h-[90vh] p-0 font-cascadia-code rounded-t-3xl border-none shadow-2xl shadow-black/20 overflow-hidden">
         <DrawerHeader className="relative px-3 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-6 border-b border-border/50 bg-gradient-to-r from-card/80 via-card/60 to-card/40 backdrop-blur-xl">
-          {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
 
           <div className="relative flex items-center justify-between gap-2">
-            <div className="flex items-center flex-1 min-w-0">
-              {/* Icon with subtle glow effect */}
-              <div className="relative flex-shrink-0">
-                <div className="absolute inset-0 bg-primary/20 blur-lg rounded-full" />
-                <div className="relative p-2 sm:p-3 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl sm:rounded-2xl border border-primary/20 backdrop-blur-sm">
-                  {(() => {
-                    const IconComponent = getIconForTech(language || "code");
-                    return (
-                      <IconComponent className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
-                    );
-                  })()}
-                </div>
-              </div>
+            <DrawerTitle className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent truncate">
+              Code Preview
+            </DrawerTitle>
 
-              <div className="ml-3 sm:ml-4 space-y-0.5 sm:space-y-1 min-w-0 flex-1">
-                <DrawerTitle className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent truncate">
-                  Code Preview
-                </DrawerTitle>
-                <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
-                  <Badge
-                    variant="outline"
-                    className="text-xs px-1.5 py-0.5 sm:px-2 bg-primary/10 text-primary border-none flex-shrink-0 rounded-2xl hidden sm:block"
-                  >
-                    {language || "plaintext"}
-                  </Badge>
-                  <span className="hidden xs:inline">•</span>
-                  <span className="hidden xs:inline truncate">
-                    {codeContent.split("\n").length} lines
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Enhanced Action Buttons */}
             <div className="flex items-center gap-1 sm:gap-3 flex-shrink-0">
               <div className="flex items-center gap-0.5 sm:gap-2 p-1 bg-card/50 rounded-xl sm:rounded-2xl border border-border/50 backdrop-blur-sm">
-                {/* Line Wrap Toggle */}
                 <div className="flex items-center gap-1.5 px-2 py-1">
                   <WrapText className="w-3.5 h-3.5 text-muted-foreground" />
                   <Switch
@@ -149,16 +117,10 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
                     Wrap
                   </span>
                 </div>
-
-                {/* Separator */}
                 <div className="w-px h-6 bg-border/50" />
-
-                {/* Theme Selector */}
                 <div className="hidden xs:block">
                   <ThemeSelector />
                 </div>
-
-                {/* Copy Button */}
                 <Button
                   variant="ghost"
                   size="sm"
@@ -186,7 +148,6 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
                   <span className="hidden md:inline">Copy</span>
                 </Button>
 
-                {/* Download as Image Button */}
                 <Button
                   variant="ghost"
                   size="sm"
@@ -202,7 +163,6 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
                   <span className="hidden md:inline">Image</span>
                 </Button>
 
-                {/* Download as File Button */}
                 <Button
                   variant="ghost"
                   size="sm"
@@ -223,9 +183,6 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
         </DrawerHeader>
 
         <div className="flex-1 p-3 sm:p-4 lg:p-6 relative overflow-hidden">
-          {/* Drag indicator */}
-          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-muted-foreground/30 rounded-full mb-4" />
-
           <ScrollArea className="relative h-[calc(85vh-120px)] sm:h-[calc(90vh-140px)] lg:h-[calc(90vh-180px)] rounded-xl sm:rounded-2xl border border-border/30 overflow-hidden mt-4">
             <CodeDisplay
               isDrawer
