@@ -9,7 +9,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
-import { useCodeThemeStore, type ThemeKey } from "@/stores/ui/code-theme";
+import {
+  useCodeThemeStore,
+  type ThemeKey,
+} from "@/components/features/markdown-render/store/code-theme-store";
 import { ActionButton } from "./action-button";
 
 /**

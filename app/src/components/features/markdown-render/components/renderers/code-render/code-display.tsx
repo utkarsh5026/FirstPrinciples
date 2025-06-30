@@ -1,7 +1,7 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { useCodeSettingsStore } from "@/stores/ui/code-settings";
+import { useCodeSettingsStore } from "../../../store/code-settings-store";
 
 interface CodeDisplayProps {
   isDrawer?: boolean;

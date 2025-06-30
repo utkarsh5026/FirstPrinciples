@@ -10,7 +10,7 @@ import ThemeSelector from "./theme-selector";
 import CodeSettingsMenu from "./code-settings-menu";
 import CodeDisplay from "./code-display";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { useCodeSettingsStore } from "@/stores/ui/code-settings";
+import { useCodeSettingsStore } from "@/components/features/markdown-render/store/code-settings-store";
 
 interface CodePreviewDrawerProps {
   open: boolean;

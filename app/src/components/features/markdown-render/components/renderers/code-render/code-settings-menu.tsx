@@ -29,7 +29,7 @@ import {
   useCodeSettingsStore,
   type CodeFontFamily,
   type CodeFontSize,
-} from "@/stores/ui/code-settings";
+} from "@/components/features/markdown-render/store/code-settings-store";
 import { ActionButton } from "./action-button";
 
 /**

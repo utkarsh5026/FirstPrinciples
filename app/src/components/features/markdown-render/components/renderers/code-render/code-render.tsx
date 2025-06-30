@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from "react";
 import { Copy, Check, Maximize2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import getIconForTech from "@/components/shared/icons/";
-import { useCodeThemeStore } from "@/stores/ui/code-theme";
+import { useCodeThemeStore } from "@/components/features/markdown-render/store/code-theme-store";
 import { Button } from "@/components/ui/button";
 import { downloadAsFile, downloadAsImage } from "@/utils/download";
 import { Badge } from "@/components/ui/badge";

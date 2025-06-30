@@ -58,7 +58,9 @@ export const useThemeStore = create<ThemeState>((set, get) => ({
     set({ currentTheme: theme });
 
     if (isDarkModeChanging) {
-      import("@/stores/ui/code-theme").then(({ useCodeThemeStore }) => {
+      import(
+        "@/components/features/markdown-render/store/code-theme-store"
+      ).then(({ useCodeThemeStore }) => {
         const codeThemeStore = useCodeThemeStore.getState();
         codeThemeStore.syncWithMainTheme(theme.isDark);
       });

@@ -57,7 +57,6 @@ const DEFAULT_SETTINGS: CodeDisplaySettings = {
   lineHeight: 1.6,
 };
 
-// Font family labels
 const FONT_FAMILY_LABELS: Record<CodeFontFamily, string> = {
   "source-code-pro": "Source Code Pro",
   "fira-code": "Fira Code",
@@ -70,7 +69,6 @@ const FONT_FAMILY_LABELS: Record<CodeFontFamily, string> = {
   "roboto-mono": "Roboto Mono",
 };
 
-// Font size labels
 const FONT_SIZE_LABELS: Record<CodeFontSize, string> = {
   xs: "Extra Small",
   sm: "Small",
@@ -79,7 +77,6 @@ const FONT_SIZE_LABELS: Record<CodeFontSize, string> = {
   xl: "Extra Large",
 };
 
-// Load settings from localStorage
 const loadInitialSettings = (): CodeDisplaySettings => {
   if (typeof window === "undefined") return DEFAULT_SETTINGS;
 
