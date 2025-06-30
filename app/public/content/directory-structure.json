@@ -882,6 +882,17 @@
     ]
   },
   {
+    "id": "maths_in_data_science",
+    "name": "Maths In Data Science",
+    "categories": [
+      {
+        "id": "algebra_and_algebraic_structures",
+        "name": "Algebra And Algebraic Structures",
+        "categories": []
+      }
+    ]
+  },
+  {
     "id": "nodejs",
     "name": "Nodejs",
     "categories": [

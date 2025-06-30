@@ -2,11 +2,11 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Sheet, SheetContent, SheetHeader } from "@/components/ui/sheet";
 import { useDocumentList } from "@/hooks";
 import { BookOpen, Trash2 } from "lucide-react";
-import Header from "./Header";
+import Header from "./sidebar-header";
 import useNavigation from "./hooks/use-navigate";
 import { databaseService } from "@/infrastructure/storage";
 import { Button } from "@/components/ui/button";
-import TabbedNavigation from "./TabbedNavigation";
+import TabbedNavigation from "./tabbed-navigation";
 
 interface ResponsiveSidebarProps {
   onSelectFile: (filepath: string) => void;

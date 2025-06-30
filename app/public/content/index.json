@@ -4279,6 +4279,21 @@
       "totalFileSize": 0
     },
     {
+      "id": "maths_in_data_science",
+      "name": "Maths In Data Science",
+      "categories": [
+        {
+          "id": "algebra_and_algebraic_structures",
+          "name": "Algebra And Algebraic Structures",
+          "categories": [],
+          "files": [],
+          "totalFileSize": 0
+        }
+      ],
+      "files": [],
+      "totalFileSize": 0
+    },
+    {
       "id": "nodejs",
       "name": "Nodejs",
       "categories": [
