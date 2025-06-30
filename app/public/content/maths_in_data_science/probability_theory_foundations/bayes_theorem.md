@@ -42,7 +42,7 @@ NATURAL KNOWLEDGE FLOW (Cause → Effect)
 
 PRACTICAL NEED (Effect → Cause)
 ┌─────────────┐    P(H|E)     ┌─────────────┐
-│ HYPOTHESIS  │ ◀─────────────  │  EVIDENCE   │
+│ HYPOTHESIS  │ ◀─────────────│  EVIDENCE   │
 │ (Cause)     │    Need to    │ (Effect)    │
 │             │    calculate  │             │
 └─────────────┘               └─────────────┘
@@ -135,24 +135,24 @@ STEP 3: Solve for what we want
 THE BAYES' THEOREM RECIPE
 
 INGREDIENTS:
-┌─────────────────────────────────────────────────────────┐
-│ Prior P(H)      │ "What I believed before"              │
+┌──────────────────────────────────────────────────────────┐
+│ Prior P(H)       │ "What I believed before"              │
 │ Likelihood P(E|H)│ "How well hypothesis explains evidence│
-│ Evidence P(E)   │ "How surprising is this evidence?"    │
-└─────────────────────────────────────────────────────────┘
+│ Evidence P(E)    │ "How surprising is this evidence?"    │
+└──────────────────────────────────────────────────────────┘
                              │
                              ▼
 COOKING PROCESS:
 ┌─────────────────────────────────────────────────────────┐
-│ 1. Take your prior belief: P(H)                        │
-│ 2. Multiply by how well it explains evidence: P(E|H)   │
-│ 3. Normalize by evidence surprisingness: ÷ P(E)        │
+│ 1. Take your prior belief: P(H)                         │
+│ 2. Multiply by how well it explains evidence: P(E|H)    │
+│ 3. Normalize by evidence surprisingness: ÷ P(E)         │
 └─────────────────────────────────────────────────────────┘
                              │
                              ▼
 RESULT:
 ┌─────────────────────────────────────────────────────────┐
-│ Posterior P(H|E): "What I believe after seeing evidence│
+│ Posterior P(H|E): "What I believe after seeing evidence │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -195,14 +195,14 @@ P(Disease | Positive) = 0.00099 / 0.01098 ≈ 0.09 = **9%**
 MEDICAL TESTING WITH BAYES' THEOREM
 
 POPULATION: 100,000 people
-┌─────────────────────────────────────────────────────────┐
-│                    DISEASE STATUS                       │
-│ ┌─────────────────┐  ┌─────────────────────────────────┐ │
-│ │  Have Disease   │  │       No Disease                │ │
-│ │   100 people    │  │      99,900 people              │ │
-│ │   (0.1%)        │  │       (99.9%)                   │ │
-│ └─────────────────┘  └─────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────┐
+│                    DISEASE STATUS                         │
+│ ┌─────────────────┐  ┌─────────────────────────────────┐  │
+│ │  Have Disease   │  │       No Disease                │  │
+│ │   100 people    │  │      99,900 people              │  │
+│ │   (0.1%)        │  │       (99.9%)                   │  │
+│ └─────────────────┘  └─────────────────────────────────┘  │
+└───────────────────────────────────────────────────────────┘
                              │
                              ▼
 AFTER TESTING (99% accuracy):
@@ -381,8 +381,8 @@ PITFALL 1: Prosecutor's Fallacy
 │ WRONG: P(E|H) = P(H|E)                  │
 │ "Match probability = Guilt probability" │
 │                                         │
-│ RIGHT: Must use full Bayes formula     │
-│ P(H|E) = P(E|H) × P(H) / P(E)          │
+│ RIGHT: Must use full Bayes formula      │
+│ P(H|E) = P(E|H) × P(H) / P(E)           │ 
 └─────────────────────────────────────────┘
 
 PITFALL 2: Base Rate Neglect  
@@ -917,11 +917,11 @@ SCIENTIFIC PROCESS              BAYESIAN COMPONENTS
 └─────────────────────┘        └─────────────────────┘
            │                              │
            ▼                              ▼
-┌─────────────────────┐        ┌─────────────────────┐
+┌──────────────────────┐        ┌─────────────────────┐
 │ 3. Conduct Experiment│   ≡    │ Evidence P(E)       │
-│    Observe what     │        │ What we actually    │
-│    actually happens │        │ observed            │
-└─────────────────────┘        └─────────────────────┘
+│    Observe what      │        │ What we actually    │
+│    actually happens  │        │ observed            │
+└──────────────────────┘        └─────────────────────┘
            │                              │
            ▼                              ▼
 ┌─────────────────────┐        ┌─────────────────────┐
