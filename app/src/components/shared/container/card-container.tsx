@@ -103,14 +103,13 @@ const CardContainer: React.FC<CardContainerProps> = ({
                   {Icon && (
                     <div
                       className={cn(
-                        "mr-2 p-1.5 rounded-lg bg-muted/50 border border-border/30",
+                        "mr-2 p-1.5 rounded-2xl bg-muted/50 border border-border/30",
                         iconColor,
                         styles["icon-pulse"],
-                        // Subtle hover effect
                         "transition-colors duration-200 hover:bg-muted/70"
                       )}
                     >
-                      <Icon className="h-3.5 w-3.5" />
+                      <Icon className="h-4 w-4" />
                     </div>
                   )}
                   <CardTitle className="text-sm font-medium flex items-center text-card-foreground">
