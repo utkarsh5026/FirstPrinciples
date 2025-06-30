@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { useReadingSettingsStore } from "@/stores/ui/reading-settings-store";
 import {
   ReadingSettingsContext,
@@ -14,23 +14,6 @@ export const ReadingSettingsProvider: React.FC<
 > = ({ children }) => {
   const { settings, setFontFamily, setCustomBackground, resetSettings } =
     useReadingSettingsStore();
-
-  useEffect(() => {
-    if (settings.customBackground) {
-      document.documentElement.style.setProperty(
-        "--background",
-        settings.customBackground
-      );
-    } else {
-      document.documentElement.style.removeProperty("--background");
-    }
-
-    return () => {
-      if (settings.customBackground) {
-        document.documentElement.style.removeProperty("--background");
-      }
-    };
-  }, [settings.customBackground]);
 
   const value: ReadingSettingsContextType = useMemo(
     () => ({
