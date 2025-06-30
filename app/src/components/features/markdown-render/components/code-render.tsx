@@ -27,11 +27,11 @@ import {
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useCodeThemeStore, type ThemeKey } from "@/stores/ui/code-theme";
 import { Button } from "@/components/ui/button";
@@ -93,12 +93,9 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
   const [lineWrap, setLineWrap] = useState(false);
 
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent
-        side="bottom"
-        className="h-[85vh] sm:h-[90vh] p-0 font-cascadia-code rounded-t-3xl border-none shadow-2xl shadow-black/20 overflow-hidden"
-      >
-        <SheetHeader className="relative px-3 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-6 border-b border-border/50 bg-gradient-to-r from-card/80 via-card/60 to-card/40 backdrop-blur-xl">
+    <Drawer open={open} onOpenChange={onOpenChange} direction="bottom">
+      <DrawerContent className="h-[85vh] sm:h-[90vh] p-0 font-cascadia-code rounded-t-3xl border-none shadow-2xl shadow-black/20 overflow-hidden">
+        <DrawerHeader className="relative px-3 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-6 border-b border-border/50 bg-gradient-to-r from-card/80 via-card/60 to-card/40 backdrop-blur-xl">
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
 
@@ -118,9 +115,9 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
               </div>
 
               <div className="ml-3 sm:ml-4 space-y-0.5 sm:space-y-1 min-w-0 flex-1">
-                <SheetTitle className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent truncate">
+                <DrawerTitle className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent truncate">
                   Code Preview
-                </SheetTitle>
+                </DrawerTitle>
                 <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
                   <Badge
                     variant="outline"
@@ -223,7 +220,7 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
               </div>
             </div>
           </div>
-        </SheetHeader>
+        </DrawerHeader>
 
         <div className="flex-1 p-3 sm:p-4 lg:p-6 relative overflow-hidden">
           {/* Drag indicator */}
@@ -243,8 +240,8 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
             <ScrollBar orientation="vertical" className="bg-muted/50" />
           </ScrollArea>
         </div>
-      </SheetContent>
-    </Sheet>
+      </DrawerContent>
+    </Drawer>
   );
 };
 
