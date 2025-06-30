@@ -835,21 +835,21 @@ Data types represent a hierarchy of mathematical sophistication that mirrors how
 ```
 The Data Type Information Hierarchy:
 
-RATIO DATA     ┌─ Contains all information ─┐
+RATIO DATA     ┌─ Contains all information ──────┐
                │  Can convert to any lower level │
-               └────────────────────────────────┘
+               └─────────────────────────────────┘
                             ↓ (lose ratio info)
-INTERVAL DATA  ┌─ Contains order + distances ─┐
-               │  Can convert to ordinal/nominal │  
-               └────────────────────────────────┘
+INTERVAL DATA  ┌─ Contains order + distances ──────┐
+               │  Can convert to ordinal/nominal   │  
+               └───────────────────────────────────┘
                             ↓ (lose distance info)
 ORDINAL DATA   ┌─ Contains order only ────────┐
                │  Can convert to nominal      │
-               └────────────────────────────────┘
+               └──────────────────────────────┘
                             ↓ (lose order info)
-NOMINAL DATA   ┌─ Contains categories only ───┐
-               │  Cannot convert up hierarchy │
-               └────────────────────────────────┘
+NOMINAL DATA   ┌─ Contains categories only ────────┐
+               │  Cannot convert up hierarchy      │
+               └───────────────────────────────────┘
 ```
 
 > **The irreversibility insight** : Like entropy in physics, information flows only downward in the measurement hierarchy. You can always make ratio data ordinal by ranking it, but you can never make ordinal data ratio by assigning numbers. Once information is lost, it cannot be recovered.
