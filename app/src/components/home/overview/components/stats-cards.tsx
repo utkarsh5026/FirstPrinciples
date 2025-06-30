@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { motion, type Variants } from "framer-motion";
 import { BookCopy, Flame, Clock, Trophy, Sparkles } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import { formatNumber } from "@/components/analytics/utils";
 import useGlobalMetrics from "@/hooks/section/useGlobalMetrics";
 import { formatTimeInMs } from "@/utils/time";

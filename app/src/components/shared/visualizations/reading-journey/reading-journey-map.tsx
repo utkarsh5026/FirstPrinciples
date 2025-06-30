@@ -18,7 +18,7 @@ import {
   Calendar,
   Activity,
 } from "lucide-react";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import useMobile from "@/hooks/device/use-mobile";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";

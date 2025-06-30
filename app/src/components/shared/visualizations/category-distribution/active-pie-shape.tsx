@@ -1,5 +1,5 @@
 import { PieSectorDataItem } from "recharts/types/polar/Pie";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import { truncateText, fromSnakeToTitleCase } from "@/utils/string";
 import type { CategoryBreakdown } from "@/stores/analytics/category-store";
 import { Sector } from "recharts";

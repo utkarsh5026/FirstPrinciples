@@ -7,7 +7,7 @@ import { generateThemeColors } from "@/utils/colors";
 import { fromSnakeToTitleCase } from "@/utils/string";
 import useMobile from "@/hooks/device/use-mobile";
 import { useCategoryStore } from "@/stores";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import getIconForTech from "../shared/icons";
 import {
   ChartTooltip,

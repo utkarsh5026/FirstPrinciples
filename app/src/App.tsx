@@ -6,7 +6,7 @@ import AppHeader from "@/components/layout/app-header";
 import AppWrapper from "@/components/utils/welcome/app-wrapper";
 import { TabProvider } from "@/components/home/context/tab-provider";
 import { useInit } from "./stores";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 
 /**
  * 🌟 App Component

@@ -8,7 +8,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import useMobile from "@/hooks/device/use-mobile";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import { generateThemeColors } from "@/utils/colors";
 import {
   ChartContainer as ChartContainerUI,

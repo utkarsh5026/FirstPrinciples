@@ -1,4 +1,4 @@
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 
 const FirstPrinciplesLogo: React.FC<{ onClick: () => void }> = ({
   onClick,

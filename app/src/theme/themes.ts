@@ -935,7 +935,7 @@ export const themes: ThemeOption[] = [
     popoverForeground: "#ffb000",
     isDark: true,
   },
-];
+] as const;
 
 export const themeCategories = [
   {
@@ -988,4 +988,6 @@ export const themeCategories = [
     icon: "🎨",
     description: "Bold and artistic themes for creative expression",
   },
-];
+] as const;
+
+export type ThemeCategory = (typeof themeCategories)[number]["name"];

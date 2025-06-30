@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Zap, Activity } from "lucide-react";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import type { FileMetadata } from "@/services/document";
 
 import StatsCards from "./components/stats-cards";
