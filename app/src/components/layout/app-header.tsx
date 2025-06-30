@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import ThemeSelector from "@/components/shared/theme/theme-selector";
+import ThemeSelector from "@/components/features/theme/components/theme-selector";
 import { FaGithub } from "react-icons/fa";
 import FirstPrinciplesLogo from "./logo";
 

@@ -11,7 +11,7 @@ import {
   Star,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import FeatureCard from "./feature-card";
 import GettingStarted from "./getting-started";
 import WelcomeHeader from "./welcome-header";

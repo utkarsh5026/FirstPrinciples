@@ -16,7 +16,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import { Button } from "@/components/ui/button";
 import { COLORS } from "@/lib/constants";
 import { ScrollArea } from "@/components/ui/scroll-area";

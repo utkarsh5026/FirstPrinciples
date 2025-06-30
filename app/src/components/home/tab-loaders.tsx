@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import React from "react";
 import { LayoutDashboard, Clock, ListTodo, BarChart } from "lucide-react";
 

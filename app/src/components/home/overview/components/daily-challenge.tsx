@@ -3,7 +3,7 @@ import { Flame, BookMarked } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import Confetti from "react-confetti";
 import { useReadingHistory } from "@/hooks";
 import CardContainer from "@/components/shared/container/card-container";

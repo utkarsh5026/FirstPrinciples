@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import {
   Bar,
   BarChart,

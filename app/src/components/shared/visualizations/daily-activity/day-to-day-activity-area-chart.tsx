@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/chart";
 
 import { motion } from "framer-motion";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import { cn } from "@/lib/utils";
 import useMobile from "@/hooks/device/use-mobile";
 import useChartTooltip from "@/components/shared/chart/tooltip/use-chart-tooltip";

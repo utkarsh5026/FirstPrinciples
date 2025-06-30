@@ -15,7 +15,7 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CategoryNode } from "../../../insights/useInsights";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import getIconForTech from "@/components/shared/icons";
 
 interface HierarchyProps {

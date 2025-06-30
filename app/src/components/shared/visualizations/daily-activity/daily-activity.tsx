@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from "react";
 import { Calendar } from "lucide-react";
 
 import type { ReadingHistoryItem } from "@/services/reading/reading-history-service";
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import { generateThemeColors } from "@/utils/colors";
 import type { DailyActivity } from "@/services/analytics/activity-analyzer";
 import { useActivityMetrics } from "@/hooks/analytics/use-activity-metrics";

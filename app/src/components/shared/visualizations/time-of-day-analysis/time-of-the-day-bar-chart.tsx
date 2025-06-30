@@ -1,4 +1,4 @@
-import { useTheme } from "@/hooks/ui/use-theme";
+import { useTheme } from "@/components/features/theme/hooks/use-theme";
 import { Bar, BarChart, XAxis, YAxis, Cell } from "recharts";
 import ChartContainer from "@/components/shared/chart/chart-container";
 import {
