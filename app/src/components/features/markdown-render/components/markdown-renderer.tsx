@@ -12,7 +12,7 @@ import {
   ParagraphRender,
   TableRender,
   HorizontalRuleRender,
-} from "./components";
+} from "./renderers";
 
 interface CustomMarkdownRendererProps {
   markdown: string;

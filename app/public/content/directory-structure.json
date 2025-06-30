@@ -889,6 +889,31 @@
         "id": "algebra_and_algebraic_structures",
         "name": "Algebra And Algebraic Structures",
         "categories": []
+      },
+      {
+        "id": "continuous_probability_distributions",
+        "name": "Continuous Probability Distributions",
+        "categories": []
+      },
+      {
+        "id": "discrete_probability_distributions",
+        "name": "Discrete Probability Distributions",
+        "categories": []
+      },
+      {
+        "id": "elementary_statistics_and_data_description",
+        "name": "Elementary Statistics And Data Description",
+        "categories": []
+      },
+      {
+        "id": "mathematical_foundations_and_number_systems",
+        "name": "Mathematical Foundations And Number Systems",
+        "categories": []
+      },
+      {
+        "id": "probability_theory_foundations",
+        "name": "Probability Theory Foundations",
+        "categories": []
       }
     ]
   },

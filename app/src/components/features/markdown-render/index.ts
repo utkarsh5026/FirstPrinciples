@@ -1,3 +1,3 @@
-import MarkdownRenderer from "./markdown-renderer";
+import MarkdownRenderer from "./components/markdown-renderer";
 
 export { MarkdownRenderer };

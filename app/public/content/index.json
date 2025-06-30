@@ -4288,6 +4288,134 @@
           "categories": [],
           "files": [],
           "totalFileSize": 0
+        },
+        {
+          "id": "continuous_probability_distributions",
+          "name": "Continuous Probability Distributions",
+          "categories": [],
+          "files": [],
+          "totalFileSize": 0
+        },
+        {
+          "id": "discrete_probability_distributions",
+          "name": "Discrete Probability Distributions",
+          "categories": [],
+          "files": [],
+          "totalFileSize": 0
+        },
+        {
+          "id": "elementary_statistics_and_data_description",
+          "name": "Elementary Statistics And Data Description",
+          "categories": [],
+          "files": [
+            {
+              "path": "maths_in_data_science/elementary_statistics_and_data_description/correlation_vs_causation.md"
+            },
+            {
+              "path": "maths_in_data_science/elementary_statistics_and_data_description/data_types.md"
+            },
+            {
+              "path": "maths_in_data_science/elementary_statistics_and_data_description/data_visualization_principles.md"
+            },
+            {
+              "path": "maths_in_data_science/elementary_statistics_and_data_description/descriptive_statistics.md"
+            },
+            {
+              "path": "maths_in_data_science/elementary_statistics_and_data_description/measures_of_central_tendency.md"
+            },
+            {
+              "path": "maths_in_data_science/elementary_statistics_and_data_description/measures_of_variability.md"
+            },
+            {
+              "path": "maths_in_data_science/elementary_statistics_and_data_description/percentiles_and_quartiles.md"
+            },
+            {
+              "path": "maths_in_data_science/elementary_statistics_and_data_description/population_vs_sample_distinction.md"
+            },
+            {
+              "path": "maths_in_data_science/elementary_statistics_and_data_description/sampling_methods_and_their_mathematical_implications.md"
+            },
+            {
+              "path": "maths_in_data_science/elementary_statistics_and_data_description/z_scores_and_standardization.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "mathematical_foundations_and_number_systems",
+          "name": "Mathematical Foundations And Number Systems",
+          "categories": [],
+          "files": [
+            {
+              "path": "maths_in_data_science/mathematical_foundations_and_number_systems/absolute_value_functions_and_their_geometric_interpretations.md"
+            },
+            {
+              "path": "maths_in_data_science/mathematical_foundations_and_number_systems/inequalities_and_their_properties.md"
+            },
+            {
+              "path": "maths_in_data_science/mathematical_foundations_and_number_systems/mathematical_logic.md"
+            },
+            {
+              "path": "maths_in_data_science/mathematical_foundations_and_number_systems/mathematical_modeling_principles.md"
+            },
+            {
+              "path": "maths_in_data_science/mathematical_foundations_and_number_systems/mathematical_notation_and_symbolic_representation_conventions.md"
+            },
+            {
+              "path": "maths_in_data_science/mathematical_foundations_and_number_systems/order_of_operations_and_algebraic_manipulation_rules.md"
+            },
+            {
+              "path": "maths_in_data_science/mathematical_foundations_and_number_systems/proof_techniques.md"
+            },
+            {
+              "path": "maths_in_data_science/mathematical_foundations_and_number_systems/relations_and_functions.md"
+            },
+            {
+              "path": "maths_in_data_science/mathematical_foundations_and_number_systems/set_theory_fundamentals.md"
+            },
+            {
+              "path": "maths_in_data_science/mathematical_foundations_and_number_systems/understanding_different_number_systems.md"
+            }
+          ],
+          "totalFileSize": 0
+        },
+        {
+          "id": "probability_theory_foundations",
+          "name": "Probability Theory Foundations",
+          "categories": [],
+          "files": [
+            {
+              "path": "maths_in_data_science/probability_theory_foundations/bayes_theorem.md"
+            },
+            {
+              "path": "maths_in_data_science/probability_theory_foundations/combinatorics.md"
+            },
+            {
+              "path": "maths_in_data_science/probability_theory_foundations/conditional_probability_and_independence.md"
+            },
+            {
+              "path": "maths_in_data_science/probability_theory_foundations/expected_value_calculation_and_its_properties.md"
+            },
+            {
+              "path": "maths_in_data_science/probability_theory_foundations/probability_interpretations.md"
+            },
+            {
+              "path": "maths_in_data_science/probability_theory_foundations/probability_mass_functions.md"
+            },
+            {
+              "path": "maths_in_data_science/probability_theory_foundations/probability_trees_and_systematic_probability.md"
+            },
+            {
+              "path": "maths_in_data_science/probability_theory_foundations/random_variables.md"
+            },
+            {
+              "path": "maths_in_data_science/probability_theory_foundations/sample_spaces_and_probability_axioms.md"
+            },
+            {
+              "path": "maths_in_data_science/probability_theory_foundations/variance_and_standard_deviation_of_random_variables.md"
+            }
+          ],
+          "totalFileSize": 0
         }
       ],
       "files": [],
