@@ -2,8 +2,8 @@ import React from "react";
 import { FileMetadata } from "@/services/document";
 import { motion } from "framer-motion";
 import { getIconForTech } from "@/components/shared/icons/icon-map";
-import Category from "./Category";
-import CategoryFile from "./CategoryFile";
+import Category from "./document-category";
+import CategoryFile from "./category-file";
 import type { Document } from "@/stores/document/document-store";
 interface FlatDirectoryViewProps {
   categories: Document[];

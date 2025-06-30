@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import CategoryFile from "../documents/CategoryFile";
+import CategoryFile from "../documents/category-file";
 import type { CurrentCategory } from "../hooks/use-navigate";
 import getIconForTech from "@/components/shared/icons/icon-map";
 import { motion } from "framer-motion";
