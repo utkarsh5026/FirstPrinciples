@@ -3,7 +3,6 @@ import { Zap, Activity } from "lucide-react";
 import { useTheme } from "@/hooks/ui/use-theme";
 import type { FileMetadata } from "@/services/document";
 
-import StatsCards from "./components/stats-cards";
 import RecentActivity from "./components/recent-activity";
 import RecommendedReads from "./components/recommended-reads";
 import UpcomingReads from "./components/upcoming-reads";
@@ -92,23 +91,8 @@ const Overview: React.FC<OverviewProps> = ({
     });
   }, [filterHistory]);
 
-  const getNextMilestone = () => {
-    const completedCount = history.length;
-    if (completedCount < 5) return { target: 5, progress: completedCount };
-    if (completedCount < 10) return { target: 10, progress: completedCount };
-    if (completedCount < 20) return { target: 20, progress: completedCount };
-    if (completedCount < 50) return { target: 50, progress: completedCount };
-    return { target: 100, progress: completedCount };
-  };
-
-  const nextMilestone = getNextMilestone();
-
-  console.dir(todayHistory, { depth: null });
-
   return (
     <div className="space-y-6">
-      <StatsCards nextMilestone={nextMilestone} />
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
           <h3 className="text-sm font-medium flex items-center">
