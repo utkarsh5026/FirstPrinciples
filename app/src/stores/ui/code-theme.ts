@@ -13,8 +13,6 @@ import {
   nord,
   prism,
   darcula,
-  cb,
-  ghcolors,
   shadesOfPurple,
   tomorrow,
   oneLight,
@@ -55,10 +53,6 @@ export const codeThemes = {
     coldarkCold: { name: "Coldark Cold", style: coldarkCold },
     prism: { name: "Prism Default", style: prism },
   },
-  "Unique Themes": {
-    cb: { name: "CB", style: cb },
-    ghcolors: { name: "GitHub Colors", style: ghcolors },
-  },
 } as const;
 
 export type ThemeKey = {
@@ -72,6 +66,9 @@ interface CodeThemeStore {
   getCurrentThemeStyle: () => { [key: string]: React.CSSProperties };
   getCurrentThemeName: () => string;
   getThemesByCategory: () => typeof codeThemes;
+  syncWithMainTheme: (isDark: boolean) => void;
+  getFirstDarkTheme: () => ThemeKey;
+  getFirstLightTheme: () => ThemeKey;
 }
 
 // Create the store with persistence
@@ -84,10 +81,33 @@ export const useCodeThemeStore = create<CodeThemeStore>()(
         set({ selectedTheme: theme });
       },
 
+      getFirstDarkTheme: () => {
+        const darkThemes = Object.keys(codeThemes["Dark Themes"]);
+        return darkThemes[0] as ThemeKey;
+      },
+
+      getFirstLightTheme: () => {
+        const lightThemes = Object.keys(codeThemes["Light Themes"]);
+        return lightThemes[0] as ThemeKey;
+      },
+
+      syncWithMainTheme: (isDark: boolean) => {
+        const { selectedTheme, getFirstDarkTheme, getFirstLightTheme } = get();
+
+        const isCurrentThemeDark = selectedTheme in codeThemes["Dark Themes"];
+        const shouldBeDark = isDark;
+
+        if (isCurrentThemeDark !== shouldBeDark) {
+          const newTheme = shouldBeDark
+            ? getFirstDarkTheme()
+            : getFirstLightTheme();
+          set({ selectedTheme: newTheme });
+        }
+      },
+
       getCurrentThemeStyle: () => {
         const { selectedTheme } = get();
 
-        // Direct lookup in each category
         if (selectedTheme in codeThemes["Dark Themes"]) {
           return codeThemes["Dark Themes"][
             selectedTheme as keyof (typeof codeThemes)["Dark Themes"]
@@ -98,20 +118,13 @@ export const useCodeThemeStore = create<CodeThemeStore>()(
             selectedTheme as keyof (typeof codeThemes)["Light Themes"]
           ].style;
         }
-        if (selectedTheme in codeThemes["Unique Themes"]) {
-          return codeThemes["Unique Themes"][
-            selectedTheme as keyof (typeof codeThemes)["Unique Themes"]
-          ].style;
-        }
 
-        // Fallback to oneDark
         return oneDark;
       },
 
       getCurrentThemeName: () => {
         const { selectedTheme } = get();
 
-        // Direct lookup in each category
         if (selectedTheme in codeThemes["Dark Themes"]) {
           return codeThemes["Dark Themes"][
             selectedTheme as keyof (typeof codeThemes)["Dark Themes"]
@@ -122,22 +135,15 @@ export const useCodeThemeStore = create<CodeThemeStore>()(
             selectedTheme as keyof (typeof codeThemes)["Light Themes"]
           ].name;
         }
-        if (selectedTheme in codeThemes["Unique Themes"]) {
-          return codeThemes["Unique Themes"][
-            selectedTheme as keyof (typeof codeThemes)["Unique Themes"]
-          ].name;
-        }
 
-        // Fallback
         return "One Dark";
       },
 
       getThemesByCategory: () => codeThemes,
     }),
     {
-      name: "code-theme-storage", // unique name for localStorage key
+      name: "code-theme-storage",
       storage: createJSONStorage(() => localStorage),
-      // Only persist the selectedTheme, not the functions
       partialize: (state) => ({ selectedTheme: state.selectedTheme }),
     }
   )

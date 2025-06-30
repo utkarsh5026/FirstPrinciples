@@ -44,14 +44,25 @@ const getInitialBookmarkedThemes = (): ThemeOption[] => {
  *
  * This store manages the current theme of the application and bookmarked themes.
  * It allows you to set the theme, bookmark/unbookmark themes, and check bookmark status.
+ * Now includes automatic code theme synchronization.
  */
 export const useThemeStore = create<ThemeState>((set, get) => ({
   currentTheme: getInitialTheme(),
   bookmarkedThemes: getInitialBookmarkedThemes(),
 
   setTheme: (theme: ThemeOption) => {
+    const { currentTheme } = get();
+    const isDarkModeChanging = currentTheme.isDark !== theme.isDark;
+
     localStorage.setItem("theme", JSON.stringify(theme));
     set({ currentTheme: theme });
+
+    if (isDarkModeChanging) {
+      import("@/stores/ui/code-theme").then(({ useCodeThemeStore }) => {
+        const codeThemeStore = useCodeThemeStore.getState();
+        codeThemeStore.syncWithMainTheme(theme.isDark);
+      });
+    }
   },
 
   toggleBookmark: (theme: ThemeOption) => {
