@@ -5,7 +5,6 @@ import getIconForTech from "@/components/shared/icons/";
 import { useCodeThemeStore } from "@/components/features/markdown-render/store/code-theme-store";
 import { Button } from "@/components/ui/button";
 import { downloadAsFile, downloadAsImage } from "@/utils/download";
-import { Badge } from "@/components/ui/badge";
 import CodePreviewDrawer from "./code-preview-drawer";
 import CodeDisplay from "./code-display";
 
@@ -174,14 +173,6 @@ const CodeRender: React.FC<CodeRenderProps> = ({
               );
             })()}
           </span>
-          {isLargeCode && (
-            <Badge
-              variant="outline"
-              className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-none rounded-full"
-            >
-              {codeContent.split("\n").length} lines
-            </Badge>
-          )}
         </div>
 
         {/* Header Actions */}
