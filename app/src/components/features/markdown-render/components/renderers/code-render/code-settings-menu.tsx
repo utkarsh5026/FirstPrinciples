@@ -32,6 +32,20 @@ import {
 } from "@/components/features/markdown-render/store/code-settings-store";
 import { ActionButton } from "./action-button";
 
+const fontFamilies: CodeFontFamily[] = [
+  "source-code-pro",
+  "fira-code",
+  "cascadia-code",
+  "jetbrains-mono",
+  "sf-mono",
+  "consolas",
+  "monaco",
+  "ubuntu-mono",
+  "roboto-mono",
+];
+
+const fontSizes: CodeFontSize[] = ["xs", "sm", "base", "lg", "xl"];
+
 /**
  * Code Settings Menu Component
  *
@@ -54,20 +68,6 @@ const CodeSettingsMenu = () => {
     getFontFamilyLabel,
     getFontSizeLabel,
   } = useCodeSettingsStore();
-
-  const fontFamilies: CodeFontFamily[] = [
-    "source-code-pro",
-    "fira-code",
-    "cascadia-code",
-    "jetbrains-mono",
-    "sf-mono",
-    "consolas",
-    "monaco",
-    "ubuntu-mono",
-    "roboto-mono",
-  ];
-
-  const fontSizes: CodeFontSize[] = ["xs", "sm", "base", "lg", "xl"];
 
   const ToggleIcon = ({ active }: { active: boolean }) =>
     active ? (
