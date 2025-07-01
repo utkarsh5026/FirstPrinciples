@@ -1,8 +1,9 @@
 import React from "react";
 import type { ThemeOption as ThemeTypeOption } from "@/theme/themes";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import { FiCheck, FiStar } from "react-icons/fi";
-import { useThemeStore } from "@/components/features/theme/store/theme-store";
+import { useBookmarkTheme } from "../hooks/use-theme";
 
 interface ThemeOptionProps {
   theme: ThemeTypeOption;
@@ -22,20 +23,14 @@ const ThemeOption: React.FC<ThemeOptionProps> = ({
   showCategory = false,
   showBookmark = true,
 }) => {
-  const toggleBookmark = useThemeStore((state) => state.toggleBookmark);
-  const isBookmarked = useThemeStore((state) => state.isBookmarked);
-
-  const bookmarked = isBookmarked(theme);
-
-  const handleBookmarkClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent theme selection when clicking bookmark
-    toggleBookmark(theme);
-  };
+  const { isBookmarked, handleBookmarkClick } = useBookmarkTheme(theme);
 
   return (
-    <button
+    <Button
+      variant="ghost"
+      size="lg"
       className={cn(
-        "flex items-center w-full rounded-2xl py-2.5 sm:py-3 px-3 sm:px-4 text-left transition-all duration-200",
+        "flex items-center w-full rounded-2xl py-2.5 sm:py-3 px-3 sm:px-4 text-left transition-all duration-200 mb-4",
         "hover:scale-[1.01] group font-cascadia-code",
         isActive
           ? "bg-primary/10 border border-primary/30 shadow-sm"
@@ -72,18 +67,18 @@ const ThemeOption: React.FC<ThemeOptionProps> = ({
             className={cn(
               "flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full transition-all duration-200 shrink-0",
               "hover:scale-110 hover:bg-secondary/60",
-              bookmarked
-                ? "text-yellow-500 hover:text-yellow-400"
+              isBookmarked
+                ? "text-primary hover:text-primary/80"
                 : "text-muted-foreground hover:text-foreground"
             )}
             aria-label={
-              bookmarked ? "Remove from bookmarks" : "Add to bookmarks"
+              isBookmarked ? "Remove from bookmarks" : "Add to bookmarks"
             }
           >
             <FiStar
               className={cn(
                 "w-3.5 h-3.5 sm:w-4 sm:h-4 transition-all duration-200",
-                bookmarked ? "fill-current" : ""
+                isBookmarked ? "fill-current" : ""
               )}
             />
           </button>
@@ -95,7 +90,7 @@ const ThemeOption: React.FC<ThemeOptionProps> = ({
           </div>
         )}
       </div>
-    </button>
+    </Button>
   );
 };
 

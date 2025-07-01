@@ -76,12 +76,10 @@ export const useThemeStore = create<ThemeState>((set, get) => ({
     let newBookmarkedThemes: ThemeOption[];
 
     if (isCurrentlyBookmarked) {
-      // Remove from bookmarks
       newBookmarkedThemes = bookmarkedThemes.filter(
         (bookmarked) => bookmarked.name !== theme.name
       );
     } else {
-      // Add to bookmarks
       newBookmarkedThemes = [...bookmarkedThemes, theme];
     }
 

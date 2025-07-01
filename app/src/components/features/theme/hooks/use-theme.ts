@@ -55,3 +55,22 @@ export const useTheme = () => {
     setTheme: (theme: ThemeOption) => setTheme(theme),
   };
 };
+
+export const useBookmarkTheme = (theme: ThemeOption) => {
+  const toggleBookmark = useThemeStore((state) => state.toggleBookmark);
+  const bookmarkedThemes = useThemeStore((state) => state.bookmarkedThemes);
+
+  const handleBookmarkClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleBookmark(theme);
+  };
+
+  const isBookmarked = bookmarkedThemes.some(
+    (bookmarked) => bookmarked.name === theme.name
+  );
+
+  return {
+    isBookmarked,
+    handleBookmarkClick,
+  };
+};
