@@ -1,2 +1,2 @@
-import History from "./reading-history";
+import History from "./components/reading-history";
 export default History;
