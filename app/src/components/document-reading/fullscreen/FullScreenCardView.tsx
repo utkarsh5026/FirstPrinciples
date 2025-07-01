@@ -106,7 +106,6 @@ const FullscreenCardContent: React.FC<FullscreenCardContentProps> = ({
     delta: 10,
     preventScrollOnSwipe: true,
     trackTouch: true,
-    trackMouse: true,
   });
 
   const resetControlsTimeout = useCallback(() => {
