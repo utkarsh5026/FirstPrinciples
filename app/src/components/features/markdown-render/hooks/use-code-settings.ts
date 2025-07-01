@@ -13,7 +13,7 @@ const fontMap = {
   "roboto-mono": "Roboto Mono, monospace",
 };
 
-const useCodeSettings = () => {
+export const useCodeSettings = () => {
   const settings = useCodeSettingsStore((state) => state.settings);
 
   const getFontFamily = useCallback(() => {
@@ -106,6 +106,25 @@ const useCodeSettings = () => {
     getFontSize,
     getPadding,
     getBackgroundStyle,
+  };
+};
+
+export const useCodeFontSettings = () => {
+  const setFontFamily = useCodeSettingsStore((state) => state.setFontFamily);
+
+  const setFontSize = useCodeSettingsStore((state) => state.setFontSize);
+  const getFontFamilyLabel = useCodeSettingsStore(
+    (state) => state.getFontFamilyLabel
+  );
+  const getFontSizeLabel = useCodeSettingsStore(
+    (state) => state.getFontSizeLabel
+  );
+
+  return {
+    setFontFamily,
+    setFontSize,
+    getFontFamilyLabel,
+    getFontSizeLabel,
   };
 };
 

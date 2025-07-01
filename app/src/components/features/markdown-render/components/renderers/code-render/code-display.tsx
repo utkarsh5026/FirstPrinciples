@@ -11,7 +11,6 @@ interface CodeDisplayProps {
   codeContent: string;
   props?: React.ComponentPropsWithoutRef<typeof SyntaxHighlighter>;
   themeStyle: Record<string, React.CSSProperties>;
-  lineWrap?: boolean;
 }
 
 const CodeDisplay: React.FC<CodeDisplayProps> = ({
@@ -21,13 +20,12 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({
   codeContent,
   props,
   themeStyle,
-  lineWrap = false,
 }) => {
   const settings = useCodeSettingsStore((state) => state.settings);
   const { getFontFamily, getFontSize, getPadding, getBackgroundStyle } =
     useCodeSettings();
 
-  const shouldWrapLines = lineWrap || settings.enableWordWrap;
+  const shouldWrapLines = settings.enableWordWrap;
 
   return (
     <div

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { Copy, Check, Image, FileText, WrapText } from "lucide-react";
+import { Copy, Check, Image, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Drawer, DrawerContent, DrawerHeader } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
 import { ActionButton } from "./action-button";
 import ThemeSelector from "./theme-selector";
 import CodeSettingsMenu from "./code-settings-menu";
+import FontSettingsMenu from "./font-settings-menu";
 import CodeDisplay from "./code-display";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useCodeSettingsStore } from "@/components/features/markdown-render/store/code-settings-store";
@@ -47,7 +47,6 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
   props,
   themeStyle,
 }) => {
-  const [lineWrap, setLineWrap] = useState(false);
   const { settings } = useCodeSettingsStore();
 
   return (
@@ -59,18 +58,8 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
           <div className="relative flex items-center justify-center gap-2">
             <div className="flex items-center gap-1 sm:gap-3 flex-shrink-0">
               <div className="flex items-center gap-0.5 sm:gap-2 p-1 bg-card/50 rounded-2xl sm:rounded-2xl border border-border/50 backdrop-blur-sm">
-                <div className="flex items-center gap-2 px-2 py-1">
-                  <WrapText className="w-3.5 h-3.5 text-muted-foreground" />
-                  <Switch
-                    checked={lineWrap}
-                    onCheckedChange={setLineWrap}
-                    className="scale-75 sm:scale-100"
-                    aria-label="Toggle line wrap"
-                  />
-                  <span className="text-xs text-muted-foreground hidden sm:inline">
-                    Wrap
-                  </span>
-                </div>
+                <FontSettingsMenu />
+
                 <div className="w-px h-6 bg-border/50" />
 
                 <ThemeSelector />
@@ -137,7 +126,6 @@ const CodePreviewDrawer: React.FC<CodePreviewDrawerProps> = ({
             themeStyle={themeStyle}
             language={language}
             codeContent={codeContent}
-            lineWrap={lineWrap}
             props={{ ...props }}
           />
           <ScrollBar orientation="horizontal" className="bg-muted/50" />

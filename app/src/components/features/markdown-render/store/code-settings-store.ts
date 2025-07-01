@@ -45,17 +45,17 @@ interface CodeSettingsStore {
 }
 
 const DEFAULT_SETTINGS: CodeDisplaySettings = {
-  fontFamily: "source-code-pro",
-  fontSize: "sm",
+  fontFamily: "cascadia-code",
+  fontSize: "base",
   showLineNumbers: false,
-  transparentBackground: true, // Default to current transparent setting
+  transparentBackground: true,
   showCopyButton: true,
   enableWordWrap: false,
   showLanguageLabel: true,
   compactMode: false,
   customBackground: null,
   lineHeight: 1.6,
-};
+} as const;
 
 const FONT_FAMILY_LABELS: Record<CodeFontFamily, string> = {
   "source-code-pro": "Source Code Pro",
@@ -67,7 +67,7 @@ const FONT_FAMILY_LABELS: Record<CodeFontFamily, string> = {
   monaco: "Monaco",
   "ubuntu-mono": "Ubuntu Mono",
   "roboto-mono": "Roboto Mono",
-};
+} as const;
 
 const FONT_SIZE_LABELS: Record<CodeFontSize, string> = {
   xs: "Extra Small",
@@ -75,7 +75,7 @@ const FONT_SIZE_LABELS: Record<CodeFontSize, string> = {
   base: "Medium",
   lg: "Large",
   xl: "Extra Large",
-};
+} as const;
 
 const loadInitialSettings = (): CodeDisplaySettings => {
   if (typeof window === "undefined") return DEFAULT_SETTINGS;

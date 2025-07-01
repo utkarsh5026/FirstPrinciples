@@ -33,7 +33,7 @@ const ThemeSelector = () => {
         align="end"
         side="bottom"
         sideOffset={8}
-        className="w-52 max-h-64 overflow-y-auto bg-card rounded-2xl font-fira-code z-[50]"
+        className="w-52 max-h-64 overflow-y-auto bg-card/80 rounded-2xl font-fira-code z-[50] border-none backdrop-blur-lg shadow-lg"
       >
         <DropdownMenuLabel className="text-xs text-muted-foreground px-3 py-2">
           Current: {getCurrentThemeName()}
