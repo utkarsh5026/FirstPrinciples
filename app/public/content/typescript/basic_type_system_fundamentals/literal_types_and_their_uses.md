@@ -195,13 +195,13 @@ function handleUser(user: User) {
 
 ```
 TypeScript Development Time:
-┌─────────────────────────┐
-│ type Status = "pending" │ ← Literal types exist here
+┌──────────────────────────┐
+│ type Status = "pending"  │ ← Literal types exist here
 │ let x: Status = "pending"│
-│                         │
-│ Compile-time checking   │
-│ and IntelliSense        │
-└─────────────────────────┘
+│                          │
+│ Compile-time checking    │
+│ and IntelliSense         │
+└──────────────────────────┘
             │
             ▼ tsc (TypeScript Compiler)
 ┌─────────────────────────┐

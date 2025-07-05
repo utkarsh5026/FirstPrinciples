@@ -173,13 +173,13 @@ Here's what happens when TypeScript compiles code with `any`:
 
 ```
 TypeScript Code with any:        JavaScript Output:
-┌─────────────────────────┐     ┌─────────────────────────┐
-│ let data: any = "hello" │────▶│ let data = "hello"      │
-│ data.foo.bar.baz        │     │ data.foo.bar.baz        │
-│                         │     │                         │
-│ ✓ No compiler errors   │     │ ⚠️ Potential runtime    │
-│                         │     │   errors               │
-└─────────────────────────┘     └─────────────────────────┘
+┌─────────────────────────┐     ┌───────────────────────────┐
+│ let data: any = "hello" │────▶│ let data = "hello"        │
+│ data.foo.bar.baz        │     │ data.foo.bar.baz          │
+│                         │     │                           │
+│ ✓ No compiler errors    │     │ ⚠️ Potential runtime      │
+│                         │     │   errors                  │
+└─────────────────────────┘     └───────────────────────────┘
 ```
 
 > **Key Insight** : `any` values compile to regular JavaScript with no type information. The runtime behavior is identical to JavaScript, including all its potential errors.
