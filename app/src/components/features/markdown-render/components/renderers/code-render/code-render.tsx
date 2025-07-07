@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { Copy, Check, Maximize2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import getIconForTech from "@/components/shared/icons/";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { downloadAsFile, downloadAsImage } from "@/utils/download";
 import CodePreviewDrawer from "./code-preview-drawer";
 import CodeDisplay from "./code-display";
+import { useCodeDetection } from "../../../hooks/use-code-detection";
 
 interface CodeRenderProps extends React.ComponentPropsWithoutRef<"code"> {
   inline?: boolean;
@@ -41,42 +42,7 @@ const CodeRender: React.FC<CodeRenderProps> = ({
   const codeRef = useRef<HTMLDivElement>(null);
   const drawerCodeRef = useRef<HTMLDivElement | null>(null);
 
-  const [isInTableCell, setIsInTableCell] = useState(false);
-  const [headingLevel, setHeadingLevel] = useState<number | null>(null);
-
-  /**
-   * Context Detection Logic
-   *
-   * This effect analyzes the component's DOM position to determine
-   * if it's inside a table cell or heading, which affects rendering style.
-   * We traverse up to 3 parent elements to find context clues.
-   */
-  useEffect(() => {
-    if (codeRef.current) {
-      let parent = codeRef.current.parentElement;
-      let cnt = 0;
-
-      while (parent && cnt < 3) {
-        const tagName = parent.tagName.toLowerCase().trim();
-
-        // Check if code is inside a table cell
-        if (tagName === "td") {
-          setIsInTableCell(true);
-          return;
-        }
-
-        // Check if code is inside a heading
-        if (tagName === "h1" || tagName === "h2" || tagName === "h3") {
-          setHeadingLevel(parseInt(tagName.slice(1)));
-          return;
-        }
-
-        parent = parent.parentElement;
-        cnt++;
-      }
-      setIsInTableCell(false);
-    }
-  }, []);
+  const { isInTableCell, headingLevel } = useCodeDetection(codeRef);
 
   const codeContent = useMemo(() => {
     return typeof children === "string"
